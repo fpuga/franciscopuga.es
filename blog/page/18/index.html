@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2021/" />
+<link rel="next" href="../../archive/2025/" />
 
 
 <!-- RSS feed -->
@@ -399,6 +399,8 @@
       
         
       
+        
+      
     
     
       
@@ -434,6 +436,29 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -822,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#taller-de-gvsig-eiel-en-valencia-metodo-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taller de gvSIG-EIEL en Valencia. Método 1.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#jornadas-de-economia-social" class="md-nav__link">
     <span class="md-ellipsis">
       Jornadas de Economía Social
@@ -857,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice" class="md-nav__link">
-    <span class="md-ellipsis">
-      Maquetación de múltiples ficheros de texto usando LibreOffice
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -880,6 +905,38 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-11-28 00:00:00">28 de noviembre de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="taller-de-gvsig-eiel-en-valencia-metodo-1"><a class="toclink" href="../../2011/11/28/taller-gvsig-eiel-valencia-metodo-1/">Taller de gvSIG-EIEL en Valencia. Método 1.</a></h2>
+<p>El jueves por la tarde en las <a href="jornadas.gvsig.org">Jornadas de gvSIG</a>, <a href="http://cartohistorias.blogspot.com/">Gonzalo</a> y yo estaremos por parte de <a href="cartolab.udc.es">Cartolab</a> impartiendo el taller sobre <a href="http://cartolab.udc.es/cartoweb/gvsig-eiel/">gvSIG-EIEL</a>.</p>
+<p>El taller está pensado para que los que acudan puedan seguir los ejemplos con su portátil. Dado que gvSIG-EIEL hace uso de una base de datos PostGIS para funcionar vamos a explicar dos formas distintas de poder seguir el taller.</p>
+<p>La primera de ellas es que instaleis directamente en vuestro portátil la base de datos. Desde Ubuntu es tan sencillo como hacer:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;sudo apt-get install postgresql-8.4-postgis pgadmin3&lt;br&gt;&lt;/br&gt;</code><br />
+Y luego crear un template para postgis.<br />
+<code>&lt;br&gt;&lt;/br&gt;su postgres&lt;br&gt;&lt;/br&gt;createdb postgistemplate&lt;br&gt;&lt;/br&gt;createlang plpgsql postgistemplate&lt;br&gt;&lt;/br&gt;psql -d postgistemplate -f /usr/share/postgis/lwpostgis.sql&lt;br&gt;&lt;/br&gt;psql -d postgistemplate -f /usr/share/postgis/spatial_ref_sys.sql&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Y en windows <a href="http://www.enterprisedb.com/products-services-training/products/postgres-plus-solution-pack/downloads">bajándose este pack</a> y acordándose de seleccionar en el momento adecuado que también instale postgis.</p>
+<p>Con motivo del taller vamos a proporcionar un nuevo set de datos que os podéis <a href="http://dl.dropbox.com/u/2131623/gvsig-eiel.sql.zip">descargar desde este enlace</a>. Aunque con los publicados en la página web es suficiente para hacer la mayoría de los ejemplos.</p>
+<p>Desde la interfaz de pgAdmin3 <a href="http://www.youtube.com/watch?v=1wvDVBjNDys">se crea una nueva base de datos</a> usando como template «<em>template_postgis</em>» y luego se emplea el set de datos que proporcionamos sobre la base de datos que acabamos de crear. En caso de que hayamos llamado <em>gvsig-eiel</em> a la base de datos hariamos:<br />
+<code>&lt;br&gt;&lt;/br&gt;psql -U postgres -p 5432 -h localhost -f gvsig-eiel.sql -d gvsig-eiel&lt;br&gt;&lt;/br&gt;</code></p>
+<p>En caso de duda <a href="http://www.bostongis.com/PrinterFriendly.aspx?content_name=postgis_tut01">este artículo</a> puede ayudaros. Si tenéis alguna duda dejad un comentario en el blog o escribidme a fpuga ARROBA cartolab.es. Es importante que si vais a seguir el taller de forma activa traigais todo configurado.</p>
+<p>gvSIG-EIEL <a href="http://cartolab.udc.es/cartoweb/gvsig-eiel/menu/descarga/usuarios/">podéis descargarlo de la propia página</a>. Con motivo del taller hemos dispuesto un servidor alternativo por si hubiera problemas.</p>
+<p>Mañana publicaré el segundo método. Vamos a distribuir un fichero que podreis volcar a un USB (mínimo 4GB y se perderán los datos que tuvierais en ellos) que actuará como sistema operativo completo con todo instalado que podéis ejecutar directamente desde el USB sin necesidad de tocar nada en el ordenador (aunque funciona considerablemente más lento)</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1002,56 +1059,6 @@ Si tus parches son pequeños a veces lleva más tiempo integrarlos que manterlos
 <p>La verdad es que todavía no tengo muy claro como funciona. Por lo que he entendido tienes que dar de alta tu blog y validarlo. Para validarlo puedes escribir un post con un título determinado o bien acciones menos intrusivas como poner una determinada etiqueta de forma temporal en el código html de la página principal.</p>
 <p>Una vez has sido validado tienes acceso a las promociones de las empresas. Bloguzz proporciona un rss con las promociones que las empresas quieren ofrecer, tu te anotas a las que te interesen y si la empresa te selecciona te envia el producto/servicio a cambio de que escribas un artículo sobre ello.</p>
 <p>La verdad es que en principio dudo bastante de este tipo de modelos y en un blog de temática variada como el mio va a ser difícil que sea seleccionado para nada pero ya contaré…</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-10-06 00:00:00">6 de octubre de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice"><a class="toclink" href="../../2011/10/06/maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice/">Maquetación de múltiples ficheros de texto usando LibreOffice</a></h2>
-<p><a href="http://cartolab.udc.es">Cartolab</a> está colaborando con <a href="http://www.isf.es">Ingeniería Sin Fronteras</a> en un proyecto financiado por la <a href="http://www.xunta.es/">Xunta de Galicia</a> para la elaboración de materiales para un curso de Sistemas de Información Geográfica y Cooperación al Desarrollo. En la elaboración del curso tenemos la suerte de colaborar también con <a href="http://icarto.es/">iCarto</a> y con el <a href="http://laborate.usc.es/es/">Laborate</a>. Además el <a href="http://www.sigte.udg.edu/sigte_es/">SIGTE</a> se encarga de revisar el trabajo y poner la plataforma de teleformación. Gracias a todos ellos por hacer posible este artículo.</p>
-<h3 id="maquetar-multiples-ficheros-con-libreoffice"><a class="toclink" href="../../2011/10/06/maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice/#maquetar-multiples-ficheros-con-libreoffice">Maquetar múltiples ficheros con LibreOffice</a></h3>
-<p>Uno de los puntos que defendemos en el curso es de la importancia del uso de software libre en los proyectos de cooperación, y por coherencia, tratamos en la medida de los posible de emplear unicamente herramientas libres para elaborar los contenidos. Nos encontramos por tanto con un equipo de alrededor de 9 personas en varias instituciones distintas editando cerca de 20 ficheros de texto distintos con LibreOffice, lo cual entre otras cosas genera el problema de obtener al final una maquetación coherente. Está claro que existen soluciones más imaginativas por ejemplo usar latex con git como repositorio de información pero en ciertos contextos esto es simplemente imposible.</p>
-<p>Cuando queremos que un documento de texto tenga un formato consistente empleamos <a href="http://wiki.documentfoundation.org/cgi_img_auth.php/c/cc/0206WG3-IntroductionToStyles.pdf">estilos</a>, cuando necesitamos un formato consistente en múltiples ficheros empleamos <a href="http://wiki.documentfoundation.org/cgi_img_auth.php/6/6e/0103GS3-StylesAndTemplates.pdf">plantillas</a>.</p>
-<h3 id="que-es-una-plantilla-y-como-se-crea"><a class="toclink" href="../../2011/10/06/maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice/#que-es-una-plantilla-y-como-se-crea">Que es una plantilla y como se crea</a></h3>
-<p>Apurando la definición se podría decir que una plantilla no es más que un documento de texto de LibreOffice con extensión .ott en lugar de .odt en el que se han definido los estilos del documento, las cabeceras, ciertos textos, … El truco está en que cuando creamos un nuevo documento a partir de una plantilla este documento se queda en cierta manera vinculado a la plantilla. Por tanto cuando modifiquemos la plantilla se modificarán los documentos asociados.</p>
-<p>Al menos esa es la teoría en realidad hay algunos handicaps:<br />
-– No todo lo modificado en la plantilla se actualiza en los documentos. Los estilos si que son actualizados pero textos que podamos tener por las páginas por ejemplo una portada no se actualizan. <a href="http://extensions.services.openoffice.org/en/project/templatechanger">Aunque hay una extensión que lo arregla</a>.<br />
-– La actualización no es automática. Cuando abrimos el documento vinculado, si la plantilla ha cambiado nos pregunta si queremos actualizar los estilos, no se actualizan por si mismos.<br />
-– Las plantillas pueden ser compartidas pero no es lo más cómodo del mundo.<br />
-– Una precaución que habría que tener es que en general no debemos modificar el estilo en el documento. Debemos: Cerrar el documento, modificar la plantilla y volver a abrir el documento para que se actualicen.</p>
-<p>A pesar de estos handicaps el disponer de plantillas para los documentos corporativos de tu empresa puede acabar ahorrándote mucho tiempo.</p>
-<ul>
-<li>Para crear una plantilla lo más fácil es crear un nuevo documento de texto y luego <em>Archivo -&gt; Plantilla -&gt; Guardar</em>.</li>
-<li>Para crear un documento a partir de una plantilla <em>Archivo -&gt; Nuevo -&gt; Plantillas de documentos</em>.</li>
-<li>Para editar una plantilla, desde cualquier documento, <em>Archivo -&gt; Plantilla -&gt; Administrar, seleccionamos la que nos interese y en botón desplegable llamado Comandos le damos a editar</em>. Para guardarla usamos el mismo procedimiento que para crear una nueva (<em>Archivo -&gt; Plantilla -&gt; Guardar</em>) pero seleccionando la ya existente para que la sobreescriba.</li>
-</ul>
-<h3 id="compartir-la-plantilla"><a class="toclink" href="../../2011/10/06/maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice/#compartir-la-plantilla">Compartir la plantilla</a></h3>
-<p>Compartir la plantilla no es del todo necesario. Si una persona tiene la plantilla en su ordenador y maqueta todos los documentos, aunque el resto no tengan la plantilla cada documento individual si que conservará los atributos de los estilos. Por tanto se puede continuar editando el documento usando los estilos predefinidos. Pero no podrá crear nuevos estilos o modificarlos porque creará inconsistencias. Tendrá que solicitar a quien tiene la plantilla que la modifique y abra todos los documentos para que estos se actualicen.</p>
-<p>Si no disponemos de la plantilla en nuestro ordenador tampoco podremos crear nuevos documentos a partir de la plantilla. Una solución por supuesto es mandarla por correo-e cada vez que haya un cambio, pero existe un método algo más sofisticado.</p>
-<p>En nuestro caso concreto empleamos DropBox (nadie es perfecto) para compartir los materiales del curso, de modo que podemos dejar la propia plantilla en una carpeta compartida. La persona que crea la plantilla la exporta (<em>Archivo -&gt; Plantilla -&gt; Administrar, seleccionamos la que queremos y en el botón de Comandos-&gt;Exportar</em>).</p>
-<p>LibreOffice nos da la oportunidad de importar plantillas (misma secuencia de menus que para exportar) pero si hacemos esto creará una copia local de la plantilla y las modificaciones en el original no se verán reflejadas. Lo que debemos hacer es decirle que consideré la carpeta que nosotros queramos como una carpeta válida de plantillas. Para ello:</p>
-<p><em>Herramientas -&gt; Opciones -&gt; Rutas -&gt; Marcamos plantillas, le damos a editar, agregamos como ruta nueva la de nuestra carpeta compartida y la seleccionamos.</em></p>
-<p>Por desgracia, la cosa no iba a ser tan fácil, las plantillas que pueda haber en esa carpeta no son reconocidas automáticamente y ni no vale con importalas así que hay que hacer un pequeño truco.</p>
-<ol>
-<li>Configuramos la ruta a la carpeta compartida si no lo hemos hecho todavía</li>
-<li>Cortamos y pegamos en otro sitio la plantilla que está en la carpeta compartida. Es importante por tanto que no haya en en la carpeta de plantillas una que ya tenga el nombre que vamos a usar, si no LibreOffice le asignará otro distinto y el fichero compartido tendrá un nombre distinto por tanto.</li>
-<li>Abrimos mediante doble click el fichero que contiene la plantilla y guardamos la plantilla a partir de él (<em>Archivo -&gt; plantilla -&gt; guardar</em>). De nombre le pondremos el que hayamos acordado con el resto de gente respetando mayúsculas etc … Muy importante respetar escrupulosamente el nombre</li>
-<li>Con eso estaría listo. Ya tendriamos esa plantilla disponible en nuestro sistema y cada vez que la modificáramos estaríamos tocando el fichero compartido de modo que se le actualizaría a los demás.</li>
-</ol>
-<p>En próximos artículos seguiremos contando algunos trucos de los estilos que podemos usar a la hora de hacer la plantilla el uso de campos, …</p>
     
   </div>
 </article>

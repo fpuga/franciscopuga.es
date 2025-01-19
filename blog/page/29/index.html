@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2021/" />
+<link rel="next" href="../../archive/2025/" />
 
 
 <!-- RSS feed -->
@@ -399,6 +399,8 @@
       
         
       
+        
+      
     
     
       
@@ -434,6 +436,29 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -822,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#estadisticas-para-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estadísticas para WordPress
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#nueva-etapa" class="md-nav__link">
     <span class="md-ellipsis">
       Nueva Etapa
@@ -857,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#vigo-concentracion-en-repulsa-aos-ataques-de-israel" class="md-nav__link">
-    <span class="md-ellipsis">
-      [Vigo] Concentración en repulsa aos ataques de Israel
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -880,6 +905,39 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2009-05-14 00:00:00">14 de mayo de 2009</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="estadisticas-para-wordpress"><a class="toclink" href="../../2009/05/14/estadisticas-wordpress/">Estadísticas para WordPress</a></h2>
+<p>Escoger un plugin de estadísticas para WordPress es complicado. Si <a href="http://wordpress.org/extend/plugins/tags/stats">buscas en la página de wordpress</a> encontraras decenas de ellos, google tampoco ayuda demasiado, porque los primeros resultados en las búsquedas son a <a href="http://lorelle.wordpress.com/2007/02/12/counting-wordpress-statistics-wordpress-plugins/">posts antiguos</a> o a <a href="http://mashable.com/2007/08/07/30-wordpress-plugins-for-statistics/">recopilatorios</a> que se dedican a enumerar <a href="http://ayudawordpress.com/15-sistemas-de-estadisticas-en-wordpress/">«los 15 mejores plugins»</a>, escoger aunque sólo sea entre 15 sigue siendo un infierno si tienes que probarlos todos para encontrar el mejor. Si quieres saber como se hace en este blog sigue leyendo.</p>
+<p>Tras pasar un par de días leyendo sobre el tema, creo que una buena estrategia de gestión de estadísticas debería tener en cuenta los siguientes puntos:</p>
+<ol>
+<li><a href="http://www.anieto2k.com/2008/07/24/estadisticas-en-el-blog-%C2%BFde-quien-nos-fiamos/">Usar más de un sistema</a> a la vez porque los servicios de estadísticas <a href="http://francoisderbaix.com/2009/02/17/google-analytics-vs-xiti-como-miden-el-origen-de-las-visitas/">no son del todo fiables</a></li>
+<li>Usar al menos un sistema basado en un servicio externo, y otro implementado dentro del propio WordPress. En este punto hay que tener en cuenta que los implentados en WP almacenan mucha información en la base de datos, de modo que si nuestro hosting limita su uso o hay mucho tráfico el rendimiento puede bajar.</li>
+<li>No olvidarse de recoger estadísticas sobre los feeds RSS. Si se emplea un plugin que haga varias cosas a la vez mejor, porque a mayor número de plugins más tardan las páginas en cargar.</li>
+<li>Si se trata de un blog comercial o se es muy cotilla es útil disponer de estadísticas en tiempo real, número de visitantes actuales de la página, poder trazar el recorrido de un visitante dentro del blog, …</li>
+</ol>
+<p>Con los puntos anteriores en la cabeza en este blog he decidido usar:</p>
+<p><strong>StatPress + Google Analytics for WordPress + WordPress.com Stats + FeedBurner</strong></p>
+<p>Uso <a href="http://wordpress.org/extend/plugins/statpress/">StatPress</a> <strong>c</strong>omo sistema implementado dentro del propio WP<strong><a href="http://wordpress.org/extend/plugins/statpress/"></a></strong>. Este plugin es sencillo de usar e interpretar, con estadísticas en tiempo real, un widget para poder mostrar un contador de visitas y algunos otros datos en nuestro theme, posibilidad de borrar datos antiguos para aligerar las base de datos, exportar a hoja de cálculo… Es uno de los plugins más populares y <a href="http://blogsbazaar.com/2008/07/statpress-estadisticas-en-vivo-para-wordpress/">muchos blogs</a> hablan bien de él. También captura datos sobre los feeds pero sólo si usas el feed predeterminado; esta característica no funciona si usas feedburner.</p>
+<p>Uso Google Analytics (GA) como servicio externo junto al plugin <a href="http://wordpress.org/extend/plugins/google-analytics-for-wordpress/">Google Analytics for WordPress</a> para ganar algunas funcionalidades. Si bien existen <a href="http://www.clazh.com/ten-best-free-web-statistics-and-analytics-packages/">mucho servicio externos de estadísticas</a>, GA ya lo conocía de antes y es de los más conocidos. . Lo positivo que tienen este tipo de sistemas es que no gastas recursos propios, lo malo es que pierdes autonomía y cedes el control de tu información a terceros. Para usarlos hace falta abrir una cuenta en el servicio escogido y luego incluír un código especial en la plantilla del blog aunque hay plugins (como GA for WordPress) que evitan tener que editar la plantilla a mano.</p>
+<p>Para contrastar la información de GA uso <strong><a href="http://wordpress.org/extend/plugins/stats/">WordPress.com Stats</a></strong>. Se trata de un servicio externo proporcionado por wordpress.com más centrado en las estadísticas para blogs que GA. Para usarlo, al igual que para el plugin Akismet tienes que tener una cuenta en wordpress.com.</p>
+<p>Para las estadísticas de los feeds uso Feedburner. <strong><a href="http://feedburner.com">Feedburner</a></strong> es un servicio web que hace de intermediario entre tus feeds y tus lectores. Tu feed se sirve a los subscriptores desde los servidores de feedburner lo que disminuye el ancho de banda usado por tu blog. Lo cierto es que <a href="http://www.adseok.com/herramientas-seo/como-funciona-feedburner/">no ofrece estadísticas demasiado fiables</a> y supone una perdida de independencia, pero usando la característica de <a href="http://www.ianfernando.com/2007/configure-feedburner-mybrand-with-1and1-host/">My Brand</a> se adapta muy bien a mis necesidadesz</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -993,30 +1051,6 @@
 <p>– Pero es nuestra – gritaron los inquilinos-. Nosotros….</p>
 <p>– No , el Banco, el monstruo la posee. Tendrán que irse.</p>
 <div style="text-align: right;font-style: italic"><span style="font-size:85%">[Las uvas de la ira](http://www.amazon.com/gp/product/0142002534?ie=UTF8&tag=httpconocimie-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0142002534)![](http://www.assoc-amazon.com/e/ir?t=httpconocimie-20&l=as2&o=1&a=0142002534) John Steinbeck. Editorial Planeta. Edición de 1966. Página 44.</span></div>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-01-02 00:00:00">2 de enero de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="vigo-concentracion-en-repulsa-aos-ataques-de-israel"><a class="toclink" href="../../2009/01/02/vigo-concentracion-en-repulsa-aos-ataques-de-israel/">[Vigo] Concentración en repulsa aos ataques de Israel</a></h2>
-<p>A Rede Social Galicia Sur <a href="http://esfgalicia.blogspot.com/2009/01/concentracin-en-vigo-condena-aos.html">convoca unha concentración de repulsa</a> polos ataques de Israel na franxa de Gaza. [El enlace apunta a chuza.org por si quereis ayudar a difundir la convocatoria dándole a chuzao!]</p>
-<p>Espero verte alí.</p>
-<p>Día: Venres, 2 de Xaneiro de 2009<br />
-Hora: 20:00<br />
-Lugar: Museo Marco, Vigo.</p>
     
   </div>
 </article>

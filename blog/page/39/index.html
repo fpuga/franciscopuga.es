@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2021/" />
+<link rel="next" href="../../archive/2025/" />
 
 
 <!-- RSS feed -->
@@ -399,6 +399,8 @@
       
         
       
+        
+      
     
     
       
@@ -434,6 +436,29 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -822,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#instalar-los-drivers-para-una-webcam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalar los drivers para una webcam
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sonido-y-multiples-usuarios" class="md-nav__link">
     <span class="md-ellipsis">
       Sonido y múltiples usuarios
@@ -862,6 +896,37 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2007-04-04 00:00:00">4 de abril de 2007</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="instalar-los-drivers-para-una-webcam"><a class="toclink" href="../../2007/04/04/instalar-los-drivers-para-una-webcam/">Instalar los drivers para una webcam</a></h2>
+<p><strong>Actualización 19/06/2009:</strong> Este artículo está desfasado. En la actualidad la mayoría de las webcam funcionan en gnu/linux simplemente con enchufarlas. Lo explico algo mejor <a href="http://conocimientoabierto.es/instalar-drivers-webcam-linux/83/">en este artículo</a>.</p>
+<p>Lo primero que debemos hacer es acudir a esta <a href="http://mxhaard.free.fr/spca5xx.html">página</a> y comprobar si nuestra webcam está soportada. Para ello podemos buscar el nombre de nuestra cámara en la 5 columna, la que pone algo parecido a <em>based cameras.</em></p>
+<p>En caso de no encontrarla podemos buscar alguna que use el mismo chip, y usar sus valores. Para averiguar si usa el mismo chip debemos fijarnos en el ID del fabricante y el ID del dispositivo. En Mandriva podemos obtener estos valores del Panel de Control en la sección de Hardware. Una forma un poco más genérica consiste en abrir un terminal de root y teclear <em>lsusb</em>. En mi caso saldrían los siguiente valores.<br />
+<code>&lt;br&gt;&lt;/br&gt;[root@localhost ~]# lsusb&lt;br&gt;&lt;/br&gt;Bus 001 Device 003: ID 2001:5100 D-Link Corp. [hex]&lt;br&gt;&lt;/br&gt;Bus 001 Device 002: ID 093a:2468 Pixart Imaging, Inc. Easy Snap Snake Eye WebCam&lt;br&gt;&lt;/br&gt;Bus 001 Device 001: ID 0000:0000&lt;br&gt;&lt;/br&gt;</code><br />
+Debemos identificar el correspondiente a la cámara, que en mi caso es el segundo dispositivo. Los primeros número tras ID corresponden al fabricante y los otros al dispositivo.<br />
+<code>&lt;br&gt;&lt;/br&gt;ID Fabricante=093a&lt;br&gt;&lt;/br&gt;ID Dispositov=2468&lt;br&gt;&lt;/br&gt;</code><br />
+Si la cámara está soportada y el driver es del tipo spca5xx, tenemos suerte ya que podemos encontrar el driver que nos hace falta en la sección Download de esa misma web. A pesar de existir versiones precompiladas, si nuestra versión del kernel es superior a la 2.6.11 (lo que es muy probable, <em>uname -a</em> para comprobarlo) es mejor que nos descarguemos el archivo <em>gspcav1-xxxx.tar.gz</em> y lo compilemos nosotros mismos.</p>
+<p>Descomprimimos el fichero en nuestro disco duro y dentro de ese directorio<br />
+<code>&lt;br&gt;&lt;/br&gt;#make&lt;br&gt;&lt;/br&gt;#make install&lt;br&gt;&lt;/br&gt;</code><br />
+Si no se produce ningún error nuestra webcam debería estar casí lista para funcionar. Ahora debemos reiniciar el ordenador (supongo que si ejecutamos <em>modprobe gspca</em> no hace falta que reiniciemos pero no aseguro que esto de buen resultado). Para comprobar que ha sido correctamente instalado podemos usar nuestro cliente de mensajería instantanea favorito. En mi caso he tenido problemas con kopete, pero con amsn y el ekiga sin problemas. En amsn he seleccionado webcam de baja calidad porque si no el vídeo iba a demasiados pocos frames por segundo.</p>
+<p>Al igual que en el <a href="http://conocimientoabierto.blogspot.com/2007/03/sonido-y-mltiples-usuarios.html">post anterior</a> en el que hablaba del sonido si deseamos lanzar programas como otro usuario debemos añadir ese usuario al grupo video o dar permisos sobre los dispostivos /dev/video<br />
+<code>gpasswd -a user2 video</code></p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">

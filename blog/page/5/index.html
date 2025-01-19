@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2021/" />
+<link rel="next" href="../../archive/2025/" />
 
 
 <!-- RSS feed -->
@@ -399,6 +399,8 @@
       
         
       
+        
+      
     
     
       
@@ -434,6 +436,29 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -822,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#usando-geoprocesos-en-gvsig-desde-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando GeoProcesos en gvSIG desde Java
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#si-el-disco-duro-no-para-al-arrancar-ubuntu-vacia-la-papelera" class="md-nav__link">
     <span class="md-ellipsis">
       Si el disco duro no para al arrancar ubuntu vacía la papelera
@@ -857,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#eventos-en-backbonejs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Eventos en backbonejs
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -880,6 +905,85 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2016-09-04 00:00:00">4 de septiembre de 2016</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="usando-geoprocesos-en-gvsig-desde-java"><a class="toclink" href="../../2016/09/04/usando-geoprocesos-en-gvsig-desde-java/">Usando GeoProcesos en gvSIG desde Java</a></h2>
+<p>La semana pasada había <a href="https://listserv.gva.es/pipermail/gvsig_desarrolladores/2016-August/007975.html">un correo en la lista de desarrollo de gvSIG</a> preguntando como poder lanzar geoprocesos desde tu propio plugin mediante Java. Tras una pequeña investigación he escrito <a href="https://github.com/fpuga/trangalladas/blob/master/gvSIG/GeoProcessExampleExtension.java">un código de ejemplo</a> que espero que sea útil a quien tenga esta necesidad.</p>
+<h3 id="descargar-el-codigo"><a class="toclink" href="../../2016/09/04/usando-geoprocesos-en-gvsig-desde-java/#descargar-el-codigo">Descargar el código</a></h3>
+<p>A mi particularme me gusta descargar el código fuente de las partes de gvSIG con las que voy a trabajar. Esto simplifica el usar las herramientas del IDE para saber como usarlo, encontrar errores, y revisar los tests, en caso de haberlos, para tener pistas de como escribir mi propio código.</p>
+<p>Para ello primero se mira la versión del plugin que se corresponda con la versión de gvSIG que estás usando. Creo que lo más fácil es descargar una versión portable de gvSIG. Entrar a la carpeta que contiene el plugin, en este caso <em>org.gvsig.geoprocess.app.mainplugin</em> y abrir el fichero <em>package.info</em>. En la property <strong>version</strong> está el tag del repo correspondiente a esa versión. Por ejemplo para la 2.3RC2 sería el 2.266. Por tanto para descargar el repo haremos:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;svn checkout http://devel.gvsig.org/svn/gvsig-geoprocess/org.gvsig.geoprocess/tags/org.gvsig.geoprocess-2.2.66/&lt;br&gt;&lt;/br&gt;</code></p>
+<p>A continuación,e n caso de usar Eclipse, iremos a import -&gt; Existing maven projects, e importaremos la raíz del nuevo plugin descargado.</p>
+<h3 id="anadir-las-dependencias"><a class="toclink" href="../../2016/09/04/usando-geoprocesos-en-gvsig-desde-java/#anadir-las-dependencias">Añadir las dependencias</a></h3>
+<p>Al desarrollar en gvSIG debemos tener en cuenta que las dependencias de nuestro plugin, por decirlo de algún modo, serán de dos tipos. En «Tiempo de desarrollo», y en «Tiempo de ejecución». Las dependencias en desarrollo se definen en el pom del proyecto permitiéndonos definir el classpath de desarrollo para trabajar con las clases que nos hagan falta.</p>
+<p>En ejecución, cuando estamos probando o ejecutando gvSIG, el classpath se define de manera dinámica por decirlo de algún modo en el fichero de <em>config.xml</em>. gvSIG buscará entre las dependencias que hayamos definido en el config las clases que se pueden usar en nuestro plugin.</p>
+<p>Para que quede claro, a nuestro pom se añadirán otros proyectos maven. A nuestro config se añadirán plugins de gvSIG.</p>
+<p>Por ejemplo para el caso de usar los geoprocesos, añadiremos al pom:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;&lt;dependency&gt;&lt;br&gt;&lt;/br&gt; &lt;groupid&gt;org.gvsig&lt;/groupid&gt;&lt;br&gt;&lt;/br&gt;   &lt;artifactid&gt;org.gvsig.geoprocess.lib.api&lt;/artifactid&gt;&lt;br&gt;&lt;/br&gt;  &lt;version&gt;2.2.66&lt;/version&gt;&lt;br&gt;&lt;/br&gt;&lt;/dependency&gt;</code></p>
+<p><dependency><br />
+ <groupid>org.gvsig</groupid><br />
+ <artifactid>org.gvsig.geoprocess.lib.sextante</artifactid><br />
+ <version>2.2.66</version><br />
+</dependency></p>
+<p>y al config</p>
+<p><code>&lt;br&gt;&lt;/br&gt;&lt;depends plugin-name="org.gvsig.geoprocess.app.sextante"&gt;&lt;/depends&gt;&lt;br&gt;&lt;/br&gt;</code></p>
+<h3 id="obtener-el-algoritmo-que-queremos"><a class="toclink" href="../../2016/09/04/usando-geoprocesos-en-gvsig-desde-java/#obtener-el-algoritmo-que-queremos">Obtener el algoritmo que queremos</a></h3>
+<p><strong>Esta una de las partes en las que tengo más dudas que esté correcta.</strong></p>
+<p>En general accederemos a las funcionalidades de gvSIG a través de un Locator que nos dará un Manager que nos dará la funcionalidad. En el caso de los geoprocesos sería:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;String ALG_NAME = "gvSIG-intersection";&lt;br&gt;&lt;/br&gt;SextanteGeoProcessManager manager = (SextanteGeoProcessManager) GeoProcessLocator.getGeoProcessManager();&lt;br&gt;&lt;/br&gt;HashMap&lt;string geoalgorithm=""&gt; algs = manager.getAlgorithms();&lt;br&gt;&lt;/br&gt;GeoAlgorithm alg = algs.get(ALG_NAME);&lt;br&gt;&lt;/br&gt;&lt;/string&gt;</code></p>
+<p>Debemos castear a la implementación por defecto del manager <em>SextanteGeoProcessManager</em> porque la interfaz en sí no proporciona el método <em>getAlgorithms</em>. Esto diría que es un bug.</p>
+<p>La forma de obtener ALG_NAME, no estoy seguro de cual es. En principio lo más fácil sería poner un breakpoint y mirar los valores de <em>algs</em>. Aunque en mi caso sólo salen los propios de gvSIG y no los de Sextante.</p>
+<h3 id="seteando-valores-al-algoritmo"><a class="toclink" href="../../2016/09/04/usando-geoprocesos-en-gvsig-desde-java/#seteando-valores-al-algoritmo">Seteando valores al algoritmo</a></h3>
+<p>Todos los algoritmos definen un método <em>defineCharacteristics</em> que nos indican los valores que recibe, tanto de entrada como de salida. Esta definición de valores se obtiene a través del método <em>getParameters</em></p>
+<p>En nuestro código debemos obtener cada uno de los parámetros necesarios y setear su valor real para nuestro caso. Por ejemplo:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;private void setParams(GeoAlgorithm alg) throws WrongParameterIDException {&lt;br&gt;&lt;/br&gt;  ParametersSet params = alg.getParameters();</code></p>
+<p>FLyrVect interLyr = getLayer("inter");<br />
+ FlyrVectIVectorLayer inter = new FlyrVectIVectorLayer();<br />
+ inter.create(interLyr);</p>
+<p>FLyrVect layerLyr = getLayer("layer");<br />
+ FlyrVectIVectorLayer layer = new FlyrVectIVectorLayer();<br />
+ layer.create(layerLyr);</p>
+<p>params.getParameter(IntersectionAlgorithm.INTER).setParameterValue(<br />
+ inter);<br />
+ params.getParameter(IntersectionAlgorithm.LAYER).setParameterValue(<br />
+ layer);<br />
+ params.getParameter(IntersectionAlgorithm.SELECTGEOM_INPUT)<br />
+ .setParameterValue(false);<br />
+ params.getParameter(IntersectionAlgorithm.SELECTGEOM_OVERLAY)<br />
+ .setParameterValue(false);<br />
+}  </p>
+<p>En este caso para no escribir a mano los idenfificadores de los parámetros uso las variables estáticas definidas en el propio algoritmo. Eso hace que haya que añadir al pom el algortimo:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;&lt;dependency&gt;&lt;br&gt;&lt;/br&gt; &lt;groupid&gt;org.gvsig&lt;/groupid&gt;&lt;br&gt;&lt;/br&gt;   &lt;artifactid&gt;org.gvsig.geoprocess.algorithm.intersection&lt;/artifactid&gt;&lt;br&gt;&lt;/br&gt;   &lt;version&gt;2.2.66&lt;/version&gt;&lt;br&gt;&lt;/br&gt;&lt;/dependency&gt;&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Para las capas de entrada al algoritmo hay que generar una <em>FlyrVectIVectorLayer</em>. Como se muestra en el código de ejemplo lo más sencillo es obtener un <em>FLyrVect</em> y construirla con el create.</p>
+<h3 id="ejecutando-el-algoritmo"><a class="toclink" href="../../2016/09/04/usando-geoprocesos-en-gvsig-desde-java/#ejecutando-el-algoritmo">Ejecutando el algoritmo</a></h3>
+<p>Los algoritmos se lanzan mediante el método <em>execute</em> que como indica la documentación admite hasta tres parámetros.</p>
+<ul>
+<li>ITaskMonitor task. Que puede ser nulo y permite monitorizar el estado para por ejemplo poner una barra de progreso al usuario</li>
+<li>HashMap<string string=""> outputMap. Que permite modificar los nombres que sextante asigna a los parámetros de salida (en general capas)</string></li>
+<li>OutputFactory outputFactory. Define como se crearán los objetos de salida. Puede ser nuestra propia implementación o usar la factoría por defecto</li>
+</ul>
+<p>Por tanto ejecutarlo sería simplemente:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;alg.execute(null, new DefaultOutputFactory(), null);&lt;br&gt;&lt;/br&gt;</code></p>
+<h3 id="obteniendo-los-resultados"><a class="toclink" href="../../2016/09/04/usando-geoprocesos-en-gvsig-desde-java/#obteniendo-los-resultados">Obteniendo los resultados</a></h3>
+<p>Con la factoría por defecto las capas se crean en un directorio temporal que en linux es <em>/tmp/tmp-andami</em> y les asigna nombres aleatorios (creo que basados en el timestamp). Supongo que habrá alguna utilidad que nos permite ejecutar una especie de FinalActions para añdirlos automáticamente a la vista. O implementando nuestra propia <em>OutputFactory</em> podríamos definir otras rutas. También diría que podemos prescindir del <em>OutputFactory</em> y lanzar el algoritmo mediante <em>processAlgorithm</em> si igual que hicimos con los parámetros de entrada seteamos adecuadamente los valores de salida, especialmente el <em>OutputChannel</em> de las capas.</p>
+<p>En todo caso el método <em>getOutputObjects</em> nos devuelve los objetos de salida, así por ejemplo podríamos llegar el <em>FlyrVectIVectorLayer</em> de la capa de polígonos de salida con:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;OutputObjectsSet outputSet = alg.getOutputObjects();&lt;br&gt;&lt;/br&gt;OutPut output = outputSet.getOutPut(IntersectionAlgorithm.RESULT_POL)&lt;br&gt;&lt;/br&gt;FlyrVectIVectorLayer result_pol = (FlyrVectIVectorLayer) output.getOutputObject();&lt;br&gt;&lt;/br&gt;</code></p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1004,36 +1108,6 @@
 <p>Para mi lo mejor del libro es que se puede leer muy rápido y los <a href="http://archive.oreilly.com/pub/a/javascript/excerpts/javascript-good-parts/syntax-diagrams.html">railroads syntax diagrams</a>. No es desde luego un libro para aprender javascript sino más bien una guía de ciertas prácticas a evitar y una justificación de las reglas de <a href="http://www.jslint.com/">jslint</a>. La verdad es que al contrario que <a href="http://conocimientoabierto.es/libro-javascript-the-definitive-guide-david-flanagan/726/">otros libros de javascript como el de Flanagan</a> o centrados en los idioms de los lenguajes como Effective Java, no me veo volviendo a este de vez en cuando para repasar algún concepto.</p>
 <p>El libro puede gustarte si eres de los que se leen la <a href="http://eslint.org/docs/rules/">definición de reglas de eslint</a> para definir tu propio subset.</p>
 <p><strong>Nota</strong>. <a href="http://gnab.github.io/js-workshop/#1">Estas transparencias</a> también son un buen resumen del libro e incluso tienen un «code playground» para practicar.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2016-01-02 00:00:00">2 de enero de 2016</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="eventos-en-backbonejs"><a class="toclink" href="../../2016/01/02/eventos-backbonejs/">Eventos en backbonejs</a></h2>
-<p>Una de las formas más interesantes de desacoplar código, vistas fundamentalmente, usando un framework MV* tipo backbone es aprender a usar correctamente los eventos y patrones asociados. Observer (pub/sub), Event Aggregator, Mediator, …</p>
-<p>La mejor lectura al respecto que he encontrado es este <a href="https://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/">post de Derick Bailey</a> (creador de MarionetteJS), donde de forma muy ilustrativa examina distintas opciones finalizando con como hacerlo con eventos. Es recomendable también leer los comentarios, donde Derick responde a varias dudas de los lectores.</p>
-<p>La sección sobre <a href="http://addyosmani.com/backbone-fundamentals/#events">Eventos de Developing Backbone Applications</a> explica bien como usar los eventos en general en backbone y esta otra sección revisita el post de Derick exponiendo la <a href="http://addyosmani.com/backbone-fundamentals/#event-aggregators-and-mediators">diferencia entre Event Aggregator y Mediator</a>.</p>
-<p>Pero para trabajar con Eventos de forma correcta además de los patrones y las especifidades de backbone es necesario conocer algunas técnicas y características de javascript relacionadas con el <a href="http://ryanmorr.com/understanding-scope-and-context-in-javascript/">contexto</a>. La siguiente selección de artículos puede ahorrarte un par de horas de quebraderos de cabeza:</p>
-<ul>
-<li>Primero es importante conocer <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">a que hace referencia this en cada caso</a></li>
-<li>Y en este algo algo viejo (anterior a que <em>bind</em> fuera un estándar) pero todavía ilustrativo artículo <a href="http://alistapart.com/article/getoutbindingsituations">explican los problemas del <em>binding loss</em></a></li>
-<li>La <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">documentación del método bind</a> y algún <a href="http://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/">ejemplo de uso</a>, también son de interés.</li>
-<li>Y trabajando con underscore / backbone es fundamental conocer y saber usar <a href="http://blog.bigbinary.com/2011/08/18/understanding-bind-and-bindall-in-backbone.html">_.bind y _.bindAll</a></li>
-<li>Y ya como extra, un artículo sobre <a href="partial application http://benalman.com/news/2012/09/partial-application-in-javascript/">partial application</a></li>
-</ul>
     
   </div>
 </article>

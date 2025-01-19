@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2021/" />
+<link rel="next" href="../../archive/2025/" />
 
 
 <!-- RSS feed -->
@@ -399,6 +399,8 @@
       
         
       
+        
+      
     
     
       
@@ -434,6 +436,29 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -822,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maquetación de múltiples ficheros de texto usando LibreOffice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python-scripting-for-students-of-remote-sensing" class="md-nav__link">
     <span class="md-ellipsis">
       Python Scripting for Students of Remote Sensing
@@ -857,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#comentario-sobre-el-diseno-de-bases-de-datos-postgis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comentario sobre el diseño de bases de datos PostGIS
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -880,6 +905,56 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-10-06 00:00:00">6 de octubre de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice"><a class="toclink" href="../../2011/10/06/maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice/">Maquetación de múltiples ficheros de texto usando LibreOffice</a></h2>
+<p><a href="http://cartolab.udc.es">Cartolab</a> está colaborando con <a href="http://www.isf.es">Ingeniería Sin Fronteras</a> en un proyecto financiado por la <a href="http://www.xunta.es/">Xunta de Galicia</a> para la elaboración de materiales para un curso de Sistemas de Información Geográfica y Cooperación al Desarrollo. En la elaboración del curso tenemos la suerte de colaborar también con <a href="http://icarto.es/">iCarto</a> y con el <a href="http://laborate.usc.es/es/">Laborate</a>. Además el <a href="http://www.sigte.udg.edu/sigte_es/">SIGTE</a> se encarga de revisar el trabajo y poner la plataforma de teleformación. Gracias a todos ellos por hacer posible este artículo.</p>
+<h3 id="maquetar-multiples-ficheros-con-libreoffice"><a class="toclink" href="../../2011/10/06/maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice/#maquetar-multiples-ficheros-con-libreoffice">Maquetar múltiples ficheros con LibreOffice</a></h3>
+<p>Uno de los puntos que defendemos en el curso es de la importancia del uso de software libre en los proyectos de cooperación, y por coherencia, tratamos en la medida de los posible de emplear unicamente herramientas libres para elaborar los contenidos. Nos encontramos por tanto con un equipo de alrededor de 9 personas en varias instituciones distintas editando cerca de 20 ficheros de texto distintos con LibreOffice, lo cual entre otras cosas genera el problema de obtener al final una maquetación coherente. Está claro que existen soluciones más imaginativas por ejemplo usar latex con git como repositorio de información pero en ciertos contextos esto es simplemente imposible.</p>
+<p>Cuando queremos que un documento de texto tenga un formato consistente empleamos <a href="http://wiki.documentfoundation.org/cgi_img_auth.php/c/cc/0206WG3-IntroductionToStyles.pdf">estilos</a>, cuando necesitamos un formato consistente en múltiples ficheros empleamos <a href="http://wiki.documentfoundation.org/cgi_img_auth.php/6/6e/0103GS3-StylesAndTemplates.pdf">plantillas</a>.</p>
+<h3 id="que-es-una-plantilla-y-como-se-crea"><a class="toclink" href="../../2011/10/06/maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice/#que-es-una-plantilla-y-como-se-crea">Que es una plantilla y como se crea</a></h3>
+<p>Apurando la definición se podría decir que una plantilla no es más que un documento de texto de LibreOffice con extensión .ott en lugar de .odt en el que se han definido los estilos del documento, las cabeceras, ciertos textos, … El truco está en que cuando creamos un nuevo documento a partir de una plantilla este documento se queda en cierta manera vinculado a la plantilla. Por tanto cuando modifiquemos la plantilla se modificarán los documentos asociados.</p>
+<p>Al menos esa es la teoría en realidad hay algunos handicaps:<br />
+– No todo lo modificado en la plantilla se actualiza en los documentos. Los estilos si que son actualizados pero textos que podamos tener por las páginas por ejemplo una portada no se actualizan. <a href="http://extensions.services.openoffice.org/en/project/templatechanger">Aunque hay una extensión que lo arregla</a>.<br />
+– La actualización no es automática. Cuando abrimos el documento vinculado, si la plantilla ha cambiado nos pregunta si queremos actualizar los estilos, no se actualizan por si mismos.<br />
+– Las plantillas pueden ser compartidas pero no es lo más cómodo del mundo.<br />
+– Una precaución que habría que tener es que en general no debemos modificar el estilo en el documento. Debemos: Cerrar el documento, modificar la plantilla y volver a abrir el documento para que se actualicen.</p>
+<p>A pesar de estos handicaps el disponer de plantillas para los documentos corporativos de tu empresa puede acabar ahorrándote mucho tiempo.</p>
+<ul>
+<li>Para crear una plantilla lo más fácil es crear un nuevo documento de texto y luego <em>Archivo -&gt; Plantilla -&gt; Guardar</em>.</li>
+<li>Para crear un documento a partir de una plantilla <em>Archivo -&gt; Nuevo -&gt; Plantillas de documentos</em>.</li>
+<li>Para editar una plantilla, desde cualquier documento, <em>Archivo -&gt; Plantilla -&gt; Administrar, seleccionamos la que nos interese y en botón desplegable llamado Comandos le damos a editar</em>. Para guardarla usamos el mismo procedimiento que para crear una nueva (<em>Archivo -&gt; Plantilla -&gt; Guardar</em>) pero seleccionando la ya existente para que la sobreescriba.</li>
+</ul>
+<h3 id="compartir-la-plantilla"><a class="toclink" href="../../2011/10/06/maquetacion-de-multiples-ficheros-de-texto-usando-libreoffice/#compartir-la-plantilla">Compartir la plantilla</a></h3>
+<p>Compartir la plantilla no es del todo necesario. Si una persona tiene la plantilla en su ordenador y maqueta todos los documentos, aunque el resto no tengan la plantilla cada documento individual si que conservará los atributos de los estilos. Por tanto se puede continuar editando el documento usando los estilos predefinidos. Pero no podrá crear nuevos estilos o modificarlos porque creará inconsistencias. Tendrá que solicitar a quien tiene la plantilla que la modifique y abra todos los documentos para que estos se actualicen.</p>
+<p>Si no disponemos de la plantilla en nuestro ordenador tampoco podremos crear nuevos documentos a partir de la plantilla. Una solución por supuesto es mandarla por correo-e cada vez que haya un cambio, pero existe un método algo más sofisticado.</p>
+<p>En nuestro caso concreto empleamos DropBox (nadie es perfecto) para compartir los materiales del curso, de modo que podemos dejar la propia plantilla en una carpeta compartida. La persona que crea la plantilla la exporta (<em>Archivo -&gt; Plantilla -&gt; Administrar, seleccionamos la que queremos y en el botón de Comandos-&gt;Exportar</em>).</p>
+<p>LibreOffice nos da la oportunidad de importar plantillas (misma secuencia de menus que para exportar) pero si hacemos esto creará una copia local de la plantilla y las modificaciones en el original no se verán reflejadas. Lo que debemos hacer es decirle que consideré la carpeta que nosotros queramos como una carpeta válida de plantillas. Para ello:</p>
+<p><em>Herramientas -&gt; Opciones -&gt; Rutas -&gt; Marcamos plantillas, le damos a editar, agregamos como ruta nueva la de nuestra carpeta compartida y la seleccionamos.</em></p>
+<p>Por desgracia, la cosa no iba a ser tan fácil, las plantillas que pueda haber en esa carpeta no son reconocidas automáticamente y ni no vale con importalas así que hay que hacer un pequeño truco.</p>
+<ol>
+<li>Configuramos la ruta a la carpeta compartida si no lo hemos hecho todavía</li>
+<li>Cortamos y pegamos en otro sitio la plantilla que está en la carpeta compartida. Es importante por tanto que no haya en en la carpeta de plantillas una que ya tenga el nombre que vamos a usar, si no LibreOffice le asignará otro distinto y el fichero compartido tendrá un nombre distinto por tanto.</li>
+<li>Abrimos mediante doble click el fichero que contiene la plantilla y guardamos la plantilla a partir de él (<em>Archivo -&gt; plantilla -&gt; guardar</em>). De nombre le pondremos el que hayamos acordado con el resto de gente respetando mayúsculas etc … Muy importante respetar escrupulosamente el nombre</li>
+<li>Con eso estaría listo. Ya tendriamos esa plantilla disponible en nuestro sistema y cada vez que la modificáramos estaríamos tocando el fichero compartido de modo que se le actualizaría a los demás.</li>
+</ol>
+<p>En próximos artículos seguiremos contando algunos trucos de los estilos que podemos usar a la hora de hacer la plantilla el uso de campos, …</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1028,37 +1103,6 @@ Por el medio crea también un objeto <em>ExtensionDecorator</em> que nos da un c
 <li><strong>Maestría</strong>: El deseo de ser mejor y mejor en algo que importa</li>
 <li><strong>Propósito</strong>: El deseo de hacer lo que hacemos al servicio de algo más grande que nosotros mismos</li>
 </ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-06-17 00:00:00">17 de junio de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="comentario-sobre-el-diseno-de-bases-de-datos-postgis"><a class="toclink" href="../../2011/06/17/comentario-diseno-bases-de-datos-postgis/">Comentario sobre el diseño de bases de datos PostGIS</a></h2>
-<p>Un par de comentarios muy rápidso sobre una práctica que considero acertada a la hora del diseño con bases de datos PostGIS.</p>
-<h4 id="no-uses-el-esquema-public"><a class="toclink" href="../../2011/06/17/comentario-diseno-bases-de-datos-postgis/#no-uses-el-esquema-public">No uses el esquema public</a></h4>
-<p>PostGIS emplea de forma intensiva el esquema public para crear funciones, tipos de datos etc… Si tu también empleas ese esquema cuando vuelques tu base de datos ese esquema tendrá que ser incluído y no sólo irán tus datos si no también toda la parte de PostGIS lo que incrementará el tamaño del dump y el tiempo de restauración.</p>
-<p>Además si el usuario quiere restaurar la bd sobre una ya existente con PostGIS saldrán un montón de errores de que las funciones ya existen, con lo que se hace difícil depurar otros posibles errores. También se pueden producir errores si tu dump corresponde a una versión de PostGIS distinta a la que tiene el usuario.</p>
-<h4 id="cuando-vuelques-tu-base-de-datos-excluye-el-esquema-public-del-volcado"><a class="toclink" href="../../2011/06/17/comentario-diseno-bases-de-datos-postgis/#cuando-vuelques-tu-base-de-datos-excluye-el-esquema-public-del-volcado">Cuando vuelques tu base de datos excluye el esquema public del volcado</a></h4>
-<p>Por lo ya explicado en el punto 1. Hacer esto es tan sencillo como:</p>
-<p><code>&lt;br&gt;&lt;/br&gt;pg_dump --no-owner -N public -h servidor -U usuario -f /tmp/base_de_datos.sql base_de_datos&lt;br&gt;&lt;/br&gt;</code></p>
-<h4 id="vuelca-tambien-la-tabla-geometry_columns"><a class="toclink" href="../../2011/06/17/comentario-diseno-bases-de-datos-postgis/#vuelca-tambien-la-tabla-geometry_columns">Vuelca también la tabla geometry_columns</a></h4>
-<p>Los únicos datos que estarán en el esquema público que te hacen falta serán los de la tabla geometry_columns. Vuelca por tanto esos datos (no hace falta la estructura) a otro fichero sql.</p>
-<p><code>&lt;br&gt;&lt;/br&gt;pg_dump --no-owner -a -t geometry_columns -h servidor -U usuario -f /tmp/geometry_columns.sql base_de_datos&lt;br&gt;&lt;/br&gt;</code></p>
-<p>Teniendo en cuenta estos consejos apenas tendrás trabajo extra y harás la vida mucho más fácil a quien tenga que restaurar la base de datos (que puede que seas tu mismo)</p>
-<p><strong>Actualización 17/Febrero/2013</strong>. Acabo de encontarme por primera vez desde que escribí esto con alguien que también declara en un post <a href="http://justobjects.org/blog/2013/moving-postgis-tables-from-the-public-schema-to-a-new-schema/trackback">lo importante de no usar el schema public</a> cuando se trabaja con postgis.</p>
     
   </div>
 </article>

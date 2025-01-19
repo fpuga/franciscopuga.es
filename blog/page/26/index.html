@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2021/" />
+<link rel="next" href="../../archive/2025/" />
 
 
 <!-- RSS feed -->
@@ -399,6 +399,8 @@
       
         
       
+        
+      
     
     
       
@@ -434,6 +436,29 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -822,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#como-usar-feedburner-para-servir-nuestro-feed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como usar FeedBurner para servir nuestro feed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#siempre-hay-que-poner-la-licencia" class="md-nav__link">
     <span class="md-ellipsis">
       Siempre hay que poner la licencia
@@ -857,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#gtranslator-para-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      gtranslator para windows
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -880,6 +905,70 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2009-09-10 00:00:00">10 de septiembre de 2009</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="como-usar-feedburner-para-servir-nuestro-feed"><a class="toclink" href="../../2009/09/10/como-usar-feedburner-servir-feed/">Como usar FeedBurner para servir nuestro feed</a></h2>
+<div class="ngg-gallery-singlepic-image ngg-left" style="max-width: 300px"> [ ![feedburner](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/cache/mybrand0.jpg-nggid011-ngg0dyn-300x225x100-00f0w010c010r110f110r010t010.jpg "feedburner") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/mybrand0.jpg "usar nuestro propio feed o el de feedburner") </div>
+<p><a href="http://www.feedburner.com/">Feedburner</a> es un servicio web propiedad de Google que se encarga de redistribuir nuestros feeds. Es algo así como si feedburner se subscribiera al feed que proporcionamos desde nuestro blog, luego volviera a distribuirlo y nosotros indicamos a nuestros lectores que se conecten a través de esa segunda versión de nuestro feed y no a través del que proporcionamos directamente en el blog. La ventaja de esto es que ahorramos ancho de banda y que Feedburner puede proporcionarnos <a href="http://conocimientoabierto.es/estadisticas-wordpress/66/">estadísticas</a> interesantes de los lectores. La parte mala es que pasamos a tener cierta dependencia de un servicio externo y una disminución de la privacidad puesto que google pasa a poder recolectar información sobre nuestros lectores. Feedburner estuvo de modo hace un par de años cuando el ancho de banda era un bien escaso y las empresas de hosting eran caras, en la actualidad no resulta en general necesario. Desde mi punto de vista el único motivo para usarlo sería por el de las estadísticas, tu debes valorar si la información que proporciona compensa el ceder datos a google.</p>
+<p>Si te decides a usarlo, una forma de minimizar el impacto de la dependencia externa es activar la característica <a href="http://www.google.com/support/feedburner/bin/answer.py?hl=en&amp;answer=79590">My Brand</a>, en este artículo se explica como activar FeedBurner con My Brand para nuestro blog.</p>
+<p>Antes de continuar, debes tener presente dos cosas</p>
+<ul>
+<li>Para poder usar My Brand tienes que añadir un registro CNAME a las dns de tus dominios, mira en las páginas de ayuda de tu hosting como hacerlo. Generalmente se encuentra en el apartado Dominios o «Gestión de DNS» y es fácil, pero es bueno que mires como hacerlo antes de meterte en faena</li>
+<li>Las direcciones que se indican aquí para los <a href="http://codex.wordpress.org/WordPress_Feeds">feeds por defecto de wordpress</a> del tipo dominio.com/feed y dominio.com/comments/feed son sólo válidas si tenemos activados los permalinks de wordpress. Si no los tienes activados deberás usar la dirección dominio.com?feed=rss2 y dominio.com/wp-commentsrss2.php. Si los permalinks están customizados también puedes usar el otro tipo de dirección pero es mejor usar la <em>customizada</em>.</li>
+</ul>
+<h5 id="pasos-para-servir-nuestro-feed-a-traves-de-feedburner"><a class="toclink" href="../../2009/09/10/como-usar-feedburner-servir-feed/#pasos-para-servir-nuestro-feed-a-traves-de-feedburner">Pasos para servir nuestro feed a través de Feedburner</a></h5>
+<p>Entramos en feedburner.com con nuestra cuenta de gmail. Si no tenemos una podemos crear una cuenta de google allí mismo.</p>
+<div class="ngg-gallery-singlepic-image ngg-center" style="max-width: 320px"> [ ![feedburner - my brand - Imagen 1](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/cache/mybrand1.jpg-nggid012-ngg0dyn-320x240x100-00f0w010c010r110f110r010t010.jpg "feedburner - my brand - Imagen 1") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/mybrand1.jpg "como configurar my brand y feedburner para nuestro blog") </div>
+<p>En el formulario que aparece en mitad de la página escribimos la dirección de nuestro blog (en el ejemplo usamos la página <a href="http://www.marinerosbouzas.com">www.marinerosbouzas.com</a>, y pulsamos en siguiente [Imagen 1, puedes pinchar sobre las imágenes para ampliarlas]. Dejamos seleccionado el usar rss en lugar de atom (esto no importa) y pulsamos siguiente.</p>
+<div class="ngg-gallery-singlepic-image ngg-center" style="max-width: 230px"> [ ![feedburner - my brand - Imagen 2](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/cache/mybrand2.jpg-nggid013-ngg0dyn-320x240x100-00f0w010c010r110f110r010t010.jpg "feedburner - my brand - Imagen 2") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/mybrand2.jpg "como configurar my brand y feedburner para nuestro blog") </div>
+<p>En esta pantalla [Imagen 2] escogemos un título para el feed, generalmente el nombre del blog. Feed address es la dirección desde la que serviremos nuestro rss a partir de ahora así que es bueno que escojamos algo fácil y significativo, por ejemplo <em>feeds.feedburner.com/tudominio</em>.</p>
+<p>Por defecto feedburner contabiliza la cantidad de usuarios subscritos a nuestros feeds. En las siguientes pantallas tenemos la opción de activar el clickthrougs, es decir contabilizar el número de veces que los lectores acceden a nuestra web por pinchar en el feed. Yo no lo activo por que significa que feedburner añadirá un código html algo intrusivo en nuestros feeds para poder trazar lo que hacen nuestros lectores. Hay más opciones pero las que están por defecto suelen ser adecuadas para la mayoría</p>
+<div class="ngg-gallery-singlepic-image ngg-center" style="max-width: 226px"> [ ![feedburner - my brand - Imagen 3](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/cache/mybrand3.jpg-nggid014-ngg0dyn-320x240x100-00f0w010c010r110f110r010t010.jpg "feedburner - my brand - Imagen 3") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/mybrand3.jpg "como configurar my brand y feedburner para nuestro blog") </div>
+<p>Si además del feed de los posts, queremos que el de los comentarios se sirva también a través de feedburner volveremos <a href="http://feedburner.com"> al inicio</a> e introduciremos la dirección http://tudominio.com/comments/feed, en este caso http://marinerosbouzas.com/comments/feed, y en la siguiente pantalla escogemos como <em>feed address</em> feeds2.feedburner.com/comentarios_tudominio (en este caso feeds2.feedburner.com/comentarios_marinerosbouzas) y como <em>feed title</em> «Comentarios para tudominio» por ejemplo [Imagen 3].</p>
+<p>A partir de ahora nuestros lectores podrán acceder a nuestro feed a través de <em>http://feeds.feedburner.com/tudominio</em> y a través de <em>http://tudominio.com/feed</em>. Esta última dirección es, por ahora, el valor por defecto que obtendrá alguien que introduzca en su lector de feeds la dirección de nuestro blog. Para hacer que por defecto se sirva el feed a través de feedburner debemos hacer algunos cambios en la plantilla del blog o instalar un plugin. Pero antes de entrar en esto activaremos la característica My brand.</p>
+<h5 id="pasos-para-activar-my-brand"><a class="toclink" href="../../2009/09/10/como-usar-feedburner-servir-feed/#pasos-para-activar-my-brand">Pasos para activar My Brand</a></h5>
+<p>La opción de My Brand permite que la dirección del feed que servimos a través de feedburner sea del estilo <em>http://feed.tudominio.com/tudominio</em> en lugar de <em>http://feeds.feedburner.com/tudominio</em>. Lo bueno de esto es que si alguna vez feedburner quiebra, se vuelve de pago o deja de satisfacernos nuestros lectores estarán subscritos a una dirección sobre la que tenemos el control y no a una externa.</p>
+<p>Para activar My Brand pulsamos en <em>My account</em> y después en My brand. Debemos localizar una línea que pone algo parecido a [Imagen 4]</p>
+<blockquote>
+<p>feeds CNAME XXXXX.feedproxy.ghs.google.com</p>
+</blockquote>
+<p>Crearemos un registro CNANE en nuestro hosting que apunte a esa dirección: XXXXX.feedproxy.ghs.google.com (el valor de las XXX dependerán de cada caso)</p>
+<div class="ngg-gallery-singlepic-image ngg-center" style="max-width: 198px"> [ ![feedburner - my brand - Imagen 4](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/cache/mybrand4.jpg-nggid015-ngg0dyn-320x240x100-00f0w010c010r110f110r010t010.jpg "feedburner - my brand - Imagen 4") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/mybrand/mybrand4.jpg "como configurar my brand y feedburner para nuestro blog") </div>
+<p>De vuelta en <a href="http://feedburner.google.com/fb/a/mybrand"> la página de configuración de my brand</a> introducimos el valor <em>feeds.tudominio.com</em> (en nuestro caso feeds.marinerosbouzas.com, nótese que no hay que poner el http:// delante) en el campo que aparece en el punto 2 de la imagen 4 y le damos a activar. Por supuesto en lugar de <em>feeds</em> podemos usar el subdominio que queramos.</p>
+<p>Con esto hemos activado la dirección <em>feeds.tudominio.com/tudominio</em> para servir el feed de nuestro blog a través de feedburner pero manteniendo la dirección de subscripción bajo nuestro control. Si también servimos los comentarios a través de feedburner estos estarán, sin necesidad de tocar nada más en <em>feeds.tudominio.com/tudominio_comentarios</em></p>
+<h5 id="modificar-nuestro-tema-para-servir-por-defecto-los-nuevos-feeds"><a class="toclink" href="../../2009/09/10/como-usar-feedburner-servir-feed/#modificar-nuestro-tema-para-servir-por-defecto-los-nuevos-feeds">Modificar nuestro tema para servir por defecto los nuevos feeds</a></h5>
+<p>El último paso, es indicar a la gente que accede a tu blog que no quieres que se subscriban a través del feed propio de wordpress si no a través del proporcionado por feedburner. Es posible hacer esto a través de un plugin como <a href="http://www.google.com/support/feedburner/bin/answer.py?hl=en&amp;answer=78483">FeedSmith</a>, pero si quieres hacerlo a mano tampoco es muy complicado, tan sólo tienes que editar el tema que usas y modificar un par de líneas para hacer referencia a las nuevas direcciones de los feeds. En general tendrás que hacer las modificaciones en dos lugares distintos:</p>
+<ul>
+<li>Entre las etiquetas &lt; header &gt; que suelen estar en el archivo header.php debes localizar las etiquetas &lt; link &gt; que hagan referencia a los feed y cambiar el valor de <em>href</em> por las nuevas direcciones. Esto es lo que hace que cuando un lector de feeds intente descubrir por si mismo el feed de tu blog lo resuelva correctamente</li>
+<li>El segundo cambio será necesario cuando en algún sitio del tema indiquemos la dirección directa para subscribirse.</li>
+</ul>
+<h5 id="pasos-para-el-tema-default-de-wordpress"><a class="toclink" href="../../2009/09/10/como-usar-feedburner-servir-feed/#pasos-para-el-tema-default-de-wordpress">Pasos para el tema default de wordpress</a></h5>
+<p>En concreto, particularizando para el tema por defecto que viene con wordpress lo que habría que hacer es:</p>
+<ul>
+<li>Abrir con un editor de textos el archivo wp-content/themes/default/header.php y buscar las líneas:<br />
+    &gt; &lt;link rel=»alternate» type=»application/rss+xml» title=»&lt;?php printf(__(‘%s RSS Feed’, ‘kubrick’), get_bloginfo(‘name’)); ?&gt;» href=»<span style="color:red">&lt;?php bloginfo(‘rss2_url’); ?&gt;</span>» /&gt;<br />
+    &gt; &lt;link rel=»alternate» type=»application/atom+xml» title=»&lt;?php printf(__(‘%s Atom Feed’, ‘kubrick’), get_bloginfo(‘name’)); ?&gt;» href=»&lt;?php bloginfo(‘atom_url’); ?&gt;» /&gt;</li>
+<li>Borrar la segunda, la que pone algo de atom y substituir el texto que está en rojo en la primera por http://feeds.tudominio.com/tudominio</li>
+<li>En el archivo wp-content/themes/default/footer.php buscar la línea<br />
+    &gt; &lt;a href=»<span style="color: #ff0000">&lt;?php bloginfo(‘rss2_url’); ?&gt;</span>«&gt;RSS das Entradas&lt;/a&gt; &amp;amp; &lt;a href=»<span style="color: #ff0000">&lt;?php bloginfo(‘comments_rss2_url’); ?&gt;</span>«&gt;RSS dos Comentarios&lt;/a&gt;.</li>
+<li>Substituir lo que está en rojo en la primera por http://feeds.tudominio.com/tudominio. Si también estas haciéndolo para los comentarios substituye también lo que está en rojo en la segunda línea por http://feeds.tudominio.com/tudominio_comentarios.</li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -998,34 +1087,6 @@
 <p><strong>Papel</strong>. <a href="http://es.letrag.com/tipografia.php?id=151">Vera Sans</a> fue diseñada por la empresa Bitstream pensando en usarla en monitores. Comparada con otras tipografías, sobre todo las serif, es un poco más ancha por lo que ocupa más papel. Además si se da el caso anterior de falta de legibilidad y aumentamos el interlineado para compensar estaremos desperdiciando todavía más papel.</p>
 <p><strong>Tinta</strong>. Y el punto más importante, <a href="http://farlukar.110mb.com/stuff.php">un estudio</a>, algo informal pero en apariencia realista, nos dice que Ecofont puede ahorrar hasta un 20% de tinta con respecto a fuentes como <a href="http://es.letrag.com/tipografia.php?id=59">Verdana</a> o <a href="http://es.letrag.com/tipografia.php?id=60">Tahoma</a> (ambas pensadas para pantalla), pero gastar un 20% más que <a href="http://es.letrag.com/tipografia.php?id=10">Garamond</a> o <a href="http://es.letrag.com/tipografia.php?id=166">Gentium</a>, esta última una de las primeras fuente con <a href="http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&amp;item_id=OFL">licencia Open Font</a> y una <a href="http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&amp;item_id=Gentium">bonita historia</a> detrás.</p>
 <p>He preparado un documento en <a href="http://conocimientoabierto.odiseus.org/files/2009/08/probando_fuentes.odt">ODT</a> y <a href="http://conocimientoabierto.odiseus.org/files/2009/08/probando_fuentes.pdf">PDF</a> para que puedes comparar Gentium, Ecofont y DejaVu Sans. Para que el ODT vaya correctamente debes tener las fuentes instaladas en tu sistema.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-08-05 00:00:00">5 de agosto de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="gtranslator-para-windows"><a class="toclink" href="../../2009/08/05/gtranslator-para-windows/">gtranslator para windows</a></h2>
-<p><a href="http://live.gnome.org/gtranslator">GTranslator</a> es una aplicación construida sobre el <a href="http://library.gnome.org/devel/platform-overview/stable/platform.html.es">stack de desarollo de Gnome</a>, que permite trabajar de forma muy sencilla con archivos .po. Los archivos .po contienen las cadenas de texto que aparecen en un programa informático y constituyen una forma sencilla y ágil del traducir el programa a otros idiomas sin necesidad de ningún conocimiento de programación. La posibilidad de utilizar una aplicación informática en tu lengua materna es básico para lidiar con la brecha digital. Y uno de los puntos fuertes del software libre, es precisamente que programas como el <a href="http://www.gnome.org/projects/gedit/">el editor de texto gedit</a>, esté disponibles en más de 70 idiomas que van desde el vietnamita al gallego. Esto es posible gracias a la existencia de un gran número de personas, que no tienen conocimientos de programación pero colaboran en la traducción de software. Es labor de los desarrolladores que el hacer estas traducciones sea lo más sencillo posible y ahí es donde entra gtranslator, editor oficial de <a href="http://library.gnome.org/devel/platform-overview/stable/i18n.html.es">archivos po de gnome</a> y uno de los mejores en su campo.</p>
-<p>Ya sea en <a href="http://ghandalf.org">software libre</a> o en <a href="http://galicia.isf.es">voluntariado</a> creo que no podemos esperar a que la gente se acerque, si no que hay que ir a buscarla. En software libre una de las cosas que se pueden hacer es que programas de software libre de calidad funcionen en Windows, para que posteriormente el cambio a un sistema operativo libre sea menos traumático.</p>
-<p>Con alguna de estas ideas en la cabeza y dentro de <a href="http://producingoss.ghandalf.org/">un proyecto de las asociación de software libre Ghandalf</a> he estado trabajando en la migración de gtranslator a windows. En pocos días trataré de publicar la parte técnica de como migrar una aplicación construida con GTK+ a Windows.</p>
-<p>Que gtranslator funcione en Windows es muy interesante porque permite, que un colectivo tradicionalmente alejado de la informática como el de los traductores profesionales tome contacto con el software libre. Aunque la idea sería ir un poco más allá de que usen una aplicación libre. Si el proyecto de traducir <a href="http://producingoss.com/">Producing Open Source Software</a> al gallego sale bien, habremos:</p>
-<ul>
-<li>Sensibilizado a gente sobre las bondades del software libre.</li>
-<li>Introducido a un grupo de profesionales de la traducción en la forma de trabajar del software libre, de modo que puedan comenzar a colaborar con la comunidad.</li>
-<li>Mostrado un modelo de negocio para los freelance con la posibilidad de cobrar para traducir determinadas aplicaciones, temas o plugins de wordpress en blogs multilingües, etc … a idiomas menos mayoritarios como el gallego.</li>
-</ul>
     
   </div>
 </article>
