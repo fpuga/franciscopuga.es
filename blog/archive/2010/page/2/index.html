@@ -1194,7 +1194,7 @@ Si lo que queremos es definir un patrón de exclusión para un repositorio concr
 <h3 id="diferentes-implementaciones-con-dropbox"><a class="toclink" href="../../../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#diferentes-implementaciones-con-dropbox">Diferentes implementaciones con Dropbox</a></h3>
 <p>Decidido que usaremos DropBox tenemos varias formas concretas de implementar el sistema:</p>
 <ul>
-<li>En <a href="&lt;&lt;a href=&gt;">LiveHacker nos proponen emplear firefox portable</a>, de modo que ejecutemos un firefox desde dentro del propio DropBox. Esto tiene la ventaja de que si un día estamos en un cibercafé podríamos bajarnos nuestra propia versión del navegador desde la interfaz web y luego borrarla. Es una idea a anotar pero no es lo que buscamos.</li>
+<li>En LiveHacker nos proponen emplear firefox portable, de modo que ejecutemos un firefox desde dentro del propio DropBox. Esto tiene la ventaja de que si un día estamos en un cibercafé podríamos bajarnos nuestra propia versión del navegador desde la interfaz web y luego borrarla. Es una idea a anotar pero no es lo que buscamos.</li>
 <li>El resto de opciones se basan en ubicar el directorio que contiene nuestro perfil de firefox como un directorio compartido en DropBox. Bien sea <a href="http://jonefox.com/blog/2009/11/16/how-to-sync-firefox-across-multiple-computers-using-dropbox/">creando un enlace simbólico con el mismo nombre que nuestro perfil que apunte a DropBox</a>, usando el<a href="http://robwilkerson.org/2008/09/24/synchronizing-firefox-through-dropbox/"> administrador de perfiles para crear un nuevo perfil</a> en DropBox, o mi favorita, que consiste simplemente en <a href="http://www.robzand.com/blog/firefox-dropbox-profile-synchronization-across-machines">editar el archivo profiles.ini para indicar que debe buscar el perfil por defecto en el directorio compartido</a>.</li>
 </ul>
 <p>La última me parece la mejor porque nos ahorramos el crear un nuevo perfil, simplemente movemos su ubicación y usamos herramientas propias de firefox para colocar el directorio del perfil dentro de DropBox en lugar del truquillo de los enlaces simbólicos.</p>
@@ -1208,11 +1208,11 @@ Si lo que queremos es definir un patrón de exclusión para un repositorio concr
 <p>Hecha la preconfiguración podríamos hacer lo que se dice por ejemplo en <a href="http://www.robzand.com/blog/firefox-dropbox-profile-synchronization-across-machines">robzand</a>:</p>
 <ol>
 <li>Copia el <a href="http://support.mozilla.com/en-US/kb/Profiles#Where_is_my_profile_stored_">directorio que contiene tu perfil</a> a DropBox</li>
-<li>Edita el fichero profile.ini (está en la misma carpeta que tu directorio de perfil). Pon un cero en IsRelative, y en Path pon la ruta completa a tu perfil dentro de DropBox, que seguramente será algo como /home/[tu_usuario]/DropBox/4f45s.default</li>
+<li>Edita el fichero profile.ini (está en la misma carpeta que tu directorio de perfil). Pon un cero en IsRelative, y en Path pon la ruta completa a tu perfil dentro de DropBox, que seguramente será algo como <code>/home/[tu_usuario]/DropBox/4f45s.default</code></li>
 <li>Espera a que sincronice, abre el navegador y comprueba que todo funciona correctamente.</li>
 <li>Ve a otro pc y espera a que sincronice. Edita el fichero profile.ini, pon un cero en IsRelative y pon en Path la ruta al perfil que acaba de ser sincronizado. (Ten en cuenta que a no ser que tengas el mismo nombre de usuario en ambos ordenadores la ruta será distinta)</li>
 </ol>
-<h3 id="los-incovenientes"><a class="toclink" href="../../../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#los-incovenientes">Los incovenientes</a></h3>
+<h3 id="los-inconvenientes"><a class="toclink" href="../../../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#los-inconvenientes">Los inconvenientes</a></h3>
 <p>Al compartir el perfil también se comparten:</p>
 <ul>
 <li>Las extensiones. Si usas diferentes versiones de firefox puede que alguna de las extensiones te de problemas.</li>

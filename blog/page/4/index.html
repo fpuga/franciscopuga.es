@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#porque-creo-que-es-util-discutir-de-tabuladores-y-espacios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Porqué creo que es útil discutir de Tabuladores y Espacios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#charlas-programming-style-por-douglas-crockford" class="md-nav__link">
     <span class="md-ellipsis">
       Charlas “Programming Style” por Douglas Crockford
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#diy-reparar-el-mando-a-distancia-con-papel-albal" class="md-nav__link">
-    <span class="md-ellipsis">
-      DIY: Reparar el mando a distancia con papel albal
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,28 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2017-08-15 00:00:00">15 de agosto de 2017</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="porque-creo-que-es-util-discutir-de-tabuladores-y-espacios"><a class="toclink" href="../../2017/08/15/porque-creo-que-es-util-discutir-de-tabuladores-y-espacios/">Porqué creo que es útil discutir de Tabuladores y Espacios</a></h2>
+<p>Discutir de tabuladores y espacios es <del>importante</del> útil.</p>
+<p>Por mucho scrum y mucha <a href="https://www.mountaingoatsoftware.com/agile/scrum/meetings/sprint-retrospective">retro</a>, generar el clima de confianza adecuado para cagarse en el facilitador o que los nóveles opinen si se debe usar una <a href="http://alistair.cockburn.us/Hexagonal+architecture">arquitectura hexagonal</a> es difícil. Discutir sobre el color del <a href="http://producingoss.com/en/common-pitfalls.html#bikeshed">cobertizo para bicicletas</a>, en algunos contextos será una perdida de tiempo y energía. En otros será una buena actividad, un ejercicio práctico antes de elevar el nivel de abstracción de las discusiones.</p>
+<p>Y en todo caso, es algo que hay que decidir, así que mejor que sea por <a href="https://lasindias.blog/4-ideas-sencillas-para-llevar-a-tu-comunidad-al-consenso">consenso</a>.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1155,31 +1177,6 @@ function () {<br />
 <p>Cuando trabajamos con campos booleanos que admiten el valor nulo nos podemos encontrar un problema adicional al hacer migraciones de la base de datos. Imaginemos que tenemos un campo <em>contador</em> de tipo <em>boolean</em>, y que en la base de datos tenemos valores a <em>true</em>, <em>false</em> y <em>null</em>. Si a posteriori decidimos cambiar contador por un sistema de medida, con opciones como Contador, Manual, Volumétrico, … hacer la migración hacia adelante será sencillo.</p>
 <p><code>&lt;br&gt;&lt;/br&gt;UPDATE myschema.mytable SET sistema_medicion = 'Contador' WHERE contador IS true;&lt;br&gt;&lt;/br&gt;</code></p>
 <p>Pero el revert no sería tan sencillo, porque habremos perdido la información de nulos y false.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2016-09-30 00:00:00">30 de septiembre de 2016</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="diy-reparar-el-mando-a-distancia-con-papel-albal"><a class="toclink" href="../../2016/09/30/diy-reparar-mando-distancia-papel-albal/">DIY: Reparar el mando a distancia con papel albal</a></h2>
-<p>Cuando el mando a distancia de la televisión tiene cierto uso no es raro que ciertos botones dejen de funcionar. Repararlo es más sencillo de lo que podría parecer.</p>
-<p>La mayoría de teclados funcionan por el mismo principio. Un circuito impreso con una membrana por encima para cada tecla. En las membranas hay un conductor que al pulsar cierra el circuito produciendo una señal eléctrica que acaba enviando un código al receptor. A veces se introduce suciedad o se desgasta el conductor que cierra el circuito impidiendo que el botón funcione.</p>
-<p>Para repararlo llega con abrir el mando a distancia e intentar limpiarlo o en caso de que no funcione usar papel albal (papel de aluminio). El papel albal es conductor, por tanto poniendo un pedacito con cuidado recubriendo la membrana estaremos «mejorando» la conductividad producida al pulsar la tecla.</p>
-<p>Hay que tener cierto cuidado al abrir el mando, es fácil que el teclado se desalinee con el circuito impreso y al poner el albal. Sólo debe hacer contacto al pulsar la tecla, por lo que se puede usar una gotita de pegamento para pegarlo a la membrana.</p>
-<p>Olvidé tomar fotos del proceso y con estos mandos de plástico abrir y cerrar a menudo no es buena idea pero <a href="http://www.tuelectronica.es/tutoriales/reparacion/reparacion-mando-a-distancia.html">en internet hay muchos ejemplos del paso a paso</a>.</p>
-<p>Antes de tirarte de cabeza a comprar un nuevo objeto porque tenga poco coste, recuerda <a href="http://www.hablandodeciencia.com/articulos/2012/10/18/las-5-erres-reutilizar-reducir-reparar-reciclar-y-regular/">la regla de las cinco erres</a>.</p>
     
   </div>
 </article>

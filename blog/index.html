@@ -852,6 +852,34 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2025-02-15 00:00:00">15 de febrero de 2025</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="video-deep-dive-into-llms-like-chatgpt-by-andrej-karpathy"><a class="toclink" href="2025/02/15/video-deep-dive-into-llm-andrej-karpathy/">Vídeo: Deep Dive into LLMs like ChatGPT. By Andrej Karpathy</a></h2>
+<p><a href="https://karpathy.ai/">Andrej Karpathy</a> fue uno de los fundadores de OpenAI y Director de IA en Tesla.</p>
+<p>En este vídeo de tres horas y media desgrana todo el funcionamiento de un LLM, desde que descargas los datos de internet hasta que puedes conversar con ella. Si hace unas semanas enlazaba la interesante, pero complicada explicación de <a href="https://franciscopuga.es/blog/2025/01/19/como-funciona-un-llm-y-porque-mienten/">Stephen Wolfram</a> este es un vídeo para todos los públicos.</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/7xTGNNLPyMI?si=AO97C63oAmv0CpVQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<p>Uno de los pocos momentos en que sale sale de la parte "técnica" es sobre la 1h:10min. Explica que tras el pre-training (entrenar al modelo con todo internet), se pasa al post-training. En el post-training "especialistas humanos" redactan conversaciones en base a unas ideas generales de "personalidad" que la empresa que construye el modelo quiere que tenga. Más o menos dice los siguiente:</p>
+<blockquote>
+<p>lo que pasa cuando abres chatgpt y haces una pregunta, no es que una especie de IA mágica te responda, es un proceso estadístico en la que las respuestas se parecen a lo que unos editores humanos siguiendo las instrucciones de una empresa han decidido que es correcto.</p>
+<p>Si preguntas "Cuales son los 5 lugares que no me puedo perder de París", la respuesta no se basa en una comparativa "científica" de que lugar es mejor y porqué, se parece más bien a la respuesta que estatisticamente habría respondido el editor.</p>
+</blockquote>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2025-01-19 00:00:00">19 de enero de 2025</time></li>
         
         
@@ -862,7 +890,7 @@
   <div class="md-post__content md-typeset">
     <h2 id="como-funciona-un-llm-y-porque-mienten"><a class="toclink" href="2025/01/19/como-funciona-un-llm-y-porque-mienten/">Cómo funciona un LLM y porqué mienten</a></h2>
 <p>Uno de los artículos más inteligentes que he leído sobre LLM.</p>
-<p>El autor, Simon Willinson es sensato (desde mi punto de vista), trabaja mucho con LLSM y es el creador de Django (uno de los frameworks web más usados).</p>
+<p>El autor, Simon Willinson es sensato (desde mi punto de vista), trabaja mucho con LLM y es el creador de Django (uno de los frameworks web más usados).</p>
 <p>Básicamente dice que ChatGPT es una herramienta increíble, cuando sabes usarla, pero que usarla bien no es tan fácil <a href="https://simonwillison.net/2023/Apr/7/chatgpt-lies/">porqué "ChatGPT miente"</a>.</p>
 <p>Y para entender porqué "miente" o como funciona los LLM a alto nivel pero muy técnico, <a href="https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/">este otro artículo</a> de un verdadero pionero de estos temas es imprescindible.</p>
 <p>Wolfram es en resumen el creador de Mathematica, que en cierto momento estuvo a la altura de Matlab pero luego se fue por otros derroteros. Su buscador Wolfram Alfa que yo sepa fue el primero que intentaba no darte una colección de links si no responder a preguntas formuladas en lenguaje natural, y ya tiene bastantes añitos (2009 según la Wikipedia)</p>
@@ -1026,46 +1054,6 @@ identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k2</p>
 <li><code>-framerate 1/5</code>: El denominador define cuanto se mostrará cada imagen</li>
 <li><code>-pattern_type glob -i '*.jpg'</code>: Cuando las imágenes no están ordenadas exactamente de forma secuencial con este parámetro las meterá en el video ordenadas por nombre</li>
 <li><code>'scale=2592:1936:force_original_aspect_ratio=decrease,pad=2592:1936:(ow-iw)/2:(oh-ih)/2,setsar=1'</code>: Escala las imágenes a 2592×1936 y mete bandas negras de relleno cuando no se pueda conservar la relación de aspecto</li>
-</ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2020-06-29 00:00:00">29 de junio de 2020</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="circular-dependencies-webcast-por-miguel-grinberg"><a class="toclink" href="2020/06/29/circular-dependencies-webcast-por-miguel-grinberg/">Circular Dependencies Webcast por Miguel Grinberg</a></h2>
-<p>Un <a href="https://blog.miguelgrinberg.com/post/flask-webcast-3-circular-dependencies">Webcast de Miguel Grinberg sobre como evitar Dependencias Circulares</a> en una aplicación Python / Flask.</p>
-<iframe allowfullscreen="allowfullscreen" frameborder="0" height="315" loading="lazy" src="https://www.youtube.com/embed/NH-8oLHUyDc" width="560"></iframe>
-
-<h3 id="my-metadata"><a class="toclink" href="2020/06/29/circular-dependencies-webcast-por-miguel-grinberg/#my-metadata">My Metadata</a></h3>
-<ul>
-<li>Descripción: Un webcast de 1h en el que se refactoriza una aplicación Flask que empieza con un único fichero a varios paquetes y módulos.</li>
-<li>Calificación: 3 sobre 5</li>
-<li>Día de Visualización: 2020-06-28</li>
-<li>Año de publicación: 2018</li>
-<li>Duración: 68 minutos</li>
-<li>Velocidad de reproducción recomendada: 1.75</li>
-<li>Etiquetas: python; flask; dependencies; refactoring</li>
-</ul>
-<h3 id="lecciones-aprendidas"><a class="toclink" href="2020/06/29/circular-dependencies-webcast-por-miguel-grinberg/#lecciones-aprendidas">Lecciones aprendidas</a></h3>
-<ul>
-<li>Mantener el <em>entry point</em> tan limpio como sea posible. Incluso con un único import.</li>
-<li>El módulo que es ejecutado inicialmente por Python adquiere el nombre de <code>__main__</code> a nivel interno, por ello los «nombres» que se definan en este módulo, no se identificarán inicialmente a efectos de dependencias como <code>myfile.myvar</code> si no como <code>__main__.myvar</code>, lo que es más fácil que genere un error de dependencias circulares</li>
-<li>No usar los __init__.py como mecanismo para acortar los imports. Hay tantas opiniones a favor como en contra sobre el tema. A mi me ha generado más problemas que soluciones.</li>
-<li>Usar imports desde la «raíz» <code>from myapp.models.user import User</code> y no estilo <code>from user import User</code>.</li>
-<li>No pasa nada por no poner los <code>import</code> al inicio del fichero cuando tenga sentido que sea de otra forma, por ejemplo para evitar dependencias circulares. Usar <code># noqa</code> para que no pite el linter en estos casos es aceptable.</li>
 </ul>
     
   </div>

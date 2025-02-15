@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#como-ocultar-la-direccion-de-correo-para-combatir-el-spam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como ocultar la dirección de correo para combatir el spam
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#como-usar-feedburner-para-servir-nuestro-feed" class="md-nav__link">
     <span class="md-ellipsis">
       Como usar FeedBurner para servir nuestro feed
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#ecofont" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ecofont
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,55 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2009-09-17 00:00:00">17 de septiembre de 2009</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="como-ocultar-la-direccion-de-correo-para-combatir-el-spam"><a class="toclink" href="../../2009/09/17/como-ocultar-direccion-correo-combatir-spam/">Como ocultar la dirección de correo para combatir el spam</a></h2>
+<p>Algo que tenía pendiente desde hace ya demasiado era poner una dirección de correo electrónico de contacto en el blog. Todas las guías sobre blogging hablan de la importancia de incluirlo y resulta lógico el permitir que tus lectores contacten contigo en privado pero hasta ahora, más que nada por vagancia, no me había decidido a hacerlo.</p>
+<p>Antes de colocar la dirección tienes que pensar que tipo de blog tienes y el uso que le quieras dar, dependiendo de esto puedes colocar tu dirección de correo habitual o bien crear una a propósito. Independientemente de lo que decidas debes saber que cada vez que publicas tu dirección en algún sitio estás creando una nueva fuente de entrada de spam. Los spammers tienen robots que se dedican a rastrear las páginas web en busca de direcciones de correo-e para añadirlas a sus bases de datos y enviarte (todavía más) spam. Si bien los filtros anti-spam funcionan bastante bien hay una opción sencilla para evitar que los robots puedan reconocer la direcciones de correo, lo único que hay que hacer es <strong>convertir tu dirección de correo en una imagen</strong>. Yo conozco tres servicios web que hacen esto automáticamente:</p>
+<ol>
+<li><a href="http://www.hidetext.net/index.php">Hide Text</a></li>
+<li><a href="http://services.nexodyne.com/email/index.php">Nexodyne</a></li>
+<li><a href="http://safemail.justlikeed.net/index.php">Safe Mail</a></li>
+</ol>
+<p>Los tres servicios funcionan igual, introduces tu dirección de correo en el formulario, ajustas alguna opción del tamaño de letra y color del texto y le das a siguiente. Los tres se comprometen a no vender nunca tu dirección y a alojar la imagen de forma indefinida en sus servidores para poder servirla desde su servidor. En el primero de ellos da la opción de borrar la imagen una vez creada, para que no este alojada más en su servidor. En los tres tienes la opción de descargar la imagen para alojarla en tu propio hosting.</p>
+<p>Si quieres usarlos simplemente prueba como queda la imagen con unos y con otros y escoge el que más te guste. Luego te recomiendo que la descargues (y si usas Hide Text la borres) y la subas a tu hosting. Es mejor servirla desde tu hosting para minimizar dependencia de terceros y porque el consumo de ancho de banda va a ser muy escaso. Desde ese momento, suponiendo que la imagen esté por ejemplo en http://conocimientoabierto.es/img/correo-e.png, para incluirla en un comentario en un blog <a href="http://services.nexodyne.com/email/faq.html">debes usar la etiqueta html img</a>, quedaría así</p>
+<blockquote>
+<p>Si quieres puedes probar como queda dejando un comentario en esta entrada o escribiéndome a mi correo &lt;img src=»http://conocimientoabierto.es/img/correo-e.png»&gt;</p>
+<p>Si quieres puedes probar como queda dejando un comentario en esta entrada o escribiéndome a mi correo <img alt="" src="http://conocimientoabierto.odiseus.org/wp-content/blogs.dir/16/files/galerias/enelblog/correo-e.png" /></p>
+</blockquote>
+<p>Por supuesto, en lugar de usar estos servicios puedes arrancar el gimp (o el paint si todavía usas Windows) y crearla la imagen tu mismo porque es muy sencillo. Esta es la mejor opción desde mi punto de vista.</p>
+<p>Problemas:</p>
+<ul>
+<li>La opción de pinchar con el botón para que automáticamente se abra el cliente de correo desaparece.</li>
+<li>No se puede copiar y pegar la dirección, lo que es un pequeño incordio.</li>
+<li>La imagen que uses, tamaño, colores, … puede romper la maquetación de la página donde la uses</li>
+</ul>
+<p>Existe una técnica más sencilla que la de usar imágenes consistente simplemente en <em>ofuscar</em> tu dirección de correo <strong>usando texto en lugar de símbolos</strong> de modo que no sea reconocida por los bots. Por ejemplo en lugar de mail_falso@hosting_falso.no usa:</p>
+<ol>
+<li>mail_falso &lt;at&gt; hosting_falso &lt;dot&gt; no</li>
+<li>mail_falsoANTISPAM@hosting_falso.no</li>
+<li>mail_falso &lt;ARROBA&gt; hosting_falso.no</li>
+<li>o alguna combinación</li>
+</ol>
+<p>Si usas este método te recomiendo emplear la tercera opción, puesto que hay mucha gente que puede no reconocer el texto &lt;at&amp;gt como sinónimo de arroba o entender que el texto ANTISPAM no forma parte de la dirección real. Desconozco hasta que punto la opción de ofuscar la dirección es válida, dado que a los spammers no creo que les cueste mucho reprogramar su software para reconocer este tipo de truquillos, pero en principio me parece que esto es más cómodo para el usuario que usar imágenes.</p>
+<p>Como siempre la decisión última dependerá del uso que cada uno vaya a darle. Yo personalmente, he decidido pasar de usar imágenes, el spam está ahí y el volumen de tráfico que te va a evitar usar imágenes no creo que compense la incomodidad para el usuario o para ti al tener que usar etiquetas html/<a href="http://es.wikipedia.org/wiki/BBCode">bbcode</a> para introducir tu correo en lugar de escribir el texto directamente.</p>
+<p>Otro día seguiremos con algunas técnicas sencillas para no tener que dar nuestra dirección real cuando nos registramos en un foro o una de esas páginas que apenas vamos a usar un par de veces. <a href="http://feeds.conocimientoabierto.es">Subscríbete a mi RSS</a> para estar al día.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1059,34 +1108,6 @@
 <li>Novatos, no tengais miedo a preguntar o a escribir al mantenedor del proyecto. Revisad la web, las faq etc… pero cuando os surjan dudas preguntad.</li>
 <li>Mantenedores, sed pacientes con los nuevos y tratad de poneros en su lugar.</li>
 </ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-08-12 00:00:00">12 de agosto de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="ecofont"><a class="toclink" href="../../2009/08/12/se-ahorra-tinta-con-ecofont/">Ecofont</a></h2>
-<div class="ngg-gallery-singlepic-image ngg-left" style="max-width: 320px"> [ ![Fuente Ecofont - by FCPB @ Wikimedia Commons](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/cache/ecofont.jpg-nggid019-ngg0dyn-320x240x100-00f0w010c010r110f110r010t010.jpg "Fuente Ecofont - by FCPB @ Wikimedia Commons") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/ecofont.jpg "http://es.wikipedia.org/wiki/Archivo:Ecofont.jpg") </div>
-<p>Hace un par de meses la aparición de un nuevo tipo de letra tubo <a href="http://www.neoteo.com/ecofont-la-fuente-economica-ahorra-tinta-15118.neo">cierta repercusión</a> en la blogsfera. Esta nueva fuente llamada <a href="http://es.wikipedia.org/wiki/Ecofont">Ecofont</a>, creada por la empresa <a href="http://www.spranq.eu/">Spranq</a> decía que podía llegar a ahorrar hasta un 20% de tinta a la hora de imprimir. La idea en la que se basan es simplemente <a>añadir una serie de agujeros circulares</a> a una letra ya existente. Cuando se imprime en tamaños inferiores a 10 los agujeros no se notan y se ahorra tinta. La idea es sencilla y práctica así que iba a escribir una nota aquí recomendando su uso. Pero buscando un poco de <a href="http://www.manuelgago.org/blog/index.php/2009/03/11/ecofont-unha-fonte-para-aforrar-tinta/">información adicional (leer los comentarios)</a> me he dado cuenta de que tiene algunos puntos oscuros. Antes de continuar debo reconocer que hasta ayer no tenía ni idea sobre tipografía y ni siquiera sabía lo que significaba serif, así que tómense las afirmaciones que siguen con cuidado y más como interrogaciones que como afirmaciones.</p>
-<p><strong>Licencia</strong>. Ecofont está basada en la fuente <a href="http://www.bitstream.com/font_rendering/products/dev_fonts/vera.html">Vera Sans</a>. Vera Sans tiene una <a href="http://www.gnome.org/fonts/">licencia semi-abierta</a>. En la página web de Ecofont se describe como «De descarga gratuita y de uso gratuito.», pero no aparece nada referido a si se puede modificar, empaquetar con otro software, etc…</p>
-<p><strong>Legibilidad</strong>. Existen dos familias principales de tipografías. <a href="http://en.wikipedia.org/wiki/Serif">Serif</a> (también llamada Roman) o Sans-Serif (también llamada Ghotic). La serif son los tipos de fuentes que terminan las letras con algún adorno, por ejemplo entre un i mayúscula que es simplmente un palo o a la que se añaden rayas horizontales arriba y abajo (<a href="http://www.webestilo.com/guia/serif.php3">imagen y texto aclaratorio</a>).</p>
-<p>Si bien <a href="http://www.alexpoole.info/academic/literaturereview.html">no hay ningún estudio serio que lo pruebe</a>, se suele considerar que a la hora de imprimir la tipografía serif resulta más legible, y es por tanto la opción más empleada para el cuerpo de texto de libros y periódicos. En impresión la sans-serif se suele reservar para títulos y textos pequeños que requieran una apariencia más informal que la que producen las serif. A la hora de visualizar en la pantalla se suele considerar que la sans-serif es la más legible, y muchas página web la emplean por esta razón.</p>
-<p>Ecofont es de tipo Sans-Serif, de modo que puede que en la impresión perdamos algo de legibilidad. Por otro lado <a href="http://www.ecofont.eu/preguntas_frecuentes_es.html">no se recomienda usar un tamaño mayor a 10</a>, con lo que en pantalla podría quedar algo pequeña. La única forma de comprobar esto es hacer un par de impresiones de prueba y preguntar a quien principalmente vaya a leerla si se siente cómodo con la fuente.</p>
-<p><strong>Papel</strong>. <a href="http://es.letrag.com/tipografia.php?id=151">Vera Sans</a> fue diseñada por la empresa Bitstream pensando en usarla en monitores. Comparada con otras tipografías, sobre todo las serif, es un poco más ancha por lo que ocupa más papel. Además si se da el caso anterior de falta de legibilidad y aumentamos el interlineado para compensar estaremos desperdiciando todavía más papel.</p>
-<p><strong>Tinta</strong>. Y el punto más importante, <a href="http://farlukar.110mb.com/stuff.php">un estudio</a>, algo informal pero en apariencia realista, nos dice que Ecofont puede ahorrar hasta un 20% de tinta con respecto a fuentes como <a href="http://es.letrag.com/tipografia.php?id=59">Verdana</a> o <a href="http://es.letrag.com/tipografia.php?id=60">Tahoma</a> (ambas pensadas para pantalla), pero gastar un 20% más que <a href="http://es.letrag.com/tipografia.php?id=10">Garamond</a> o <a href="http://es.letrag.com/tipografia.php?id=166">Gentium</a>, esta última una de las primeras fuente con <a href="http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&amp;item_id=OFL">licencia Open Font</a> y una <a href="http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&amp;item_id=Gentium">bonita historia</a> detrás.</p>
-<p>He preparado un documento en <a href="http://conocimientoabierto.odiseus.org/files/2009/08/probando_fuentes.odt">ODT</a> y <a href="http://conocimientoabierto.odiseus.org/files/2009/08/probando_fuentes.pdf">PDF</a> para que puedes comparar Gentium, Ecofont y DejaVu Sans. Para que el ODT vaya correctamente debes tener las fuentes instaladas en tu sistema.</p>
     
   </div>
 </article>

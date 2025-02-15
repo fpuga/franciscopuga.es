@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#trabajar-con-word-docx-y-excel-xls-y-xlsx-desde-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trabajar con Word (docx) y Excel (xls y xlsx) desde Java
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#serie-los-soprano" class="md-nav__link">
     <span class="md-ellipsis">
       Serie: Los Soprano
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#pregunta-abierta-al-ine-por-que-las-geometrias-de-las-secciones-censales-no-son-publicas" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pregunta abierta al INE. ¿Por qué las geometrías de las secciones censales no son públicas?
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,35 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2014-04-30 00:00:00">30 de abril de 2014</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="trabajar-con-word-docx-y-excel-xls-y-xlsx-desde-java"><a class="toclink" href="../../2014/04/30/word-docx-excel-xls-xlsx-java/">Trabajar con Word (docx) y Excel (xls y xlsx) desde Java</a></h2>
+<p><img alt="Iconos Word y Excel de MS Office" src="http://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/Word-y-Excel-de-Office.jpg" />En <a href="http://cartolab.udc.es/">Cartolab</a> hemos trabajado ultimamente en procesar y generar documentos de Excel (xls y xlsx) y de Word (docx) desde Java. Tras probar algunas librerías open source las que estamos usando son:</p>
+<p><a href="http://poi.apache.org/spreadsheet/index.html">Apache POI Spreadsheet</a> para hojas de cálculo de Excel. Es fácil de usar y funciona bien tanto para los formatos binarios antiguos de xls (Excel 97-2007) como para xlsx (Excel 2007 OOXML). El <a href="http://poi.apache.org/spreadsheet/how-to.html">How-To</a> y la <a href="http://poi.apache.org/spreadsheet/quick-guide.html">Quick Guide</a> de la web son suficientes para empezar a escribir código.</p>
+<p><a href="http://www.docx4java.org/trac/docx4j">Docx4j</a> para documentos docx (OpenXML de Word 2007). La mejor forma de usarla es crear un documento vacio o con las cabeceras y pies de página desde Word o LibreOffice y definir en él los estilos. Desde nuestro código abrimos el documento y vamos añadiendo nuevos párrafos u otros elementos asignándole los estilos que hemos definido mediante el método <em>addStyledParagraphOfText(styleID, text);</em>. El styleID lo obtendremos consultado el fichero <em>styles.xml</em> que está comprimido dentro del docx. Si tenemos que hacer cosas más elaboradas el código se complica bastante pero al menos permite hacerlas. Para arrancar puedes leer como <a href="http://www.smartjava.org/content/create-complex-word-docx-documents-programatically-docx4j">substituir placeholders por tu propio contenido</a>, este <a href="http://blog.iprofs.nl/2012/09/06/creating-word-documents-with-docx4j/">otro artículo un poco más general</a> y los <a href="https://github.com/plutext/docx4j/tree/master/src/samples/docx4j/org/docx4j/samples">ejemplos de código que vienen con la librería</a>.</p>
+<p>Para trabajar con documentos .doc de Word también probamos con <a href="http://poi.apache.org/document/index.html">Apache POI</a> pero es complicado de usar y el resultado no es demasiado bueno. Así que por ahora no tenemos una alternativa válida para este formato.</p>
+<p>En algún otro momento también hicimos pruebas con:</p>
+<ul>
+<li><a href="http://community.jaspersoft.com/project/jasperreports-library">JasperReports</a> que está muy bien para generar pdf pero el odt y el word lo saca maquetado en forma de tablas por lo que no nos valía.</li>
+<li><a href="http://itextpdf.com/">iText</a>. Que en versiones antiguas de la librería permitía sacar los resultados en rtf y era sencilla de emplear. Pero las últimas versiones <a href="http://sourceforge.net/projects/itextrtf/">se ha creado una nueva librería</a> que no hemos probado todavía.</li>
+</ul>
+<p>En esta <a href="http://stackoverflow.com/questions/203174/whats-a-good-java-api-for-creating-word-documents">pregunta de StackOverflow</a> dan más alternativas. ¿Alguien usa otras librerías, preferiblemente open source y gratuitas, distintas a estas?</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1104,77 +1133,6 @@ usar. Si quisieramos poder abrirlo desde el Gestor de Perfiles o con la opción 
 <h3 id="conclusiones"><a class="toclink" href="../../2014/02/23/que-es-twitter-bootstrap-y-como-aprender-a-usarlo/#conclusiones">Conclusiones</a></h3>
 <p>En un par de días puedes revisar los enlaces que se proporcionan en este artículo, y refactorizar alguna web sencilla que tengas para que use bootstrap. Será un tiempo bien empleado que recuperarás con creces.</p>
 <p>No he probado otros frameworks del estilo, pero supongo que serán parecidos, cada uno con sus fortalezas y debilidades. Si le tienes manía a bootstrap, escoge otro, pero desde luego es una herramienta a meter en tu caja si eres desarrollador web.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2014-02-22 00:00:00">22 de febrero de 2014</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="pregunta-abierta-al-ine-por-que-las-geometrias-de-las-secciones-censales-no-son-publicas"><a class="toclink" href="../../2014/02/22/pregunta-abierta-al-ine-por-que-las-geometrias-de-las-secciones-censales-no-son-publicas/">Pregunta abierta al INE. ¿Por qué las geometrías de las secciones censales no son públicas?</a></h2>
-<p>Con motivo del <a href="http://opendataday.org/">Open Data Day</a>, <a href="http://vigodd2014.wordpress.com/">hemos intentado</a> hacer una visualización para la que necesitábamos las geometrías de las secciones censales.</p>
-<p>Al parecer por la política del <a href="http://www.ine.es/infoine/">INE</a> respecto a estos datos no es posible obtenerlos así que les he escrito un correo. Actualizaré este artículo con lo que respondan.</p>
-<blockquote>
-<p>Con motivo del Open Data Day [1] estamos intentando hacer una visualización para la que necesitamos las geometrías de los distritos censales.</p>
-<p>He visto que es posible obtener información de las secciones censales a través de WMS [2] pero se especifica que no es posible obtener las geometrías a través de WFS [3].</p>
-<p>Parece ser que esto es debido a la política del INE, que es el propietario de esta información [4].</p>
-<p>Me gustaría que me informaran si esto es correcto y en caso de no serlo de donde puedo obtener dicha información.</p>
-<p>En caso de que efectivamente exista una política de no publicación acerca de esos datos, me gustaría saber cual es el motivo de que la ciudadadanía no tenga acceso a ellos.</p>
-<p>Les hago saber que he reproducido este mensaje en mi blog [5] y que con su permiso reproduciré también la respuesta que me den.</p>
-<p>Muchas Gracias.</p>
-<p>[1] http://opendataday.org/<br />
-[2] http://www.idee.es/wms/IDEE-Limite/IDEE-Limite<br />
-[3] http://www.cartociudad.es/portal/web/guest/directorio-de-servicios<br />
-[4] http://listserv.gva.es/pipermail/gvsig_usuarios/2012-February/021286.html<br />
-[5] http://conocimientoabierto.es/pregunta-abierta-al-ine-por-que-las-geometrias-de-las-secciones-censales-no-son-publicas/659/</p>
-</blockquote>
-<h3 id="actualizacion-25022014"><a class="toclink" href="../../2014/02/22/pregunta-abierta-al-ine-por-que-las-geometrias-de-las-secciones-censales-no-son-publicas/#actualizacion-25022014">Actualización 25/02/2014</a></h3>
-<p>El lunes por la mañana me llegó este correo de respuesta del INE:</p>
-<blockquote>
-<p>Estimado Sr.Sra.: En relación con su consulta le informamos lo siguiente :</p>
-<p>el INE facilita como petición a medida los Ficheros de Cartografía Digital, estos ficheros contienen la digitalización de los contornos georeferenciados de todos los municipios y de gran parte de las secciones censales, según coordenadas UTM, huso 28, 29, 30 y 31. Los ficheros tienen formato EXPORT de Arclnfo (e009) y SHAPE.</p>
-<p>en la siguiente dirección puede consultar las secciones disponibles</p>
-<p>http://www.ine.es</p>
-<p>-productos y servicios</p>
-<p>-información estadística</p>
-<p>-información a medida y ficheros especiales</p>
-<p>http://www.ine.es/ss/Satellite?L=es_ES&amp;c=Page&amp;cid=1254735550786&amp;p=1254735550786&amp;pagename=ProductosYServicios%2FPYSLayout</p>
-<p>-estos ficheros tienen un coste dependiendo de si solo quiere uno o todos.</p>
-<p>hay que solicitarlos como petición a medida</p>
-<p>las peticiones a medida se pueden realizar mediante este medio o bien directamente al Area de Atención a Usuarios. Fax 91-5839158</p>
-<p>en las peticiones de información a medida se indicará los datos de la persona de contacto (nombre, dirección postal, teléfono, fax y correo electrónico si dispone de él) y detallando lo mejor posible la información que se desea</p>
-<p>-Atentamente</p>
-<p>-Área de Difusión por Internet.</p>
-<p>— CALIDAD DE LA INFORMACIÓN —<br />
-La presente información se ha obtenido siguiendo estrictos procedimientos de control de calidad; no obstante, pueden producirse errores involuntarios o de interpretación, por lo que las cifras ofrecidas pueden, en algún caso, no ser correctas o adecuadas a su petición.</p>
-<p>NOTA: Por favor, no responda a este correo ya que los correos electrónicos recibidos en esta dirección se borran automáticamente. Si necesita volver a contactar con nosotros utilice un nuevo formulario de consulta http://www.ine.es/infoine indicando su número de referencia.</p>
-</blockquote>
-<p>En resumen, que hay que pagar por los datos. La verdad es que les escribí inicialmente por curiosidad, no porque tenga ninguna necesidad de los datos y no querría alargar esto de forma indefinida, por lo que si alguien se anima a colaborar con una respuesta o dar alguna idea se lo agradecería. Estaba pensando en enviarles como respuesta un correo parecido al que escribo a continuación. <strong>¿Qué opináis?</strong>. Para facilitar la colaboración he pegado este documento en <a href="https://pad.riseup.net/p/carta_al_ine">un etherpad de libre modificación</a>.</p>
-<blockquote>
-<p>Hola,</p>
-<p>Les escribo de nuevo con relación a la cuestión con número de referencia <del>XXXX</del>. Esta cuestión era relativo al acceso pública a las geometrías de las secciones censales.</p>
-<p>Lo primero darles las gracias por su pronta respuesta y la claridad de la misma y notificarles de nuevo que estoy copianda mis preguntas y sus respuestas de forma abierta en esta dirección de internet [1].</p>
-<p>El motivo de solicitarles esta información en primer lugar, era para demostrar el poder que tiene el disponer de datos abiertos a la hora de la toma de decisiones y la participación ciudadana en un trabajo que estaba realizando junto a otra gente de forma voluntaria como motivo del Open Data Day.</p>
-<p>No quiero alargar esto de forma indefinida, pero a la vista de su respuesta me surgen una serie de dudas que les manifiesto:</p>
-<p>* ¿Por qué los costes de acceso a esta información no son claramente enunciados? A pesar de ser el INE un «organismo autónomo» entiendo que en el fondo tiene un carácter (¿y financiación?) público y por tanto sería interesante hacer un esfuerzo en detallarlos.</p>
-<p>* Si bien creo que ni la LISIGE ni la Ley de Reutilización de la Información Pública obligan a la publicación gratuita de la información, el espíritu de estas normativas es el facilitar lo máximo posible el acceso. Si bien es difícil cuantificar [2] las ventajas de disponer de la mayoría de información geográfica de forma gratuita, si que parece existir un consenso general de que ello favorece el desarrollo económico y social de un país. Con esto en cuenta, mi pregunta sería si los ingresos obtenidos por el instituto por la comercialización de esta información son lo suficientemente significativos como para que compense limitar el acceso a los mismos a las empresas y ciudadanía.</p>
-<p>* Mi última cuestión de índole más práctica sería bajo que terminos o licencia de uso se distribuyen las geometrías de las secciones censales. En concreto, en caso de adquirirlas podría luego revenderlas o publicarlas de forma abierta en internet.</p>
-<p>Por último, felicitarles por el trabajo que realizan, dado que somos muchos los que podemos realizar una labor comercial o investigadora gracias a los datos que publican.</p>
-<p>Atentamente</p>
-<p>[1] http://conocimientoabierto.es/pregunta-abierta-al-ine-por-que-las-geometrias-de-las-secciones-censales-no-son-publicas/659/</p>
-<p>[2] http://blog-idee.blogspot.com.es/2011/11/que-valor-tiene-la-informacion.html</p>
-</blockquote>
     
   </div>
 </article>

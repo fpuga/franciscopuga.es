@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#taller-de-gvsig-eiel-en-valencia-metodo-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taller de gvSIG-EIEL en Valencia. Método 2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#taller-de-gvsig-eiel-en-valencia-metodo-1" class="md-nav__link">
     <span class="md-ellipsis">
       Taller de gvSIG-EIEL en Valencia. Método 1.
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#bloguzz-0a2dbc2d7d" class="md-nav__link">
-    <span class="md-ellipsis">
-      BLOGUZZ-0a2dbc2d7d
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,38 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-11-29 00:00:00">29 de noviembre de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="taller-de-gvsig-eiel-en-valencia-metodo-2"><a class="toclink" href="../../2011/11/29/taller-de-gvsig-eiel-en-valencia-metodo-2/">Taller de gvSIG-EIEL en Valencia. Método 2</a></h2>
+<p>Como <a href="http://conocimientoabierto.es/taller-gvsig-eiel-valencia-metodo-1/420/">comentábamos en la anterior entrada</a> hemos creado un fichero .iso que podéis «quemar» en un pendrive de al menos 4GB para seguir el taller de gvSIG-EIEL. Podéis descargar el .iso desde <a href="http://www.adrive.com/public/ef55aaba0e67894a6156d6f1a454dba06ac96790fe8691a241c30515254205e3.html">este enlace</a>.</p>
+<p>Tras quemarla podréis arrancar vuestro ordenador desde el PC <a href="http://pcsupport.about.com/od/tipstricks/ht/bootusbflash.htm">configurando en la BIOS</a> que arranque en primer lugar desde ahí. Se trata de una versión de ubuntu con gvSIG-EIEL y una base de datos PostGIS con datos de prueba, todo preinstalado.</p>
+<p>Para quemar el pendrive <a href="http://live.osgeo.org/en/quickstart/usb_quickstart.html">podéis seguir estas instrucciones</a>. para linux o para windows.</p>
+<p>El usuario por defecto es «custom» sin clave. Para conectar a la base de datos usaremos:</p>
+<ul>
+<li><strong>servidor</strong>: localhost</li>
+<li><strong>usuario</strong>: user</li>
+<li><strong>clave</strong>: user</li>
+<li><strong>puerto</strong>: 5432</li>
+<li><strong>esquema</strong>: eiel_map_municipal</li>
+</ul>
+<div>El fichero .iso también debería poder ser ejecutado [desde una máquina virtual](http://live.osgeo.org/en/quickstart/virtualbox_quickstart.html).</div>
+<div>Si tenéis algún problema dejad un comentario o **comentádnoslo antes del taller**. Estaremos todos los días por las jornadas.</div>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1036,29 +1068,6 @@ Si tus parches son pequeños a veces lleva más tiempo integrarlos que manterlos
 <p>The new extension is <a href="http://www.prodevelop.es/en/blog/11/09/14/automatically-creating-map-series-gvsig-eiel-printing-module">MapSheets</a> developed by prodevelop in coordination with the gvSIG Association and ourselves to allow release it as a <a href="http://www.gvsig.org/web/projects/contrib/gvsig-mapsheets">official gvSIG extension</a>. MapSheets allows create map series in a really easy way. For those who comes from ESRI software it is something like MapBook but free and with some new features.</p>
 <div class="ngg-gallery-singlepic-image ngg-left" style="max-width: 250px"> [ ![sextante-toolbox](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/cache/sextante-toolbox.png-nggid0215-ngg0dyn-250x300x100-00f0w010c010r110f110r010t010.png "sextante-toolbox") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/sextante-toolbox.png) </div>
 <p>Under the <a href="http://sextantegis.blogspot.com/2011/03/nuevas-funcionalidades-para-opengis.html">umbrella of gvSIG-EIEL, Victor Olalla</a> develops some new algorithms like the <em>line properties</em> that obtains some statistics for line shapefiles and can get the slope between two points of the line if a DEM is present. Also a useful improvement of the use of Sextante in gvSIG-EIEL is that it comes with two buttons to open the toolbox. The algorithms that appears in the second toolbox are easily configured editing the file alglist.txt that is in the sextante folder (es.unex.sextante) inside the gvSIG extensions folder. Just write in that file the names of the algorithms that you want to see in that file. If you only work with a subset of the algorithms this helps you to localize and use it. MapSheet and the work on Sextante have been funded by the Spanish public administrations <a href="http://www.depontevedra.es/">Deputación de Pontevedra</a> and <a href="http://cmati.xunta.es/portal/cidadan/lang/gl/pid/2450">Dirección Xeral de Sostibilidade e Paisaxe</a> de la Consellería de Medio Ambiente, Transporte e Infraestruturas de la Xunta de Galicia</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-10-08 00:00:00">8 de octubre de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="bloguzz-0a2dbc2d7d"><a class="toclink" href="../../2011/10/08/bloguzz-0a2dbc2d7d/">BLOGUZZ-0a2dbc2d7d</a></h2>
-<p>Título raro pero es que acabo de darme de alta en <a href="http://www.bloguzz.com/">bloguzz</a>, una empresa que pone en contacto a blogers y marcas de forma que los bloguers reciben productos y servicios para postear sobre ellos.</p>
-<p>La verdad es que todavía no tengo muy claro como funciona. Por lo que he entendido tienes que dar de alta tu blog y validarlo. Para validarlo puedes escribir un post con un título determinado o bien acciones menos intrusivas como poner una determinada etiqueta de forma temporal en el código html de la página principal.</p>
-<p>Una vez has sido validado tienes acceso a las promociones de las empresas. Bloguzz proporciona un rss con las promociones que las empresas quieren ofrecer, tu te anotas a las que te interesen y si la empresa te selecciona te envia el producto/servicio a cambio de que escribas un artículo sobre ello.</p>
-<p>La verdad es que en principio dudo bastante de este tipo de modelos y en un blog de temática variada como el mio va a ser difícil que sea seleccionado para nada pero ya contaré…</p>
     
   </div>
 </article>

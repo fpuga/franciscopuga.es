@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#circular-dependencies-webcast-por-miguel-grinberg" class="md-nav__link">
+    <span class="md-ellipsis">
+      Circular Dependencies Webcast por Miguel Grinberg
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#comprar-un-portatil-para-desarrollo-en-2019" class="md-nav__link">
     <span class="md-ellipsis">
       Comprar un portátil para desarrollo en 2019
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#libro-el-corredor-del-laberinto" class="md-nav__link">
-    <span class="md-ellipsis">
-      Libro: El corredor del laberinto
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,46 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2020-06-29 00:00:00">29 de junio de 2020</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="circular-dependencies-webcast-por-miguel-grinberg"><a class="toclink" href="../../2020/06/29/circular-dependencies-webcast-por-miguel-grinberg/">Circular Dependencies Webcast por Miguel Grinberg</a></h2>
+<p>Un <a href="https://blog.miguelgrinberg.com/post/flask-webcast-3-circular-dependencies">Webcast de Miguel Grinberg sobre como evitar Dependencias Circulares</a> en una aplicación Python / Flask.</p>
+<iframe allowfullscreen="allowfullscreen" frameborder="0" height="315" loading="lazy" src="https://www.youtube.com/embed/NH-8oLHUyDc" width="560"></iframe>
+
+<h3 id="my-metadata"><a class="toclink" href="../../2020/06/29/circular-dependencies-webcast-por-miguel-grinberg/#my-metadata">My Metadata</a></h3>
+<ul>
+<li>Descripción: Un webcast de 1h en el que se refactoriza una aplicación Flask que empieza con un único fichero a varios paquetes y módulos.</li>
+<li>Calificación: 3 sobre 5</li>
+<li>Día de Visualización: 2020-06-28</li>
+<li>Año de publicación: 2018</li>
+<li>Duración: 68 minutos</li>
+<li>Velocidad de reproducción recomendada: 1.75</li>
+<li>Etiquetas: python; flask; dependencies; refactoring</li>
+</ul>
+<h3 id="lecciones-aprendidas"><a class="toclink" href="../../2020/06/29/circular-dependencies-webcast-por-miguel-grinberg/#lecciones-aprendidas">Lecciones aprendidas</a></h3>
+<ul>
+<li>Mantener el <em>entry point</em> tan limpio como sea posible. Incluso con un único import.</li>
+<li>El módulo que es ejecutado inicialmente por Python adquiere el nombre de <code>__main__</code> a nivel interno, por ello los «nombres» que se definan en este módulo, no se identificarán inicialmente a efectos de dependencias como <code>myfile.myvar</code> si no como <code>__main__.myvar</code>, lo que es más fácil que genere un error de dependencias circulares</li>
+<li>No usar los __init__.py como mecanismo para acortar los imports. Hay tantas opiniones a favor como en contra sobre el tema. A mi me ha generado más problemas que soluciones.</li>
+<li>Usar imports desde la «raíz» <code>from myapp.models.user import User</code> y no estilo <code>from user import User</code>.</li>
+<li>No pasa nada por no poner los <code>import</code> al inicio del fichero cuando tenga sentido que sea de otra forma, por ejemplo para evitar dependencias circulares. Usar <code># noqa</code> para que no pite el linter en estos casos es aceptable.</li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1049,30 +1089,6 @@ sudo usermod -a -G audio pulse</p>
   <div class="md-post__content md-typeset">
     <h2 id="migrar-a-gitlab-manteniendo-mirrors-en-github"><a class="toclink" href="../../2018/06/09/migrar-a-gitlab-manteniendo-mirrors-en-github/">Migrar a GitLab manteniendo mirrors en GitHub</a></h2>
 <p>En <a href="http://icarto.es">iCarto</a> habíamos planificado hace un tiempo migrar nuestra infraestructura de desarrollo (repositorios de código principalmente) a GitLab. Estos días hemos terminado la migración y he aprovechado para escribir un artículo de <a href="http://icarto.es/2018/06/migrar-a-gitlab-manteniendo-mirrors-en-github/">como se pueden mantener mirrors de los repos de gitlab en github</a> a través de la propia plataforma o con un servidor intermedio.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2017-12-31 00:00:00">31 de diciembre de 2017</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="libro-el-corredor-del-laberinto"><a class="toclink" href="../../2017/12/31/libro-el-corredor-del-laberinto/">Libro: El corredor del laberinto</a></h2>
-<p>He aprovechado las vacaciones de navidad a uno de mis «<a href="https://capacitaccionchile.wordpress.com/category/placer-culpable-o-el-arte-de-dejarse-llevar/">placeres culpables</a>» que es la lectura de sagas <a href="https://www.caninomag.es/guia-para-principiantes-la-literatura-young-adult/">Young Adult</a> de ciencia ficción o fantasía. En este caso toco el turno de «<a href="https://es.wikipedia.org/wiki/The_Maze_Runner">El corredor del laberinto</a>» de James Dashner.</p>
-<p>Poco que decir de este libro a parte de ser una decepción absoluta. De los que me he tragado hasta ahora Harry Potter, Los Juegos del Hambre, Divergente, … esta serie es la peor y no la recomiendo.</p>
-<p><strong>Clasificación</strong>: 2/5</p>
-<p><strong>Te gustará si</strong>: Eres un fan incodicional de este tipo de novelas y Divergente te pareció buena.</p>
-<p>Puedes comprarlo en tu tienda habitual, aunque hay quien te lo presta gratis en <a href="https://www.epubgratis.org/el-corredor-del-laberinto-james-dashner/">epubgratis</a>.</p>
     
   </div>
 </article>

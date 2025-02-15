@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#las-raices-de-la-violencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Las raíces de la violencia
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#herramientas-de-analisis-de-codigo-estatico-en-python" class="md-nav__link">
     <span class="md-ellipsis">
       Herramientas de análisis de código estático en Python
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#si-el-liferea-tarda-mucho-en-arrancar" class="md-nav__link">
-    <span class="md-ellipsis">
-      Si el liferea tarda mucho en arrancar&#8230;
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,28 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2012-06-24 00:00:00">24 de junio de 2012</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="las-raices-de-la-violencia"><a class="toclink" href="../../2012/06/24/raices-violencia/">Las raíces de la violencia</a></h2>
+<p>Mis lecturas de fin de semana comenzaban ayer con el artículo <a href="http://principiamarsupia.wordpress.com/2012/06/19/cuales-son-los-paises-mas-violentos-del-mundo-por-que/">¿Cuáles son los países más violentos del mundo? ¿Por qué?</a>. El artículo no es demasiado <em>científico</em> pero abre una línea de debate interesante, y hay comentarios de calidad. Mi mayor crítica es hablar de violencia fijándose unicamente en la tasa de homicidios, cuando la violencia puede tener <a href="http://sociedad.elpais.com/sociedad/2012/06/22/actualidad/1340392754_868819.html">muchas otras formas</a>.</p>
+<p>El tema debe estar de moda porque hoy he podido leer un poco más sobre <a href="http://www.oxfamblogs.org/fp2p/?p=10555">las raices de la violencia urbana</a> en el blog de Duncan Green de Oxfam. Os aconsejo leerlo.</p>
+<p>PD: Hace poco he estado en Honduras, y <a href="http://principiamarsupia.wordpress.com/2012/06/19/cuales-son-los-paises-mas-violentos-del-mundo-por-que/#comment-3987">este comentario</a> me ha llamado especialmente la atención, porque coincide con lo que percibí y lo que me transmitieron.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1089,33 +1111,6 @@ La primera vez a mi me tardó en arrancar unos 3 o 4 minutos así que paciencia.
 <li><a href="http://forum.cyanogenmod.com/topic/32485-cyanogenmod-7-for-the-htc-tattoo-v7101-10-oct-2011/">Cyanogenmod 7 for the HTC Tattoo</a>.</li>
 </ul>
 <p>En la segunda parte, voy al grano de como lo hice yo.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2012-02-04 00:00:00">4 de febrero de 2012</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="si-el-liferea-tarda-mucho-en-arrancar"><a class="toclink" href="../../2012/02/04/si-el-liferea-tarda-mucho-en-arrancar/">Si el liferea tarda mucho en arrancar&#8230;</a></h2>
-<p><code>&lt;br&gt;&lt;/br&gt;$ eatmydata liferea&lt;br&gt;&lt;/br&gt;</code><br />
-<a href="http://liferea.sourceforge.net/">Liferea</a> es un lector de feeds (como google reader, pero en aplicación de escritorio) libre que cumple su cometido. La verdad es que no me parece la <em>aplicación definitiva</em> para leer rss pero funciona.</p>
-<p>Eso si, tiene <a href="https://bugs.launchpad.net/ubuntu/+source/liferea/+bug/290666">un error enormemente molesto</a> y es lo lento que es cuando arranca, sincroniza feeds o marcas toda una carpeta como leída.</p>
-<p>Simplificando un poco, lo que está pasando es que el objetivo principal de los sistemas de ficheros modernos es evitar la pérdida accidental de información, de modo que se sacrifica rendimiento (y la duración del disco duro) ante problemas hipotéticos como el de que se vaya la corriente y el ordenador se apague de manera brusca. Por defecto, sqlite, que es la base de datos que emplea Liferea, pide muy a menudo al sistema operativo que se asegure de que la información que gestiona el programa está guardada en el disco duro. Es decir, cuando un programa quiere guardar algo en el disco duro, pide al sistema operativo que lo guarde, pero esto no tiene porque suceder de manera inmediata (se dice que la escritura es asíncrona). El sistema operativo puede mantenerlo en la RAM hasta que considera que es el momento idóneo de escribirlo en disco. Pero las aplicaciones también tienen la opción de forzar al sistema operativo a que los datos sean escritos (sincronizar), y está opción de forzar es lo que usa liferea tan a menudo.</p>
-<p>Como este problema no es exclusivo de liferea si no que sucede en muchas aplicaciones, un desarrollador de debian, ha escrito un programa llamado <a href="http://www.makelinux.net/man/1/E/eatmydata">eatmydata</a> que permite desactivar las funciones de sincronización del sistema operativo para aquellos programas que nos interesen. De modo que si un programa ejecutado bajo el paraguas de eatmydata pide forzar el sincronizado, no sucederá nada, esa orden será ignorada. En general esto no es peligroso, pero hay que tener cuidado de cuando se usa y no hacerlo nunca con aplicaciones críticas. Con liferea haciendo copias de seguridad de vez en cuando no hay problema. Para instalar eatmydata llega con:<br />
-<code>&lt;br&gt;&lt;/br&gt;sudo apt-get install eatmydata&lt;br&gt;&lt;/br&gt;</code><br />
-y para ejecutar un programa bajo eatmydata<br />
-<code>&lt;br&gt;&lt;/br&gt;eatmydata nombre_del_programa&lt;br&gt;&lt;/br&gt;</code></p>
     
   </div>
 </article>
