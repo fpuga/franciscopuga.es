@@ -59,7 +59,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -852,7 +852,105 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2025-02-15 00:00:00">15 de febrero de 2025</time></li>
+          <time datetime="2025-05-17 00:00:00+00:00">17 de mayo de 2025</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="las-pensiones-como-inversion"><a class="toclink" href="2025/05/17/pensiones-como-inversion/">Las pensiones cómo inversión</a></h2>
+<p>Las pensiones suelen ser consideradas cómo un gasto del ~15% del PIB. Pero <strong>qué pasa si en lugar de gasto lo llamamos inversión</strong> y tratamos de evaluar los ingresos que produce esa inversión.</p>
+<p>Dos investigadores concluyen que gracias a los impuestos IVA, IRPF de trabajadores, ... vinculados al gasto producido con el dinero de las pensiones sale una relación 1 a 1,1. Es decir, cada 1€ gastado en pensiones genera 1,1€. Me faltan conocimientos para interpretar el estudio, y lógicamente no se puede llevar al extremo, el estado no tiene infinito dinero para gastar aunque la devolución sea mayor que el gasto. Pero en esta época de campaña anti pensiones, me gusta que haya otra forma de entender las cosas (recordemos el peligro de una sola historia).</p>
+<h3 id="referencias"><a class="toclink" href="2025/05/17/pensiones-como-inversion/#referencias">Referencias</a></h3>
+<ul>
+<li><a href="https://www.eldiario.es/economia/si-mira-manera-gasto-pensiones-estudio-senala-motor-crecimiento-economico_1_12171547.html">Artículo al respecto de elDiario.es</a></li>
+<li><a href="https://www.tandfonline.com/doi/full/10.1080/09538259.2024.2351833">El estudio de los economistas Eladio Febrero y Fernando Bermejo</a></li>
+</ul>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-05-17 00:00:00+00:00">17 de mayo de 2025</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="language-server-protocol"><a class="toclink" href="2025/05/17/language-server-protocol/">Language Server Protocol</a></h2>
+<p>Language Server Protocol (LSP) define un conjunto de mensajes JSON-RPC y estructuras de datos que permiten que el servidor (Language Server) exponga que capacidades (<em>language services</em>) ofrece y un cliente (generalmente un IDE) las consuma.</p>
+<p>Estas capacidades son las habituales para una herramienta de programación: autocomplete, refactoring, navegación (go to definition, ...), type checking, ...</p>
+<p><em>Este no es un artículo en profundidad sobre herramientas de desarrollo, me he tomado algunas licencias poéticas porqué sólo quiero situar el contexto para artículos posteriores</em>.</p>
+<h3 id="antes-de-lsp"><a class="toclink" href="2025/05/17/language-server-protocol/#antes-de-lsp">Antes de LSP</a></h3>
+<p>Se puede argumentar que, antes, la diferencia principal entre un IDE y un editor, era que el IDE incluía de serie y dentro de su propio código funcionalidades que interpretaban el texto cómo "código fuente" y no cómo otro texto cualquiera. Así proporcionaban capacidades de formateado del código, análisis estático (lint), autocomplete, moverse entre la definición y el uso de un símbolo, ...</p>
+<p>Los editores en cambio no tenían estas capacidades de forma nativa. Pensemos en PyCharm o PyDev (alguien se acuerda de la versión de Eclipse para Python), frente a Vim, Emacs o incluso Atom.</p>
+<p>Lo que había era librerías (o aplicaciones) que daban estas capacidades en el "terminal". En el mundo Python teníamos (tenemos) cosas cómo jedi (para autocomplete y navegación), rope (para refactorings y autocomplete), flake8 (para linting), yapf (para formateado), ...</p>
+<p>La solución natural era que los editores tuvieran plugins que usando la API nativa de cada editor se comunicaran de alguna forma no estándar con la herramienta de turno. Así aparecieron millones de plugins. Podíamos tener cosas cómo (<em>nombres inventados</em>) atom-yapf (que sólo daba formato con yaps), atom-python-linter (que te dejaba escoger entre flake8 o pylint o los dos a la vez), atom-formatter (que vale para distintos lenguajes), ...</p>
+<p>Mantener ese ecosistema tanto a nivel desarrollo cómo a nivel uso, que funciona con que, que instala el plugin y que tengo que instalar yo, ... era un caos. Y cada implementación era específica para un servidor y una librería.</p>
+<h3 id="porque-un-linter-es-mejor-que-un-ide"><a class="toclink" href="2025/05/17/language-server-protocol/#porque-un-linter-es-mejor-que-un-ide">Porqué un linter es mejor que un IDE</a></h3>
+<p>Hay acciones cómo el autocomplete, navegación o refactoring que sólo tiene sentido en el entorno de desarrollo. Cada persona del equipo decide que herramientas se le adaptan mejor.</p>
+<p>Pero también hay acciones, lint y format sobre todo, que son decisiones de equipo y hay valor en que estén disponibles en cualquier entorno: editor, pre-commit, ci, ...</p>
+<p>Por ello resulta útil que ciertas herramientas sean independientes del IDE y se puedan usar vía plugin o LSP.</p>
+<h3 id="nace-lsp"><a class="toclink" href="2025/05/17/language-server-protocol/#nace-lsp">Nace LSP</a></h3>
+<p>En 2016 de la mano de VSCode, Microsoft publica LSP que se acaba convirtiendo en un estándar abierto <em>de facto</em> de la industria.</p>
+<p>La principal ventaja es desacoplar las herramientas de los editores:</p>
+<ul>
+<li>Consistencia en diferentes entornos: Las mismas reglas pueden aplicarse en distintos editores, pre-commit, ...</li>
+<li>Evita duplicación de esfuerzos<ul>
+<li>Los desarrolladores de lenguajes solo necesitan crear un servidor de lenguaje y funcionará con cualquier editor</li>
+<li>Los editores sólo necesitan implementar soporte para LSP y no para cada herramienta por separado</li>
+</ul>
+</li>
+<li>No sólo lenguajes de programación. Un LSP puede servir para DSL y otros, por ejemplo la configuración de Ansible.</li>
+<li>Arquitectura cliente servidor. El servidor ni siquiera tiene que correr en el mismo entorno que el cliente</li>
+</ul>
+<h3 id="descripcion-de-alto-nivel"><a class="toclink" href="2025/05/17/language-server-protocol/#descripcion-de-alto-nivel">Descripción de alto nivel</a></h3>
+<p><a href="https://code.visualstudio.com/blogs/2016/06/27/common-language-protocol">Este artículo de VSCode</a> nos da una buena idea del funcionamiento a alto nivel:</p>
+<blockquote>
+<p>Here’s an example of how a tool and a language server could communicate semantic information during a routine editing session:</p>
+<p>The user opens a file (referred to as a <em>document</em>) in the tool: The tool notifies the language server that a document is open (<code>didOpen</code>) and that the information about that document is maintained by the tool in memory.</p>
+<p>The user makes edits: The tool notifies the server about the document change (<code>didChange</code>) and the semantic information of the program is updated by the language server. As this happens, the language server analyses this information and notifies the tool with the errors and warnings (<code>diagnostics</code>) that are found.</p>
+<p>The user executes 'Go To Definition' on a symbol: The tool sends a <code>definition</code> request to the server. The server responds with a <code>uri</code> of the document that holds the definition and the <code>range</code> inside the document. Based on this information, the tool can open the corresponding document at the defining position.</p>
+<p>The user closes the document (file): A <code>didClose</code> notification is sent from the tool, informing the language server that the document is now no longer in memory and instead maintained by (i.e. stored on) the file system.</p>
+<p>This communication, which takes place over JSON-RPC, happens many times over the course of a typical session.</p>
+</blockquote>
+<h3 id="capacidades-del-lsp-y-el-editor"><a class="toclink" href="2025/05/17/language-server-protocol/#capacidades-del-lsp-y-el-editor">Capacidades del LSP y el Editor</a></h3>
+<p>En <a href="https://medium.com/@malintha1996/understanding-the-language-server-protocol-5c0ba3ac83d2">este artículo</a> se describe bastante bien el proceso de inicialización e intercambio de capacidades.</p>
+<p>Ni el editor, ni el LS tienen porqué implementar todas las posibles capacidades definidas en el estándar. Cuando arranca el servidor se lleva a cabo un intercambio de mensajes en el que cada parte dice lo que quiere y lo que puede hacer.</p>
+<p>Imaginemos por ejemplo un LS puede tener la capacidad de hacer un refactoring de <em>Extract function</em> pero en la GUI no hay ese menú.</p>
+<p>Tenemos un ejemplo claro en el mundo Python, ruff incorpora su propio LS, pero (a día de hoy) sólo provee capacidades de format y lint, y no por ejemplo de refactoring. El editor (y la desarrolladora que tiene que configurar el editor) es responsable de no liarse y coordinar que el refactoring debe hacerse a través de un LS (PyLance, python-lsp-server, ...) y el formateado a través de ruff.</p>
+<h3 id="fragmentacion"><a class="toclink" href="2025/05/17/language-server-protocol/#fragmentacion">Fragmentación</a></h3>
+<p>Los LSP suenan <a href="https://xkcd.com/927/">al conocido comic de XKCD sobre los standards</a>. Es una nueva tecnología y port tanto fragmenta más al mercado porqué nadie está obligado a usarla.</p>
+<p>Sigue habiendo editores con plugins independientes, en Python hay un montón de LS: ruff, PyLance, BasedPyRight, jedi-language-server, python-lsp-server, <a href="https://www.pydev.org/vscode/index.html">PyDev</a>.</p>
+<p>Además en muchos casos los LS no implementan las capacidades por si mismos. Algunas las implementan y otras las delegan a otras herramientas de forma "nativa" o mediante plugins.</p>
+<p>Por ejemplo PyLance es un LS privativo de Microsoft para Python que sólo funciona en VSCode (y no en otras versiones como Cursor o VSCodium). Muchas funcionalidades (syntax errors, ...) provienen de PyRight que es una librería libre también de Microsoft pero hay funcionalidades como los imports automáticos que están sólo en PyLance, y otras funcionalidades cómo formateado PyLance las ofrece a través de integración con yapf, ruff, ...</p>
+<h3 id="conclusion"><a class="toclink" href="2025/05/17/language-server-protocol/#conclusion">Conclusión</a></h3>
+<p>Entender cómo funcionan las herramientas que usamos para desarrollar no está de más, y los LS se han convertido en una de las más útiles.</p>
+<h3 id="referencias"><a class="toclink" href="2025/05/17/language-server-protocol/#referencias">Referencias</a></h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Language_Server_Protocol">Language Server Protocol en Wikipedia</a></li>
+<li><a href="https://microsoft.github.io/language-server-protocol/">Página oficial de LSP</a></li>
+</ul>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-02-15 00:00:00+00:00">15 de febrero de 2025</time></li>
         
         
       </ul>
@@ -880,7 +978,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2025-01-19 00:00:00">19 de enero de 2025</time></li>
+          <time datetime="2025-01-19 00:00:00+00:00">19 de enero de 2025</time></li>
         
         
       </ul>
@@ -904,7 +1002,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2021-07-17 00:00:00">17 de julio de 2021</time></li>
+          <time datetime="2021-07-17 00:00:00+00:00">17 de julio de 2021</time></li>
         
         
       </ul>
@@ -921,144 +1019,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2021-01-01 00:00:00">1 de enero de 2021</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="experimentos-de-monetization-en-este-blog"><a class="toclink" href="2021/01/01/experimentos-de-monetization-en-este-blog/">Experimentos de «Monetization» en este blog</a></h2>
-<p>Hace unos días Tom MacWright publicaba en su blog un artículo titulado <a href="https://macwright.com/2020/11/15/mini-monetization-experiments.html">Monetization experiments on this website</a></p>
-<p>Como él, un poco por tratar de pagar el hosting, y sobre todo por <em>jugar</em> un poco hice varios experimentos en este blog. Nunca fue algo que me tomara demasiado en serio. De hecho para escribir este artículo he intentado revisar algunos datos para descubrir que las estadísticas de Google Analytics dejaron de funcionar en mi blog, seguramente en alguna actualización y no tengo acceso a datos antiguos. Y me pasa lo mismo con las estadísticas de WordPress.com / Jetpack.</p>
-<p>Cuando escribía en el blog algo más a menudo, sobre todo artículos más utilitaristas del tipo <a href="http://conocimientoabierto.es/cifrar-particion-disco-duro-externo-linux/197/">Como cifrar una partición de un disco duro externo</a> tenía bastantes visitas para ser un blog personal, aunque ahora no me atrevo a dar una cifra. Con este desastre, no puedo dar datos muy concretos, pero para hacernos una idea, en base a mi memoria y los números que me encuentro en Google AdSense, en los últimos tres años constan 15.304 páginas vistas y 1.86€. En él último mes 376 páginas vistas y 0.01€</p>
-<p>Los experimentos:</p>
-<ul>
-<li>Desde que me dí de alta en AdSense (creo recordar que en 2011) he generado un saldo de 33.37€. Google sólo hace efectivos los pagos cuando se llega a 70€. Así que a este ritmo me quedan otros 9 años hasta poder cobrar algo. Al cancelar la cuenta hacen efectivo el pago si pasa de 10€</li>
-<li>Algunos de los <a href="http://conocimientoabierto.es/libro-javascript-the-good-parts-de-douglas-crockford/858/">libros que comento en el blog</a> tenían enlaces a Amazon a través del programa de Affiliates. De modo que si alguien lo comproba siguiendo el enlace me quedaba un porcentaje de la venta. Amazon nunca me notifico una compra a través de estos enlaces.</li>
-<li><a href="http://conocimientoabierto.es/libro-matar-a-un-ruisenor/723/">Otros libros o enlaces</a> a descargas compartidas los ponía a través de adf.ly. Un anonimizador de enlaces que te obliga a pasar por una página previa de publicidad. He comprobado que mi cuenta está actualmente cancelada y en su momento tampoco recuerdo que llegará a obtener más de unos céntimos.</li>
-<li>A través del botón de donaciones de paypal recibí un pago de 1.5€</li>
-<li>En dos ocasiones me llegaron correos ofreciéndome escribir posts patrocionados. Uno de un casino online, el otro no recuerdo de que. Ofrecían unos 50€ pero no comprobé si era verdad porqué rechazé ambas</li>
-</ul>
-<p>Así que arranco el nuevo año con un poco de limpieza:</p>
-<ul>
-<li>Cerrando cuentas en servicios que aparecen en mi keepass en los que no he entrado desde hace tiempo.</li>
-<li>Elimino la primera versión de este blog que todavía existía en blogspot.</li>
-<li>Elimino del blog Google Analytics y Google AdSense</li>
-<li>Borrados los enlaces a Amazon. En algún momento seguramente incluya enlaces a <a href="https://macwright.com/2020/12/24/the-new-reading-stack.html">alguno de los sitios recomendados en este post</a></li>
-<li>Los enlaces a adf.ly los he eliminado o substituido por los enlaces finales directamente</li>
-</ul>
-<p>Amazon Afiliados y Google AdSense seguramente son una de las formas más sencillas en las que un blog personal al que dediques algo de mimo puede generar ingresos, pero por los cantidades que aportan, a mi al menos, no me compensan para ayudar a perpetuar los problemas que estas empresas causan.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2020-07-18 00:00:00">18 de julio de 2020</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos"><a class="toclink" href="2020/07/18/presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos/">Presentaciones de fotos en formato vídeo (slideshows) desde la línea de comandos</a></h2>
-<p>Hace ya algunos años apareció en este blog como <a href="http://conocimientoabierto.es/hacer-presentaciones-de-fotos-en-formato-video/35/">hacer presentaciones de fotos en formato vídeo</a>. A pesar de que hay muchos programas buenos para editar vídeo en GNU/Linux, esta vez quería tener un proceso sencillo y fácilmente replicable aún a costa de perder un poco de calidad o efectos (como degradado entre imágenes, …).</p>
-<p>En este tutorial veremos, sin entrar en muchos detalles (mis conocimientos no dan para ello), una forma muy rápida de crear un slideshow con música usando únicamente el terminal. Como limitante partimos de la base de que todas las imágenes están en el mismo formato (en este caso JPEG)</p>
-<h3 id="las-herramientas"><a class="toclink" href="2020/07/18/presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos/#las-herramientas">Las herramientas</a></h3>
-<p><code>&lt;br&gt;&lt;/br&gt;sudo apt-get install --install-recommends rename imagemagick ffmpeg&lt;br&gt;&lt;/br&gt;</code></p>
-<ul>
-<li><a href="https://www.howtogeek.com/423214/how-to-use-the-rename-command-on-linux/">rename</a> permite renombrar archivos usando expresiones regulares</li>
-<li><a href="https://imagemagick.org">imagemagick</a></li>
-<li><a href="https://ffmpeg.org/">ffmpeg</a></li>
-</ul>
-<h3 id="normalizar-los-nombres-y-ordenar-las-imagenes"><a class="toclink" href="2020/07/18/presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos/#normalizar-los-nombres-y-ordenar-las-imagenes">Normalizar los nombres y ordenar las imágenes</a></h3>
-<p>El primer paso es ordenar las imágenes poniéndolos un «nombre normalizado» que represente ese orden. En este caso partimos de unas imágenes que ya tienen cierto orden, pero arreglamos las mayúsculas, usamos dos caracteres para los números y ajustamos las del medio.</p>
-<p>Cada caso será muy particular pero veamos un ejemplo:</p>
-<p><code>&lt;br&gt;&lt;/br&gt;$ cp -r original copia&lt;br&gt;&lt;/br&gt;$ cd copia&lt;br&gt;&lt;/br&gt;$ ls&lt;br&gt;&lt;/br&gt;0.JPG   1_1.JPG  12_1.JPG  13.jpg  15.jpg  17.JPG  19.jpg  20.jpg  22.jpg  24.jpg  26.jpg  28.jpg  2.JPG   31.jpg  4.JPG  6.JPG  8.JPG&lt;br&gt;&lt;/br&gt;10.JPG  11.JPG   12.JPG    14.jpg  16.jpg  18.jpg  1.JPG   21.JPG  23.jpg  25.JPG  27.jpg  29.jpg  30.jpg  3.JPG   5.jpg  7.JPG  9.JPG&lt;br&gt;&lt;/br&gt;$ rename 's/.JPG/.jpg/' *.JPG&lt;br&gt;&lt;/br&gt;$ rename 's/3(\d).jpg/5$1.jpg/' 3*.jpg&lt;br&gt;&lt;/br&gt;$ rename 's/2(\d).jpg/4$1.jpg/' 2*.jpg&lt;br&gt;&lt;/br&gt;$ rename 's/1([2-9]).jpg/3$1.jpg/' 1*.jpg&lt;br&gt;&lt;/br&gt;$ ls&lt;br&gt;&lt;/br&gt;0.jpg   1_1.jpg  12_1.jpg  2.jpg   33.jpg  35.jpg  37.jpg  39.jpg  40.jpg  42.jpg  44.jpg  46.jpg  48.jpg  4.jpg   51.jpg  6.jpg  8.jpg&lt;br&gt;&lt;/br&gt;10.jpg  11.jpg   1.jpg     32.jpg  34.jpg  36.jpg  38.jpg  3.jpg   41.jpg  43.jpg  45.jpg  47.jpg  49.jpg  50.jpg  5.jpg   7.jpg  9.jpg&lt;br&gt;&lt;/br&gt;$ mv 12_1.jpg 31.jpg&lt;br&gt;&lt;/br&gt;$ rename 's/1([0-1]).jpg/2$1.jpg/' 1*.jpg&lt;br&gt;&lt;/br&gt;$ rename 's/([1-9]).jpg/1$1.jpg/' ?.jpg&lt;br&gt;&lt;/br&gt;$ mv 0.jpg 00.jpg&lt;br&gt;&lt;/br&gt;$ mv 1_1.jpg 01.jpg&lt;br&gt;&lt;/br&gt;$ ls&lt;br&gt;&lt;/br&gt;00.jpg  11.jpg  13.jpg  15.jpg  17.jpg  19.jpg  21.jpg  32.jpg  34.jpg  36.jpg  38.jpg  40.jpg  42.jpg  44.jpg  46.jpg  48.jpg  50.jpg&lt;br&gt;&lt;/br&gt;01.jpg  12.jpg  14.jpg  16.jpg  18.jpg  20.jpg  31.jpg  33.jpg  35.jpg  37.jpg  39.jpg  41.jpg  43.jpg  45.jpg  47.jpg  49.jpg  51.jpg&lt;br&gt;&lt;/br&gt;</code></p>
-<h3 id="rotar-las-imagenes"><a class="toclink" href="2020/07/18/presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos/#rotar-las-imagenes">Rotar las imágenes</a></h3>
-<p>A pesar de que en la previsualización del explorador de archivos podamos ver todas las imágenes rectas, alguna de ellas puede estar girada. Esto es por qué muchas herramientas usan por defecto <a href="https://jdhao.github.io/2019/07/31/image_rotation_exif_info/">los metadatos EXIF de la imagen para rotarlas</a> de la forma lógica.</p>
-<p><code>&lt;br&gt;&lt;/br&gt;# las que no tengan un</code>1<code>están rotadas&lt;br&gt;&lt;/br&gt;identify -verbose * | grep -E '(Image:|Orientation)'</code></p>
-<p># Rotarlas. https://stackoverflow.com/a/19475281/930271<br />
-# Esto modifica todas las fotos, por lo que mejor usarlo sólo con la que deben<br />
-# ser rotadas<br />
-mogrify -auto-orient *.jpg</p>
-<p>identify -verbose * | grep -E '(Image:(.*)|exif:Orientation: [2-9])'<br />
-mogrify -auto-orient 16.jpg<br />
-mogrify -auto-orient 45.jpg</p>
-<h3 id="identificar-tamanos-y-aspect-ratio"><a class="toclink" href="2020/07/18/presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos/#identificar-tamanos-y-aspect-ratio">Identificar tamaños y «aspect ratio»</a></h3>
-<p>Para montar las imágenes en el vídeo debemos investigar sus tamaños y sobre todo la relación de aspecto. El comando <a href="https://imagemagick.org/script/identify.php">identify</a> de ImageMagick nos puede dar la información más relevante y podemos ordenarla por <em>aspect ratio</em>, anchura, …</p>
-<p><code>&lt;br&gt;&lt;/br&gt;# https://unix.stackexchange.com/questions/50252</code></p>
-<p># ordenadas por aspect ratio<br />
-$ identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k1</p>
-<p>1.5 4608 3072 20.jpg<br />
-0.75 1944 2592 15.jpg<br />
-0.75 2304 3072 16.jpg<br />
-0.75 3864 5152 45.jpg<br />
-1.33333 1280 960 44.jpg<br />
-1.33333 1280 960 46.jpg<br />
-1.33333 1280 960 47.jpg<br />
-1.33333 2592 1944 13.jpg<br />
-1.33333 3072 2304 17.jpg<br />
-1.33333 3264 2448 01.jpg<br />
-1.33333 3264 2448 14.jpg<br />
-1.33333 3264 2448 19.jpg<br />
-1.33333 3264 2448 33.jpg<br />
-1.33333 4000 3000 43.jpg<br />
-1.33333 4000 3000 50.jpg<br />
-1.33333 4000 3000 51.jpg<br />
-1.33333 4320 3240 18.jpg<br />
-1.33333 4608 3456 31.jpg<br />
-1.33333 4672 3504 34.jpg<br />
-1.33333 4672 3504 35.jpg<br />
-1.33333 5120 3840 49.jpg<br />
-1.33333 5152 3864 32.jpg<br />
-1.33333 5152 3864 37.jpg<br />
-1.33472 1280 959 38.jpg<br />
-1.33884 2592 1936 00.jpg<br />
-1.33884 2592 1936 11.jpg<br />
-1.49841 3776 2520 21.jpg<br />
-1.77778 3072 1728 12.jpg<br />
-1.77778 3264 1836 39.jpg<br />
-1.77778 3968 2232 41.jpg<br />
-1.77778 5312 2988 36.jpg<br />
-1.77778 5312 2988 40.jpg<br />
-1.77778 5312 2988 42.jpg<br />
-1.77778 5312 2988 48.jpg</p>
-<p># ordenadas por width<br />
-identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k2</p>
-<p>Aquí la clave es:</p>
-<ul>
-<li>Ajustar las imágenes para que tengan todas la misma relación de aspecto y que no salgan deformadas. Cosa que haremos directamente con ffmpeg al crear el vídeo.</li>
-<li>Escoger el tamaño de referencia a usar para las imágenes. La «redimensión» la haremos directamente al crear el vídeo.</li>
-</ul>
-<p>Sin entender mucho de vídeos mi criterio es coger el aspect ratio más común a las imágenes, en este caso <strong>1.333</strong>, y un tamaño intermedio, de modo que haya pocas imágenes por debajo de ese tamaño, y que al ampliar no pixelen demasiado, en este caso me quedo con <strong>2592×1936</strong></p>
-<h3 id="montar-el-video"><a class="toclink" href="2020/07/18/presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos/#montar-el-video">Montar el vídeo</a></h3>
-<p>La wiki de ffmpeg da el comando básico para <a href="https://trac.ffmpeg.org/wiki/Slideshow">hacer el slideshow</a>, y en stackoverflow <a href="https://stackoverflow.com/questions/24961127/how-to-create-a-video-from-images-with-ffmpeg">también</a> hay buenas <a href="https://stackoverflow.com/questions/44634765/ffmpeg-aspect-ratio-of-image-in-a-slideshow">respuestas</a></p>
-<p>El comando que usaremos en este caso es:</p>
-<p><code>&lt;br&gt;&lt;/br&gt;ffmpeg -framerate 1/5 -pattern_type glob -i '*.jpg' -i audio.mp3 -vf 'scale=2592:1936:force_original_aspect_ratio=decrease,pad=2592:1936:(ow-iw)/2:(oh-ih)/2,setsar=1' -c:v libx264 -c:a copy -crf 14 -r 25 -pix_fmt yuv420p -shortest output.mp4&lt;br&gt;&lt;/br&gt;</code></p>
-<p>Los parámetros más relevantes para el <em>slideshow</em>:</p>
-<ul>
-<li><code>-framerate 1/5</code>: El denominador define cuanto se mostrará cada imagen</li>
-<li><code>-pattern_type glob -i '*.jpg'</code>: Cuando las imágenes no están ordenadas exactamente de forma secuencial con este parámetro las meterá en el video ordenadas por nombre</li>
-<li><code>'scale=2592:1936:force_original_aspect_ratio=decrease,pad=2592:1936:(ow-iw)/2:(oh-ih)/2,setsar=1'</code>: Escala las imágenes a 2592×1936 y mete bandas negras de relleno cuando no se pueda conservar la relación de aspecto</li>
-</ul>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1066,7 +1026,7 @@ identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k2</p>
 
 
 <nav class="md-pagination">
-  <span class="md-pagination__current">1</span> <a class="md-pagination__link" href="page/2/">2</a> <a class="md-pagination__link" href="page/3/">3</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="page/39/">39</a>
+  <span class="md-pagination__current">1</span> <a class="md-pagination__link" href="page/2/">2</a> <a class="md-pagination__link" href="page/3/">3</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="page/40/">40</a>
 </nav>
         
       
@@ -1099,7 +1059,7 @@ identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k2</p>
     
     
     <a href="https://github.com/fpuga" target="_blank" rel="noopener" title="fpuga on GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
     
@@ -1107,7 +1067,7 @@ identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k2</p>
     
     
     <a href="https://x.com/fpuga" target="_blank" rel="noopener" title="fpuga on X" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
     </a>
   
     
@@ -1115,7 +1075,7 @@ identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k2</p>
     
     
     <a href="https://stackoverflow.com/users/930271/francisco-puga" target="_blank" rel="noopener" title="fpuga on StackOverflow" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
     </a>
   
     
@@ -1126,7 +1086,7 @@ identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k2</p>
       
     
     <a href="hhttps://www.linkedin.com/in/francisco-puga-b25a8361/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
 </div>
@@ -1141,10 +1101,10 @@ identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k2</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>

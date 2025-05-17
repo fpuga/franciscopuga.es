@@ -59,7 +59,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a40c8224.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -847,6 +847,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#trabaja-upstream-y-facilita-que-los-demas-tambien-lo-hagan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trabaja upstream y facilita que los demás también lo hagan
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gvsig-eiel-10-rc2-published" class="md-nav__link">
+    <span class="md-ellipsis">
+      gvSIG-EIEL 1.0 RC2 Published
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#bloguzz-0a2dbc2d7d" class="md-nav__link">
     <span class="md-ellipsis">
       BLOGUZZ-0a2dbc2d7d
@@ -873,24 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#como-carga-gvsig-las-extensiones" class="md-nav__link">
-    <span class="md-ellipsis">
-      Como carga gvSIG las extensiones
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quien-tiene-la-culpa-de-la-crisis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quien tiene la culpa de la crisis
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -912,7 +912,59 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2011-10-08 00:00:00">8 de octubre de 2011</time></li>
+          <time datetime="2011-10-18 00:00:00+00:00">18 de octubre de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="trabaja-upstream-y-facilita-que-los-demas-tambien-lo-hagan"><a class="toclink" href="../../2011/10/18/trabaja-upstream-y-facilita-que-los-demas-tambien-lo-hagan/">Trabaja upstream y facilita que los demás también lo hagan</a></h2>
+<p>No os perdáis los artículos enlazados por<a href="http://nosolosoftware.com/los-costes-de-no-trabajar-upstream/trackback"> Andrés sobre los costes de no trabajar upstream</a>. En resumen:</p>
+<p>La mayoría de desarrollos basados en software libre se mantienen en «local». Para satisfacer las necesidades de un cliente puede llegar un momento en que sea necesario parches una aplicación. Si estos parches no son integrados en la rama principal de un proyecto en la mayoría de las ocasiones nos veremos en la necesidad de actualizar nuestro código con el del repositorio principal. Bien porque hayan corregido errores que nuestro cliente reporta, porque queramos mantener nuestro código actualizado …</p>
+<p>Cada vez que actualicemos nuestro código tendremos que comprobar que nuestros parches siguen correctamente integrados, independientemente del tamaño del proyecto esto acaba volviéndose un verdadero quebradero de cabeza. Tendremos que sacar nuestros propios ejecutables de la aplicación …<br />
+Si nuestros parches se encuentran upstream son otros los que se encargan de todo este trabajo.</p>
+<p>Trabajar upstream tampoco es gratis. Es probable que otros desarrolladores hagan comentarios a tu código y pidan otra aproximación, el mantenedor exigirá un formato de código determinado etc … Además la realidad es que los mantenedores serán menos propensos a incluir tus cambios cuanta menos participación tengas en el proyecto.</p>
+<p>Se debe por tanto trabajar upstream. En general si. Si tu código difiere mucho es importante hacerlo porque te ahorrará horas de mantenimiento que compensarán el integrar tus parches.<br />
+Si tus parches son pequeños a veces lleva más tiempo integrarlos que manterlos en local. Pero subirlos incrementará tu reputación en el proyecto de modo que cuando necesites integrar porciones más grandes de código o incluso ayuda para desarrollar alguna característica el resto de la comunidad estará predispuesto a ayudarte.</p>
+<p>Integrar código en upstream es también una forma de decirle a tus (posibles) clientes, ey, yo puedo hacer eso que pedís y mantenerlo.</p>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-10-11 00:00:00+00:00">11 de octubre de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="gvsig-eiel-10-rc2-published"><a class="toclink" href="../../2011/10/11/gvsig-eiel-1-0-rc2-published/">gvSIG-EIEL 1.0 RC2 Published</a></h2>
+<p>Last week, <a href="http://cartolab.udc.es">Cartolab</a>, the university lab where i work, released a new version of <a href="cartolab.udc.es/cartoweb/gvsig-eiel">gvSIG-EIEL</a>.</p>
+<p>gvSIG-EIEL is a portable version of gvSIG bundled with some new extensions and some changes in the image designs. The application is focused to accomplish the requirements of the <a href="http://www.mpt.gob.es/areas/politica_local/coop_econom_local_estado_fondos_europeos/informacion_socieconomica_local/eiel.html">EIEL</a>, an infrastructure inventory that some spanish public administration should do.</p>
+<p>Some of this extensions like eye candy forms to introduce the data, or tools to verify that the data follow the established rules are specific for the eiel but others can be useful for any gvSIG’s user. As i think that the tools developed by Cartolab for gvSIG-EIEL (<a href="http://forge.osor.eu/projects/opencadtools/">OpenCADTools</a>, …) are already known i want to talk a bit of a new extension and the work done on Sextante.</p>
+<p>The new extension is <a href="http://www.prodevelop.es/en/blog/11/09/14/automatically-creating-map-series-gvsig-eiel-printing-module">MapSheets</a> developed by prodevelop in coordination with the gvSIG Association and ourselves to allow release it as a <a href="http://www.gvsig.org/web/projects/contrib/gvsig-mapsheets">official gvSIG extension</a>. MapSheets allows create map series in a really easy way. For those who comes from ESRI software it is something like MapBook but free and with some new features.</p>
+<div class="ngg-gallery-singlepic-image ngg-left" style="max-width: 250px"> [ ![sextante-toolbox](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/cache/sextante-toolbox.png-nggid0215-ngg0dyn-250x300x100-00f0w010c010r110f110r010t010.png "sextante-toolbox") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/sextante-toolbox.png) </div>
+<p>Under the <a href="http://sextantegis.blogspot.com/2011/03/nuevas-funcionalidades-para-opengis.html">umbrella of gvSIG-EIEL, Victor Olalla</a> develops some new algorithms like the <em>line properties</em> that obtains some statistics for line shapefiles and can get the slope between two points of the line if a DEM is present. Also a useful improvement of the use of Sextante in gvSIG-EIEL is that it comes with two buttons to open the toolbox. The algorithms that appears in the second toolbox are easily configured editing the file alglist.txt that is in the sextante folder (es.unex.sextante) inside the gvSIG extensions folder. Just write in that file the names of the algorithms that you want to see in that file. If you only work with a subset of the algorithms this helps you to localize and use it. MapSheet and the work on Sextante have been funded by the Spanish public administrations <a href="http://www.depontevedra.es/">Deputación de Pontevedra</a> and <a href="http://cmati.xunta.es/portal/cidadan/lang/gl/pid/2450">Dirección Xeral de Sostibilidade e Paisaxe</a> de la Consellería de Medio Ambiente, Transporte e Infraestruturas de la Xunta de Galicia</p>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-10-08 00:00:00+00:00">8 de octubre de 2011</time></li>
         
         
       </ul>
@@ -935,7 +987,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2011-10-06 00:00:00">6 de octubre de 2011</time></li>
+          <time datetime="2011-10-06 00:00:00+00:00">6 de octubre de 2011</time></li>
         
         
       </ul>
@@ -985,7 +1037,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2011-10-02 00:00:00">2 de octubre de 2011</time></li>
+          <time datetime="2011-10-02 00:00:00+00:00">2 de octubre de 2011</time></li>
         
         
       </ul>
@@ -1001,107 +1053,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-09-02 00:00:00">2 de septiembre de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="como-carga-gvsig-las-extensiones"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/">Como carga gvSIG las extensiones</a></h2>
-<p>En la línea abierta por <a href="http://nosolosoftware.com/how-gvsig-manages-the-snappers/">Andrés de «Como gvSIG hace xxx»</a> os presento un artículo que explica como se gestiona la carga de las extensiones en gvSIG. Antes de nada debo agradecer a <a href="http://cartolab.udc.es/">Cartolab</a> cederme tiempo para poder escribirlo.</p>
-<p>Lo que sucede cuando lanzamos gvSIG es que la máquina virtual de java ejecuta el método main() de <a href="http://forge.osor.eu/plugins/scmsvn/viewcvs.php/*checkout*/trunk/frameworks/_fwAndami/src/com/iver/andami/Launcher.java?content-type=text%2Fplain&amp;root=gvsig-desktop">la clase Launcher de andami</a>, el framework que sostiene el sistema de ventanas y plugins de gvSIG.</p>
-<p>A efectos de este artículo sobre la carga de extensiones podemos decir que ese método main() es el responsable de lo siguiente:</p>
-<ol>
-<li>Procesar los parámetros que se le pasan por línea de comandos</li>
-<li>Cargar los plugins</li>
-<li>Cargar las clases de los plugins</li>
-<li>Recuperar la configuración persistida de los plugins</li>
-<li>Inicializar las extensiones</li>
-<li>Cargar menus y toolbars</li>
-<li>Hacer la postinicialización de las extensiones</li>
-</ol>
-<h4 id="1-procesar-los-parametros-que-se-le-pasan-por-linea-de-comandos"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#1-procesar-los-parametros-que-se-le-pasan-por-linea-de-comandos">1.- Procesar los parámetros que se le pasan por línea de comandos</a></h4>
-<p>Lo más habitual es que la orden que ejecute el sistema operativo (quitando los parametros que se pasan a la jvm) sea algo parecido a:</p>
-<p>$ java com.iver.andami.Launcher <strong>gvSIG gvSIG/extensiones «$@»</strong></p>
-<p>donde la parte en negrita serían los parámetros que pasamos al main(). En concreto ese segundo parámetro gvSIG/extensiones es el que está definiendo donde está la carpeta de plugins de gvSIG, como ruta relativa desde donde se encuentra el fichero andami.jar.</p>
-<p>Es decir, que si bien el directorio de extensiones suele estar en un punto predefinido nosotros podriamos escoger otra ubicación.</p>
-<h4 id="2-carga-de-los-plugins"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#2-carga-de-los-plugins">2.- Carga de los plugins</a></h4>
-<p>Procesados los parámetros de entrada la aplicación recorre todos los directorios contenidos en la carpeta de plugins. Si dentro del directorio existe un fichero de nombre <em>«config.xml»</em> lo parsea y en caso de ser correcto añade el par [«nombre del directorio», objeto PluginConfig] al campo de la clase <em>Launcher</em></p>
-<p><code>&lt;br&gt;&lt;/br&gt;private static HashMap pluginsConfig = new HashMap();&lt;br&gt;&lt;/br&gt;</code><br />
-Donde <em>PluginConfig</em> es una clase que se encarga de mantener toda la información que aportan los ficheros <em>config.xml</em>.</p>
-<p>Lo más interesante de esta fase es entender que el orden en que se recorren los directorios, y por tanto el orden en que luego se inicializarán las extensiones, es aleatorio, o en realidad es el orden que devuelve el método <a href="http://download.oracle.com/javase/1.4.2/docs/api/java/io/File.html#listFiles()">lisFiles() de la clase File de Java</a>, que especifica en su documentación que el orden en se devuelven los ficheros no está asegurado y supongo, dependerá de la implementación concreta de la máquina virtual y del sistema operativo que se emplee.</p>
-<p>Hay que aclarar que en este contexto, un plugin, es igual a un directorio contenido dentro del directorio de extensiones/plugins definido como parámetro.</p>
-<h4 id="3-carga-de-las-clases-de-los-plugins"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#3-carga-de-las-clases-de-los-plugins">3.- Carga de las clases de los plugins</a></h4>
-<p>Lo siguiente que intenta hacer es indexar todas las clases de todos los plugins. Para ello recorre <em>pluginsConfig</em>, solicitando el valor de la etiqueta del config &lt;libraries library-dir=»VALOR» /&gt;. Lo más habitual es que ese VALOR sea <em>«./»</em>, es decir el propio directorio del plugin. Para cada plugin mantiene un objeto <em>PluginClassLoader</em> que basicamente contiene un índice de todos ficheros .class que están dentro de los ficheros .zip o .jar que están en ese <em>library-dir</em>.</p>
-<p>Para cada plugin se crea un objeto <em>PluginServices</em> que a su vez mantiene la instancia del <em>PluginClassLoader</em> que le corresponde. Esos <em>PluginServices</em> se almacenan en el campo<br />
-<code>&lt;br&gt;&lt;/br&gt;private static HashMap pluginsServices= new HashMap();&lt;br&gt;&lt;/br&gt;</code><br />
-de la clase <em>Launcher</em>.</p>
-<p>Hay que tener en cuenta que a la hora de cargar las clases de un plugin, si en el config se ha definido que depende de otro mediante una etiquetacarga la clases de la dependencia (de forma recursiva) antes que el nuestro. Por tanto, en <em>pluginsServices</em> los plugins se reordenan respecto a <em>pluginsConfig</em> poniendo los plugins de los que se depende antes. Se mantiene también una variable <em>pluginsOrdered</em> con el nombre de los plugins en el mismo orden que <em>pluginsServices</em></p>
-<h4 id="4-persistencia-de-los-plugins"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#4-persistencia-de-los-plugins">4.- Persistencia de los plugins</a></h4>
-<p>Se actualiza el andamiConfig que contiene una lista (el fichero andami-config.xml habitualmente) que persiste con todos los plugins presentes el directorio de plugins.</p>
-<p>Luego se recupera de disco la configuración persistida de los plugins en el fichero plugins-persistance.xml, y se <em>setea</em> esa configuración en el PluginServices asociado a cada plugin.</p>
-<h4 id="5-inicializacion-de-las-extensiones"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#5-inicializacion-de-las-extensiones">5.- Inicialización de las Extensiones</a></h4>
-<p>Es en esta fase cuando salen por consola los mensajes de:</p>
-<blockquote>
-<p>Initializing extensions from «Nombre_del_plugin» (para cada plugin)</p>
-</blockquote>
-<p>y</p>
-<blockquote>
-<p>Initializing «Nombre_de_la_Extension» … (para cada extensión)</p>
-</blockquote>
-<p>Se recorre <em>pluginsOrdered</em>, y para cada plugin se crea una instancia de cada extensión (en el orden que se define en el config del plugin) y se llama a su método <em>initialize()</em>. Además se almacena esas instancia en el campo de <em>Launcher</em>:<br />
-<code>&lt;br&gt;&lt;/br&gt;private static ArrayList extensions=new ArrayList();&lt;br&gt;&lt;/br&gt;</code><br />
-Por el medio crea también un objeto <em>ExtensionDecorator</em> que nos da un control adicional sobre las extensiones pero esto no nos interesa a los efectos de este artículo.</p>
-<h4 id="6-menus-y-toolbars"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#6-menus-y-toolbars">6.- Menus y Toolbars</a></h4>
-<p>Se cargarn los menus y los toolbars definidos por los plugins a través de los métodos <em>installPluginsMenus()</em> y <em>installPluginsControls()</em>.</p>
-<h4 id="7-post-inicializacion-de-las-extensiones"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#7-post-inicializacion-de-las-extensiones">7.- Post-inicialización de las extensiones</a></h4>
-<p>Se va llamando al método postInitialize de cada extensión en el orden en que aparecen en el array extensions. Con este paso finalizaría el proceso de carga.</p>
-<p>Una cosa que no he investigado a fondo pero que intuyo que es así, es que en algún momento de este proceso se asocian las instancias del array <em>extensions</em> a los menús y botones del toolbar. De este modo las extensiones (clases que heredan de extension y aparecen en los config) se comportan como una especie de singleton, porque gvSIG siempre la recupera de ese array de extensiones, y cuando el desarrollador externo llama a <em>PluginServices.getExtension(Class)</em> la está recuperando de ahí también (del <em>ExtensionDecorator</em> del que hablamos antes en realidad, pero la idea es la misma)</p>
-<p>Esto explica también porque cuando recompilamos nuestro código, si cambiamos algo en la clase de la extensión debemos cerrar y abrir gvSIG. La instancia de la extensión se crea durante la carga de gvSIG y se mantiene hasta que cerramos gvSIG, y por tanto no es «recargada» de los nuevos .class</p>
-<p>Me quedan un par de dudas que quedan para estudiar para próximos posts o para quien se anime a escribir más artículos de la serie de «Como hace gvSIG XXX»:</p>
-<ul>
-<li>Al parecer existe una extension del tipo ExclusiveUIExtension a la que se hace referencia en Launcher.initializeExclusiveUIExtension() que no tengo muy claro como funciona</li>
-<li>Estaría bien explicar en detalle el comportamiento de los ExtensionDecorator</li>
-<li>Estaría bien explicar detalladamente el proceso de creación y ubicación de los menús y toolbars</li>
-<li>Algunas partes del código son un poco liosas. Tengo algunas ideas de como refactorizarlo así que si alguien se anima que pregunte</li>
-</ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-07-25 00:00:00">25 de julio de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="quien-tiene-la-culpa-de-la-crisis"><a class="toclink" href="../../2011/07/25/quien-tiene-culpa-crisis/">Quien tiene la culpa de la crisis</a></h2>
-<p><em><strong>Aviso antes de que sigas leyendo</strong>: Este artículo contine cierta dosis de demagogia, pero a veces hace falta llegar al extremo para saber donde está el centro.</em></p>
-<p>Andrés publico hace poco un artículo, titulado <a href="http://nosolosoftware.com/los-culpables-de-la-deuda/">los culpables de la deuda</a> que dió pie a algo de debate en los comentarios de su blog y que hace que revisite algunas lecturas y descubra otras.</p>
-<p>Gracias a esta <em>pequeña investigación</em> he descubierto que la culpa la tienen los gobiernos, ya <a href="http://www.fedeablogs.net/economia/?p=12172"> sean los del psoe</a>, o <a href="http://www.youtube.com/watch?v=8jG96g-5Pd0">los del pp</a>; los bancos, los endeudados, el <a href="http://www.rebelion.org/noticia.php?id=73852">capitalismo</a>, … O en resumen, la culpa la tenemos todos. Queda a juício del lector que porcentaje de responsabilidad corresponde a cada cual, <a href="http://es.wikipedia.org/wiki/Informaci%C3%B3n_asim%C3%A9trica">aunque yo creo que lo tengo más o menos claro</a>.</p>
-<p>Aunque lo que en realidad me preocupa no es quien tiene la culpa, si no quien la va a pagar.</p>
-<p>Si debo escoger entre que la pague <a href="http://noticias.lainformacion.com/asuntos-sociales/asuntos-sociales-general/la-policia-logra-que-se-ejecute-un-desahucio-en-madrid-al-segundo-intento_FWqnDNCeA3V5s1JfqAvHF2/">una familia que se queda en la calle</a> o los <a href="http://murciaeconomia.com/not/1436/los_sindicatos_reclaman_que_se_depuren_responsabilidades_en_la_cupula_de_la_cam/">responsables</a> de la política económica de la entidad que hizo el prestamo, escogeré a quien tenga que vender el chalet de la playa para pagar su irresponsabilidad.</p>
-<p>Si hay que decidir entre <a href="http://esfgalicia.blogspot.com/2011/07/recortes-en-cooperacion-aprobados-por.html">recortar la ayuda al desarrollo</a> o suprimir el <a href="http://www.farodevigo.es/gran-vigo/2011/07/19/cazas-holandeses-relevan-patrulla-aguila-estandarte-festival-aereo/564272.html">&gt;presentar máquinas destinadas a matar como espectáculo para niños</a> la decisión también la tengo clara…</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1109,7 +1060,7 @@ Por el medio crea también un objeto <em>ExtensionDecorator</em> que nos da un c
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../17/">17</a> <a class="md-pagination__link" href="../18/">18</a> <span class="md-pagination__current">19</span> <a class="md-pagination__link" href="../20/">20</a> <a class="md-pagination__link" href="../21/">21</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../39/">39</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../17/">17</a> <a class="md-pagination__link" href="../18/">18</a> <span class="md-pagination__current">19</span> <a class="md-pagination__link" href="../20/">20</a> <a class="md-pagination__link" href="../21/">21</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
 </nav>
         
       
@@ -1142,7 +1093,7 @@ Por el medio crea también un objeto <em>ExtensionDecorator</em> que nos da un c
     
     
     <a href="https://github.com/fpuga" target="_blank" rel="noopener" title="fpuga on GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
     
@@ -1150,7 +1101,7 @@ Por el medio crea también un objeto <em>ExtensionDecorator</em> que nos da un c
     
     
     <a href="https://x.com/fpuga" target="_blank" rel="noopener" title="fpuga on X" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
     </a>
   
     
@@ -1158,7 +1109,7 @@ Por el medio crea también un objeto <em>ExtensionDecorator</em> que nos da un c
     
     
     <a href="https://stackoverflow.com/users/930271/francisco-puga" target="_blank" rel="noopener" title="fpuga on StackOverflow" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
     </a>
   
     
@@ -1169,7 +1120,7 @@ Por el medio crea también un objeto <em>ExtensionDecorator</em> que nos da un c
       
     
     <a href="hhttps://www.linkedin.com/in/francisco-puga-b25a8361/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
 </div>
@@ -1184,10 +1135,10 @@ Por el medio crea también un objeto <em>ExtensionDecorator</em> que nos da un c
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>

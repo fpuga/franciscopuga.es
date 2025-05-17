@@ -59,7 +59,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a40c8224.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -847,6 +847,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sincronizar-el-perfil-o-los-marcadores-de-firefox-mediante-dropbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sincronizar el perfil o los marcadores de Firefox mediante dropbox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libro-jennifer-gobierno" class="md-nav__link">
+    <span class="md-ellipsis">
+      Libro: Jennifer Gobierno
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#traducir-automaticamente-ficheros-po" class="md-nav__link">
     <span class="md-ellipsis">
       Traducir automáticamente ficheros .po
@@ -873,24 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#plugin-de-wordpress-para-tener-un-blogroll-dinamico" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plugin de WordPress para tener un blogroll dinámico
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#un-par-de-parrafos-de-jeniffer-gobierno" class="md-nav__link">
-    <span class="md-ellipsis">
-      Un par de párrafos de Jeniffer Gobierno
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -912,7 +912,103 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2010-02-22 00:00:00">22 de febrero de 2010</time></li>
+          <time datetime="2010-03-26 00:00:00+00:00">26 de marzo de 2010</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="sincronizar-el-perfil-o-los-marcadores-de-firefox-mediante-dropbox"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/">Sincronizar el perfil o los marcadores de Firefox mediante dropbox</a></h2>
+<p>Cuando de manera habitual usas más de un ordenador mantener la misma configuración en ambos acaba siendo problemático. Una de las cosas que más echo de menos desde que he dejado de usar mi portátil personal en el trabajo es poder sincronizar los marcadores de Firefox.</p>
+<h3 id="en-el-cielo-o-en-la-tierra"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#en-el-cielo-o-en-la-tierra">En el cielo o en la tierra</a></h3>
+<p>Tal y como yo lo veo hay dos clasificaciones en las que se podrían englobar los métodos para la sincronización:</p>
+<ul>
+<li>Usar un servicio web como <a href="http://delicious.com/">delicious</a> pensado para trabajar exclusivamente con los marcadores.</li>
+<li>Usar alguna herramienta de sincronización de ficheros como <a href="http://www.dropbox.com/">DropBox</a>.</li>
+</ul>
+<p>El depender en exclusiva de un servicio web <a href="http://blog.loretahur.net/2009/03/los-problemas-de-la-nube-informatica-radio-euskadi.html">no es una opción que me tiente demasiado</a>, así que no hablaremos de ella. DropBox en cambio, es una mezcla de servicio web y <a href="http://es.wikipedia.org/wiki/Rsync">rsync</a> sencillo, donde los ficheros no sólo se guardan en un servidor externo si no también en el nuestro, de modo que podemos abandonarlo cuando queramos a coste casi cero, de hecho, montar <a href="http://aseodiario.com/2010/03/dropbox-casero/">un sistema casero que substituya a DropBox</a> no es muy complicado.</p>
+<h3 id="diferentes-implementaciones-con-dropbox"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#diferentes-implementaciones-con-dropbox">Diferentes implementaciones con Dropbox</a></h3>
+<p>Decidido que usaremos DropBox tenemos varias formas concretas de implementar el sistema:</p>
+<ul>
+<li>En LiveHacker nos proponen emplear firefox portable, de modo que ejecutemos un firefox desde dentro del propio DropBox. Esto tiene la ventaja de que si un día estamos en un cibercafé podríamos bajarnos nuestra propia versión del navegador desde la interfaz web y luego borrarla. Es una idea a anotar pero no es lo que buscamos.</li>
+<li>El resto de opciones se basan en ubicar el directorio que contiene nuestro perfil de firefox como un directorio compartido en DropBox. Bien sea <a href="http://jonefox.com/blog/2009/11/16/how-to-sync-firefox-across-multiple-computers-using-dropbox/">creando un enlace simbólico con el mismo nombre que nuestro perfil que apunte a DropBox</a>, usando el<a href="http://robwilkerson.org/2008/09/24/synchronizing-firefox-through-dropbox/"> administrador de perfiles para crear un nuevo perfil</a> en DropBox, o mi favorita, que consiste simplemente en <a href="http://www.robzand.com/blog/firefox-dropbox-profile-synchronization-across-machines">editar el archivo profiles.ini para indicar que debe buscar el perfil por defecto en el directorio compartido</a>.</li>
+</ul>
+<p>La última me parece la mejor porque nos ahorramos el crear un nuevo perfil, simplemente movemos su ubicación y usamos herramientas propias de firefox para colocar el directorio del perfil dentro de DropBox en lugar del truquillo de los enlaces simbólicos.</p>
+<h3 id="decidido-el-metodo-los-pasos-previos"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#decidido-el-metodo-los-pasos-previos">Decidido el método, los pasos previos</a></h3>
+<p>En todo caso antes de usar uno de estos tres métodos deberías:</p>
+<ol>
+<li>Hacer una <a href="http://support.mozilla.com/en-US/kb/Backing+Up+Your+Information">copia de seguridad de tu perfil</a></li>
+<li>Modificar donde se guarda la cache del navegador. La cache son un montón de archivitos que se guardan mientras navegas para acceder más rápido a páginas ya visitadas, que no tienen ningún interés para la sincronización y que sólo te harán perder ancho de banda y cpu si intentas sincronizarlos. Para cambiar la ubicación, abre firefox y teclea about:config en la barra de direcciones. A continuación busca la clave browser.cache.disk.parent_directory. Si no existe créala como de tipo «cadena». El valor que debe contener es el nuevo directorio que usará como cache, asegúrate de que existe en todos los ordenadores que vayas a usar, yo uso /var/tmp. Cierra el navegador , borra el directorio Cache dentro de tu perfil y vuelve a abrir el navegador. Asegúrate de que en /tmp se ha creado un nuevo directorio Cache.</li>
+</ol>
+<h3 id="mi-metodo-casi-preferido"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#mi-metodo-casi-preferido">Mi método casi-preferido</a></h3>
+<p>Hecha la preconfiguración podríamos hacer lo que se dice por ejemplo en <a href="http://www.robzand.com/blog/firefox-dropbox-profile-synchronization-across-machines">robzand</a>:</p>
+<ol>
+<li>Copia el <a href="http://support.mozilla.com/en-US/kb/Profiles#Where_is_my_profile_stored_">directorio que contiene tu perfil</a> a DropBox</li>
+<li>Edita el fichero profile.ini (está en la misma carpeta que tu directorio de perfil). Pon un cero en IsRelative, y en Path pon la ruta completa a tu perfil dentro de DropBox, que seguramente será algo como <code>/home/[tu_usuario]/DropBox/4f45s.default</code></li>
+<li>Espera a que sincronice, abre el navegador y comprueba que todo funciona correctamente.</li>
+<li>Ve a otro pc y espera a que sincronice. Edita el fichero profile.ini, pon un cero en IsRelative y pon en Path la ruta al perfil que acaba de ser sincronizado. (Ten en cuenta que a no ser que tengas el mismo nombre de usuario en ambos ordenadores la ruta será distinta)</li>
+</ol>
+<h3 id="los-inconvenientes"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#los-inconvenientes">Los inconvenientes</a></h3>
+<p>Al compartir el perfil también se comparten:</p>
+<ul>
+<li>Las extensiones. Si usas diferentes versiones de firefox puede que alguna de las extensiones te de problemas.</li>
+<li>Las cookies y las claves. Las cookies permiten que las páginas web te recuerden de modo que no tengas que escribir tu contraseña cada vez que entras. Si almacenamos tanto las cookies como las claves en un servicio externo como DropBox y alguien lo crackea, toda nuestra vida en la red será vulnerable.</li>
+<li>Cada vez que abras una página el contenido de tu perfil cambia, con lo que dropbox empezará a sincronizar, y habrá un gasto elevado de cpu y ancho de banda.</li>
+</ul>
+<p>Estos problemas nos llevan a reflexionar si la comodidad que tiene el perfil compartido compensa el riesgo o a preguntarnos si realmente necesitamos compartir todo el perfil, o nos llega con los marcadores.</p>
+<h3 id="mi-metodo-preferido"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#mi-metodo-preferido">Mi método preferido</a></h3>
+<p>Por tanto, si lo único que quieres es compartir los marcadores, que es en general lo mejor desde mi punto de vista, lo único que hay que hacer es:</p>
+<ol>
+<li>Mover el archivo places.sqlite dentro del perfil de tu ordenador principal a DropBox</li>
+<li>Crear un enlace simbólico desde el archivo en DropBox a tu perfil. El comando sería algo así:<br />
+<code>ln -s [ruta a places.sqlite dentro de dropbox] $HOME/.mozilla/firefox//places.sqlite</code></li>
+<li>Esperar a que sincronice y abrir firefox para comprobar que todo es correcto</li>
+<li>En el resto de ordenadores borrar el archivo places.sqlite de dentro del perfil y hacer el enlace simbólico desde el que está en Dropbox.</li>
+</ol>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2010-02-28 00:00:00+00:00">28 de febrero de 2010</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="libro-jennifer-gobierno"><a class="toclink" href="../../2010/02/28/libro-jennifer-gobierno/">Libro: Jennifer Gobierno</a></h2>
+<div style="float:left;margin-right:2em"></div>
+<p>Jennifer Gobierno es sobre todo una novela divertida, con momentos en los que llegas a reirte de verdad, lo que pasa muy pocas veces con un libro. Tiene un estilo muy satírico que me recuerda, salvando todas las distancias temáticas, al <a href="http://www.amazon.com/gp/product/8433920839?ie=UTF8&amp;tag=httpconocimie-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=8433920839">Wilt de Tom Sharpe</a><img alt="" src="http://www.assoc-amazon.com/e/ir?t=httpconocimie-20&amp;l=as2&amp;o=1&amp;a=8433920839" />. No voy a desgranar el argumento porque se puede <a href="http://es.wikipedia.org/wiki/Jennifer_Government">leer en cualquier sitio</a>, pero si que me gustaría compartir algunas de las asociaciones de ideas que hice mientras lo leia:</p>
+<ul>
+<li>Realidad y ficción: Cuadro que el mismo fin de semana que terminé el libro entrevistaron en El Semanal, a <a href="http://xlsemanal.finanzas.com/web/articulo.php?id=50378&amp;id_edicion=4747&amp;salto_pagina=0">Lloyd Blankfein, presidente de Goldman Sachs</a>. Comparar ambas lecturas es fascinante, ya que no soy capaz de determinar que mundo es más fantástico, si el del libro o el del banquero.</li>
+<li>Futuro: Frente al mundo monopolítico de Jennifer Gobierno tenemos <a href="http://lasindias.coop/9-ideas-clave-sobre-las-files/">la apuesta audaz de las indias</a>, empresas que generan cohesión social, y es que, hoy en día, y lo dice alguien que está en una ONG, no hay nada más subversivo que crear una empresa que gane dinero (cuanto más mejor) de forma ética.</li>
+<li>Análisis de redes: <a href="http://conocimientoabierto.es/parrafos-de-jeniffer-gobierno/182/">La parte en la que explican como se formaron las alianzas de empresas</a> resulta interesante si la tratas de analizar teoricamente, conceptos como umbral de rebeldía, el uso de un producto no por su calidad si no por la cantidad de usuarios que tiene, quedan más claros viéndolos en ese contexto.</li>
+</ul>
+<p>Por último un par de críticas al libro que me han gustado:</p>
+<ul>
+<li><a href="http://www.stardustcf.com/libroindiv.asp?libro=906">Stardust Ciencia Ficción</a></li>
+<li><a href="http://lasindias.net/indianopedia/Jennifer_Gobierno">La indianopedia</a></li>
+</ul>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2010-02-22 00:00:00+00:00">22 de febrero de 2010</time></li>
         
         
       </ul>
@@ -938,7 +1034,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2010-01-10 00:00:00">10 de enero de 2010</time></li>
+          <time datetime="2010-01-10 00:00:00+00:00">10 de enero de 2010</time></li>
         
         
       </ul>
@@ -1018,7 +1114,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2009-12-28 00:00:00">28 de diciembre de 2009</time></li>
+          <time datetime="2009-12-28 00:00:00+00:00">28 de diciembre de 2009</time></li>
         
         
       </ul>
@@ -1037,78 +1133,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-12-26 00:00:00">26 de diciembre de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="plugin-de-wordpress-para-tener-un-blogroll-dinamico"><a class="toclink" href="../../2009/12/26/plugin-wordpress-blogroll-dinamico/">Plugin de WordPress para tener un blogroll dinámico</a></h2>
-<p>Estoy probando en <a href="http://conocimientoabierto.es">marinerosbouzas.com</a> un plugin para wordpress llamado <a href="http://wordpress.org/extend/plugins/sbs-blogroll/">SBS Blogroll</a> bastante chulo que te permite incluir en tu blog un blogroll dinámico. Es decir en lugar de tener en la barra lateral una lista de enlaces estática a los blogs que te gustan pasarás a tener una lista con el título de las últimas entradas que haya habido en esos blogs. El plugin tiene la opción además de</p>
-<ul>
-<li>Añadir el <a href="http://es.wikipedia.org/wiki/Favicon">favicon</a> a cada entrada enlazada que aparezca en tu blog</li>
-<li>Seleccionar el número total máximo de entradas que habrá y el número máximo de entradas que pueden provenir de cada blog en tu lista</li>
-<li>Desplegar la fecha de cuando fue escrita la entrada</li>
-<li>Personalizar el estilo de como se muestran las entradas mediante css</li>
-</ul>
-<p>Es un plugin sencillito pero potente que nos permite evitar el uso de servicios externos como <a href="http://www.feevy.com/">feevy</a>.</p>
-<p>La única pega que le veo, es que por lo que he entendido revisando el código del plugin, lo que hace es cada vez que se muestra nuestro blog a un usuario se itera a través de toda la lista de blogs que tengamos, si se ha cumplido un tiempo de cache fijado por nosotros «va» al blog de destino a buscar la información, si no la extrae directamente de la cache, <a href="http://www.alegsa.com.ar/Dic/parseo.php"><em>parsea</em></a> la información recibida (esté en cache o no) para extraer el título, fecha, favicon, … y una vez tiene los datos de cada entrada los muestra. Todo este proceso puede consumir bastantes recursos y ralentizar nuestra página. Lo mínimo para optimizar el plugin es fijar un tiempo de cache en las opciones de 43200 segundos (12 horas) dado que poca gente actualiza en realidad más de 2 veces al día. Es decir, lo que hacemos con esto es indicar al plugin que sólo compruebe actualizaciones en los blogs que tenemos en la lista cada 12h en lugar de los 10′ que pone el plugin por defecto.</p>
-<p>Como siempre, si tenemos muchas visitas o muchos plugins es conveniente que instalemos <a href="http://ayudawordpress.com/gua-para-instalar-wp-cache/">algún plugin específico</a> para realizar el cacheado.</p>
-<p>Otro pequeño pero de este plugin es que la versión actual tiene un pequeño bug que hace que el favicon sólo se muestre cuando indicamos que se muestre también la fecha. Ya lo he corregido y he mandando un <a href="http://conocimientoabierto.es/sw/sbs-blogroll_solved_missing_check_for_show_icon.patch">patch</a> (bastante sencillito) al autor por lo que espero que salga pronto una nueva versión.</p>
-<p>Si no podéis esperar a la nueva versión, instalar el plugin de la forma habitual y luego <a href="http://conocimientoabierto.es/sw/sbs-blogroll.php">sobreescribir con este archivo</a> el que que haya en la carpeta wp-content/plugins/sbs-blogroll/ de vuestra instalación de wordpress. (para poder bajar el archivo hay que hacer click con el botón derecho sobre el enlace y darle a guardar como)</p>
-<p><strong>Actualización 28/12</strong>: La versión 0.3 del plugin ya funciona correctamente. Thanks to the <a href="http://www.someblogsite.com/">author</a> for the quick fix.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-12-19 00:00:00">19 de diciembre de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="un-par-de-parrafos-de-jeniffer-gobierno"><a class="toclink" href="../../2009/12/19/parrafos-de-jeniffer-gobierno/">Un par de párrafos de Jeniffer Gobierno</a></h2>
-<p>He acabado <a href="http://es.wikipedia.org/wiki/Jennifer_Government">Jennifer Gobierno</a> hace un par de días y me gustaría dejaros un par de párrafos que reflejan para mi una de las ideas más interesantes del libro sobre el ¿hipotético? futuro.</p>
-<blockquote>
-<p>De acuerdo. Conoces la participación de Nike en el programa de fidelidad de clientes de US Alliance. ¿Qué te parece?<br />
-John reflexionó. Estaba convencido de que los programas de fidelización no servían para nada, sobre todo a una empresa de bienes de consumo como Nike. Pero obviamente ésa no era la respuesta qeu buscaba Gregory.<br />
-– Creo que pueden ser muy valiosos si se aplican correctamente.<br />
-– Los programas de fidelidad no sirven para nada – contestó Gregory. Kohn juraba en silencio. Le habían engañado-. ¿De verdad piensas que alguien compra la marca Nike porque le van a dar puntos que puede canjear por kilómetros de viaje en avión? ¡No jodas!<br />
-John intentó seguirle la corriente a Gregory.<br />
-– Señor, estoy completamente de acuerdo. Nuestra marca se debilita si hacemos descuentos y promociones. Al contrario, cuanto más alto el precio, más vendemos.<br />
-– Sin embargo, Nike considera que el programa US Alliance es la iniciativa más importante que ha hecho desde hace veinte años. ¿Por qué?<br />
-John no abrió la boca.<br />
-– ¿Sabes como empezó US Alliance, John?<br />
-– ¿Algo de puntos a cambio de kilómetros de vuelo?<br />
-– Eso es. Si llenabas el coche de gasolina y pagabas con la tarjeta American Express, te daban puntos que luego podías canjear por kilometraje de avión con American Airlines. Quien no tenía la American Express pedía una rápidamente. Y ahí cambió el ambiente de la competitividad para siempre. Porque de repente entraron a competir las empresas de tarjetas de crédito con las líneas aéreas.<br />
-– Ya<br />
-– Entonces, va Visa y también hace un trato con una línea aérea para poder dar puntos que se canjean por kilómetros de vuelo. Y piensan: «A ver, ¿qué podemos hacer para que nuestro programa sea más atractivo?». Y se dan cuenta…<br />
-– Más formas de ganar puntos. Más servicios. Más empresas.<br />
-– Y diez años después tenemos US Alliance y Team Advantage, y no quedan más de cinco empresas en el mundo que no hayan firmado con alguna de las dos. Cuantas más empresas se asocien, más clientes y más empresas se querrán asociar. A finales del mes pasado, US Alliance tenía quinientos millones de socios. T.A. tiene doscientos noventa millones.<br />
-[…]<br />
-– Pero los clientes de Boeing son industrias. ¿Qué gana?<br />
-– La batalla ha empezado. Todas las empresas Alliance están compitiendo con las de Team Advange. Todas las personas que viajan con una línea aérea Team Advantage, comprarán un ordenador Compaq en lugar de un IBM. Boeing está con nosotros, porque, si no, United Airlines no le compra nada.</p>
-</blockquote>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1116,7 +1140,7 @@ John no abrió la boca.<br />
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../22/">22</a> <a class="md-pagination__link" href="../23/">23</a> <span class="md-pagination__current">24</span> <a class="md-pagination__link" href="../25/">25</a> <a class="md-pagination__link" href="../26/">26</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../39/">39</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../22/">22</a> <a class="md-pagination__link" href="../23/">23</a> <span class="md-pagination__current">24</span> <a class="md-pagination__link" href="../25/">25</a> <a class="md-pagination__link" href="../26/">26</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
 </nav>
         
       
@@ -1149,7 +1173,7 @@ John no abrió la boca.<br />
     
     
     <a href="https://github.com/fpuga" target="_blank" rel="noopener" title="fpuga on GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
     
@@ -1157,7 +1181,7 @@ John no abrió la boca.<br />
     
     
     <a href="https://x.com/fpuga" target="_blank" rel="noopener" title="fpuga on X" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
     </a>
   
     
@@ -1165,7 +1189,7 @@ John no abrió la boca.<br />
     
     
     <a href="https://stackoverflow.com/users/930271/francisco-puga" target="_blank" rel="noopener" title="fpuga on StackOverflow" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
     </a>
   
     
@@ -1176,7 +1200,7 @@ John no abrió la boca.<br />
       
     
     <a href="hhttps://www.linkedin.com/in/francisco-puga-b25a8361/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
 </div>
@@ -1191,10 +1215,10 @@ John no abrió la boca.<br />
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>

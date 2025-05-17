@@ -59,7 +59,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a40c8224.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -847,6 +847,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#cliente-de-correo-para-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cliente de correo para Linux
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atom-autocompletado-de-codigo-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atom: Autocompletado de código en python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-javascript-the-good-parts-de-douglas-crockford" class="md-nav__link">
     <span class="md-ellipsis">
       Libro: JavaScript: The Good Parts de Douglas Crockford
@@ -873,24 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#es-decrecimiento-una-buena-palabra" class="md-nav__link">
-    <span class="md-ellipsis">
-      ¿Es «decrecimiento» una buena palabra?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#el-sol-la-tierra-la-luna-y-animaciones-con-css3" class="md-nav__link">
-    <span class="md-ellipsis">
-      El sol, la tierra la luna y animaciones con css3
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -912,7 +912,89 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2016-04-23 00:00:00">23 de abril de 2016</time></li>
+          <time datetime="2016-05-15 00:00:00+00:00">15 de mayo de 2016</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="cliente-de-correo-para-linux"><a class="toclink" href="../../2016/05/15/cliente-correo-linux/">Cliente de correo para Linux</a></h2>
+<p>Llevo usando aplicaciones web para usar el correo desde que abrí mi primera cuenta de mail. Gmail tiene tiene una interfaz genial, funciona en cualquier dispositivo y es rápido. El único problema es que tus correos no son tuyos. Estos días he tenido que cerrar una vieja cuenta de correo en gmail y para descargar los mails a modo de copia de seguridad he estado revisando clientes de correo de escritorio:</p>
+<ul>
+<li>Que se lleven bien con gmail/imap, respetando etiquetas, …</li>
+<li>Que permitan agrupar conversaciones al modo en que lo hace gmail</li>
+<li>Que tenga buenas funcionalidades de búsqueda</li>
+<li>Que no use Qt</li>
+</ul>
+<p>En las <a href="https://opensource.com/business/15/10/top-open-source-desktop-email-clients">recomendaciones</a> y <a href="http://www.techrepublic.com/article/the-lamentable-state-of-linux-and-email-clients/">quejas</a> de clientes sobresalen un par de ellos:</p>
+<ul>
+<li><strong>Claws Mail</strong>. Que no parece tener el «modo conversación»</li>
+<li><strong>N1</strong>. Que tiene una pintaza, algo así como el <a href="https://atom.io/">Atom</a> de los clientes de correo, el problema es que todo el correo pasa a través de sus servidores o tienes que instalar uno en local.</li>
+<li><strong>Evolution</strong>. Que parece pesado, poco documentado y con demasiada gente quejándose de bugs.</li>
+<li><strong>Thunderbird</strong>.</li>
+<li><strong>Geary</strong>.</li>
+</ul>
+<p>Tanto Thunderbird (<a href="http://techtinkering.com/2014/06/22/how-to-make-thunderbird-feel-like-geary/">con plugins</a>) como Geary (por diseño) cumplen todos los requisitos, pero la búsqueda de Thunderbird parece mejor, y la mayor base de usuarios y documentación hace que sea el que vaya a probar.</p>
+<p>Siguiendo la <a href="https://support.mozilla.org/en-US/kb/thunderbird-and-gmail">documentación de thunderbird</a>, la documentación sobre <a href="https://support.google.com/mail/topic/3397500?hl=en&amp;ref_topic=3398031">IMAP de Google</a> es fácil de configurar. Si hay problemas de conexión se puede <a href="https://www.pcsteps.com/2300-use-gmail-with-thunderbird-offline-access-backup/">deshabilitar el acceso seguro en google</a> o habilitar <a href="http://kb.mozillazine.org/Using_Gmail_with_Thunderbird_and_Mozilla_Suite">OAuth2 en thunderbird</a> como método de autenticación.</p>
+<p>Para configurarlo bien hay que revisar un poco la configuración pero en general funciona todo sin problemas.</p>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2016-05-08 00:00:00+00:00">8 de mayo de 2016</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="atom-autocompletado-de-codigo-en-python"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/">Atom: Autocompletado de código en python</a></h2>
+<p>Al margen del <a href="https://confluence.jetbrains.com/display/PYH/Code+completion">«Code Completion» de PyCharm</a>, y algún otro, el resto de editores/IDEs proveen autocompletado a través de librerías o «servicios externos». Para el caso de python hay fundamentalmente dos, <a href="https://github.com/python-rope/rope">rope</a> y <a href="https://jedi.readthedocs.io/en/latest/index.html">jedi</a>. Rope está más enfocada a Refactoring y Jedi a Autocompletado, por tanto las dos son complementarias. En la actualidad varios editores que usaban rope están migrando a jedi, su autor ha hecho una <a href="http://jedidjah.ch/code/2013/1/19/why_jedi_not_rope/">comparación defendiendo su librería</a>.</p>
+<p>Además de estas librerías cada editor suele proporcionar un plugin base para autocompletado (<a href="https://atom.io/packages/autocomplete-plus">autocomplete-plus</a> en atom, <a href="http://auto-complete.org/">auto-complete</a> en emacs) y plugins adicionales para cada lenguaje concreto que actúan como wrapper de las librerías base (rope, jedi,…). Por ejemplo en atom tenemos <a href="https://atom.io/packages/autocomplete-python">autocomplete-python</a> que es un wrapper para jedi.</p>
+<h3 id="instalacion"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/#instalacion">Instalación</a></h3>
+<p>Primero hay que instalar jedi sea a nivel global como en el ejemplo, o dentro de un virtualenv.</p>
+<p><code>&lt;br&gt;&lt;/br&gt;sudo pip install jedi&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Luego se instala el plugin de <a href="https://atom.io/packages/autocomplete-python">autocomplete-pyhon</a> (que es el más actualizado de los varios que hay). Si usas virtualenv también debería funcionar sin problemas pero si usas algo como virtualenvwrapper donde tu módulo está en un directorio distinto al «entorno virtual de python» puedes haber más problemas.</p>
+<p>Lanzado atom desde un virtualenv activado siempre funciona correctamente. Si lo lanzas de otra forma hay que configurar la opción de configuración <em>Python executable path</em> del plugin con algo como:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;PATH_TO_VIRTUALENV_WRAPPERS_FOLDER/$PROJECT_NAME/bin/python</code></p>
+<p>o</p>
+<p>PATH_TO_VIRTUALENV_WRAPPERS_FOLDER/$PROJECT/bin/python</p>
+<p>Donde PATH_TO_VIRTUALENV_WRAPPERS_FOLDER es la ruta absoluta al directorio donde se guardan todos los entornos virtuales de virtualenwrapper y $PROJECT_NAME y $PROJECT son cadenas que debes escribir tal cual. Son variables que entiende el plugin. De la documentación parece deducirse que lo que hay que usar es $PROJECT pero a mi me ha funcionado sólo con $PROJECT_NAME. Además el directorio padre que se añade a atom a través del «Add project folder» debería llamarse igual que el virtualenv para que $PROJECT_NAME tome el valor correcto y puedas usar la misma configuración para distintos proyectos.</p>
+<h3 id="uso"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/#uso">Uso</a></h3>
+<p>Por la naturaleza dinámica de python muchas veces jedi no es capaz de detectar el tipo de datos de un objeto. Pero podemos ayudarlo <a href="https://jedi.readthedocs.io/en/latest/docs/features.html#recipes">documentado el método</a>. Por ejemplo en un caso como el del ejemplo siguiente con una vista de pyramid, jedi no será capaz de determinar el tipo de datos del parámetro request.</p>
+<p><code>&lt;br&gt;&lt;/br&gt;@view_config(route_name='my_route')&lt;br&gt;&lt;/br&gt;def my_route(request):&lt;br&gt;&lt;/br&gt;  pass&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Pero si hacemos lo siguiente si que autocompletará correctamente los métodos de request:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;def cultivos_get(request):&lt;br&gt;&lt;/br&gt;    """&lt;br&gt;&lt;/br&gt;    :type request: pyramid.request.Request&lt;br&gt;&lt;/br&gt;    """&lt;br&gt;&lt;/br&gt;    pass&lt;br&gt;&lt;/br&gt;</code></p>
+<p>No lo he probado con python 3 para ver si soporta el <a href="http://blog.jetbrains.com/pycharm/2015/11/python-3-5-type-hinting-in-pycharm-5/">type hinting</a> pero este <a href="https://github.com/davidhalter/jedi/pull/661">issue</a> me hace suponer que si.<br />
+<strong>Teclas principales</strong></p>
+<ul>
+<li>Sugerencias de autocompletado. <code>Ctrl+space</code> Cursores y tab/intro para escoger y aceptar sugerencia</li>
+<li>Go to definition: <code>Ctrl+Alt+G</code></li>
+<li>Show usages: <code>Ctrl+Shift+P show usages</code></li>
+<li>Renombrado en varios ficheros a la vez: Con el cursor encima del símbolo. <code>Ctrl+Shift+P rename</code></li>
+</ul>
+<h3 id="conclusiones"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/#conclusiones">Conclusiones</a></h3>
+<p>Las funcionalidades que proporciona son de todas formas muy justas porqué a no ser que documentes los métodos, la mayoría de veces no es capaz de inferir el tipo de datos de una variable. Además las funciones de <a href="https://github.com/atom/autocomplete-plus">autocompletado normal</a> de atom incluyen habitualmente opciones que no tienen porque corresponder con métodos o propiedades reales del objeto. Y si se desactiva el autocompletado normal para los ficheros python, tendremos muy pocas sugerencias.</p>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2016-04-23 00:00:00+00:00">23 de abril de 2016</time></li>
         
         
       </ul>
@@ -935,7 +1017,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2016-01-02 00:00:00">2 de enero de 2016</time></li>
+          <time datetime="2016-01-02 00:00:00+00:00">2 de enero de 2016</time></li>
         
         
       </ul>
@@ -965,7 +1047,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2015-12-28 00:00:00">28 de diciembre de 2015</time></li>
+          <time datetime="2015-12-28 00:00:00+00:00">28 de diciembre de 2015</time></li>
         
         
       </ul>
@@ -983,53 +1065,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-12-05 00:00:00">5 de diciembre de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="es-decrecimiento-una-buena-palabra"><a class="toclink" href="../../2015/12/05/es-decrecimiento-una-buena-palabra/">¿Es «decrecimiento» una buena palabra?</a></h2>
-<p>Aunque puedo coincidir con algunas de sus ideas la palabra «Decrecimiento» me pone nervioso. Por eso el artículo de <a href="http://www.kateraworth.com/about/">Kate Raworth</a> en el blog de <a href="https://en.wikipedia.org/wiki/Duncan_Green">Duncan Green</a> explicando <a href="http://oxfamblogs.org/fp2p/why-degrowth-has-out-grown-its-own-name-guest-post-by-kate-raworth/">algunos de los motivos por los que Decrecimiento es una mala palabra</a> creo es digno de ser leído. <a href="http://oxfamblogs.org/fp2p/youre-wrong-kate-degrowth-is-a-compelling-word/">Este otro post</a>, con el que no concuerdo, es una respuesta al artículo original.</p>
-<p>No dejéis de leer los comentarios y fijaros en la encuesta, en este momento la opción <em>«buena idea, buena palabra»</em> tienen 117 votos, <em>«buena idea, mala palabra»</em> 76 votos y <em>«no una buena idea»</em> tiene 41 votos. Es decir que aún sumando las dos últimas opciones el resultado está empatado. En cambio, la mayoría de comentarios, son críticos con la palabra.</p>
-<p>Siendo un pelín malvado parece que a los fans del decrecimiento les va más la adhesión a la idea que a presentar argumentos a su favor.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-11-21 00:00:00">21 de noviembre de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="el-sol-la-tierra-la-luna-y-animaciones-con-css3"><a class="toclink" href="../../2015/11/21/sol-tierra-luna-animaciones-css3/">El sol, la tierra la luna y animaciones con css3</a></h2>
-<p>Hace algún tiempo vi un ejemplo brutal de como usar únicamente <a href="http://neography.com/journal/our-solar-system-in-css3/">html5 y css3 para hacer una «representación» del sistema solar</a>.</p>
-<p>Viendo que estaba como uno de los proyectos de <a href="https://www.codecademy.com/es/courses/web-beginner-en-ymqg0/0/1">codeacademy</a> hice una pequeña prueba que comparto. La diferencia fundamental con el de code academy es que en lugar de usar imágenes para representar a los planetas uso div con background-color y que he añadido la luna para poder jugar un poco con las animaciones «anidadas». Que fundamentalmente es un problema de posicionamiento css.</p>
-<div class="ngg-gallery-singlepic-image ngg-center" style=""> [ ![El sol, la tierra la luna y css3](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/cache/sun-earth-moon-css3.png-nggid0233-ngg0dyn-0x0x100-00f0w010c010r110f110r010t010.png "El sol, la tierra la luna y css3") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/sun-earth-moon-css3.png "El sol, la tierra la luna y css3
-https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
-<p><a href="https://www.codecademy.com/fpuga/codebits/vkaK85/edit">Aquí el resultado</a>. Hay otros experimentos muy chulos en esta línea como este que trata de <a href="http://nicolasgallagher.com/css-pseudo-element-solar-system/">reproducir el primer experimento usando un html más semántico</a>. O este otro clon del primero donde también modifica la estructura del html <a href="http://cssdeck.com/labs/css-only-solar-system-model">usando div todos al mismo nivel de anidamiento</a>. Este otro también sigue la idea del primero pero añade cosas chulas como usar funciones css para <a href="http://codepen.io/kowlor/pen/ZYYQoy">posicionar las estrellas de fondo en localizaciones aleatorias</a>.</p>
-<p>Y por último, uno que a pesar de incluir algo de javascript (para los controles) es capaz de <a href="https://codepen.io/juliangarnier/pen/idhuG">reproducir el sistema solar en 3D</a>.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1037,7 +1072,7 @@ https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../4/">4</a> <a class="md-pagination__link" href="../5/">5</a> <span class="md-pagination__current">6</span> <a class="md-pagination__link" href="../7/">7</a> <a class="md-pagination__link" href="../8/">8</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../39/">39</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../4/">4</a> <a class="md-pagination__link" href="../5/">5</a> <span class="md-pagination__current">6</span> <a class="md-pagination__link" href="../7/">7</a> <a class="md-pagination__link" href="../8/">8</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
 </nav>
         
       
@@ -1070,7 +1105,7 @@ https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
     
     
     <a href="https://github.com/fpuga" target="_blank" rel="noopener" title="fpuga on GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
     
@@ -1078,7 +1113,7 @@ https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
     
     
     <a href="https://x.com/fpuga" target="_blank" rel="noopener" title="fpuga on X" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
     </a>
   
     
@@ -1086,7 +1121,7 @@ https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
     
     
     <a href="https://stackoverflow.com/users/930271/francisco-puga" target="_blank" rel="noopener" title="fpuga on StackOverflow" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
     </a>
   
     
@@ -1097,7 +1132,7 @@ https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
       
     
     <a href="hhttps://www.linkedin.com/in/francisco-puga-b25a8361/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
 </div>
@@ -1112,10 +1147,10 @@ https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>

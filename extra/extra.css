@@ -19,3 +19,16 @@
     object-fit: cover;
     object-position: top;
 }
+
+/* Keep main page title in header */
+.md-header__ellipsis .md-header__topic:first-child {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+    position: static;
+}
+
+/* Hide current page title in header */
+.md-header__ellipsis .md-header__topic:last-child {
+    display: none;
+}

@@ -57,7 +57,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.a40c8224.min.css">
       
         
         <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -979,7 +979,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2007-04-04 00:00:00">4 de abril de 2007</time></li>
+          <time datetime="2007-04-04 00:00:00+00:00">4 de abril de 2007</time></li>
         
         
       </ul>
@@ -1010,7 +1010,7 @@ Si no se produce ningún error nuestra webcam debería estar casí lista para fu
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2007-03-26 00:00:00">26 de marzo de 2007</time></li>
+          <time datetime="2007-03-26 00:00:00+00:00">26 de marzo de 2007</time></li>
         
         
       </ul>
@@ -1037,7 +1037,7 @@ Si no se produce ningún error nuestra webcam debería estar casí lista para fu
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2007-03-12 00:00:00">12 de marzo de 2007</time></li>
+          <time datetime="2007-03-12 00:00:00+00:00">12 de marzo de 2007</time></li>
         
         
       </ul>
@@ -1047,37 +1047,109 @@ Si no se produce ningún error nuestra webcam debería estar casí lista para fu
   <div class="md-post__content md-typeset">
     <h2 id="cambiar-permisos-de-forma-recursiva-y-selectiva"><a class="toclink" href="../../../../2007/03/12/cambiar-permisos-de-forma-recursiva-y-selectiva/">Cambiar permisos de forma recursiva y selectiva</a></h2>
 <p>Por culpa de un modem con drivers propietarios (y mi ineptitud para instalar unos libres) llevaba unos 6 meses usando Windows. En otro artículo hablaré de mi odisea particular con los drivers, pero en este quiero hablar de uno de los problemas que nos asaltan cuando migramos de sistema operativo, traspasar los datos que tengamos almacenados en el antiguo sistema al nuevo.</p>
-<p>Cambiar de Windows a Linux implica cambiar de <a href="http://es.wikipedia.org/wiki/Sistema_de_ficheros">sistema de ficheros</a>. Si somos un poco meticulosos enseguida nos damos cuenta de que no vale simplemente con <em>copiar y pegar</em> puesto que los permisos de los ficheros que hayamos copiado quedaran descolocados. El esquema de permisos será algo como esto <em>-r-xr-xr-x</em>, es decir, sin permisos para poder modificar los ficheros ya creados y todos con la posibilidad de ser ejecutados. Además todos los usuarios del sistema pueden leer los datos del resto de usuario, con los peligros de seguridad que ello conlleva.</p>
+<p>Cambiar de Windows a Linux implica cambiar de <a href="http://es.wikipedia.org/wiki/Sistema_de_ficheros">sistema de ficheros</a>. Si somos un poco meticulosos enseguida nos damos cuenta de que no vale simplemente con <em>copiar y pegar</em> puesto que los permisos de los ficheros que hayamos copiado quedaran descolocados. El esquema de permisos será algo como esto <code>-r-xr-xr-x</code>, es decir, sin permisos para poder modificar los ficheros ya creados y todos con la posibilidad de ser ejecutados. Además todos los usuarios del sistema pueden leer los datos del resto de usuario, con los peligros de seguridad que ello conlleva.</p>
 <p>Migrar entre sistemas Unix (o entre distintas distribuciones de GNU/Linux) no nos dará esta clase de problemas a no ser que no copiemos los datos de una partición del disco duro a otra, sino que lo que hagamos sea hacer una copia de los ficheros a DVD y de ahí de nuevo al disco duro. En este caso, también aplicable a cuando hacemos copias de seguridad, lo más sencillo es empaquetar nuestros datos en un archivo comprimido mediante la utilidad <em>tar</em> pasándole las opciones adecuadas en la línea de comandos para indicarle que preserve los permisos originales de los ficheros.</p>
-<p>Para crear la copia.<br />
-<code>$tar --create --bzip2 --file=copia.tar.bz2 /home/fran/Documentos</code></p>
-<p>Para restaurarla<br />
-<code>$tar --extract --bzip2 --atime-preserve --same-permissions --file=copia.tar.bz2</code></p>
-<p>Las opciones aquí empleadas y más información pueden encontrarse como siempre en la ayuda del programa<br />
-<code>$man tar</code></p>
-<p>Lo que pretendía explicar era de todas formas otra cosa. En el momento en que tenemos los ficheros copiados y con los permisos establecidos de manera no adecuada debemos tirar del comando <em>chmod</em> para cambiarlos. Para cambiar de manera recursiva los permisos de todos los ficheros y directorios a partir del que elijamos usaremos:<br />
-<code>$chmod -R 0777</code></p>
-<p>El probema es que chmod no discrimina tipos de archivo, estaremos asignando los mismos permisos a directorios, documentos de texto, ficheros que nos gustaria que fuesen de solo lectura como fotos, etc. La solución nos la da el comando <em>find</em>. Las posibilidades del comando find son muy amplias aunque para nuestro objetivo expongo aquí las más interesantes:</p>
-<ul>
-<li>-type d : Devuelve los nombres de los directorios</li>
-<li>! : Niega la siguiente expresión. Así, <em>! -type d</em> Devuelve los nombres de los ficheros no directorios</li>
-<li>-iname <u>patron</u> : Devuelve los nombres de ficheros (sin distinguir mayúsculas y minúsculas) que coinciden con un determinado patrón, podemos usar los comodines * y ?</li>
-<li>-iregex <u>patron</u> : Como el anterior pero patrón es una expresión regular.</li>
-<li>-exec <u>comando</u> {} ; : Ejecuta el comando <u>comando</u>. {} Representa los nombres de archivo devueltos por find, es decir que ejecutamos el comando para cada fichero devuelto por find. ; Es usado por la shell para reconocer el final del comando.</li>
-</ul>
-<p>Así para el caso más habitual en que deseamos otorgar permisos de lectura, escritura y ejecución para directorios, y de lectura y escritura para el resto de archivos (y ninguno para el resto de usuarios) los comandos serían:<br />
-<code>find &lt;u&gt;directorio&lt;/u&gt; -type d -exec chmod 0700 {} ;&lt;br&gt;&lt;/br&gt;find &lt;u&gt;directorio&lt;/u&gt; ! -type d -exec chmod 0600 {} ;</code></p>
-<p>Para aquellos con pocas ganas de jugar con los comandos, he escrito un pequeño script. Para ejecutarlo sólo hay que copiar el código y guardarlo en un fichero de texto de nombre cambiar_permisos.sh (por ejemplo). Abrir una consola y escribir:<br />
-<code>$sh cambiar_permisos.sh &lt;u&gt;directorio&lt;/u&gt;</code><br />
-En el script se distinguen tres tipos de archivos:</p>
-<ul>
-<li>ficheros con las extensiones .*pdf .*jpg .*jpeg .*bmp .*png .*gif .*avi .*mpg .*mpeg .*mp3 .*ogg a los que se asignan los permisos 0400</li>
-<li>directorios, a los que se asignan los permisos 0700</li>
-<li>resto de ficheros, a los que se asignan los permisos 0600</li>
-</ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&lt;br&gt;&lt;/br&gt;#!/bin/sh&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;# Francisco Puga Alonso.&lt;br&gt;&lt;/br&gt;# 10/03/2007  v 0.2&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;# Este software se distribuye sin ninguna garantía.&lt;br&gt;&lt;/br&gt;# El autor no se hace responsable de los posibles daños de su uso&lt;br&gt;&lt;/br&gt;# Este software pertenece al dominio público&lt;br&gt;&lt;/br&gt;# Para consultar la ayuda del script ejecute ./cambiar_permisos -h&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;# Este script cambia los permisos de los ficheros y directorios a partir del&lt;br&gt;&lt;/br&gt;# directario de entrada que nosotros le indiquemos. A la hora de cambiar los&lt;br&gt;&lt;/br&gt;# permisos, asigna permisos separados a directorios, ficheros de sólo lectura&lt;br&gt;&lt;/br&gt;# y resto de ficheros. Si quiere saber que se consideran ficheros de sólo&lt;br&gt;&lt;/br&gt;# ejecute ./cambiar_permisos -h o consulte el valor de la variable EXT_READ&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;# Se comprueba que el directorio origen existe, pero no comprueba que tengamos&lt;br&gt;&lt;/br&gt;# los permisos adecuados para cambiarlos&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;#Ficheros considerados de sólo lectura.&lt;br&gt;&lt;/br&gt;EXT_READ=&quot;.*pdf .*jpg .*jpeg .*bmp .*png .*gif .*avi .*mpg .*mpeg .*mp3 .*ogg&quot;&lt;br&gt;&lt;/br&gt;#EXT_REGEX contiene la expresión regular que identificará estos ficheros&lt;br&gt;&lt;/br&gt;EXT_REGEX=&quot;.*pdf|.*jpg|.*jpeg|.*bmp|.*png|.*gif|.*avi|.*mpg|.*mpeg|.*mp3|.*ogg&quot;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;#Permisos por defecto aplicados a los distintos tipos de fichero considerados&lt;br&gt;&lt;/br&gt;PDIRS=&quot;0700&quot;&lt;br&gt;&lt;/br&gt;PREAD=&quot;0400&quot;&lt;br&gt;&lt;/br&gt;POTHERS=&quot;0600&quot;&lt;br&gt;&lt;/br&gt;DIR=&quot;/dev/null&quot;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;ayuda() {&lt;br&gt;&lt;/br&gt;#Imprime la información de ayuda&lt;br&gt;&lt;/br&gt;echo &quot;Usage: $0  [-d ] [-r ] [-o ]&quot;&lt;br&gt;&lt;/br&gt;echo &quot;-d :: Permisos aplicados a directorios y subdirectorios. Por defecto 0700&quot;&lt;br&gt;&lt;/br&gt;echo -e &quot;-r :: Permisos aplicados a los siguientes formatos de archivo &quot;&lt;br&gt;&lt;/br&gt;       echo -e &quot;(Por defecto 0400):n$EXT_READ&quot;&lt;br&gt;&lt;/br&gt;echo &quot;-o :: Permisos aplicados al resto de ficheros. Por defecto 0600&quot;&lt;br&gt;&lt;/br&gt;echo &quot;-h :: Imprime esta ayuda&quot;&lt;br&gt;&lt;/br&gt;exit&lt;br&gt;&lt;/br&gt;}&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;if [ $# = &quot;0&quot; ] ; then&lt;br&gt;&lt;/br&gt;    echo &quot;Debe especificar un directorio. Use . para referirse al directorio actual&quot;&lt;br&gt;&lt;/br&gt;ayuda $0&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;else&lt;br&gt;&lt;/br&gt;if ! [ -d $1 ] ; then &lt;br&gt;&lt;/br&gt; echo &quot;El primer parametro debe ser un directorio&quot;&lt;br&gt;&lt;/br&gt; ayuda $0&lt;br&gt;&lt;/br&gt;else DIR=&quot;$1&quot;&lt;br&gt;&lt;/br&gt;fi&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;shift&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;while (( $# )) ; do&lt;br&gt;&lt;/br&gt; case $1 in&lt;br&gt;&lt;/br&gt;  -d ) PDIRS=&quot;$1&quot;;;&lt;br&gt;&lt;/br&gt;  -r ) PREAD=&quot;$1&quot;;;&lt;br&gt;&lt;/br&gt;  -o ) POTHERS=&quot;$1&quot;;;&lt;br&gt;&lt;/br&gt;  -h ) ayuda $0 ;;&lt;br&gt;&lt;/br&gt;  * ) echo &quot;Opción Incorrecta&quot; ; ayuda $0 ;;&lt;br&gt;&lt;/br&gt; esac&lt;br&gt;&lt;/br&gt; shift&lt;br&gt;&lt;/br&gt;done&lt;br&gt;&lt;/br&gt;fi&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;find &quot;$DIR&quot; -mount -type d -exec chmod &quot;$PDIRS&quot; {} ;&lt;br&gt;&lt;/br&gt;find &quot;$DIR&quot; -mount ! -type d -and -iregex &quot;$EXT_NOW&quot; -exec chmod &quot;$PREAD&quot; {} ;&lt;br&gt;&lt;/br&gt;find &quot;$DIR&quot; -mount ! -type d -and ! -iregex &quot;$EXT_NOW&quot; -exec chmod &quot;$POTHERS&quot; {} ;&lt;br&gt;&lt;/br&gt;
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Para crear la copia.</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nv">$tar</span><span class="w"> </span>--create<span class="w"> </span>--bzip2<span class="w"> </span>--file<span class="o">=</span>copia.tar.bz2<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/Documentos
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Para restaurarla</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nv">$tar</span><span class="w"> </span>--extract<span class="w"> </span>--bzip2<span class="w"> </span>--atime-preserve<span class="w"> </span>--same-permissions<span class="w"> </span>--file<span class="o">=</span>copia.tar.bz2
 </span></code></pre></div>
-<p>El código no me ha quedado demasiado bien maquetado pero aún tengo que mejorar mi CSS. Para la realización de este script me he inspirado en este post de <a href="http://www.jsancho.org/2004/01/28/18/trackback/">Javier Sancho</a></p>
+<p>Las opciones aquí empleadas y más información pueden encontrarse como siempre en la ayuda del programa<br />
+<code>man tar</code></p>
+<p>Lo que pretendía explicar era de todas formas otra cosa. En el momento en que tenemos los ficheros copiados y con los permisos establecidos de manera no adecuada debemos tirar del comando <code>chmod</code> para cambiarlos. Para cambiar de manera recursiva los permisos de todos los ficheros y directorios a partir del que elijamos usaremos:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">0777</span>
+</span></code></pre></div>
+<p>El problema es que <code>chmod</code> no discrimina tipos de archivo, estaremos asignando los mismos permisos a directorios, documentos de texto, ficheros que nos gustaría que fuesen de solo lectura como fotos, etc. La solución nos la da el comando <code>find</code>. Las posibilidades del comando <code>find</code> son muy amplias aunque para nuestro objetivo expongo aquí las más interesantes:</p>
+<ul>
+<li><code>-type d</code>: Devuelve los nombres de los directorios</li>
+<li><code>!</code>: Niega la siguiente expresión. Así, <code>! -type d</code> Devuelve los nombres de los ficheros no directorios</li>
+<li><code>-iname &lt;patron&gt;</code>: Devuelve los nombres de ficheros (sin distinguir mayúsculas y minúsculas) que coinciden con un determinado patrón, podemos usar los comodines <code>*</code> y <code>?</code></li>
+<li><code>-iregex &lt;patron&gt;</code>: Como el anterior pero patrón es una expresión regular</li>
+<li><code>-exec &lt;comando&gt; {} ;</code>: Ejecuta el comando <code>&lt;comando&gt;</code>. <code>{}</code> Representa los nombres de archivo devueltos por find, es decir que ejecutamos el comando para cada fichero devuelto por find. <code>;</code> Es usado por la shell para reconocer el final del comando.</li>
+</ul>
+<p>Así para el caso más habitual en que deseamos otorgar permisos de lectura, escritura y ejecución para directorios, y de lectura y escritura para el resto de archivos (y ninguno para el resto de usuarios) los comandos serían:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>find<span class="w"> </span>&lt;directorio&gt;<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">0700</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>find<span class="w"> </span>&lt;directorio&gt;<span class="w"> </span>!<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">0600</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
+</span></code></pre></div>
+<p>Para aquellos con pocas ganas de jugar con los comandos, he escrito un pequeño script. Para ejecutarlo sólo hay que copiar el código y guardarlo en un fichero de texto de nombre <code>cambiar_permisos.sh</code> (por ejemplo). Abrir una consola y escribir:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>bash<span class="w"> </span>cambiar_permisos.sh<span class="w"> </span>&lt;directorio&gt;
+</span></code></pre></div>
+<p>En el script se distinguen tres tipos de archivos:</p>
+<ul>
+<li>ficheros con las extensiones <code>.pdf .jpg .jpeg .bmp .png .gif .avi .mpg .mpeg .mp3 .ogg</code> a los que se asignan los permisos <code>0400</code></li>
+<li>directorios, a los que se asignan los permisos <code>0700</code></li>
+<li>resto de ficheros, a los que se asignan los permisos <code>0600</code></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="ch">#!/bin/sh</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># (C) 2007. Francisco Puga Alonso.</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># Este software se distribuye sin ninguna garantía.</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># El autor no se hace responsable de los posibles daños de su uso</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># Este software pertenece al dominio público</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Para consultar la ayuda del script ejecute ./cambiar_permisos -h</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># Este script cambia los permisos de los ficheros y directorios a partir del directorio</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># de entrada que nosotros le indiquemos. A la hora de cambiar los permisos, asigna</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># permisos separados a directorios, ficheros de sólo lectura y resto de ficheros. Si</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1"># quiere saber que se consideran ficheros de sólo ejecute ./cambiar_permisos -h o</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="c1"># consulte el valor de la variable EXT_READ</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="c1"># Se comprueba que el directorio origen existe, pero no comprueba que tengamos</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="c1"># los permisos adecuados para cambiarlos</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="c1"># Ficheros considerados de sólo lectura.</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="nv">EXT_READ</span><span class="o">=</span><span class="s2">&quot;.*pdf .*jpg .*jpeg .*bmp .*png .*gif .*avi .*mpg .*mpeg .*mp3 .*ogg&quot;</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="c1">#EXT_REGEX contiene la expresión regular que identificará estos ficheros</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="nv">EXT_REGEX</span><span class="o">=</span><span class="s2">&quot;.*pdf|.*jpg|.*jpeg|.*bmp|.*png|.*gif|.*avi|.*mpg|.*mpeg|.*mp3|.*ogg&quot;</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="c1">#Permisos por defecto aplicados a los distintos tipos de fichero considerados</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="nv">PDIRS</span><span class="o">=</span><span class="s2">&quot;0700&quot;</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="nv">PREAD</span><span class="o">=</span><span class="s2">&quot;0400&quot;</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="nv">POTHERS</span><span class="o">=</span><span class="s2">&quot;0600&quot;</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="nv">DIR</span><span class="o">=</span><span class="s2">&quot;/dev/null&quot;</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>ayuda<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">    </span><span class="c1">#Imprime la información de ayuda</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2">  [-d ] [-r ] [-o ]&quot;</span>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;-d :: Permisos aplicados a directorios y subdirectorios. Por defecto 0700&quot;</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;-r :: Permisos aplicados a los siguientes formatos de archivo &quot;</span>
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;(Por defecto 0400):n</span><span class="nv">$EXT_READ</span><span class="s2">&quot;</span>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;-o :: Permisos aplicados al resto de ficheros. Por defecto 0600&quot;</span>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;-h :: Imprime esta ayuda&quot;</span>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">    </span><span class="nb">exit</span>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="o">}</span>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Debe especificar un directorio. Use . para referirse al directorio actual&quot;</span>
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="w">    </span>ayuda<span class="w"> </span><span class="nv">$0</span>
+</span><span id="__span-9-43"><a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="k">else</span>
+</span><span id="__span-9-44"><a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-9-45"><a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;El primer parámetro debe ser un directorio&quot;</span>
+</span><span id="__span-9-46"><a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a><span class="w">        </span>ayuda<span class="w"> </span><span class="nv">$0</span>
+</span><span id="__span-9-47"><a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-9-48"><a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a><span class="w">        </span><span class="nv">DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+</span><span id="__span-9-49"><a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a><span class="w">    </span><span class="k">fi</span>
+</span><span id="__span-9-50"><a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a>
+</span><span id="__span-9-51"><a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a><span class="w">    </span><span class="nb">shift</span>
+</span><span id="__span-9-52"><a id="__codelineno-9-52" name="__codelineno-9-52" href="#__codelineno-9-52"></a>
+</span><span id="__span-9-53"><a id="__codelineno-9-53" name="__codelineno-9-53" href="#__codelineno-9-53"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">))</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-9-54"><a id="__codelineno-9-54" name="__codelineno-9-54" href="#__codelineno-9-54"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
+</span><span id="__span-9-55"><a id="__codelineno-9-55" name="__codelineno-9-55" href="#__codelineno-9-55"></a><span class="w">            </span>-d<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="nv">PDIRS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="p">;;</span>
+</span><span id="__span-9-56"><a id="__codelineno-9-56" name="__codelineno-9-56" href="#__codelineno-9-56"></a><span class="w">            </span>-r<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="nv">PREAD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="p">;;</span>
+</span><span id="__span-9-57"><a id="__codelineno-9-57" name="__codelineno-9-57" href="#__codelineno-9-57"></a><span class="w">            </span>-o<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="nv">POTHERS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="p">;;</span>
+</span><span id="__span-9-58"><a id="__codelineno-9-58" name="__codelineno-9-58" href="#__codelineno-9-58"></a><span class="w">            </span>-h<span class="w"> </span><span class="o">)</span><span class="w"> </span>ayuda<span class="w"> </span><span class="nv">$0</span><span class="w"> </span><span class="p">;;</span>
+</span><span id="__span-9-59"><a id="__codelineno-9-59" name="__codelineno-9-59" href="#__codelineno-9-59"></a><span class="w">            </span>*<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Opción Incorrecta&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>ayuda<span class="w"> </span><span class="nv">$0</span><span class="w"> </span><span class="p">;;</span>
+</span><span id="__span-9-60"><a id="__codelineno-9-60" name="__codelineno-9-60" href="#__codelineno-9-60"></a><span class="w">        </span><span class="k">esac</span>
+</span><span id="__span-9-61"><a id="__codelineno-9-61" name="__codelineno-9-61" href="#__codelineno-9-61"></a><span class="w">        </span><span class="nb">shift</span>
+</span><span id="__span-9-62"><a id="__codelineno-9-62" name="__codelineno-9-62" href="#__codelineno-9-62"></a><span class="w">    </span><span class="k">done</span>
+</span><span id="__span-9-63"><a id="__codelineno-9-63" name="__codelineno-9-63" href="#__codelineno-9-63"></a><span class="k">fi</span>
+</span><span id="__span-9-64"><a id="__codelineno-9-64" name="__codelineno-9-64" href="#__codelineno-9-64"></a>
+</span><span id="__span-9-65"><a id="__codelineno-9-65" name="__codelineno-9-65" href="#__codelineno-9-65"></a>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DIR</span><span class="s2">&quot;</span><span class="w"> </span>-mount<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PDIRS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-9-66"><a id="__codelineno-9-66" name="__codelineno-9-66" href="#__codelineno-9-66"></a>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DIR</span><span class="s2">&quot;</span><span class="w"> </span>-mount<span class="w"> </span>!<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-and<span class="w"> </span>-iregex<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EXT_NOW</span><span class="s2">&quot;</span><span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PREAD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-9-67"><a id="__codelineno-9-67" name="__codelineno-9-67" href="#__codelineno-9-67"></a>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DIR</span><span class="s2">&quot;</span><span class="w"> </span>-mount<span class="w"> </span>!<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-and<span class="w"> </span>!<span class="w"> </span>-iregex<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EXT_NOW</span><span class="s2">&quot;</span><span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$POTHERS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
+</span></code></pre></div>
+<p>Para la realización de este script me he inspirado en este post de <a href="http://www.jsancho.org/2004/01/28/18/trackback/">Javier Sancho</a></p>
     
   </div>
 </article>
@@ -1088,7 +1160,7 @@ En el script se distinguen tres tipos de archivos:</p>
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2007-03-08 00:00:00">8 de marzo de 2007</time></li>
+          <time datetime="2007-03-08 00:00:00+00:00">8 de marzo de 2007</time></li>
         
         
       </ul>
@@ -1144,7 +1216,7 @@ En el script se distinguen tres tipos de archivos:</p>
     
     
     <a href="https://github.com/fpuga" target="_blank" rel="noopener" title="fpuga on GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
     
@@ -1152,7 +1224,7 @@ En el script se distinguen tres tipos de archivos:</p>
     
     
     <a href="https://x.com/fpuga" target="_blank" rel="noopener" title="fpuga on X" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
     </a>
   
     
@@ -1160,7 +1232,7 @@ En el script se distinguen tres tipos de archivos:</p>
     
     
     <a href="https://stackoverflow.com/users/930271/francisco-puga" target="_blank" rel="noopener" title="fpuga on StackOverflow" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
     </a>
   
     
@@ -1171,7 +1243,7 @@ En el script se distinguen tres tipos de archivos:</p>
       
     
     <a href="hhttps://www.linkedin.com/in/francisco-puga-b25a8361/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
 </div>
@@ -1186,10 +1258,10 @@ En el script se distinguen tres tipos de archivos:</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>
