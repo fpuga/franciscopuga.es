@@ -59,7 +59,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.a40c8224.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#science-fiction-has-always-been-about-the-present-not-the-future" class="md-nav__link">
+    <span class="md-ellipsis">
+      Science fiction has always been about the present, not the future
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#la-era-del-diamante-ciencia-ficcion" class="md-nav__link">
     <span class="md-ellipsis">
       La era del diamante ¿Ciencia Ficción?
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tutorial-basico-de-django-south" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tutorial básico de django south
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -912,7 +912,31 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2013-01-04 00:00:00+00:00">4 de enero de 2013</time></li>
+          <time datetime="2013-01-05 00:00:00">5 de enero de 2013</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="science-fiction-has-always-been-about-the-present-not-the-future"><a class="toclink" href="../../2013/01/05/science-fiction-has-always-been-about-the-present/">Science fiction has always been about the present, not the future</a></h2>
+<p>No os perdais la <a href="http://nosolosoftware.com/bovedas-de-acero/">interpretación que hace Andrés del libro Bobedas de Acero</a>.</p>
+<p>Ayer mismo un par de noticias inconexas hacían que yo recordara <a href="http://conocimientoabierto.es/la-era-del-diamante-ciencia-ficcion/519/">La era del diamante</a>, y es que, en palabras de <a href="http://www.wired.com/wired/archive/9.06/mustread_pr.html">Pat Cadigan</a>.</p>
+<blockquote>
+<p>Science fiction has always been about the present, not the future, It’s a reflection of what we think about our time.</p>
+</blockquote>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2013-01-04 00:00:00">4 de enero de 2013</time></li>
         
         
       </ul>
@@ -938,7 +962,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2012-12-24 00:00:00+00:00">24 de diciembre de 2012</time></li>
+          <time datetime="2012-12-24 00:00:00">24 de diciembre de 2012</time></li>
         
         
       </ul>
@@ -967,7 +991,7 @@ yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2012-12-16 00:00:00+00:00">16 de diciembre de 2012</time></li>
+          <time datetime="2012-12-16 00:00:00">16 de diciembre de 2012</time></li>
         
         
       </ul>
@@ -1000,7 +1024,7 @@ yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2012-12-06 00:00:00+00:00">6 de diciembre de 2012</time></li>
+          <time datetime="2012-12-06 00:00:00">6 de diciembre de 2012</time></li>
         
         
       </ul>
@@ -1019,72 +1043,6 @@ yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
 </ol>
 <p><code>UPDATE</code>wp_4_comments<code>SET</code>comment_approved<code>= 0 WHERE</code>comment_date<code>&gt; '20110601';</code></p>
 <p>A continuación podemos borrar los comentarios no aprobados con wp-optimize.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2012-10-24 00:00:00+00:00">24 de octubre de 2012</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="tutorial-basico-de-django-south"><a class="toclink" href="../../2012/10/24/tutorial-basico-django-south/">Tutorial básico de django south</a></h2>
-<p><a href="http://south.aeracode.org/">South</a> es una app de <a href="https://www.djangoproject.com/">django</a> que permite modificar la estructura de la base de datos de una aplicación django cuando cambiamos el modelo <em>(models.py)</em>.</p>
-<p>El comando <a href="https://docs.djangoproject.com/en/dev/ref/django-admin/#django-admin-syncdb">syncdb</a> sólo crea nuevas tablas, pero no modifica tablas existentes, así que si en el modelo de una aplicación renombramos un campo de una tabla existente syncdb no realizará ese cambio en la base de datos. A este tipo de cambios en la base de datos se les denomina <em>«migración del esquema»</em> y es de lo que se encarga South.</p>
-<h2 id="instalacion"><a class="toclink" href="../../2012/10/24/tutorial-basico-django-south/#instalacion">Instalación</a></h2>
-<ol>
-<li><strong>pip install south</strong></li>
-<li>Agregar «south» a INSTALLED_APPS</li>
-<li>Ejecutar syncdb antes de crear nuestros propios modelos. Está será la última (y única) vez, que necesitamos ejecutar este comando<br />
-<code>manage.py syncdb</code></li>
-</ol>
-<h2 id="usar-south-en-un-una-app-nueva"><a class="toclink" href="../../2012/10/24/tutorial-basico-django-south/#usar-south-en-un-una-app-nueva">Usar south en un una app nueva</a></h2>
-<ol>
-<li>Crear la aplicación, y empezar a rellenar el models.py</li>
-<li>Crear el script de migración inicial<br />
-<code>python manage.py schemamigration app_name --initial</code></li>
-<li>Hacer los cambios en la bbdd<br />
-<code>python manage.py migrate app_name</code></li>
-</ol>
-<h2 id="usar-south-en-una-app-ya-creada"><a class="toclink" href="../../2012/10/24/tutorial-basico-django-south/#usar-south-en-una-app-ya-creada">Usar south en una app ya creada</a></h2>
-<p><code>python manage.py convert_to_south app_name</code></p>
-<p>En el caso de que haya otros desarrolladores en el equipo y cada cual esté usando su propia instancia de la base de datos, el resto de desarrolladores deberá migrar la primera versión en modo fake,<br />
-<code>python manage.py migrate app_name 0001 --fake</code></p>
-<p>el resto normal, así:<br />
-<code>python manage.py migrate app_name</code></p>
-<p>De lo contrario <a href="http://south.readthedocs.org/en/latest/convertinganapp.html#converting-an-app">no podrán migrar su versión de la base de datos</a>.</p>
-<h2 id="migracion-de-modelos"><a class="toclink" href="../../2012/10/24/tutorial-basico-django-south/#migracion-de-modelos">Migración de modelos</a></h2>
-<ol>
-<li>Modificamos el models.py de nuestra aplicación</li>
-<li>Crear un nuevo script de migración<br />
-<code>python manage.py schemamigration app_name --auto</code></li>
-<li>Aplicar la migración a la bbdd<br />
-<code>python manage.py migrate app_name</code></li>
-</ol>
-<h2 id="como-funciona"><a class="toclink" href="../../2012/10/24/tutorial-basico-django-south/#como-funciona">Como funciona</a></h2>
-<p>Se puede decir que South funciona en varios niveles de abstracción disintos.</p>
-<ul>
-<li>Añade una tabla en la base de datos que mantiene el estado actual de la base de datos. Es decir, guarda que migraciones se han aplicado.</li>
-<li>Crea un directorio en la applicación, donde guarda para cada migración un fichero (script) con la información necesaria para realizarla</li>
-<li>Añade varios comandos al manage.py</li>
-</ul>
-<p>Los ficheros de migración generados en deben subirse al repositorio para que el resto de los desarrolladores pueda también realizar la migración.</p>
-<h2 id="referencias"><a class="toclink" href="../../2012/10/24/tutorial-basico-django-south/#referencias">Referencias</a></h2>
-<ul>
-<li><a href="http://www.djangopro.com/2011/01/django-database-migration-tool-south-explained/">Una introducción básica</a>.</li>
-<li><a href="http://agiliq.com/blog/2012/01/south/">Un ejemplo de funcionamiento algo más completo</a>.</li>
-<li><a href="http://south.readthedocs.org/en/latest/index.html">Documentación oficial</a>.</li>
-</ul>
-<p><strong>Nota</strong>: Editado el 7/Marzo/2015 para añadir el comentario de <a href="http://conocimientoabierto.es/tutorial-basico-django-south/493/#comment-4055">Mauricio</a>.</p>
     
   </div>
 </article>
@@ -1129,7 +1087,7 @@ yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
     
     
     <a href="https://github.com/fpuga" target="_blank" rel="noopener" title="fpuga on GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
     
@@ -1137,7 +1095,7 @@ yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
     
     
     <a href="https://x.com/fpuga" target="_blank" rel="noopener" title="fpuga on X" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
     </a>
   
     
@@ -1145,7 +1103,7 @@ yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
     
     
     <a href="https://stackoverflow.com/users/930271/francisco-puga" target="_blank" rel="noopener" title="fpuga on StackOverflow" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
     </a>
   
     
@@ -1156,7 +1114,7 @@ yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
       
     
     <a href="hhttps://www.linkedin.com/in/francisco-puga-b25a8361/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
 </div>
@@ -1171,10 +1129,10 @@ yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
       
     
   </body>
