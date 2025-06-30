@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#instalar-los-drivers-para-una-webcam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalar los drivers para una webcam
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sonido-y-multiples-usuarios" class="md-nav__link">
     <span class="md-ellipsis">
       Sonido y múltiples usuarios
@@ -894,6 +903,46 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2007-04-04 00:00:00">4 de abril de 2007</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="instalar-los-drivers-para-una-webcam"><a class="toclink" href="../../2007/04/04/instalar-los-drivers-para-una-webcam/">Instalar los drivers para una webcam</a></h2>
+<p><strong>Actualización 19/06/2009:</strong> Este artículo está desfasado. En la actualidad la mayoría de las webcam funcionan en gnu/linux simplemente con enchufarlas. Lo explico algo mejor <a href="../../2009/06/11/instalar-drivers-webcam-linux/">en este artículo</a>.</p>
+<p>Lo primero que debemos hacer es acudir a esta <a href="http://mxhaard.free.fr/spca5xx.html">página</a> y comprobar si nuestra webcam está soportada. Para ello podemos buscar el nombre de nuestra cámara en la 5 columna, la que pone algo parecido a <em>based cameras</em>.</p>
+<p>En caso de no encontrarla podemos buscar alguna que use el mismo chip, y usar sus valores. Para averiguar si usa el mismo chip debemos fijarnos en el ID del fabricante y el ID del dispositivo. En Mandriva podemos obtener estos valores del Panel de Control en la sección de Hardware. Una forma un poco más genérica consiste en abrir un terminal de root y teclear <code>lsusb</code>. En mi caso saldrían los siguiente valores.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>lsusb
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">Bus 001 Device 003: ID 2001:5100 D-Link Corp</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">Bus 001 Device 002: ID 093a:2468 Pixart Imaging, Inc. Easy Snap Snake Eye WebCam</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">Bus 001 Device 001: ID 0000:0000</span>
+</span></code></pre></div>
+<p>Debemos identificar el correspondiente a la cámara, que en mi caso es el segundo dispositivo. Los primeros número tras ID corresponden al fabricante y los otros al dispositivo.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ID Fabricante=093a
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ID Dispositov=2468
+</span></code></pre></div>
+<p>Si la cámara está soportada y el driver es del tipo spca5xx, tenemos suerte ya que podemos encontrar el driver que nos hace falta en la sección Download de esa misma web. A pesar de existir versiones precompiladas, si nuestra versión del kernel es superior a la 2.6.11 (lo que es muy probable, <code>uname -a</code> para comprobarlo) es mejor que nos descarguemos el archivo <em>gspcav1-xxxx.tar.gz</em> y lo compilemos nosotros mismos.</p>
+<p>Descomprimimos el fichero en nuestro disco duro y dentro de ese directorio</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>make
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>make<span class="w"> </span>install
+</span></code></pre></div>
+<p>Si no se produce ningún error nuestra webcam debería estar casi lista para funcionar. Ahora debemos reiniciar el ordenador (supongo que si ejecutamos <code>modprobe gspca</code> no hace falta que reiniciemos pero no aseguro que esto de buen resultado). Para comprobar que ha sido correctamente instalado podemos usar nuestro cliente de mensajería instantánea favorito. En mi caso he tenido problemas con kopete, pero con amsn y el ekiga sin problemas. En amsn he seleccionado webcam de baja calidad porque si no el vídeo iba a demasiados pocos frames por segundo.</p>
+<p>Al igual que en el <a href="../../2007/03/26/sonido-y-multiples-usuarios/">post anterior</a> en el que hablaba del sonido si deseamos lanzar programas como otro usuario debemos añadir ese usuario al grupo video o dar permisos sobre los dispositivos de <code>/dev/video</code></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gpasswd<span class="w"> </span>-a<span class="w"> </span>user2<span class="w"> </span>video
+</span></code></pre></div>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2007-03-26 00:00:00">26 de marzo de 2007</time></li>
         
         
@@ -904,13 +953,18 @@
   <div class="md-post__content md-typeset">
     <h2 id="sonido-y-multiples-usuarios"><a class="toclink" href="../../2007/03/26/sonido-y-multiples-usuarios/">Sonido y múltiples usuarios</a></h2>
 <p>Antes de entrar en el título del post, me gustaría repasar una de las primeras cosas que se aprenden cuando se empieza a profundizar un poco en GNU/Linux, <strong>cualquier elemento del sistema es tratado como si fuese un fichero</strong>. Es decir, desde la foto que hemos descargado de la cámara hasta nuestra tarjeta de sonido pasando por el disco duro tienen una representación (un nombre) dentro del sistema de ficheros.</p>
-<p><a href="http://moranar.com.ar/lin/ldtree.html">Comprender La estructura del árbol de directorios</a> no es necesario en la práctica, pero nos ayudará a entendernos mejor con el ordenador. Esta estructura dicta por tanto donde debería ir colocado cada elemento del sistema. Nuestros archivos personales estarán en alguna subcarpeta de /home mientras que nuestro disco duro será representado por /dev/hda.</p>
-<p>Nuestra tarjeta de sonido estará representada mediante los ficheros <em>/dev/dsp</em> o <em>/dev/audio</em>, que por supuesto tendrán establecidos unos determinados permisos y pertenecerán a un determinado usuario y grupo. Lo que viene a continuación está comprobado en una Mandriva 2007 pero entiendo que será extrapolable a la mayoría de distribuciones de Linux.</p>
-<p><code>crw-rw---- 1 fran audio 14, 4 mar 26 10:37 /dev/audio&lt;br&gt;&lt;/br&gt;crw-rw---- 1 fran audio 14, 3 mar 26 10:37 /dev/dsp</code></p>
-<p>Cuando nos identificamos como un determinado usuario el sistema define como propietario de <em>/dev/audio</em> al usuario con el que hemos identificado, el grupo <em>audio</em> es creado durante la instalación del sistema operativo. Si estando identificados como <em>usuario1</em> lanzamos algún proceso (mediante el comando <em>su</em> por ejemplo) como <em>usuario2</em> que requiera usar la tarjeta de sonido habrá un error puesto que el segundo usuario no tendrá los permisos adecuados para escribir en el fichero que representa a la tarjeta de sonido.</p>
-<p>La solución más sencilla y elegante (si el grupo <em>audio</em> existe) será agregar a todos los usuarios que nos interese a ese grupo. Podemos hacerlo mediante la interfaz gráfica (en Mandriva <em>Sistema-&gt;Configuración-&gt;Otro-&gt;Administrar Usuarios</em> o abriendo un terminal de root y tecleando <br />
-<code>gpasswd -a fran audio</code></p>
-<p>Nuestra otra opción es aplicar permisos de escritura y lectura para todos sobre esos ficheros <em>chmod a+r a+w /dev/audio</em></p>
+<p><a href="http://moranar.com.ar/lin/ldtree.html">Comprender La estructura del árbol de directorios</a> no es necesario en la práctica, pero nos ayudará a entendernos mejor con el ordenador. Esta estructura dicta por tanto donde debería ir colocado cada elemento del sistema. Nuestros archivos personales estarán en alguna subcarpeta de /home mientras que nuestro disco duro será representado por <code>/dev/hda</code>.</p>
+<p>Nuestra tarjeta de sonido estará representada mediante los ficheros <code>/dev/dsp</code> o <code>/dev/audio</code>, que por supuesto tendrán establecidos unos determinados permisos y pertenecerán a un determinado usuario y grupo. Lo que viene a continuación está comprobado en una Mandriva 2007 pero entiendo que será extrapolable a la mayoría de distribuciones de Linux.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>crw-rw---- 1 fran audio 14, 4 mar 26 10:37 /dev/audio
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>crw-rw---- 1 fran audio 14, 3 mar 26 10:37 /dev/dsp
+</span></code></pre></div>
+<p>Cuando nos identificamos como un determinado usuario el sistema define como propietario de <code>/dev/audio</code> al usuario con el que hemos identificado, el grupo <code>audio</code> es creado durante la instalación del sistema operativo. Si estando identificados como <code>usuario1</code> lanzamos algún proceso (mediante el comando <code>su</code> por ejemplo) como <code>usuario2</code> que requiera usar la tarjeta de sonido habrá un error puesto que el segundo usuario no tendrá los permisos adecuados para escribir en el fichero que representa a la tarjeta de sonido.</p>
+<p>La solución más sencilla y elegante (si el grupo <code>audio</code> existe) será agregar a todos los usuarios que nos interese a ese grupo. Podemos hacerlo mediante la interfaz gráfica (en Mandriva <code>Sistema-&gt;Configuración-&gt;Otro-&gt;Administrar Usuarios</code>) o abriendo un terminal de root y tecleando</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gpasswd<span class="w"> </span>-a<span class="w"> </span>fran<span class="w"> </span>audio
+</span></code></pre></div>
+<p>Nuestra otra opción es aplicar permisos de escritura y lectura para todos sobre esos ficheros:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>chmod<span class="w"> </span>a+r<span class="w"> </span>a+w<span class="w"> </span>/dev/audio
+</span></code></pre></div>
     
   </div>
 </article>

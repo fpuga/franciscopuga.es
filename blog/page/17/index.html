@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#herramientas-de-analisis-de-codigo-estatico-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Herramientas de análisis de código estático en Python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#actualizar-la-version-de-antroid-de-un-htc-tattoo-ii-parte" class="md-nav__link">
     <span class="md-ellipsis">
       Actualizar la versión de Antroid de un HTC Tattoo (II parte)
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#usar-paypal-para-que-una-onl-reciba-donaciones" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usar PayPal para que una ONL reciba donaciones
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,67 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2012-04-03 00:00:00">3 de abril de 2012</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="herramientas-de-analisis-de-codigo-estatico-en-python"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/">Herramientas de análisis de código estático en Python</a></h2>
+<p>Programar es fácil, y puede hacerse con el bloc de notas. Escribir buen código es bastante más complicado, por ello existen un montón de herramientas que pueden ayudarnos. Un tipo de herramientas que he empezado a usar (en python) ultimamente son las de <a href="http://en.wikipedia.org/wiki/Static_program_analysis">análisis estático de código</a>. <a href="http://www.embedded.com/design/prototyping-and-development/4006735/Integrate-static-analysis-into-a-software-development-process">Estas herramientas</a> examinan tu código (sin ejecutarlo) en busca de ciertos patrones, alertando de «code smells», incroguencias de estilo, posibles bugs, código repetido e incluso dando consejos sobre rendimiento o encapsulamiento en algunos casos.</p>
+<p>En python tenemos disponibles <a href="http://www.doughellmann.com/articles/pythonmagazine/completely-different/2008-03-linters/">distintos analizadores de código</a>, y es habitual <a href="http://stackoverflow.com/questions/1428872/pylint-pychecker-or-pyflakes">ver preguntas</a> sobre cual <a href="http://stackoverflow.com/questions/35470/are-there-any-static-analysis-tools-for-python">es mejor</a>. Las cuatro herramientas de este tipo para python están actualizadas a las últimas versiones en los repositorios de ubuntu. Para instalarlas:</p>
+<p><code>sudo apt-get install pyflakes pep8 pychecker pylint</code></p>
+<h3 id="pyflakes"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#pyflakes">Pyflakes</a></h3>
+<p><a href="http://pypi.python.org/pypi/pyflakes">Pyflakes</a> parece la más sencilla de las cuatro herramientas que he usado. Hace pocas comprobaciones del tipo, imports no usados, variables asignadas y no empleadas, …<br />
+No chequea el estilo, ni advierte sobre posibles bugs, aunque dicen que es de las más rápidas, por lo que es la que la gente suele usar como «chequeador de código automático» en IDEs como PyDev o emacs.</p>
+<h3 id="pep8"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#pep8">pep8</a></h3>
+<p><a href="http://pypi.python.org/pypi/pep8">pep8</a> valida el estilo de nuestro código (de forma bastante rigurosa) contra el estándar de estilo PEP8 de Python. Puede ayudar a detectar «code smells», pero no chequea «errores». Comprueba cosas como que las líneas no tengan más de 80 caracteres, los nombres de variables tengan un determinado formato, …</p>
+<p>Para chequear un fichero llega con hacer:<br />
+<code>pep8 nombre_de_ficheros.py</code></p>
+<p>Aunque habitualmente se lanza con más opciones para obtener más información:<br />
+<code>pep8 --show-source --show-pep8 nombre_de_ficheros.py</code></p>
+<p>Cuando lo lanzamos con <em>–show-pep8</em> proporciona bastante información sobre la regla de estilo que estamos rompiendo por lo que resulta útil para ir interiorizándolas.</p>
+<h3 id="pychecker"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#pychecker">Pychecker</a></h3>
+<p><a href="http://pychecker.sourceforge.net/">Pychecker</a> es la más antigua pero ahora está algo parado. La última versión 0.8.19 es de enero de 2011 y la anterior del 2008. PyChecker si que es bastante potente en cuanto a la detección de posibles bugs o errores como el de usar una variable antes de asignales un valor, llamar a un método que no existe, … En general detecta bastantes de esos errores que se cometen en python (cuando no se usa un IDE que ya detecte estas cosas)<br />
+Parámetros interesantes.<br />
+<em>–blacklist</em>=unittest Este módulo de python saca algún error con pychecker, así que para evitar ruido le decimos que no lo chequee.</p>
+<p>Pychecker tiene, <a href="http://es.wiktionary.org/wiki/IMHO">imho</a>, un problema gordo, y es que ejecuta el código para chequearlo, no es realmente una herramienta de análisis estático, por lo que su uso es más bien <strong>desaconsejable</strong>.</p>
+<h3 id="pylint"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#pylint">Pylint</a></h3>
+<p>P<a href="http://www.logilab.org/project/pylint">ylint</a> es una especie de mezcla entre pep8 y pychecker puesto que hace análisis tanto del estilo del código como de posibles bugs. Tiene un <a href="http://blog.milmazz.com.ve/archivos/2010/03/13/pylint-analisis-estatico-del-codigo-en-python">montón de características</a>, es extensible mediante plugins, …</p>
+<p>El informe que proporciona sobre el código es bastante extenso, clasifica los errores por su gravedad, … Como tiene muchas opciones es conveniente echarle un ojo al <a href="http://www.logilab.org/card/pylint_tutorial">tutorial</a> y al <a href="http://www.logilab.org/card/pylint_manual">manual</a> aunque no hace falta para ver su potencial.</p>
+<p>Los parámetros más interesantes de pyling son:</p>
+<ul>
+<li><em>–reports=n</em> Para que sólo nos saque los posibles errores y no imprima las estadísticas e informes. Puede ser útil ver el informe de vez en cuando, pero si vamos a pasar el chequeo muchas veces sólo mete ruido.</li>
+<li><em>–include-ids=y</em> Por defecto no nos muestra el código de error completo. Con esto hacemos que nos lo muestre para poder obtener más información sobre él si no lo entendemos (Esto lo haríamos con pyling <em>–help-msg=ERROR_CODE</em>)</li>
+<li><em>–disable=C0111</em> Esto hace que no se chequeen, los errores C0111, que indican que todos los métodos deberían tener un docstring. Me gusta eliminarlos porque soy de los que piensan que «los comentarios apestan»</li>
+</ul>
+<p>Para que la línea de comandos no se vuelva muy complicada estás opciones pueden indicarse en un fichero de configuración para que sean usadas por defecto</p>
+<h3 id="como-y-cuando-usarlas"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#como-y-cuando-usarlas">Como y cuando usarlas</a></h3>
+<p>Lo que me gusta de estas cuatro herramientas es que no hay excusa para no usarlas. Son realmente sencillas, rápidas, y ayudan a hacer un código más legible y mantenible.</p>
+<p>Por ahora, para acostumbrarme a ellas, lo que hago es al inicio de cada sesión de trabajo paso las cuatro herramientas en el siguiente orden:</p>
+<ol>
+<li>pep8 –show-source –show-pep8 *.py</li>
+<li>pylint –reports=n –include-ids=y –disable=C0111 *.py</li>
+<li>pychecker –blacklist=unittest *.py</li>
+<li>pyflakes *.py</li>
+</ol>
+<p>Lo hago así porque me gusta la información sobre el estilo que proporciona pep8, y tras solucionar los errores de pylint ni pychecker ni pyflakes me están proporcionando ayuda adicional así que es probable que pronto deje de usarlos. De hecho cuando me acostumbre a la guía de estilo de pep8 es probable que sólo use pylint.</p>
+<p>Como el proyecto en el que la estoy probando apenas son 6 o 7 clases de alrededor de 200 líneas, está forma de trabajar me resulta cómoda y me permite aprender a usarlas, pero está claro que en otros contextos puede no ser lo más adecuado.</p>
+<p>En el próximo artículo de esta serie hablaremos sobre como integrar estas herramientas en emacs, al estilo de las sugerencias de eclipse u otros IDE, y otras aproximaciones un poco más sofisticadas de como integrarlas en nuestro flujo de trabajo.</p>
+<p>¡Prueba y cuéntame!</p>
+<p><em><strong>Actualización 20/Julio</strong>: He añadido algún enlace y desaconsejado el uso de pychecker por las razones que ya están incluídas en el propio artículo.</em></p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1055,61 +1116,6 @@ La primera vez a mi me tardó en arrancar unos 3 o 4 minutos así que paciencia.
 <code>&lt;br&gt;&lt;/br&gt;sudo apt-get install eatmydata&lt;br&gt;&lt;/br&gt;</code><br />
 y para ejecutar un programa bajo eatmydata<br />
 <code>&lt;br&gt;&lt;/br&gt;eatmydata nombre_del_programa&lt;br&gt;&lt;/br&gt;</code></p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2012-01-28 00:00:00">28 de enero de 2012</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="usar-paypal-para-que-una-onl-reciba-donaciones"><a class="toclink" href="../../2012/01/28/paypal-onl-donaciones/">Usar PayPal para que una ONL reciba donaciones</a></h2>
-<p>Hace unas semanas en <a href="http://galicia.isf.es">Enxeñería Sen Fronteiras Galicia (ESF)</a> surgió la idea de emplear <a href="https://www.paypal.com">PayPal</a> para la venta de postales navideñas. Hasta ahora las postales se venían vendiendo a empresas e instituciones por ser pedidos grandes y fáciles de gestionar. Pero, la crísis, agudiza el ingenio y las ONL deben incrementar sus fuentes de financiación, de modo que se hizo un tímido intento de venta de merchandising a particulares. La idea de PayPal ya había surgido en alguna ocasión, aunque más bien desde el punto de vista de la recepción de donativos y no para la venta.</p>
-<p>En <a href="http://esfgalicia.blogspot.com">ESF</a> a pesar de que tenemos (como todos) algunas incoherencias tratamos de preocuparnos de que lo que hacemos es realmente acorde a lo que predicamos. Antes de empezar a usar PayPal hubo una reunión de la <a href="http://esf.gpul.org/Organizaci%C3%B3n_interna/Grupos_de_traballo/Comisi%C3%B3ns_da_Xunta_Directiva/Comisi%C3%B3n_de_Financiaci%C3%B3n">Comisión de Financiación</a> para determinar si por muy útil que fuera se cumplían los criterios mínimos de ética y <a href="http://www.masticable.org/2011/07/27/por-que-me-iba-a-importar-eso-de-la-soberania-digital/">soberanía</a> que valoramos en ESF. La conclusión se podría resumir como:</p>
-<blockquote>
-<p>A pesar de haber ciertos puntos negativos, con la información de la que disponemos consideramos aceptable que ESF emplee PayPal.</p>
-</blockquote>
-<p>Como todavía no tenemos la cosa muy clara, he seguido estudiando el tema, y presento aquí algunos pros y contras a la espera de que alguien sea capaz de aportar más argumentos.</p>
-<p>Lo primero es <a href="http://www.redsocialmedia.com/2011/04/ventajas-y-desventajas-de-paypal-en-nuestros-negocios-online/">leer una buena descripción de PayPal</a>.</p>
-<h2 id="pros"><a class="toclink" href="../../2012/01/28/paypal-onl-donaciones/#pros">Pros</a></h2>
-<ul>
-<li>Es el servicio de este tipo más extendido, lo que hace que los posibles donantes no tengan que abrirse una nueva cuenta en ningún sitio. El tener que emplear un servicio distinto al habitual es desde luego una alta barrera de entrada. Además funciona como una pasarela de pago que permite pagar con la tarjeta de crédito.</li>
-<li>A pesar de que esto no significa que cumpla unos criterios éticos mínimos la realidad es que <a href="http://www.solucionesong.org/consulta/nos-recomendais-alguna-herramienta-gratuita-para-recibir-donaciones-online/5722/view">PayPal ya está siendo empleada en muchas ONL</a> aunque siempre <a href="http://www.solucionesong.org/consulta/captacion-de-fondos-on-line/4491/view">hay voces críticas</a>.</li>
-</ul>
-<h2 id="contras"><a class="toclink" href="../../2012/01/28/paypal-onl-donaciones/#contras">Contras</a></h2>
-<h4 id="cierre-de-la-cuenta-de-wikileaks"><a class="toclink" href="../../2012/01/28/paypal-onl-donaciones/#cierre-de-la-cuenta-de-wikileaks">Cierre de la cuenta de Wikileaks.</a></h4>
-<p><a href="http://wikileaks.org/"> Wikileaks</a>, una organización conocida por difundir información (semi)confidencial de distintas empresas y estados recibía la mayor parte de su financiación a través de PayPal. Sin quedar claro si se trata de algo estrictamente acorde a la legislación, o bien fue sólo cesión a las presiones de EEUU, lo cierto es que PayPal cerro la cuenta de Wikileaks congelando una importante cantidad de dinero cuado esta organización se hizo especialmente molesta. En todo caso se trata de un asunto polémico del que no se pueden extraer conclusiones claras, pero que contaría como un mini-punto negativo. <a href="http://anonymousaction.wordpress.com/2011/07/27/comunicado-de-antisec-cerrad-vuestras-cuentas-paypal/">Una versión de esta historia</a>.</p>
-<h4 id="empresa-con-sede-en-norteamerica"><a class="toclink" href="../../2012/01/28/paypal-onl-donaciones/#empresa-con-sede-en-norteamerica">Empresa con sede en norteamérica.</a></h4>
-<p>Mini punto negativo, no por ser norteamericana si no que la legislación que sigue no es la española, lo que puede introducir un punto de complejidad a nivel auditorías, ley de protección de datos, … Algo más sobre esto en <a href="http://www.articulo.org/articulo/901/siete_razones_para_no_usar_paypal.html">este enlace</a>. Se debe tener en cuenta de todas formas, que toda empresa grande tendrá detractores y defensores y las fuentes de las que procede la información no siempre están verificadas. Esto mismo hace por ejemplo que <a href="http://www.rebelion.org/noticia.php?id=95809">no pueda ser empleado desde Cuba</a> por las sanciones.</p>
-<h4 id="congelacion-temporal-de-la-cuenta-de-diaspora"><a class="toclink" href="../../2012/01/28/paypal-onl-donaciones/#congelacion-temporal-de-la-cuenta-de-diaspora">Congelación temporal de la cuenta de Diaspora</a></h4>
-<p>Otro mini punto negativo. Diaspora es una aplicación informática nacida en 2011 y todavía no estable nacida como oposición a las redes sociales centralizadas, fundamentalmente Facebook. Dispora pretende obtener un software de funcionalidades parecidas a las de las redes sociales pero en Software Libre y distribuído, sin depender de un servidor central concreto, si no instalable en el servidor de cada uno.<br />
-<a href="http://blog.diasporafoundation.org/2011/10/18/paypal-arbitrarily-blocking-donations-to-diaspora.html">PayPal bloqueo las cuentas de diáspora</a> durante unas semanas pero <a href="http://blog.diasporafoundation.org/2011/10/20/paypal-acts-like-a-pal-unfreezes-the-diaspora-communitys-donations.html">terminaron pidiendo disculpas y desbloqueándola</a>. A pesar de esto <a href="http://blog.diasporafoundation.org/2011/10/23/paypal-where-do-we-go-from-here.html">diaspora sigue usando PayPal</a> porque muchos usuarios pidieron que se pudieran seguir haciendo donaciones a través de este servicio.</p>
-<h2 id="ni-a-favor-de-en-contra"><a class="toclink" href="../../2012/01/28/paypal-onl-donaciones/#ni-a-favor-de-en-contra">Ni a favor de en contra</a></h2>
-<ul>
-<li>Es muy sencillo de usar e implementar, pero aunque no lo he comprobado supongo que el resto de servicios de este tipo también lo es.</li>
-<li>Las «tasas» a las donaciones son bastante elevadas, si no eres una ONL reconocida como tal en Estados Unido. Ir hasta donde pone <a href="https://merchant.paypal.com/cgi-bin/marketingweb?cmd=_render-content&amp;content_ID=merchant/donations">standard rates</a>. Para donaciones inferiores a 100€, los cargos si no lo he entendido mal sería 2.5% (por cambio de € a $) + 1% (por no estar en EEUU) + 2.9% (tasa normal) + 0.30€ (tasa normal). Aunque la mayoría de servicios de este tipo andan en números parecidos</li>
-</ul>
-<h2 id="alternativas-a-paypal"><a class="toclink" href="../../2012/01/28/paypal-onl-donaciones/#alternativas-a-paypal">Alternativas a PayPal</a></h2>
-<p><strong><a href="https://checkout.google.com/sell/">Google Checkout</a></strong>. Se trata de un servicio parecido a PayPal pero provisto por Google, que también tiene <a href="https://checkout.google.com/seller/npo/">opciones específicas para ONL</a> (estadounidenses). Está opción tiene más o menos los mismos problemas éticos y de dependencia que supondría usar PayPal, pero perdiendo la ventaja de que PayPal es la más extendida. Las tasas parecen las mismas.</p>
-<p><strong><a href="https://payments.amazon.com/sdui/sdui/nonprofit">Amazon Checkout</a></strong>. Mismas consideraciones que respecto a Google.</p>
-<p><strong><a href="http://www.2checkout.com/">2Checkout</a></strong>. Una compañía que se dedica en exclusiva a proveer el servicio de pasarelas comerciales. También con ofertas para ONL estadaounidenses. Tasas algo más caras que en las demás, admite pagos a través de paypal. No parece muy grande, ya se sabe, que cuanto más grande es algo más difícil controlar como se comporta.</p>
-<p><strong><a href="https://www.alertpay.com/en/Default.aspx">Alert Pay</a></strong>. Mismas consideraciones que 2Checkout</p>
-<p><strong><a href="http://skrill.com/">Skrill</a></strong> (antes llamado Money Bookers). No tengo los número pero tiene pinta de ser el servicio más usado después de PayPal. Mismas consideraciones que Google Checkout, y no tiene pinta de tener opciones específicas para ONL</p>
-<p><strong><a href="https://stripe.com/">Stripe</a></strong>. A día de hoy no es una opción porque sólo es válido en EEUU pero se merecía una mención por ser una start-up pequeña que parece querer hacer las cosas bien. De hecho es el servicio que está usando ahora diaspora.</p>
-<p>Dar el número de cuenta y usar la <strong>transferencia</strong> de toda la vida.</p>
-<p>Integrar la <strong>pasarela de pago de la entidad bancaria</strong> con la que se trabaje habitualmente. La mayoría de entidades proporcionan pasarelas seguras para hacer los pagos. Por ejemplo aquí hay <a href="http://www.caixagalicia.es/wvio004_contenido/esp/asp/wvio004n_muestrafaqs.asp?i=1&amp;c=23">alguna información sobre el de nova caixa galicia</a>. Para <a href="http://www.triodos.es/">Triodos</a> que es la otra entidad con la que trabaja ESF no he encontrado información al respecto en la web.</p>
-<p>Usar una <strong>plataforma externa de crowdsorcing</strong>. Lo pongo aquí simplemente para dar la idea de que esto existe, porque está más ligado a obtener donaciones para proyectos concretos que para cosas generales.</p>
-<p>Y no puedo resistirme a mencionar <strong><a href="http://alt1040.com/2011/04/bitcoin-el-futuro-del-dinero-es-descentralizado">bitcoin</a></strong>. Está claro que no es lo que ESF necesita en este momento (me imagino la escena de explicarle a los auditores que es bitcoin), pero el apoyo a este tipo de iniciativas me parece una de las vías a seguir, si lo que queremos es que el mundo sea un lugar mejor para todos.</p>
     
   </div>
 </article>

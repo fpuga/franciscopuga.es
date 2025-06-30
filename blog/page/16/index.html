@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#borrar-automaticamente-comentarios-pendientes-en-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Borrar automáticamente comentarios pendientes en WordPress
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tutorial-basico-de-django-south" class="md-nav__link">
     <span class="md-ellipsis">
       Tutorial básico de django south
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#herramientas-de-analisis-de-codigo-estatico-en-python" class="md-nav__link">
-    <span class="md-ellipsis">
-      Herramientas de análisis de código estático en Python
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,35 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2012-12-06 00:00:00">6 de diciembre de 2012</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="borrar-automaticamente-comentarios-pendientes-en-wordpress"><a class="toclink" href="../../2012/12/06/borrar-automaticamente-comentarios-pendientes-en-wordpress/">Borrar automáticamente comentarios pendientes en WordPress</a></h2>
+<p>Esta mañana me he puesto a actualizar <a href="http://odiseus.org">odiseus</a> y he visto que la base de datos ocupaba cerca de giga y medio, siendo la mayoría consumido por los 300.000 comentarios de spam que se nos escaparon en un blog que hace tiempo que no tiene supervisión y no tenía <a href="http://akismet.com/">Akismet</a> instalado.</p>
+<p>Por algún extraño motivo WordPress todavía no tiene un forma por defecto que permite marcar y eliminar todos los comentarios pendientes, tienes que hacerlo de 20 en 20. Las <a href="http://gnoted.com/how-to-delete-all-pending-comments-in-one-click-wordpress/">soluciones</a> que vi no me convencían demasiado. Plugins anticuados, borrar cosas directamente en la base de datos sin saber las relaciones que puede haber en un multisite o entre tablas, … Y Akismet tampoco era capaz de lidiar con tantos comentarios.</p>
+<p>Finalmente me decidí por el plugin <a href="http://wordpress.org/extend/plugins/wp-optimize/">WP-Optimize</a> capaz de borrar los comentarios pendientes y hacer alguna otra cosilla mas</p>
+<p>Por desgracia más de 50.000 comentarios ya estaban aprobados y no quería borrarlos todos sin más. La solución:</p>
+<ol>
+<li>Buscar la fecha del último post</li>
+<li>Marcar como no aprobados todos los comentarios hechos con posterioridad a un mes desde el último post</li>
+</ol>
+<p><code>UPDATE</code>wp_4_comments<code>SET</code>comment_approved<code>= 0 WHERE</code>comment_date<code>&gt; '20110601';</code></p>
+<p>A continuación podemos borrar los comentarios no aprobados con wp-optimize.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1088,67 +1117,6 @@ Aunque el código anterior a mi me funciona, para mostrar el error en el minibuf
 <p>Mis lecturas de fin de semana comenzaban ayer con el artículo <a href="http://principiamarsupia.wordpress.com/2012/06/19/cuales-son-los-paises-mas-violentos-del-mundo-por-que/">¿Cuáles son los países más violentos del mundo? ¿Por qué?</a>. El artículo no es demasiado <em>científico</em> pero abre una línea de debate interesante, y hay comentarios de calidad. Mi mayor crítica es hablar de violencia fijándose unicamente en la tasa de homicidios, cuando la violencia puede tener <a href="http://sociedad.elpais.com/sociedad/2012/06/22/actualidad/1340392754_868819.html">muchas otras formas</a>.</p>
 <p>El tema debe estar de moda porque hoy he podido leer un poco más sobre <a href="http://www.oxfamblogs.org/fp2p/?p=10555">las raices de la violencia urbana</a> en el blog de Duncan Green de Oxfam. Os aconsejo leerlo.</p>
 <p>PD: Hace poco he estado en Honduras, y <a href="http://principiamarsupia.wordpress.com/2012/06/19/cuales-son-los-paises-mas-violentos-del-mundo-por-que/#comment-3987">este comentario</a> me ha llamado especialmente la atención, porque coincide con lo que percibí y lo que me transmitieron.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2012-04-03 00:00:00">3 de abril de 2012</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="herramientas-de-analisis-de-codigo-estatico-en-python"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/">Herramientas de análisis de código estático en Python</a></h2>
-<p>Programar es fácil, y puede hacerse con el bloc de notas. Escribir buen código es bastante más complicado, por ello existen un montón de herramientas que pueden ayudarnos. Un tipo de herramientas que he empezado a usar (en python) ultimamente son las de <a href="http://en.wikipedia.org/wiki/Static_program_analysis">análisis estático de código</a>. <a href="http://www.embedded.com/design/prototyping-and-development/4006735/Integrate-static-analysis-into-a-software-development-process">Estas herramientas</a> examinan tu código (sin ejecutarlo) en busca de ciertos patrones, alertando de «code smells», incroguencias de estilo, posibles bugs, código repetido e incluso dando consejos sobre rendimiento o encapsulamiento en algunos casos.</p>
-<p>En python tenemos disponibles <a href="http://www.doughellmann.com/articles/pythonmagazine/completely-different/2008-03-linters/">distintos analizadores de código</a>, y es habitual <a href="http://stackoverflow.com/questions/1428872/pylint-pychecker-or-pyflakes">ver preguntas</a> sobre cual <a href="http://stackoverflow.com/questions/35470/are-there-any-static-analysis-tools-for-python">es mejor</a>. Las cuatro herramientas de este tipo para python están actualizadas a las últimas versiones en los repositorios de ubuntu. Para instalarlas:</p>
-<p><code>sudo apt-get install pyflakes pep8 pychecker pylint</code></p>
-<h3 id="pyflakes"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#pyflakes">Pyflakes</a></h3>
-<p><a href="http://pypi.python.org/pypi/pyflakes">Pyflakes</a> parece la más sencilla de las cuatro herramientas que he usado. Hace pocas comprobaciones del tipo, imports no usados, variables asignadas y no empleadas, …<br />
-No chequea el estilo, ni advierte sobre posibles bugs, aunque dicen que es de las más rápidas, por lo que es la que la gente suele usar como «chequeador de código automático» en IDEs como PyDev o emacs.</p>
-<h3 id="pep8"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#pep8">pep8</a></h3>
-<p><a href="http://pypi.python.org/pypi/pep8">pep8</a> valida el estilo de nuestro código (de forma bastante rigurosa) contra el estándar de estilo PEP8 de Python. Puede ayudar a detectar «code smells», pero no chequea «errores». Comprueba cosas como que las líneas no tengan más de 80 caracteres, los nombres de variables tengan un determinado formato, …</p>
-<p>Para chequear un fichero llega con hacer:<br />
-<code>pep8 nombre_de_ficheros.py</code></p>
-<p>Aunque habitualmente se lanza con más opciones para obtener más información:<br />
-<code>pep8 --show-source --show-pep8 nombre_de_ficheros.py</code></p>
-<p>Cuando lo lanzamos con <em>–show-pep8</em> proporciona bastante información sobre la regla de estilo que estamos rompiendo por lo que resulta útil para ir interiorizándolas.</p>
-<h3 id="pychecker"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#pychecker">Pychecker</a></h3>
-<p><a href="http://pychecker.sourceforge.net/">Pychecker</a> es la más antigua pero ahora está algo parado. La última versión 0.8.19 es de enero de 2011 y la anterior del 2008. PyChecker si que es bastante potente en cuanto a la detección de posibles bugs o errores como el de usar una variable antes de asignales un valor, llamar a un método que no existe, … En general detecta bastantes de esos errores que se cometen en python (cuando no se usa un IDE que ya detecte estas cosas)<br />
-Parámetros interesantes.<br />
-<em>–blacklist</em>=unittest Este módulo de python saca algún error con pychecker, así que para evitar ruido le decimos que no lo chequee.</p>
-<p>Pychecker tiene, <a href="http://es.wiktionary.org/wiki/IMHO">imho</a>, un problema gordo, y es que ejecuta el código para chequearlo, no es realmente una herramienta de análisis estático, por lo que su uso es más bien <strong>desaconsejable</strong>.</p>
-<h3 id="pylint"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#pylint">Pylint</a></h3>
-<p>P<a href="http://www.logilab.org/project/pylint">ylint</a> es una especie de mezcla entre pep8 y pychecker puesto que hace análisis tanto del estilo del código como de posibles bugs. Tiene un <a href="http://blog.milmazz.com.ve/archivos/2010/03/13/pylint-analisis-estatico-del-codigo-en-python">montón de características</a>, es extensible mediante plugins, …</p>
-<p>El informe que proporciona sobre el código es bastante extenso, clasifica los errores por su gravedad, … Como tiene muchas opciones es conveniente echarle un ojo al <a href="http://www.logilab.org/card/pylint_tutorial">tutorial</a> y al <a href="http://www.logilab.org/card/pylint_manual">manual</a> aunque no hace falta para ver su potencial.</p>
-<p>Los parámetros más interesantes de pyling son:</p>
-<ul>
-<li><em>–reports=n</em> Para que sólo nos saque los posibles errores y no imprima las estadísticas e informes. Puede ser útil ver el informe de vez en cuando, pero si vamos a pasar el chequeo muchas veces sólo mete ruido.</li>
-<li><em>–include-ids=y</em> Por defecto no nos muestra el código de error completo. Con esto hacemos que nos lo muestre para poder obtener más información sobre él si no lo entendemos (Esto lo haríamos con pyling <em>–help-msg=ERROR_CODE</em>)</li>
-<li><em>–disable=C0111</em> Esto hace que no se chequeen, los errores C0111, que indican que todos los métodos deberían tener un docstring. Me gusta eliminarlos porque soy de los que piensan que «los comentarios apestan»</li>
-</ul>
-<p>Para que la línea de comandos no se vuelva muy complicada estás opciones pueden indicarse en un fichero de configuración para que sean usadas por defecto</p>
-<h3 id="como-y-cuando-usarlas"><a class="toclink" href="../../2012/04/03/herramientas-analisis-codigo-estatico-python/#como-y-cuando-usarlas">Como y cuando usarlas</a></h3>
-<p>Lo que me gusta de estas cuatro herramientas es que no hay excusa para no usarlas. Son realmente sencillas, rápidas, y ayudan a hacer un código más legible y mantenible.</p>
-<p>Por ahora, para acostumbrarme a ellas, lo que hago es al inicio de cada sesión de trabajo paso las cuatro herramientas en el siguiente orden:</p>
-<ol>
-<li>pep8 –show-source –show-pep8 *.py</li>
-<li>pylint –reports=n –include-ids=y –disable=C0111 *.py</li>
-<li>pychecker –blacklist=unittest *.py</li>
-<li>pyflakes *.py</li>
-</ol>
-<p>Lo hago así porque me gusta la información sobre el estilo que proporciona pep8, y tras solucionar los errores de pylint ni pychecker ni pyflakes me están proporcionando ayuda adicional así que es probable que pronto deje de usarlos. De hecho cuando me acostumbre a la guía de estilo de pep8 es probable que sólo use pylint.</p>
-<p>Como el proyecto en el que la estoy probando apenas son 6 o 7 clases de alrededor de 200 líneas, está forma de trabajar me resulta cómoda y me permite aprender a usarlas, pero está claro que en otros contextos puede no ser lo más adecuado.</p>
-<p>En el próximo artículo de esta serie hablaremos sobre como integrar estas herramientas en emacs, al estilo de las sugerencias de eclipse u otros IDE, y otras aproximaciones un poco más sofisticadas de como integrarlas en nuestro flujo de trabajo.</p>
-<p>¡Prueba y cuéntame!</p>
-<p><em><strong>Actualización 20/Julio</strong>: He añadido algún enlace y desaconsejado el uso de pychecker por las razones que ya están incluídas en el propio artículo.</em></p>
     
   </div>
 </article>

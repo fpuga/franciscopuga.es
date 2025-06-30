@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#un-sistema-como-otro-cualquiera-para-recuperar-tus-contactos-en-un-android-con-la-pantalla-rota" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un sistema como otro cualquiera para recuperar tus contactos en un Android con la pantalla rota
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#video-aplicaciones-en-tiempo-real-con-python-y-postgres" class="md-nav__link">
     <span class="md-ellipsis">
       Video: Aplicaciones en tiempo real con python y postgres
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#buscando-un-portatil-listado-de-candidatos-entre-900-y-1150" class="md-nav__link">
-    <span class="md-ellipsis">
-      Buscando un portátil &#8211; Listado de candidatos entre 900 y 1150€
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,38 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2015-09-23 00:00:00">23 de septiembre de 2015</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="un-sistema-como-otro-cualquiera-para-recuperar-tus-contactos-en-un-android-con-la-pantalla-rota"><a class="toclink" href="../../2015/09/23/recuperar-contactos-android-pantalla-rota/">Un sistema como otro cualquiera para recuperar tus contactos en un Android con la pantalla rota</a></h2>
+<p>Uno de esos días cualquiera en que te llega alguien (a quien no puedes mandar a <del>freír puñetas</del> buscar en google) que una semana después de comprarse su primer móvil con Android se le ha caído al suelo, se le ha roto la pantalla y quiere recuperar sus contactos.</p>
+<p>La primera respuesta es fácil. No hay problema, estarán en la memoria de la tarjeta, o sincronizados en la cuenta de google. Pero no, ni uno ni otro. Están en la memoria del teléfono.</p>
+<p>Las primeras búsquedas en google se refieren a sistemas que necesitan que el teléfono esté <em>rooteado</em> para por ejemplo <a href="https://chombium.wordpress.com/2012/09/30/android-how-to-backup-contacts-and-sms-messages/">copiar la base de datos (sqlite) con los contactos</a>. Teniendo el sqlite es fácil sacar un csv o al menos un listado que copiar a mano. Pero por supuesto el teléfono no está rooteado.</p>
+<p>Bueno, la pantalla no está del todo muerta, la parte de arriba responde. Así que igual da para hacer pulsar en los sitios clave. El teléfono en sí no puede desbloquearse, pero si se puede llegar al botón de «<em>Ajustes</em>«, porque no tiene activado la protección por figura. Jugando con la rotación automática para modificar los sitios a pulsar, podemos llegar de «<em>Ajustes</em>» a «<em>Aplicaciones</em>«, de ahí a la pestaña de «<em>Todas</em>» y desplazarnos hasta «<em>Contactos</em>«. Muchas de las apps, como la «<em>Contactos</em>» tienen un botón «<em>Lanzar</em>» equivalente a como si las abrieras desde el <em>Launcher</em>.</p>
+<p>Estando en la app de Contactos sólo hay que poder lanzar la opción de «<em>Exportar</em>«, pero en este teléfono ese menú se lanza desde la tecla de «<em>Menu</em>» que no responde. Teóricamente con el <a href="https://en.wikipedia.org/wiki/USB_On-The-Go">conector adecuado</a>, podríamos conectar un ratón al teléfono para controlarlo, pero a falta de conector resulta que es posible <a href="http://thecodeartist.blogspot.de/2011/03/simulating-keyevents-on-android-device.html">enviar eventos (como pulsaciones de teclas) al móvil a través de adb</a>.</p>
+<p>«Pulsamos» la tecla de menú:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;$ ./adb shell input keyevent 82&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Y un par de veces KEYCODE_DPAD_DOWN que actúa como el curso hacia abajo</p>
+<p><code>&lt;br&gt;&lt;/br&gt;$ ./adb shell input keyevent 20&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Y enviamos el evento KEYCODE_DPAD_CENTER para hacer click / pulsar / tap sobre la opción seleccionada</p>
+<p><code>&lt;br&gt;&lt;/br&gt;$ ./adb shell input keyevent 23&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Y ya tenemos lanzada la la aplicación de exportación. Siguiendo un proceso parecido de ver en que partes de la pantalla de puede pulsar y enviando eventos desde adb, seleccionamos como origen el smartphone, como destino la cuenta de gmail. Y listo. En un par de minutos tenemos los contactos en gmail, desde donde podemos exportarlos a csv, vcard o listos para ser usados desde otro teléfono android.</p>
+<p>Espero que a alguien le sea de ayuda. Se admiten otros modos de hacerlo en los comentarios.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1051,80 +1083,6 @@ Cover and Modify is a different way of making changes. The idea behind it is tha
 <iframe height="300" loading="lazy" src="https://docs.google.com/spreadsheets/d/166qFmTRrpTunYY8ELiBT0xc_n51HSZ-hPGNAN15n4Sk/pubhtml?gid=344015303&single=true&widget=true&headers=false" width="600"></iframe>
 
 <p>Están separados dos rangos de precios los que están más cerca de 600 y los que están más cerca de 700, con mis preferencias resaltadas en amarillo. Si alguién está buscando un portátil así espero que le sirva. El hecho de hacer la hoja de cálculo ya lleva un buen rato, igual hay espacio aquí para hacer un <em>scrapper</em>. ¿Algún programador en la sala :P?</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-03-21 00:00:00">21 de marzo de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="buscando-un-portatil-listado-de-candidatos-entre-900-y-1150"><a class="toclink" href="../../2015/03/21/buscando-portatil-listado-de-candidatos-entre-900-y-1150e/">Buscando un portátil &#8211; Listado de candidatos entre 900 y 1150€</a></h2>
-<p>Decidido el tipo de procesador que queremos, podemos echar una ojeada a las páginas de distintas tiendas.</p>
-<p>Lo mejor es entrar en varias, ver lo usables que son en función de como puedes filtrar los portátiles, y quedarse con aquellas en que la búsqueda sea más o menos rápida. Como mínimo porque nos dejan filtrar por rango de precios y tipo de procesador.</p>
-<p>Después de ver varias yo he usado las siguientes porque me parecieron las más cómodas:</p>
-<ul>
-<li><a href="http://tiendas.mediamarkt.es/ordenadores-portatiles">Media Markt</a></li>
-<li><a href="https://www.worten.es/inicio/informatica/ordenadores/portatil.html">Worten</a></li>
-<li><a href="http://www.elcorteingles.es/tienda/electronica/browse/subcategory.jsp?categoryId=999.1425309888&amp;productId=&amp;navAction=push&amp;navCount=0">Corte Inglés</a></li>
-<li><a href="http://www.pccomponentes.com/ordenadores.html">PC Componentes</a></li>
-<li><a href="http://www.amazon.es/b/ref=nav_shopall_lap?ie=UTF8&amp;node=938008031">Amazon</a></li>
-<li><a href="http://www.tiendalenovo.es/">Tienda Lenovo</a></li>
-<li><a href="http://www.redcoon.es/c02040100-Port%C3%A1tiles">Redcoon</a></li>
-</ul>
-<p>Lógicamente buscando en varias tiendas salen portátiles repetidos, pero está bien para comparar hay veces que de una tienda a otra el mismo portátil puede variar en 100€. Así que una vez escogido uno toca buscar una tienda fiable con el precio más barato.</p>
-<p>De la búsqueda anterior me he quedado por distintos motivos con unos 25 portátiles. Esta es <a href="https://docs.google.com/spreadsheets/d/1YDQzvEMjapXRC9-zQRmGCy2SG_YVKGhbMfTesBU0LLM/pubhtml">una tabla resumen</a>:</p>
-<iframe height="300" loading="lazy" src="https://docs.google.com/spreadsheets/d/1YDQzvEMjapXRC9-zQRmGCy2SG_YVKGhbMfTesBU0LLM/pubhtml?gid=866541359&single=true&widget=true&headers=false" width="600"></iframe>
-
-<p>Y por lo que se ve, hay varias decisiones clave que tomar (a parte del precio):</p>
-<ul>
-<li><strong>Resolución de la pantalla</strong>.[<a href="http://www.itdonut.co.uk/blog/2013/02/what-screen-resolution-and-why-does-it-matter-0">1</a>] [<a href="http://en.wikipedia.org/wiki/Display_resolution">2</a>]Sin duda yo me iré a 1920×1080 antes que a 1366×768. Creo que la inversión merece la pena para el eclipse</li>
-<li><strong>Tarjeta gráfica</strong>. Tras leer un poco descarto las Ati RM9M265X que vienen con los Toshiba de la lista. Tienen muy buena pinta, sobre todo el P50B-11M, pero veo que podrían dar problemas con linux [<a href="http://www.linlap.com/toshiba_satellite_p50-b">1</a>] [<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1404589">2</a>] [<a href="http://askubuntu.com/questions/522177/intel-amd-hybrid-graphics-on-ubuntu-14-04">3</a>]. Hay que investigar un poco el resto de nvidia de la lista, por si es un factor clave para descartar más ordenadores o no. Aunque basándome en <a href="https://www.geektopia.es/es/technology/2013/05/07/noticias/las-mejores-tarjetas-graficas-del-momento-por-rango-de-precio-mayo-2013.html">estas</a> tres <a href="http://www.notebookcheck.net/Mobile-Graphics-Cards-Benchmark-List.844.0.html">páginas</a> las <a href="http://putoinformatico.blogspot.com.es/2015/01/portatil-avanzado-asus-n551jq-dm038h.html">he</a> clasificado</li>
-<li>8 o 16 de RAM. O ver si es ampliable a posteriori.</li>
-<li>Si hay una diferencia real entre los discos duros de 5400 rpm y los de 7200 rpm</li>
-<li><strong>Si el VGA es fundamental o llega con HDMI</strong>. Con el uso que yo le doy al ordenador, teniendo en cuenta que cualquier pantalla moderna soporta HDMI y que cada vez más proyectores sólo tienen HDMI, la existencia de VGA no es un factor clave</li>
-</ul>
-<h3 id="disco-duro"><a class="toclink" href="../../2015/03/21/buscando-portatil-listado-de-candidatos-entre-900-y-1150e/#disco-duro">Disco Duro</a></h3>
-<p>El rendimiento de un disco duro no viene sólo determinado por las rpm, pero averigüar el modelo concreto que monta cada ensamblador y comparar es una tarea demasiado complicada como para que la búsqueda compense. En general la gente parece notar diferencias entre los 7200 rpm y los de 5400 rpm [<a href="http://www.tomshardware.co.uk/forum/237364-32-7200rpm-5400rpm-laptop-question">1</a>] [<a href="http://www.tomshardware.co.uk/forum/42889-32-when-5400rpm-faster-7200rpm">2</a>][<a href="http://superuser.com/questions/733959/does-rpm-5400-vs-7200-matter-for-a-secondary-internal-laptop-data-drive">3</a>].</p>
-<p>Los discos duros híbridos (con cache SSD) <a href="http://www.seagate.com/es/es/tech-insights/choosing-high-performance-storage-is-not-about-rpm-anymore-master-ti/">parecen dar un mejor rendimiento que los tradicionales [</a><a href="http://thebestlaptops.net/upgrade-your-5400rpm-hard-drive-laptop/">1</a><a href="http://www.seagate.com/es/es/tech-insights/choosing-high-performance-storage-is-not-about-rpm-anymore-master-ti/">] [</a><a href="http://forum.notebookreview.com/threads/7200-rpm-1t-vs-5400-rpm-1t-sshd.748455/">2</a><a href="http://www.seagate.com/es/es/tech-insights/choosing-high-performance-storage-is-not-about-rpm-anymore-master-ti/">] [</a><a href="http://www.tomsguide.com/answers/id-2476420/quantitative-differences-ssd-sshd-5400-7200-hdd-drives.html">3</a><a href="http://www.seagate.com/es/es/tech-insights/choosing-high-performance-storage-is-not-about-rpm-anymore-master-ti/">], aunque también hay algunas opiniones </a><a href="http://www.quora.com/Hybrid-5400-rpm-with-SSD-cache-or-7200-rpm-without-SSD-caching">a favor de los de 7200 sobre 5400 híbridos</a><a href="http://www.seagate.com/es/es/tech-insights/choosing-high-performance-storage-is-not-about-rpm-anymore-master-ti/"> o de que </a><a href="http://www.pcworld.com/article/2025402/ssds-vs-hard-drives-vs-hybrids-which-storage-tech-is-right-for-you-.html">depende del uso que se le de</a><a href="http://www.seagate.com/es/es/tech-insights/choosing-high-performance-storage-is-not-about-rpm-anymore-master-ti/">.</a></p>
-<p>Así que como criterio para descartar portátiles elimino los de 5400 que no tiene cache ssd y/o no tiene 16 GB de RAM y no le doy relevancia a los hibridos sobre los de 7200 rpm.</p>
-<h3 id="tarjeta-grafica"><a class="toclink" href="../../2015/03/21/buscando-portatil-listado-de-candidatos-entre-900-y-1150e/#tarjeta-grafica">Tarjeta gráfica</a></h3>
-<p>En esta página tenemos un <a href="http://www.nvidia.com/object/geforce_family.html">listado de las diferentes gráficas de nvidia</a>. Siendo las que nos interesan, ordenadas de mayor rendimiento a menor:</p>
-<ul>
-<li><a href="http://www.geforce.com/hardware/notebook-gpus/geforce-gtx-860m/specifications">GTX 860M</a></li>
-<li><a href="http://www.geforce.com/hardware/notebook-gpus/geforce-gtx-850m/specifications">GTX 850M</a></li>
-<li><a href="http://www.notebookcheck.net/Intel-Iris-Pro-Graphics-5200.90965.0.html">Intel Iris Pro 5200</a></li>
-<li><a href="http://www.techpowerup.com/gpudb/2660/geforce-845m.html">845M</a></li>
-<li><a href="http://www.geforce.com/hardware/notebook-gpus/geforce-840m">GT 840M</a></li>
-<li><a href="http://www.geforce.com/hardware/notebook-gpus/geforce-gt-740m/specifications">GT 740</a></li>
-<li><a href="http://www.geforce.com/hardware/notebook-gpus/geforce-820m/specifications">GT 820</a></li>
-</ul>
-<p>Tras investigar un poco no he sido capaz de determinar que tarjeta gráfica necesito o cuales son las ventajas reales de unas sobre otras si no te dedicas a jugar. Entre lo poco que he creido entender está que si vas a trabajar con resoluciones altas (como es mi caso al usar monitor extendido) debería <a href="http://www.pcgamer.com/how-to-buy-a-graphics-card-six-things-you-must-know-about-gpus/">priorizar la cantidad de RAM sobre la velocidad de la misma</a>. Es decir mejor 4GB de RAM DDR3 que 2GB de RAM DDR5. Si te vas a dedicar a jugar es mejor priorizar al reves.</p>
-<p>Además revisando las especificaciones de las tarjetas, la 740, la 840, la 850 y supongo que la 845 también, tienen soporte para la misma resolución, así que entre estas creo que cualquiera es suficiente para mis requisitos, por lo que puedo descartar los portátiles más caros cuya diferencia principal sea mejor gráfica.</p>
-<h3 id="conclusiones"><a class="toclink" href="../../2015/03/21/buscando-portatil-listado-de-candidatos-entre-900-y-1150e/#conclusiones">Conclusiones</a></h3>
-<p>Con el listado final de 8 ordenadores donde todos cumplen los requisitos que me había fijado quedan pocas decisiones para descartar.</p>
-<ul>
-<li>Fundamentalmente si sacrificar rendimiento a cambio de quedarme con mountain en formato ultrabook. Lo que no me interesa en este momento teniendo en cuenta que mi portátil actual es de 2.9 kg y eso no me molesta.</li>
-<li>Si 16 de RAM es un requisito. Que en principio para mi no lo es, aunque que sea ampliable a 16 sí.</li>
-<li>Si alguna review de alguno de los modelos que quedan aporta algo muy negativo que lo descarte o algo muy positivo que le de puntos sobre los más económicos</li>
-</ul>
-<h3 id="resto-de-articulos-de-esta-serie"><a class="toclink" href="../../2015/03/21/buscando-portatil-listado-de-candidatos-entre-900-y-1150e/#resto-de-articulos-de-esta-serie">Resto de artículos de esta serie</a></h3>
-<ul>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-programar/752/">Buscando un portátil para programar</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">Buscando un portátil – Impresiones sacadas de foros y reviews</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-ordenador-portatil-micros/764/">Buscando ordenador portátil – Micros</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-listado-de-candidatos-entre-900-y-1150e">Buscando un portátil – Listado de candidatos entre 900 y 1150€</a></li>
-</ul>
     
   </div>
 </article>

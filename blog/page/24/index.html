@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#copia-de-seguridad-de-un-blog-en-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copia de seguridad de un blog en WordPress
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#primeros-pasos-para-configurar-git" class="md-nav__link">
     <span class="md-ellipsis">
       Primeros pasos para configurar git
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#cifrar-una-particion-o-disco-duro-externo-en-gnulinux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cifrar una partición o disco duro externo en GNU/Linux
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,56 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2010-07-03 00:00:00">3 de julio de 2010</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="copia-de-seguridad-de-un-blog-en-wordpress"><a class="toclink" href="../../2010/07/03/copia-seguridad-blog-wordpress/">Copia de seguridad de un blog en WordPress</a></h2>
+<p>Resulta conveniente realizar con regularidad una copia de seguridad de la información que tengamos en nuestro blog. Este backup deberíamos hacerlo como mínimo antes de una actualización importante del blog, por ejemplo antes de <a href="http://wordpress3-es.com/como-actualizar-wordpress-3-por-ftp/">migrar de WordPress 2.x a la versión 3</a>.</p>
+<p><a href="http://codex.wordpress.org/WordPress_Backups">Hacer un backup de wordpress</a> consiste en dos cosas:</p>
+<ul>
+<li>Copiar los ficheros (imágenes, temas, …)</li>
+<li>Copiar los artículos y configuraciones (la base de datos)</li>
+</ul>
+<p>Existen algunos plugins que pueden ayudarnos en estas tareas, pero si no tienes tirria a la línea de comandos en este artículo se describe un método rápido y eficiente para hacer la copia. El único requisito es que nuestro proveedor de hosting nos proporcione acceso por ssh, que es lo más habitual. Para ahorrarnos meter la clave ssh cada vez que hagamos la copia podemos subirla al servidor <a href="http://www.vicente-navarro.com/blog/2008/01/13/autentificacion-trasparente-por-clave-publicaprivada-con-openssh/">en este artículo se explica como crearla y subirla</a> pero en resumen consiste en ejecutar estos dos comandos (o sólo el segundo si ya tenemos una clave creada)<br />
+<code>ssh-keygen -b 4096 -t rsa&lt;br&gt;&lt;/br&gt;ssh-copy-id usuario@servidor</code></p>
+<p>El primer paso será hacer un volcado de la base de datos a un fichero en el servidor:</p>
+<p><code>ssh usuario@servidor "mysqldump --opt --user=USUARIO_BD -p --host=URL_BD NOMBRE_BD &gt; /ruta/fichero_a_guardar"</code></p>
+<p>Por ejemplo<br />
+<code>ssh fpuga@dreamhost.com "mysqldump --opt --user=fpuga_bd -p --host=localhost conocimientoabierto_bd_wordpress &gt; conocimientoabierto/base_datos.sql"</code></p>
+<p>La opción -p significa que nos preguntará cual es la clave de la base de datos por consola. Podemos indicarla directamente haciendo –pasword=CLAVE. Esto puede ser útil si metemos estas sentencias en un script pero deberiamos tener el script a buen recaudo para que no puedan ver nuestra clave.</p>
+<p>El fichero sql donde se volcará la base de datos podríamos comprimirlo, pero con la estrategia que vamos a usar es mejor dejarlo en texto plano. El proceso de comprimir tiene un consumo elevado de cpu (algunos hosting limitan la cpu que se consume) y en el siguiente paso nos bajaremos el fichero por rsync.</p>
+<p>rsync lo que hace es buscar las diferencias entre lo que tengamos en el servidor y lo que tengamos en nuestro disco duro, y sólo se baja lo que varíe. Si hubiéramos comprimido en el paso anterior la base de datos tendría que bajarse el fichero entero pero al estar en formato texto se bajará sólo la diferencia lo que resulta óptimo tanto en gasto de cpu como en ancho de banda consumida. La copia de los ficheros del servidor a nuestro disco duro, consistirá entonces en ejecutar:</p>
+<p><code>rsync -av --delete usuario@servidor:ruta_remota $RUTA_LOCAL</code></p>
+<p>por ejemplo:</p>
+<p><code>rsync -av --delete fpuga@dreamhost.com:conocimientoabierto/ /home/fpuga/backup/conocimientoabierto</code></p>
+<p>La opción delete hace que se borren los archivos locales que ya han sido borrados del servidor remoto. <a href="http://www.vicente-navarro.com/blog/2008/01/13/backups-con-rsync/">Puede ser peligrosa así que cuidado</a>. La ruta local donde se copien los archivos debe existir previamente. Fijaos en que cuando se pone la ruta remota después de los dos puntos no se inicia con / porque sólo queremos indicar una ruta relativa.</p>
+<p>Por último borraremos del servidor el fichero de volcado de la base de datos<br />
+<code>ssh usuario@servidor "rm /ruta/fichero_a_guardar"</code></p>
+<p>Y para no teclear tanto <a href="http://repo.or.cz/w/fpuga.git/blob/48c3183cc56216117181dd069e7f27d7fe1c5623:/foo/web_backup.sh">podemos crearnos un script muy sencillito</a>. Llega con que cambies los valores de las variables por los de tu servidor.</p>
+<p>Antes de escribir el script estuve leyendo sobre algunos plugins pero ninguno se adaptaba a mis necesidades, de todas formas estas referencias puede venirte bien si prefieres usar otro sistema:</p>
+<ul>
+<li><a href="http://www.bloggingtips.com/2010/01/08/choosing-a-wordpress-backup-plugin-that-is-right-for-you/">Choosing a WordPress backup plugin that is right for you</a>.</li>
+<li><a href="http://codex.wordpress.org/Backing_Up_Your_Database">Backing Up Your Database</a>.</li>
+<li><a href="http://wordpress.org/extend/plugins/idrive-for-wordpress/">IDrive for WordPress</a>.</li>
+<li>Plugin <a href="http://wordpress.org/extend/plugins/updraft/">Updraft</a>.</li>
+<li>Plugin <a href="http://wordpress.org/extend/plugins/myeasybackup/">myEASYbackup</a>.</li>
+<li>Plugin <a href="http://wordpress.org/extend/plugins/myeasybackup/">BackWPup</a>.</li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1077,86 +1127,6 @@ Si lo que queremos es definir un patrón de exclusión para un repositorio concr
 <p>Para ejecutarlo escribiremos en una consola de linux:</p>
 <p><code>python translatePO.py -d [dirección] -i [fichero.po]</code></p>
 <p>La dirección indica de que idioma a que idioma queremos traducirlo, por ejemplo en-es para traducir de inglés a castellano o gl-fr para hacerlo de gallego a francés.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2010-01-10 00:00:00">10 de enero de 2010</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="cifrar-una-particion-o-disco-duro-externo-en-gnulinux"><a class="toclink" href="../../2010/01/10/cifrar-particion-disco-duro-externo-linux/">Cifrar una partición o disco duro externo en GNU/Linux</a></h2>
-<p>A pesar de que soy un firme defensor de los asistentes gráficos, creo que ciertas cosillas, sobre todo las relativas a la seguridad y que llega con hacer una vez en la vida es conveniente aprender a hacerlas «de verdad». Una de esas cosas para las que merece la pena remangarse es aprender a cifrar o encriptar (<a href="http://es.wikipedia.org/wiki/Sic">sic</a>) particiones o discos duros completos. Las instrucciones que voy a dar a continuación están pensadas para cifrar una partición en dispositivo externo pero también valdrían para una interna. Si lo que queremos es cifrar /home quedarían algunas cosas más por hacer que lo que aquí se describe. Por poner las cosas un poco en contexto, la idea de fondo de esta receta es que tengo un disco duro externo con varias particiones. En dos de ellas, cifradas ambas, hago copia de seguridad de un portátil y un sobremesa. La tercera es un almacen de archivos multimedia, música y vídeos obtenidos de gente que los<a href="http://www.filmica.com/david_bravo/archivos/009353.html"> compartía de forma no delictiva a través de internet</a>.</p>
-<h3 id="comprobaciones-previas"><a class="toclink" href="../../2010/01/10/cifrar-particion-disco-duro-externo-linux/#comprobaciones-previas">Comprobaciones previas</a></h3>
-<ul>
-<li>Saber el nombre del dispositivo que equivale a la partición que queremos cifrar, este nombre acostumbra ser del tipo /dev/sdb1 si se trata de una partición o /dev/sdb si es todo el disco. A partir de ahora me referiré a este nombre como $PARTICION. El contenido de esa partición lo perderemos por completo. Podemos identicarlo ejecutando en una consola <code>fdisk -l</code></li>
-<li>Desmontar la partición sobre la que vayamos a trabajar <code>umount $PARTICION</code></li>
-<li>Instalar (en el raro caso de que todavía no lo esté) el paquete <em>cryptsetup</em>.</li>
-</ul>
-<h3 id="comprobar-que-no-hay-errores-en-el-disco"><a class="toclink" href="../../2010/01/10/cifrar-particion-disco-duro-externo-linux/#comprobar-que-no-hay-errores-en-el-disco">Comprobar que no hay errores en el disco</a></h3>
-<p>A continuación comprobaremos que la partición que vamos a cifrar no tiene errores físicos. Esta operación y la siguiente de rellenar con valores aleatorios el disco pueden tardar varias horas y no son estrictamente necesarias, pero yo recomiendo ejecutarlas.<br />
-<code>badblocks -s -w $PARTICION -b $TAMAÑO_BLOQUE</code></p>
-<p>Para saber cual es el tamaño de bloque en nuestra partición podemos usar el comando:<br />
-<code>tune2fs -l /dev/sda5 | grep -i 'Block size'</code></p>
-<p>Una forma de acelerar el proceso de chequeo de errores es usar el parámetro <code>-t random</code>. Por defecto lo que hace badblocks es llenar todos los bytes del disco duro con aa, 55, ff, 00. Primero escribe el primer patrón (aa) y luego comprueba que todos los bytes valen aa, a continuación hace lo mismo con el segundo patrón,… Con <code>-t random</code> da una sóla pasada donde el patrón usado es aleatorio. Es menos fiable pero más rápido. Tampoco es mala idea hacerlo si estamos más o menos seguros de que el disco está bien y nos vamos a saltar el paso de llenar el disco con valores aleatorios.</p>
-<h3 id="aleatorizar-el-disco"><a class="toclink" href="../../2010/01/10/cifrar-particion-disco-duro-externo-linux/#aleatorizar-el-disco">Aleatorizar el disco</a></h3>
-<p>Si somos un poco paranoicos lo que debemos hacer a continuación es llenar la partición con valores aleatorios, lo que nos protegerá de ciertos ataques criptográficos. Hay varias formas de hacer esto, a mayor nivel de paranoia más lento será. Yo lo hago con este comando:<br />
-<code>shred -n 1 -v $PARTICION</code></p>
-<p>El parámetro <code>-n $numero</code> define el número de pasadas que haremos, el valor por defecto es 3, pero con 1 es suficiente. Hay quien sugiere usar mejor el comando:<br />
-<code>dd if=/dev/random of=$PARTICIÓN bs=$TAMAÑO_BLOQUE</code></p>
-<p>Mientras que shred trabaja con datos pseudo-aleatorios (tomados de <em>/dev/urandom</em>) los que se usan con esta otra opción son realmente aleatorios, pero el tiempo que tarda en finalizar se multiplica.</p>
-<p>Por otro lado prefiero usar <em>shred</em> a <code>dd if=/dev/urandom of=%PARTICION bs=$TAMAÑO_BLOQUE</code> (que es otra instrucción que se ve habitualmente por ahí en los <em>how-to</em>) porque con shred nos va informando del progreso del proceso y es una herramienta específica para este tipo de tareas.</p>
-<h3 id="cifrar-la-particion"><a class="toclink" href="../../2010/01/10/cifrar-particion-disco-duro-externo-linux/#cifrar-la-particion">Cifrar la partición</a></h3>
-<p>El siguiente paso consiste en indicar al sistema operativo el tipo de cifrado y contraseña queremos emplear para ese dispositivo.<br />
-<code>cryptsetup -c aes -h sha256 -y -s 256 luksFormat $PARTICION</code></p>
-<ul>
-<li>-c aes indica que vamos a usar como algoritmo de cifrado AES que es el más extendido. Otra buena opción sería Twofish.</li>
-<li>-s 256: que el tamaño de la clave sean 256 bits que es más que suficiente. A mayor tamaño más seguridad pero mayor perdida de rendimiento</li>
-<li>-h sha256: que use como <a href="http://es.wikipedia.org/wiki/Hash">algoritmo de hash</a> SHA-256.</li>
-</ul>
-<p>Si este comando nos da un error del tipo</p>
-<blockquote>
-<p>Check kernel for support for the aes-cbc-plain cipher spec and verify that /dev/sdb6 contains at least 258 sectors</p>
-</blockquote>
-<p>es seguramente porque no tenemos cargado el módulo dm-crypt. Para cargarlo ahora mismo ejecutamos<br />
-<code>modprobe dm-crypt</code></p>
-<p>Para hacer que se cargue automáticamente cada vez que arrancamos el ordenador añadimos al archivo <em>/etc/modules</em> una línea que contenga unicamente el módulo a cargar, en este caso<br />
-<code>dm-crypt</code></p>
-<p>Ahora debemos comprobar si podemos acceder al volumen cifrado<br />
-<code>cryptsetup luksOpen $PARTICION $NOMBRE</code></p>
-<p>Este comando es algo así como decirle al kernel que el volumen virtual descifrado, correspondiente al volumen físico cifrado $PARTICION va a ser <em>/dev/mapper/$NOMBRE</em>. Este comando no es equivalente a montar la partición, es más bien inventarnos una especie de interfaz hardware para acceder a nuestros datos descifrados.</p>
-<h3 id="creamos-un-nuevo-sistema-de-archivos-en-la-particion"><a class="toclink" href="../../2010/01/10/cifrar-particion-disco-duro-externo-linux/#creamos-un-nuevo-sistema-de-archivos-en-la-particion">Creamos un nuevo sistema de archivos en la partición</a></h3>
-<p>Si todo ha ido bien ahora debemos formatear la partición, yo uso el sistema de archivos ext4.<br />
-<code>mkfs.ext4 [-L $ETIQUETA] -m 1 /dev/mapper/$NOMBRE</code></p>
-<ul>
-<li>-L $ETIQUETA: Asigna a esa partición un determinado nombre. Yo uso esta opción sobre todo cuando se trata de dispositivos externos, ya que cuando conectemos el dispositivo este se montará automáticamente como <em>/media/$ETIQUETA</em>, si no tiene etiqueta será simplemente <em>/media/disk</em>. Hay que tratar de usar un identificador que sea difícil que se repita, para poder asegurarnos que no hay otro dispositivo montado con el mismo nombre yo por ejemplo uso el estilo <em>fpuga_backup</em></li>
-<li>-m 1: Es para reservar un 1% del disco duro para el superusuario en lugar del 5% por defecto. Es útil dejar siempre algo pero 5 es demasiado</li>
-</ul>
-<p>Para cerrar el volumen descifrado y que no se puede acceder a él con la clave haremos<br />
-<code>cryptsetup luksClose /dev/mapper/$NOMBRE</code></p>
-<h3 id="trabajar-con-el-disco-cifrado"><a class="toclink" href="../../2010/01/10/cifrar-particion-disco-duro-externo-linux/#trabajar-con-el-disco-cifrado">Trabajar con el disco cifrado</a></h3>
-<p>Con los pasos dados hasta aquí ya tenemos listo nuestro volumen cifrado, la cuestión ahora es ¿como empezar a meter datos en él?. Primero descifraremos el disco (metiendo la clave), creándose automáticamente un volumen virtual descifrado y luego montaremos el volumen, esto lo hacemos con los comandos:<br />
-<code>cryptsetup luksOpen $PARTICION $NOMBRE&lt;br&gt;&lt;/br&gt;mount /dev/mapper/$NOMBRE $PTO_MONTAJE</code></p>
-<p>En el caso de que sea un partición interna es conveniente que definamos sus propiedades de montaje en <em>/etc/fstab</em>. En el caso de ser una externa es bastante sencillo, ya que al conectar el dispositivo automáticamente nos saldrá una ventana de diálogo preguntándonos la clave. Al introducirla, si hemos definido una etiqueta para la partición está se montará en <em>/media/$ETIQUETA.</em></p>
-<p>Para desmontar la partición y cerrar el volumen descifrado podemos hacer click con el botón derecho sobre la partición y darle a desmontar o bien ejecutar los comandos:<br />
-<code>umount $PTO_MONTAJE &amp;&amp; cryptsetup luksClose /dev/mapper/$NOMBRE</code></p>
-<h3 id="referencias"><a class="toclink" href="../../2010/01/10/cifrar-particion-disco-duro-externo-linux/#referencias">Referencias</a></h3>
-<ul>
-<li><a href="http://ubuntu-tutorials.com/2007/08/17/7-steps-to-an-encrypted-partition-local-or-removable-disk/">7 Steps To An Encrypted Partition (local or removable disk)</a></li>
-<li><a href="http://wiki.mandriva.com/en/Docs/SysAdmin/Security/EncryptedFilesystems">EncryptedFilesystems – Mandriva Wiki</a></li>
-<li><a href="http://www.jeanette.es/archives/325">Cómo encriptar una partición de disco duro con dm-crypt</a></li>
-<li><a href="http://en.gentoo-wiki.com/wiki/SECURITY_System_Encryption_DM-Crypt_with_LUKS">DM-Crypt with LUKS</a></li>
-</ul>
     
   </div>
 </article>

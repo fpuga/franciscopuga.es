@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#plugin-de-analisis-de-redes-en-gvsig-1x" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plugin de análisis de redes en gvSIG 1.x
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-mr-neighborlys-humble-little-ruby-book" class="md-nav__link">
     <span class="md-ellipsis">
       Libro: Mr Neighborly&#8217;s humble little ruby book
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#integrando-las-correcciones-de-extcad-en-opencadtools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Integrando las correcciones de extCAD en OpenCADTools
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,60 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2013-05-08 00:00:00">8 de mayo de 2013</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="plugin-de-analisis-de-redes-en-gvsig-1x"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/">Plugin de análisis de redes en gvSIG 1.x</a></h2>
+<p>Una pregunta habitual en las <a href="http://www.gvsig.org/web/home/community/mailing-lists">listas de correo de gvSIG</a> es si hay alguna herramienta para realizar análisis de redes. En <a href="http://cartolab.udc.es/">Cartolab</a> hemos estado buscando enlaces a algunos recursos del plugin llamado «<em>piloto de redes</em>» que es el más empleado para estos análisis para poder compartirlos.</p>
+<p>El plugin de piloto de redes (a veces también se lo llama «<em>network extension</em>«, «<em>análisis de redes</em>» o «<em>extGraph</em>«) es mantenido por <a href="http://www.scolab.es/magnoliaPublic/Scolab-project/Proyectos-realizados/Soluciones-escritorio/Redes-gvSIG.html">Scolab</a> y dispone de una <a href="https://joinup.ec.europa.eu/software/gvsig-network/home">página web</a> en la forja de join-up, pero parece desactualizada.</p>
+<h3 id="instalacion"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#instalacion">Instalación</a></h3>
+<p>La última versión de este plugin es compatible con la versión 1.12 de gvSIG, y se puede instalar desde el administrador de complementos.</p>
+<blockquote>
+<p>Herramientas -&gt; Administrador de complementos -&gt; Seleccionamos org.gvsig.graph y seguimos las instrucciones.</p>
+</blockquote>
+<h3 id="resumen-de-uso"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#resumen-de-uso">Resumen de uso</a></h3>
+<ol>
+<li>Se carga una capa de líneas con los líneas conectadas, sin repetir y digitalizadas en el sentido de la circulación.</li>
+<li>Si queremos un análisis mas acertado deberíamos como mínimo un atributo donde esté definido el coste y otro en el que esté definido el sentido. El <strong>coste</strong> representa cuanto cuesta recorrer ese tramo en las unidades que nosotros queramos, distancia, tiempo,… En el campo <strong>sentido</strong> Asignamos un valor al sentido que se puede seguir por esa línea (el de la digitalización, ambos sentidos, contrario a la digitalización)</li>
+<li>A continuación vamos a <em>Red-&gt;calcular topología de red</em> que nos generará un fichero .net en el mismo direcotorio que la capa original con esa red. Aquí podemos decidir asignar cierta tolerancia a nuestra capa, por si los nodos no están perfectamente conectados,…</li>
+<li>En la siguiente pantalla, emparejamos los campos que nos solicitan. No es necesario rellenarlos todos. Si escogemos sentido le diremos que valor corresponde a de cada sentido posible.</li>
+<li>Cuando se carga la red nos preguntará por el campo que tiene un identificador para las geometrías, por ejemplo los nombres de las calles.</li>
+<li>Con la red cargada tenemos las opciones de introducir paradas, barreras o realizar los análisis. Las <strong>paradas</strong> se pueden administrar desde <em>Red-&gt;Gestión de paradas</em>. Son puntos de inicio, fin o de paso intermedio obligatorio de un cálculo de rutas. También se comportan como puntos a partir del cual determinar el equipamiento más cercano,… Las <strong>barreras</strong> son puntos por los que se impide el paso.</li>
+<li>Entre cálculo y cálculo recordar <em>Red -&gt; Borrar -&gt; «Eliminar lo que nos interese»</em></li>
+</ol>
+<h3 id="videotutoriales"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#videotutoriales">Videotutoriales</a></h3>
+<ul>
+<li>Una <a href="http://edugvsig.blogspot.com.es/p/redes.html">serie de cuatro vídeos</a> (unos 10, 15 minutos en total) con lo más básico del la extensión de redes para calcular rutas óptimas. Emplea la versión 1.1.2 de gvSIG pero permite ver lo más importante.</li>
+<li><a href="https://www.youtube.com/watch?v=f95VhFYXMG0">Vídeo de 6 minutos</a>, demostrativo de varias de las funcionalidades de la extensión. . Cálculo de rutas. Matriz de distanticas y tiempos. Punto más cercano. Árbol de recubrimiento mínimo. Área de servicio. Está bien para de un vistazo saber todo lo que hace.</li>
+</ul>
+<h3 id="manuales"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#manuales">Manuales</a></h3>
+<ul>
+<li><a href="http://www.gvsig.org/web/projects/gvsig-desktop/docs/user/ext/redes/network-analisys-0-1-0/">Versión html en la página de gvSIG</a> de la versión 0.1.</li>
+<li>Una versión algo más antigua del manual pero <a href="https://joinup.ec.europa.eu/software/gvsig-network/document/gvsig_11-manualpilotoderedes-v2-espdf">en formato pdf</a> se puede descargar desde la antigua página del proyecto en la forja join-up.</li>
+</ul>
+<h3 id="otros-recursos"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#otros-recursos">Otros recursos</a></h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=ddtOBs8M-ao">Vídeo</a> de 5 minutos que demuestra como calcular la red y obtener una ruta óptima entre paradas.</li>
+<li><a href="https://www.youtube.com/watch?v=qEqG3W8bSWs">Vídeo de 5 minutos</a> para el cálculo de puntos más cercanos.</li>
+<li><a href="http://www.google-melange.com/gsoc/proposal/review/google/gsoc2012/davidpinheiro/1">Proyecto del Google Summer Of Code</a> para hacer un<a href="https://code.google.com/p/vrp-for-gvsig-network-extension/"> plugin sobre la extensión de redes para hacer cálculo vrp</a>.</li>
+<li>Hay otro plugin para realizar análisis de redes hecho como <a href="https://forxa.mancomun.org/projects/pfcmau/">proyecto fin de carrera</a>, para la versión 1.1. Parece algo desactualizado.</li>
+<li>En las 2 jornadas de latinoamérica y el caribe de gvSIG se hizo una presentación de la herramienta. <a href="http://www.gvsig.org/web/community/events/jornadas-lac/2010/ponencias">Buscar por la palabra «redes» en esta página</a>.</li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1056,81 +1110,6 @@
 <p>La evidencia disponible acerca de las fórmulas de concesión de obra pública (PFI) a escala internacional sugiere que estas fórmulas pueden dar lugar a problemas financieros motivados por unos mayores costes de financiación (Reino Unido), así como a disfunciones asociadas a restricciones en la competencia en el mercado y subsiguientes efectos sobre la equidad (Italia). La escasa información que para el caso español trasciende a los medios de comunicación no es más alentadora, por lo que no parece que se justifique el recurso a esta modalidad de concesión más que con el fin de sacar fuera del cómputo del déficit público los costes ocasionados por las nuevas infraestructuras sanitarias (o, en la coyuntura actual, por la voluntad de construir centros hospitalarios cuya financiación no puede abordarse a través de una vía prácticamente vedada como es la del endeudamiento público).</p>
 </blockquote>
 <p>El modelo de concesión para la gestión integral (modelo Alzira) <a href="http://sociedad.elpais.com/sociedad/2013/01/03/actualidad/1357234471_728665.html">tampoco parece estar funcionando</a>.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2013-01-10 00:00:00">10 de enero de 2013</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="integrando-las-correcciones-de-extcad-en-opencadtools"><a class="toclink" href="../../2013/01/10/integrando-correciones-extcad-opencadtool/">Integrando las correcciones de extCAD en OpenCADTools</a></h2>
-<p>He estado trabajando en integrar todas las correcciones que se hicieron en la extensión oficial de CAD para gvSIG, desde el nacimiento de <a href="https://github.com/opencadtools/opencadtools">OpenCADTools</a> en las propias opencadtools. Este artículo describe:</p>
-<ul>
-<li>Como se realizó el proceso de integración para ver de donde pueden venir errores futuros y la <em>extraña apariencia</em> que tiene el repositorio actual.</li>
-<li>Contar el método seguido en sí por si resulta útil a gente que tenga que hacer algo parecido.</li>
-</ul>
-<p>Debo agradecer al <a href="http://cartolab.udc.es">Cartolab</a> el que me haya cedido horas de mi trabajo diario para poder escribir este artículo y realizar la integración en si misma. Además, debo agradecer a los organizadores del <a href="http://gvsigce.blogspot.de/2012/10/gvsig-ce-code-sprint-summary.html">codesprint de Münich</a> por financiar mi estancia allí y a los participantes por las aportaciones recibidas.</p>
-<h3 id="el-problema"><a class="toclink" href="../../2013/01/10/integrando-correciones-extcad-opencadtool/#el-problema">El problema</a></h3>
-<p>Tenemos tres repositorios svn con código parecido pero no igual:</p>
-<ul>
-<li><a href="http://www.gvsig.org/web/">gvSIG</a>. Contiene entre otras muchas cosas el proyecto extCAD. Se trata del código base con commits desde 2005 hasta la actualidad</li>
-<li><a href="http://webeiel.dicoruna.es/giseiel">gisEIEL</a>. A partir del año 2006 la Universidade da Coruña, a través de un convenio con la Diputación de A Coruña, realizó un fork de las herramientas de CAD de la versión 0.x de gvSIG. Este desarrollo fue asignado al Laboratorio de Bases de Datos de dicha universidad. En su repositorio actual sólo está el resultado final del fork, no los commits intermedios, porque lo que no se pueden comparar los logs para hacer una integración de código más ordenada.</li>
-<li>OpenCADTools. A partir de 2009, con financiación de la Diputación de Pontevedra y en el marco de los trabajos de desarollo de <a href="http://cartolab.udc.es/cartoweb/gvsig-eiel/">gvSIG-EIEL</a> Cartolab hizo una integración del código de gisEIEL con el de gvSIG adaptando todo ello primero a la versión 1.1.2 de gvSIG y luego a la 1.9. Se dispone de todo el historial desde el principio hasta la actualidad. Posteriormente Cartolab continuo el desarrollo de las OpenCADTools como un proyecto propio.</li>
-</ul>
-<p>Lo que queremos ahora es:</p>
-<ol>
-<li>Obtener las mejoras realizadas en los tres proyectos desde que evolucionaron por separado para obtener una extensión de CAD mucho más potente. Nos concentraremos en el código de gvSIG y el de OpenCADTools por ser los que más desarrollo han tenido y estar ambos adaptados a la rama 1.9 de gvSIG, mientras que gisEIEL continua en versiones más antiguas. Emplearemos el proyecto de gisEIEL sólo para consultar dudas de autoría o Copyright.</li>
-<li>Es fundamental respetar lo máximo posible la historia de commits. Debemos saber cuando se integró un cambio, por qué, y quien lo hizo. Esto nos permitirá prevenir errores futuros.</li>
-<li>Es fundamental respetar lo máximo posible la autoría y el copyright de todas las modificaciones.</li>
-<li>Nuestra meta final es además que el código resultante pueda ser integrado en el proyecto gvSIG, por tanto nuestra base debe ser el código de extCAD, y las mejoras de OpenCADTools deben poder ser introducidas en forma de parches sobre extCAD.</li>
-</ol>
-<p>Para ello necesitamos poder comparar de forma sencilla estos tres repositorios. Dada la cantidad de commits que ha habido y la divergencia existente resulta muy complicado comparar los logs o encontrar un punto común. Haremos por tanto un análisis inicial clase a clase que nos permita ver el grueso de las diferencias y tomar decisiones.</p>
-<h3 id="analisis-clase-a-clase"><a class="toclink" href="../../2013/01/10/integrando-correciones-extcad-opencadtool/#analisis-clase-a-clase">Análisis clase a clase</a></h3>
-<ul>
-<li>Montamos un repositorio local de git que contenga en ramas separadas el código de cada proyecto.</li>
-<li>Obtenemos un fichero de texto <em>all_files.txt</em> con todas los ficheros que hay (sin repetir) estén en una rama u otra. Haremos el listado de ficheros de cada rama mediante tree, y compararemos los ficheros con <a href="http://meldmerge.org/">meld</a> para incluír rapidamente los ficheros que están en una y no en otra en el fichero all_files.txt<br />
-<code>&lt;br&gt;&lt;/br&gt;git checkout heads/extcad&lt;br&gt;&lt;/br&gt;tree -fi --noreport &gt; extcad_files.txt&lt;br&gt;&lt;/br&gt;git checkout heads/opencadtools&lt;br&gt;&lt;/br&gt;tree -fi --noreport &gt; opencadtools_files.txt&lt;br&gt;&lt;/br&gt;cp opencadtools_files.txt all_files.txt</code></li>
-<li>Hacemos un <a href="https://github.com/fpuga/trangalladas/blob/master/scm_tools/getNoDiffsFiles.sh">script muy sencillo</a> que mete un carácter <strong>=</strong> antes de cada línea de un fichero <em>checked_files.txt</em> para todos aquellos ficheros que no hayan variado.</li>
-<li>Sobre el fichero <em>checked_files.txt</em> marcamos con una <strong>x</strong> aquellos ficheros que sabemos que no es necesario que comprobemos, por ejemplo el directorio install de OpenCADTools que con el nuevo sistema de paquetes de gvSIG está obsoleta. Algunos de estos ficheros serán eliminados a posteriori</li>
-<li>Los ficheros distintos los revisaremos uno a uno con algo como esto:<br />
-<code>&lt;br&gt;&lt;/br&gt;fileToCheck=./src/com/iver/cit/gvsig/CADExtension.java&lt;br&gt;&lt;/br&gt;git diff master:$fileToCheck refs/heads/opencadtools:$fileToCheck&lt;br&gt;&lt;/br&gt;</code><br />
-    La variable fileToCheck la rellenamos con un copy&amp;paste desde <em>checked_files.txt</em>. Y vamos marcando en el fichero de <em>checked_files.txt</em> con una <strong>m</strong> aquellos en las que la «versión más correcta» sea la del trunk de gvSIG. A veces el cambio es simplemente una cabecera, indentado, …</li>
-</ul>
-<p>Este proceso aunque algo tedioso nos permite hacernos una imagen mental del estado de los repositorios lo que aumentará nuestra capacidad para tomar decisiones.</p>
-<h3 id="primera-fase-de-la-de-integracion"><a class="toclink" href="../../2013/01/10/integrando-correciones-extcad-opencadtool/#primera-fase-de-la-de-integracion">Primera fase de la de integración</a></h3>
-<p>En el caso de OpenCADTools fue sencillo encontrar el punto en que se completo la migración de las herramientas desde la versión 1.1.2 de gvSIG a la 1.9. Perder el histórico de la migración no era grave y nos permitía simplificar el proceso, así que lo que se decidió fue escoger el commit en que esa migración se consideraba finalizaday volcar todo el repo de OpenCADTools en ese punto sobre el de extCAD.</p>
-<p><code>&lt;br&gt;&lt;/br&gt;# En un repo con sólo OpenCADTools, hacemos&lt;br&gt;&lt;/br&gt;$ git checkout -b ultimoMigracion&lt;br&gt;&lt;/br&gt;# 0f517d66 = commit de interés, del 14 de Septiembre con mensaje "Updated StartEditing from gvSIG 1.9"&lt;br&gt;&lt;/br&gt;$ git reset --hard 0f517d66&lt;br&gt;&lt;/br&gt;# y sobre nuestro repo de trabajo:&lt;br&gt;&lt;/br&gt;cp -r $repoOpenCadTools .&lt;br&gt;&lt;/br&gt;</code></p>
-<p>A continuación vamos descartando todos los ficheros en los que sepamos que el contenido del master es más válido, los marcados como <strong>m</strong> en la fase anterior:</p>
-<p><code>git checkout -- los_ficheros_donde_prefiramos_el_master&lt;br&gt;&lt;/br&gt;</code></p>
-<p>Nuestros lectores más hábiles en el uso de git se habrán dado cuenta, de que podríamos hacer el análisis de los ficheros tipo <strong>m</strong> directamente en este paso, pero como ya comentamos, hacerlo del otro modo nos permite afianzar nuestro conocimiento de los repositorios.</p>
-<h3 id="segunda-fase-de-la-integracion"><a class="toclink" href="../../2013/01/10/integrando-correciones-extcad-opencadtool/#segunda-fase-de-la-integracion">Segunda fase de la integración</a></h3>
-<p>Ahora tendremos en nuestro repo ficheros nuevos y ficheros modificados.</p>
-<p>Los ficheros nuevos son todos ellos nuevas herramientas cuyas clases pueden ser agrupadas. Así que vamos comiteándolos aprovechando para revisar las cabeceras y las autorías. Resulta sencillo identificar si una de estas nuevas clases fue desarrollada inicialmente por el Laboratorio de Bases de Datos y adaptada con posterioridad por Cartolab, o fue creada directamente por Cartolab. Basta comprobar si existe o no en el repositorio de gisEIEL. En general los autores concretos de cada clase o quienes la adaptaron están también idendificados en el código fuente, cuando esto no es así lo que se ha hecho ha sido poner de forma genérica «Laboratorio de Bases de Datos» y/o «Cartolab». La autoría se ha reflejado mediante anotaciones @author en el código fuente de las clases</p>
-<p>De este modo vamos haciendo commits para las herramientas y dado que es git empleamos la opción –author para reflejar quien hizo el commit original en el repo de OpenCADTools (al menos de forma aproximada)</p>
-<p>Los ficheros modificados en este caso son pocos, por lo que permite tomar decisiones de forma individual.</p>
-<h3 id="tercera-fase-de-la-integracion"><a class="toclink" href="../../2013/01/10/integrando-correciones-extcad-opencadtool/#tercera-fase-de-la-integracion">Tercera fase de la integración</a></h3>
-<p>Probablemete la fase más complicada. Nos toca integrar los 143 commits que hubo en OpenCADTools desde el que tomamos como referencia hasta el último commit previo a la integración.</p>
-<p>Tras varias pruebas y sin encontrar una forma rápida y segura de integrar esos commits se optó por generar parches e ir integrándolos uno. En algunos casos hubo que retocar los parches o los ficheros a mano puesto que no se integraban correctamente.</p>
-<h3 id="cuarta-fase-de-la-integracion"><a class="toclink" href="../../2013/01/10/integrando-correciones-extcad-opencadtool/#cuarta-fase-de-la-integracion">Cuarta fase de la integración</a></h3>
-<p>Toca limar algunas aspectos, por ejemplo:</p>
-<ul>
-<li>El nombre de los commiters, para lo que se emplea este <a href="http://stackoverflow.com/a/392427/930271">script</a></li>
-<li>Comprobar que podemos exportar lo que tenemos a un repositorio vacio de git (<a href="http://www.mabishu.com/blog/2011/01/13/migrate-subversion-repository-to-git-without-loosing-data/">pasos 7 a 9</a>)</li>
-</ul>
-<p>Además se hace testeo funcional de las herramientas de CAD para encontrar posibles problemas en la integración y resolver los bugs que se deriven de ella.</p>
-<h3 id="conclusiones"><a class="toclink" href="../../2013/01/10/integrando-correciones-extcad-opencadtool/#conclusiones">Conclusiones</a></h3>
-<p>Dada la disparidad de la evolución de los repositorios el proceso fue tedioso. Pero ahora tenemos un repositorio git actualizado a los últimos cambios de las herramientas por defecto de gvSIG y de las opencadtools. Esto nos permite trazar el origen de algunos bugs, y realizar integración de parches en ambos sentidos, así que merece la pena.</p>
     
   </div>
 </article>

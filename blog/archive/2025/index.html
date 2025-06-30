@@ -496,6 +496,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#estructura-de-directorios-de-una-libreria-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura de directorios de una librería Python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#escoger-un-python-language-server" class="md-nav__link">
     <span class="md-ellipsis">
       Escoger un Python Language Server
@@ -526,15 +535,6 @@
   <a href="#video-deep-dive-into-llms-like-chatgpt-by-andrej-karpathy" class="md-nav__link">
     <span class="md-ellipsis">
       Vídeo: Deep Dive into LLMs like ChatGPT. By Andrej Karpathy
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#como-funciona-un-llm-y-porque-mienten" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cómo funciona un LLM y porqué mienten
     </span>
   </a>
   
@@ -936,6 +936,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#estructura-de-directorios-de-una-libreria-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura de directorios de una librería Python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#escoger-un-python-language-server" class="md-nav__link">
     <span class="md-ellipsis">
       Escoger un Python Language Server
@@ -971,15 +980,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#como-funciona-un-llm-y-porque-mienten" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cómo funciona un LLM y porqué mienten
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -994,6 +994,120 @@
       <header class="md-typeset">
         <h1 id="2025">2025</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-06-30 00:00:00">30 de junio de 2025</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="estructura-de-directorios-de-una-libreria-python"><a class="toclink" href="../../2025/06/30/python-project-layout/">Estructura de directorios de una librería Python</a></h2>
+<p>En Python hay fundamentalmente dos recomendaciones distintas de cómo estructurar los directorios (<em>project layout</em>) de una librería o herramienta, que queramos distribuir.</p>
+<p>No incluyo en este artículo estructuras para <em>proyectos</em>. Por ejemplo una aplicación web monorepo con el <em>backend</em> y el <em>front</em> en el mismo repositorio. Proyectos que quieren desarrollar distintas herramientas bajo el mismo namespace. U otros casos particulares.</p>
+<h3 id="sin-directorio-raiz"><a class="toclink" href="../../2025/06/30/python-project-layout/#sin-directorio-raiz">Sin directorio raíz</a></h3>
+<p>Es la estructura más sencilla, especialmente para proyectos pequeños o scripts individuales.</p>
+<p>En algunos artículos llaman a esta estructura <em>flat layout</em>. Esto induce a error, porqué <em>flat layout</em> es el nombre más usado para la siguiente estructura que veremos. El artículo es antiguo pero en realpython llaman a esto <a href="https://realpython.com/python-application-layouts/#one-off-script">one-off-script</a></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>my_project/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── __init__.py
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>├── my_project.py
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>├── requirements.txt
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>├── tests/
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│   └── test_my_project.py
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>└── README.md
+</span></code></pre></div>
+<p>Tiene a favor que es simple, no requiere subdirectorios, ni siquiera el fichero <code>__init__.py</code>, y todo está a la vista.</p>
+<p>Pero nunca deberíamos usarlo. El <em>boilerplate</em> de generar una estructura mejor tiene un coste cero si usamos un cookiecutter, y con esta estructura enseguida aparecen problemas de cómo organizar el código, empaquetar el proyecto y a la mínima tendremos problemas con los <code>import</code>.</p>
+<h3 id="modulo-en-la-raiz-flat-layout"><a class="toclink" href="../../2025/06/30/python-project-layout/#modulo-en-la-raiz-flat-layout">Módulo en la raíz (flat layout)</a></h3>
+<p>También llamado <em>adhoc layout</em>.</p>
+<p>Es probablemente la más usada. El paquete (directorio) principal del proyecto <a href="https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#flat-layout">está directamente en la raíz</a>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>my-project/
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>├── my_project/
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>│   ├── __init__.py
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│   ├── main.py
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│   └── utils.py
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>├── tests/
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│   ├── test_main.py
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│   └── test_utils.py
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>├───.github
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│   └───workflows
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>├───docs
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│   └───mkdocs.yml
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>├── pyproject.toml
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>└── README.md
+</span></code></pre></div>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Más directa que <code>src layout</code> al eliminar un nivel de anidación.</li>
+<li>No es necesario instalar (<code>pip install</code>) para ejecutar el código.</li>
+<li>Muchos proyectos siguen este patrón.</li>
+</ul>
+<p><strong>Contras:</strong></p>
+<ul>
+<li><strong>Riesgo de <em>import</em> locales:</strong> Existe mayor riesgo de que Python importe el módulo en desarrollo (en el <em>source tree</em> digamos) en lugar del módulo instalado. Esto puede llevar a errores difíciles de detectar a la hora de ejecutar los tests, empaquetar e instalar el proyecto.</li>
+<li>No es tan explícito como <code>src layout</code> sobre lo que se empaqueta y lo que no.</li>
+</ul>
+<h3 id="subdirectorio-src-src-layout"><a class="toclink" href="../../2025/06/30/python-project-layout/#subdirectorio-src-src-layout">Subdirectorio <code>src/</code> (src layout)</a></h3>
+<p>Es una de <a href="https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout">las más recomendadas</a>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>my-project/
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>├── src/
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>│   └── my_project/
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│       ├── __init__.py
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│       ├── main.py
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│       └── utils.py
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>├── tests/
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│   ├── test_main.py
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│   └── test_utils.py
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>├───.github
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>│   └───workflows
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>├───docs
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>│   └───mkdocs.yml
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>├── pyproject.toml
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>└── README.md
+</span></code></pre></div>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Al colocar el código en <code>src/my_project/</code>, el intérprete de Python siempre importará la versión instalada del paquete, no la versión en desarrollo en el directorio raíz. Esto ayuda a asegurar que el comportamiento en desarrollo sea el mismo que en producción.</li>
+<li><strong>Claridad de empaquetado:</strong> Deja claro qué partes del proyecto son el código fuente que se va a empaquetar y distribuir. Otros archivos (tests, documentación, configuración de desarrollo) se mantienen fuera del paquete.</li>
+<li><strong>Fomenta buenas prácticas:</strong> Al requerir una "instalación" (aunque sea editable) para que el código funcione correctamente en desarrollo.</li>
+<li><strong>Mejor aislamiento de pruebas:</strong> Los tests se colocan fuera del directorio <code>src/</code>, lo que significa que no se incluyen en el paquete distribuido y evita dependencias de prueba en el código de producción.</li>
+<li><a href="https://docs.astral.sh/uv/concepts/projects/init/#libraries">Es el que prefiere uv</a></li>
+</ul>
+<p><strong>Contras:</strong></p>
+<ul>
+<li>Requiere más boilerplate. Para ejecutar el código se requiere una instalación editable o ajustar el <code>PYTHONPATH</code>.</li>
+<li>La carpeta <code>src/</code> adicional puede ser redundante.</li>
+</ul>
+<h3 id="variantes-y-comentarios"><a class="toclink" href="../../2025/06/30/python-project-layout/#variantes-y-comentarios">Variantes y Comentarios</a></h3>
+<ul>
+<li><a href="https://simpleisbetterthancomplex.com/tutorial/2021/06/27/how-to-start-a-production-ready-django-project.html">Alguna gente prefiere introducir un nivel extra</a> de indirección donde por ejemplo incluir <em>venv</em></li>
+<li>Cuando escojamos un nombre para el proyecto, si vamos a publicarlo deberíamos comprobar que el nombre no está cogido en PyPy.</li>
+<li><a href="https://cjolowicz.github.io/posts/hypermodern-python-01-setup/#creating-a-package-in-src-layout">Separadores de nombre</a>. Los módulos y paquetes de Python no admiten <em>hyphens</em>, <code>-</code>, sólo <em>underscore</em>, <code>_</code>. Es habitual usar <code>kebab-case</code> (<em>hyphenated</em>) para el nombre del repositorio (carpeta raíz) y <code>snake_case</code> (<em>underscored</em>) para los paquetes y módulos.</li>
+<li>Alguna gente considera que lo correcto es empaquetar los tests dentro del <em>distributable package</em>. Yo no.</li>
+</ul>
+<h3 id="mi-preferida"><a class="toclink" href="../../2025/06/30/python-project-layout/#mi-preferida">Mi preferida</a></h3>
+<p>Mi preferida es <em>scr layout</em>.</p>
+<p>Las funcionalidades de los editores (<em>compact folders</em>, <em>quick open</em>) y herramientas cómo <code>uv</code> o <code>cookiecutter</code> reducen las incomodidades que introduce esta estructura.</p>
+<p>Visual y organizativamente me gusta cómo queda la raíz del proyecto.</p>
+<p>Me molesta mucho perder tiempo en los "esto no puede estar pasando", y esta estructura minimiza esos <em>subtle bugs</em></p>
+<p>Creo que el simple hecho de preocuparse de entenderla ayuda a que la gente no se líe a tocar <code>sys.path</code>, o probar con <code>python -m</code> a ver si sus <code>import</code> funcionan de esa forma. Aunque de "los scripts dentro de proyectos" hablaremos en otro artículo.</p>
+<h3 id="referencias"><a class="toclink" href="../../2025/06/30/python-project-layout/#referencias">Referencias</a></h3>
+<ul>
+<li><a href="https://hynek.me/articles/testing-packaging/">Testing &amp; Packaging</a>. <strong>Muy buena</strong> explicación del problema del import local frente al import del código instalado al testear y distribuir.</li>
+<li><a href="https://github.com/astral-sh/uv/issues/8178">Ticket de uv en el que se discute la estructura por defecto de los proyectos</a>.</li>
+<li><a href="https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/">src layout vs flat layout</a> en Python Packaging User Guide</li>
+<li><a href="https://blog.ionelmc.ro/2014/05/25/python-packaging/">Packaging a python library</a></li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1250,30 +1364,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2025-01-19 00:00:00">19 de enero de 2025</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="como-funciona-un-llm-y-porque-mienten"><a class="toclink" href="../../2025/01/19/como-funciona-un-llm-y-porque-mienten/">Cómo funciona un LLM y porqué mienten</a></h2>
-<p>Uno de los artículos más inteligentes que he leído sobre LLM.</p>
-<p>El autor, Simon Willinson es sensato (desde mi punto de vista), trabaja mucho con LLM y es el creador de Django (uno de los frameworks web más usados).</p>
-<p>Básicamente dice que ChatGPT es una herramienta increíble, cuando sabes usarla, pero que usarla bien no es tan fácil <a href="https://simonwillison.net/2023/Apr/7/chatgpt-lies/">porqué "ChatGPT miente"</a>.</p>
-<p>Y para entender porqué "miente" o como funciona los LLM a alto nivel pero muy técnico, <a href="https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/">este otro artículo</a> de un verdadero pionero de estos temas es imprescindible.</p>
-<p>Wolfram es en resumen el creador de Mathematica, que en cierto momento estuvo a la altura de Matlab pero luego se fue por otros derroteros. Su buscador Wolfram Alfa que yo sepa fue el primero que intentaba no darte una colección de links si no responder a preguntas formuladas en lenguaje natural, y ya tiene bastantes añitos (2009 según la Wikipedia)</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1281,7 +1371,7 @@
 
 
 <nav class="md-pagination">
-  
+  <span class="md-pagination__current">1</span> <a class="md-pagination__link" href="page/2/">2</a>
 </nav>
         
       

@@ -847,6 +847,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#como-funciona-git-reset-y-porque-no-usar-git-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como funciona git reset y porqué no usar git-flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tres-podcast-de-javahispano-sobre-legislacion" class="md-nav__link">
     <span class="md-ellipsis">
       Tres podcast de JavaHispano sobre legislación
@@ -882,15 +891,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#plugin-de-analisis-de-redes-en-gvsig-1x" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plugin de análisis de redes en gvSIG 1.x
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -905,6 +905,30 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2013-10-12 00:00:00">12 de octubre de 2013</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="como-funciona-git-reset-y-porque-no-usar-git-flow"><a class="toclink" href="../../2013/10/12/como-funciona-git-reset-y-por-que-no-usar-git-flow/">Como funciona git reset y porqué no usar git-flow</a></h2>
+<p><a href="http://scottchacon.com/about.html">Scott Chacon</a> <em>demistifica</em> en el siguiente vídeo git reset, que es probablemente uno de los comandos más complejos de entender de git.</p>
+<iframe allowfullscreen="" frameborder="0" height="281" loading="lazy" mozallowfullscreen="" src="//player.vimeo.com/video/38958167" style="margin:auto;" webkitallowfullscreen="" width="500"></iframe>
+
+<p>En su <a href="http://scottchacon.com/2011/07/11/reset.html">blog</a> y en este <a href="https://gist.github.com/schacon/ed0eb484f92567718c84">gist</a> hay alguna explicación adicional.</p>
+<p>Hacia el final de la charla le preguntan que opina de <a href="https://github.com/nvie/gitflow">git flow</a>, lo que le permite explicar porque no le gusta y recomienda leer <a href="http://scottchacon.com/2011/08/31/github-flow.html">el workflow que siguen en github</a>. Merece la pena leerlo.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1052,60 +1076,6 @@ Considerado más bien de nivel intermedio, busca transmitir las interioridades d
 <li><a href="http://www.informit.com/store/product.aspx?isbn=0321490452">Design Patterns in Ruby</a></li>
 <li><a href="http://oreilly.com/catalog/9780596523008/">Ruby Best Practice</a></li>
 <li><a href="http://rads.stackoverflow.com/amzn/click/0672328844">The Ruby Way</a></li>
-</ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2013-05-08 00:00:00">8 de mayo de 2013</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="plugin-de-analisis-de-redes-en-gvsig-1x"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/">Plugin de análisis de redes en gvSIG 1.x</a></h2>
-<p>Una pregunta habitual en las <a href="http://www.gvsig.org/web/home/community/mailing-lists">listas de correo de gvSIG</a> es si hay alguna herramienta para realizar análisis de redes. En <a href="http://cartolab.udc.es/">Cartolab</a> hemos estado buscando enlaces a algunos recursos del plugin llamado «<em>piloto de redes</em>» que es el más empleado para estos análisis para poder compartirlos.</p>
-<p>El plugin de piloto de redes (a veces también se lo llama «<em>network extension</em>«, «<em>análisis de redes</em>» o «<em>extGraph</em>«) es mantenido por <a href="http://www.scolab.es/magnoliaPublic/Scolab-project/Proyectos-realizados/Soluciones-escritorio/Redes-gvSIG.html">Scolab</a> y dispone de una <a href="https://joinup.ec.europa.eu/software/gvsig-network/home">página web</a> en la forja de join-up, pero parece desactualizada.</p>
-<h3 id="instalacion"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#instalacion">Instalación</a></h3>
-<p>La última versión de este plugin es compatible con la versión 1.12 de gvSIG, y se puede instalar desde el administrador de complementos.</p>
-<blockquote>
-<p>Herramientas -&gt; Administrador de complementos -&gt; Seleccionamos org.gvsig.graph y seguimos las instrucciones.</p>
-</blockquote>
-<h3 id="resumen-de-uso"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#resumen-de-uso">Resumen de uso</a></h3>
-<ol>
-<li>Se carga una capa de líneas con los líneas conectadas, sin repetir y digitalizadas en el sentido de la circulación.</li>
-<li>Si queremos un análisis mas acertado deberíamos como mínimo un atributo donde esté definido el coste y otro en el que esté definido el sentido. El <strong>coste</strong> representa cuanto cuesta recorrer ese tramo en las unidades que nosotros queramos, distancia, tiempo,… En el campo <strong>sentido</strong> Asignamos un valor al sentido que se puede seguir por esa línea (el de la digitalización, ambos sentidos, contrario a la digitalización)</li>
-<li>A continuación vamos a <em>Red-&gt;calcular topología de red</em> que nos generará un fichero .net en el mismo direcotorio que la capa original con esa red. Aquí podemos decidir asignar cierta tolerancia a nuestra capa, por si los nodos no están perfectamente conectados,…</li>
-<li>En la siguiente pantalla, emparejamos los campos que nos solicitan. No es necesario rellenarlos todos. Si escogemos sentido le diremos que valor corresponde a de cada sentido posible.</li>
-<li>Cuando se carga la red nos preguntará por el campo que tiene un identificador para las geometrías, por ejemplo los nombres de las calles.</li>
-<li>Con la red cargada tenemos las opciones de introducir paradas, barreras o realizar los análisis. Las <strong>paradas</strong> se pueden administrar desde <em>Red-&gt;Gestión de paradas</em>. Son puntos de inicio, fin o de paso intermedio obligatorio de un cálculo de rutas. También se comportan como puntos a partir del cual determinar el equipamiento más cercano,… Las <strong>barreras</strong> son puntos por los que se impide el paso.</li>
-<li>Entre cálculo y cálculo recordar <em>Red -&gt; Borrar -&gt; «Eliminar lo que nos interese»</em></li>
-</ol>
-<h3 id="videotutoriales"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#videotutoriales">Videotutoriales</a></h3>
-<ul>
-<li>Una <a href="http://edugvsig.blogspot.com.es/p/redes.html">serie de cuatro vídeos</a> (unos 10, 15 minutos en total) con lo más básico del la extensión de redes para calcular rutas óptimas. Emplea la versión 1.1.2 de gvSIG pero permite ver lo más importante.</li>
-<li><a href="https://www.youtube.com/watch?v=f95VhFYXMG0">Vídeo de 6 minutos</a>, demostrativo de varias de las funcionalidades de la extensión. . Cálculo de rutas. Matriz de distanticas y tiempos. Punto más cercano. Árbol de recubrimiento mínimo. Área de servicio. Está bien para de un vistazo saber todo lo que hace.</li>
-</ul>
-<h3 id="manuales"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#manuales">Manuales</a></h3>
-<ul>
-<li><a href="http://www.gvsig.org/web/projects/gvsig-desktop/docs/user/ext/redes/network-analisys-0-1-0/">Versión html en la página de gvSIG</a> de la versión 0.1.</li>
-<li>Una versión algo más antigua del manual pero <a href="https://joinup.ec.europa.eu/software/gvsig-network/document/gvsig_11-manualpilotoderedes-v2-espdf">en formato pdf</a> se puede descargar desde la antigua página del proyecto en la forja join-up.</li>
-</ul>
-<h3 id="otros-recursos"><a class="toclink" href="../../2013/05/08/plugin-de-analisis-de-redes-en-gvsig-1-x/#otros-recursos">Otros recursos</a></h3>
-<ul>
-<li><a href="https://www.youtube.com/watch?v=ddtOBs8M-ao">Vídeo</a> de 5 minutos que demuestra como calcular la red y obtener una ruta óptima entre paradas.</li>
-<li><a href="https://www.youtube.com/watch?v=qEqG3W8bSWs">Vídeo de 5 minutos</a> para el cálculo de puntos más cercanos.</li>
-<li><a href="http://www.google-melange.com/gsoc/proposal/review/google/gsoc2012/davidpinheiro/1">Proyecto del Google Summer Of Code</a> para hacer un<a href="https://code.google.com/p/vrp-for-gvsig-network-extension/"> plugin sobre la extensión de redes para hacer cálculo vrp</a>.</li>
-<li>Hay otro plugin para realizar análisis de redes hecho como <a href="https://forxa.mancomun.org/projects/pfcmau/">proyecto fin de carrera</a>, para la versión 1.1. Parece algo desactualizado.</li>
-<li>En las 2 jornadas de latinoamérica y el caribe de gvSIG se hizo una presentación de la herramienta. <a href="http://www.gvsig.org/web/community/events/jornadas-lac/2010/ponencias">Buscar por la palabra «redes» en esta página</a>.</li>
 </ul>
     
   </div>

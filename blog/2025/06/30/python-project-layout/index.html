@@ -18,17 +18,15 @@
 
 <!-- Canonical -->
 
-<link rel="canonical" href="https://franciscopuga.es/blog/page/31/" />
+<link rel="canonical" href="https://franciscopuga.es/blog/2025/06/30/python-project-layout/" />
 
 
 <!-- Previous page -->
 
-<link rel="prev" href="../../.." />
+<link rel="prev" href="../../19/language-server-python/" />
 
 
 <!-- Next page -->
-
-<link rel="next" href="../../archive/2025/" />
 
 
 <!-- RSS feed -->
@@ -37,32 +35,32 @@
   rel="alternate"
   type="application/rss+xml"
   title="Fuente RSS"
-  href="../../../rss.xml"
+  href="../../../../../rss.xml"
 />
 <link
   rel="alternate"
   type="application/rss+xml"
   title="Fuente RSS de contenido actualizado"
-  href="../../../rss_updated.xml"
+  href="../../../../../rss_updated.xml"
 />
 
 
 <!-- Favicon -->
-<link rel="icon" href="../../../assets/images/favicon.png" />
+<link rel="icon" href="../../../../../assets/images/favicon.png" />
 
 <!-- Generator banner -->
 <meta name="generator" content="mkdocs-1.6.1, $md-name$-$md-version$" />
 
     
       
-        <title>Index - Francisco Puga</title>
+        <title>Estructura de directorios de una librería Python - Francisco Puga</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -81,9 +79,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../extra/extra.css">
+      <link rel="stylesheet" href="../../../../../extra/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -107,7 +105,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#index" class="md-skip">
+        <a href="#estructura-de-directorios-de-una-libreria-python" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -121,7 +119,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
-    <a href="../../.." title="Francisco Puga" class="md-header__button md-logo" aria-label="Francisco Puga" data-md-component="logo">
+    <a href="../../../../.." title="Francisco Puga" class="md-header__button md-logo" aria-label="Francisco Puga" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -141,7 +139,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Index
+              Estructura de directorios de una librería Python
             
           </span>
         </div>
@@ -210,7 +208,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link">
         
   
     
@@ -231,7 +229,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+        <a href="../../../../" class="md-tabs__link">
           
   
     
@@ -255,7 +253,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -266,7 +266,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Francisco Puga" class="md-nav__button md-logo" aria-label="Francisco Puga" data-md-component="logo">
+    <a href="../../../../.." title="Francisco Puga" class="md-nav__button md-logo" aria-label="Francisco Puga" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -284,7 +284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -334,7 +334,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -446,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2025/" class="md-nav__link">
+      <a href="../../../../archive/2025/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -469,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2021/" class="md-nav__link">
+      <a href="../../../../archive/2021/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -492,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2020/" class="md-nav__link">
+      <a href="../../../../archive/2020/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -515,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2019/" class="md-nav__link">
+      <a href="../../../../archive/2019/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -538,7 +538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2018/" class="md-nav__link">
+      <a href="../../../../archive/2018/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -561,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2017/" class="md-nav__link">
+      <a href="../../../../archive/2017/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -584,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2016/" class="md-nav__link">
+      <a href="../../../../archive/2016/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -607,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2015/" class="md-nav__link">
+      <a href="../../../../archive/2015/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -630,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2014/" class="md-nav__link">
+      <a href="../../../../archive/2014/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -653,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2013/" class="md-nav__link">
+      <a href="../../../../archive/2013/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -676,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2012/" class="md-nav__link">
+      <a href="../../../../archive/2012/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -699,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2011/" class="md-nav__link">
+      <a href="../../../../archive/2011/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -722,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2010/" class="md-nav__link">
+      <a href="../../../../archive/2010/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -745,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2009/" class="md-nav__link">
+      <a href="../../../../archive/2009/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -768,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2008/" class="md-nav__link">
+      <a href="../../../../archive/2008/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -791,7 +791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2007/" class="md-nav__link">
+      <a href="../../../../archive/2007/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -828,6 +828,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -847,45 +849,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#vigo-concentracion-en-repulsa-aos-ataques-de-israel" class="md-nav__link">
+  <a href="#sin-directorio-raiz" class="md-nav__link">
     <span class="md-ellipsis">
-      [Vigo] Concentración en repulsa aos ataques de Israel
+      Sin directorio raíz
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#apagar-el-ordenador-cuando-finaliza-una-peli" class="md-nav__link">
+  <a href="#modulo-en-la-raiz-flat-layout" class="md-nav__link">
     <span class="md-ellipsis">
-      Apagar el ordenador cuando finaliza una peli
+      Módulo en la raíz (flat layout)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#concurso-de-microrelatos-de-implicadas" class="md-nav__link">
+  <a href="#subdirectorio-src-src-layout" class="md-nav__link">
     <span class="md-ellipsis">
-      Concurso de Microrelatos de Implicadas
+      Subdirectorio src/ (src layout)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#globalizacion-es" class="md-nav__link">
+  <a href="#variantes-y-comentarios" class="md-nav__link">
     <span class="md-ellipsis">
-      Globalización es
+      Variantes y Comentarios
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#nelson-mandela-explica-que-es-ubuntu" class="md-nav__link">
+  <a href="#mi-preferida" class="md-nav__link">
     <span class="md-ellipsis">
-      Nelson Mandela explica que es Ubuntu
+      Mi preferida
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referencias
     </span>
   </a>
   
@@ -900,148 +911,169 @@
             
           
           
-  <div class="md-content" data-md-component="content">
-    <div class="md-content__inner">
-      <header class="md-typeset">
-        <h1 id="index">Index</h1>
-      </header>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-01-02 00:00:00">2 de enero de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="vigo-concentracion-en-repulsa-aos-ataques-de-israel"><a class="toclink" href="../../2009/01/02/vigo-concentracion-en-repulsa-aos-ataques-de-israel/">[Vigo] Concentración en repulsa aos ataques de Israel</a></h2>
-<p>A Rede Social Galicia Sur <a href="http://esfgalicia.blogspot.com/2009/01/concentracin-en-vigo-condena-aos.html">convoca unha concentración de repulsa</a> polos ataques de Israel na franxa de Gaza. [El enlace apunta a chuza.org por si quereis ayudar a difundir la convocatoria dándole a chuzao!]</p>
-<p>Espero verte alí.</p>
-<p>Día: Venres, 2 de Xaneiro de 2009<br />
-Hora: 20:00<br />
-Lugar: Museo Marco, Vigo.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2008-12-30 00:00:00">30 de diciembre de 2008</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="apagar-el-ordenador-cuando-finaliza-una-peli"><a class="toclink" href="../../2008/12/30/apagar-el-ordenador-cuando-finaliza-una-peli/">Apagar el ordenador cuando finaliza una peli</a></h2>
-<p>Si eres de los que se llevan el portátil a la habitación para ver una película o el último episodio de tu serie favorita este artículo te interesa. Con la ayuda de la gente de <a href="http://www.espaciolinux.com/postlite40062-.html">espaciolinux</a> he escrito un script para linux que hace que el ordenador se apague automáticamente unos segundos después de que finaliza la película que estás viendo.</p>
-<p>Por ahora sólo funciona con el escritorio KDE 3.5 o inferior, y el reproductor kaffeine, aunque si alguien está interesado que deje un comentario y vemos como arreglarlo. El script es el siguiente:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#!/bin/sh&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;# apaga_pelis.sh  v0.2. 2008/12/29&lt;br&gt;&lt;/br&gt;# Francisco Puga. http://conocimientoabierto.es&lt;br&gt;&lt;/br&gt;# Author makes devolution of this code to Public Domain&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;# Sólo funciona con dcop (KDE 3.5 o inferior) y el reproductor kaffeine&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;# Lanza la pelicula deseada, calcula su duración y se duerme a la espera&lt;br&gt;&lt;/br&gt;# de que pase ese tiempo. Cuando se despierta calcula si la película ya ha&lt;br&gt;&lt;/br&gt;# finalizado (por si ha habido pausas) y si no vuelve a dormirse.&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;kaffeine -f $1&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;#Calculamos la duracion y le sumamos 30s para que no apague justo despues&lt;br&gt;&lt;/br&gt;DURACION=$(expr $(dcop kaffeine KaffeineIface getLength) + 60)&lt;br&gt;&lt;/br&gt;sleep $DURACION&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;while [ $(dcop kaffeine KaffeineIface isPlaying) == &quot;true&quot; ]; do&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;  RESTA=$(expr $DURACION - $(dcop kaffeine KaffeineIface getTimePos))&lt;br&gt;&lt;/br&gt;  sleep $RESTA&lt;br&gt;&lt;/br&gt;done&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;dcop kaffeine KaffeineIface quit&lt;br&gt;&lt;/br&gt;dcop ksmserver ksmserver logout 0 2 2
-</span></code></pre></div>
-<p><a href="http://2.bp.blogspot.com/_wrQ7gWEOyz8/SVqaSwdOWFI/AAAAAAAAADY/HaK5jmgAZ6E/s1600-h/abrir_con.jpg"><img alt="" src="http://2.bp.blogspot.com/_wrQ7gWEOyz8/SVqaSwdOWFI/AAAAAAAAADY/HaK5jmgAZ6E/s320/abrir_con.jpg" /></a><br />
-Lo único que teneis que hacer es copiar el texto anterior en un archivo de texto y guardarlo en algún sitio de vuestro disco duro. Luego pulsais con el botón derecho sobre él, vais a <span style="font-style: italic">propiedades -&gt; permisos</span> y marcais la casilla «<span style="font-style: italic">es ejecutable</span>«.</p>
-<p>A continuación pulsais con el botón derecho sobre algún archivo que querais reproducir, propiedades, y luego pulsamos sobre el icono que se ve en la imagen. En la siguiente pantalla le damos a «añadir» y seleccionamos el archivo que contiene el script.</p>
-<p><a href="http://2.bp.blogspot.com/_wrQ7gWEOyz8/SVqd1jVTprI/AAAAAAAAADg/WF6IUrVF4OU/s1600-h/abrir_con2.jpg"><img alt="" src="http://2.bp.blogspot.com/_wrQ7gWEOyz8/SVqd1jVTprI/AAAAAAAAADg/WF6IUrVF4OU/s320/abrir_con2.jpg" /></a><br />
-Aceptamos y cuando esté agregado, lo seleccionamos y le damos a «bajar». El primer programa de la lista es con el que se abrirá ese tipo de archivo cuando hagamos doble click sobre él. El resto son accesibles desde el menú abrir con que se despliega cuando pulsamos con el botón derecho sobre el archivo.</p>
-<p>Es decir, a partir de este momento cuando queramos que el ordenador se apague tras finalizar la película, debemos pulsar con el botón derecho sobre el archivo, vamos a abrir con y allí seleccionamos nuestro script.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2008-12-19 00:00:00">19 de diciembre de 2008</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="concurso-de-microrelatos-de-implicadas"><a class="toclink" href="../../2008/12/19/concurso-de-microrelatos-de-implicadas/">Concurso de Microrelatos de Implicadas</a></h2>
-<p>Me ha encantado el <a href="http://implicadas.blogspot.com/2008/12/reencontros-de-susana-snchez-arns.html">microrelato que la ONG Implicadas no Desenvolvemento</a> ha escogido como ganador de un concurso que han organizado para celebrar su décimo aniversario. Os pego un cachito traducido, el original está en gallego (norma <a href="http://gl.wikipedia.org/wiki/AGAL">AGAL</a>)</p>
-<blockquote>
-<p>– Se ve que estas satifecha… pero IND no eres tu. ¿Que noticias en tu vida personal?</p>
-<p>– No se donde acaba IND y comienza mi intimidad. Esto es implicarse: aprendes, te expones, sientes, compartes, conoces, vives… y acabas por enredarte y ya no sabes donde acabo el extremo del hilo. IND ayudaría a cambiar un poco el mundo, a mi me cambio entera. Poco me parezco a aquella que conociste. Agora soy otra</p>
-</blockquote>
-<div style="text-align: right">Escrito por Susana Sánchez Aris.</div>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2008-12-14 00:00:00">14 de diciembre de 2008</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="globalizacion-es"><a class="toclink" href="../../2008/12/14/globalizacion-es/">Globalización es</a></h2>
-<p>Globalización es que una <a href="http://en.wikipedia.org/wiki/Citigroup">compañía</a> con sede en Nueva York que acaba de ser <a href="http://www.nytimes.com/2008/11/24/business/24citibank.html?_r=2">rescatada </a>con el dinero público aportado por los estadounidenses compre una autopista gallega perteneciente a una <a href="http://es.wikipedia.org/wiki/Sacyr_Vallehermoso">empresa</a> (Sacyr) con sede en Madrid que por culpa de sus deudas (de <a href="http://www.lavanguardia.es/economia/noticias/20081201/53590636013/sacyr-reduce-su-deuda-en-un-37-con-la-venta-de-itinere-a-citigroup-por-7.887-millones.html">19.726 millones de euros)</a> tenga además que vender su participación en la mayor energética española (española-argentina más bien) a una <a href="http://www.publico.es/espana/176260/cni/alerta/venta/repsol">empresa privada pero sospechosa</a> de ser usada por el gobierno ruso para <a href="http://es.wikipedia.org/wiki/Disputa_de_gas_entre_Rusia_y_Ucrania">presionar politicamente</a>.</p>
-<p><span style="font-weight: bold">Disclaimer: </span>Obviamente la globalización es mucho más que eso pero la frase necesitaba un encabezado ;)</p>
-<p><span style="font-weight: bold">Disclaimer 2:</span> Este post sólo refleja algo que me produce curiosidad, no tengo una postura clara(ni sé lo suficiente) como para pronunciarme sobre si <a href="http://www.laopinion.es/secciones/noticia.jsp?pRef=2008120100_12_185265__Economia-SEPI-podria-tomar-control-Repsol">el estado debería comprar Repsol</a> o la eterna guerra <a href="http://indarki.blogia.com/2008/112501-el-control-de-las-empresas-energeticas-gobierno-vs-privado.php">entre estatal y privado</a>.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2008-11-10 00:00:00">10 de noviembre de 2008</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="nelson-mandela-explica-que-es-ubuntu"><a class="toclink" href="../../2008/11/10/nelson-mandela-explica-que-es-ubuntu/">Nelson Mandela explica que es Ubuntu</a></h2>
-<p>Canonical, Ltd. la empresa que desarrolla Ubuntu, incluye en todos los CD’s (e ISO’s) un vídeo de <a href="http://es.wikipedia.org/wiki/Mandela">Nelson Mandela</a> en el que explica cual es el origen de la palabra ubuntu, una antigua tradición africana que <a href="http://es.wikipedia.org/wiki/Mark_Shuttleworth">Shuttleworth</a> escogió como nombre para su distribución.</p>
-<div style="text-align: center"></div>
-<p>A pesar de que el vídeo lleva en la red <a href="http://www.youtube.com/watch?v=ODQ4WiDsEBQ&amp;feature=related">desde hace mucho</a> he decidido re-subirlo y subtitularlo en inglés, castellano y gallego para probar esta nueva caraterística de youtube.</p>
-<p>El vídeo me lo he descargado de <a href="http://en.wikipedia.org/wiki/Image:Experience_ubuntu.ogg">wikimedia common</a> (licencia CC Attribution-ShareAlike 2.5 hecho por Canonical, Ltd.). Para hacer los subtítulos me he basado en esta <a href="http://doc.ubuntu-fr.org/traduction_de_l_interview_de_nelson_mandela">transcripción</a> del vídeo y he contado con la inestimable ayuda de <a href="http://www.facebook.com/profile.php?id=559261376">Geni</a> y Santi (¡gracias!) para corregir mis traducciones a castellano y gallego. Podeis bajar los subtítulos desde <a href="http://www.mediafire.com/file/02mejqcywdg/ubuntu_experience_subs.tar.gz">aquí</a> y considerar que están publicados bajo <a href="http://conocimientoabierto.blogspot.com/2007/10/escogiendo-licencia.html">Dominio Público al igual que este blog</a>.</p>
-<p>Otro día espero escribir sobre como subtitular en Linux después de lo aprendido con este vídeo.</p>
-    
-  </div>
-</article>
-      
-      
-        
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Regresar al índice
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-06-30 00:00:00" class="md-ellipsis">30 de junio de 2025</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
           
-
-
-
-<nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../29/">29</a> <a class="md-pagination__link" href="../30/">30</a> <span class="md-pagination__current">31</span> <a class="md-pagination__link" href="../32/">32</a> <a class="md-pagination__link" href="../33/">33</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
-</nav>
-        
-      
+        </div>
+      </div>
     </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+
+<h1 id="estructura-de-directorios-de-una-libreria-python">Estructura de directorios de una librería Python</h1>
+<p>En Python hay fundamentalmente dos recomendaciones distintas de cómo estructurar los directorios (<em>project layout</em>) de una librería o herramienta, que queramos distribuir.</p>
+<p>No incluyo en este artículo estructuras para <em>proyectos</em>. Por ejemplo una aplicación web monorepo con el <em>backend</em> y el <em>front</em> en el mismo repositorio. Proyectos que quieren desarrollar distintas herramientas bajo el mismo namespace. U otros casos particulares.</p>
+<h2 id="sin-directorio-raiz">Sin directorio raíz</h2>
+<p>Es la estructura más sencilla, especialmente para proyectos pequeños o scripts individuales.</p>
+<p>En algunos artículos llaman a esta estructura <em>flat layout</em>. Esto induce a error, porqué <em>flat layout</em> es el nombre más usado para la siguiente estructura que veremos. El artículo es antiguo pero en realpython llaman a esto <a href="https://realpython.com/python-application-layouts/#one-off-script">one-off-script</a></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>my_project/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── __init__.py
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── my_project.py
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── requirements.txt
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── tests/
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   └── test_my_project.py
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── README.md
+</span></code></pre></div>
+<p>Tiene a favor que es simple, no requiere subdirectorios, ni siquiera el fichero <code>__init__.py</code>, y todo está a la vista.</p>
+<p>Pero nunca deberíamos usarlo. El <em>boilerplate</em> de generar una estructura mejor tiene un coste cero si usamos un cookiecutter, y con esta estructura enseguida aparecen problemas de cómo organizar el código, empaquetar el proyecto y a la mínima tendremos problemas con los <code>import</code>.</p>
+<h2 id="modulo-en-la-raiz-flat-layout">Módulo en la raíz (flat layout)</h2>
+<p>También llamado <em>adhoc layout</em>.</p>
+<p>Es probablemente la más usada. El paquete (directorio) principal del proyecto <a href="https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#flat-layout">está directamente en la raíz</a>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>my-project/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── my_project/
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── __init__.py
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   ├── main.py
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   └── utils.py
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── tests/
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── test_main.py
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   └── test_utils.py
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├───.github
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   └───workflows
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├───docs
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   └───mkdocs.yml
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>├── pyproject.toml
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>└── README.md
+</span></code></pre></div>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Más directa que <code>src layout</code> al eliminar un nivel de anidación.</li>
+<li>No es necesario instalar (<code>pip install</code>) para ejecutar el código.</li>
+<li>Muchos proyectos siguen este patrón.</li>
+</ul>
+<p><strong>Contras:</strong></p>
+<ul>
+<li><strong>Riesgo de <em>import</em> locales:</strong> Existe mayor riesgo de que Python importe el módulo en desarrollo (en el <em>source tree</em> digamos) en lugar del módulo instalado. Esto puede llevar a errores difíciles de detectar a la hora de ejecutar los tests, empaquetar e instalar el proyecto.</li>
+<li>No es tan explícito como <code>src layout</code> sobre lo que se empaqueta y lo que no.</li>
+</ul>
+<h2 id="subdirectorio-src-src-layout">Subdirectorio <code>src/</code> (src layout)</h2>
+<p>Es una de <a href="https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout">las más recomendadas</a>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>my-project/
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── src/
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   └── my_project/
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│       ├── __init__.py
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│       ├── main.py
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│       └── utils.py
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>├── tests/
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   ├── test_main.py
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   └── test_utils.py
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>├───.github
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   └───workflows
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>├───docs
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   └───mkdocs.yml
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>├── pyproject.toml
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>└── README.md
+</span></code></pre></div>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Al colocar el código en <code>src/my_project/</code>, el intérprete de Python siempre importará la versión instalada del paquete, no la versión en desarrollo en el directorio raíz. Esto ayuda a asegurar que el comportamiento en desarrollo sea el mismo que en producción.</li>
+<li><strong>Claridad de empaquetado:</strong> Deja claro qué partes del proyecto son el código fuente que se va a empaquetar y distribuir. Otros archivos (tests, documentación, configuración de desarrollo) se mantienen fuera del paquete.</li>
+<li><strong>Fomenta buenas prácticas:</strong> Al requerir una "instalación" (aunque sea editable) para que el código funcione correctamente en desarrollo.</li>
+<li><strong>Mejor aislamiento de pruebas:</strong> Los tests se colocan fuera del directorio <code>src/</code>, lo que significa que no se incluyen en el paquete distribuido y evita dependencias de prueba en el código de producción.</li>
+<li><a href="https://docs.astral.sh/uv/concepts/projects/init/#libraries">Es el que prefiere uv</a></li>
+</ul>
+<p><strong>Contras:</strong></p>
+<ul>
+<li>Requiere más boilerplate. Para ejecutar el código se requiere una instalación editable o ajustar el <code>PYTHONPATH</code>.</li>
+<li>La carpeta <code>src/</code> adicional puede ser redundante.</li>
+</ul>
+<h2 id="variantes-y-comentarios">Variantes y Comentarios</h2>
+<ul>
+<li><a href="https://simpleisbetterthancomplex.com/tutorial/2021/06/27/how-to-start-a-production-ready-django-project.html">Alguna gente prefiere introducir un nivel extra</a> de indirección donde por ejemplo incluir <em>venv</em></li>
+<li>Cuando escojamos un nombre para el proyecto, si vamos a publicarlo deberíamos comprobar que el nombre no está cogido en PyPy.</li>
+<li><a href="https://cjolowicz.github.io/posts/hypermodern-python-01-setup/#creating-a-package-in-src-layout">Separadores de nombre</a>. Los módulos y paquetes de Python no admiten <em>hyphens</em>, <code>-</code>, sólo <em>underscore</em>, <code>_</code>. Es habitual usar <code>kebab-case</code> (<em>hyphenated</em>) para el nombre del repositorio (carpeta raíz) y <code>snake_case</code> (<em>underscored</em>) para los paquetes y módulos.</li>
+<li>Alguna gente considera que lo correcto es empaquetar los tests dentro del <em>distributable package</em>. Yo no.</li>
+</ul>
+<h2 id="mi-preferida">Mi preferida</h2>
+<p>Mi preferida es <em>scr layout</em>.</p>
+<p>Las funcionalidades de los editores (<em>compact folders</em>, <em>quick open</em>) y herramientas cómo <code>uv</code> o <code>cookiecutter</code> reducen las incomodidades que introduce esta estructura.</p>
+<p>Visual y organizativamente me gusta cómo queda la raíz del proyecto.</p>
+<p>Me molesta mucho perder tiempo en los "esto no puede estar pasando", y esta estructura minimiza esos <em>subtle bugs</em></p>
+<p>Creo que el simple hecho de preocuparse de entenderla ayuda a que la gente no se líe a tocar <code>sys.path</code>, o probar con <code>python -m</code> a ver si sus <code>import</code> funcionan de esa forma. Aunque de "los scripts dentro de proyectos" hablaremos en otro artículo.</p>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><a href="https://hynek.me/articles/testing-packaging/">Testing &amp; Packaging</a>. <strong>Muy buena</strong> explicación del problema del import local frente al import del código instalado al testear y distribuir.</li>
+<li><a href="https://github.com/astral-sh/uv/issues/8178">Ticket de uv en el que se discute la estructura por defecto de los proyectos</a>.</li>
+<li><a href="https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/">src layout vs flat layout</a> en Python Packaging User Guide</li>
+<li><a href="https://blog.ionelmc.ro/2014/05/25/python-packaging/">Packaging a python library</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
   </div>
 
           
@@ -1112,10 +1144,10 @@ Aceptamos y cuando esté agregado, lo seleccionamos y le damos a «bajar». El p
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
       
     
   </body>
