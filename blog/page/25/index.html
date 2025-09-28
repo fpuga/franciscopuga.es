@@ -59,7 +59,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -289,6 +289,7 @@
   
   <span class="md-ellipsis">
     Home
+    
   </span>
   
 
@@ -339,6 +340,7 @@
   
   <span class="md-ellipsis">
     Blog
+    
   </span>
   
 
@@ -424,6 +426,7 @@
   
   <span class="md-ellipsis">
     Archivo
+    
   </span>
   
 
@@ -451,6 +454,7 @@
   
   <span class="md-ellipsis">
     2025
+    
   </span>
   
 
@@ -474,6 +478,7 @@
   
   <span class="md-ellipsis">
     2021
+    
   </span>
   
 
@@ -497,6 +502,7 @@
   
   <span class="md-ellipsis">
     2020
+    
   </span>
   
 
@@ -520,6 +526,7 @@
   
   <span class="md-ellipsis">
     2019
+    
   </span>
   
 
@@ -543,6 +550,7 @@
   
   <span class="md-ellipsis">
     2018
+    
   </span>
   
 
@@ -566,6 +574,7 @@
   
   <span class="md-ellipsis">
     2017
+    
   </span>
   
 
@@ -589,6 +598,7 @@
   
   <span class="md-ellipsis">
     2016
+    
   </span>
   
 
@@ -612,6 +622,7 @@
   
   <span class="md-ellipsis">
     2015
+    
   </span>
   
 
@@ -635,6 +646,7 @@
   
   <span class="md-ellipsis">
     2014
+    
   </span>
   
 
@@ -658,6 +670,7 @@
   
   <span class="md-ellipsis">
     2013
+    
   </span>
   
 
@@ -681,6 +694,7 @@
   
   <span class="md-ellipsis">
     2012
+    
   </span>
   
 
@@ -704,6 +718,7 @@
   
   <span class="md-ellipsis">
     2011
+    
   </span>
   
 
@@ -727,6 +742,7 @@
   
   <span class="md-ellipsis">
     2010
+    
   </span>
   
 
@@ -750,6 +766,7 @@
   
   <span class="md-ellipsis">
     2009
+    
   </span>
   
 
@@ -773,6 +790,7 @@
   
   <span class="md-ellipsis">
     2008
+    
   </span>
   
 
@@ -796,6 +814,7 @@
   
   <span class="md-ellipsis">
     2007
+    
   </span>
   
 
@@ -847,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#traducir-automaticamente-ficheros-po" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traducir automáticamente ficheros .po
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cifrar-una-particion-o-disco-duro-externo-en-gnulinux" class="md-nav__link">
     <span class="md-ellipsis">
       Cifrar una partición o disco duro externo en GNU/Linux
@@ -882,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#en-defensa-de-los-derechos-fundamentales-de-internet" class="md-nav__link">
-    <span class="md-ellipsis">
-      En defensa de los derechos fundamentales de Internet
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -912,7 +931,33 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2010-01-10 00:00:00">10 de enero de 2010</time></li>
+          <time datetime="2010-02-22 00:00:00+00:00">22 de febrero de 2010</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="traducir-automaticamente-ficheros-po"><a class="toclink" href="../../2010/02/22/traducir-automaticamente-ficheros-po/">Traducir automáticamente ficheros .po</a></h2>
+<p>Ultimamente estoy dedicando parte de mi tiempo libre a algunos trabajos relacionados con la traducción. En concreto he portado a windows la última versión del <a href="http://gtranslator.sourceforge.net/">software de traducción gtranslator</a> y estoy participando en un proyecto para <a href="http://producingoss.ghandalf.org/">traducir de forma colaborativa al gallego el libro Producing Open Source Software</a>.</p>
+<p>Uno de los aspectos interesantes del proyecto poss-gl es que estamos usando una metodología propia de la traducción de software para un libro, con bastante buen resultado. Cada capítulo del libro se ha convertido en un <a href="http://es.wikipedia.org/wiki/Gettext">fichero .po</a>, que son los ficheros estándar de traducción en Software Libre. De este modo en lugar de ir traduciendo cada línea con un procesador de texto podemos emplear una herramienta avanzada como gtranslator para ello. Una de las características de gtranslator es que se puede visualizar además del texto original el contenido de otro fichero .po que contenga por ejemplo la traducción a un tercer idioma que nos sirva para comparar como han hecho otros traductores.</p>
+<p>Basándome en esa posibilidad acabo de escribir un programita que permite traducir automaticamente un fichero po haciendo consultas a un <a href="http://www.opentrad.com/">servicio de traducción web</a>. Las traducciones automáticas, a no ser que sean entre lenguas similares como castellano y gallego, son bastante malas pero, cargándolas como idioma alternativo en gtranslator pueden sernos de ayuda en nuestra propia traducción.</p>
+<p>El programa se trata de un script programado en python y liberado con licencia GPL v3 que podeis <a href="http://repo.or.cz/w/fpuga.git/blob_plain/HEAD:/localizacion/translatePO.py">descargar directamente</a> desde <a href="http://repo.or.cz/w/fpuga.git">mi repositorio de software</a>. Para que funcione es necesario instalar también los módulos de python <a href="http://bitbucket.org/izi/polib/src/">polib</a> y <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a>.</p>
+<p>Para ejecutarlo escribiremos en una consola de linux:</p>
+<p><code>python translatePO.py -d [dirección] -i [fichero.po]</code></p>
+<p>La dirección indica de que idioma a que idioma queremos traducirlo, por ejemplo en-es para traducir de inglés a castellano o gl-fr para hacerlo de gallego a francés.</p>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2010-01-10 00:00:00+00:00">10 de enero de 2010</time></li>
         
         
       </ul>
@@ -992,7 +1037,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2009-12-28 00:00:00">28 de diciembre de 2009</time></li>
+          <time datetime="2009-12-28 00:00:00+00:00">28 de diciembre de 2009</time></li>
         
         
       </ul>
@@ -1017,7 +1062,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2009-12-26 00:00:00">26 de diciembre de 2009</time></li>
+          <time datetime="2009-12-26 00:00:00+00:00">26 de diciembre de 2009</time></li>
         
         
       </ul>
@@ -1049,7 +1094,7 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2009-12-19 00:00:00">19 de diciembre de 2009</time></li>
+          <time datetime="2009-12-19 00:00:00+00:00">19 de diciembre de 2009</time></li>
         
         
       </ul>
@@ -1079,39 +1124,6 @@ John no abrió la boca.<br />
 – Pero los clientes de Boeing son industrias. ¿Qué gana?<br />
 – La batalla ha empezado. Todas las empresas Alliance están compitiendo con las de Team Advange. Todas las personas que viajan con una línea aérea Team Advantage, comprarán un ordenador Compaq en lugar de un IBM. Boeing está con nosotros, porque, si no, United Airlines no le compra nada.</p>
 </blockquote>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-12-07 00:00:00">7 de diciembre de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="en-defensa-de-los-derechos-fundamentales-de-internet"><a class="toclink" href="../../2009/12/07/en-defensa-de-los-derechos-fundamentales-de-internet/">En defensa de los derechos fundamentales de Internet</a></h2>
-<p>Ante la inclusión en el <a href="http://www.meh.es/es-ES/Prensa/En%20Portada/2009/Paginas/anteproyectodeLeydEconomiaSostenible.aspx"><strong>Anteproyecto de Ley de Economía Sostenible</strong></a> de modificaciones legislativas que afectan <a href="http://www.rtve.es/noticias/20091201/cultura-podra-cerrar-las-webs-descarga-sin-necesidad-autorizacion-judicial/303790.shtml">al libre ejercicio de las libertades de expresión, información y el derecho de acceso a la cultura a través de Internet</a>, los periodistas, bloggers, usuarios, profesionales y creadores de internet <a href="http://www.rtve.es/noticias/20091202/red-se-une-contra-cierre-paginas-descargas-sin-autorizacion-judicial/303937.shtml">manifestamos nuestra firme oposición al proyecto</a>, y declaramos que:</p>
-<ol>
-<li>Los <strong>derechos de autor</strong> no pueden situarse por encima de los <strong>derechos fundamentales de los ciudadanos</strong>, como el derecho a la privacidad, a la seguridad, a la presunción de inocencia, a la tutela judicial efectiva y a la libertad de expresión.</li>
-<li>La <strong>suspensión de derechos fundamentales es y debe seguir siendo competencia exclusiva del poder judicial</strong>. Ni un cierre sin sentencia. Este anteproyecto, en contra de lo establecido en el artículo 20.5 de la Constitución, pone en manos de un órgano no judicial -un organismo dependiente del ministerio de Cultura-, la potestad de impedir a los ciudadanos españoles el acceso a cualquier página web.</li>
-<li>La <strong>nueva legislación creará inseguridad jurídica</strong> en todo el sector tecnológico español, perjudicando uno de los pocos campos de desarrollo y futuro de nuestra economía, entorpeciendo la creación de empresas, introduciendo trabas a la libre competencia y ralentizando su proyección internacional.</li>
-<li>La <strong>nueva legislación propuesta amenaza a los nuevos creadores y entorpece la creación cultural</strong>. Con Internet y los sucesivos avances tecnológicos se ha democratizado extraordinariamente la creación y emisión de contenidos de todo tipo, que ya no provienen prevalentemente de las industrias culturales tradicionales, sino de multitud de fuentes diferentes.</li>
-<li>Los autores, como todos los trabajadores, tienen derecho a vivir de su trabajo con nuevas ideas creativas, modelos de negocio y actividades asociadas a sus creaciones. <strong>Intentar sostener con cambios legislativos a una industria obsoleta que no sabe adaptarse a este nuevo entorno no es ni justo ni realista</strong>. Si su modelo de negocio se basaba en el control de las copias de las obras y en Internet no es posible sin vulnerar derechos fundamentales, deberían buscar otro modelo.</li>
-<li>Consideramos que <strong>las industrias culturales necesitan para sobrevivir alternativas modernas, eficaces, creíbles y asequibles y que se adecuen a los nuevos usos sociales</strong>, en lugar de limitaciones tan desproporcionadas como ineficaces para el fin que dicen perseguir.</li>
-<li><strong>Internet debe funcionar de forma libre y sin interferencias políticas</strong> auspiciadas por sectores que pretenden perpetuar obsoletos modelos de negocio e imposibilitar que el saber humano siga siendo libre.</li>
-<li><strong>Exigimos que el Gobierno garantice por ley la neutralidad de la Red en España</strong>, ante cualquier presión que pueda producirse, como marco para el desarrollo de una economía sostenible y realista de cara al futuro.</li>
-<li>Proponemos una verdadera reforma del derecho de propiedad intelectual orientada a su fin: <strong>devolver a la sociedad el conocimiento</strong>, <a href="http://lasindias.net/indianopedia/devolucionismo">promover el dominio público</a> y limitar los abusos de las entidades gestoras.</li>
-<li><strong>En democracia las leyes y sus modificaciones deben aprobarse tras el oportuno debate público y habiendo consultado previamente a todas las partes implicadas</strong>. No es de recibo que se realicen cambios legislativos que afectan a derechos fundamentales en una ley no orgánica y que versa sobre otra materia.</li>
-</ol>
-<p>Por favor difunde este manifiesto en tu blog, twitter, redes sociales, foros o imprímelo y repártelo.</p>
     
   </div>
 </article>
@@ -1156,7 +1168,7 @@ John no abrió la boca.<br />
     
     
     <a href="https://github.com/fpuga" target="_blank" rel="noopener" title="fpuga on GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
     
@@ -1164,7 +1176,7 @@ John no abrió la boca.<br />
     
     
     <a href="https://x.com/fpuga" target="_blank" rel="noopener" title="fpuga on X" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
     </a>
   
     
@@ -1172,7 +1184,7 @@ John no abrió la boca.<br />
     
     
     <a href="https://stackoverflow.com/users/930271/francisco-puga" target="_blank" rel="noopener" title="fpuga on StackOverflow" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M290.7 311 95 269.7 86.8 309l195.7 41zm51-87L188.2 95.7l-25.5 30.8 153.5 128.3zm-31.2 39.7L129.2 179l-16.7 36.5L293.7 300zM262 32l-32 24 119.3 160.3 32-24zm20.5 328h-200v39.7h200zm39.7 80H42.7V320h-40v160h359.5V320h-40z"/></svg>
     </a>
   
     
@@ -1183,7 +1195,7 @@ John no abrió la boca.<br />
       
     
     <a href="hhttps://www.linkedin.com/in/francisco-puga-b25a8361/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
     </a>
   
 </div>
@@ -1198,10 +1210,10 @@ John no abrió la boca.<br />
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>
