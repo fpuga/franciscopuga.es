@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#modelado-de-datos-booleanos-en-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelado de datos booleanos en la base de datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#diy-reparar-el-mando-a-distancia-con-papel-albal" class="md-nav__link">
     <span class="md-ellipsis">
       DIY: Reparar el mando a distancia con papel albal
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#atom-autocompletado-de-codigo-en-python" class="md-nav__link">
-    <span class="md-ellipsis">
-      Atom: Autocompletado de código en python
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,41 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2017-02-09 00:00:00+00:00">9 de febrero de 2017</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="modelado-de-datos-booleanos-en-la-base-de-datos"><a class="toclink" href="../../2017/02/09/modelado-de-datos-booleanos-en-la-base-de-datos/">Modelado de datos booleanos en la base de datos</a></h2>
+<p>Cuando definimos la información que un usuario puede visualizar o modificar a través de un formulario nos encontraremos datos aparentemente booleanos. Por ejemplo: ¿Hay un pozo en esta aldea?.</p>
+<p>La primera aproximación para implementar esta información es poner un checkbox en el formulario y definir el campo como booleano en la base de datos.</p>
+<p><code>CREATE TABLE aldea (id serial, pozo boolean);</code></p>
+<p>Haciéndolo de este modo existen varios posibles problemas:</p>
+<ul>
+<li>A nivel usabilidad. Que pasa si el usuario no sabe si hay un pozo. Lógicamente dejará el checkbox sin marcar, pero cuando se revise esa información no se podrá saber si a conciencia se dejo en blanco indicando que no había pozo, o si se desconocía el dato.</li>
+<li>A nivel implementación. Por defecto, a no ser que la lógica implementada en cliente lo gestione de otra forma, en la base de datos almacenaremos un valor NULL y no un valor FALSE. Al tener valores nulos las queries que hagamos se pueden complicar, por ejemplo un <em>SELECT * FROM aldea WHERE pozo IS FALSE;</em> no nos devolverá los valores nulos. Si empleamos la tabla para hacer un informe o exportarla a una hoja de cálculo tendremos que lidiar con los nulos, …</li>
+</ul>
+<p>Por tanto cuando modelemos una información que parezca binaria, preguntémonos (y preguntemos al cliente) si es necesario distinguir entre falso, y desconocer el dato. Si estamos en la segunda situación debemos huír de usar checkboxes y emplear otro tipo de widget, como un combobox donde el usuario pueda escoger «Existe», «No existe» o dejar en blanco si no conoce el dato. A nivel implementación la información del combobox la guardaremos en general como un texto o un tipo enumerado. Y si eres un producto owner que usa algún tipo de documento para definir el modelo de datos a los desarrolladores asegurate siempre de especificar esta información.</p>
+<p>Habrá situaciones en las que aún presentando al usuario la información mediante un combo, nos interese modelar el campo como un booleano. En este caso la lógica por encima de la base de datos sería la responsable de traducir el campo en blanco por un nulo, el ‘Existe’ por un true y el ‘No existe’ por un false.</p>
+<p>Cuando modelemos un campo en la base de datos que sea verdaderamente binario para evitar confusiones deberíamos implementarlo de esta forma.</p>
+<p><code>&lt;br&gt;&lt;/br&gt;CREATE TABLE aldea (&lt;br&gt;&lt;/br&gt;id serial,&lt;br&gt;&lt;/br&gt;pozo boolean NOT NULL DEFAULT false&lt;br&gt;&lt;/br&gt;)&lt;br&gt;&lt;/br&gt;</code></p>
+<h4 id="addendum"><a class="toclink" href="../../2017/02/09/modelado-de-datos-booleanos-en-la-base-de-datos/#addendum">Addendum</a></h4>
+<p>Cuando trabajamos con campos booleanos que admiten el valor nulo nos podemos encontrar un problema adicional al hacer migraciones de la base de datos. Imaginemos que tenemos un campo <em>contador</em> de tipo <em>boolean</em>, y que en la base de datos tenemos valores a <em>true</em>, <em>false</em> y <em>null</em>. Si a posteriori decidimos cambiar contador por un sistema de medida, con opciones como Contador, Manual, Volumétrico, … hacer la migración hacia adelante será sencillo.</p>
+<p><code>&lt;br&gt;&lt;/br&gt;UPDATE myschema.mytable SET sistema_medicion = 'Contador' WHERE contador IS true;&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Pero el revert no sería tan sencillo, porque habremos perdido la información de nulos y false.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1088,51 +1123,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2016-05-08 00:00:00+00:00">8 de mayo de 2016</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="atom-autocompletado-de-codigo-en-python"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/">Atom: Autocompletado de código en python</a></h2>
-<p>Al margen del <a href="https://confluence.jetbrains.com/display/PYH/Code+completion">«Code Completion» de PyCharm</a>, y algún otro, el resto de editores/IDEs proveen autocompletado a través de librerías o «servicios externos». Para el caso de python hay fundamentalmente dos, <a href="https://github.com/python-rope/rope">rope</a> y <a href="https://jedi.readthedocs.io/en/latest/index.html">jedi</a>. Rope está más enfocada a Refactoring y Jedi a Autocompletado, por tanto las dos son complementarias. En la actualidad varios editores que usaban rope están migrando a jedi, su autor ha hecho una <a href="http://jedidjah.ch/code/2013/1/19/why_jedi_not_rope/">comparación defendiendo su librería</a>.</p>
-<p>Además de estas librerías cada editor suele proporcionar un plugin base para autocompletado (<a href="https://atom.io/packages/autocomplete-plus">autocomplete-plus</a> en atom, <a href="http://auto-complete.org/">auto-complete</a> en emacs) y plugins adicionales para cada lenguaje concreto que actúan como wrapper de las librerías base (rope, jedi,…). Por ejemplo en atom tenemos <a href="https://atom.io/packages/autocomplete-python">autocomplete-python</a> que es un wrapper para jedi.</p>
-<h3 id="instalacion"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/#instalacion">Instalación</a></h3>
-<p>Primero hay que instalar jedi sea a nivel global como en el ejemplo, o dentro de un virtualenv.</p>
-<p><code>&lt;br&gt;&lt;/br&gt;sudo pip install jedi&lt;br&gt;&lt;/br&gt;</code></p>
-<p>Luego se instala el plugin de <a href="https://atom.io/packages/autocomplete-python">autocomplete-pyhon</a> (que es el más actualizado de los varios que hay). Si usas virtualenv también debería funcionar sin problemas pero si usas algo como virtualenvwrapper donde tu módulo está en un directorio distinto al «entorno virtual de python» puedes haber más problemas.</p>
-<p>Lanzado atom desde un virtualenv activado siempre funciona correctamente. Si lo lanzas de otra forma hay que configurar la opción de configuración <em>Python executable path</em> del plugin con algo como:</p>
-<p><code>&lt;br&gt;&lt;/br&gt;PATH_TO_VIRTUALENV_WRAPPERS_FOLDER/$PROJECT_NAME/bin/python</code></p>
-<p>o</p>
-<p>PATH_TO_VIRTUALENV_WRAPPERS_FOLDER/$PROJECT/bin/python</p>
-<p>Donde PATH_TO_VIRTUALENV_WRAPPERS_FOLDER es la ruta absoluta al directorio donde se guardan todos los entornos virtuales de virtualenwrapper y $PROJECT_NAME y $PROJECT son cadenas que debes escribir tal cual. Son variables que entiende el plugin. De la documentación parece deducirse que lo que hay que usar es $PROJECT pero a mi me ha funcionado sólo con $PROJECT_NAME. Además el directorio padre que se añade a atom a través del «Add project folder» debería llamarse igual que el virtualenv para que $PROJECT_NAME tome el valor correcto y puedas usar la misma configuración para distintos proyectos.</p>
-<h3 id="uso"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/#uso">Uso</a></h3>
-<p>Por la naturaleza dinámica de python muchas veces jedi no es capaz de detectar el tipo de datos de un objeto. Pero podemos ayudarlo <a href="https://jedi.readthedocs.io/en/latest/docs/features.html#recipes">documentado el método</a>. Por ejemplo en un caso como el del ejemplo siguiente con una vista de pyramid, jedi no será capaz de determinar el tipo de datos del parámetro request.</p>
-<p><code>&lt;br&gt;&lt;/br&gt;@view_config(route_name='my_route')&lt;br&gt;&lt;/br&gt;def my_route(request):&lt;br&gt;&lt;/br&gt;  pass&lt;br&gt;&lt;/br&gt;</code></p>
-<p>Pero si hacemos lo siguiente si que autocompletará correctamente los métodos de request:</p>
-<p><code>&lt;br&gt;&lt;/br&gt;def cultivos_get(request):&lt;br&gt;&lt;/br&gt;    """&lt;br&gt;&lt;/br&gt;    :type request: pyramid.request.Request&lt;br&gt;&lt;/br&gt;    """&lt;br&gt;&lt;/br&gt;    pass&lt;br&gt;&lt;/br&gt;</code></p>
-<p>No lo he probado con python 3 para ver si soporta el <a href="http://blog.jetbrains.com/pycharm/2015/11/python-3-5-type-hinting-in-pycharm-5/">type hinting</a> pero este <a href="https://github.com/davidhalter/jedi/pull/661">issue</a> me hace suponer que si.<br />
-<strong>Teclas principales</strong></p>
-<ul>
-<li>Sugerencias de autocompletado. <code>Ctrl+space</code> Cursores y tab/intro para escoger y aceptar sugerencia</li>
-<li>Go to definition: <code>Ctrl+Alt+G</code></li>
-<li>Show usages: <code>Ctrl+Shift+P show usages</code></li>
-<li>Renombrado en varios ficheros a la vez: Con el cursor encima del símbolo. <code>Ctrl+Shift+P rename</code></li>
-</ul>
-<h3 id="conclusiones"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/#conclusiones">Conclusiones</a></h3>
-<p>Las funcionalidades que proporciona son de todas formas muy justas porqué a no ser que documentes los métodos, la mayoría de veces no es capaz de inferir el tipo de datos de una variable. Además las funciones de <a href="https://github.com/atom/autocomplete-plus">autocompletado normal</a> de atom incluyen habitualmente opciones que no tienen porque corresponder con métodos o propiedades reales del objeto. Y si se desactiva el autocompletado normal para los ficheros python, tendremos muy pocas sugerencias.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1140,7 +1130,7 @@
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../4/">4</a> <a class="md-pagination__link" href="../5/">5</a> <span class="md-pagination__current">6</span> <a class="md-pagination__link" href="../7/">7</a> <a class="md-pagination__link" href="../8/">8</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../4/">4</a> <a class="md-pagination__link" href="../5/">5</a> <span class="md-pagination__current">6</span> <a class="md-pagination__link" href="../7/">7</a> <a class="md-pagination__link" href="../8/">8</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../41/">41</a>
 </nav>
         
       

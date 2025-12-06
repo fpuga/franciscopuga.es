@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#como-usar-git-tras-no-haber-seguido-el-flujo-de-trabajo-idoneo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como usar GIT tras no haber seguido el flujo de trabajo idóneo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#siglibre2011-taller-linked-data" class="md-nav__link">
     <span class="md-ellipsis">
       SigLibre2011: Taller Linked Data
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#libro-el-padrino" class="md-nav__link">
-    <span class="md-ellipsis">
-      Libro: El Padrino
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,67 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-05-15 00:00:00+00:00">15 de mayo de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="como-usar-git-tras-no-haber-seguido-el-flujo-de-trabajo-idoneo"><a class="toclink" href="../../2011/05/15/como-usar-git-tras-no-haber-seguido-flujo-trabajo-idoneo/">Como usar GIT tras no haber seguido el flujo de trabajo idóneo</a></h2>
+<p>GIT es una herramienta genial cuando eres un desarrollador disciplinado y sigues el flujo de trabajo recomendado:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;$ git checkout -b nuevaFuncionalidad&lt;br&gt;&lt;/br&gt;... programar&lt;br&gt;&lt;/br&gt;$ git add -u # añadimos automaticamente todos los ficheros indexados que han sido modificados&lt;br&gt;&lt;/br&gt;$ git add fichero # añadimos los no indexados&lt;br&gt;&lt;/br&gt;$ git commit -m "Mensaje del commit"&lt;br&gt;&lt;/br&gt;... más commits&lt;br&gt;&lt;/br&gt;$ git checkout master&lt;br&gt;&lt;/br&gt;$ git pull --rebase&lt;br&gt;&lt;/br&gt;$ git checkout nuevaFuncionalidad&lt;br&gt;&lt;/br&gt;$ git rebase master&lt;br&gt;&lt;/br&gt;... (solucionar posibles conflictos)&lt;br&gt;&lt;/br&gt;$ git checkout master&lt;br&gt;&lt;/br&gt;$ git rebase nuevaFuncionalidad&lt;br&gt;&lt;/br&gt;$ git push&lt;br&gt;&lt;/br&gt;</code><br />
+Pero si hay algo que me gusta, y aquí se nota que es una herramienta hecha por desarrolladores para desarrolladores, es lo bien que se comporta cuando no eres tan disciplinado o has metido la pata. Vayamos con un ejemplo (casi) real que se inicia con un viaje en tren Coruña – Vigo.</p>
+<p>El estado del repositorio al empezar era este:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;# On branch master&lt;br&gt;&lt;/br&gt;# Your branch is ahead of 'origin/master' by 1 commit.&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Changes to be committed:&lt;br&gt;&lt;/br&gt;#   (use "git reset HEAD ..." to unstage)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;#  modified:   config/text_en.properties&lt;br&gt;&lt;/br&gt;# modified:   config/text_es.properties&lt;br&gt;&lt;/br&gt;# modified:   config/text_gl.properties&lt;br&gt;&lt;/br&gt;# new file:   src/es/udc/cartolab/gvsig/tocextra/ReloadVectorialDBLayerTocMenuEntry.java&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Untracked files:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to include in what will be committed)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;#    bin/&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Se trata de la extensión para <a href="http://www.gvsig.org/web/">gvSIG</a>, <a href="http://gitorious.org/exttocextra">extTOCextra</a> desarrollada inicialmente por <a href="http://valdaris.com/">Javi</a> y liberada por <a href="http://cartolab.udc.es">Cartolab</a> como parte del proyecto <a href="http://cartolab.udc.es/cartoweb/gvsig-eiel/">gvSIG-EIEL</a>. Como vemos en algún momento del pasado se hizo un commit directamente sobre master que no se subió al repositorio y tenemos cuatro ficheros preparados para hacer un commit que todavía no se ha hecho.</p>
+<p>En el viaje de vuelta Vigo – Coruña, nuestro desarrollador se pone a acabar lo que había empezado a la ida, hace un git status y se encuentra que el estado del repositorio es este:<br />
+<code>&lt;br&gt;&lt;/br&gt;# On branch master&lt;br&gt;&lt;/br&gt;# Your branch is ahead of 'origin/master' by 1 commit.&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Changes to be committed:&lt;br&gt;&lt;/br&gt;#   (use "git reset HEAD ..." to unstage)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;#  modified:   config/text_en.properties&lt;br&gt;&lt;/br&gt;# modified:   config/text_es.properties&lt;br&gt;&lt;/br&gt;# modified:   config/text_gl.properties&lt;br&gt;&lt;/br&gt;# new file:   src/es/udc/cartolab/gvsig/tocextra/ReloadVectorialDBLayerTocMenuEntry.java&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Changed but not updated:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to update what will be committed)&lt;br&gt;&lt;/br&gt;#   (use "git checkout -- ..." to discard changes in working directory)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;#    modified:   .classpath&lt;br&gt;&lt;/br&gt;#    modified:   config/text_es.properties&lt;br&gt;&lt;/br&gt;# modified:   src/es/udc/cartolab/gvsig/tocextra/ShowActivesTocMenuEntry.java&lt;br&gt;&lt;/br&gt;#   modified:   src/es/udc/cartolab/gvsig/tocextra/TocExtraExtension.java&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Untracked files:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to include in what will be committed)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# bin/&lt;br&gt;&lt;/br&gt;#  src/es/udc/cartolab/gvsig/tocextra/preferences/&lt;br&gt;&lt;/br&gt;</code><br />
+A base de memoria y git diff sabemos que:</p>
+<ul>
+<li>El commit ya realizado y los archivos preparados para hacer commit constituyen una nueva funcionalidad (funcionalidad 1) que no nos interesa subir al repo por ahora</li>
+<li>La modificación del .classpath y parte de lo modificado en TocExtraExtension son una pequeña refactorización que tiene sentido en si misma y que nos interesa subir como un commit separado del resto</li>
+<li>El nuevo paqueta es.udc.cartolab.gvsig.tocextra.preferences, y los cambios ShowActivesTocMenuEntry, text_es.properties, y parte de los de TocExtraExtension son parte de una nueva funcionalidad (funcionalidad 2) que se empezó a programar y que todavía no está terminada. Así que nos interesa tenerla en una rama disinta de master para poder seguir trabajando sobre ella.</li>
+</ul>
+<p>A la vista de esto nuestro objetivo será:</p>
+<ul>
+<li>Tener una nueva rama con la funcionalidad 1 conservando la diferencia entre el commit ya realizado y el que tenemos preparado.</li>
+<li>Una rama nueva con la refactorización en un sólo commit para luego traérnosla a master (tras haber sincronizado master con el repo) y subirla</li>
+<li>Una rama nueva con la funcionalidad 2 en tantos commits como queramos para seguir trabajando.</li>
+</ul>
+<p>Para conseguirlo tenemos muchos caminos alternativos, provemos uno en el que usemos distintos comandos que nos permitan ver la potencialidad de git.</p>
+<h5 id="acabamos-el-commit-que-tenemos-preparado"><a class="toclink" href="../../2011/05/15/como-usar-git-tras-no-haber-seguido-flujo-trabajo-idoneo/#acabamos-el-commit-que-tenemos-preparado">Acabamos el commit que tenemos preparado</a></h5>
+<p><code>$ git commit -m "i18n for ReloadVectorialDBLayerTocMenuEntry"</code></p>
+<h5 id="ocultamos-temporalmente-los-cambios-que-nos-quedan-para-que-no-nos-molesten-creamos-una-nueva-rama-para-la-funcionalidad-1-y-limpiamos-el-master"><a class="toclink" href="../../2011/05/15/como-usar-git-tras-no-haber-seguido-flujo-trabajo-idoneo/#ocultamos-temporalmente-los-cambios-que-nos-quedan-para-que-no-nos-molesten-creamos-una-nueva-rama-para-la-funcionalidad-1-y-limpiamos-el-master">Ocultamos temporalmente los cambios que nos quedan para que no nos molesten, creamos una nueva rama para la funcionalidad 1, y limpiamos el master.</a></h5>
+<p><code>&lt;br&gt;&lt;/br&gt;$ git status&lt;br&gt;&lt;/br&gt;# On branch master&lt;br&gt;&lt;/br&gt;# Your branch is ahead of 'origin/master' by 2 commits.&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Changed but not updated:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to update what will be committed)&lt;br&gt;&lt;/br&gt;#   (use "git checkout -- ..." to discard changes in working directory)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# modified:   .classpath&lt;br&gt;&lt;/br&gt;#    modified:   config/text_es.properties&lt;br&gt;&lt;/br&gt;# modified:   src/es/udc/cartolab/gvsig/tocextra/ShowActivesTocMenuEntry.java&lt;br&gt;&lt;/br&gt;#   modified:   src/es/udc/cartolab/gvsig/tocextra/TocExtraExtension.java&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Untracked files:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to include in what will be committed)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# bin/&lt;br&gt;&lt;/br&gt;#  src/es/udc/cartolab/gvsig/tocextra/preferences/&lt;br&gt;&lt;/br&gt;$ git stash&lt;br&gt;&lt;/br&gt;# On branch master&lt;br&gt;&lt;/br&gt;# Your branch is ahead of 'origin/master' by 2 commits.&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Untracked files:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to include in what will be committed)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;#    bin/&lt;br&gt;&lt;/br&gt;#  src/es/udc/cartolab/gvsig/tocextra/preferences/</code></p>
+<p>$ git checkout -b reloadDBLayers<br />
+$ git checkout master<br />
+$ git reset -hard HEAD^^ # Devolvemos la rama master al estado que tenía hace dos commits, es decir, eliminamos los cambios en local</p>
+<h5 id="creamos-una-nueva-rama-para-la-refactorizacion-y-deshacemos-la-ocultacion"><a class="toclink" href="../../2011/05/15/como-usar-git-tras-no-haber-seguido-flujo-trabajo-idoneo/#creamos-una-nueva-rama-para-la-refactorizacion-y-deshacemos-la-ocultacion">Creamos una nueva rama para la refactorización y deshacemos la ocultación</a></h5>
+<p><code>&lt;br&gt;&lt;/br&gt;$ git checkout -b refactor&lt;br&gt;&lt;/br&gt;Switched to a new branch 'refactor'&lt;br&gt;&lt;/br&gt;$ git stash apply&lt;br&gt;&lt;/br&gt;Auto-merging .classpath&lt;br&gt;&lt;/br&gt;CONFLICT (content): Merge conflict in .classpath&lt;br&gt;&lt;/br&gt;Auto-merging config/text_es.properties&lt;br&gt;&lt;/br&gt;CONFLICT (content): Merge conflict in config/text_es.properties&lt;br&gt;&lt;/br&gt;$ git st&lt;br&gt;&lt;/br&gt;# On branch refactor&lt;br&gt;&lt;/br&gt;# Changes to be committed:&lt;br&gt;&lt;/br&gt;#   (use "git reset HEAD ..." to unstage)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;#   modified:   src/es/udc/cartolab/gvsig/tocextra/ShowActivesTocMenuEntry.java&lt;br&gt;&lt;/br&gt;#   modified:   src/es/udc/cartolab/gvsig/tocextra/TocExtraExtension.java&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Unmerged paths:&lt;br&gt;&lt;/br&gt;#   (use "git reset HEAD ..." to unstage)&lt;br&gt;&lt;/br&gt;#   (use "git add/rm ..." as appropriate to mark resolution)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;#    both modified:      config/text_es.properties&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Untracked files:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to include in what will be committed)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# bin/&lt;br&gt;&lt;/br&gt;#  src/es/udc/cartolab/gvsig/tocextra/preferences/&lt;br&gt;&lt;/br&gt;</code><br />
+Ups, el stash apply nos ha provocado un conflicto. ¿Por qué?. Tómate 15 sg para pensarlo y luego sigue leyendo…</p>
+<p>En el commit que teniamos sin hacer había modificaciones sobre text_es.properties, cuando lo comiteamos dejamos algunas modificaciones sobre ese archivo que estaban basadas en los cambios comiteados. Como la rama «refactor» la creamos a partir de un master limpio, sin esas modificaciones cuando ejecutamos stash apply ese fichero se encuentra en un estado distinto al esperado y se produce un conflicto que no es capaz de resolver automáticamente. Si hubieramos creado la rama refactor a partir de la rama reloadDBLayers el conflicto no se hubiera producido, pero en esa rama hay cambios que no nos interesan por lo que no podemos hacer esto.</p>
+<p>Tras la solución del conflicto el estado de repo es este:<br />
+<code>&lt;br&gt;&lt;/br&gt;# On branch refactor&lt;br&gt;&lt;/br&gt;# Changed but not updated:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to update what will be committed)&lt;br&gt;&lt;/br&gt;#   (use "git checkout -- ..." to discard changes in working directory)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;#  modified:   .classpath&lt;br&gt;&lt;/br&gt;#    modified:   config/text_es.properties&lt;br&gt;&lt;/br&gt;# modified:   src/es/udc/cartolab/gvsig/tocextra/ShowActivesTocMenuEntry.java&lt;br&gt;&lt;/br&gt;#   modified:   src/es/udc/cartolab/gvsig/tocextra/TocExtraExtension.java&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Untracked files:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to include in what will be committed)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# bin/&lt;br&gt;&lt;/br&gt;#  src/es/udc/cartolab/gvsig/tocextra/preferences/&lt;br&gt;&lt;/br&gt;# no changes added to commit (use "git add" and/or "git commit -a")&lt;br&gt;&lt;/br&gt;</code></p>
+<h5 id="separar-los-cambios-realizados-sobre-tocextraextensionjava"><a class="toclink" href="../../2011/05/15/como-usar-git-tras-no-haber-seguido-flujo-trabajo-idoneo/#separar-los-cambios-realizados-sobre-tocextraextensionjava">Separar los cambios realizados sobre TocExtraExtension.java</a></h5>
+<p>Como los cambios de la refactorización para el archivo TocExtraExtension.java están mezclados con los de la funcionalidad 2, usaremos la opción <a href="http://nuclearsquid.com/writings/git-add.html">–patch de git add</a> para separarlos separarlos. Esto nos permitirá escoger que cambios (hunks) de un archivo queremos preparar para comitear en lugar de añadir todo el archivo.<br />
+<code>&lt;br&gt;&lt;/br&gt;$ git add -i src/es/udc/cartolab/gvsig/tocextra/TocExtraExtension.java&lt;br&gt;&lt;/br&gt;$ git status&lt;br&gt;&lt;/br&gt;# On branch refactor&lt;br&gt;&lt;/br&gt;# Changes to be committed:&lt;br&gt;&lt;/br&gt;#   (use "git reset HEAD ..." to unstage)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# modified:   src/es/udc/cartolab/gvsig/tocextra/TocExtraExtension.java&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Changed but not updated:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to update what will be committed)&lt;br&gt;&lt;/br&gt;#   (use "git checkout -- ..." to discard changes in working directory)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# modified:   .classpath&lt;br&gt;&lt;/br&gt;#    modified:   config/text_es.properties&lt;br&gt;&lt;/br&gt;# modified:   src/es/udc/cartolab/gvsig/tocextra/ShowActivesTocMenuEntry.java&lt;br&gt;&lt;/br&gt;#   modified:   src/es/udc/cartolab/gvsig/tocextra/TocExtraExtension.java&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Untracked files:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to include in what will be committed)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# bin/&lt;br&gt;&lt;/br&gt;#  src/es/udc/cartolab/gvsig/tocextra/preferences/&lt;br&gt;&lt;/br&gt;$ git add .classpath&lt;br&gt;&lt;/br&gt;$ git commit -m "Small refactor"&lt;br&gt;&lt;/br&gt;[refactor 715b4da] Small refactor&lt;br&gt;&lt;/br&gt; 1 files changed, 18 insertions(+), 14 deletions(-)&lt;br&gt;&lt;/br&gt;</code><br />
+Como se puede ver, hemos hecho commit de sólo una parte de los cambios realizados en TocExtraExtension. Los cambios que quedan son todos los de la funcionalidad 2, así que los comiteamos a una nueva rama<br />
+<code>&lt;br&gt;&lt;/br&gt;$ git checkout -b newFeature&lt;br&gt;&lt;/br&gt;M    config/text_es.properties&lt;br&gt;&lt;/br&gt;M src/es/udc/cartolab/gvsig/tocextra/ShowActivesTocMenuEntry.java&lt;br&gt;&lt;/br&gt;M   src/es/udc/cartolab/gvsig/tocextra/TocExtraExtension.java&lt;br&gt;&lt;/br&gt;Switched to a new branch 'newFeature'&lt;br&gt;&lt;/br&gt;$ git add -u&lt;br&gt;&lt;/br&gt;$ git add src/es/udc/cartolab/gvsig/tocextra/preferences/&lt;br&gt;&lt;/br&gt;$ git status&lt;br&gt;&lt;/br&gt;# On branch newFeature&lt;br&gt;&lt;/br&gt;# Changes to be committed:&lt;br&gt;&lt;/br&gt;#   (use "git reset HEAD ..." to unstage)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# modified:   config/text_es.properties&lt;br&gt;&lt;/br&gt;# modified:   src/es/udc/cartolab/gvsig/tocextra/ShowActivesTocMenuEntry.java&lt;br&gt;&lt;/br&gt;#   modified:   src/es/udc/cartolab/gvsig/tocextra/TocExtraExtension.java&lt;br&gt;&lt;/br&gt;# new file:   src/es/udc/cartolab/gvsig/tocextra/preferences/TOCExtraPreferencesPage.java&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;# Untracked files:&lt;br&gt;&lt;/br&gt;#   (use "git add ..." to include in what will be committed)&lt;br&gt;&lt;/br&gt;#&lt;br&gt;&lt;/br&gt;#   bin/&lt;br&gt;&lt;/br&gt;$ git commit -m "WIP. new feature"&lt;br&gt;&lt;/br&gt;[newFeature eea0ced] WIP. new feature&lt;br&gt;&lt;/br&gt; 4 files changed, 137 insertions(+), 13 deletions(-)&lt;br&gt;&lt;/br&gt; create mode 100644 src/es/udc/cartolab/gvsig/tocextra/preferences/TOCExtraPreferencesPage.java&lt;br&gt;&lt;/br&gt;</code></p>
+<h5 id="subimos-al-repositorio-la-refactorizacion"><a class="toclink" href="../../2011/05/15/como-usar-git-tras-no-haber-seguido-flujo-trabajo-idoneo/#subimos-al-repositorio-la-refactorizacion">Subimos al repositorio la refactorización</a></h5>
+<p><code>&lt;br&gt;&lt;/br&gt;$ git checkout master&lt;br&gt;&lt;/br&gt;$ git pull --rebase&lt;br&gt;&lt;/br&gt;$ git checkout refactor&lt;br&gt;&lt;/br&gt;$ git rebase master&lt;br&gt;&lt;/br&gt;$ git checkout master&lt;br&gt;&lt;/br&gt;$ git merge refactor&lt;br&gt;&lt;/br&gt;$ git push&lt;br&gt;&lt;/br&gt;$ git branch -D refactor&lt;br&gt;&lt;/br&gt;$ git checkout newFeature # para seguir trabajando&lt;br&gt;&lt;/br&gt;</code><br />
+Parece complicado, pero en realidad es más difícil de leer que de escribir una vez coges un poco de costumbre.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1037,35 +1098,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-01-06 00:00:00+00:00">6 de enero de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="libro-el-padrino"><a class="toclink" href="../../2011/01/06/libro-el-padrino/">Libro: El Padrino</a></h2>
-<div style="float:left;margin-right:2em"></div>
-<p>Me quedo con una sensación agridulce después de leer <a href="http://es.wikipedia.org/wiki/El_Padrino_%28novela%29">El Padrino</a>. Ya había leído hace tiempo otro libro de <a href="http://es.wikipedia.org/wiki/Mario_Puzo">Mario Puzo</a> y la sensación había sido la misma. El Padrino es un libro con ritmo, bien escrito, entretenido y fácil de leer que te adentra en un mundo interesante como es el de la <a href="http://es.wikipedia.org/wiki/Mafia">Mafia</a>, pero <a href="http://www.elpais.com/articulo/reportajes/Amante/ganster/querida/obispo/elpepusocdmg/20101010elpdmgrep_7/Tes">se queda corto</a> y al menos a mi no llega a emocionarme.</p>
-<p>Uno de los aspectos más interesantes del libro es el de tratar de ver a la familia Corleone como una <a href="http://lasindias.coop/la-familia-michoacana-modelo-de-file-negra/">filé negra</a>. Hecho que queda claramente reflejado en este pasaje:</p>
-<blockquote>
-<p>Las autoridades nunca les habían dado la justicia solicitada, y en consecuencia las gentes acudían a aquella especie de Robin Hood que era la Mafia. Y la Mafia seguía, hasta cierto punto, desempeñando este papel. Ante cualquier emergencia, a quien se pedía ayuda era al “capomafia” local. Él era su previsor social, su capitán, su protector.<br />
-[…]<br />
-Michael Corleone comprendió por vez primera por qué hombres como su padre habían preferido convertirse en ladrones y asesinos, antes que en miembros de la sociedad legalmente establecida. La pobreza, el miedo y la degradación eran demasiado terribles para que un hombre enérgico pudiera soportarlos. Y algunos emigrantes sicilianos habían supuesto que en América encontrarían una autoridad igualmente cruel.</p>
-</blockquote>
-<p>A pesar de que el libro es bueno, creo que en otro momento me hubiera impacto más puesto por que ahora lo comparo con <a href="http://www.hbo.com/the-wire/index.html">The Wire</a>, y eso es muy difícil de superar.</p>
-<p>Si quieres leerlo puedes comprarlo en tu tienda habitual o cógerlo de <a href="http://compartiresgratis.net/ebooks/37993-el-padrino-mario-puzo-pdf.html">alguien que lo comparte</a>.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1073,7 +1105,7 @@ Michael Corleone comprendió por vez primera por qué hombres como su padre hab�
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../20/">20</a> <a class="md-pagination__link" href="../21/">21</a> <span class="md-pagination__current">22</span> <a class="md-pagination__link" href="../23/">23</a> <a class="md-pagination__link" href="../24/">24</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../20/">20</a> <a class="md-pagination__link" href="../21/">21</a> <span class="md-pagination__current">22</span> <a class="md-pagination__link" href="../23/">23</a> <a class="md-pagination__link" href="../24/">24</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../41/">41</a>
 </nav>
         
       

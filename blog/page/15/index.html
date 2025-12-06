@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#mover-un-torrent-de-transmission-a-otro-ordenador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mover un torrent de transmission a otro ordenador
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#evidencias-cientificas-sobre-gestion-publica-o-privada-en-sanidad" class="md-nav__link">
     <span class="md-ellipsis">
       Evidencias científicas sobre gestión pública o privada en sanidad
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#canciones-de-karaoke-a-partir-de-videos-del-youtube" class="md-nav__link">
-    <span class="md-ellipsis">
-      Canciones de Karaoke a partir de vídeos del Youtube
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,52 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2013-03-24 00:00:00+00:00">24 de marzo de 2013</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="mover-un-torrent-de-transmission-a-otro-ordenador"><a class="toclink" href="../../2013/03/24/mover-torrent-transmission-otro-ordenado/">Mover un torrent de transmission a otro ordenador</a></h2>
+<div class="ngg-gallery-singlepic-image ngg-left" style="max-width: 240px"> [ ![Logo transmission](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/cache/transmission.png-nggid0217-ngg0dyn-320x240x100-00f0w010c010r110f110r010t010.png "Logo transmission") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/transmission.png) </div>
+<p>Una nota rápida para explicar como mover una descarga (completa o incompleta) de <a href="http://www.transmissionbt.com/">transmission</a> a otro ordenador. El escenario es sencillo, tengo los torrents divididos entre dos ordenadores, y se dió el caso de que quería mover uno de los torrents de uno de los ordenadores al otro. Mover toda la información de transmission de un ordenador a otro es sencillo, basta mover los ficheros descargados a la misma ruta en el otro ordenador, y copiar la carpeta <em>~/.config/transmission</em>. Mover sólo uno es parecido, simplemente hay que ser un pelín más cuidadoso.</p>
+<ol>
+<li>Copiar del ordenador 1 a un almacenamiento temporal o similar los ficheros relacionados con nuestro torrent: <ul>
+<li>El fichero .resume en ~/config/transmission/resume</li>
+<li>El .torrent en ~/config/transmission/torrent</li>
+<li>El propio fichero descargado, si está incompleto da igual, reanudará la descarga desde el punto correcto.</li>
+<li>Anotar la cantidad de datos descargados y enviados para ese fichero</li>
+</ul>
+</li>
+<li>Abrir transmission en el ordenador 2 y abrir el .torrent del ordenador 1. Preferiblemente agregarlo en modo pausa para que no comience la descarga automáticamente</li>
+<li>Copiar a la ubicación del ordenador 2 donde se descargará el fichero, el fichero del ordenador 1</li>
+<li>En transmission, botón derecho sobre el torrent pausado, y «<em>Verificar datos locales</em>«.</li>
+</ol>
+<p>Con esto estaría listo, pero si somos un poco más quisquillosos con las estadísticas y las opciones tenemos que efecutar un par de pasos más.</p>
+<ol>
+<li>Cerrar transmission en el ordenador 2</li>
+<li>Copiar el .resume del ordenador 1 al directorio adecuado en el ordenador 2</li>
+<li>Abrir con un editor de texto el fichero <em>~/config/transmission/stats.json</em> y actualizar los valores de downloaded-bytes y uploaded-bytes</li>
+</ol>
+<p><em>stats.json</em> guarda las estadísticas de ejecución del programa, para actualizar los valores de interes simplemente multiplicaremos las megas descargadas/subidas por 1048576 (1024×1024) para pasar de megas y bytes y lo sumaremos a los valores que ya tenían.</p>
+<p>Si es sólo para mover un fichero este procedimiento está bien, si es para mover más habría que hacer un script.</p>
+<p><strong>Referencias</strong></p>
+<ul>
+<li><a href="http://superuser.com/questions/336600/how-to-export-import-torrent-in-transmission-in-ubuntu"><span style="line-height: 13px;">How to export/import torrent in transmission in Ubuntu?</span></a></li>
+<li><a href="http://ubuntuforums.org/showthread.php?t=1482470">What to backup before upgrade (Transmission)?</a></li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1102,35 +1148,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2012-12-24 00:00:00+00:00">24 de diciembre de 2012</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="canciones-de-karaoke-a-partir-de-videos-del-youtube"><a class="toclink" href="../../2012/12/24/canciones-karaoke-youtube/">Canciones de Karaoke a partir de vídeos del Youtube</a></h2>
-<p>Llegan las fechas navideñas, lo que implica fiestas hogareñas y con ello, los amantes del Karaoke se vuelven más exigentes. Como hacer para quitar la voz a uno de esos vídeos de Youtube creados en plan Karaoke. Hagamos un ejemplo con <a href="http://www.youtube.com/watch?v=Xa8Dv6JTRig">En El mundo genial de las cosas que dices</a> de <a href="http://www.malditanerea.com/">Maldita Nerea</a>. Si te gusta el disco y lo <a href="http://www.amazon.es/gp/product/B00A5Y7GJY/ref=as_li_ss_tl?ie=UTF8&amp;tag=conociabiert-21&amp;linkCode=as2&amp;camp=3626&amp;creative=24822&amp;creativeASIN=B00A5Y7GJY">compras a través de este enlace</a><img alt="" src="http://www.assoc-amazon.es/e/ir?t=conociabiert-21&amp;l=as2&amp;o=30&amp;a=B00A5Y7GJY" /><br />
-yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
-<p>El primer paso es buscar en youtube o similar un vídeo donde alguien se haya molestado en añadir la letra a la canción. Buscando en el propio youtube el título de la canción + karaoke se encuentran muchos, por ejemplo <a href="http://www.youtube.com/watch?v=oCyDegAl-n4">este</a>.</p>
-<p>A continuación descargaremos el vídeo, hay muchas formas de hacerlo, pero una de las más sencillas es a través de <a href="http://keepvid.com/">keepvid</a>. Llega con poner la dirección del vídeo que queremos descargar, y aceptar la ejecución del applet de java. Pasado un ratillo nos dará la opción de descargar el vídeo en varios formatos. Cualquiera de los formatos es válido, <a href="http://keepvid.com/?url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DoCyDegAl-n4">en este ejemplo usaremos MP4</a>.</p>
-<p>Para quedarnos con el audio de la canción usaremos la línea de comandos por ser lo más sencillo. Aunque también se puede hacer <a href="http://en.kioskea.net/faq/1266-extracting-the-sound-from-a-video-with-vlc">de forma gráfica</a>.</p>
-<p><code>ffmpeg -i fichero_original.mp4 -acodec copy audio.aac</code></p>
-<p>Para tratar de eliminar la voz del cantante de la parte instrumental del canción usaremos <a href="http://audacity.wonderhowto.com/how-to/remove-vocals-audacity-298381/">Audacity</a>. Hay varios tutoriales por ahí, tanto usando el efecto <a href="http://audacity.wonderhowto.com/how-to/remove-vocals-audacity-298381/">vocal removal</a> como un <a href="http://audacity.wonderhowto.com/how-to/create-karaoke-tracks-by-removing-vocals-audacity-221886/">poco más manual</a>. Como este proceso es muy rápido y sencillo, prueba los dos procedimientos y quedate con el que tenga más calidad. La voz no es completamente eliminada pero si se reduce bastante. Podemos exportar el audio al formato que queramos, ya que el original estaba en AAC, lo exportaremos a este.</p>
-<p>Para recombinar audio y vídeo, volvemos a usar la línea de comandos. Con la siguiente orden le estamos diciendo que coja el audio del fichero audio_sin_voz.aac, lo mezcle con el vídeo del fichero original (el audio original será descartado automáticamente) y producirá un nuevo vídeo de salida respetando los codecs originales.</p>
-<p><code>ffmpeg -i audio_sin_voz.aac -i fichero_original.mp4 -vcodec copy -acodec copy Maldita_Nerea-El_mundo_genial_de_las_cosas_que_dices.mp4</code></p>
-<p>Puedes ver como queda en <a href="http://youtu.be/_OypwHGGgyE">mi youtube</a>.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1138,7 +1155,7 @@ yo me llevo un porcentaje que motiva a seguir escribiendo ;).</p>
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../13/">13</a> <a class="md-pagination__link" href="../14/">14</a> <span class="md-pagination__current">15</span> <a class="md-pagination__link" href="../16/">16</a> <a class="md-pagination__link" href="../17/">17</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../13/">13</a> <a class="md-pagination__link" href="../14/">14</a> <span class="md-pagination__current">15</span> <a class="md-pagination__link" href="../16/">16</a> <a class="md-pagination__link" href="../17/">17</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../41/">41</a>
 </nav>
         
       

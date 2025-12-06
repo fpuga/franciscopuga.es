@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#emacs-y-analisis-estatico-de-codigo-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emacs y análisis estático de código en python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#las-raices-de-la-violencia" class="md-nav__link">
     <span class="md-ellipsis">
       Las raíces de la violencia
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#actualizar-la-version-de-antroid-de-un-htc-tattoo-i-parte" class="md-nav__link">
-    <span class="md-ellipsis">
-      Actualizar la versión de Antroid de un HTC Tattoo (I parte)
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,66 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2012-07-22 00:00:00+00:00">22 de julio de 2012</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="emacs-y-analisis-estatico-de-codigo-en-python"><a class="toclink" href="../../2012/07/22/emacs-analisis-estatico-codigo-python/">Emacs y análisis estático de código en python</a></h2>
+<p>Gracias a <a href="http://cartolab.udc.es/">Cartolab</a> he podido seguir dándole una vuelta al análisis de código estático en python. La idea era reducir los incómodos errores que se producen porque te equivocas al escribir el nombre de una variable o cosas parecidas de las que no te das cuenta has que ejecutas el código. Tratar de detectar estos errores <a href="http://conocimientoabierto.es/herramientas-analisis-codigo-estatico-python/468/">de la forma en que lo veíamos en el artículo anterior</a> sigue sin ser demasiado productivo y aquí es donde entra en juego la <a href="http://flymake.sourceforge.net/">extensión para emacs Flymake</a>.</p>
+<p>Lo que hace Flymake es «pedirle» a emacs que esté continuamente realizando ciertos análisis sobre el código o tratando de compilarlo y/o ejecutarlo. En realidad flymake es un plugin bastante genérico que funciona del siguiente modo:</p>
+<ol>
+<li>Si al abrir un nuevo buffer está marcado como «a chequear», flymake programa un temporizador para el buffer. La forma de marcar buffers suele ser en función de la extensión del archivo que abramos</li>
+<li>Crea una copia temporal de los buffers abiertos cada cierto tiempo</li>
+<li>Ejecuta un programa externo sobre la copia del buffer. Este programa puede ser gcc, make u otra cosa como una herramienta de análisis estático de código.</li>
+<li>Parsea la salida que produce el programa externo y da una salida visual en el buffer actual para representar los posibles errores.</li>
+</ol>
+<h3 id="activar-flymake"><a class="toclink" href="../../2012/07/22/emacs-analisis-estatico-codigo-python/#activar-flymake">Activar flymake</a></h3>
+<p>Activar flymake junto a alguna de las herramientas que veíamos en el post anterior es bastante fácil. Flymake viene instalado por defecto, así que sólo tenemos que tener en el path los ejecutables a las herramientas de análisis, y añadir a nuestro .emacs las instrucciones para que se activen con los ficheros python.</p>
+<p><strong>flymake con pyflakes</strong>:<br />
+<code>&lt;br&gt;&lt;/br&gt;(when (load "flymake" t)&lt;br&gt;&lt;/br&gt;(defun flymake-pyflakes-init ()&lt;br&gt;&lt;/br&gt;(let* ((temp-file (flymake-init-create-temp-buffer-copy&lt;br&gt;&lt;/br&gt;'flymake-create-temp-inplace))&lt;br&gt;&lt;/br&gt;(local-file (file-relative-name&lt;br&gt;&lt;/br&gt;temp-file&lt;br&gt;&lt;/br&gt;(file-name-directory buffer-file-name))))&lt;br&gt;&lt;/br&gt;(list "pyflakes" (list local-file))))&lt;br&gt;&lt;/br&gt;(add-to-list 'flymake-allowed-file-name-masks'("\\.py\\'" flymake-pyflakes-init)))&lt;br&gt;&lt;/br&gt;</code></p>
+<p><strong>flymake con pylint</strong> (el comando epylint es un modo especial de pylint para trabajar con emacs)<br />
+<code>&lt;br&gt;&lt;/br&gt;(when (load "flymake" t)&lt;br&gt;&lt;/br&gt;(defun flymake-pylint-init ()&lt;br&gt;&lt;/br&gt;(let* ((temp-file (flymake-init-create-temp-buffer-copy&lt;br&gt;&lt;/br&gt;'flymake-create-temp-inplace))&lt;br&gt;&lt;/br&gt;(local-file (file-relative-name&lt;br&gt;&lt;/br&gt;temp-file&lt;br&gt;&lt;/br&gt;(file-name-directory buffer-file-name))))&lt;br&gt;&lt;/br&gt;(list "epylint" (list local-file))))&lt;br&gt;&lt;/br&gt;(add-to-list 'flymake-allowed-file-name-masks'("\\.py\\'" flymake-pylint-init)))&lt;br&gt;&lt;/br&gt;</code><br />
+<strong>flymake con pep8</strong><br />
+<code>(when (load "flymake" t)&lt;br&gt;&lt;/br&gt;(defun flymake-pylint-init ()&lt;br&gt;&lt;/br&gt;(let* ((temp-file (flymake-init-create-temp-buffer-copy&lt;br&gt;&lt;/br&gt;'flymake-create-temp-inplace))&lt;br&gt;&lt;/br&gt;(local-file (file-relative-name&lt;br&gt;&lt;/br&gt;temp-file&lt;br&gt;&lt;/br&gt;(file-name-directory buffer-file-name))))&lt;br&gt;&lt;/br&gt;(list "pep8.py" (list "--repeat" local-file))))&lt;br&gt;&lt;/br&gt;(add-to-list 'flymake-allowed-file-name-masks'("\\.py\\'" flymake-pylint-init)))&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Por otro lado también podriamos configurar flymake para hacer que se pasarán <a href="http://stackoverflow.com/questions/1259873/how-can-i-use-emacs-flymake-mode-for-python-with-pyflakes-and-pylint-checking-co">las tres herramientas de forma automática</a> pero yo lo veo innecesario dado que la información que proporcionan es en muchos casos redudante y estamos disminuyendo el rendimiento del ordenador.</p>
+<p>Además de indicarle a flymake con que herramienta queremos trabajar, tenemos que activarlo para los buffers que nos interesen. Esto podemos hacerlo de varios modos:</p>
+<ul>
+<li>Manual. Activando el modo menor de flymake. <code>M-x flymake-mode</code></li>
+<li>Que active el modo menor flymake cuando estemos en el modo python. Añadiendo al .emacs<br />
+<code>(add-hook 'python-mode-hook 'flymake-mode)</code></li>
+<li>O que active el modo flymake en base a las extensiones de fichero que le hemos pasado anteriorme (flymake-allowed-file-name-masks)<br />
+<code>(add-hook 'find-file-hook 'flymake-find-file-hook)</code></li>
+</ul>
+<h3 id="configurar-flymake"><a class="toclink" href="../../2012/07/22/emacs-analisis-estatico-codigo-python/#configurar-flymake">Configurar flymake</a></h3>
+<p>Por defecto flymake ilumina (<em>highlight</em>) la línea de código donde se produce el error, empleando un color u otro en función de si es un error o un warning. Al dejar el ratón encima de la línea con el error (<em>hover</em>) nos muestra la descripción del error.</p>
+<p>Para cambiar los colores que se emplean por defecto podemos emplear algo parecido a esto:<br />
+<code>&lt;br&gt;&lt;/br&gt;'(flymake-errline ((((class color)) (:background "LightPink" :foreground "black"))))&lt;br&gt;&lt;/br&gt;'(flymake-warnline ((((class color)) (:background "LightBlue2" :foreground "black"))))&lt;br&gt;&lt;/br&gt;</code><br />
+Para que subraye en lugar de hacer highlight de la línea con el error:<br />
+<code>&lt;br&gt;&lt;/br&gt;'(flymake-errline ((((class color)) (:underline "red"))))&lt;br&gt;&lt;/br&gt;'(flymake-warnline ((((class color)) (:underline "yellow")))))&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Para hacer que <strong>el fringe derecho se muestre un indicador de en que líneas hay errores</strong> podemos usar <a href="http://www.emacswiki.org/emacs/RFringe">rfringe</a>. Aunque yo no he sido capaz de hacerlo funcionar.</p>
+<p><strong>Mostrar la descripción del error en el minibuffer</strong>. Esto es imprescindible cuando se trabaja en modo -nw.<br />
+<code>&lt;br&gt;&lt;/br&gt;(defun my-flymake-show-help ()&lt;br&gt;&lt;/br&gt;(when (get-char-property (point) 'flymake-overlay)&lt;br&gt;&lt;/br&gt;(let ((help (get-char-property (point) 'help-echo)))&lt;br&gt;&lt;/br&gt;(if help (message "%s" help)))))&lt;br&gt;&lt;/br&gt;(add-hook 'post-command-hook 'my-flymake-show-help)&lt;br&gt;&lt;/br&gt;</code><br />
+Aunque el código anterior a mi me funciona, para mostrar el error en el minibuffer se suele emplear el plugin <a href="http://www.emacswiki.org/emacs/FlymakeCursor">flymake-cursor</a>.</p>
+<p><strong>Moverse a través de los errores</strong>. Podemos emplear los comandos M-x flymake-goto-prev-error para ir al error anterior, o M-x flymake-goto-next-error para ir al siguiente. También podemos vincularlos a determinadas teclas:<br />
+<code>&lt;br&gt;&lt;/br&gt;(global-set-key [TECLA] 'flymake-goto-prev-error)&lt;br&gt;&lt;/br&gt;(global-set-key [TECLA] 'flymake-goto-next-error)&lt;br&gt;&lt;/br&gt;</code><br />
+<strong>Links relacionados</strong></p>
+<ul>
+<li><a href="http://www.gnu.org/software/emacs/manual/html_mono/flymake.html">Manual adicional sobre flymake</a></li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1095,45 +1155,6 @@ La primera vez a mi me tardó en arrancar unos 3 o 4 minutos así que paciencia.
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2012-02-26 00:00:00+00:00">26 de febrero de 2012</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="actualizar-la-version-de-antroid-de-un-htc-tattoo-i-parte"><a class="toclink" href="../../2012/02/26/actualizar-la-version-de-antroid-de-un-htc-tattoo-i-parte/">Actualizar la versión de Antroid de un HTC Tattoo (I parte)</a></h2>
-<p>Hay muchos foros y tutoriales explicando como actualizar la versión de <a href="es.wikipedia.org/wiki/Android">Android</a> de un teléfono <a href="http://www.htc.com/es/help/htc-tattoo/">HTC Tattoo</a>. Este es (la primera parte de) el mio. Aunque antes de continuar leyendo deberías saber que todo lo escrito aquí proviene de lo aprendendido en apenas un fin de semana así que puede ser incorrecto.</p>
-<p>Los HTC Tattoo vienen con una de las primeras versiones de Android que salió al mercado, la 1.6. Esto impide usar alguna de las aplicaciones actuales más conocidas (leáse Whatsapp), tiene problemillas con el bluetooth, …</p>
-<p>El principal desarrollador de <a href="http://www.android.com/">Android es Google</a>. Los fabricantes de teléfonos colaboran en el desarrollo de Android y además hacen algunas adaptaciones propias para sus propios teléfonos. Las compañías de servicio telefónico, tampoco acostumbran a quedar tranquilas con la versión que desarrolla el fabricante y empaquetan su propio software en el teléfono, a veces es simplemente cambiar la pantalla de inicio, a veces cambios más profundos como substituír el Market de Google por uno propio.</p>
-<p>En el caso del Tatto ni el fabricante del teléfono ni la compañía que lo distribuye están interesados en sacar una actualización a versiones más modernas de Android; y aquí es donde entra en juego la<em><a href="http://es.wikipedia.org/wiki/Scene"> scene</a></em>. Como <a href="http://www.muycomputer.com/2011/09/20/android-realmente-libre-richard-stallman-dice-no">Android es (semi) libre</a> hay equipos de programadores que lo modifican y adaptan para sus propias necesidades y publican esas modificaciones de forma gratuita. Entre estas modificaciones está el reescribir los drivers necesarios para que teléfonos antiguos puedan ejecutar versiones de Android modernas. Estos programadores acostumbran a especializarse en modelos o <a href="http://www.htcmania.com">marcas específicas de teléfonos</a>. También es habitual que haya quien re-empaquete el código que desarrollan <a href="http://cyanogenmod.com">equipos más o menos consagrados</a>. Los de cyanogenmod por ejemplo tienen el código en github y hay quien se dedica a publicar snapshots de los binarios de ese código y a hacer modificiones</p>
-<p>Yendo a lo que nos ocupa que es actualizar el Tattoo hay que tener claros varios conceptos:</p>
-<ul>
-<li>Versión de Android que queremos actualizar. Recomendable la 2.3 por ser la más en uso en estos momentos</li>
-<li>Se denomina ROM al paquete de software binario que contiene el sistema operativo que vamos a instalar. Por problemas de copyright las ROM no vienen con las aplicaciones de Google (Market, sincronización de contactos, …) que deben ser instaladas a parte. El desarrollador de la ROM suele recomendar cuales son las gapps (google applications) que funcionan sobre su ROM.</li>
-<li>Para instalar la ROM (flashear el teléfono) es necesario un sistema intermedio, al que se denomina recovery. El recovery es una especie de sistema operativo muy básico que nos permite hacer un borrado (wipe) de distintas partes del teléfono, instalar la ROM, hacer copia de seguridad de nuestra ROM y datos actuales, … Por supuesto hay un montón de recovery distintos, y en función de la ROM que queramos instalar usaremos uno u otro, generalmente el desarrollador de la ROM recomienda uno.</li>
-<li>GoldCard. Debo decir que no he acabado de entender para que vale esto. Recomiendan hacerlo, porque permite recuperar un teléfono que se queda en modo ladrillo (brick), pero yo sigo sin verlo claro. Por lo que he visto me da la impresión de que la goldcard no tiene nada que ver con el teléfono, si no con la SD.</li>
-<li>Rootear el teléfono. Android es un sistema operativo basado en linux. Tiene por tanto particiones (algunas de las cuales se montan por defecto en sólo lectura), permisos, … A conseguir acceso de root, se lo llama rootear el teléfono.</li>
-<li>Android SDK. Google proporciona lo que se llama un SDK (Software Development Kit). Son un conjunto de aplicaciones que ayudan en las tareas de desarrollo y depuración de software para teléfonos Android. En este caso lo que más nos interesará es el comando «adb» que permite desde el pc abrir una shell (tipo ssh) en el teléfono, subir archivos al teléfono, …</li>
-</ul>
-<p>Como siempre hay un montón de tutoriales distintos de como actualizar el teléfono, y como siempre, no te valdrá con seguir ninguno de ellos al pie de la letra, si no que siempre pasará algo y tendrás que acabar combnándolos. Dejo aquí los que yo he leido:</p>
-<ul>
-<li><a href="http://www.android.es/tutorial-actualiza-htc-tattoo-a-android-2-1-2-2-o-2-3.html#axzz1m4dje3LN">Actualiza tu HTC Tattoo a Android 2.1, 2.2 o 2.3</a>.</li>
-<li><a href="http://wiki.cyanogenmod.com/wiki/HTC_Tattoo:_Full_Update_Guide">HTC Tattoo: Full Update Guide</a>.</li>
-<li><a href="http://forum.cyanogenmod.com/topic/32485-cyanogenmod-7-for-the-htc-tattoo-v7101-10-oct-2011/">Cyanogenmod 7 for the HTC Tattoo</a>.</li>
-</ul>
-<p>En la segunda parte, voy al grano de como lo hice yo.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1141,7 +1162,7 @@ La primera vez a mi me tardó en arrancar unos 3 o 4 minutos así que paciencia.
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../15/">15</a> <a class="md-pagination__link" href="../16/">16</a> <span class="md-pagination__current">17</span> <a class="md-pagination__link" href="../18/">18</a> <a class="md-pagination__link" href="../19/">19</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../15/">15</a> <a class="md-pagination__link" href="../16/">16</a> <span class="md-pagination__current">17</span> <a class="md-pagination__link" href="../18/">18</a> <a class="md-pagination__link" href="../19/">19</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../41/">41</a>
 </nav>
         
       

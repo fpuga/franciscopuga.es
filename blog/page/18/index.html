@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#actualizar-la-version-de-antroid-de-un-htc-tattoo-i-parte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actualizar la versión de Antroid de un HTC Tattoo (I parte)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#si-el-liferea-tarda-mucho-en-arrancar" class="md-nav__link">
     <span class="md-ellipsis">
       Si el liferea tarda mucho en arrancar&#8230;
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#por-fin-en-odiseus" class="md-nav__link">
-    <span class="md-ellipsis">
-      Por fin en Odiseus
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,45 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2012-02-26 00:00:00+00:00">26 de febrero de 2012</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="actualizar-la-version-de-antroid-de-un-htc-tattoo-i-parte"><a class="toclink" href="../../2012/02/26/actualizar-la-version-de-antroid-de-un-htc-tattoo-i-parte/">Actualizar la versión de Antroid de un HTC Tattoo (I parte)</a></h2>
+<p>Hay muchos foros y tutoriales explicando como actualizar la versión de <a href="es.wikipedia.org/wiki/Android">Android</a> de un teléfono <a href="http://www.htc.com/es/help/htc-tattoo/">HTC Tattoo</a>. Este es (la primera parte de) el mio. Aunque antes de continuar leyendo deberías saber que todo lo escrito aquí proviene de lo aprendendido en apenas un fin de semana así que puede ser incorrecto.</p>
+<p>Los HTC Tattoo vienen con una de las primeras versiones de Android que salió al mercado, la 1.6. Esto impide usar alguna de las aplicaciones actuales más conocidas (leáse Whatsapp), tiene problemillas con el bluetooth, …</p>
+<p>El principal desarrollador de <a href="http://www.android.com/">Android es Google</a>. Los fabricantes de teléfonos colaboran en el desarrollo de Android y además hacen algunas adaptaciones propias para sus propios teléfonos. Las compañías de servicio telefónico, tampoco acostumbran a quedar tranquilas con la versión que desarrolla el fabricante y empaquetan su propio software en el teléfono, a veces es simplemente cambiar la pantalla de inicio, a veces cambios más profundos como substituír el Market de Google por uno propio.</p>
+<p>En el caso del Tatto ni el fabricante del teléfono ni la compañía que lo distribuye están interesados en sacar una actualización a versiones más modernas de Android; y aquí es donde entra en juego la<em><a href="http://es.wikipedia.org/wiki/Scene"> scene</a></em>. Como <a href="http://www.muycomputer.com/2011/09/20/android-realmente-libre-richard-stallman-dice-no">Android es (semi) libre</a> hay equipos de programadores que lo modifican y adaptan para sus propias necesidades y publican esas modificaciones de forma gratuita. Entre estas modificaciones está el reescribir los drivers necesarios para que teléfonos antiguos puedan ejecutar versiones de Android modernas. Estos programadores acostumbran a especializarse en modelos o <a href="http://www.htcmania.com">marcas específicas de teléfonos</a>. También es habitual que haya quien re-empaquete el código que desarrollan <a href="http://cyanogenmod.com">equipos más o menos consagrados</a>. Los de cyanogenmod por ejemplo tienen el código en github y hay quien se dedica a publicar snapshots de los binarios de ese código y a hacer modificiones</p>
+<p>Yendo a lo que nos ocupa que es actualizar el Tattoo hay que tener claros varios conceptos:</p>
+<ul>
+<li>Versión de Android que queremos actualizar. Recomendable la 2.3 por ser la más en uso en estos momentos</li>
+<li>Se denomina ROM al paquete de software binario que contiene el sistema operativo que vamos a instalar. Por problemas de copyright las ROM no vienen con las aplicaciones de Google (Market, sincronización de contactos, …) que deben ser instaladas a parte. El desarrollador de la ROM suele recomendar cuales son las gapps (google applications) que funcionan sobre su ROM.</li>
+<li>Para instalar la ROM (flashear el teléfono) es necesario un sistema intermedio, al que se denomina recovery. El recovery es una especie de sistema operativo muy básico que nos permite hacer un borrado (wipe) de distintas partes del teléfono, instalar la ROM, hacer copia de seguridad de nuestra ROM y datos actuales, … Por supuesto hay un montón de recovery distintos, y en función de la ROM que queramos instalar usaremos uno u otro, generalmente el desarrollador de la ROM recomienda uno.</li>
+<li>GoldCard. Debo decir que no he acabado de entender para que vale esto. Recomiendan hacerlo, porque permite recuperar un teléfono que se queda en modo ladrillo (brick), pero yo sigo sin verlo claro. Por lo que he visto me da la impresión de que la goldcard no tiene nada que ver con el teléfono, si no con la SD.</li>
+<li>Rootear el teléfono. Android es un sistema operativo basado en linux. Tiene por tanto particiones (algunas de las cuales se montan por defecto en sólo lectura), permisos, … A conseguir acceso de root, se lo llama rootear el teléfono.</li>
+<li>Android SDK. Google proporciona lo que se llama un SDK (Software Development Kit). Son un conjunto de aplicaciones que ayudan en las tareas de desarrollo y depuración de software para teléfonos Android. En este caso lo que más nos interesará es el comando «adb» que permite desde el pc abrir una shell (tipo ssh) en el teléfono, subir archivos al teléfono, …</li>
+</ul>
+<p>Como siempre hay un montón de tutoriales distintos de como actualizar el teléfono, y como siempre, no te valdrá con seguir ninguno de ellos al pie de la letra, si no que siempre pasará algo y tendrás que acabar combnándolos. Dejo aquí los que yo he leido:</p>
+<ul>
+<li><a href="http://www.android.es/tutorial-actualiza-htc-tattoo-a-android-2-1-2-2-o-2-3.html#axzz1m4dje3LN">Actualiza tu HTC Tattoo a Android 2.1, 2.2 o 2.3</a>.</li>
+<li><a href="http://wiki.cyanogenmod.com/wiki/HTC_Tattoo:_Full_Update_Guide">HTC Tattoo: Full Update Guide</a>.</li>
+<li><a href="http://forum.cyanogenmod.com/topic/32485-cyanogenmod-7-for-the-htc-tattoo-v7101-10-oct-2011/">Cyanogenmod 7 for the HTC Tattoo</a>.</li>
+</ul>
+<p>En la segunda parte, voy al grano de como lo hice yo.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1057,30 +1096,6 @@ y para ejecutar un programa bajo eatmydata<br />
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2012-01-05 00:00:00+00:00">5 de enero de 2012</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="por-fin-en-odiseus"><a class="toclink" href="../../2012/01/05/por-fin-en-odiseus/">Por fin en Odiseus</a></h2>
-<p>Hace ya algunos años, cuando twitter y facebook todavía no existían para el gran público, <a href="nosolosoftware.com">Andrés</a> y yo, tras disfrutar de un año de hosting gratis gracias a una <a href="http://www.jovenesenred.es/">promoción de red.es</a>, nos resistíamos a volver a servicios de terceros para alojar nuestra <a href="http://nomada.blogs.com/jfreire/2009/03/las-personas-debemos-tener-identidad-digital-cmo-construirla-sesin-web-de-la-generalitat-de-catalunya.html">identidad digital</a>, aunque en aquel momento creo que todavía no sabía lo que significaba este termino. Aquello fue <a href="http://odiseus.org/historia/">el germen de Odiseus</a>.</p>
-<p>Tras contratrar un hosting a medias, tuvimos la idea de proporcionar blogs a nuestros amigos, parece una coña, pero el motivo principal por el que no se hizo, fue que no se nos ocurrió un buen nombre de dominio :).</p>
-<p>La idea seguía estando ahí hasta que en 2010 finalmente se hizo realidad en la forma de <a href="http://odiseus.org/">Odiseus</a> (otro día tocará explicar el nombre). Blogs, listas de correo, y algunas ideas en el portafolio hacen que estemos bastante orgullosos de la red.</p>
-<p>Odiseus puede parecer una chorrada, pero si eres de los que les gusta <a href="http://maxbarry.com/2011/03/23/news.html">cultivar sus propios tomates</a> seguramente entenderás de que hablo. En los tiempos de <a href="http://www.facebook.com/">Facebook</a> y <a href="http://www.whatsapp.com/">WhatsApp</a>, blogs y listas de correo suena anacrónico, pero <a href="http://www.osnews.com/story/25469/Richard_Stallman_Was_Right_All_Along#">en realidad</a> hacen <a href="http://lasindias.coop/2012-tres-alarmas-urgentes-en-movimientos-sociales-p2p/">más falta</a> que nunca.</p>
-<p>Y todo esto es sólo para contar que hoy por fin, he migrado «Conocimiento Abierto» de mi propio WordPress al compartido por la red odiseus.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1088,7 +1103,7 @@ y para ejecutar un programa bajo eatmydata<br />
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../16/">16</a> <a class="md-pagination__link" href="../17/">17</a> <span class="md-pagination__current">18</span> <a class="md-pagination__link" href="../19/">19</a> <a class="md-pagination__link" href="../20/">20</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../16/">16</a> <a class="md-pagination__link" href="../17/">17</a> <span class="md-pagination__current">18</span> <a class="md-pagination__link" href="../19/">19</a> <a class="md-pagination__link" href="../20/">20</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../41/">41</a>
 </nav>
         
       

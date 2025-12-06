@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#hacer-presentaciones-de-fotos-en-formato-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hacer presentaciones de fotos en formato vídeo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#imagenes-del-ano-2007-por-reuters" class="md-nav__link">
     <span class="md-ellipsis">
       Imágenes del año 2007 por reuters
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#algunos-consejos-para-comprar-un-portatil" class="md-nav__link">
-    <span class="md-ellipsis">
-      Algunos consejos para comprar un portátil
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,55 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2008-01-10 00:00:00+00:00">10 de enero de 2008</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="hacer-presentaciones-de-fotos-en-formato-video"><a class="toclink" href="../../2008/01/10/hacer-presentaciones-de-fotos-en-formato-video/">Hacer presentaciones de fotos en formato vídeo</a></h2>
+<p>He estado buscando programas para linux que de manera sencilla permitan crear presentaciones de foto en formato vídeo, con la posibilidad de añadirle música y algún efecto para que quede bonito. Los dos últimos son <a href="http://es.wikipedia.org/wiki/Servicio_Web#Ventajas_de_los_servicios_Web">servicios web</a> con los que he quedado realmente contento y que os recomiendo probar.</p>
+<p><a href="http://barnadriva.net/staticpages/index.php?page=20051101191815211">cinelerra</a>. Un programa muy potente para la edición de vídeo. Tal vez es complicarse demasiado la vida para hacer un vídeo a partir de fotos.</p>
+<p><a href="http://zenon.wordpress.com/2005/06/21/haciendo-una-pelicula-con-fotos/">dir2slideshow + dvd-slideshow</a>. <span style="font-style: italic">(Aviso que no lo he probado, hablo de oídas)</span> Dos comandos para consola de linux que nos permiten crear un DVD con las fotos. Lo bueno es que es rápido, lo malo es que no permite efectos, hay que ordenar las fotos a mano (cambiando el nombre de las fotos por números por ejemplo), y que a mi particularmente no me gustan los DVD. Para reproducirlos en el ordenador hay que tener los programas adecuados, ocupan mucho, … y cualquier reproductor de salón moderno puede leer vídeo mpg, no hace falta que esté en formato DVD. También tenemos software con <a href="http://blogdrake.net/node/7998#comment-35926">interfaz gráfico</a> que hace lo mismo o más.</p>
+<p><a href="http://digikam.org/">Digikam</a> es un magnífico programa para la visualización y la gestión de fotos (clasificación mediante etiquetas, álbumes,…). Además es el software predefinido de KDE para la descarga de fotos de la cámara digital. Posee un sistema de plugins que permite retocar fácilmente las imágenes. El paquete kipi-plugins añade a digikam la posibilidad de convertir pases de imágenes en un vídeo mpg y añadirle audio (herramientas -&gt; crear presentación mpeg). Si buscamos un todo en uno digikam + kipi-plugins es nuestra opción, aunque tiene varios defectos:</p>
+<ul>
+<li>El único efecto que permite añadir es que la foto que estamos viendo se vaya difuminando para aparecer debajo la siguiente. Conseguimos esto indicando en «velocidad de transición entre las imágenes» un valor distinto de cero.</li>
+<li>Con determinadas versiones de programas la <a href="http://blogdrake.net/node/3438">codificación de vídeo no funciona correctamente</a>.</li>
+<li>El único parámetro del formato del vídeo que podemos controlar es si queremos que sea VCD, SVCD, XVCD o DVD. Entiendo que los de más calidad serán XVCD y DVD y que ambos se pueden leer sin problemas en los reproductores de salón.</li>
+<li>He tenido problemas con algunos mp3 y he tenido que pasarlos a wav para que funcionara.</li>
+</ul>
+<p>Recordemos que aunque un programa este diseñado para KDE, esto no significa que no funcione en otro entorno gráfico para linux como Gnome (el predefinido en ubuntu), es simplemente que será menos eficiente por tener que cargar librerías adicionales (además de tener que instalar esas librerías adicionales, cuestión que hoy en día se hace de manera transparente al usuario gracias a los sistemas de gestión de paquetes de las distintas distribuciones). Creo que Picasa también <a href="http://picasa.google.com/support/bin/topic.py?topic=9402">tiene algo parecido</a>.</p>
+<p>Como ejemplo de lo que hace este programa podéis ver el vídeo de mi <a href="http://conocimientoabierto.blogspot.com/2008/01/imgenes-del-ao-2007-por-reuters.html">post anterior</a>.</p>
+<p><a href="http://kde-apps.org/content/show.php/Manslide?content=72739">Manslide</a> parece el programa definitivo de KDE para crear presentaciones de fotos en formatos de vídeo, pero desgraciadamente por algún problema relacionado con los drivers de la tarjeta gráfica no he podido probarlo. Aún así os aconsejo intentar usarlo porque tiene muy buena pinta.</p>
+<p><a href="http://animoto.com/">Animoto</a> es un servicio web que permite crear presentaciones muy chulas de manera automática, pero tiene varios inconvenientes:</p>
+<ul>
+<li>En la versión gratuita la duración máxima de los vídeos es de 30 segundos y no se pueden descargar.</li>
+<li>No tienes control sobre el resultado final, es decir tu simplemente subes las imágenes (en función del número de imágenes que subas así será la duración final del vídeo) y escoges la música, el resto lo hace él.</li>
+<li>No he conseguido ni remezclar ni editar un video desde firefox+linux (en windows+firefox sin funciona). En teoría cuando estás viendo un vídeo y le das a <span style="font-style: italic">«remix»</span> aparecen dos opciones <span style="font-style: italic">«one-click remix»</span> y <span style="font-style: italic">«editing remix»</span>. Con la primera obtendremos un vídeo nuevo (con las mismas imágenes y música) con la segunda podremos cambiar las imágenes o la música.</li>
+<li>La creación del vídeo tarda unos 10 minutos, durante los cuales parece como si se hubiera quedado colgado. A la derecha aparece un reloj pero no se mueve, por lo que no puedes determinar cuanto queda para que acabe. Lo compensan porque puedes cerrar el navegador sin peligro, y cuando el vídeo está listo te mandan un correo.</li>
+</ul>
+<p>Para un vídeo de 30 segundos hacen falta unas 15 o 20 imágenes, aunque la música también influye, si es tranquila las imágenes aparecerán más despacio que si tiene más ritmo. Podemos hacer que una o varias de nuestras imágenes salgan resaltadas en el vídeo, para ello una vez que las hemos subido las seleccionamos y pinchamos sobre <span style="font-style: italic">«spotligth»</span>.</p>
+<p>Algo que me gusta mucho de este servicio es que promociona el uso de música copyleft, de hecho permite usar varias canciones copyleft que ya tienen almacenadas en lugar de subir la música desde tu ordenador. Si la subimos, cuando ya está cargada tenemos la opción de fijar cual será el fragmento de audio que suene en nuestro vídeo. Cuando esté subida tenemos la opción de escucharla, cuando detectemos el inicio del fragmento que nos interesa pulsamos pausa y le damos a continuar. De la <a href="http://animoto.com/help/faq">faq</a> de animoto.</p>
+<div><div class="faq_question"></div>> <div class="faq_question" style="font-weight: bold">What’s the point of changing the start point of the music?</div><div class="faq_answer">Many songs start with some dead time or with a build-up that you might not want to include in your ANIMOTO video. With the song Start Point Slider, you can tell us where to start your song. Press ‘PLAY’ and wait until just the right moment; then press ‘PAUSE’. If you are making an **Animoto Short** and have selected a song from our collection, the Start Point Slider will be disabled since a customized 30-second version of the song has already been edited for you.
+> 
+> </div>
+
+<div class="faq_answer">Con esta herramienta he creado dos vídeos que podéis ver [aquí](http://augaconfronteiras.blogspot.com/2008/01/recopilacin-de-fotos-da-campaa.html) y [aquí](http://www.marinerosbouzas.com/). [  
+Jumpcut](http://www.jumpcut.com/) es un servicio web para la edición y compartición de vídeo (como youtube pero que además permite crear y remezclar. Para mi es el rey, no sólo por las posibilidades que aporta y lo sencillo que es sino por [lo que implica](http://www.deugarte.com/la-revolucion-de-corta-y-pega/trackback).
+
+</div></div>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1163,50 +1212,6 @@ Lo que hace Google Alerts en realidad es cada cierto tiempo hacer una búsqueda 
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2007-11-30 00:00:00+00:00">30 de noviembre de 2007</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="algunos-consejos-para-comprar-un-portatil"><a class="toclink" href="../../2007/11/30/algunos-consejos-para-comprar-un-portatil/">Algunos consejos para comprar un portátil</a></h2>
-<p>Como comenté voy a tratar de dar una serie de consejos a la hora de comprar un portátil e <a href="http://www.linux-on-laptops.com/">instalarle linux</a>. La primera decisión a tomar a la hora de comprar un ordenador debe ser en que horquilla de precios vamos a movernos. Particularmente considero que cualquier portátil de entre 700 y 1000€ debería satisfacer las necesidades de la mayoría de la gente por un período de unos 4 años. Invertir más dinero no significa necesariamente que el portátil nos vaya a durar mucho más tiempo, sino que obtendremos algunas características adicionales o servicios de valor añadido proporcionados por el fabricante.</p>
-<p>La segunda decisión es si vetamos alguna marca. Particularmente considero que existen una serie de marcas como <a href="http://vaio.sony.es/view/ShowProductCategory.action?referer=http%3A%2F%2Fwww.sony.es%2Fview%2FShowProductCategory.action%3Fsite%3Dodw_es_ES&amp;site=voe_es_ES_cons&amp;category=VAIO+Notebooks">Sony</a> o <a href="http://es.computers.toshiba-europe.com/cgi-bin/ToshibaCSG/jsp/notebookHomepage.do?service=ES">Toshiba</a> que ofrecen una confianza adicional, pero por el precio de una de estas marcas podemos comprar un portátil mucho más potente de otra. No me gusta hacer recomendaciones negativas porque no suelen ser muy objetivas pero por lo que he estado leyendo la única marca que en principio me desagrada es <a href="http://www.asus.es/products.aspx?l1=5">Asus</a>. Es conveniente además considerar el comprarse un ordenador clónico. Franquicias como <a href="http://www.pcbox.com/">PCBOX</a> ofrecen este servicio y suelen ser de buena calidad.</p>
-<p>El siguiente punto a considerar es si queremos un portátil <a href="http://www.linux.org/hardware/"><span style="font-style: italic;">linux friendly</span></a>. A día de hoy no suelen existir muchos problemas para conseguir drivers para cualquier hardware que funcionen en linux, pero algunos funcionan mejor que otros. Personalmente he optado por aquello fabricantes que sacan por si mismos drivers funcionales como una forma de premio por tratar de forma adecuada el software libre.</p>
-<p>El último punto general es que uso le vamos a dar al portátil. Y este está muy relacionado con la pantalla. Si lo vamos a usar como un remplazo del de escritorio porque no tenemos sitio en casa y apenas lo vamos a mover podemos optar por uno con pantalla de 17». Si tenemos ordenador en casa y el trabajo y necesitamos algo muy movible para consultar el correo y trabajar durante viajes etc… podemos plantearnos uno con pantalla de entre 12» y 14». Para otros usos, moverlo a menudo pero tampoco estar cargando con él todavía lo mejor suele ser optar por una panorámica de 15.4». Es muy conveniente que antes de comprarlo pidamos ver el portátil encendido y juguemos con el brillo de la pantalla para comprobar lo buena que es.</p>
-<p>Pasemos a considerar los aspectos más técnicos del asunto. Téngase en cuenta que mis comentarios son generalizaciones, seguro que los expertos en la materia se pondrían por las nubes, pero a la hora de la verdad poca gente encuentra diferencia entre un ordenador u otro.</p>
-<p><span style="font-weight: bold;">Procesador: </span>Es el cerebro del ordenador, pero no nos dejemos engañar por número extraños o vendedores desinformados. A día de hoy cualquier procesador que no ponga Celeron o Semprom será más que suficiente para nuestras necesidades. Es en general preferible gastar algo de dinero en más RAM que en un procesador mejor. Optar por un procesador de intel o por uno de AMD es en principio indiferente. Lo único que resaltaría es que todos los procesadores AMD Athlon permiten la virtualización por hardware mientras que sólo los intel con un número igual o superior a T5600 lo hacen. Si no vais a virtualizar esto os dará igual. Para comparar entre distintos procesadores podeis ver las características de los <a href="http://products.amd.com/en-us/NotebookCPUFilter.aspx">amd en esta página</a> (usar la parte que pone «model number») o los <a href="http://processorfinder.intel.com/List.aspx?ProcFam=2643&amp;sSpec=&amp;OrdCode=">intel en esta otra</a> (usar la parte que pone «processor number»).</p>
-<p><span style="font-weight: bold;">RAM:</span> Es fácil, cuanta más mejor. A día de hoy 1GB obligatorio y 2GB recomendable. El rendimiento también mejora si es a 667MHz en lugar de a 533MHz</p>
-<p><span style="font-weight: bold;">Disco Duro: </span>A partir de 100GB es en general más que suficiente si no vamos bajar películas o música de forma compulsiva. Tengamos siempre presente cual es el uso que le vamos a dar al portátil y que los discos duros externos están baratos.</p>
-<p><span style="font-weight: bold;">Peso:</span> Si vamos a moverlo yo no cogería nada que en sus especificaciones pusiese más de 3kg (aunque fuese (3.01kg). 2.7kg más o menos puede ser una buena opción.</p>
-<p><a href="http://es.wikipedia.org/wiki/Wifi">Wifi: </a>A día de hoy todos los portátiles traen wifi, pero debemos ver que especificaciones cumplen. En principio todos cumplen la norma b/g (que es el wifi absolutamente mayoritario que hay en cafeterías, universidades, …) pero algunos cumplen también la norma a (suelen nombrarse como a/b/g). Que cumpla la 802.11a (nombre oficial) no lo consideraría como algo limitante pero si interesante. Por otro lado podemos preguntar al vendedor que tarjeta wireless lleva para comprobar si existen drivers nativos para linux, podemos emularlos con <a href="http://www.bdw.es/2005/08/22/ndiswrapper-wifi-facil-en-linux/">ndiswrapper</a> o no va. Si es una intel funcionará perfectamente.</p>
-<p><span style="font-weight: bold;">Tarjeta Gráfica:</span> A no ser que seamos muy jugones cualquiera vale. A día de hoy tanto las gráficas intel como las nvidia funcionan correctamente en linux (incluida la aceleración 3d). Las ati aún no están al nivel apropiado pero están haciendo esfuerzos en el camino correcto, tal vez en 6 meses si sean una opción a considerar. De todas formas cuidado con las nvidia porque no todas tienen soporte en linux, aquí está la <a href="http://www.nvidia.es/object/linux_supported_es.html">lista de tarjetas soportadas</a> por el último driver. Con la tarjeta más sencilla de intel la GMA 950 yo no he tenido ningún problema y l<a href="http://es.youtube.com/watch?v=xYZUKDa1AMs">os efectos gráficos en 3d en linux</a> han funcionado sin que haya hecho nada.</p>
-<p><span style="font-weight: bold;">Puertos, conectividad y otras cosillas.</span></p>
-<ul>
-<li>Todos los portátiles traen puertos USB y tarjeta de red. La mayoría incluyen también modem (aunque yo no me preocuparía si no lo trajera).</li>
-<li>Algunos traen Firewire (IEEE1394) pero tampoco es muy habitual que lo vayamos a necesitar, podemos pasar de ello.</li>
-<li>Todos traen también salida para un monitor externo (para conectar un proyector por ejemplo). A mi particularmente me gusta que traigan salida de s-video porque de este modo se puede enchufar el ordenador a la televisión muy fácilmente y usarlo a modo de dvd portátil por ejemplo.</li>
-<li>La nueva moda es incluir lectores de tarjetas pero yo no lo veo mucha utilidad.</li>
-<li>Cuidado si necesitáis disquetera porque la mayoría ya no trae dentro del portátil (aunque si existen dispositivos externos)</li>
-<li>Bluetooth/Infrarojos. Puede ser útil si tienes un móvil que lo tenga para descargar imágenes y otras cosillas del móvil. En caso contrario tampoco le veo mucha utilidad (ratones y teclados inalámbricos suelen traer su propio adaptador. En todo caso tampoco debería ser un factor limitante a la hora de la compra puesto que hay dispositivos USB que dan conectividad bluetooth por alrededor de 20€.</li>
-<li>Webcam. Si no somos fanáticos de las videoconferencias no es necesario, generalmente no haremos una videoconferencia desde un lugar público por lo que tampoco nos importará mucho comprar una externa. (<a href="http://www.pcbox.com/catalogo/catalogo/default.asp?lan=es&amp;cnt=es&amp;familia=26">También alrededor de 25€</a>)</li>
-<li>Si vamos a usar el ordenador de forma más o menos fija, podría ser muy útil que tuviera puertos PS2 para conectarles un teclado y un ratón externo (Si va a ser ocasional con los USB es suficiente)</li>
-</ul>
-<p><span style="font-weight: bold;">Batería: </span>No comento nada, porque es difícil dar un criterio sobre esto, y lo cierto es que hoy en día hay enchufes en prácticamente cualquier sitio donde necesitemos usar un portátil.</p>
-<p>Si llegado el momento final tenéis dudas entre varios podéis inclinaros <a href="http://notime-towaste.blogspot.com/2007/11/ranking-verde-de-electronicos.html">por los fabricantes más responsables en temas medio ambientales</a>.Otras recomendaciones, opiniones, críticas y preguntas en los comentarios :)</p>
-<p><strong>Actualización</strong>: 14 de Mayo de 2016. Si tienes dudas de cuando comprarlo dicen que <a href="http://www.gciencia.com/tecno/queres-mercar-un-ordenador-espera-o-veran/">la mejor fecha es verano</a>.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1214,7 +1219,7 @@ Lo que hace Google Alerts en realidad es cada cierto tiempo hacer una búsqueda 
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../33/">33</a> <a class="md-pagination__link" href="../34/">34</a> <span class="md-pagination__current">35</span> <a class="md-pagination__link" href="../36/">36</a> <a class="md-pagination__link" href="../37/">37</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../40/">40</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../33/">33</a> <a class="md-pagination__link" href="../34/">34</a> <span class="md-pagination__current">35</span> <a class="md-pagination__link" href="../36/">36</a> <a class="md-pagination__link" href="../37/">37</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../41/">41</a>
 </nav>
         
       
