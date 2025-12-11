@@ -940,7 +940,7 @@
 <li>En la documentación de la página de eciadsl da la impresión de que al encender el ordenador no debe haber ninguna luz encendida en el modem. En mi modem siempre hay una luz encendida y conecto sin problemas.</li>
 <li>Otros ficheros de sincronización que creo que van bien para mi son: gs7470_synch06.bin, gs7470_synch01a.bin y gs7470_synch18.bin</li>
 <li>Si notas que las páginas web cargan muy despacio aunque luego las descargas van a velocidad normal es probable que sea un problema con los servidores DNS. Puedes copiar la dirección ip primaria y secundaria de la configuración que uses en windows o tomarlas por ejemplo de la página <a href="http://www.opendns.com/">OpenDNS.</a><br />
-    Una vez anotadas esas dos ips, puedes ejecutar de nuevo el comando <span style="font-style: italic">eciadsl-config-tk</span> e introducirlas a mano seleccionando <span style="font-style: italic">other</span> en <span style="font-style: italic">provider dns</span>. Aunque yo creo que es mejor editar el fichero <span style="font-style: italic">/etc/resolv.conf</span> comentar todas las lineas que aparezcan (poniendo el síbolo # al principio de cada línea) y añadir dos lineas al estilo<br />
+     Una vez anotadas esas dos ips, puedes ejecutar de nuevo el comando <span style="font-style: italic">eciadsl-config-tk</span> e introducirlas a mano seleccionando <span style="font-style: italic">other</span> en <span style="font-style: italic">provider dns</span>. Aunque yo creo que es mejor editar el fichero <span style="font-style: italic">/etc/resolv.conf</span> comentar todas las lineas que aparezcan (poniendo el síbolo # al principio de cada línea) y añadir dos lineas al estilo
     &gt; nameserver ip1<br />
     &gt; nameserver ip2</li>
 <li>Si aparece un error como <span style="font-style: italic">nice: pppd: No existe el fichero o el directorio</span> en el 4 punto <span style="font-style: italic">[EciAdsl 4/5] Connecting to provider…</span> es que no tenemos instalado el paquete ppp. Para ello vamos <span style="font-style: italic">Sistema -&gt; Confiración -&gt; Configurar su computadora -&gt; Instalar sofware.</span>Buscamos «ppp» en la casilla de busca e instalamos los paquetes <span style="font-style: italic">ppp, ppp-pppoatm</span>. (Según que proveedor tengamos puede ser necesario instalar también los paquetes <span style="font-style: italic">ppp-pppoe</span> y <span style="font-style: italic">rp-pppoe</span>). En algún momento del proceso nos pedirán que introducizcamos el DVD de instalación de Mandriva.</li>
@@ -950,7 +950,7 @@
 > pppd unit 0 call adsl updetach
 
 7. Algunos comando útiles para saber los módulos que tenemos cargados y los dispositivos usb conectados: lsmod, dmesg | grep usb, lsusb
-A continuación algunos enlaces que pueden resultar útiles:
+   A continuación algunos enlaces que pueden resultar útiles:
 
 </div>
 <ul>

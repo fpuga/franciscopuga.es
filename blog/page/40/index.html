@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#de-la-imprenta-a-la-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      De la imprenta a la red
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cooperacion-y-supervivencia" class="md-nav__link">
     <span class="md-ellipsis">
       Cooperación y Supervivencia
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#cambiar-permisos-de-forma-recursiva-y-selectiva" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cambiar permisos de forma recursiva y selectiva
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,33 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2007-05-17 00:00:00+00:00">17 de mayo de 2007</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="de-la-imprenta-a-la-red"><a class="toclink" href="../../2007/05/17/de-la-imprenta-a-la-red/">De la imprenta a la red</a></h2>
+<div class="admonition quote">
+<p class="admonition-title"><a href="http://es.wikipedia.org/wiki/Luther_Blissett_(pseud%C3%B3nimo_colectivo)">Luther Blissett</a>. Q. Página 78.</p>
+</div>
+<p>Sobre todo lo alarma el hecho de que podáis disponer de una imprenta y de que vuestras palabras puedan llegar a los focos de la revuelta</p>
+<p>En el siglo XVI una imprenta podía ser un instrumento de poder o de suvbersión en función de quien la poseyera. Con su aparición se rompía el monopolio de publicación ostentando por la iglesia hasta ese momento. Desde las imprentas no controladas por los poderes establecidos se editaban desde panfletos incendiarios a tratados teológicos que abogaban por el cambio y la Reforma.</p>
+<p>La evolución que supuso la imprenta, importantísima en su momento, es sólo una pequeña modificación del modelo de comunicación. Se pasa de un monopolio informativo a un oligopolio a través del cual unos pocos líderes vierten sus ideas, pero la verticalidad del modelo se conserva. Las propuestas fluyen de arriba hacia abajo, de unos pocos-individuales a unos muchos-colectivos. De este modo, la única forma que tiene la mayoría de participar en la creación de la nueva sociedad es a través de las acciones de la colectividad y no a nivel particular, es decir, sus propias convicciones, sus diferencias individuales, sus matices de pensamiento no son integradas sino que se difuminan en el pensamiento colectivo guiado (creado) por los líderes sin posibilidad de ser incorparados a este.</p>
+<p>A lo largo del tiempo, con la generalización de los medios de impresión (libros y periódicos) y la aparición de nuevos medios de comunicación (radio y televisión) se desemboca en un modelo descentralizado y competitivo pero que en el fondo sigue siendo vertical (aunque ya no oligopólico) . Aumentan las posibilidades de retroalimentación de ideas pero siguen siendo demasiados pocos los que disponen de los medios para generar contenido.</p>
+<p>El cambio de paradigma no ha podido darse hasta hace poco. Me atrevería a decir que el inicio de este cambio todavía inconcluso es el nacimiento de la llamada web 2.0.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1044,129 +1071,6 @@
 <p>Nuestra otra opción es aplicar permisos de escritura y lectura para todos sobre esos ficheros:</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>chmod<span class="w"> </span>a+r<span class="w"> </span>a+w<span class="w"> </span>/dev/audio
 </span></code></pre></div>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2007-03-12 00:00:00+00:00">12 de marzo de 2007</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="cambiar-permisos-de-forma-recursiva-y-selectiva"><a class="toclink" href="../../2007/03/12/cambiar-permisos-de-forma-recursiva-y-selectiva/">Cambiar permisos de forma recursiva y selectiva</a></h2>
-<p>Por culpa de un modem con drivers propietarios (y mi ineptitud para instalar unos libres) llevaba unos 6 meses usando Windows. En otro artículo hablaré de mi odisea particular con los drivers, pero en este quiero hablar de uno de los problemas que nos asaltan cuando migramos de sistema operativo, traspasar los datos que tengamos almacenados en el antiguo sistema al nuevo.</p>
-<p>Cambiar de Windows a Linux implica cambiar de <a href="http://es.wikipedia.org/wiki/Sistema_de_ficheros">sistema de ficheros</a>. Si somos un poco meticulosos enseguida nos damos cuenta de que no vale simplemente con <em>copiar y pegar</em> puesto que los permisos de los ficheros que hayamos copiado quedaran descolocados. El esquema de permisos será algo como esto <code>-r-xr-xr-x</code>, es decir, sin permisos para poder modificar los ficheros ya creados y todos con la posibilidad de ser ejecutados. Además todos los usuarios del sistema pueden leer los datos del resto de usuario, con los peligros de seguridad que ello conlleva.</p>
-<p>Migrar entre sistemas Unix (o entre distintas distribuciones de GNU/Linux) no nos dará esta clase de problemas a no ser que no copiemos los datos de una partición del disco duro a otra, sino que lo que hagamos sea hacer una copia de los ficheros a DVD y de ahí de nuevo al disco duro. En este caso, también aplicable a cuando hacemos copias de seguridad, lo más sencillo es empaquetar nuestros datos en un archivo comprimido mediante la utilidad <em>tar</em> pasándole las opciones adecuadas en la línea de comandos para indicarle que preserve los permisos originales de los ficheros.</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Para crear la copia.</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">$tar</span><span class="w"> </span>--create<span class="w"> </span>--bzip2<span class="w"> </span>--file<span class="o">=</span>copia.tar.bz2<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/Documentos
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Para restaurarla</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nv">$tar</span><span class="w"> </span>--extract<span class="w"> </span>--bzip2<span class="w"> </span>--atime-preserve<span class="w"> </span>--same-permissions<span class="w"> </span>--file<span class="o">=</span>copia.tar.bz2
-</span></code></pre></div>
-<p>Las opciones aquí empleadas y más información pueden encontrarse como siempre en la ayuda del programa<br />
-<code>man tar</code></p>
-<p>Lo que pretendía explicar era de todas formas otra cosa. En el momento en que tenemos los ficheros copiados y con los permisos establecidos de manera no adecuada debemos tirar del comando <code>chmod</code> para cambiarlos. Para cambiar de manera recursiva los permisos de todos los ficheros y directorios a partir del que elijamos usaremos:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">0777</span>
-</span></code></pre></div>
-<p>El problema es que <code>chmod</code> no discrimina tipos de archivo, estaremos asignando los mismos permisos a directorios, documentos de texto, ficheros que nos gustaría que fuesen de solo lectura como fotos, etc. La solución nos la da el comando <code>find</code>. Las posibilidades del comando <code>find</code> son muy amplias aunque para nuestro objetivo expongo aquí las más interesantes:</p>
-<ul>
-<li><code>-type d</code>: Devuelve los nombres de los directorios</li>
-<li><code>!</code>: Niega la siguiente expresión. Así, <code>! -type d</code> Devuelve los nombres de los ficheros no directorios</li>
-<li><code>-iname &lt;patron&gt;</code>: Devuelve los nombres de ficheros (sin distinguir mayúsculas y minúsculas) que coinciden con un determinado patrón, podemos usar los comodines <code>*</code> y <code>?</code></li>
-<li><code>-iregex &lt;patron&gt;</code>: Como el anterior pero patrón es una expresión regular</li>
-<li><code>-exec &lt;comando&gt; {} ;</code>: Ejecuta el comando <code>&lt;comando&gt;</code>. <code>{}</code> Representa los nombres de archivo devueltos por find, es decir que ejecutamos el comando para cada fichero devuelto por find. <code>;</code> Es usado por la shell para reconocer el final del comando.</li>
-</ul>
-<p>Así para el caso más habitual en que deseamos otorgar permisos de lectura, escritura y ejecución para directorios, y de lectura y escritura para el resto de archivos (y ninguno para el resto de usuarios) los comandos serían:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>find<span class="w"> </span>&lt;directorio&gt;<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">0700</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>find<span class="w"> </span>&lt;directorio&gt;<span class="w"> </span>!<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">0600</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
-</span></code></pre></div>
-<p>Para aquellos con pocas ganas de jugar con los comandos, he escrito un pequeño script. Para ejecutarlo sólo hay que copiar el código y guardarlo en un fichero de texto de nombre <code>cambiar_permisos.sh</code> (por ejemplo). Abrir una consola y escribir:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>bash<span class="w"> </span>cambiar_permisos.sh<span class="w"> </span>&lt;directorio&gt;
-</span></code></pre></div>
-<p>En el script se distinguen tres tipos de archivos:</p>
-<ul>
-<li>ficheros con las extensiones <code>.pdf .jpg .jpeg .bmp .png .gif .avi .mpg .mpeg .mp3 .ogg</code> a los que se asignan los permisos <code>0400</code></li>
-<li>directorios, a los que se asignan los permisos <code>0700</code></li>
-<li>resto de ficheros, a los que se asignan los permisos <code>0600</code></li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="ch">#!/bin/sh</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># (C) 2007. Francisco Puga Alonso.</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Este software se distribuye sin ninguna garantía.</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># El autor no se hace responsable de los posibles daños de su uso</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># Este software pertenece al dominio público</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Para consultar la ayuda del script ejecute ./cambiar_permisos -h</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># Este script cambia los permisos de los ficheros y directorios a partir del directorio</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># de entrada que nosotros le indiquemos. A la hora de cambiar los permisos, asigna</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># permisos separados a directorios, ficheros de sólo lectura y resto de ficheros. Si</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># quiere saber que se consideran ficheros de sólo ejecute ./cambiar_permisos -h o</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># consulte el valor de la variable EXT_READ</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="c1"># Se comprueba que el directorio origen existe, pero no comprueba que tengamos</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1"># los permisos adecuados para cambiarlos</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1"># Ficheros considerados de sólo lectura.</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="nv">EXT_READ</span><span class="o">=</span><span class="s2">&quot;.*pdf .*jpg .*jpeg .*bmp .*png .*gif .*avi .*mpg .*mpeg .*mp3 .*ogg&quot;</span>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="c1">#EXT_REGEX contiene la expresión regular que identificará estos ficheros</span>
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="nv">EXT_REGEX</span><span class="o">=</span><span class="s2">&quot;.*pdf|.*jpg|.*jpeg|.*bmp|.*png|.*gif|.*avi|.*mpg|.*mpeg|.*mp3|.*ogg&quot;</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="c1">#Permisos por defecto aplicados a los distintos tipos de fichero considerados</span>
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="nv">PDIRS</span><span class="o">=</span><span class="s2">&quot;0700&quot;</span>
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="nv">PREAD</span><span class="o">=</span><span class="s2">&quot;0400&quot;</span>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="nv">POTHERS</span><span class="o">=</span><span class="s2">&quot;0600&quot;</span>
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="nv">DIR</span><span class="o">=</span><span class="s2">&quot;/dev/null&quot;</span>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>ayuda<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">    </span><span class="c1">#Imprime la información de ayuda</span>
-</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2">  [-d ] [-r ] [-o ]&quot;</span>
-</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;-d :: Permisos aplicados a directorios y subdirectorios. Por defecto 0700&quot;</span>
-</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;-r :: Permisos aplicados a los siguientes formatos de archivo &quot;</span>
-</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;(Por defecto 0400):n</span><span class="nv">$EXT_READ</span><span class="s2">&quot;</span>
-</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;-o :: Permisos aplicados al resto de ficheros. Por defecto 0600&quot;</span>
-</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;-h :: Imprime esta ayuda&quot;</span>
-</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">    </span><span class="nb">exit</span>
-</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="o">}</span>
-</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>
-</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Debe especificar un directorio. Use . para referirse al directorio actual&quot;</span>
-</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="w">    </span>ayuda<span class="w"> </span><span class="nv">$0</span>
-</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="k">else</span>
-</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;El primer parámetro debe ser un directorio&quot;</span>
-</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="w">        </span>ayuda<span class="w"> </span><span class="nv">$0</span>
-</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="w">    </span><span class="k">else</span>
-</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="w">        </span><span class="nv">DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
-</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="w">    </span><span class="k">fi</span>
-</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a>
-</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="w">    </span><span class="nb">shift</span>
-</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>
-</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">))</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
-</span><span id="__span-4-55"><a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a><span class="w">            </span>-d<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="nv">PDIRS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="p">;;</span>
-</span><span id="__span-4-56"><a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="w">            </span>-r<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="nv">PREAD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="p">;;</span>
-</span><span id="__span-4-57"><a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a><span class="w">            </span>-o<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="nv">POTHERS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="p">;;</span>
-</span><span id="__span-4-58"><a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a><span class="w">            </span>-h<span class="w"> </span><span class="o">)</span><span class="w"> </span>ayuda<span class="w"> </span><span class="nv">$0</span><span class="w"> </span><span class="p">;;</span>
-</span><span id="__span-4-59"><a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a><span class="w">            </span>*<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Opción Incorrecta&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>ayuda<span class="w"> </span><span class="nv">$0</span><span class="w"> </span><span class="p">;;</span>
-</span><span id="__span-4-60"><a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a><span class="w">        </span><span class="k">esac</span>
-</span><span id="__span-4-61"><a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="w">        </span><span class="nb">shift</span>
-</span><span id="__span-4-62"><a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a><span class="w">    </span><span class="k">done</span>
-</span><span id="__span-4-63"><a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a><span class="k">fi</span>
-</span><span id="__span-4-64"><a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a>
-</span><span id="__span-4-65"><a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DIR</span><span class="s2">&quot;</span><span class="w"> </span>-mount<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PDIRS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
-</span><span id="__span-4-66"><a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DIR</span><span class="s2">&quot;</span><span class="w"> </span>-mount<span class="w"> </span>!<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-and<span class="w"> </span>-iregex<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EXT_NOW</span><span class="s2">&quot;</span><span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PREAD</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
-</span><span id="__span-4-67"><a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DIR</span><span class="s2">&quot;</span><span class="w"> </span>-mount<span class="w"> </span>!<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-and<span class="w"> </span>!<span class="w"> </span>-iregex<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EXT_NOW</span><span class="s2">&quot;</span><span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$POTHERS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">;</span>
-</span></code></pre></div>
-<p>Para la realización de este script me he inspirado en este post de <a href="http://www.jsancho.org/2004/01/28/18/trackback/">Javier Sancho</a></p>
     
   </div>
 </article>

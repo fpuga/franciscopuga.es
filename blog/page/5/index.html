@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#hacen-falta-mas-programadores-contando-sus-miserias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hacen falta más programadores contando sus miserias
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-a-byte-of-python-de-swaroop-c-h" class="md-nav__link">
     <span class="md-ellipsis">
       Libro: A Byte of Python de Swaroop C H
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#recargar-el-navegador-desde-emacs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Recargar el navegador desde Emacs
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,29 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2017-11-12 00:00:00+00:00">12 de noviembre de 2017</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="hacen-falta-mas-programadores-contando-sus-miserias"><a class="toclink" href="../../2017/11/12/hacen-falta-mas-programadores-contando-sus-miserias/">Hacen falta más programadores contando sus miserias</a></h2>
+<p>Desde que Andrés planteara hace ya dos años el reto de escribir sobre la <a href="http://nosolosoftware.com/la-importancia-de-la-seleccion-tecnologica-en-una-pyme/">selección tecnológica en pymes</a> llevo queriendo escribir algo sobre ello.</p>
+<p>Todavía no va a ir de esta, pero valga este mini-post para referenciar dos enlaces que han entrado en mi radar esta misma semana. En el primero <a href="https://ma.tt/about/">Matt Mullenweg</a> quota a <a href="https://en.wikipedia.org/wiki/Jonathan_Ive">Jony Ive</a> de Apple para afirmar que <a href="https://ma.tt/2017/11/product-and-process/">tan importante como el producto (o el servicio) que proporcionas a tus clientes es el proceso, o el aprendizaje</a>, con el que has llevado hasta él. Algo en lo que creo firmemente y que también leí en Kent Beck (aunque ahora no encuentro el enlace). En el segundo nos hablan de como <a href="https://www.alexhudson.com/2017/10/14/software-architecture-failing/">no todas las arquitecturas valen para todos los casos</a>.</p>
+<p>Basicamente mi opinión va en la línea de que los creadores de opinión en torno al software, son lógicamente, increiblemente expertos en sus campos. Los frameworks con más éxito, son hechos por empresas como Google o Facebook. Las conferencias están llenas de gente que hace cosas muy chulas con las últimas tecnologías. Pero cuando tengas que decidir, si estás leyendo este post, seguramente no trabajes en Google, ni serás un mega-experto. Puede que tus clientes para hacer el deploy te hagan conectarte a un teamviewer ejecutándose en un Windows en una red interna donde te permiten abrir un putty al servidor y «monitorizan» todo lo que tecleas que debe hacerse a mano para validarlo. Trata de hablar con ellos de docker (o incluso de scripts para automatizar).</p>
+<p>Hace falta más conferencia, más libros y más posts de gente contando sus miserias, y de como su trabajo es tan necesario como el de quien tiene la suerte de poder desplegar en AWS, porqué también están resolviendo problemas reales.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1131,58 +1154,6 @@ function () {<br />
 <li>Comenta que este sistema tiene un costo en memoria. Al contrario que otras estrategias que reaprovechan los métodos, en esta <em>method</em> sería creado cada vez. Pero a cambio es muy rápido, porque no hay que recorrer el prototype chain para encontrar las claves si no que están directamente en el propio objeto</li>
 </ul>
 <p>En otro momento, me gustaría hacer un artículo con los distintos patrones de creación de objetos de Javascript, pero debo decir que este me convence mucho, porque debe ser de las pocas veces que veo algo de este tema en JS que parece tener sentido a la primera. Lo que no comprendo es porque llama «constructor» a su función de ejemplo cuando en realidad es una «factory».</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2017-05-21 00:00:00+00:00">21 de mayo de 2017</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="recargar-el-navegador-desde-emacs"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/">Recargar el navegador desde Emacs</a></h2>
-<p>Aunque Emacs no suele aparecer entre los editores preferidos para desarrollo web sigue teniendo opciones que lo hacen interesante.</p>
-<p>En este artículo vamos a comentar algunos «plugins» que nos ayudan a recargar el navegador automáticamente cuando hacemos cambios en el código. No todos funcionan en las últimas versiones de Emacs, pero los dejo en el artículo para saber lo que hay disponible, o al menos lo que no merece la pena probar.</p>
-<h3 id="conclusiones"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#conclusiones">Conclusiones</a></h3>
-<p>Para quien quiera ir directo al grano el que me parece más recomendable en este momento es <a href="https://github.com/tungd/kite-mini.el">Mini Kite Mode</a>, que se comenta al final de listado y que descubrí a través de <a href="https://stackoverflow.com/questions/22192164/remote-controlling-chrome-chromium-browser-from-emacs">esta pregunta de stackoverlow</a>. En las respuestas se mencionan algunos complementos para emacs para trabajar con desarrollo web que no he probado y que también podrían ser interesantes pero están todos desactualizados.</p>
-<h3 id="listado-de-plugins"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#listado-de-plugins">Listado de plugins</a></h3>
-<h4 id="impatient-mode"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#impatient-mode">Impatient Mode</a></h4>
-<p>Uno de los limitantes de <a href="https://github.com/netguy204/imp.el">Impatient Mode</a> es que hay que habilitar el <em>impatient-mode</em> por cada uno de los buffers que se quieran observar. Aunque supongo que se puede configurar de algún modo algún hook para que automáticamente habilite la observación en los buffers abiertos con determinadas extensiones.</p>
-<p>Tras habilitar el modo <code>M-x impatient-mode</code> y lanzar el servidor <code>M-x httpd-start</code> tendremos en localhost un navegador que escuche los cambios <code>http://localhost:8080/imp/</code></p>
-<p>Otro de sus problemas es que lo que parece hacer, es cargar dentro de un iframe la web que estamos editando en emacs, y desde el código html/js en el que está empotrado el frame se hace un pooling cada cierto tiempo para ver si el contenido cambia y recargar. Empotrar tu código dentro de un iframe al final excepto para casos sencillos puede ser problemático y el sistema de pooling tampoco es muy efectivo en la práctica, porque cada pocas pulsaciones de teclas se hace un refresco de la página.</p>
-<h4 id="skewer-mode"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#skewer-mode">Skewer Mode</a></h4>
-<p>Para hacer funcionar <a href="https://github.com/skeeto/skewer-mode">Skewer Mode</a> seguramente haya que hacer un par de pruebas, pero hay un <a href="https://www.youtube.com/watch?v=VEcobuYr5wg">vídeo</a> y una <a href="https://emacs.stackexchange.com/questions/2376/how-to-use-skewer-mode">pregunta de stackexchange</a> que pueden ayudar.</p>
-<p>La parte interesante de este modo es que permite abrir un buffer en modo REPL para javascript. De modo que podemos evaluar el código js directamente en emacs como si estuvieramos usando la consola del navegador. O podemos editar nuestra fuente javascript y relanzar una función o porciones de código al navegador.</p>
-<p>Uno de los mayores limitante es que la recarga no es automática, y en el modo html funciona tag a tag. Es decir, no podemos reenviar el buffer entero al navegador, si no sólo los tags que nos interesen. Lo que hace es modificar el dom, para actulizar el contenido de los tags. No lo he encontrado especialmente cómodo, pero tiene algunas extensiones que podrían simplificar el trabajo como <a href="https://github.com/purcell/skewer-less">skewer-less</a> o <a href="https://github.com/NateEag/skewer-reload-stylesheets">skewer-reload-stylesheets</a>.</p>
-<h4 id="emacs-browser-refresh"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#emacs-browser-refresh">Emacs browser refresh</a></h4>
-<p><a href="https://github.com/syohex/emacs-browser-refresh">Browser refresh</a> es una idea sencilla e interesante. Basicamente usa <a href="http://semicomplete.com/projects/xdotool">xdotool</a>, una herramienta que permite scriptear movimiento de ratón y pulsaciones de teclas, para poner la ventana del navegador en foco y pulsar «F5», cuando le damos a salvar. El script original no funciona del todo bien, y aunque es fácil de arreglar es una solución «error prone». Si tenemos varias ventanas del navegador abiertas, o hemos cambiado de pestaña puede funcionar incorrectamente.</p>
-<h4 id="gc-refresh-mode"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#gc-refresh-mode">GC Refresh Mode</a></h4>
-<p>De nuevo una buena idea pero el código de <a href="https://github.com/Unitech/gc-refresh-mode">GC Refresh Mode</a> está desactualizado y no funciona. Al activar el modo <code>M-x gc-refresh-mode</code> pregunta la url a recargar, que puede ser un http://localhost o un file:///, abre esa uri en chrome en modo remote-debugging y sobreescribe <em>C-x C-s</em> para que al recargar se ejecute un script en python. El script en python es una implementación muy sencilla del Chrome Debugging Protocol que conecta a un socket con el que comunicarse con la instancia del navegador que abrió antes, busca la pestaña donde está la uri de interés y la recarga.</p>
-<p>El problema es que Chrome ya no usa exactamente este sistema y el script no funciona. Este plugin está inspirado en la página de <a href="https://www.emacswiki.org/emacs/SaveAndReloadBrowser">Save And Reload Browser</a> del Emacs Wiki.</p>
-<h4 id="chrome-reload-page"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#chrome-reload-page">chrome-reload-page</a></h4>
-<p>Basándose en la idea de GC Refresh Mode hace algún tiempo escribí <a href="https://github.com/fpuga/trangalladas/tree/master/emacs/chrome-reload-page">un ejemplo de código</a> (funcional) que acabó de subir a github.</p>
-<p>Este script usa el <a href="https://developer.chrome.com/devtools/docs/integrating">Chrome debugging protocol</a> para recargar la pestaña. El script lleva empotrado el código de python del fork de max-weller de <a href="https://github.com/max-weller/chrome_remote_shell">chrome_remote_shell</a> para ahorrar trabajo.</p>
-<h4 id="mini-kite-mode"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#mini-kite-mode">Mini Kite Mode</a></h4>
-<p><a href="https://github.com/tungd/kite-mini.el">Mini Kite Mode</a> es la más funcional de las opciones de este artículo.</p>
-<p>Se puede instalar directamente desde MELPA. Para usarlo añadiremos a nuestro .emacs, las siguientes líneas.</p>
-<p><code>(require 'kite-mini)&lt;br&gt;&lt;/br&gt;(require 'kite-mini-console)&lt;br&gt;&lt;/br&gt;# Automatically Turn on the mode for your buffer of choice.&lt;br&gt;&lt;/br&gt;(add-hook 'js-mode-hook (lambda () (kite-mini-mode t)))&lt;br&gt;&lt;/br&gt;(add-hook 'css-mode-hook (lambda () (kite-mini-mode t)))&lt;br&gt;&lt;/br&gt;(add-hook 'html-mode-hook (lambda () (kite-mini-mode t)))</code></p>
-<p>El segundo <em>require</em> sólo es necesario si queremos abrir un buffer de Emacs como una consola js en modo REPL (similar a la consola de DevTools). Y los hooks permiten activar el modo para los buffers de interés en tener que activarlo a mano <code>M-x kite-mini-mode</code></p>
-<p>Una vez en un buffer (y través a ver lanzado chrome / chromium en modo remote debug) simplemente conectamos con</p>
-<p><code>M-x kite-mini-connect</code></p>
-<p>Si la pestaña que tenemos abierta es con la que queremos interactual podemos simplemente pulsar intro. A partir de ese momento podemos lanzar la consola de js, enviar una región al navegador para que sea evaluada, o recargar la pestaña.</p>
-<p>El mayor problema, de esta herramienta, y en realidad de todas las que usen el Remote Debug, es que sóla una herramienta puede estar conectada mediante el protocolo a la vez, y las DevTools hace uso de este sistema también. De modo que si kite está conectado y se abren las DevTools kite se desconectará. Y si son las DevTools las que estan activadas cuando hacemos kite-mini-connect, kite no llegará a conectar.</p>
-<p>Para simplificar un poco el flujo he editado el fichero de <em>~/.emacs.d/elpa/kite-mini-20160508.406/kite-mini-el</em> para que antes de hacer el reload salve el buffer, quedando así<br />
-<code>&lt;br&gt;&lt;/br&gt;(defun kite-mini-reload ()&lt;br&gt;&lt;/br&gt;  (interactive)&lt;br&gt;&lt;/br&gt;  (save-buffer)&lt;br&gt;&lt;/br&gt;  (kite-mini-call-rpc&lt;br&gt;&lt;/br&gt;   "Page.reload"&lt;br&gt;&lt;/br&gt;   (list :ignoreCache t)))</code></p>
-<p>De este modo al pulsar <em>C-c C-r</em>, primero salva y luego recarga. El siguiente paso, sería que mientras esté conectado, pulsar <em>C-x C-s</em> salve el buffer y recargue, pero por ahora con esto me llega.</p>
     
   </div>
 </article>

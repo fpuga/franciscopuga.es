@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparar un ordenador con Windows para asistir al curso de OpenLayers.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#como-usar-git-tras-no-haber-seguido-el-flujo-de-trabajo-idoneo" class="md-nav__link">
     <span class="md-ellipsis">
       Como usar GIT tras no haber seguido el flujo de trabajo idóneo
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#teatro-sexos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Teatro: Sexos
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,56 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-05-19 00:00:00+00:00">19 de mayo de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers"><a class="toclink" href="../../2011/05/19/preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers/">Preparar un ordenador con Windows para asistir al curso de OpenLayers.</a></h2>
+<p>Un par de instrucciones rápidas para el <a href="http://xeoinquedos.wordpress.com/">curso de OpenLayers que habrá mañana en la Escuela de Caminos en Coruña impulsado por xeoinquedos</a>, No te asustes por el texto es mucho más fácil de lo que parece. En resumen baja los archivos que se enlazan en este post y haz doble click sobre ellos :) Los enlaces son para Windows de 32bits, si usas 64 deja un comentario y te ayudamos.</p>
+<h3 id="1-instalar-apache"><a class="toclink" href="../../2011/05/19/preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers/#1-instalar-apache">1.- Instalar Apache.</a></h3>
+<p>La forma más sencilla es <a href="http://www.apachefriends.org/download.php?xampp-win32-1.7.4-VC6-installer.exe">descargar Xampp desde esta dirección</a> [1] e instalarlo haciendo doble click. Las opciones que trae por defecto son adecuadas para la mayoría de los equipos.</p>
+<p>Para lanzar Apache ejecuta el acceso directo que aparece en tu escritorio y luego pulsa en el botón «Start» que está a la derecha de Apache. Si salta un mensaje del antivirus pulsa en desbloquear. Para comprobar que funciona abre un navegador y escribe en la barra de direcciones http://localhost</p>
+<p>Si se abre una página naranja ya lo tienes :)</p>
+<p>Si tienes algún problema, tienes <a href="http://www.apachefriends.org/en/xampp-windows.html">instrucciones más detalladas en este enlace</a> [3]</p>
+<h3 id="2-instalar-un-interprete-de-python"><a class="toclink" href="../../2011/05/19/preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers/#2-instalar-un-interprete-de-python">2.- Instalar un intérprete de Python</a></h3>
+<p>Descarga<a href="http://www.python.org/ftp/python/2.7.1/python-2.7.1.msi"> python 2.7.1 para windows desde este enlace</a> [2]. Instálalo mediante doble click, las opciones por defecto son una vez más adecuadas para la mayoría de los equipos.</p>
+<h3 id="3-instalar-python-como-modulo-cgi-para-apache"><a class="toclink" href="../../2011/05/19/preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers/#3-instalar-python-como-modulo-cgi-para-apache">3.- Instalar python como módulo cgi para Apache.</a></h3>
+<p><a href="http://modwsgi.googlecode.com/files/mod_wsgi-win32-ap22py27-3.3.so">Descárgate este fichero</a> [4] y cópialo dentro de la carpeta c:xamppapachemodules. Cámbiale el nombre de mod_wsgi-win32-ap22py27-3.3.so a mod_wsgi.so</p>
+<p>A continuación abre con el WordPad el fichero c:xamppapacheconfighttpd.conf Localiza el conjunto de líneas que empiezan por el texto LoadModule y añade al final</p>
+<p>LoadModule wsgi_module modules/mod_wsgi.so</p>
+<p>Salva el fichero y vuelve a probar si funciona Apache.</p>
+<h3 id="4-firebug"><a class="toclink" href="../../2011/05/19/preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers/#4-firebug">4.- Firebug.</a></h3>
+<p>Lo mejor es que traigas instalado un navegador como firefox con el complemento firebug. <a href="http://getfirebug.com/downloads">Para instalar firebug simplemente pincha en este enlace</a> [5] desde firefox y sigue las instrucciones.</p>
+<p>Si usas firefox 3.6 debes descargar la versión 1.6, si usas firefox 4 debes usar la 1.7 preferiblemente. Para saber que versión de firefox tienes instalada pincha en Ayuda -&gt; Acerca de</p>
+<p>Aviso: En este momento la página de firebug parece caida así que si no funciona <a href="http://firebug.softonic.com/descargar">prueba con este otro enlace</a> [8]</p>
+<h3 id="5-editor-de-texto"><a class="toclink" href="../../2011/05/19/preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers/#5-editor-de-texto">5.- Editor de texto</a></h3>
+<p>Con el bloc de notas o el WordPad es suficiente para lo que vamos a hacer pero si quieres instalar uno más potente <a href="http://download.tuxfamily.org/notepadplus/5.9/npp.5.9.Installer.exe">puedes probar notepad++</a> [9]</p>
+<h3 id="6-copia-el-archivo-proxycgi-que-se-proporciona-en-los-materiales-del-curso-al-directorio-cxamppcgi-bin"><a class="toclink" href="../../2011/05/19/preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers/#6-copia-el-archivo-proxycgi-que-se-proporciona-en-los-materiales-del-curso-al-directorio-cxamppcgi-bin">6.- Copia el archivo proxy.cgi que se proporciona en los materiales del curso al directorio c:xamppcgi-bin</a></h3>
+<p>Y listo. Como es habitual en estas cosas, esto más difícil de escribir que de hacer.</p>
+<p>Por último agradecer a <a href="http://twitter.com/michogar">Micho</a>, <a href="http://blog.sonxurxo.com/">Xurxo</a>, Gracia, <a href="http://cartolab.udc.es/cartoweb/">Cartolab</a> y la <a href="http://caminos.udc.es/">Escuela de Caminos</a>, sin los que esté curso no sería posible.</p>
+<ul>
+<li>[1] <a href="http://www.apachefriends.org/download.php?xampp-win32-1.7.4-VC6-installer.exe">http://www.apachefriends.org/download.php?xampp-win32-1.7.4-VC6-installer.exe</a></li>
+<li>[2] <a href="http://www.python.org/ftp/python/2.7.1/python-2.7.1.msi">http://www.python.org/ftp/python/2.7.1/python-2.7.1.msi</a></li>
+<li>[3] <a href="http://www.apachefriends.org/en/xampp-windows.html">http://www.apachefriends.org/en/xampp-windows.html</a></li>
+<li>[4] <a href="http://modwsgi.googlecode.com/files/mod_wsgi-win32-ap22py27-3.3.so">http://modwsgi.googlecode.com/files/mod_wsgi-win32-ap22py27-3.3.so</a></li>
+<li>[5] <a href="http://getfirebug.com/downloads">http://getfirebug.com/downloads</a></li>
+<li>[8] <a href="http://firebug.softonic.com/descargar">http://firebug.softonic.com/descargar</a></li>
+<li>[9] <a href="http://download.tuxfamily.org/notepadplus/5.9/npp.5.9.Installer.exe">http://download.tuxfamily.org/notepadplus/5.9/npp.5.9.Installer.exe</a></li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1071,29 +1121,6 @@ Parece complicado, pero en realidad es más difícil de leer que de escribir una
 <p>La interfaz de de Yahoo Pipes es engañosamente sencilla, como quieras hacer algo un poquito más complicado hay que leer la ayuda. Lo que más me ha llevado ha sido que los twits no aparezcan como Título y Contenido, dado que el contenido es igual al título, aunque a cambio se ha perdido el que el título sea un enlace.</p>
 <p>Una de las cosas buenas de Pipes es que te permite remezclar y copiar lo que otros hayan hecho y hay muchos ejemplos por ahí. El mio lo podéis mirar <a href="http://pipes.yahoo.com/pipes/pipe.info?_id=23b1d684a1d80fd2d3bf1f56e1e9cf93">aquí</a>.</p>
 <p><strong>Actualización 16 de Febrero</strong>. Acabo de copiar <a href="http://pipes.yahoo.com/pipes/pipe.info?_id=e9de9cb1757e2876468fb0d333406245">de este ejemplo</a> como eliminar la parte que no nos interesa del feed, de este modo la parte de twitter ya queda perfecta.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-01-17 00:00:00+00:00">17 de enero de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="teatro-sexos"><a class="toclink" href="../../2011/01/17/teatro-sexos/">Teatro: Sexos</a></h2>
-<p>Ayer estuve en el centro cultural Garcia Barbón viendo la obra <a href="http://www.europapress.es/madrid/noticia-sexos-teatro-latina-sexos-20090904134155.html">Sexos</a>. Los actores son Pepón Nieto, Adriana Ozores, Neus Sanz y Federico Celada que en los últimos tiempos han actuado en <a href="http://www.antena3.com/series/los-hombres-de-paco/">Los hombres de Paco</a>) y Anabel Alonso, <a href="http://www.7vidas.telecinco.es/">7 Vidas</a>.</p>
-<p>Cuenta la historia de dos parejas y una soltera, que llegada la cuarentena, o próximos a ella sienten que su vida necesita un cambio (o sexo o hijos), que cada uno afronta de una manera distinta. Es una comedia de enredos y humor sencillo que busca la risa fácil a través de la forma de hablar de los personajes y el vocabulario que emplean.</p>
-<p>El público estaba claramente diferenciado entre los que superaban ampliamente la treintena que se reían como descosidos y los que estaban por debajo de los 40 que se (son)reían de tanto en tanto.</p>
-<p>Te gustará si eres de la generación del destape, si no pagar 25€ por la obra, resulta excesivo.</p>
     
   </div>
 </article>

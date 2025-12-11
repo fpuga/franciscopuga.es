@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#recargar-el-navegador-desde-emacs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recargar el navegador desde Emacs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#modelado-de-datos-booleanos-en-la-base-de-datos" class="md-nav__link">
     <span class="md-ellipsis">
       Modelado de datos booleanos en la base de datos
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#cliente-de-correo-para-linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cliente de correo para Linux
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,58 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2017-05-21 00:00:00+00:00">21 de mayo de 2017</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="recargar-el-navegador-desde-emacs"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/">Recargar el navegador desde Emacs</a></h2>
+<p>Aunque Emacs no suele aparecer entre los editores preferidos para desarrollo web sigue teniendo opciones que lo hacen interesante.</p>
+<p>En este artículo vamos a comentar algunos «plugins» que nos ayudan a recargar el navegador automáticamente cuando hacemos cambios en el código. No todos funcionan en las últimas versiones de Emacs, pero los dejo en el artículo para saber lo que hay disponible, o al menos lo que no merece la pena probar.</p>
+<h3 id="conclusiones"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#conclusiones">Conclusiones</a></h3>
+<p>Para quien quiera ir directo al grano el que me parece más recomendable en este momento es <a href="https://github.com/tungd/kite-mini.el">Mini Kite Mode</a>, que se comenta al final de listado y que descubrí a través de <a href="https://stackoverflow.com/questions/22192164/remote-controlling-chrome-chromium-browser-from-emacs">esta pregunta de stackoverlow</a>. En las respuestas se mencionan algunos complementos para emacs para trabajar con desarrollo web que no he probado y que también podrían ser interesantes pero están todos desactualizados.</p>
+<h3 id="listado-de-plugins"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#listado-de-plugins">Listado de plugins</a></h3>
+<h4 id="impatient-mode"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#impatient-mode">Impatient Mode</a></h4>
+<p>Uno de los limitantes de <a href="https://github.com/netguy204/imp.el">Impatient Mode</a> es que hay que habilitar el <em>impatient-mode</em> por cada uno de los buffers que se quieran observar. Aunque supongo que se puede configurar de algún modo algún hook para que automáticamente habilite la observación en los buffers abiertos con determinadas extensiones.</p>
+<p>Tras habilitar el modo <code>M-x impatient-mode</code> y lanzar el servidor <code>M-x httpd-start</code> tendremos en localhost un navegador que escuche los cambios <code>http://localhost:8080/imp/</code></p>
+<p>Otro de sus problemas es que lo que parece hacer, es cargar dentro de un iframe la web que estamos editando en emacs, y desde el código html/js en el que está empotrado el frame se hace un pooling cada cierto tiempo para ver si el contenido cambia y recargar. Empotrar tu código dentro de un iframe al final excepto para casos sencillos puede ser problemático y el sistema de pooling tampoco es muy efectivo en la práctica, porque cada pocas pulsaciones de teclas se hace un refresco de la página.</p>
+<h4 id="skewer-mode"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#skewer-mode">Skewer Mode</a></h4>
+<p>Para hacer funcionar <a href="https://github.com/skeeto/skewer-mode">Skewer Mode</a> seguramente haya que hacer un par de pruebas, pero hay un <a href="https://www.youtube.com/watch?v=VEcobuYr5wg">vídeo</a> y una <a href="https://emacs.stackexchange.com/questions/2376/how-to-use-skewer-mode">pregunta de stackexchange</a> que pueden ayudar.</p>
+<p>La parte interesante de este modo es que permite abrir un buffer en modo REPL para javascript. De modo que podemos evaluar el código js directamente en emacs como si estuvieramos usando la consola del navegador. O podemos editar nuestra fuente javascript y relanzar una función o porciones de código al navegador.</p>
+<p>Uno de los mayores limitante es que la recarga no es automática, y en el modo html funciona tag a tag. Es decir, no podemos reenviar el buffer entero al navegador, si no sólo los tags que nos interesen. Lo que hace es modificar el dom, para actulizar el contenido de los tags. No lo he encontrado especialmente cómodo, pero tiene algunas extensiones que podrían simplificar el trabajo como <a href="https://github.com/purcell/skewer-less">skewer-less</a> o <a href="https://github.com/NateEag/skewer-reload-stylesheets">skewer-reload-stylesheets</a>.</p>
+<h4 id="emacs-browser-refresh"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#emacs-browser-refresh">Emacs browser refresh</a></h4>
+<p><a href="https://github.com/syohex/emacs-browser-refresh">Browser refresh</a> es una idea sencilla e interesante. Basicamente usa <a href="http://semicomplete.com/projects/xdotool">xdotool</a>, una herramienta que permite scriptear movimiento de ratón y pulsaciones de teclas, para poner la ventana del navegador en foco y pulsar «F5», cuando le damos a salvar. El script original no funciona del todo bien, y aunque es fácil de arreglar es una solución «error prone». Si tenemos varias ventanas del navegador abiertas, o hemos cambiado de pestaña puede funcionar incorrectamente.</p>
+<h4 id="gc-refresh-mode"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#gc-refresh-mode">GC Refresh Mode</a></h4>
+<p>De nuevo una buena idea pero el código de <a href="https://github.com/Unitech/gc-refresh-mode">GC Refresh Mode</a> está desactualizado y no funciona. Al activar el modo <code>M-x gc-refresh-mode</code> pregunta la url a recargar, que puede ser un http://localhost o un file:///, abre esa uri en chrome en modo remote-debugging y sobreescribe <em>C-x C-s</em> para que al recargar se ejecute un script en python. El script en python es una implementación muy sencilla del Chrome Debugging Protocol que conecta a un socket con el que comunicarse con la instancia del navegador que abrió antes, busca la pestaña donde está la uri de interés y la recarga.</p>
+<p>El problema es que Chrome ya no usa exactamente este sistema y el script no funciona. Este plugin está inspirado en la página de <a href="https://www.emacswiki.org/emacs/SaveAndReloadBrowser">Save And Reload Browser</a> del Emacs Wiki.</p>
+<h4 id="chrome-reload-page"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#chrome-reload-page">chrome-reload-page</a></h4>
+<p>Basándose en la idea de GC Refresh Mode hace algún tiempo escribí <a href="https://github.com/fpuga/trangalladas/tree/master/emacs/chrome-reload-page">un ejemplo de código</a> (funcional) que acabó de subir a github.</p>
+<p>Este script usa el <a href="https://developer.chrome.com/devtools/docs/integrating">Chrome debugging protocol</a> para recargar la pestaña. El script lleva empotrado el código de python del fork de max-weller de <a href="https://github.com/max-weller/chrome_remote_shell">chrome_remote_shell</a> para ahorrar trabajo.</p>
+<h4 id="mini-kite-mode"><a class="toclink" href="../../2017/05/21/recargar-el-navegador-desde-emacs/#mini-kite-mode">Mini Kite Mode</a></h4>
+<p><a href="https://github.com/tungd/kite-mini.el">Mini Kite Mode</a> es la más funcional de las opciones de este artículo.</p>
+<p>Se puede instalar directamente desde MELPA. Para usarlo añadiremos a nuestro .emacs, las siguientes líneas.</p>
+<p><code>(require 'kite-mini)&lt;br&gt;&lt;/br&gt;(require 'kite-mini-console)&lt;br&gt;&lt;/br&gt;# Automatically Turn on the mode for your buffer of choice.&lt;br&gt;&lt;/br&gt;(add-hook 'js-mode-hook (lambda () (kite-mini-mode t)))&lt;br&gt;&lt;/br&gt;(add-hook 'css-mode-hook (lambda () (kite-mini-mode t)))&lt;br&gt;&lt;/br&gt;(add-hook 'html-mode-hook (lambda () (kite-mini-mode t)))</code></p>
+<p>El segundo <em>require</em> sólo es necesario si queremos abrir un buffer de Emacs como una consola js en modo REPL (similar a la consola de DevTools). Y los hooks permiten activar el modo para los buffers de interés en tener que activarlo a mano <code>M-x kite-mini-mode</code></p>
+<p>Una vez en un buffer (y través a ver lanzado chrome / chromium en modo remote debug) simplemente conectamos con</p>
+<p><code>M-x kite-mini-connect</code></p>
+<p>Si la pestaña que tenemos abierta es con la que queremos interactual podemos simplemente pulsar intro. A partir de ese momento podemos lanzar la consola de js, enviar una región al navegador para que sea evaluada, o recargar la pestaña.</p>
+<p>El mayor problema, de esta herramienta, y en realidad de todas las que usen el Remote Debug, es que sóla una herramienta puede estar conectada mediante el protocolo a la vez, y las DevTools hace uso de este sistema también. De modo que si kite está conectado y se abren las DevTools kite se desconectará. Y si son las DevTools las que estan activadas cuando hacemos kite-mini-connect, kite no llegará a conectar.</p>
+<p>Para simplificar un poco el flujo he editado el fichero de <em>~/.emacs.d/elpa/kite-mini-20160508.406/kite-mini-el</em> para que antes de hacer el reload salve el buffer, quedando así<br />
+<code>&lt;br&gt;&lt;/br&gt;(defun kite-mini-reload ()&lt;br&gt;&lt;/br&gt;  (interactive)&lt;br&gt;&lt;/br&gt;  (save-buffer)&lt;br&gt;&lt;/br&gt;  (kite-mini-call-rpc&lt;br&gt;&lt;/br&gt;   "Page.reload"&lt;br&gt;&lt;/br&gt;   (list :ignoreCache t)))</code></p>
+<p>De este modo al pulsar <em>C-c C-r</em>, primero salva y luego recarga. El siguiente paso, sería que mientras esté conectado, pulsar <em>C-x C-s</em> salve el buffer y recargue, pero por ahora con esto me llega.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1082,43 +1134,6 @@
 <p>Los discos duros (casi) infinitos actuales han hecho que en un año haya acumulado más de 4000 ficheros y casi 60GB en la papelera de Gnome. Nunca pensé que esto fuera un problema pero ultimamente el ordenador tardaba muchísimo en iniciarse y el disco duro incluso después de arrancar el escritorio estaba funcionando durante uno o dos minutos.</p>
 <p>El comando <em>iotop</em> nos permite saber que procesos están consumiendo más acceso a disco, y al lanzarlo durante el arranque descubrí que el problema era el servicio <a href="https://en.wikipedia.org/wiki/GVfs">gvfsd-trash</a>, responsable de la gestión de la papelera. Hay un montón de bugs y comentarios en los foros quejándose de este problema [<a href="https://ubuntuforums.org/showthread.php?t=2076379">1</a>], [<a href="https://ubuntuforums.org/showthread.php?t=1654912">2</a>], [<a href="https://bugzilla.gnome.org/show_bug.cgi?id=587221">3</a>].</p>
 <p>A falta de una solución mejor <a href="https://askubuntu.com/questions/87608/ubuntu-10-10-trash-cpu-overload">simplemente vaciar la papelera funciona</a>. Así que ya sabes, si la lucecita del disco duro no para durante el arranque vacia la papelera.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2016-05-15 00:00:00+00:00">15 de mayo de 2016</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="cliente-de-correo-para-linux"><a class="toclink" href="../../2016/05/15/cliente-correo-linux/">Cliente de correo para Linux</a></h2>
-<p>Llevo usando aplicaciones web para usar el correo desde que abrí mi primera cuenta de mail. Gmail tiene tiene una interfaz genial, funciona en cualquier dispositivo y es rápido. El único problema es que tus correos no son tuyos. Estos días he tenido que cerrar una vieja cuenta de correo en gmail y para descargar los mails a modo de copia de seguridad he estado revisando clientes de correo de escritorio:</p>
-<ul>
-<li>Que se lleven bien con gmail/imap, respetando etiquetas, …</li>
-<li>Que permitan agrupar conversaciones al modo en que lo hace gmail</li>
-<li>Que tenga buenas funcionalidades de búsqueda</li>
-<li>Que no use Qt</li>
-</ul>
-<p>En las <a href="https://opensource.com/business/15/10/top-open-source-desktop-email-clients">recomendaciones</a> y <a href="http://www.techrepublic.com/article/the-lamentable-state-of-linux-and-email-clients/">quejas</a> de clientes sobresalen un par de ellos:</p>
-<ul>
-<li><strong>Claws Mail</strong>. Que no parece tener el «modo conversación»</li>
-<li><strong>N1</strong>. Que tiene una pintaza, algo así como el <a href="https://atom.io/">Atom</a> de los clientes de correo, el problema es que todo el correo pasa a través de sus servidores o tienes que instalar uno en local.</li>
-<li><strong>Evolution</strong>. Que parece pesado, poco documentado y con demasiada gente quejándose de bugs.</li>
-<li><strong>Thunderbird</strong>.</li>
-<li><strong>Geary</strong>.</li>
-</ul>
-<p>Tanto Thunderbird (<a href="http://techtinkering.com/2014/06/22/how-to-make-thunderbird-feel-like-geary/">con plugins</a>) como Geary (por diseño) cumplen todos los requisitos, pero la búsqueda de Thunderbird parece mejor, y la mayor base de usuarios y documentación hace que sea el que vaya a probar.</p>
-<p>Siguiendo la <a href="https://support.mozilla.org/en-US/kb/thunderbird-and-gmail">documentación de thunderbird</a>, la documentación sobre <a href="https://support.google.com/mail/topic/3397500?hl=en&amp;ref_topic=3398031">IMAP de Google</a> es fácil de configurar. Si hay problemas de conexión se puede <a href="https://www.pcsteps.com/2300-use-gmail-with-thunderbird-offline-access-backup/">deshabilitar el acceso seguro en google</a> o habilitar <a href="http://kb.mozillazine.org/Using_Gmail_with_Thunderbird_and_Mozilla_Suite">OAuth2 en thunderbird</a> como método de autenticación.</p>
-<p>Para configurarlo bien hay que revisar un poco la configuración pero en general funciona todo sin problemas.</p>
     
   </div>
 </article>

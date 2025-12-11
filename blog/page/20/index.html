@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#trabaja-upstream-y-facilita-que-los-demas-tambien-lo-hagan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trabaja upstream y facilita que los demás también lo hagan
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gvsig-eiel-10-rc2-published" class="md-nav__link">
     <span class="md-ellipsis">
       gvSIG-EIEL 1.0 RC2 Published
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#como-carga-gvsig-las-extensiones" class="md-nav__link">
-    <span class="md-ellipsis">
-      Como carga gvSIG las extensiones
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,33 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-10-18 00:00:00+00:00">18 de octubre de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="trabaja-upstream-y-facilita-que-los-demas-tambien-lo-hagan"><a class="toclink" href="../../2011/10/18/trabaja-upstream-y-facilita-que-los-demas-tambien-lo-hagan/">Trabaja upstream y facilita que los demás también lo hagan</a></h2>
+<p>No os perdáis los artículos enlazados por<a href="http://nosolosoftware.com/los-costes-de-no-trabajar-upstream/trackback"> Andrés sobre los costes de no trabajar upstream</a>. En resumen:</p>
+<p>La mayoría de desarrollos basados en software libre se mantienen en «local». Para satisfacer las necesidades de un cliente puede llegar un momento en que sea necesario parches una aplicación. Si estos parches no son integrados en la rama principal de un proyecto en la mayoría de las ocasiones nos veremos en la necesidad de actualizar nuestro código con el del repositorio principal. Bien porque hayan corregido errores que nuestro cliente reporta, porque queramos mantener nuestro código actualizado …</p>
+<p>Cada vez que actualicemos nuestro código tendremos que comprobar que nuestros parches siguen correctamente integrados, independientemente del tamaño del proyecto esto acaba volviéndose un verdadero quebradero de cabeza. Tendremos que sacar nuestros propios ejecutables de la aplicación …<br />
+Si nuestros parches se encuentran upstream son otros los que se encargan de todo este trabajo.</p>
+<p>Trabajar upstream tampoco es gratis. Es probable que otros desarrolladores hagan comentarios a tu código y pidan otra aproximación, el mantenedor exigirá un formato de código determinado etc … Además la realidad es que los mantenedores serán menos propensos a incluir tus cambios cuanta menos participación tengas en el proyecto.</p>
+<p>Se debe por tanto trabajar upstream. En general si. Si tu código difiere mucho es importante hacerlo porque te ahorrará horas de mantenimiento que compensarán el integrar tus parches.<br />
+Si tus parches son pequeños a veces lleva más tiempo integrarlos que manterlos en local. Pero subirlos incrementará tu reputación en el proyecto de modo que cuando necesites integrar porciones más grandes de código o incluso ayuda para desarrollar alguna característica el resto de la comunidad estará predispuesto a ayudarte.</p>
+<p>Integrar código en upstream es también una forma de decirle a tus (posibles) clientes, ey, yo puedo hacer eso que pedís y mantenerlo.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1041,82 +1068,6 @@
 <p><a href="http://www.landmap.ac.uk/index.php/Learning-Materials/Python-Scripting/Python-Scripting-for-Students-of-Remote-Sensing/menu-id-100767.html">Python Scripting for Students of Remote Sensing</a> es un manual de python orientado a la teledetección. Si no sabes nada de python es mejor empezar por otro manual y luego saltar directamente al capítulo 5, «Plottin». La parte de python en sí es muy básica y no está muy bien explicada. Del capítulo 5 al 10 se muestran algunas librerías interesantes de python para mostrar gráficos (matplotlib), para estadística y calculos científicos (numpy), para procesado de raster (gdal), o ejemplos sencillos de trabajo con datos lidar en ficheros ascii. La información que dan es bastante escueta, pero si ya conoces python en un par de horas puedes leerlo para hacerte una idea de que posibilidades hay en estos campos.</p>
 <p>En la misma página se pueden encontrar otros manuales interesantes sobre teledetección.</p>
 <p>Descubrí el curso gracias al <a href="http://conocimientoabierto.es/curso-objetivo-programacao-python/325/comment-page-1/#comment-15182">comentario</a> de <a href="http://joseguerreroa.wordpress.com/">José Guerrero</a>.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-09-02 00:00:00+00:00">2 de septiembre de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="como-carga-gvsig-las-extensiones"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/">Como carga gvSIG las extensiones</a></h2>
-<p>En la línea abierta por <a href="http://nosolosoftware.com/how-gvsig-manages-the-snappers/">Andrés de «Como gvSIG hace xxx»</a> os presento un artículo que explica como se gestiona la carga de las extensiones en gvSIG. Antes de nada debo agradecer a <a href="http://cartolab.udc.es/">Cartolab</a> cederme tiempo para poder escribirlo.</p>
-<p>Lo que sucede cuando lanzamos gvSIG es que la máquina virtual de java ejecuta el método main() de <a href="http://forge.osor.eu/plugins/scmsvn/viewcvs.php/*checkout*/trunk/frameworks/_fwAndami/src/com/iver/andami/Launcher.java?content-type=text%2Fplain&amp;root=gvsig-desktop">la clase Launcher de andami</a>, el framework que sostiene el sistema de ventanas y plugins de gvSIG.</p>
-<p>A efectos de este artículo sobre la carga de extensiones podemos decir que ese método main() es el responsable de lo siguiente:</p>
-<ol>
-<li>Procesar los parámetros que se le pasan por línea de comandos</li>
-<li>Cargar los plugins</li>
-<li>Cargar las clases de los plugins</li>
-<li>Recuperar la configuración persistida de los plugins</li>
-<li>Inicializar las extensiones</li>
-<li>Cargar menus y toolbars</li>
-<li>Hacer la postinicialización de las extensiones</li>
-</ol>
-<h4 id="1-procesar-los-parametros-que-se-le-pasan-por-linea-de-comandos"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#1-procesar-los-parametros-que-se-le-pasan-por-linea-de-comandos">1.- Procesar los parámetros que se le pasan por línea de comandos</a></h4>
-<p>Lo más habitual es que la orden que ejecute el sistema operativo (quitando los parametros que se pasan a la jvm) sea algo parecido a:</p>
-<p>$ java com.iver.andami.Launcher <strong>gvSIG gvSIG/extensiones «$@»</strong></p>
-<p>donde la parte en negrita serían los parámetros que pasamos al main(). En concreto ese segundo parámetro gvSIG/extensiones es el que está definiendo donde está la carpeta de plugins de gvSIG, como ruta relativa desde donde se encuentra el fichero andami.jar.</p>
-<p>Es decir, que si bien el directorio de extensiones suele estar en un punto predefinido nosotros podriamos escoger otra ubicación.</p>
-<h4 id="2-carga-de-los-plugins"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#2-carga-de-los-plugins">2.- Carga de los plugins</a></h4>
-<p>Procesados los parámetros de entrada la aplicación recorre todos los directorios contenidos en la carpeta de plugins. Si dentro del directorio existe un fichero de nombre <em>«config.xml»</em> lo parsea y en caso de ser correcto añade el par [«nombre del directorio», objeto PluginConfig] al campo de la clase <em>Launcher</em></p>
-<p><code>&lt;br&gt;&lt;/br&gt;private static HashMap pluginsConfig = new HashMap();&lt;br&gt;&lt;/br&gt;</code><br />
-Donde <em>PluginConfig</em> es una clase que se encarga de mantener toda la información que aportan los ficheros <em>config.xml</em>.</p>
-<p>Lo más interesante de esta fase es entender que el orden en que se recorren los directorios, y por tanto el orden en que luego se inicializarán las extensiones, es aleatorio, o en realidad es el orden que devuelve el método <a href="http://download.oracle.com/javase/1.4.2/docs/api/java/io/File.html#listFiles()">lisFiles() de la clase File de Java</a>, que especifica en su documentación que el orden en se devuelven los ficheros no está asegurado y supongo, dependerá de la implementación concreta de la máquina virtual y del sistema operativo que se emplee.</p>
-<p>Hay que aclarar que en este contexto, un plugin, es igual a un directorio contenido dentro del directorio de extensiones/plugins definido como parámetro.</p>
-<h4 id="3-carga-de-las-clases-de-los-plugins"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#3-carga-de-las-clases-de-los-plugins">3.- Carga de las clases de los plugins</a></h4>
-<p>Lo siguiente que intenta hacer es indexar todas las clases de todos los plugins. Para ello recorre <em>pluginsConfig</em>, solicitando el valor de la etiqueta del config &lt;libraries library-dir=»VALOR» /&gt;. Lo más habitual es que ese VALOR sea <em>«./»</em>, es decir el propio directorio del plugin. Para cada plugin mantiene un objeto <em>PluginClassLoader</em> que basicamente contiene un índice de todos ficheros .class que están dentro de los ficheros .zip o .jar que están en ese <em>library-dir</em>.</p>
-<p>Para cada plugin se crea un objeto <em>PluginServices</em> que a su vez mantiene la instancia del <em>PluginClassLoader</em> que le corresponde. Esos <em>PluginServices</em> se almacenan en el campo<br />
-<code>&lt;br&gt;&lt;/br&gt;private static HashMap pluginsServices= new HashMap();&lt;br&gt;&lt;/br&gt;</code><br />
-de la clase <em>Launcher</em>.</p>
-<p>Hay que tener en cuenta que a la hora de cargar las clases de un plugin, si en el config se ha definido que depende de otro mediante una etiquetacarga la clases de la dependencia (de forma recursiva) antes que el nuestro. Por tanto, en <em>pluginsServices</em> los plugins se reordenan respecto a <em>pluginsConfig</em> poniendo los plugins de los que se depende antes. Se mantiene también una variable <em>pluginsOrdered</em> con el nombre de los plugins en el mismo orden que <em>pluginsServices</em></p>
-<h4 id="4-persistencia-de-los-plugins"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#4-persistencia-de-los-plugins">4.- Persistencia de los plugins</a></h4>
-<p>Se actualiza el andamiConfig que contiene una lista (el fichero andami-config.xml habitualmente) que persiste con todos los plugins presentes el directorio de plugins.</p>
-<p>Luego se recupera de disco la configuración persistida de los plugins en el fichero plugins-persistance.xml, y se <em>setea</em> esa configuración en el PluginServices asociado a cada plugin.</p>
-<h4 id="5-inicializacion-de-las-extensiones"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#5-inicializacion-de-las-extensiones">5.- Inicialización de las Extensiones</a></h4>
-<p>Es en esta fase cuando salen por consola los mensajes de:</p>
-<blockquote>
-<p>Initializing extensions from «Nombre_del_plugin» (para cada plugin)</p>
-</blockquote>
-<p>y</p>
-<blockquote>
-<p>Initializing «Nombre_de_la_Extension» … (para cada extensión)</p>
-</blockquote>
-<p>Se recorre <em>pluginsOrdered</em>, y para cada plugin se crea una instancia de cada extensión (en el orden que se define en el config del plugin) y se llama a su método <em>initialize()</em>. Además se almacena esas instancia en el campo de <em>Launcher</em>:<br />
-<code>&lt;br&gt;&lt;/br&gt;private static ArrayList extensions=new ArrayList();&lt;br&gt;&lt;/br&gt;</code><br />
-Por el medio crea también un objeto <em>ExtensionDecorator</em> que nos da un control adicional sobre las extensiones pero esto no nos interesa a los efectos de este artículo.</p>
-<h4 id="6-menus-y-toolbars"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#6-menus-y-toolbars">6.- Menus y Toolbars</a></h4>
-<p>Se cargarn los menus y los toolbars definidos por los plugins a través de los métodos <em>installPluginsMenus()</em> y <em>installPluginsControls()</em>.</p>
-<h4 id="7-post-inicializacion-de-las-extensiones"><a class="toclink" href="../../2011/09/02/como-carga-gvsig-las-extensiones/#7-post-inicializacion-de-las-extensiones">7.- Post-inicialización de las extensiones</a></h4>
-<p>Se va llamando al método postInitialize de cada extensión en el orden en que aparecen en el array extensions. Con este paso finalizaría el proceso de carga.</p>
-<p>Una cosa que no he investigado a fondo pero que intuyo que es así, es que en algún momento de este proceso se asocian las instancias del array <em>extensions</em> a los menús y botones del toolbar. De este modo las extensiones (clases que heredan de extension y aparecen en los config) se comportan como una especie de singleton, porque gvSIG siempre la recupera de ese array de extensiones, y cuando el desarrollador externo llama a <em>PluginServices.getExtension(Class)</em> la está recuperando de ahí también (del <em>ExtensionDecorator</em> del que hablamos antes en realidad, pero la idea es la misma)</p>
-<p>Esto explica también porque cuando recompilamos nuestro código, si cambiamos algo en la clase de la extensión debemos cerrar y abrir gvSIG. La instancia de la extensión se crea durante la carga de gvSIG y se mantiene hasta que cerramos gvSIG, y por tanto no es «recargada» de los nuevos .class</p>
-<p>Me quedan un par de dudas que quedan para estudiar para próximos posts o para quien se anime a escribir más artículos de la serie de «Como hace gvSIG XXX»:</p>
-<ul>
-<li>Al parecer existe una extension del tipo ExclusiveUIExtension a la que se hace referencia en Launcher.initializeExclusiveUIExtension() que no tengo muy claro como funciona</li>
-<li>Estaría bien explicar en detalle el comportamiento de los ExtensionDecorator</li>
-<li>Estaría bien explicar detalladamente el proceso de creación y ubicación de los menús y toolbars</li>
-<li>Algunas partes del código son un poco liosas. Tengo algunas ideas de como refactorizarlo así que si alguien se anima que pregunte</li>
-</ul>
     
   </div>
 </article>

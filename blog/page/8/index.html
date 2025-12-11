@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#es-decrecimiento-una-buena-palabra" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Es «decrecimiento» una buena palabra?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#el-sol-la-tierra-la-luna-y-animaciones-con-css3" class="md-nav__link">
     <span class="md-ellipsis">
       El sol, la tierra la luna y animaciones con css3
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#comentarios-al-articulo-de-complejidad-y-reversibilidad-de-kent-beck" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comentarios al artículo de Complejidad y Reversibilidad de Kent Beck
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,28 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2015-12-05 00:00:00+00:00">5 de diciembre de 2015</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="es-decrecimiento-una-buena-palabra"><a class="toclink" href="../../2015/12/05/es-decrecimiento-una-buena-palabra/">¿Es «decrecimiento» una buena palabra?</a></h2>
+<p>Aunque puedo coincidir con algunas de sus ideas la palabra «Decrecimiento» me pone nervioso. Por eso el artículo de <a href="http://www.kateraworth.com/about/">Kate Raworth</a> en el blog de <a href="https://en.wikipedia.org/wiki/Duncan_Green">Duncan Green</a> explicando <a href="http://oxfamblogs.org/fp2p/why-degrowth-has-out-grown-its-own-name-guest-post-by-kate-raworth/">algunos de los motivos por los que Decrecimiento es una mala palabra</a> creo es digno de ser leído. <a href="http://oxfamblogs.org/fp2p/youre-wrong-kate-degrowth-is-a-compelling-word/">Este otro post</a>, con el que no concuerdo, es una respuesta al artículo original.</p>
+<p>No dejéis de leer los comentarios y fijaros en la encuesta, en este momento la opción <em>«buena idea, buena palabra»</em> tienen 117 votos, <em>«buena idea, mala palabra»</em> 76 votos y <em>«no una buena idea»</em> tiene 41 votos. Es decir que aún sumando las dos últimas opciones el resultado está empatado. En cambio, la mayoría de comentarios, son críticos con la palabra.</p>
+<p>Siendo un pelín malvado parece que a los fans del decrecimiento les va más la adhesión a la idea que a presentar argumentos a su favor.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1038,72 +1060,6 @@ https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
 <li>A pesar de que la idea principal de la charla es montar una aplicación en tiempo real con el mínimo número de dependencias (complejidad) el proceso de build que monta no parece trivial. pip para dependencias en python, nodeenv (una especie de entorno virtual para node que se integra con el virtualenv de python), bower para las dependencias javascript de cliente,… Todo ello orquestrado por un Makefile.</li>
 <li>No muestra como hacer la parte del frontend, pero en todo caso <a href="https://bitbucket.org/btubbs/todopy-pg">el código está en su repo</a></li>
 </ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-08-09 00:00:00+00:00">9 de agosto de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="comentarios-al-articulo-de-complejidad-y-reversibilidad-de-kent-beck"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/">Comentarios al artículo de Complejidad y Reversibilidad de Kent Beck</a></h2>
-<p><a href="http://nosolosoftware.com/">Andrés</a> me pincha para que lea y comente <a href="http://nosolosoftware.com/complejidad-y-reversibilidad/">el último post de Kent Beck</a> en su <em>muro de facebook</em>. Como todo lo que escribe Beck hay que leerlo con atención y se pueden sacar lecciones interesantes. Pero este artículo en particular se me hace complicado de leer porque creo que mezcla demasiadas cosas a la vez. Comienza con una teoría general sobre sistemas complejos y luego salta a prácticas concretas de facebook para atajarla en distintos estadios del desarrollo sin pararse a explicar que técnicas tienen sentido en según que contextos. Analicémoslo por tanto atendiendo al artículo como dos partes separadas.</p>
-<h3 id="complejidad-y-software"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/#complejidad-y-software">Complejidad y Software</a></h3>
-<p><a href="https://en.wikipedia.org/wiki/Programming_complexity">Software complexity</a> es un término con definición propia en el mundo académico. En la práctica todo desarrollador tiene una noción intuitiva de que es complejidad y <a href="http://nosolosoftware.com/compilaciones/del-software/#principles">debería tener como principio el atajarla</a>. Beck explica alguno de los elementos de la complejidad y cuales de ellos se puede intentar mantener bajo control en un producto como facebook. La cuestión es, si en otro tipo de productos software se puede o tiene más sentido atacar otro frente distintos al de la irreversibilidad. Personalmente se escapa de mis conocimientos esta reflexión pero apunto algunos elementos para el debate:</p>
-<ul>
-<li>Estados. Atendiendo al producto como un todo (hardware, acciones del usuario, red,..) seguramente será difícil de atajar. Si nos quedamos con las acciones (interacción) del usuario me recuerda a la diferenciación entre <a href="http://nosolosoftware.com/glosario/mapa-vs-camino/">mapa y camino</a> de la que se reapropió Andrés <a href="http://nosolosoftware.com/bill-verplank/">atendidendo a Verplank</a>.</li>
-<li>Interdependencias. <a href="https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a>, KIS, Patrones, Modularidad o cualquier <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=331531">práctica de buen diseño</a> entiendo que ayuda a disminuirla a no ser que se me escape algo.</li>
-<li>Incertidumbre. Supongo que es el más complicado. Usuarios usando la aplicación en formas no previstas. Requisitos cambiantes,…</li>
-<li>Irreversibilidad. Nada que decir, es en el que se centra Beck.</li>
-</ul>
-<h3 id="atajar-la-irreversibilidad"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/#atajar-la-irreversibilidad">Atajar la Irreversibilidad</a></h3>
-<p>La segunda parte del artículo habla de algunas de las técnicas que usan en Facebook para combatirla. Algunas pueden ser consideradas de <em>modernas</em> como el Frequent Pushes (¿<a href="http://www.thoughtworks.com/continuous-delivery">Continuous Delivery</a>?) y otras como el Code Review llevan con nosotros mucho tiempo. Beck las enumera todas juntas pero creo que intentar ponerlas bajo una clasificación más o menos habitual en factorías de software tradicionales puede ayudar a decidir cuales pueden ser aplicables en cada caso. Dejo fuera (IRC y Data-informed decisions)</p>
-<ul>
-<li>Desarrollo <ul>
-<li>Development servers</li>
-<li>Code review</li>
-<li>Correlation</li>
-</ul>
-</li>
-<li>Pre-Producción / Testing <ul>
-<li>Internal usage</li>
-<li>Staged rollout</li>
-<li>Advance countries</li>
-<li>Shadow production</li>
-</ul>
-</li>
-<li>Producción <ul>
-<li>Frequent pushes</li>
-<li>Soft launches</li>
-<li>Dynamic configuration</li>
-<li>Right hand side units</li>
-<li>Double write/bulk migrate/double read</li>
-</ul>
-</li>
-</ul>
-<p>Sin duda algunas de las técnicas como Staged Rollout es discutible en que fase van y son clasificables bajo esta óptica. La idea de intentar clasificarlas es sólo para poder compararlas con una forma de trabajo que nos resulte más cercana para a partir de ahí ver cuales podemos empezar a aplicar y en que punto de nuestro proceso.</p>
-<h3 id="que-puedo-aplicar-y-como-si-no-soy-facebook"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/#que-puedo-aplicar-y-como-si-no-soy-facebook">Qué puedo aplicar y cómo si no soy Facebook</a></h3>
-<p>Más que técnicas concretas en realidad lo que Beck plantea es una cultura (o dos). El Desarrollo Ágil y el DevOp. Intentar aplicar alguna de sus estrategias de forma separada sin abrazar la filosofía subyacente creo que sólo produce desgaste. Con esto no quiero decir que tengas que hacer <em>pair programming</em> y tener un <em>devop</em> en tu equipo, pero sí al menos comprender que hay valor en los principio que proponen.</p>
-<p>Para mi los pasos en ese camino son tres: Tests, Automatización y Monitorización.</p>
-<p><strong>Monitorización</strong>. Si no estás midiendo lo que sucede rendimiento, comportamiento de usuarios, … saber lo que está pasando o cuando un cambio no tiene el efecto previsto.</p>
-<p><strong>Automatización</strong>. Si hacer un despliegue es costoso e implica varios pasos, se harán pocos , se tardará más tiempo en tener feedback, se introducen más posibilidades de error y no hablemos de lo que supone revertir un mal cambio. Si no se automatizan los procesos se vuelve más complicado que todos los desarrolladores tengan el mismo entorno y este sea parecido a producción.</p>
-<p><strong>Tests</strong>. Probablemente la piedra angular. Estoy leyendo <em>Working Effectively with Legacy Code</em>, y en los primeros capítulos expone algunas cuestiones sobre tests que tienen relevancia para la «reversibilidad». En el libro comparan trabajar sin tests a hacer acrobacias sin red, y expone dos formas de introducir cambios en un sistema.</p>
-<blockquote>
-<p>Changes in a system can be made in two primary ways. I like to call them Edit and Pray and Cover and Modify. Unfortunately, Edit and Pray is pretty much the industry standard. When you use Edit and Pray, you carefully plan the changes you are going to make, you make sure that you understand the code you are going to modify, and then you start to make the changes. When you’re done, you run the system to see if the change was enabled, and then you poke around further to make sure that you didn’t break anything. The poking around is essential. When you make your changes, you are hoping and praying that you’ll get them right, and you take extra time when you are done to make sure that you did.<br />
-Superficially, Edit and Pray seems like “working with care,” a very professional thing to do. The “care” that you take is right there at the forefront, and you expend extra care when the changes are very invasive because much more can go wrong. But safety isn’t solely a function of care. I don’t think any of us would choose a surgeon who operated with a butter knife just because he worked with care. Effective software change, like effective surgery, really involves deeper skills. Working with care doesn’t do much for you if you don’t use the right tools and techniques.<br />
-Cover and Modify is a different way of making changes. The idea behind it is that it is possible to work with a safety net when we change software. The safety net we use isn’t something that we put underneath our tables to catch us if we fall out of our chairs. Instead, it’s kind of like a cloak that we put over code we are working on to make sure that bad changes don’t leak out and infect the rest of our software. Covering software means covering it with tests. When we have a good set of tests around a piece of code, we can make changes and find out very quickly whether the effects were good or bad. We still apply the same care, but with the feedback we get, we are able to make changes more carefully.</p>
-</blockquote>
-<p>En esencia, durante el desarrollo tener tests te permite probar y si no funciona revertir a coste casi cero. En producción el coste de revertir no es cero (al menos sin aplicar otras de las técnicas mencionadas) pero al menos te permite detectar errores de forma temprana.</p>
     
   </div>
 </article>

@@ -871,6 +871,83 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2025-12-11 00:00:00+00:00">11 de diciembre de 2025</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="agentsmd-and-the-to-reference-documents"><a class="toclink" href="2025/12/11/agents-md-and-at-character-to-reference-documents/">AGENTS.md and the @ to reference documents</a></h2>
+<p>This article is just a quick experiment on:</p>
+<ul>
+<li>The difference between referencing a document that the agent reads with the <code>@</code> symbol in front or simply by including the path. <code>@./docs/rule1.md</code> vs simple <code>./docs/rule1.md</code>.</li>
+<li>How to split the rules of the LLM into different documents to avoid "burning" context".</li>
+</ul>
+<p>The ideas are based on these two articles:</p>
+<ul>
+<li><a href="https://merowing.info/posts/stop-getting-average-code-from-your-llm/">Stop Getting Average Code from Your LLM</a></li>
+<li><a href="https://blog.sshh.io/p/how-i-use-every-claude-code-feature">How I Use Every Claude Code Feature</a></li>
+</ul>
+<p>The first test is with gemini-cli, which by default does not use <code>AGENTS.md</code>. <a href="https://github.com/google-gemini/gemini-cli/discussions/1471">In this ticket</a>, there are also people asking if the use of <code>@</code> is inherent to the model or the tool.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="go">mkdir -p /tmp/experiment/docs</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">cd /tmp/experiment</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">echo &quot;Start all your answers with &#39;Hello fpuga&#39;.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">If the user ask any question about Spain read ./docs/foo.md</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="go">&quot; &gt; GEMINI.md</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="go">echo &quot;Always add a joke at the end of your answers&quot; &gt; docs/foo.md</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="go">gemini &quot;What is the capital of France&quot;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="go">&gt;&gt;&gt; Hello fpuga</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="go">&gt;&gt;&gt; Paris.</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="go">gemini &quot;What is the capital of Spain&quot;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="go">&gt;&gt;&gt; Hello fpuga</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="go">&gt;&gt;&gt; Hello fpuga</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="go">&gt;&gt;&gt; I need to find the capital of Spain. I will use a web search tool for this.</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="go">&gt;&gt;&gt; Hello fpuga</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="go">&gt;&gt;&gt; The capital of Spain is Madrid.</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="go">&gt;&gt;&gt;</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="go">&gt;&gt;&gt; Why did the invisible man turn down the job offer?</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="go">&gt;&gt;&gt;</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="go">&gt;&gt;&gt; He couldn&#39;t see himself doing it!</span>
+</span></code></pre></div>
+<p>We see that when we don't use <code>@</code>, the tool/model only loads <code>GEMINI.md</code>, but it's able to load the additional rules when needed.</p>
+<p>Let's try it with <code>@</code>.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="go">echo &quot;Start all your answers with &#39;Hello fpuga&#39;.</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">If the user ask any question about Spain read @./docs/foo.md</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">&quot; &gt; GEMINI.md</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="go">gemini &quot;What is the capital of France&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="go">&gt;&gt;&gt; Hello fpuga,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="go">&gt;&gt;&gt; The capital of France is Paris.</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="go">&gt;&gt;&gt;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="go">&gt;&gt;&gt; Why don&#39;t scientists trust atoms? Because they make up everything!</span>
+</span></code></pre></div>
+<p>And indeed, when we use <code>@</code> it follows the references and loads them automatically into the context.</p>
+<p>I replicated the experiment with Cursor and Cursor CLI, and in this case, the use of the <code>@</code> symbol has no effect. It only reads <code>foo.md</code> when asked for Spain.</p>
+<h3 id="conclusions"><a class="toclink" href="2025/12/11/agents-md-and-at-character-to-reference-documents/#conclusions">Conclusions</a></h3>
+<ul>
+<li>It's a shame there isn't more standardization in how the tools work.</li>
+<li>If the <code>@</code> trick were standardized, it would prevent duplication. From <code>AGENTS.md</code>, we could link a simple <code>CONTRIBUTING.md</code> with rules like "Before committing, run <code>./scripts/format.sh</code> and <code>./scripts/lint.sh</code>; it must not return any errors." Or "All contributions must maintain test coverage above 75%."</li>
+<li>The idea of ​​a rules index telling the model when to load additional documents is really good for avoiding context clutter.</li>
+</ul>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2025-12-06 00:00:00+00:00">6 de diciembre de 2025</time></li>
         
         
@@ -1096,31 +1173,32 @@
 <p>En general este sería el estilo más compatible que se podría usar:</p>
 <div class="language-markdown highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gh"># Ejemplo de texto</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Un texto con <span class="ge">*italic emphasis*</span> y también <span class="gs">**bold emphasis**</span>, en el que tenemos:
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Un texto con <span class="ge">_italic emphasis_</span> y también <span class="gs">**bold emphasis**</span>, en el que tenemos:
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">*</span><span class="w"> </span>Una lista desordenada
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">*</span><span class="w"> </span>Con sólo dos items
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="k">*</span><span class="w"> </span>y anidación
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">-</span><span class="w"> </span>  Una lista desordenada
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">-</span><span class="w"> </span>  Con sólo dos items
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">-</span><span class="w"> </span>  y anidación
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="gu">## Y una lista ordenada</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">1.</span> Primer item
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="k">*</span><span class="w"> </span>lista desordenada anidada
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="k">*</span><span class="w"> </span>con otro item
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">2.</span> Segundo item con <span class="sb">`codigo inline`</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="gu">## Blockquotes</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">&gt; </span><span class="ge">Siguen este</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">&gt; </span><span class="ge">estilo</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="gu">## Tablas</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>| Column A | Column B |
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| -------- | -------- |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| A1       | B1       |
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| A2       | B2       |
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">-</span><span class="w"> </span>  lista desordenada anidada
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">-</span><span class="w"> </span>  con otro item
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">2.</span> Segundo item con <span class="sb">`codigo inline`</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="gu">## Blockquotes</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">&gt; </span><span class="ge">Siguen este</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">&gt; </span><span class="ge">estilo</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="gu">## Tablas</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| Column A | Column B |
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| -------- | -------- |
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| A1       | B1       |
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>| A2       | B2       |
 </span></code></pre></div>
     
   </div>
@@ -1365,32 +1443,6 @@
 <h3 id="conclusiones"><a class="toclink" href="2025/06/19/language-server-python/#conclusiones">Conclusiones</a></h3>
 <p>PyCharm aparte, y con ánimo de polemizar se puede decir que no hay un soporte tan bueno cómo podría esperarse para Python en los IDEs.</p>
 <p>Personalmente en este momento estoy usando Pyrefly con el plugin para Cursor como LS principale, y ruff con su plugin cómo el LS secundario que se encarga del formatting y linting.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2025-05-17 00:00:00+00:00">17 de mayo de 2025</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="las-pensiones-como-inversion"><a class="toclink" href="2025/05/17/pensiones-como-inversion/">Las pensiones cómo inversión</a></h2>
-<p>Las pensiones suelen ser consideradas cómo un gasto del ~15% del PIB. Pero <strong>qué pasa si en lugar de gasto lo llamamos inversión</strong> y tratamos de evaluar los ingresos que produce esa inversión.</p>
-<p>Dos investigadores concluyen que gracias a los impuestos IVA, IRPF de trabajadores, ... vinculados al gasto producido con el dinero de las pensiones sale una relación 1 a 1,1. Es decir, cada 1€ gastado en pensiones genera 1,1€. Me faltan conocimientos para interpretar el estudio, y lógicamente no se puede llevar al extremo, el estado no tiene infinito dinero para gastar aunque la devolución sea mayor que el gasto. Pero en esta época de campaña anti pensiones, me gusta que haya otra forma de entender las cosas (recordemos el peligro de una sola historia).</p>
-<h3 id="referencias"><a class="toclink" href="2025/05/17/pensiones-como-inversion/#referencias">Referencias</a></h3>
-<ul>
-<li><a href="https://www.eldiario.es/economia/si-mira-manera-gasto-pensiones-estudio-senala-motor-crecimiento-economico_1_12171547.html">Artículo al respecto de elDiario.es</a></li>
-<li><a href="https://www.tandfonline.com/doi/full/10.1080/09538259.2024.2351833">El estudio de los economistas Eladio Febrero y Fernando Bermejo</a></li>
-</ul>
     
   </div>
 </article>

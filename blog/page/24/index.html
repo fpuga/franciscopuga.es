@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#clickativismo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clickativismo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-escuela-de-robinsones" class="md-nav__link">
     <span class="md-ellipsis">
       Libro: Escuela de Robinsones
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#sincronizar-el-perfil-o-los-marcadores-de-firefox-mediante-dropbox" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sincronizar el perfil o los marcadores de Firefox mediante dropbox
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,29 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2010-08-17 00:00:00+00:00">17 de agosto de 2010</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="clickativismo"><a class="toclink" href="../../2010/08/17/clickativismo/">Clickativismo</a></h2>
+<p>Gracias a una entrada de <a href="http://www.labroma.org/blog/">Olga</a> en el blog de <a href="http://www.masticable.org/2010/08/17/el-clickactivismo-esta-arruinando-el-activismo-de-izquierdas/">Masticable</a> llego a un interesante artículo de opinión en The Guardian, <a href="http://www.guardian.co.uk/commentisfree/2010/aug/12/clicktivism-ruining-leftist-activism">Clicktivism is ruining leftist activism</a>.</p>
+<p>A pesar de que seguramente el l<em>eftist</em> sobraba y tampoco dice nada que <a href="http://conocimientoabierto.es/ciberactivismo-de-carton/22/">no se hubiera visto venir</a>, me gusta que en un periódico generalista traten estos temas.</p>
+<p>El tercer sector, no debe desechar el marketing tradicional, porque hay mucho que aprender ahí, pero tampoco debe rebajarse a pensar en la gente como simples números, ni a tener amigos en un <a href="http://lasindias.net/indianopedia/Libros_de_cromos">libro de caras</a>.</p>
+<p>En resumen, los clicks son importantes, ayudan a ofrecer números a los financiadores, o a los que necesitan votos, pero están en la escala más baja en cuanto a <a href="http://lasindias.coop/la-piramide-del-compromiso/">calidad del aporte</a>. Es más difícil obtener números en los otros niveles de la pirámide, pero el esfuerzo merece la pena.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1119,71 +1142,6 @@ Si lo que queremos es definir un patrón de exclusión para un repositorio concr
 <p>Si usamos una passphrase nos la preguntarán sólo la primera vez de la sesión que la clave sea usada. Se trata de una contraseña para permitir al sistema acceder a nuestra clave privada, no tiene nada que ver con el servidor remoto.</p>
 <p>Una vez tengamos nuestra clave ssh, debemos copiarla al servidor, para ello existe un comando especial que hace todo por nosotros</p>
 <p><code>ssh-copy-id @servidor</code></p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2010-03-26 00:00:00+00:00">26 de marzo de 2010</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="sincronizar-el-perfil-o-los-marcadores-de-firefox-mediante-dropbox"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/">Sincronizar el perfil o los marcadores de Firefox mediante dropbox</a></h2>
-<p>Cuando de manera habitual usas más de un ordenador mantener la misma configuración en ambos acaba siendo problemático. Una de las cosas que más echo de menos desde que he dejado de usar mi portátil personal en el trabajo es poder sincronizar los marcadores de Firefox.</p>
-<h3 id="en-el-cielo-o-en-la-tierra"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#en-el-cielo-o-en-la-tierra">En el cielo o en la tierra</a></h3>
-<p>Tal y como yo lo veo hay dos clasificaciones en las que se podrían englobar los métodos para la sincronización:</p>
-<ul>
-<li>Usar un servicio web como <a href="http://delicious.com/">delicious</a> pensado para trabajar exclusivamente con los marcadores.</li>
-<li>Usar alguna herramienta de sincronización de ficheros como <a href="http://www.dropbox.com/">DropBox</a>.</li>
-</ul>
-<p>El depender en exclusiva de un servicio web <a href="http://blog.loretahur.net/2009/03/los-problemas-de-la-nube-informatica-radio-euskadi.html">no es una opción que me tiente demasiado</a>, así que no hablaremos de ella. DropBox en cambio, es una mezcla de servicio web y <a href="http://es.wikipedia.org/wiki/Rsync">rsync</a> sencillo, donde los ficheros no sólo se guardan en un servidor externo si no también en el nuestro, de modo que podemos abandonarlo cuando queramos a coste casi cero, de hecho, montar <a href="http://aseodiario.com/2010/03/dropbox-casero/">un sistema casero que substituya a DropBox</a> no es muy complicado.</p>
-<h3 id="diferentes-implementaciones-con-dropbox"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#diferentes-implementaciones-con-dropbox">Diferentes implementaciones con Dropbox</a></h3>
-<p>Decidido que usaremos DropBox tenemos varias formas concretas de implementar el sistema:</p>
-<ul>
-<li>En LiveHacker nos proponen emplear firefox portable, de modo que ejecutemos un firefox desde dentro del propio DropBox. Esto tiene la ventaja de que si un día estamos en un cibercafé podríamos bajarnos nuestra propia versión del navegador desde la interfaz web y luego borrarla. Es una idea a anotar pero no es lo que buscamos.</li>
-<li>El resto de opciones se basan en ubicar el directorio que contiene nuestro perfil de firefox como un directorio compartido en DropBox. Bien sea <a href="http://jonefox.com/blog/2009/11/16/how-to-sync-firefox-across-multiple-computers-using-dropbox/">creando un enlace simbólico con el mismo nombre que nuestro perfil que apunte a DropBox</a>, usando el<a href="http://robwilkerson.org/2008/09/24/synchronizing-firefox-through-dropbox/"> administrador de perfiles para crear un nuevo perfil</a> en DropBox, o mi favorita, que consiste simplemente en <a href="http://www.robzand.com/blog/firefox-dropbox-profile-synchronization-across-machines">editar el archivo profiles.ini para indicar que debe buscar el perfil por defecto en el directorio compartido</a>.</li>
-</ul>
-<p>La última me parece la mejor porque nos ahorramos el crear un nuevo perfil, simplemente movemos su ubicación y usamos herramientas propias de firefox para colocar el directorio del perfil dentro de DropBox en lugar del truquillo de los enlaces simbólicos.</p>
-<h3 id="decidido-el-metodo-los-pasos-previos"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#decidido-el-metodo-los-pasos-previos">Decidido el método, los pasos previos</a></h3>
-<p>En todo caso antes de usar uno de estos tres métodos deberías:</p>
-<ol>
-<li>Hacer una <a href="http://support.mozilla.com/en-US/kb/Backing+Up+Your+Information">copia de seguridad de tu perfil</a></li>
-<li>Modificar donde se guarda la cache del navegador. La cache son un montón de archivitos que se guardan mientras navegas para acceder más rápido a páginas ya visitadas, que no tienen ningún interés para la sincronización y que sólo te harán perder ancho de banda y cpu si intentas sincronizarlos. Para cambiar la ubicación, abre firefox y teclea about:config en la barra de direcciones. A continuación busca la clave browser.cache.disk.parent_directory. Si no existe créala como de tipo «cadena». El valor que debe contener es el nuevo directorio que usará como cache, asegúrate de que existe en todos los ordenadores que vayas a usar, yo uso /var/tmp. Cierra el navegador , borra el directorio Cache dentro de tu perfil y vuelve a abrir el navegador. Asegúrate de que en /tmp se ha creado un nuevo directorio Cache.</li>
-</ol>
-<h3 id="mi-metodo-casi-preferido"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#mi-metodo-casi-preferido">Mi método casi-preferido</a></h3>
-<p>Hecha la preconfiguración podríamos hacer lo que se dice por ejemplo en <a href="http://www.robzand.com/blog/firefox-dropbox-profile-synchronization-across-machines">robzand</a>:</p>
-<ol>
-<li>Copia el <a href="http://support.mozilla.com/en-US/kb/Profiles#Where_is_my_profile_stored_">directorio que contiene tu perfil</a> a DropBox</li>
-<li>Edita el fichero profile.ini (está en la misma carpeta que tu directorio de perfil). Pon un cero en IsRelative, y en Path pon la ruta completa a tu perfil dentro de DropBox, que seguramente será algo como <code>/home/[tu_usuario]/DropBox/4f45s.default</code></li>
-<li>Espera a que sincronice, abre el navegador y comprueba que todo funciona correctamente.</li>
-<li>Ve a otro pc y espera a que sincronice. Edita el fichero profile.ini, pon un cero en IsRelative y pon en Path la ruta al perfil que acaba de ser sincronizado. (Ten en cuenta que a no ser que tengas el mismo nombre de usuario en ambos ordenadores la ruta será distinta)</li>
-</ol>
-<h3 id="los-inconvenientes"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#los-inconvenientes">Los inconvenientes</a></h3>
-<p>Al compartir el perfil también se comparten:</p>
-<ul>
-<li>Las extensiones. Si usas diferentes versiones de firefox puede que alguna de las extensiones te de problemas.</li>
-<li>Las cookies y las claves. Las cookies permiten que las páginas web te recuerden de modo que no tengas que escribir tu contraseña cada vez que entras. Si almacenamos tanto las cookies como las claves en un servicio externo como DropBox y alguien lo crackea, toda nuestra vida en la red será vulnerable.</li>
-<li>Cada vez que abras una página el contenido de tu perfil cambia, con lo que dropbox empezará a sincronizar, y habrá un gasto elevado de cpu y ancho de banda.</li>
-</ul>
-<p>Estos problemas nos llevan a reflexionar si la comodidad que tiene el perfil compartido compensa el riesgo o a preguntarnos si realmente necesitamos compartir todo el perfil, o nos llega con los marcadores.</p>
-<h3 id="mi-metodo-preferido"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#mi-metodo-preferido">Mi método preferido</a></h3>
-<p>Por tanto, si lo único que quieres es compartir los marcadores, que es en general lo mejor desde mi punto de vista, lo único que hay que hacer es:</p>
-<ol>
-<li>Mover el archivo places.sqlite dentro del perfil de tu ordenador principal a DropBox</li>
-<li>Crear un enlace simbólico desde el archivo en DropBox a tu perfil. El comando sería algo así:<br />
-<code>ln -s [ruta a places.sqlite dentro de dropbox] $HOME/.mozilla/firefox//places.sqlite</code></li>
-<li>Esperar a que sincronice y abrir firefox para comprobar que todo es correcto</li>
-<li>En el resto de ordenadores borrar el archivo places.sqlite de dentro del perfil y hacer el enlace simbólico desde el que está en Dropbox.</li>
-</ol>
     
   </div>
 </article>

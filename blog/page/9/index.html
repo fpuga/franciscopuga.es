@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#comentarios-al-articulo-de-complejidad-y-reversibilidad-de-kent-beck" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comentarios al artículo de Complejidad y Reversibilidad de Kent Beck
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-ready-player-one" class="md-nav__link">
     <span class="md-ellipsis">
       Libro: Ready Player One
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#buscando-un-portatil-impresiones-sacadas-de-foros-y-reviews" class="md-nav__link">
-    <span class="md-ellipsis">
-      Buscando un portátil &#8211; Impresiones sacadas de foros y reviews
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,72 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2015-08-09 00:00:00+00:00">9 de agosto de 2015</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="comentarios-al-articulo-de-complejidad-y-reversibilidad-de-kent-beck"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/">Comentarios al artículo de Complejidad y Reversibilidad de Kent Beck</a></h2>
+<p><a href="http://nosolosoftware.com/">Andrés</a> me pincha para que lea y comente <a href="http://nosolosoftware.com/complejidad-y-reversibilidad/">el último post de Kent Beck</a> en su <em>muro de facebook</em>. Como todo lo que escribe Beck hay que leerlo con atención y se pueden sacar lecciones interesantes. Pero este artículo en particular se me hace complicado de leer porque creo que mezcla demasiadas cosas a la vez. Comienza con una teoría general sobre sistemas complejos y luego salta a prácticas concretas de facebook para atajarla en distintos estadios del desarrollo sin pararse a explicar que técnicas tienen sentido en según que contextos. Analicémoslo por tanto atendiendo al artículo como dos partes separadas.</p>
+<h3 id="complejidad-y-software"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/#complejidad-y-software">Complejidad y Software</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Programming_complexity">Software complexity</a> es un término con definición propia en el mundo académico. En la práctica todo desarrollador tiene una noción intuitiva de que es complejidad y <a href="http://nosolosoftware.com/compilaciones/del-software/#principles">debería tener como principio el atajarla</a>. Beck explica alguno de los elementos de la complejidad y cuales de ellos se puede intentar mantener bajo control en un producto como facebook. La cuestión es, si en otro tipo de productos software se puede o tiene más sentido atacar otro frente distintos al de la irreversibilidad. Personalmente se escapa de mis conocimientos esta reflexión pero apunto algunos elementos para el debate:</p>
+<ul>
+<li>Estados. Atendiendo al producto como un todo (hardware, acciones del usuario, red,..) seguramente será difícil de atajar. Si nos quedamos con las acciones (interacción) del usuario me recuerda a la diferenciación entre <a href="http://nosolosoftware.com/glosario/mapa-vs-camino/">mapa y camino</a> de la que se reapropió Andrés <a href="http://nosolosoftware.com/bill-verplank/">atendidendo a Verplank</a>.</li>
+<li>Interdependencias. <a href="https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a>, KIS, Patrones, Modularidad o cualquier <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=331531">práctica de buen diseño</a> entiendo que ayuda a disminuirla a no ser que se me escape algo.</li>
+<li>Incertidumbre. Supongo que es el más complicado. Usuarios usando la aplicación en formas no previstas. Requisitos cambiantes,…</li>
+<li>Irreversibilidad. Nada que decir, es en el que se centra Beck.</li>
+</ul>
+<h3 id="atajar-la-irreversibilidad"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/#atajar-la-irreversibilidad">Atajar la Irreversibilidad</a></h3>
+<p>La segunda parte del artículo habla de algunas de las técnicas que usan en Facebook para combatirla. Algunas pueden ser consideradas de <em>modernas</em> como el Frequent Pushes (¿<a href="http://www.thoughtworks.com/continuous-delivery">Continuous Delivery</a>?) y otras como el Code Review llevan con nosotros mucho tiempo. Beck las enumera todas juntas pero creo que intentar ponerlas bajo una clasificación más o menos habitual en factorías de software tradicionales puede ayudar a decidir cuales pueden ser aplicables en cada caso. Dejo fuera (IRC y Data-informed decisions)</p>
+<ul>
+<li>Desarrollo <ul>
+<li>Development servers</li>
+<li>Code review</li>
+<li>Correlation</li>
+</ul>
+</li>
+<li>Pre-Producción / Testing <ul>
+<li>Internal usage</li>
+<li>Staged rollout</li>
+<li>Advance countries</li>
+<li>Shadow production</li>
+</ul>
+</li>
+<li>Producción <ul>
+<li>Frequent pushes</li>
+<li>Soft launches</li>
+<li>Dynamic configuration</li>
+<li>Right hand side units</li>
+<li>Double write/bulk migrate/double read</li>
+</ul>
+</li>
+</ul>
+<p>Sin duda algunas de las técnicas como Staged Rollout es discutible en que fase van y son clasificables bajo esta óptica. La idea de intentar clasificarlas es sólo para poder compararlas con una forma de trabajo que nos resulte más cercana para a partir de ahí ver cuales podemos empezar a aplicar y en que punto de nuestro proceso.</p>
+<h3 id="que-puedo-aplicar-y-como-si-no-soy-facebook"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/#que-puedo-aplicar-y-como-si-no-soy-facebook">Qué puedo aplicar y cómo si no soy Facebook</a></h3>
+<p>Más que técnicas concretas en realidad lo que Beck plantea es una cultura (o dos). El Desarrollo Ágil y el DevOp. Intentar aplicar alguna de sus estrategias de forma separada sin abrazar la filosofía subyacente creo que sólo produce desgaste. Con esto no quiero decir que tengas que hacer <em>pair programming</em> y tener un <em>devop</em> en tu equipo, pero sí al menos comprender que hay valor en los principio que proponen.</p>
+<p>Para mi los pasos en ese camino son tres: Tests, Automatización y Monitorización.</p>
+<p><strong>Monitorización</strong>. Si no estás midiendo lo que sucede rendimiento, comportamiento de usuarios, … saber lo que está pasando o cuando un cambio no tiene el efecto previsto.</p>
+<p><strong>Automatización</strong>. Si hacer un despliegue es costoso e implica varios pasos, se harán pocos , se tardará más tiempo en tener feedback, se introducen más posibilidades de error y no hablemos de lo que supone revertir un mal cambio. Si no se automatizan los procesos se vuelve más complicado que todos los desarrolladores tengan el mismo entorno y este sea parecido a producción.</p>
+<p><strong>Tests</strong>. Probablemente la piedra angular. Estoy leyendo <em>Working Effectively with Legacy Code</em>, y en los primeros capítulos expone algunas cuestiones sobre tests que tienen relevancia para la «reversibilidad». En el libro comparan trabajar sin tests a hacer acrobacias sin red, y expone dos formas de introducir cambios en un sistema.</p>
+<blockquote>
+<p>Changes in a system can be made in two primary ways. I like to call them Edit and Pray and Cover and Modify. Unfortunately, Edit and Pray is pretty much the industry standard. When you use Edit and Pray, you carefully plan the changes you are going to make, you make sure that you understand the code you are going to modify, and then you start to make the changes. When you’re done, you run the system to see if the change was enabled, and then you poke around further to make sure that you didn’t break anything. The poking around is essential. When you make your changes, you are hoping and praying that you’ll get them right, and you take extra time when you are done to make sure that you did.<br />
+Superficially, Edit and Pray seems like “working with care,” a very professional thing to do. The “care” that you take is right there at the forefront, and you expend extra care when the changes are very invasive because much more can go wrong. But safety isn’t solely a function of care. I don’t think any of us would choose a surgeon who operated with a butter knife just because he worked with care. Effective software change, like effective surgery, really involves deeper skills. Working with care doesn’t do much for you if you don’t use the right tools and techniques.<br />
+Cover and Modify is a different way of making changes. The idea behind it is that it is possible to work with a safety net when we change software. The safety net we use isn’t something that we put underneath our tables to catch us if we fall out of our chairs. Instead, it’s kind of like a cloak that we put over code we are working on to make sure that bad changes don’t leak out and infect the rest of our software. Covering software means covering it with tests. When we have a good set of tests around a piece of code, we can make changes and find out very quickly whether the effects were good or bad. We still apply the same care, but with the feedback we get, we are able to make changes more carefully.</p>
+</blockquote>
+<p>En esencia, durante el desarrollo tener tests te permite probar y si no funciona revertir a coste casi cero. En producción el coste de revertir no es cero (al menos sin aplicar otras de las técnicas mencionadas) pero al menos te permite detectar errores de forma temprana.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1098,85 +1164,6 @@
 <li><a href="http://www.pcmag.com/article2/0,2817,2404674,00.asp">Which CPU Should You Buy? Comparing Intel Core i5 vs. i7</a></li>
 </ul>
 <h3 id="resto-de-articulos-de-esta-serie"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/#resto-de-articulos-de-esta-serie">Resto de artículos de esta serie</a></h3>
-<ul>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-programar/752/">Buscando un portátil para programar</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">Buscando un portátil – Impresiones sacadas de foros y reviews</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-ordenador-portatil-micros/764/">Buscando ordenador portátil – Micros</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-listado-de-candidatos-entre-900-y-1150e">Buscando un portátil – Listado de candidatos entre 900 y 1150€</a></li>
-</ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-03-09 00:00:00+00:00">9 de marzo de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="buscando-un-portatil-impresiones-sacadas-de-foros-y-reviews"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/">Buscando un portátil &#8211; Impresiones sacadas de foros y reviews</a></h2>
-<p>Tras pensar un poco en los requisitos que debería cumplir mi futuro portátil una búsqueda en <a href="https://duckduckgo.com/">DuckDuckgo</a> y google usando combinaciones de palabras entre <em>best</em>, <em>laptop</em>, <em>linux</em>, <em>2014</em>, <em>2015</em>, <em>programmer</em>, <em>developer</em>,… Dan un montón de enlaces para hacerse una idea general del mercado y ajustar requisitos.</p>
-<p>Sacando de la lista los de 17 pulgadas, compañías que no venden en España, y los que tienen hilos en los que se quejan claramente del funcionamiento en linux. Los más populares parecen ser:</p>
-<ul>
-<li>En ultrabooks, la Serie T (<a href="http://www.laptopmag.com/reviews/laptops/lenovo-thinkpad-t440s">T440</a> por ejemplo) o S (<a href="http://www.quora.com/What-is-the-best-laptop-for-a-programmer/answer/Karoly-Negyesi">S220</a> por ejemplo) de Thinkpad, y en menor medida también los Yoga y la serie X (especialmente el X1 Carbon y el <a href="http://www.laptopmag.com/reviews/laptops/lenovo-thinkpad-x240">x240</a>). Pero hay que tener cuidado con <a href="https://news.ycombinator.com/item?id=8673783">con</a> algunos modelos cuya distribución de teclado es bastante mala. Yéndose a un <a href="http://www.thinkwiki.org/wiki/ThinkWiki">thinkpad con linux esta página</a> puede ser de ayuda.</li>
-<li>Tras los ultrabook de Thinkpad el entusiasmo parece recaer en <a href="http://www.dell.com/es/empresas/p/xps-13-linux/pd">Dell XPS 13 Developer Edition con Ubuntu preinstalado</a>. Lo <a href="http://www.zdnet.com/article/dell-xps-13-laptop-the-ubuntu-developer-edition-arrives/">más leído</a> es que es muy parecido en rendimiento y prestaciones a los MacBook. Pero en la web de Dell ya no parece disponible.</li>
-<li>En cuanto a worksation de los mejor valorados está el <a href="http://shop.lenovo.com/es/es/laptops/thinkpad/w-series/w540/">Thinkpad W540</a>, que con una docking station y la nueva tecnología de puerto Thunderbolt permitiría conectar varios monitores. El punto negativo es que lleva una nvdia con tecnología optimus a la que por ahora <a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus">no se puede sacar mucho partido en linux</a> por lo que hay que quedarse con la <a href="http://www.ubuntu.com/certification/hardware/201308-14114/">intel integrada</a>. Y no es precisamente barato.</li>
-<li>Otras workstation bien valoradas con ventajas y contras parecidos al W540 son el <a href="http://www8.hp.com/us/en/campaigns/workstations/zbook-15.html">HP Zbook 15</a> y el Dell precision m3800 developer edition con <a href="http://www.zdnet.com/article/dell-offers-new-ubuntu-linux-workstation-laptop/">ubuntu preinstalado</a>.</li>
-<li>En portátiles con Linux preinstalado la compañía system76 tiene productos interesantes como el <a href="https://system76.com/cart/configure/gazp9">Gazelle Professional</a>, pero con los gastos de envio y aduanas puede complicarse un poco</li>
-<li>En el sector medio, están el <a href="http://shop.lenovo.com/es/es/laptops/lenovo/y-series/y50/">lenovo Y50</a>. La línea de Asus N550JK (como el DS71T). Los Asus S551LN (como el <a href="http://www.pccomponentes.com/asus_s551ln_i7_4500u_8gb_1tb_24_gb_ssd_gt840m_15_6__tactil.html">4500U</a>) que si se puede comprar con 16 GB de RAM tiene muy buena pinta.</li>
-</ul>
-<h3 id="otras-consideraciones"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#otras-consideraciones">Otras consideraciones</a></h3>
-<p>Si se quiere meter más criterios en la búsqueda:</p>
-<ul>
-<li>Se puede tener en cuenta la <a href="http://www.greenpeace.org/international/en/Guide-to-Greener-Electronics/18th-Edition/Introduction/">lista verde de fabricantes de hardware de greenpeace</a> u <a href="http://sustainability.stackexchange.com/a/2927">otras guías</a>. En la de Greenpeace HP y Acer ocupan las primeras posiciones, Toshiba en las últimas y Lenovo y Dell en el medio. Y en la de minerales en conflicto HP de nuevo en las primeras, Acer y Dell en el medio, y Lenovo y Toshiba abajo.</li>
-<li>Tras meter <a href="http://arstechnica.com/security/2015/02/lenovo-pcs-ship-with-man-in-the-middle-adware-that-breaks-https-connections/">software espia</a> en sus ordenadores (no en la línea thinkpad) gente como <a>Martin Fowler piensa que le debería pasar factura</a>.</li>
-</ul>
-<h3 id="impresiones-generales"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#impresiones-generales">Impresiones generales</a></h3>
-<p>Revisando foros y reviews me quedo con algunas ideas, basadas en impresiones personales y seguramente poco objetivas y sesgadas por las páginas en las que entré.</p>
-<ul>
-<li>Para tener menos problemas en linux se prefiere Intel y Nvidia sobre Amd y Ati. Aunque las nvidia con tecnología optimus tampoco funcionan bien ahora.</li>
-<li>También hay que tratar de evitar Broadcom en chipset para wireless.</li>
-<li>Los discos duros SSD parecen gustar, o al menos combinar un SSD pequeño con otro magnético y se recomienda irse a 16GB de RAM</li>
-<li>No escoger ninguna resolución de pantalla por debajo de 1366×768</li>
-<li>En cuanto a fabricantes en los reviews de revistas Lenovo y Dell parecen los más recomendados y luego HP y Asus. En los foros Lenovo, Asus y MSI aparecen bastante, y con Dell y HP hay opiniones contrapuestas, hay a quien le gustan mucho y quien ha tenido muy malas experiencias</li>
-</ul>
-<h3 id="conclusiones"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#conclusiones">Conclusiones</a></h3>
-<p>Es bastante complicado escoger un ordenador simplemente en base a las reviews y las opiniones. Para acertar con lo que se necesita manteniendo un precio lo más bajo posible, como mínimo hay que conocer los diferentes micros.</p>
-<p>En general las reviews y los foros parecen bastantes inclinados hacia las gama alta y los ultraportátiles cuando en general, sobre todo si esperas una vida útil para un ordenador de trabajo de 4 o 5 años. Pudiendo luego reciclarse el ordenador hacia usuarios con menos requisitos y comprar otro de gama media para otro ciclo de trabajo.</p>
-<p>Al principio valoraba mucho tener 1 Tb de disco duro, ahora me inclino más hacia un SSD de 500GB o un SSD pequeño y otro magnético mayor o incluso uno externo.</p>
-<h3 id="referencias"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#referencias">Referencias</a></h3>
-<ul>
-<li><a href="http://www.toplaptopreview.com/5-best-laptop-for-programming-and-coding/">http://www.toplaptopreview.com/5-best-laptop-for-programming-and-coding/</a></li>
-<li><a href="http://www.makeuseof.com/tag/three-awesome-linux-laptops-can-buy-right-now/">http://www.makeuseof.com/tag/three-awesome-linux-laptops-can-buy-right-now/</a></li>
-<li><a href="https://news.ycombinator.com/item?id=8673709">https://news.ycombinator.com/item?id=8673709</a></li>
-<li><a href="https://news.ycombinator.com/item?id=7684775">https://news.ycombinator.com/item?id=7684775</a></li>
-<li><a href="http://www.laptopmag.com/best-laptops">http://www.laptopmag.com/best-laptops</a></li>
-<li><a href="http://www.techradar.com/news/mobile-computing/laptops/top-laptops-25-best-laptops-in-the-world-706673">http://www.techradar.com/news/mobile-computing/laptops/top-laptops-25-best-laptops-in-the-world-706673</a></li>
-<li><a href="http://www.extremetech.com/computing/175393-best-laptops-for-engineers-when-work-requires-a-real-workstation">http://www.extremetech.com/computing/175393-best-laptops-for-engineers-when-work-requires-a-real-workstation</a></li>
-<li><a href="http://www.reddit.com/r/archlinux/comments/20knkf/good_laptops_for_linux/">http://www.reddit.com/r/archlinux/comments/20knkf/good_laptops_for_linux/</a></li>
-<li><a href="http://www.tomsguide.com/answers/id-2457755/good-programming-laptop.html">http://www.tomsguide.com/answers/id-2457755/good-programming-laptop.html</a></li>
-<li><a href="http://www.quora.com/What-is-the-best-laptop-for-a-programmer">http://www.quora.com/What-is-the-best-laptop-for-a-programmer</a></li>
-<li><a href="http://www.pcworld.com/article/2462654/the-10-best-laptops-of-2014-so-far.html">http://www.pcworld.com/article/2462654/the-10-best-laptops-of-2014-so-far.html</a></li>
-<li><a href="http://www.pcmag.com/article2/0,2817,2369981,00.asp">http://www.pcmag.com/article2/0,2817,2369981,00.asp</a></li>
-<li><a href="http://www.pcpro.co.uk/laptops/6923/best-laptops-of-2015-the-18-best-laptops-in-the-uk">http://www.pcpro.co.uk/laptops/6923/best-laptops-of-2015-the-18-best-laptops-in-the-uk</a></li>
-<li><a href="http://www.makeuseof.com/tag/three-awesome-linux-laptops-can-buy-right-now/">http://www.makeuseof.com/tag/three-awesome-linux-laptops-can-buy-right-now/</a></li>
-</ul>
-<h3 id="recomendadores-y-certificaciones-linux-para-portatiles"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#recomendadores-y-certificaciones-linux-para-portatiles">Recomendadores y «certificaciones» linux para portátiles</a></h3>
-<ul>
-<li><a href="http://blog.laptopmag.com/laptop-finder">Laptop Finder</a></li>
-<li><a href="http://www.ubuntu.com/certification/desktop/models/?query=&amp;category=Laptop&amp;release=14.04+LTS&amp;level=Any">Certificaciones de Ubuntu</a></li>
-<li><a href="http://www.linlap.com/laptops">The linux laptop wiki</a></li>
-<li><a href="http://www.linux-on-laptops.com/">Linux on laptops</a></li>
-</ul>
-<h3 id="resto-de-articulos-de-esta-serie"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#resto-de-articulos-de-esta-serie">Resto de artículos de esta serie</a></h3>
 <ul>
 <li><a href="http://conocimientoabierto.es/buscando-portatil-programar/752/">Buscando un portátil para programar</a></li>
 <li><a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">Buscando un portátil – Impresiones sacadas de foros y reviews</a></li>

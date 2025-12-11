@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#cifrar-una-disco-duro-externo-en-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cifrar una disco duro externo en Ubuntu
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#migrar-a-gitlab-manteniendo-mirrors-en-github" class="md-nav__link">
     <span class="md-ellipsis">
       Migrar a GitLab manteniendo mirrors en GitHub
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#hacen-falta-mas-programadores-contando-sus-miserias" class="md-nav__link">
-    <span class="md-ellipsis">
-      Hacen falta más programadores contando sus miserias
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,31 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2018-06-10 00:00:00+00:00">10 de junio de 2018</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="cifrar-una-disco-duro-externo-en-ubuntu"><a class="toclink" href="../../2018/06/10/cifrar-disco-duro-externo-en-ubuntu/">Cifrar una disco duro externo en Ubuntu</a></h2>
+<p>La sencillez con que se pueden hacer ciertas tareas en Ubuntu u otras distros GNU/Linux ha mejorado enormemente desde la <a href="http://conocimientoabierto.es/cifrar-particion-disco-duro-externo-linux/197/">última vez que escribí sobre esto como cifrar un disco duro</a>.</p>
+<p>A día de hoy en Ubuntu la mejor opción es usar el asistente gráfico. Llega con insertar el USB y desmontarlo. A continuación desplegamos el menú contextual del disco externo pulsando con el botón derecho sobre él en el navegador de archivos y seleccionamos <code>Format</code>.</p>
+<p><img alt="" src="http://conocimientoabierto.es/files/2018/06/cifrar_disco_externo_1-267x300.png" /></p>
+<p>En la ventana de opciones seleccionamos las que aparecen en la siguiente captura.</p>
+<p><img alt="" src="http://conocimientoabierto.es/files/2018/06/cifrar_disco_externo_2-300x193.png" /></p>
+<p>Y listo, ya tenemos un disco duro externo cifrado en formato ext4 ideal para hacer copias de seguridad.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1039,29 +1064,6 @@ El uno tiene algún material adicional respecto a los otros como capítulos sobr
 </ul>
 <p>Entre la opción interactiva y Think Python es difícil decidirse, si quieres avanzar rápido y tener una panorámica general, el libro seguramente es mejor, y la irrupción de cajas y botones en medio del texto menos molesta. Depende del estilo de aprendizaje de cada uno. Leer un par de capítulos de cada uno y decide tu mismo.</p>
 <p>Si está revisión te ha ahorrado tiempo y quieres agradacerme el esfuerzo planteate donar usando el botón de la derecha, o simplemente dejar un comentario en esta entrada.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2017-11-12 00:00:00+00:00">12 de noviembre de 2017</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="hacen-falta-mas-programadores-contando-sus-miserias"><a class="toclink" href="../../2017/11/12/hacen-falta-mas-programadores-contando-sus-miserias/">Hacen falta más programadores contando sus miserias</a></h2>
-<p>Desde que Andrés planteara hace ya dos años el reto de escribir sobre la <a href="http://nosolosoftware.com/la-importancia-de-la-seleccion-tecnologica-en-una-pyme/">selección tecnológica en pymes</a> llevo queriendo escribir algo sobre ello.</p>
-<p>Todavía no va a ir de esta, pero valga este mini-post para referenciar dos enlaces que han entrado en mi radar esta misma semana. En el primero <a href="https://ma.tt/about/">Matt Mullenweg</a> quota a <a href="https://en.wikipedia.org/wiki/Jonathan_Ive">Jony Ive</a> de Apple para afirmar que <a href="https://ma.tt/2017/11/product-and-process/">tan importante como el producto (o el servicio) que proporcionas a tus clientes es el proceso, o el aprendizaje</a>, con el que has llevado hasta él. Algo en lo que creo firmemente y que también leí en Kent Beck (aunque ahora no encuentro el enlace). En el segundo nos hablan de como <a href="https://www.alexhudson.com/2017/10/14/software-architecture-failing/">no todas las arquitecturas valen para todos los casos</a>.</p>
-<p>Basicamente mi opinión va en la línea de que los creadores de opinión en torno al software, son lógicamente, increiblemente expertos en sus campos. Los frameworks con más éxito, son hechos por empresas como Google o Facebook. Las conferencias están llenas de gente que hace cosas muy chulas con las últimas tecnologías. Pero cuando tengas que decidir, si estás leyendo este post, seguramente no trabajes en Google, ni serás un mega-experto. Puede que tus clientes para hacer el deploy te hagan conectarte a un teamviewer ejecutándose en un Windows en una red interna donde te permiten abrir un putty al servidor y «monitorizan» todo lo que tecleas que debe hacerse a mano para validarlo. Trata de hablar con ellos de docker (o incluso de scripts para automatizar).</p>
-<p>Hace falta más conferencia, más libros y más posts de gente contando sus miserias, y de como su trabajo es tan necesario como el de quien tiene la suerte de poder desplegar en AWS, porqué también están resolviendo problemas reales.</p>
     
   </div>
 </article>

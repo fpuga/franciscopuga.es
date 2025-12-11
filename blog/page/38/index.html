@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#un-regalo-liberador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un regalo liberador
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#driver-para-modem-adsl-usb-en-linux-mandriva-2007" class="md-nav__link">
     <span class="md-ellipsis">
       Driver para modem adsl usb en linux mandriva 2007
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#cronica-laboratorio-de-innovacion-social" class="md-nav__link">
-    <span class="md-ellipsis">
-      Crónica: Laboratorio de Innovación Social
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,35 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2007-08-22 00:00:00+00:00">22 de agosto de 2007</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="un-regalo-liberador"><a class="toclink" href="../../2007/08/22/un-regalo-liberador/">Un regalo liberador</a></h2>
+<div style="text-align: justify">Gracias a la bitacora de un usuario de [barrapunto](http://www.barrapunto.com/) (no recuerdo el nick, lo siento) me he encontrado con una [joyita](http://www.trycktill.com/eng/unlock_swe.asp) que quería compartir con vosotros. La página en cuestión da los códigos necesarios para liberar un motón de móviles sin más que introducir el IMEI del teléfono y la compañía. Recomiendo encarecidamente leer el texto que sale en la web para no cometer ningún error, ni yo (ni nadie) se va a hacer responsable de lo que le pase a vuestro teléfono haciendo estas cosas. Para poner el cuadro central en inglés hay que pulsar sobre la banderita adecuada abajo a la izquierda.
+
+Desde mi punto de vista hay varias razones por las que deberías liberar tu teléfono.
+
+</div>
+<ul>
+<li><span style="font-weight: bold">Libertad.</span> La libertad no es escoger otra cosa sino que yo y cada uno de nosotros tengamos la posibilidad de escoger otra cosa.</li>
+<li><span style="font-weight: bold">Ecología.</span> Entendido en sentido amplio. Hay mucha gente que tiene más de un móvil en casa (porque te lo han regalado al cambiar de compañia por ejemplo), si se estropea el nuevo siempre podrás volver a usar el viejo…</li>
+</ul>
+<div style="text-align: justify">Por último releed la letra pequeña de vuestros contratos, muchos de ellos dirán que el móvil no se puede liberar hasta pasado un año o tendrán otros compromisos parecidos con lo que estariais incurriendo en una ilegalidad de liberarlo.</div>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -957,7 +986,7 @@
 <li>En la documentación de la página de eciadsl da la impresión de que al encender el ordenador no debe haber ninguna luz encendida en el modem. En mi modem siempre hay una luz encendida y conecto sin problemas.</li>
 <li>Otros ficheros de sincronización que creo que van bien para mi son: gs7470_synch06.bin, gs7470_synch01a.bin y gs7470_synch18.bin</li>
 <li>Si notas que las páginas web cargan muy despacio aunque luego las descargas van a velocidad normal es probable que sea un problema con los servidores DNS. Puedes copiar la dirección ip primaria y secundaria de la configuración que uses en windows o tomarlas por ejemplo de la página <a href="http://www.opendns.com/">OpenDNS.</a><br />
-    Una vez anotadas esas dos ips, puedes ejecutar de nuevo el comando <span style="font-style: italic">eciadsl-config-tk</span> e introducirlas a mano seleccionando <span style="font-style: italic">other</span> en <span style="font-style: italic">provider dns</span>. Aunque yo creo que es mejor editar el fichero <span style="font-style: italic">/etc/resolv.conf</span> comentar todas las lineas que aparezcan (poniendo el síbolo # al principio de cada línea) y añadir dos lineas al estilo<br />
+     Una vez anotadas esas dos ips, puedes ejecutar de nuevo el comando <span style="font-style: italic">eciadsl-config-tk</span> e introducirlas a mano seleccionando <span style="font-style: italic">other</span> en <span style="font-style: italic">provider dns</span>. Aunque yo creo que es mejor editar el fichero <span style="font-style: italic">/etc/resolv.conf</span> comentar todas las lineas que aparezcan (poniendo el síbolo # al principio de cada línea) y añadir dos lineas al estilo
     &gt; nameserver ip1<br />
     &gt; nameserver ip2</li>
 <li>Si aparece un error como <span style="font-style: italic">nice: pppd: No existe el fichero o el directorio</span> en el 4 punto <span style="font-style: italic">[EciAdsl 4/5] Connecting to provider…</span> es que no tenemos instalado el paquete ppp. Para ello vamos <span style="font-style: italic">Sistema -&gt; Confiración -&gt; Configurar su computadora -&gt; Instalar sofware.</span>Buscamos «ppp» en la casilla de busca e instalamos los paquetes <span style="font-style: italic">ppp, ppp-pppoatm</span>. (Según que proveedor tengamos puede ser necesario instalar también los paquetes <span style="font-style: italic">ppp-pppoe</span> y <span style="font-style: italic">rp-pppoe</span>). En algún momento del proceso nos pedirán que introducizcamos el DVD de instalación de Mandriva.</li>
@@ -967,7 +996,7 @@
 > pppd unit 0 call adsl updetach
 
 7. Algunos comando útiles para saber los módulos que tenemos cargados y los dispositivos usb conectados: lsmod, dmesg | grep usb, lsusb
-A continuación algunos enlaces que pueden resultar útiles:
+   A continuación algunos enlaces que pueden resultar útiles:
 
 </div>
 <ul>
@@ -1120,79 +1149,6 @@ La clave que nos hayan dado. (si no sabemos alguno de estos tendremos que llamar
 <li>Contra el choque de civilizaciones [Youtube, 2:31 minutos]</li>
 </ul>
 <div style="text-align:center"></div>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2007-07-09 00:00:00+00:00">9 de julio de 2007</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="cronica-laboratorio-de-innovacion-social"><a class="toclink" href="../../2007/07/09/cronica-laboratorio-de-innovacion-social/">Crónica: Laboratorio de Innovación Social</a></h2>
-<p><a href="http://3.bp.blogspot.com/_wrQ7gWEOyz8/RpJqNHg-0XI/AAAAAAAAAAM/G9GQV4F5M8M/s1600-h/equipo%2Bf%C3%BAtbol%2Bvigo.JPG"><img alt="" src="http://3.bp.blogspot.com/_wrQ7gWEOyz8/RpJqNHg-0XI/AAAAAAAAAAM/G9GQV4F5M8M/s320/equipo%2Bf%C3%BAtbol%2Bvigo.JPG" /></a>A pesar del peligro de que este blog se convierta en una colección de resúmenes de los cursos que hago, haré una entrada sobre el <a href="http://laboratoriodeinnovacionsocial.org/">Laboratorio de Innovación Social</a>.</p>
-<p>El Laboratorio consiste en una serie de talleres de 4 horas por toda España para romper la barrera tecnólogica que sufren muchos activistas en su relación con internet. El taller está centrado sobre todo en explicar lo sencillo que resulta hacer un blog y lo útil que puede resultar para la comunicación de una entidad.</p>
-<p><a href="http://www.labroma.org/blog/">Olga</a> y <a href="http://subcomandantefelipe.blogspot.com/">Felipe</a> llegan comentando las vicisitudes de llegar al lugar del taller, la <a href="http://www.teleco.uvigo.es/">Escuela de Telecomunicaciones de Vigo</a>.</p>
-<p>Tras una presentación de los asistentes al taller, todos pertenecientes a distintos colectivos y con diferentes grados conocimientos aunque interesados en profundizar sus conocimientos de las NNTT y especialmente en las posibilidades de los blogs.</p>
-<p>Se empieza describiendo los <span style="font-weight: bold">pasos necesarios para crear un blog</span> Se emplea para ello <a href="http://www.blogger.com/"> Blogger</a>.</p>
-<ul>
-<li>Simplemente pulsar en crear blog y si no tenemos una cuenta google asociarla a nuestra dirección de correo electrónico. Se hace mucho incapié en anotar el nombre de usuario y la contraseña en un papel que no vayamos a perder.</li>
-<li>La palabra de verificación que aparece consiste simplemente en escribir en la cajita de texto los caracteres que se ven en la imagen. Los humanos reconocen facilmente esos caracteres pero los ordenadores son incapaces lo que evita mucho spam.</li>
-<li>La dirección del blog es lo que deberá escribir la gente para acceder a nuestra página. Será lo que nosotros queramos más <span style="font-style: italic">.blogspot.com</span>. Antes de continuar debemos comprobar que esa dirección no la ha escogido nadie antes, para ello empleamos el botón para comprobar la disponibilidad. Hay que tratar de escoger una dirección corta y fácil de recordar.</li>
-<li>El siguiente paso es escoger una plantilla (el fondo, colores, forma) que tendrá nuestra página. Se recomienda una que luego permite la lectura del blog con sencillez. Sin más que darle a <span style="font-style: italic">continuar</span> podemos pasar a escribir la primera entrada de nuestro nuevo blog. Realmente sencillo.</li>
-</ul>
-<p>Se describe a continuación <span style="font-weight: bold">como se escriben las entradas</span>, accediendo a <span style="font-style: italic">Creación de entradas </span>y luego <span style="font-style: italic">crear</span>.</p>
-<ul>
-<li>En la pestaña <span style="font-style: italic">Redactar</span> podemos escribir nuestro articulo de forma parecida a como se hace en los procesadores de texto se puede cambiar el tipo de letra, poner negrita… Es especialmente interesante la opción de <a href="http://laboratoriodeinnovacionsocial.org/">vínculo</a> (el mundo verde con la cadena encima). Que nos permite hacer enlaces a otras páginas desde la nuestra.</li>
-<li>En <span style="font-style: italic">Edición de HTML</span> se puede escribir el artículo en código <a href="http://es.wikipedia.org/wiki/HTML">HTML</a></li>
-<li>Pulsando sobre <span style="font-style: italic">vista previa</span> podemos ver como va quedando nuestro artículo.</li>
-<li>En <span style="font-style: italic">Etiquetas de esta entrada</span>, se ponen las etiquetas correspondientes a esta entrada. Las etiquetas son como palabras clave que identifiquen las secciones o los temas que trataremos en el blog. En cada entrada podemos poner nuevas etiquetas o poner alguna que ya hayamos usado. Planificar adecuadamente las etiquetas permitirá a los visitantes una navegación más fluída por nuestra página.</li>
-<li>Al darle a <span style="font-style: italic">Publicar entrada</span> queda fijada, la opción <span style="font-style: italic">guardar ahora</span> es como un borrador del correo electrónico, nos permite cerrar el navegador para acabar del escribir el artículo en otro momento.</li>
-</ul>
-<p>Con esto ya sabemos lo suficiente para escribir nuestro blog, nos quedan conceptos más avanzados como acompañar los artículos con imágenes o modificar la estructura o colores que hemos escogido por defecto a través de nuestra plantilla. Todos estas cosas se explican claramente en la <a href="http://help.blogger.com/">ayuda de blogger</a>. Veamos a continuación algunas de estas cosas que se nos quedan en el tintero:</p>
-<ul>
-<li>Para poder volver a editar nuestro blog (una vez hayamos cerrado la sesión o apagado el ordenador) podemos acceder desde blogger poniendo nuestro nombre de usuario y contraseña o bien si introducimos la dirección de nuestro blog en la parte superior habrá un botón <span style="font-style: italic">acceder</span> desde el que podremos acceder al panel de administración (previa identificación con correo y contraseña claro)</li>
-<li>Añadir imágenes. Se hace desde el icono que parece una foto llamado <span style="font-style: italic">añadir imagen</span>. Aquí podemos escoger la imagen a subir (puede estar en nuestro disco duro o en internet), el tamaño (se recomienda pequeño o mediano en general) y en que parte del artículo publicarla. Es recomendable desmarcar la opción <span style="font-style: italic">utilizar siempre este diseño</span> para poder escoger cada vez facilmente donde colocar la imagen. Debemos además marcar que <span style="font-style: italic">aceptamos las condiciones</span> del servicio para poder subir nuestra imagen. Dándole a <span style="font-style: italic">subir imagen</span> y despues a <span style="font-style: italic">finalizar</span> volvemos a la pantalla de edición para terminar de escribir nuestro post.</li>
-</ul>
-<p>Podemos moficar prácticamente todo el blog a traves de la pestaña de <span style="font-style: italic">Opciones</span> y la de <span style="font-style: italic">Plantilla</span>. Es recomedable revisar esas opciones pues casi todas autoexplicativas.</p>
-<p>Tras explicar lo básico de la creación de los blogs se hace un pequeño repaso a la teoría, el nacimiento, las características y su utilidad.</p>
-<p>Surgen hace 10 años, y se popularizan con la guerra de Irak, publicando información alternativa a los medios tradicionales. El escándalo lewinsky salto a través del blog de un periodista americano.</p>
-<p><span style="font-weight: bold">Características técnicas de los blogs:</span></p>
-<ul>
-<li>Los artículos antiguos van quedando abajo, se facilita contar el día a día, la inmediatez (a pesar de que todos quedan guardados y facilmente accesibles).</li>
-<li>Permite el feedback y el diálogo a través del sistema de comentarios.</li>
-<li>Pueden ser individuales o colectivos, de modo que varias personas (cada una con una cuenta distinta) puedan publicar artículos. Se pueden además establecer jerarquías de modo que alguna de las personas pueda cambiar cualquier opción mientras que otras sólo escribir artículos previa confirmación del administrador por ejemplo.</li>
-</ul>
-<p><span style="font-weight: bold">Características filosóficas de los blogs:<br />
-</span></p>
-<ul>
-<li>Si bien tecnicamente los blogs no son nada especial, la revolución comunicativa que ha supuesto es increible.</li>
-<li>Primero porque es tan sencilla que puede ser usada por todo el mundo por ejemplo gente sin hogar, es integradora.</li>
-<li>Se hace incapié en el lenguaje y mensaje cercano que supone el blog, hay que perder la asepsia en la que han caido las organizaciones sociales, y contar lo que nos preocupe de verdad, la historia humana en la que trabajas, que te preocupa, que te afecta. El blog debe ser una media entre diario personal y campaña institucional.</li>
-<li>Es muy importante el poder que consiguen el conjunto de los blogs, la blogosfera (campaña contra el pais.es por las imagenes del <s>11m</s> 11S)</li>
-<li>Comunicación horizontal, dejar comentarios a expertos en sus blogs y entrar en comunicación al mismo nivel con gente en principio inaccesible.</li>
-</ul>
-<p><span style="font-weight: bold">Otras cosas a tener en cuenta:</span></p>
-<ul>
-<li>No es necesario, y a lo mejor tampoco útil, hacer un blog de la Entidad, si no que es mejor hacerlo de una determinada campaña o actividad.</li>
-<li>Los blogs no son sólo de personas o ONG, hay ayuntamientos, empresas, … que también mantienen bitácoras.</li>
-<li>Anonimato. Los blogs podrían publicarse de forma anónima como forma crítica.</li>
-<li>A pesar de que la herramienta que se recomienda es Blogger existen otras muchas, por ejemplo <a href="http://nireblog.com/">nireblog</a> que cuenta con una interfaz traducida a 62 idiomas.</li>
-</ul>
-<p>Muchas de los puntos que he comentado aquí fueron explicados a través de blogs en activo. Los blogs empleados en los ejemplo (y muchos otros de activismo) se encuentra recogidos en el <a href="http://del.icio.us/proyectoblong">Proyecto Blong</a></p>
-<p>En el taller se vieron más herramientas, <a href="http://es.wikipedia.org/wiki/Lista_de_correo">listas de correo</a>, <a href="http://es.wikipedia.org/wiki/Wiki">wikis</a>, … pero de las que ya no voy a hablar porque se vieron rapidamente, y al cabo de tres horas las notas iba tomando perdían consistencia :)</p>
-<p>No me queda más que darle las gracias a los <a href="http://laboratoriodeinnovacionsocial.org/">organizadores</a> por cuatro horas muy divertidas que permiten a la gente abandonar el miedo a internet.</p>
-<p>PD: Olga comenta las incidencias del viaje hasta teleco en su <a href="http://www.labroma.org/blog/wp-trackback.php?p=1307">blog</a>.</p>
-<p><span class="on down" title="Vínculo"></span></p>
     
   </div>
 </article>

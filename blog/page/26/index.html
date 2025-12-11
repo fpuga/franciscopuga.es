@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#plugin-de-wordpress-para-tener-un-blogroll-dinamico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plugin de WordPress para tener un blogroll dinámico
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#un-par-de-parrafos-de-jeniffer-gobierno" class="md-nav__link">
     <span class="md-ellipsis">
       Un par de párrafos de Jeniffer Gobierno
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#bolsacaca" class="md-nav__link">
-    <span class="md-ellipsis">
-      bolsa=caca
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,38 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2009-12-26 00:00:00+00:00">26 de diciembre de 2009</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="plugin-de-wordpress-para-tener-un-blogroll-dinamico"><a class="toclink" href="../../2009/12/26/plugin-wordpress-blogroll-dinamico/">Plugin de WordPress para tener un blogroll dinámico</a></h2>
+<p>Estoy probando en <a href="http://conocimientoabierto.es">marinerosbouzas.com</a> un plugin para wordpress llamado <a href="http://wordpress.org/extend/plugins/sbs-blogroll/">SBS Blogroll</a> bastante chulo que te permite incluir en tu blog un blogroll dinámico. Es decir en lugar de tener en la barra lateral una lista de enlaces estática a los blogs que te gustan pasarás a tener una lista con el título de las últimas entradas que haya habido en esos blogs. El plugin tiene la opción además de</p>
+<ul>
+<li>Añadir el <a href="http://es.wikipedia.org/wiki/Favicon">favicon</a> a cada entrada enlazada que aparezca en tu blog</li>
+<li>Seleccionar el número total máximo de entradas que habrá y el número máximo de entradas que pueden provenir de cada blog en tu lista</li>
+<li>Desplegar la fecha de cuando fue escrita la entrada</li>
+<li>Personalizar el estilo de como se muestran las entradas mediante css</li>
+</ul>
+<p>Es un plugin sencillito pero potente que nos permite evitar el uso de servicios externos como <a href="http://www.feevy.com/">feevy</a>.</p>
+<p>La única pega que le veo, es que por lo que he entendido revisando el código del plugin, lo que hace es cada vez que se muestra nuestro blog a un usuario se itera a través de toda la lista de blogs que tengamos, si se ha cumplido un tiempo de cache fijado por nosotros «va» al blog de destino a buscar la información, si no la extrae directamente de la cache, <a href="http://www.alegsa.com.ar/Dic/parseo.php"><em>parsea</em></a> la información recibida (esté en cache o no) para extraer el título, fecha, favicon, … y una vez tiene los datos de cada entrada los muestra. Todo este proceso puede consumir bastantes recursos y ralentizar nuestra página. Lo mínimo para optimizar el plugin es fijar un tiempo de cache en las opciones de 43200 segundos (12 horas) dado que poca gente actualiza en realidad más de 2 veces al día. Es decir, lo que hacemos con esto es indicar al plugin que sólo compruebe actualizaciones en los blogs que tenemos en la lista cada 12h en lugar de los 10′ que pone el plugin por defecto.</p>
+<p>Como siempre, si tenemos muchas visitas o muchos plugins es conveniente que instalemos <a href="http://ayudawordpress.com/gua-para-instalar-wp-cache/">algún plugin específico</a> para realizar el cacheado.</p>
+<p>Otro pequeño pero de este plugin es que la versión actual tiene un pequeño bug que hace que el favicon sólo se muestre cuando indicamos que se muestre también la fecha. Ya lo he corregido y he mandando un <a href="http://conocimientoabierto.es/sw/sbs-blogroll_solved_missing_check_for_show_icon.patch">patch</a> (bastante sencillito) al autor por lo que espero que salga pronto una nueva versión.</p>
+<p>Si no podéis esperar a la nueva versión, instalar el plugin de la forma habitual y luego <a href="http://conocimientoabierto.es/sw/sbs-blogroll.php">sobreescribir con este archivo</a> el que que haya en la carpeta wp-content/plugins/sbs-blogroll/ de vuestra instalación de wordpress. (para poder bajar el archivo hay que hacer click con el botón derecho sobre el enlace y darle a guardar como)</p>
+<p><strong>Actualización 28/12</strong>: La versión 0.3 del plugin ya funciona correctamente. Thanks to the <a href="http://www.someblogsite.com/">author</a> for the quick fix.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1108,30 +1140,6 @@ Parecen dedicarse más al diseño que al hosting, su oferta de hosting coincide 
 <p>Recientemente he visto <a href="http://ramonramon.org/blog/2009/09/12/me-paso-a-redcoruna-com/trackback/">gente</a> que recomendaba <a href="http://www.redcoruna.com/">Red Coruna</a> y tiene buena pinta pero no me he parado a ver si en la página tienen algo sobre RSC.</p>
 <h4 id="nota"><a class="toclink" href="../../2009/10/03/hosting-etico-ong-proyectos-sociales/#nota"><strong>Nota:</strong></a></h4>
 <p>Yo he contratado alojamiento en dinahosting y dreamhost pero no tengo ningún otro tipo de relación con nnguna de las páginas aquí listadas. Antes de elegir un hosting debes preguntar bien todas las opciones puesto que pueden variar en cualquier momento.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-09-26 00:00:00+00:00">26 de septiembre de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="bolsacaca"><a class="toclink" href="../../2009/09/26/bolsa-caca/">bolsa=caca</a></h2>
-<p>Hay ocasiones en las que no entiendo las posturas de algunas ong, movimientos sociales u otros colectivos que en general considero serios. Uno de ellos es la extraña relación que se tiene con las empresas, parece que las empresas son <em>malas</em> por el simple hecho de ser empresas. Parece que ganar dinero sea algo malo, sin discriminar si este es obtenido de forma ética.</p>
-<p>Lo que me lleva a escribir esto son dos artículos, uno en <a href="http://vigoblog.blogspot.com/2009/09/bolsa-caca.html"> vigoblog</a> y otro de <a href="http://indarki.blogia.com/2009/090201-con-la-bolsa-tapando-la-cabeza....php">indarki</a>, en consonancia con lo que yo opino, sobre cobrar por las bolsas de plástico en los supermercados. En el caso de la campaña bolsa-caca he tenido bastante esa sensación de argumentación poca sólida, mucho corazón y poca cabeza.</p>
-<p>Para mi la crítica importante que no se está haciendo es si cobrar por las bolsas de plástico va a tener un efecto real de beneficio al medio ambiente o disminución del número de bolsas dispensadas. Dado el escaso precio de las bolsas sobre el total de la compra que se puede realizar la gente en general optará por la bolsa desechable. La bolsa pasará de ser un servicio de valor añadido a la compra en el supermercado a un producto más, que aumentará los beneficios de la empresa teniendo poco impacto en el cuidado del medioambiente.</p>
-<p>A pesar de lo dicho, creo que este tipo de medidas son necesarias, pero si realmente se hicieran por conciencia ecológica habría que ir más alla, dedicando por ejemplo los beneficios derivados de las bolsas exclusivamente a medidas de ahorro energético, reciclaje o promoción de causas ambientalistas.</p>
-<p>Cuantas grandes superficies van a cobrar por las bolsas pero a mantener los escaparates o todas las luces cuando tienen paredes de cristal encendidas toda la noche.</p>
     
   </div>
 </article>

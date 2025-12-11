@@ -866,6 +866,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sincronizar-el-perfil-o-los-marcadores-de-firefox-mediante-dropbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sincronizar el perfil o los marcadores de Firefox mediante dropbox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-jennifer-gobierno" class="md-nav__link">
     <span class="md-ellipsis">
       Libro: Jennifer Gobierno
@@ -901,15 +910,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#plugin-de-wordpress-para-tener-un-blogroll-dinamico" class="md-nav__link">
-    <span class="md-ellipsis">
-      Plugin de WordPress para tener un blogroll dinámico
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +924,71 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2010-03-26 00:00:00+00:00">26 de marzo de 2010</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="sincronizar-el-perfil-o-los-marcadores-de-firefox-mediante-dropbox"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/">Sincronizar el perfil o los marcadores de Firefox mediante dropbox</a></h2>
+<p>Cuando de manera habitual usas más de un ordenador mantener la misma configuración en ambos acaba siendo problemático. Una de las cosas que más echo de menos desde que he dejado de usar mi portátil personal en el trabajo es poder sincronizar los marcadores de Firefox.</p>
+<h3 id="en-el-cielo-o-en-la-tierra"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#en-el-cielo-o-en-la-tierra">En el cielo o en la tierra</a></h3>
+<p>Tal y como yo lo veo hay dos clasificaciones en las que se podrían englobar los métodos para la sincronización:</p>
+<ul>
+<li>Usar un servicio web como <a href="http://delicious.com/">delicious</a> pensado para trabajar exclusivamente con los marcadores.</li>
+<li>Usar alguna herramienta de sincronización de ficheros como <a href="http://www.dropbox.com/">DropBox</a>.</li>
+</ul>
+<p>El depender en exclusiva de un servicio web <a href="http://blog.loretahur.net/2009/03/los-problemas-de-la-nube-informatica-radio-euskadi.html">no es una opción que me tiente demasiado</a>, así que no hablaremos de ella. DropBox en cambio, es una mezcla de servicio web y <a href="http://es.wikipedia.org/wiki/Rsync">rsync</a> sencillo, donde los ficheros no sólo se guardan en un servidor externo si no también en el nuestro, de modo que podemos abandonarlo cuando queramos a coste casi cero, de hecho, montar <a href="http://aseodiario.com/2010/03/dropbox-casero/">un sistema casero que substituya a DropBox</a> no es muy complicado.</p>
+<h3 id="diferentes-implementaciones-con-dropbox"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#diferentes-implementaciones-con-dropbox">Diferentes implementaciones con Dropbox</a></h3>
+<p>Decidido que usaremos DropBox tenemos varias formas concretas de implementar el sistema:</p>
+<ul>
+<li>En LiveHacker nos proponen emplear firefox portable, de modo que ejecutemos un firefox desde dentro del propio DropBox. Esto tiene la ventaja de que si un día estamos en un cibercafé podríamos bajarnos nuestra propia versión del navegador desde la interfaz web y luego borrarla. Es una idea a anotar pero no es lo que buscamos.</li>
+<li>El resto de opciones se basan en ubicar el directorio que contiene nuestro perfil de firefox como un directorio compartido en DropBox. Bien sea <a href="http://jonefox.com/blog/2009/11/16/how-to-sync-firefox-across-multiple-computers-using-dropbox/">creando un enlace simbólico con el mismo nombre que nuestro perfil que apunte a DropBox</a>, usando el<a href="http://robwilkerson.org/2008/09/24/synchronizing-firefox-through-dropbox/"> administrador de perfiles para crear un nuevo perfil</a> en DropBox, o mi favorita, que consiste simplemente en <a href="http://www.robzand.com/blog/firefox-dropbox-profile-synchronization-across-machines">editar el archivo profiles.ini para indicar que debe buscar el perfil por defecto en el directorio compartido</a>.</li>
+</ul>
+<p>La última me parece la mejor porque nos ahorramos el crear un nuevo perfil, simplemente movemos su ubicación y usamos herramientas propias de firefox para colocar el directorio del perfil dentro de DropBox en lugar del truquillo de los enlaces simbólicos.</p>
+<h3 id="decidido-el-metodo-los-pasos-previos"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#decidido-el-metodo-los-pasos-previos">Decidido el método, los pasos previos</a></h3>
+<p>En todo caso antes de usar uno de estos tres métodos deberías:</p>
+<ol>
+<li>Hacer una <a href="http://support.mozilla.com/en-US/kb/Backing+Up+Your+Information">copia de seguridad de tu perfil</a></li>
+<li>Modificar donde se guarda la cache del navegador. La cache son un montón de archivitos que se guardan mientras navegas para acceder más rápido a páginas ya visitadas, que no tienen ningún interés para la sincronización y que sólo te harán perder ancho de banda y cpu si intentas sincronizarlos. Para cambiar la ubicación, abre firefox y teclea about:config en la barra de direcciones. A continuación busca la clave browser.cache.disk.parent_directory. Si no existe créala como de tipo «cadena». El valor que debe contener es el nuevo directorio que usará como cache, asegúrate de que existe en todos los ordenadores que vayas a usar, yo uso /var/tmp. Cierra el navegador , borra el directorio Cache dentro de tu perfil y vuelve a abrir el navegador. Asegúrate de que en /tmp se ha creado un nuevo directorio Cache.</li>
+</ol>
+<h3 id="mi-metodo-casi-preferido"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#mi-metodo-casi-preferido">Mi método casi-preferido</a></h3>
+<p>Hecha la preconfiguración podríamos hacer lo que se dice por ejemplo en <a href="http://www.robzand.com/blog/firefox-dropbox-profile-synchronization-across-machines">robzand</a>:</p>
+<ol>
+<li>Copia el <a href="http://support.mozilla.com/en-US/kb/Profiles#Where_is_my_profile_stored_">directorio que contiene tu perfil</a> a DropBox</li>
+<li>Edita el fichero profile.ini (está en la misma carpeta que tu directorio de perfil). Pon un cero en IsRelative, y en Path pon la ruta completa a tu perfil dentro de DropBox, que seguramente será algo como <code>/home/[tu_usuario]/DropBox/4f45s.default</code></li>
+<li>Espera a que sincronice, abre el navegador y comprueba que todo funciona correctamente.</li>
+<li>Ve a otro pc y espera a que sincronice. Edita el fichero profile.ini, pon un cero en IsRelative y pon en Path la ruta al perfil que acaba de ser sincronizado. (Ten en cuenta que a no ser que tengas el mismo nombre de usuario en ambos ordenadores la ruta será distinta)</li>
+</ol>
+<h3 id="los-inconvenientes"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#los-inconvenientes">Los inconvenientes</a></h3>
+<p>Al compartir el perfil también se comparten:</p>
+<ul>
+<li>Las extensiones. Si usas diferentes versiones de firefox puede que alguna de las extensiones te de problemas.</li>
+<li>Las cookies y las claves. Las cookies permiten que las páginas web te recuerden de modo que no tengas que escribir tu contraseña cada vez que entras. Si almacenamos tanto las cookies como las claves en un servicio externo como DropBox y alguien lo crackea, toda nuestra vida en la red será vulnerable.</li>
+<li>Cada vez que abras una página el contenido de tu perfil cambia, con lo que dropbox empezará a sincronizar, y habrá un gasto elevado de cpu y ancho de banda.</li>
+</ul>
+<p>Estos problemas nos llevan a reflexionar si la comodidad que tiene el perfil compartido compensa el riesgo o a preguntarnos si realmente necesitamos compartir todo el perfil, o nos llega con los marcadores.</p>
+<h3 id="mi-metodo-preferido"><a class="toclink" href="../../2010/03/26/sincronizar-perfil-o-marcadores-firefox-dropbox/#mi-metodo-preferido">Mi método preferido</a></h3>
+<p>Por tanto, si lo único que quieres es compartir los marcadores, que es en general lo mejor desde mi punto de vista, lo único que hay que hacer es:</p>
+<ol>
+<li>Mover el archivo places.sqlite dentro del perfil de tu ordenador principal a DropBox</li>
+<li>Crear un enlace simbólico desde el archivo en DropBox a tu perfil. El comando sería algo así:<br />
+<code>ln -s [ruta a places.sqlite dentro de dropbox] $HOME/.mozilla/firefox//places.sqlite</code></li>
+<li>Esperar a que sincronice y abrir firefox para comprobar que todo es correcto</li>
+<li>En el resto de ordenadores borrar el archivo places.sqlite de dentro del perfil y hacer el enlace simbólico desde el que está en Dropbox.</li>
+</ol>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1083,38 +1148,6 @@
 <h3 id="29-de-decembro-as-2230"><a class="toclink" href="../../2009/12/28/vigo-actividades-martes-29/#29-de-decembro-as-2230">29 de Decembro as 22:30</a></h3>
 <p>A ONG Entreculturas, en colaboración con COCONUT , invítanos ao 3º Concerto Solidario de Nadal na <a href="http://www.google.com/maps/ms?ie=UTF8&amp;hl=gl&amp;msa=0&amp;msid=104521394156720728412.000452897cfb0cb6c08b7&amp;ll=42.237383,-8.717501&amp;spn=0.00834,0.019248&amp;z=16">Fábrica de Chocolate</a>, en beneficio do Proxecto «Apoyo a la Reconstrucción en Sur Sudán». Actuarán Maryland e Nico Pastoriza (e amigos, …) Entrada 5€</p>
 <p><strong>Actualización:</strong> Aprovecho esta entrada para comentar que el <a href="http://medicosdomundogalicia.blogspot.com/2009/12/pon-os-teus-zapatos-para-pedir-o-centro.html">Martes 5 de Enero habrá también un acto bastante chulo</a> para reclamar un albergue y centro de inclusión social para Vigo.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-12-26 00:00:00+00:00">26 de diciembre de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="plugin-de-wordpress-para-tener-un-blogroll-dinamico"><a class="toclink" href="../../2009/12/26/plugin-wordpress-blogroll-dinamico/">Plugin de WordPress para tener un blogroll dinámico</a></h2>
-<p>Estoy probando en <a href="http://conocimientoabierto.es">marinerosbouzas.com</a> un plugin para wordpress llamado <a href="http://wordpress.org/extend/plugins/sbs-blogroll/">SBS Blogroll</a> bastante chulo que te permite incluir en tu blog un blogroll dinámico. Es decir en lugar de tener en la barra lateral una lista de enlaces estática a los blogs que te gustan pasarás a tener una lista con el título de las últimas entradas que haya habido en esos blogs. El plugin tiene la opción además de</p>
-<ul>
-<li>Añadir el <a href="http://es.wikipedia.org/wiki/Favicon">favicon</a> a cada entrada enlazada que aparezca en tu blog</li>
-<li>Seleccionar el número total máximo de entradas que habrá y el número máximo de entradas que pueden provenir de cada blog en tu lista</li>
-<li>Desplegar la fecha de cuando fue escrita la entrada</li>
-<li>Personalizar el estilo de como se muestran las entradas mediante css</li>
-</ul>
-<p>Es un plugin sencillito pero potente que nos permite evitar el uso de servicios externos como <a href="http://www.feevy.com/">feevy</a>.</p>
-<p>La única pega que le veo, es que por lo que he entendido revisando el código del plugin, lo que hace es cada vez que se muestra nuestro blog a un usuario se itera a través de toda la lista de blogs que tengamos, si se ha cumplido un tiempo de cache fijado por nosotros «va» al blog de destino a buscar la información, si no la extrae directamente de la cache, <a href="http://www.alegsa.com.ar/Dic/parseo.php"><em>parsea</em></a> la información recibida (esté en cache o no) para extraer el título, fecha, favicon, … y una vez tiene los datos de cada entrada los muestra. Todo este proceso puede consumir bastantes recursos y ralentizar nuestra página. Lo mínimo para optimizar el plugin es fijar un tiempo de cache en las opciones de 43200 segundos (12 horas) dado que poca gente actualiza en realidad más de 2 veces al día. Es decir, lo que hacemos con esto es indicar al plugin que sólo compruebe actualizaciones en los blogs que tenemos en la lista cada 12h en lugar de los 10′ que pone el plugin por defecto.</p>
-<p>Como siempre, si tenemos muchas visitas o muchos plugins es conveniente que instalemos <a href="http://ayudawordpress.com/gua-para-instalar-wp-cache/">algún plugin específico</a> para realizar el cacheado.</p>
-<p>Otro pequeño pero de este plugin es que la versión actual tiene un pequeño bug que hace que el favicon sólo se muestre cuando indicamos que se muestre también la fecha. Ya lo he corregido y he mandando un <a href="http://conocimientoabierto.es/sw/sbs-blogroll_solved_missing_check_for_show_icon.patch">patch</a> (bastante sencillito) al autor por lo que espero que salga pronto una nueva versión.</p>
-<p>Si no podéis esperar a la nueva versión, instalar el plugin de la forma habitual y luego <a href="http://conocimientoabierto.es/sw/sbs-blogroll.php">sobreescribir con este archivo</a> el que que haya en la carpeta wp-content/plugins/sbs-blogroll/ de vuestra instalación de wordpress. (para poder bajar el archivo hay que hacer click con el botón derecho sobre el enlace y darle a guardar como)</p>
-<p><strong>Actualización 28/12</strong>: La versión 0.3 del plugin ya funciona correctamente. Thanks to the <a href="http://www.someblogsite.com/">author</a> for the quick fix.</p>
     
   </div>
 </article>
