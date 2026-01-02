@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2025/" />
+<link rel="next" href="../../archive/2026/" />
 
 
 <!-- RSS feed -->
@@ -403,6 +403,8 @@
       
         
       
+        
+      
     
     
       
@@ -439,6 +441,30 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -866,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#sonido-y-multiples-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sonido y múltiples usuarios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cambiar-permisos-de-forma-recursiva-y-selectiva" class="md-nav__link">
     <span class="md-ellipsis">
       Cambiar permisos de forma recursiva y selectiva
@@ -897,6 +932,38 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2007-03-26 00:00:00+00:00">26 de marzo de 2007</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="sonido-y-multiples-usuarios"><a class="toclink" href="../../2007/03/26/sonido-y-multiples-usuarios/">Sonido y múltiples usuarios</a></h2>
+<p>Antes de entrar en el título del post, me gustaría repasar una de las primeras cosas que se aprenden cuando se empieza a profundizar un poco en GNU/Linux, <strong>cualquier elemento del sistema es tratado como si fuese un fichero</strong>. Es decir, desde la foto que hemos descargado de la cámara hasta nuestra tarjeta de sonido pasando por el disco duro tienen una representación (un nombre) dentro del sistema de ficheros.</p>
+<p><a href="http://moranar.com.ar/lin/ldtree.html">Comprender La estructura del árbol de directorios</a> no es necesario en la práctica, pero nos ayudará a entendernos mejor con el ordenador. Esta estructura dicta por tanto donde debería ir colocado cada elemento del sistema. Nuestros archivos personales estarán en alguna subcarpeta de /home mientras que nuestro disco duro será representado por <code>/dev/hda</code>.</p>
+<p>Nuestra tarjeta de sonido estará representada mediante los ficheros <code>/dev/dsp</code> o <code>/dev/audio</code>, que por supuesto tendrán establecidos unos determinados permisos y pertenecerán a un determinado usuario y grupo. Lo que viene a continuación está comprobado en una Mandriva 2007 pero entiendo que será extrapolable a la mayoría de distribuciones de Linux.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>crw-rw---- 1 fran audio 14, 4 mar 26 10:37 /dev/audio
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>crw-rw---- 1 fran audio 14, 3 mar 26 10:37 /dev/dsp
+</span></code></pre></div>
+<p>Cuando nos identificamos como un determinado usuario el sistema define como propietario de <code>/dev/audio</code> al usuario con el que hemos identificado, el grupo <code>audio</code> es creado durante la instalación del sistema operativo. Si estando identificados como <code>usuario1</code> lanzamos algún proceso (mediante el comando <code>su</code> por ejemplo) como <code>usuario2</code> que requiera usar la tarjeta de sonido habrá un error puesto que el segundo usuario no tendrá los permisos adecuados para escribir en el fichero que representa a la tarjeta de sonido.</p>
+<p>La solución más sencilla y elegante (si el grupo <code>audio</code> existe) será agregar a todos los usuarios que nos interese a ese grupo. Podemos hacerlo mediante la interfaz gráfica (en Mandriva <code>Sistema-&gt;Configuración-&gt;Otro-&gt;Administrar Usuarios</code>) o abriendo un terminal de root y tecleando</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gpasswd<span class="w"> </span>-a<span class="w"> </span>fran<span class="w"> </span>audio
+</span></code></pre></div>
+<p>Nuestra otra opción es aplicar permisos de escritura y lectura para todos sobre esos ficheros:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>chmod<span class="w"> </span>a+r<span class="w"> </span>a+w<span class="w"> </span>/dev/audio
+</span></code></pre></div>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">

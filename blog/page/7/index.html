@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2025/" />
+<link rel="next" href="../../archive/2026/" />
 
 
 <!-- RSS feed -->
@@ -403,6 +403,8 @@
       
         
       
+        
+      
     
     
       
@@ -439,6 +441,30 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -866,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#si-el-disco-duro-no-para-al-arrancar-ubuntu-vacia-la-papelera" class="md-nav__link">
+    <span class="md-ellipsis">
+      Si el disco duro no para al arrancar ubuntu vacía la papelera
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cliente-de-correo-para-linux" class="md-nav__link">
     <span class="md-ellipsis">
       Cliente de correo para Linux
@@ -901,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#libro-developing-backbonejs-applications" class="md-nav__link">
-    <span class="md-ellipsis">
-      Libro: Developing Backbone.js Applications
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +950,28 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2016-08-07 00:00:00+00:00">7 de agosto de 2016</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="si-el-disco-duro-no-para-al-arrancar-ubuntu-vacia-la-papelera"><a class="toclink" href="../../2016/08/07/si-el-disco-duro-no-para-al-arrancar-ubuntu-vacia-la-papelera/">Si el disco duro no para al arrancar ubuntu vacía la papelera</a></h2>
+<p>Los discos duros (casi) infinitos actuales han hecho que en un año haya acumulado más de 4000 ficheros y casi 60GB en la papelera de Gnome. Nunca pensé que esto fuera un problema pero ultimamente el ordenador tardaba muchísimo en iniciarse y el disco duro incluso después de arrancar el escritorio estaba funcionando durante uno o dos minutos.</p>
+<p>El comando <em>iotop</em> nos permite saber que procesos están consumiendo más acceso a disco, y al lanzarlo durante el arranque descubrí que el problema era el servicio <a href="https://en.wikipedia.org/wiki/GVfs">gvfsd-trash</a>, responsable de la gestión de la papelera. Hay un montón de bugs y comentarios en los foros quejándose de este problema [<a href="https://ubuntuforums.org/showthread.php?t=2076379">1</a>], [<a href="https://ubuntuforums.org/showthread.php?t=1654912">2</a>], [<a href="https://bugzilla.gnome.org/show_bug.cgi?id=587221">3</a>].</p>
+<p>A falta de una solución mejor <a href="https://askubuntu.com/questions/87608/ubuntu-10-10-trash-cpu-overload">simplemente vaciar la papelera funciona</a>. Así que ya sabes, si la lucecita del disco duro no para durante el arranque vacia la papelera.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1056,30 +1104,6 @@
 <li>Y trabajando con underscore / backbone es fundamental conocer y saber usar <a href="http://blog.bigbinary.com/2011/08/18/understanding-bind-and-bindall-in-backbone.html">_.bind y _.bindAll</a></li>
 <li>Y ya como extra, un artículo sobre <a href="partial application http://benalman.com/news/2012/09/partial-application-in-javascript/">partial application</a></li>
 </ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-12-28 00:00:00+00:00">28 de diciembre de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="libro-developing-backbonejs-applications"><a class="toclink" href="../../2015/12/28/libro-developing-backbone-js-applications/">Libro: Developing Backbone.js Applications</a></h2>
-<p>He terminado de releer estos días <a href="http://addyosmani.com/backbone-fundamentals/">Developing Backbone.js Applications</a>, escrito fundamentalmente por <a href="http://addyosmani.com/">Addy Osmani</a> con la colaboración de más gente vía pull-requests en github. Los primeros capítulos del libro (Introduction, Fundamentals, Basics) se leen muy rápido y dan una buena idea, no sólo de como usar backbone si no de porqué usar un framework MVC.</p>
-<p>La idea de mezclar el uso concreto de la herramienta con explicaciones de más alto nivel de patrones se produce a lo largo de más capítulos del libro, por lo que uses backbone o no lo que aprendas te seguirá sirviendo. Esto creo que es el principal aliciente del libro, ya seas un programador novato e inexperto en backbone, o no, puedes aprovechar las explicaciones sobre patrones MV*, Mediator vs Event Aggregator, Desarrollo Modular, …</p>
-<p>Otra de las cosas que me gusta del libro y que es muchas veces ignorada es que dedica un capítulo entero a testing. Tal vez demasiado centrado en explicar distintas herramientas (Jasmine, QUnit, Sinon) pero aún así d utilidad.</p>
-<p>Algunos otros capítulos me dan la impresión de ser demasiado específicos, como aquellos dedicados a desarrollo para móviles y a otros frameworks construidos sobre backbone como Marionotte y Thorax. El capítulo sobre herramientas por ejemplo también es muy específico y al ritmo al que evolucionan en estos momentos ya se ha quedado desactualizado.</p>
-<p>Salvando eso, creo que sigue siendo un libro muy recomendable.</p>
     
   </div>
 </article>

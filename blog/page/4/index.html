@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2025/" />
+<link rel="next" href="../../archive/2026/" />
 
 
 <!-- RSS feed -->
@@ -403,6 +403,8 @@
       
         
       
+        
+      
     
     
       
@@ -439,6 +441,30 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -866,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#virtualbox-windows-videoconferencia-multiple-en-skype" class="md-nav__link">
+    <span class="md-ellipsis">
+      Virtualbox + Windows + VideoConferencia Múltiple en Skype
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cifrar-una-disco-duro-externo-en-ubuntu" class="md-nav__link">
     <span class="md-ellipsis">
       Cifrar una disco duro externo en Ubuntu
@@ -901,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#libro-think-python-how-to-think-like-a-computer-scientist" class="md-nav__link">
-    <span class="md-ellipsis">
-      Libro: Think Python: How to Think Like a Computer Scientist
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +950,40 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2018-07-24 00:00:00+00:00">24 de julio de 2018</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="virtualbox-windows-videoconferencia-multiple-en-skype"><a class="toclink" href="../../2018/07/24/virtualbox-windows-videoconferencia-multiple-en-skype/">Virtualbox + Windows + VideoConferencia Múltiple en Skype</a></h2>
+<p>Si usas linux no sería extraño que alguna vez te hayas encontrado con una <strong>ineludible</strong> videoconferencia de grupo por Skype y hayas tenido que hacer números para poder participar.</p>
+<p>Quien dice Skype, dice alguno de esas extrañas aplicaciones privativas de videoconferencia que alguna gente (clientes) insisten en usar.</p>
+<p>Si tienes una licencia de Windows que puedas reusar para una máquina virtual, a mi estas instrucciones me funcionan en Ubuntu 18.04 para poder usar webcam y micro.</p>
+<p><code>&lt;br&gt;&lt;/br&gt;# Substituir por el usuario deseado&lt;br&gt;&lt;/br&gt;USER=$(whoami)</code></p>
+<p>sudo apt install virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-x11 virtualbox-dkms<br />
+sudo usermod -a -G vboxusers $USER<br />
+sudo usermod -a -G video,audio,pulse-access $USER<br />
+sudo usermod -a -G audio pulse</p>
+<p>Tras crear la máquina guest con Windows:</p>
+<ul>
+<li>Encender la máquina virtual</li>
+<li><code>Dispositivos ópticos</code> -&gt; <code>montar una nueva iso</code> -&gt; En <code>/usr/share/virtualbox</code> seleccionr VBoxGuestAdditions.iso.</li>
+<li>En caso de que no se ejecute automáticamente el cd/iso, ejecutaremos el .exe desde el explorador de archivos.</li>
+</ul>
+<p>Con estas instrucciones tendremos una máquina virtual que soporte webcam, audio, usbs, portapapeles bidireccional (a activar en la configuración de cada máquina), …</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1016,54 +1076,6 @@
 <p>Algunos de los capítulos de la segunda versión se quedan antiguos y/o muy específicos como trabajar con http, xml o html. La parte de testing, tdd y refactoring es bastante limitada y no me acaba de convencer, aunque hay que reconocer que pocos libros no específicos tratan estos temas, por lo que es de agradecer que al menos los mencionen. Los primeros tres capítulos y el de expresiones regulares son casi un relleno, me parecen avanzados para alguien que no sepa python, poco útiles para quien ya controle del lenguaje. Los capítulos de <a href="http://www.diveintopython.net/power_of_introspection/index.html">Introspección</a>, <a href="http://www.diveintopython.net/object_oriented_framework/index.html">POO</a>, <a href="http://www.diveintopython.net/functional_programming/index.html">Programación Funcional</a> y <a href="http://www.diveintopython.net/dynamic_functions/index.html">Funciones dinámicas</a> pueden aportar algún conocimiento de interés y funcionalidades del lenguaje algo menos habituales de usar.</p>
 <p>En la versión 3 pasa más o menos lo mismo, aunque los capítulos sobre <a href="http://www.diveintopython3.net/generators.html">Closures &amp; Generatos</a>, <a href="http://www.diveintopython3.net/iterators.html">Classes &amp; Iteratos</a>, <a href="http://www.diveintopython3.net/advanced-iterators.html">Advanced Iteratos</a>, y <a href="http://www.diveintopython3.net/special-method-names.html">Special Method Names</a> son interesantes. Esta versión tiene un poco menos de carga en la parte de Programación orientada a objetos, así que esos capítulos se pueden revisar en la versión para python 2. Los capítulos sobre migración de python 2 a python 3 sólo son de interés para quien tenga que abordar un proyecto de ese tipo.</p>
 <p>Si estás buscando un libro para aprender python sepas o no programar previamente esta no es una buena opción. Pero si merece la pena cuando ya tengas idea del lenguaje y estés buscando aprender un poco más y conocer algunos <em>idioms</em>, sobre todo en modo lectura rápida. Abre cada capítulo y trata de entender el ejemplo propuesto, si no tienes dudas puedes pasar al siguiente capítulo. Si el ejemplo tiene algo que te resulta de interés lee un poco más de ese capítulo.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2017-11-15 00:00:00+00:00">15 de noviembre de 2017</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="libro-think-python-how-to-think-like-a-computer-scientist"><a class="toclink" href="../../2017/11/15/libro-think-python-how-to-think-like-a-computer-scientist/">Libro: Think Python: How to Think Like a Computer Scientist</a></h2>
-<p>How to Think Like a Computer Scientist es un libro clásico entre los recomendados para comenzar a programar en python. La primera edición es de 2002, escrito por Jeffrey Elkner, Allen B. Downey y Chris Meyers bajo licencia GNU FDL. El ser tan «antiguo» y el estar publicado bajo licencia libre ha hecho que a lo largo del tiempo hayan aparecido diversas versiones del libro.</p>
-<p>Tenemos dos versiones del libro para python 2</p>
-<ul>
-<li><a href="http://www.openbookproject.net/thinkcs/python/english2e/">How to Think Like a Computer Scientist: Learning with Python 2nd edition</a>, sería la última edición para python 2 del libro original, y está fechada en 2012. Las soluciones a algunos ejercicios se pueden encontrar en <a href="https://en.wikibooks.org/wiki/How_to_Think_Like_a_Computer_Scientist:_Learning_with_Python_2nd_Edition">wikibooks</a> (y seguramente valgan para otras versiones).</li>
-<li>La <a href="http://greenteapress.com/wp/learning-with-python/">primera edición</a> (2002) de ese mismo libro la podemos encontrar en <a href="http://greenteapress.com/wp/">Green Tea Press</a> la página personal (y «editorial») de Allen B. Downey uno de los autores originales</li>
-<li>Y también en Green Tea Press podemos encontrar una reedición distinta del mismo libro para python, renombrada simplemente a <a href="http://greenteapress.com/wp/think-python/">Think Python</a>. Revisando el github donde se mantiene el libro los últimos cambios serios parecen ser de 2015</li>
-</ul>
-<p>También tenemos varias versiones del libro enfocadas a python 3.</p>
-<ol>
-<li>La que podríamos considerar primera, de 2012, es <a href="http://openbookproject.net/thinkcs/python/english3e/">How to Think Like a Computer Scientist: Learning with Python 3</a>, reeditada fundamentalmente por Peter Wentworth como libro de texto para un primer curso de programación.</li>
-<li>Otra versión sería una adaptación de la de Peter Wentworth, hecha por varios profesores de la Universidad de Groningen, para emplearla también como <a href="https://howtothink.readthedocs.io/en/latest/">libro de texto para sus clases</a>. En el prólogo declaran que su idea era cambiar la filosofía del libro, de «how to think like a computer scientist» to «how to think as a scientist with a computer», pero revisándolo en mi opinión, los cambios no son tan significativos como para conseguirlo. Está en readthedocs por lo que también se puede <a href="https://readthedocs.org/projects/howtothink/">descargar</a></li>
-<li>En Green Tea Press también encontramos una versión (los últimos cambios serios en el github son de 2016). Esta sería algo así como la <a href="http://greenteapress.com/wp/think-python-2e/">segunda edición de Think Python</a></li>
-<li>Por último, un experimento interesante. <a href="https://interactivepython.org/courselib/static/thinkcspy/index.html">Un libro interactivo</a>, que parece basado fundamentalmente la versión de Wentworth. Consiste en una aplicación web que permite ejecutar código en el propio navegador, depurar paso a paso a modo educativo y responder a cuestionarios</li>
-</ol>
-<p>En la página de Green Tea Press hay un dos artículos explicando porqué publicar <a href="http://greenteapress.com/free_books.html">«free books»</a>, y su <a href="http://greenteapress.com/wp/textbook-manifesto/">filosofía</a> a la hora de escribir libros de texto. Además en el prólogo del libro se puede leer <a href="http://greenteapress.com/thinkpython2/html/thinkpython2001.html#sec2">algo sobre su historia</a> para entender los autores y los cambios a lo largo del tiempo.</p>
-<p>Todas las versiones (inluída la interactiva) están en repositorios de código en github o launchpad, por lo que es posible colaborar en su mejora. Y están escritos en reStructuredText o Markdown y convertidos a libros con sphinx u otras herramientas.</p>
-<p>No resulta sencillo decir «cual es mejor», cada una de las veriones tiene sus puntos fuertes y débiles:</p>
-<ul>
-<li>
-<p>Los que hemos hemos numerado como dos y como tres son los que tienen para mi un orden de capítulos más lógico. Por ejemplo trata listas, tuplas y diccionarios en capítulos contiguos mientras que en las otras versiones los diccionarios están separados del resto de tipos de datos. Pero en dos han juntado varios capítulos en uno sólo por lo que su lectura se hace algo más difícil. Además los capítulos sobre numpy, matplotlib y data handling no encajan muy bien como están escritos en un libro para principiantes. Por tanto a pesar de ser el más actualizado yo en principio descartaría esta versión.
-El uno tiene algún material adicional respecto a los otros como capítulos sobre estructuras de datos más avanzadas (pilas, colas y árboles). Si bien creo que estos capítulos son de interés, tampoco pasa nada por prescindir de ellos en un primer contacto, porque hay otros libros más avanzados o más específicos que tratan mejor este tipo de temas.</p>
-</li>
-<li>
-<p>El número tres (<a href="http://greenteapress.com/wp/think-python-2e/">Think Python</a>) tiene para mi otros alicientes como que algunos de los problemas y soluciones están resueltos <a href="https://github.com/AllenDowney/ThinkPython2/tree/master/code">en el github del autor</a>. Es de los que siguen un orden más lógico, capítulos cortos, y una sección «debugging» al final de cada capítulo que explica «técnicas mentales» a la hora de depurar y construír un programa que resultan útiles. Además se puede comprar a través de Amazon, descargar gratuitamente en PDF, leer en html… Así que seguramente esta es la versión más recomendable.</p>
-</li>
-<li>La versión interactiva también me ha sorprendido gratamente. El texto no es tan bueno como el de Think Python, pero el poder jugar con el código mientras leemos el texto, da muchas opciones a alguien que se introduce en el lenguaje y le permite aprender sin tener que liarse con el entorno. Además la opción de debug (<em>codelens</em> en su terminología es especialmente útil para ver lo que pasa en el programa). Esta tambień es un opción recomendable.</li>
-</ul>
-<p>Entre la opción interactiva y Think Python es difícil decidirse, si quieres avanzar rápido y tener una panorámica general, el libro seguramente es mejor, y la irrupción de cajas y botones en medio del texto menos molesta. Depende del estilo de aprendizaje de cada uno. Leer un par de capítulos de cada uno y decide tu mismo.</p>
-<p>Si está revisión te ha ahorrado tiempo y quieres agradacerme el esfuerzo planteate donar usando el botón de la derecha, o simplemente dejar un comentario en esta entrada.</p>
     
   </div>
 </article>

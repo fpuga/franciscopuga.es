@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2025/" />
+<link rel="next" href="../../archive/2026/" />
 
 
 <!-- RSS feed -->
@@ -403,6 +403,8 @@
       
         
       
+        
+      
     
     
       
@@ -439,6 +441,30 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -866,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#video-aplicaciones-en-tiempo-real-con-python-y-postgres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Video: Aplicaciones en tiempo real con python y postgres
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#comentarios-al-articulo-de-complejidad-y-reversibilidad-de-kent-beck" class="md-nav__link">
     <span class="md-ellipsis">
       Comentarios al artículo de Complejidad y Reversibilidad de Kent Beck
@@ -901,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#buscando-ordenador-portatil-micros" class="md-nav__link">
-    <span class="md-ellipsis">
-      Buscando ordenador portátil &#8211; Micros
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +950,37 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2015-08-25 00:00:00+00:00">25 de agosto de 2015</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="video-aplicaciones-en-tiempo-real-con-python-y-postgres"><a class="toclink" href="../../2015/08/25/video-aplicaciones-tiempo-real-python-postgres/">Video: Aplicaciones en tiempo real con python y postgres</a></h2>
+<iframe allowfullscreen="" frameborder="0" height="315" loading="lazy" src="https://www.youtube.com/embed/PsorlkAF83s?rel=0" width="420"></iframe>
+
+<p>Una charla de como montar aplicaciones en tiempo real con python y postgres. Tiempo real entendido como notificaciones de un chat, hacer algo cada vez que se actulice una tabla de la bd etc,…</p>
+<p>El vídeo se hace un poco largo, seguramente con las transparencias llegaba para hacerse una idea general. Pero aún así se hace interesante por alguna de las técnicas que emplea:</p>
+<ul>
+<li>Aboga por no usar frameworks en python. Con las librerías de hoy en día es sencillo montar una API Rest gestionando las llamadas de bajo nivel directamente</li>
+<li>Usa las funciones de postgres de LISTEN y NOTIFY que combinadas con un trigger permiten que código cliente (psycopg2) sean notificados cuando algo pasa en la base de datos (se modifica una fila o lo que sea) y actuén en consecuencia (provocar un cambio en el navegador mediante websockets)</li>
+<li>Para simplificar la API y el diseño de la bd, los datos se guardan como tipos nativos postgres (varchar, boolean,…), y se usa la función de postgres row_to_json para recuperarlos una cadena de texto con formato json.</li>
+<li>Usa <a href="https://github.com/jkbrzt/httpie">httpie</a> para probar la API Rest. Si alguna vez usaste <a hre="http://www.codingpedia.org/ama/how-to-test-a-rest-api-from-command-line-with-curl/">curl</a> para esto enseguida verás que está bien conocer httpie.</li>
+<li>A pesar de que la idea principal de la charla es montar una aplicación en tiempo real con el mínimo número de dependencias (complejidad) el proceso de build que monta no parece trivial. pip para dependencias en python, nodeenv (una especie de entorno virtual para node que se integra con el virtualenv de python), bower para las dependencias javascript de cliente,… Todo ello orquestrado por un Makefile.</li>
+<li>No muestra como hacer la parte del frontend, pero en todo caso <a href="https://bitbucket.org/btubbs/todopy-pg">el código está en su repo</a></li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1107,63 +1164,6 @@ Cover and Modify is a different way of making changes. The idea behind it is tha
 <li>Si alguna review de alguno de los modelos que quedan aporta algo muy negativo que lo descarte o algo muy positivo que le de puntos sobre los más económicos</li>
 </ul>
 <h3 id="resto-de-articulos-de-esta-serie"><a class="toclink" href="../../2015/03/21/buscando-portatil-listado-de-candidatos-entre-900-y-1150e/#resto-de-articulos-de-esta-serie">Resto de artículos de esta serie</a></h3>
-<ul>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-programar/752/">Buscando un portátil para programar</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">Buscando un portátil – Impresiones sacadas de foros y reviews</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-ordenador-portatil-micros/764/">Buscando ordenador portátil – Micros</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-listado-de-candidatos-entre-900-y-1150e">Buscando un portátil – Listado de candidatos entre 900 y 1150€</a></li>
-</ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-03-10 00:00:00+00:00">10 de marzo de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="buscando-ordenador-portatil-micros"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/">Buscando ordenador portátil &#8211; Micros</a></h2>
-<p>En el <a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">último artículo</a> veiamos que para encontrar un ordenador portátil adecuado (en rendimiento y presupuesto) uno los factores más importantes era el micro. Centrándonos en los Intel, la <a href="http://en.wikipedia.org/wiki/Intel_Core">wikipedia nos da un buen punto de entrada</a>. Lo primero a saber es que existen varias generaciones.</p>
-<ul>
-<li>La 5 generación de nombre Broadwell (o Intel Core 5th Gen) salió (aproximadamente) en Enero de 2015 y utiliza tecnología de 14nm</li>
-<li>La 4 generación de nombre Haswell (o Intel Core 4th Gen) salieron en Junio de 2013 y utiliza tecnología de 22nm</li>
-<li>La 3 generación lleva por nombre Ivy Bridge y es de 2012 así que la descartamos en el análisis.</li>
-<li>Por el medio tenemos el Haswell-E (Agosto de 2014) y el Ivi Bridge-E (Septiembre de 2013) de los que sólo hay versiones i7 también en 22nm.</li>
-</ul>
-<p>Hasta donde he podido entender a pesar de ser un logro tecnológico importante <a href="http://www.trustedreviews.com/opinions/intel-s-14nm-revolution-everything-you-need-to-know">hasta finales de año probablemente no tenga mucho sentido comprar un ordenador con micro de 5 generación</a>. Tras la generación la forma de clasificarlos es por «familia» o «gama» (o «product line»). Donde las fundamentales para portátiles como el que buscamos serían:</p>
-<ul>
-<li>i3. Los de gama baja.</li>
-<li>i5. Gama media. En versón mobile, tienen 3M de cache, 2 cores y TDP de entre 11.5 y 47 con muy pocos siendo de 47.</li>
-<li>i7. Gama alta. En versión mobile, tienen entre 4 y 8M de cache, los hay de 2 y de 4 cores y TDP de entre 11.5 y 47 siendo la mayoría de 47.</li>
-</ul>
-<p>Tanto los i5 como los i7 tienen Hyperthreading, Virtualización por hardware (VT-x) y Turbo Boost. Hay otras tecnologías (menos importantes para nuestro caso) como <a href="https://software.intel.com/en-us/blogs/2009/06/25/understanding-vt-d-intel-virtualization-technology-for-directed-io">VT-d</a> que dependen del modelo concreto y no de ser i5 o i7. Además hay que tener en cuenta que en algunos portátiles se montan micros de desktop y no de mobile. Por ello al final es necesario consultar las <a href="http://ark.intel.com/">características concretas de cada micro</a>. Para orientarnos con los modelos es bueno saber que suelen tener cuatro números y a continuación 1 o más letras. El primero de los números hace referencia a la generación, y las letras del final depende. Si son:</p>
-<ul>
-<li><a href="http://www.pugetsystems.com/labs/articles/Introduction-to-Intel-S-series-Processors-617/">K, X, S o T se refieren a modificaciones concretas sobre el micro</a></li>
-<li>Una M significa que es versión mobile con dos cores (aunque puede tener otro sufijo en lugar de la M y ser mobile igual)</li>
-<li>MQ o HQ significa que es mobile pero tiene cuatro cores. La <a href="http://forum.notebookreview.com/threads/hq-vs-mq-processors.765365/">diferencia entre HQ y MQ</a> es que los HQ van soldados a la placa (más difíciles de cambiar por tanto, pero mi impresión es que ligeramente superiores para el mismo modelo) y los MQ no.</li>
-<li>U e Y significa que son pensados para ultrabooks porque tienen un menor consumo. Y menor consumo que U</li>
-</ul>
-<p>Por ejemplo un <a href="http://ark.intel.com/products/76349/Intel-Core-i7-4600M-Processor-4M-Cache-up-to-3_60-GHz">i7-4600M</a>, es un i7 de cuarta generación mobile con dos cores mientras que un <a href="http://ark.intel.com/products/83505/Intel-Core-i7-4770HQ-Processor-6M-Cache-up-to-3_40-GHz">i7-4770HQ</a> es un i7 de cuarta generación mobile con 4 cores. <a href="http://ark.intel.com/compare/76611,81016,81012,78929">Otro ejemplo</a>, un i5-4210Y consumirá menos que un i5-4210U que consumirá menos que un i5-4210M. Pero generalmente a menor consumo también menor velocidad de reloj y peor rendimiento.</p>
-<h3 id="gpu"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/#gpu">GPU</a></h3>
-<p>Los micros actuales llevan «incluida» una tarjeta gráfica en el propio micro, y por tanto sería algo a considerar a la hora de escoger micro pero por ahora vamos a obviarlo.</p>
-<h3 id="conclusiones"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/#conclusiones">Conclusiones</a></h3>
-<p>Lo que hemos visto en este artículo nos permite identificar a grandes rasgos las diferencias entre un micro y otro. Pero la pregunta más importante a resolver es al final si escoger un i7 con cuatro cores o un i5 con dos. Entender si para un caso concreto como el de escoger un ordenador para desarrollo es <a href="http://create.pro/blog/need-lots-cores-faster-cpu-clock-speed-cores-ghz-multi-threading-hyper-threading-explained/">mejor más cores o más velocidad de reloj</a> es algo que resulta difícil de responder. ¿Alguna opinión? Pero teniendo varias aplicaciones, incluidos servidores y máquinar virtuales funcionando a la vez, sin ser ninguno de los procesos muy intensivos, parece lógico pensar que más cores aunque sea reduciendo la velocidad es la decisión acertada. Para tratar de reducir el precio en la <a href="http://ark.intel.com/">página de intel</a> vemos que los modelos i7 del <a href="http://ark.intel.com/compare/75116,75117,75118,75119,78930,78931,78932,78933,78934,78935">470x al 472x</a> serían buenas opciones, aunque como siempre al final dependerá de como cada fabricante monte el portátil.</p>
-<h3 id="referencias"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/#referencias">Referencias</a></h3>
-<ul>
-<li><a href="http://www.pugetsystems.com/labs/articles/Haswell-Core-i3-vs-i5-vs-i7-Which-is-right-for-you-475/">Haswell Core i3 vs. i5 vs. i7 – Which is right for you?</a>. Los comentarios son interesantes también.</li>
-<li><a href="http://www.pugetsystems.com/labs/articles/Specs-Explained-CPU-137/#SmartCache">Se queda algo viejo pero explica algunos términos como TDP</a></li>
-<li><a href="http://www.pcmag.com/article2/0,2817,2404674,00.asp">Which CPU Should You Buy? Comparing Intel Core i5 vs. i7</a></li>
-</ul>
-<h3 id="resto-de-articulos-de-esta-serie"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/#resto-de-articulos-de-esta-serie">Resto de artículos de esta serie</a></h3>
 <ul>
 <li><a href="http://conocimientoabierto.es/buscando-portatil-programar/752/">Buscando un portátil para programar</a></li>
 <li><a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">Buscando un portátil – Impresiones sacadas de foros y reviews</a></li>

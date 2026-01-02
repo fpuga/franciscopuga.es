@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2025/" />
+<link rel="next" href="../../archive/2026/" />
 
 
 <!-- RSS feed -->
@@ -403,6 +403,8 @@
       
         
       
+        
+      
     
     
       
@@ -439,6 +441,30 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -866,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#primeros-pasos-para-configurar-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primeros pasos para configurar git
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sincronizar-el-perfil-o-los-marcadores-de-firefox-mediante-dropbox" class="md-nav__link">
     <span class="md-ellipsis">
       Sincronizar el perfil o los marcadores de Firefox mediante dropbox
@@ -901,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#vigo-duas-actividades-para-o-martes-29" class="md-nav__link">
-    <span class="md-ellipsis">
-      [Vigo] Dúas actividades para o martes 29
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +950,59 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2010-05-01 00:00:00+00:00">1 de mayo de 2010</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="primeros-pasos-para-configurar-git"><a class="toclink" href="../../2010/05/01/primeros-pasos-configurar-git/">Primeros pasos para configurar git</a></h2>
+<p><a href="http://geneura.ugr.es/~jmerelo/tutoriales/git/">Git</a> es el sistema de control de versiones (SCV) que se está imponiendo en el mundo del software libre. Todo programador que se precie debe aprender a usar un <a href="http://es.wikipedia.org/wiki/Control_de_versiones">SCV</a> y dado que git puede operar también sobre repositorios svn te recomiendo encarecidamente que lo pruebes. Una de las ventajas de <a href="http://git-scm.com/">git</a> es que es increíblemente configurable. En este artículo encontraras como realizar esa primera configuración para que sea más cómodo trabajar con git.</p>
+<p>La configuración global de git se guarda en el home del usuario en archivo llamado .gitconfig. Además dentro de cada repositorio existe un archivo config dentro del directorio .git donde podemos usar unas configuraciones distintas a las globales o añadir parámetros nuevos. La configuración que deseemos la podemos escribir directamente en esos archivos o usar el comando git config.</p>
+<h3 id="indicamos-a-git-quien-somos"><a class="toclink" href="../../2010/05/01/primeros-pasos-configurar-git/#indicamos-a-git-quien-somos">Indicamos a git quien somos</a></h3>
+<p><code>git config --global user.name "Francisco Puga"&lt;br&gt;&lt;/br&gt;git config --global user.email "fran.puga@gmail.com"</code></p>
+<p>Esto generará en el fichero .gitconfig dos nuevas líneas como las que siguen:</p>
+<p><code>[user]&lt;br&gt;&lt;/br&gt;email = fran.puga@gmail.com&lt;br&gt;&lt;/br&gt;name = Francisco Puga</code></p>
+<p>Si quisiéramos configurar nuestro correo electrónico para un repositorio concreto ejecutaríamos git config sin la opción de –global dentro del directorio que contiene el repositorio.</p>
+<h3 id="colorear-la-salida"><a class="toclink" href="../../2010/05/01/primeros-pasos-configurar-git/#colorear-la-salida">Colorear la salida</a></h3>
+<p>A continuación añadiremos unas líneas al fichero de configuración global (o mediante ordenes como git config –global color.ui auto) para que nos coloree la salida por pantalla</p>
+<p><code>[color]&lt;br&gt;&lt;/br&gt;ui = auto&lt;br&gt;&lt;/br&gt;diff = auto&lt;br&gt;&lt;/br&gt;status = auto&lt;br&gt;&lt;/br&gt;branch = auto</code></p>
+<p>Con añadir esas líneas empezaríamos a usar los colores por defecto pero estos son personalizables <a href="http://scie.nti.st/2007/5/2/colors-in-git">como se puede</a> ver en <a href="http://shallowsky.com/blog/programming/gitcolors.html">estos enlaces</a>.</p>
+<p>Si tras activar los colores ves algo de basura en la salida añade a ~.bashrc la línea:<br />
+<code>LESS=-R</code></p>
+<h3 id="ignorar-ciertos-ficheros"><a class="toclink" href="../../2010/05/01/primeros-pasos-configurar-git/#ignorar-ciertos-ficheros">Ignorar ciertos ficheros</a></h3>
+<p>Cuando trabajamos en un proyecto puede haber ciertos directorios, ficheros resultantes de la compilación, … que queremos que git no indexe y no nos aparezcan al hacer un estatus. Para <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html">ignorar ciertos ficheros</a> tenemos varios métodos:</p>
+<p>Si lo que queremos es una configuración global para todos nuestros repositorios añadiremos en el .gitconfig la directiva excludesfile con la ruta completa a un archivo de texto donde definiremos las rutas a ignorar. Por ejemplo en mi caso:</p>
+<p><code>[core]&lt;br&gt;&lt;/br&gt;excludesfile = "/home/fpuga/.gitignore"</code></p>
+<p>Y el contenido de ~.gitignore es</p>
+<p><code>*.[oa]&lt;br&gt;&lt;/br&gt;*.lo&lt;br&gt;&lt;/br&gt;*.la&lt;br&gt;&lt;/br&gt;*.gmo&lt;br&gt;&lt;/br&gt;semantic.cache&lt;br&gt;&lt;/br&gt;*~&lt;br&gt;&lt;/br&gt;*.pyc&lt;br&gt;&lt;/br&gt;</code><br />
+Si lo que queremos es definir un patrón de exclusión para un repositorio concreto lo haremos en el fichero .git/info/exclude.</p>
+<p>La tercera opción es crear un fichero .gitignore dentro algún directorio de nuestro repositorios. Este fichero debería usarse no para las configuraciones personales si no para las de todo el grupo de trabajo. Es decir .gitignore es un fichero que podría subirse al repositorio de modo que todo el equipo de desarrollo comparta esa configuración. La particularidad de .gitignore es que no tiene que colocarse en la raíz del repositorio si no que puede colocarse en algún subdirectorio, así, si en el mismo repositorio tenemos varios proyectos, cada uno en un directorio podemos aplicar configuraciones distintas a cada proyecto.</p>
+<h3 id="para-teclear-menos"><a class="toclink" href="../../2010/05/01/primeros-pasos-configurar-git/#para-teclear-menos">Para teclear menos</a></h3>
+<p>Los comando de git suelen ser nombres bastante largos y en algunos hay que incluir ademas varios parámetros. Para que tengamos que teclear menos git permite configurar alias. La sección alias de mi .gitconfig es la siguiente:</p>
+<p><code>[alias]&lt;br&gt;&lt;/br&gt;unstage = reset HEAD&lt;br&gt;&lt;/br&gt;st = status&lt;br&gt;&lt;/br&gt;rma = ls-files --deleted | xargs git rm&lt;br&gt;&lt;/br&gt;co = checkout&lt;br&gt;&lt;/br&gt;com = checkout master</code></p>
+<p>5.- Programas por defecto que se usan. Se puede configurar el programa que se empleará para editar el mensaje de commit (por ejemplo emacs en lugar de vi) y el paginador que se usa para ver el log (por ejemplo most en lugar de less)</p>
+<p>Si bien en el caso del editor es más lógico configurar la variable de entorno global EDITOR=emacs en nuestro .bash_profile, también podemos configurarlo en exlusiva para git con algo como esto</p>
+<p><code>[core]&lt;br&gt;&lt;/br&gt;editor=emacs&lt;br&gt;&lt;/br&gt;pager=moss</code></p>
+<h3 id="evitar-meter-las-claves"><a class="toclink" href="../../2010/05/01/primeros-pasos-configurar-git/#evitar-meter-las-claves">Evitar meter las claves</a></h3>
+<p>Si a los repositorios git que tenemos se accede mediante ssh, cosa bastante habitual, tendremos que teclear nuestra contraseña cada vez que bajemos o subamos algo al repo. Para evitarlo podemos <a href="http://crysol.org/node/6">copiar nuestra clave pública al repositorio remoto</a>. Haciendo esto, cuando queramos trabajar contra el repo, este automáticamente se encargará que nuestra clave privada se corresponde a la clave pública que hemos subido y nos dará acceso.</p>
+<p>El proceso es tan sencillo como, crear una nueva clave si todavía no lo hemos hecho:</p>
+<p><code>ssh-keygen -b 4096 -t rsa</code></p>
+<p>Si usamos una passphrase nos la preguntarán sólo la primera vez de la sesión que la clave sea usada. Se trata de una contraseña para permitir al sistema acceder a nuestra clave privada, no tiene nada que ver con el servidor remoto.</p>
+<p>Una vez tengamos nuestra clave ssh, debemos copiarla al servidor, para ello existe un comando especial que hace todo por nosotros</p>
+<p><code>ssh-copy-id @servidor</code></p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1123,31 +1202,6 @@
 <li><a href="http://www.jeanette.es/archives/325">Cómo encriptar una partición de disco duro con dm-crypt</a></li>
 <li><a href="http://en.gentoo-wiki.com/wiki/SECURITY_System_Encryption_DM-Crypt_with_LUKS">DM-Crypt with LUKS</a></li>
 </ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2009-12-28 00:00:00+00:00">28 de diciembre de 2009</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="vigo-duas-actividades-para-o-martes-29"><a class="toclink" href="../../2009/12/28/vigo-actividades-martes-29/">[Vigo] Dúas actividades para o martes 29</a></h2>
-<p>Todos sabemos que o nadal é unha época na que as ONG aproveitan o espíritu destas festas para incrementar as súas campañas de captación de fondos e sensibilización. Ben sei que hai moita xente que recela destas campañas navideñas por consideralas <span style="font-style: italic">aproveitadas</span>, inda así correrei o risco de promocionar algúns actos, ben porque sei que son desinteresados, ben porque coñezo aos organizadores e estou seguro de que van a estar ben.</p>
-<h3 id="martes-29-de-decembro-as-1930"><a class="toclink" href="../../2009/12/28/vigo-actividades-martes-29/#martes-29-de-decembro-as-1930">Martes, 29 de Decembro as 19:30.</a></h3>
-<p>Conferencia de <a href="http://es.wikipedia.org/wiki/Arcadi_Oliveres_i_Boadella">Arcadi Oliveres</a>, <em>Acabar coa pobreza en tempos de crise</em>. Arcadi é catedrático de economía na Universidade Autónoma de Barcelona e un coñecido <a href="http://es.wikipedia.org/wiki/Decrecimiento">decrecionista</a>. A conferencia é na Sala de Conferencias do Centro Cultura Caixanova (Policarpo Sanz, 13). Aconferencia está organizada pola <a href="http://redesocialgaliciasur.org/">Rede Social Galicia Sur</a>. Tanto se es decrecionista, como se queres saber algo sobre o tema, coma se estás en contra e queres coselo a cuestións esta é a túa oportunidade.</p>
-<h3 id="29-de-decembro-as-2230"><a class="toclink" href="../../2009/12/28/vigo-actividades-martes-29/#29-de-decembro-as-2230">29 de Decembro as 22:30</a></h3>
-<p>A ONG Entreculturas, en colaboración con COCONUT , invítanos ao 3º Concerto Solidario de Nadal na <a href="http://www.google.com/maps/ms?ie=UTF8&amp;hl=gl&amp;msa=0&amp;msid=104521394156720728412.000452897cfb0cb6c08b7&amp;ll=42.237383,-8.717501&amp;spn=0.00834,0.019248&amp;z=16">Fábrica de Chocolate</a>, en beneficio do Proxecto «Apoyo a la Reconstrucción en Sur Sudán». Actuarán Maryland e Nico Pastoriza (e amigos, …) Entrada 5€</p>
-<p><strong>Actualización:</strong> Aprovecho esta entrada para comentar que el <a href="http://medicosdomundogalicia.blogspot.com/2009/12/pon-os-teus-zapatos-para-pedir-o-centro.html">Martes 5 de Enero habrá también un acto bastante chulo</a> para reclamar un albergue y centro de inclusión social para Vigo.</p>
     
   </div>
 </article>

@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2025/" />
+<link rel="next" href="../../archive/2026/" />
 
 
 <!-- RSS feed -->
@@ -403,6 +403,8 @@
       
         
       
+        
+      
     
     
       
@@ -439,6 +441,30 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -866,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#um-curso-objetivo-de-programacao-em-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Um curso objetivo de programação em Python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#preparar-un-ordenador-con-windows-para-asistir-al-curso-de-openlayers" class="md-nav__link">
     <span class="md-ellipsis">
       Preparar un ordenador con Windows para asistir al curso de OpenLayers.
@@ -901,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#yahoo-pipes-en-la-web-de-isf" class="md-nav__link">
-    <span class="md-ellipsis">
-      Yahoo Pipes en la web de ISF
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +950,79 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-06-01 00:00:00+00:00">1 de junio de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="um-curso-objetivo-de-programacao-em-python"><a class="toclink" href="../../2011/06/01/curso-objetivo-programacao-python/">Um curso objetivo de programação em Python</a></h2>
+<p>Gracias al blog de <a href="http://andersonmedeiros.wordpress.com/2010/06/13/curso-online-de-python/trackback/">Anderson Medeiros</a> encuentro un <a href="http://www.async.com.br/projects/python/pnp/node20.html">interesante tutorial de python escrito en Portugués</a> pero muy facilito de seguir.</p>
+<p>Es un tutorial de introducción, rápido de leer y que me ha ayudado a recordar algunos de esos conceptos que por estar más habituado a otros lenguajes tipo Java no empleas a menudo.</p>
+<p>Algunas cosillas que he recordado, aprendido o me han gustado.</p>
+<h4 id="listas-tupas-y-strings"><a class="toclink" href="../../2011/06/01/curso-objetivo-programacao-python/#listas-tupas-y-strings">Listas, tupas y strings</a></h4>
+<p>Explica bien que son <a href="http://www.async.com.br/projects/python/pnp/node13.html">listas, tuplas, diccionarios y strings</a>. A listas y tuplas se las llama en ocasiones secuencias puesto que sus propiedades son muy parecidas. Una tupla es en realidad una lista inmutable.</p>
+<p>Conviene tener en la cabeza lo fácil que es hacer slices (subconjuntos de secuencias) y substrings en python, incluso empleando índices negativos para empezar a contar por el final. LLega con escribir:<br />
+<code>&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; lista = ['a', 'b', 'c', 'd', 'e', 'f', 'g']&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; lista[2:5]&lt;br&gt;&lt;/br&gt;['c', 'd', 'e']&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt;  lista[2:]&lt;br&gt;&lt;/br&gt;['c', 'd', 'e', 'f', 'g']&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; lista[:5]&lt;br&gt;&lt;/br&gt;['a', 'b', 'c', 'd', 'e']&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; lista[:-2]&lt;br&gt;&lt;/br&gt;['a', 'b', 'c', 'd', 'e']&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; lista[-2:]&lt;br&gt;&lt;/br&gt;['f', 'g']&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Los operadores * y + se pueden usar sobre listas, tuplas y strings. * replica n veces el elemento y + concatena.</p>
+<p>Ejemplo para strings:<br />
+<code>&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; a = "exato"&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; print a * 2&lt;br&gt;&lt;/br&gt;exatoexato&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; print "quase " + a&lt;br&gt;&lt;/br&gt;quase exato&lt;br&gt;&lt;/br&gt;</code><br />
+Ejemplo para listas:<br />
+<code>&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; a = [-1, 0]&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; b = [1, 2, 3]&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; print b * 3&lt;br&gt;&lt;/br&gt;[1, 2, 3, 1, 2, 3, 1, 2, 3]&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; print a + b&lt;br&gt;&lt;/br&gt;[-1, 0, 1, 2, 3]&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Para chequear si un elemento está contenido en una secuencia o diccionario se usa el operador in<br />
+<code>&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; "x" in "cha"&lt;br&gt;&lt;/br&gt;False&lt;br&gt;&lt;/br&gt;&gt;&gt;&gt; 1 in [1,2,3]&lt;br&gt;&lt;/br&gt;True&lt;br&gt;&lt;/br&gt;</code></p>
+<h4 id="combinar-de-forma-implicita-operaciones-logicas"><a class="toclink" href="../../2011/06/01/curso-objetivo-programacao-python/#combinar-de-forma-implicita-operaciones-logicas">Combinar de forma implícita operaciones lógicas</a></h4>
+<p>Además de los operadores lógicos not, or, and python permite <a href="http://www.async.com.br/projects/python/pnp/op-logical.html#SECTION000345100000000000000">combinar ciertas operaciones lógicas de forma implícita</a>:</p>
+<p>Por ejemplo podemos comprobar un número está en un determinado rango de esta forma:<br />
+<code>&lt;br&gt;&lt;/br&gt;a = 5&lt;br&gt;&lt;/br&gt;if 3 &lt; a &lt; 9:&lt;br&gt;&lt;/br&gt;     print "Entre 3 y 9"</code></p>
+<p>a = 3; b = 3; c = 2;<br />
+if a == b &lt;= c:<br />
+ print "a igual a b y b menor o igual que c"</p>
+<h4 id="clausula-else-en-bloques-for-y-while"><a class="toclink" href="../../2011/06/01/curso-objetivo-programacao-python/#clausula-else-en-bloques-for-y-while">Clausula else en bloques for y while</a></h4>
+<p>En los for y los while <a href="http://www.async.com.br/projects/python/pnp/node28.html#SECTION000352200000000000000">se puede emplear una claúsula else</a> que se ejecutará cuando se salga del bloque de iteración por haber acabado la secuencia (en lugar de salir por un break)<br />
+<code>&lt;br&gt;&lt;/br&gt;valores = [2, 4, 5, 2, -1]&lt;br&gt;&lt;/br&gt;for i in valores:&lt;br&gt;&lt;/br&gt;        if i &lt; 0:&lt;br&gt;&lt;/br&gt;                print "Negativo encontrado: %d" %i&lt;br&gt;&lt;/br&gt;                break&lt;br&gt;&lt;/br&gt;else:&lt;br&gt;&lt;/br&gt;        print "Nenhum negativo encontrado"&lt;br&gt;&lt;/br&gt;</code></p>
+<h4 id="valores-booleanos"><a class="toclink" href="../../2011/06/01/curso-objetivo-programacao-python/#valores-booleanos">Valores booleanos</a></h4>
+<p>No está de más recordar que <a href="http://www.async.com.br/projects/python/pnp/node29.html#SECTION000353100000000000000">en python se considera falso</a> a:</p>
+<ul>
+<li>el booleano False</li>
+<li>el valor 0 (zero)</li>
+<li>una lista, diccionario, tupla o string vacios (de tamaño cero)</li>
+<li>el valor especial None</li>
+</ul>
+<p>Así por ejemplo para comprobar si una lista no está vacía mejor que emplear<br />
+<code>&lt;br&gt;&lt;/br&gt;lista = ['a']&lt;br&gt;&lt;/br&gt;if (len(lista)) != 0:&lt;br&gt;&lt;/br&gt;      print "forma poco apropiada de comprobar si una lista no está vacia"&lt;br&gt;&lt;/br&gt;</code><br />
+usaremos directamente<br />
+<code>&lt;br&gt;&lt;/br&gt;if lista:&lt;br&gt;&lt;/br&gt;      print "Lista no vacia"&lt;br&gt;&lt;/br&gt;</code></p>
+<h4 id="argumentos-de-funciones"><a class="toclink" href="../../2011/06/01/curso-objetivo-programacao-python/#argumentos-de-funciones">Argumentos de funciones</a></h4>
+<p>Existen <a href="http://www.async.com.br/projects/python/pnp/node33.html#SECTION000362300000000000000">dos formas de pasar un número variable de argumentos a una función</a>:<br />
+<code>&lt;br&gt;&lt;/br&gt;def desculpa(alvo, *motivos):&lt;br&gt;&lt;/br&gt;        d = "Desculpas %s, mas estou doente" % alvo&lt;br&gt;&lt;/br&gt;        for motivo in motivos:&lt;br&gt;&lt;/br&gt;            d = d + " e %s" % motivo&lt;br&gt;&lt;/br&gt;        return d + "."</code></p>
+<p>&gt;&gt;&gt; desculpa("senhor", "meu gato fugiu",<br />
+ ... "minha tia veio visitar")  </p>
+<p>o bien<br />
+<code>&lt;br&gt;&lt;/br&gt; def equipe(diretor, produtor, **atores):&lt;br&gt;&lt;/br&gt;        for personagem in atores.keys():&lt;br&gt;&lt;/br&gt;            print "%s: %s" % (personagem, atores[personagem])&lt;br&gt;&lt;/br&gt;        print "-" * 20&lt;br&gt;&lt;/br&gt;        print "Diretor:  %s" % diretor&lt;br&gt;&lt;/br&gt;        print "Produtor: %s" % produtor</code></p>
+<p>&gt;&gt;&gt; equipe(diretor="Paul Anderson",<br />
+ ... produtor="Paul Anderson",<br />
+ ... Frank="Tom Cruise", Edmund="Pat Healy",<br />
+ ... Linda="Julianne Moore")</p>
+<p>Frank: Tom Cruise<br />
+ Edmund: Pat Healy<br />
+ Linda: Julianne Moore<br />
+--------------------<br />
+ Diretor: Paul Anderson<br />
+ Produtor: Paul Anderson</p>
+<p>Si tienes algún tutoirial de python que te haya gustado o algún truquillo que quieres compartir deja un comentario.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1093,34 +1192,6 @@ Parece complicado, pero en realidad es más difícil de leer que de escribir una
 <li>Independientemente de tu proveedor si tienes php 5.3 puedes <a href="http://wiki.dreamhost.com/PHP.ini#PHP_5.3">modificar de formal local la configuración</a>.</li>
 <li>Añadir al fichero phprc creado en el paso anterior <a href="http://techtastico.com/post/parametros-php.ini/trackback/">las opciones que nos interesen</a>.</li>
 </ol>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-02-13 00:00:00+00:00">13 de febrero de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="yahoo-pipes-en-la-web-de-isf"><a class="toclink" href="../../2011/02/13/yahoo-pipes-web-isf/">Yahoo Pipes en la web de ISF</a></h2>
-<p>Una entrada rápida para contar que he estado jugando un ratillo con <a href="http://pipes.yahoo.com/pipes/">Yahoo Pipes</a>. <a href="http://covadameiga.blogspot.com/">Sergio</a>, con razón, llevaba tiempo insistiendo en la necesidad de que la portada de la web de <a href="http://galicia.isf.es">isf galicia</a> reflejara el dinamismo de la asociación. Dado el cms que se emplea para la web, no es fácil hacer cambios ni hacer muchas virguerías, así que a pesar de que a nivel filosófico no nos gusta usar un servicio externo, la comodidad y rapidez con que podemos hacer algo compensan.</p>
-<p>Yahoo Pipes es, en palabras de los <a href="http://www.microsiervos.com/archivo/internet/yahoo-pipes.html">microsiervos</a>:</p>
-<blockquote>
-<p>una herramienta web interactiva para agregar y manipular <a href="http://www.microsiervos.com/archivo/internet/que-es-un-feed-rss.html">feeds RSS</a> a nuestro antojo de forma sencilla y asequible para cualquiera. El resultado es un feed personalizado que contiene únicamente lo que se quiera tener o que es el resultado de mezaclar y flitrar dos o más feeds RSS en uno solo.</p>
-</blockquote>
-<p>Lo que acabo de hacer para la portada de isf es tomar los feeds de la mayoría de blogs que tenemos así como de la cuenta de twitter, y remezclarlos para que en la web aparezca siempre en primer lugar el último twit publicado, y a continuación las tres entradas más recientes publicadas en los blogs (independientemente del blog en el que sean publicadas)</p>
-<p>La interfaz de de Yahoo Pipes es engañosamente sencilla, como quieras hacer algo un poquito más complicado hay que leer la ayuda. Lo que más me ha llevado ha sido que los twits no aparezcan como Título y Contenido, dado que el contenido es igual al título, aunque a cambio se ha perdido el que el título sea un enlace.</p>
-<p>Una de las cosas buenas de Pipes es que te permite remezclar y copiar lo que otros hayan hecho y hay muchos ejemplos por ahí. El mio lo podéis mirar <a href="http://pipes.yahoo.com/pipes/pipe.info?_id=23b1d684a1d80fd2d3bf1f56e1e9cf93">aquí</a>.</p>
-<p><strong>Actualización 16 de Febrero</strong>. Acabo de copiar <a href="http://pipes.yahoo.com/pipes/pipe.info?_id=e9de9cb1757e2876468fb0d333406245">de este ejemplo</a> como eliminar la parte que no nos interesa del feed, de este modo la parte de twitter ya queda perfecta.</p>
     
   </div>
 </article>

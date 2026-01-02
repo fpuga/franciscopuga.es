@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="archive/2025/" />
+<link rel="next" href="archive/2026/" />
 
 
 <!-- RSS feed -->
@@ -398,6 +398,8 @@
       
         
       
+        
+      
     
     
       
@@ -434,6 +436,30 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -864,6 +890,222 @@
       <header class="md-typeset">
         
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-01-02 00:00:00+00:00">2 de enero de 2026</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="bash-variables-indefinidas-unset-vs-vacias-empty"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/">Bash: Variables indefinidas (<em>unset</em>) vs vacías (<em>empty</em>)</a></h2>
+<p>Bash es un lenguaje particular respecto a las variables que no han sido definidas previamente.</p>
+<p>En Python, por ejemplo, las reglas son claras: una variable debe estar declarada antes de usarse. Si esa variable no existe, el intérprete lanzará un error.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span class="n">File</span> <span class="s2">&quot;&lt;python-input-0&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nb">print</span> <span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>           <span class="o">^^^^^^</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;my_var&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_var</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">foo</span>
+</span></code></pre></div>
+<p>En bash, <strong>por defecto</strong>, no se distingue entre una variable vacía y una indefinida. Al acceder a una variable no definida, bash no lanza errores y no detiene el script. Simplemente asume la asume cómo un <em>empty string</em>.</p>
+<p>Esto, que parece cómodo para pequeños scripts, es también causa de muchos desastres: <code>rm -rf "${build_dir}/"</code>.</p>
+<h3 id="empty-vs-null"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/#empty-vs-null">Empty vs Null</a></h3>
+<p>En este artículo usaremos exclusivamente el termino <em>empty variable</em> o <em>variable vacía</em>.</p>
+<p>Pero para bash no hay diferencia práctica entre <em>null</em> y <em>empty</em>. A veces también se habla de ese valor cómo <em>empty string</em> o <em>null string</em></p>
+<p>En la práctica el valor de estas dos variables es el mismo:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">explicit_empty_or_null_string</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">implicit_empty_or_null_string</span><span class="o">=</span>
+</span></code></pre></div>
+<h3 id="empty-vs-unset"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/#empty-vs-unset">Empty vs Unset</a></h3>
+<p>Pero, aunque bash intente disimularlo, si hay diferencias entre <em>empty o null</em> y <em>unset</em>:</p>
+<ul>
+<li><strong>empty</strong>: La variable existe, tiene un espacio asignado en memoria, pero su contenido es una cadena de longitud cero.</li>
+<li><strong>unset</strong>: La variable no existe en el entorno actual. No tiene un espacio de memoria asignado.</li>
+</ul>
+<p>Sin "protecciones", ambos tipos se comportan igual al expandirse:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ch">#!/usr/bin/env bash</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># Sin &#39;set -u&#39;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">unset</span><span class="w"> </span>explicit_not_existent_var<span class="w"> </span><span class="c1"># variable indefinida</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nv">explicit_empty_string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">  </span><span class="c1"># variable vacía</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nv">implicit_empty_string</span><span class="o">=</span><span class="w">    </span><span class="c1"># variable vacía</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># En los cuatro casos se imprimirán líneas vacías</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;A: </span><span class="si">${</span><span class="nv">implicit_no_existent_var</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;B: </span><span class="si">${</span><span class="nv">explicit_not_existent_var</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;C: </span><span class="si">${</span><span class="nv">explicit_empty_string</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;D: </span><span class="si">${</span><span class="nv">implicit_empty_string</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<h3 id="unbound-variables"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/#unbound-variables">Unbound variables</a></h3>
+<p>La cosa cambia cuando activamos el modo de bash de protección ante <em>unbound variables</em></p>
+<div class="admonition note unset vs unbound">
+<p class="admonition-title">Note</p>
+<p>No hay diferencias a nivel práctico entre el término <code>unset</code> y el término <code>unbound</code> en bash y se pueden usar cómo sinónimos. Lo que sucede es que al usar una variable no definida bajo <code>set -u</code> el mensaje de error (<code>bash: foo: unbound variable</code>) hace referencia a <code>unbound</code>,mientras que los comandos en sí hacen referencia a <code>unset</code></p>
+</div>
+<p>Cuando usamos <code>set -u</code> (o <code>set -o nounset</code>) cambiamos "al modo protección". Una práctica que forma parte del llamado bash strict mode y que debería usarse en el 95% de los casos.</p>
+<p>!!! quote <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">del manual</a></p>
+<div class="language-text highlight"><pre><span></span><code>Treat unset variables and parameters other than the special parameters &#39;@&#39; or &#39;_&#39;, or array variables subscripted with &#39;@&#39; or &#39;_&#39;, as an error when performing parameter expansion. An error message will be written to the standard error, and a non-interactive shell will exit.
+</code></pre></div>
+<p>Siguiendo el ejemplo anterior:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/usr/bin/env bash</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">set</span><span class="w"> </span>-u
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">unset</span><span class="w"> </span>explicit_not_existent_var<span class="w"> </span><span class="c1"># variable indefinida</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nv">explicit_empty_string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">  </span><span class="c1"># variable vacía</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nv">implicit_empty_string</span><span class="o">=</span><span class="w">    </span><span class="c1"># variable vacía</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;A: </span><span class="si">${</span><span class="nv">implicit_not_existent_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># bash: implicit_no_existent_var: unbound variable</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;B: </span><span class="si">${</span><span class="nv">explicit_not_existent_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># bash: explicit_no_existent_var: unbound variable</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;C: </span><span class="si">${</span><span class="nv">explicit_empty_string</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># imprime una cadena vacía</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;D: </span><span class="si">${</span><span class="nv">implicit_empty_string</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># imprime una cadena vacía</span>
+</span></code></pre></div>
+<h3 id="operaciones-utiles"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/#operaciones-utiles">Operaciones útiles</a></h3>
+<p>Hay varias "operaciones" que es útil conocer para validar estas variables.</p>
+<p>La primera es:</p>
+<ul>
+<li><strong>noop</strong> <code>:</code>. Llamada a veces <a href="https://bashcommands.com/bash-noop">operación null</a>, permite evaluar las variables si que se ejecute su resultado. Veremos su utilidad en ejemplos posteriores.</li>
+</ul>
+<h4 id="conditional-expressions"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/#conditional-expressions">Conditional Expressions</a></h4>
+<p>Lo más básico es usar la expresiones condicionales del <code>[[</code> <em><a href="https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html">compound command</a></em> y los <em><a href="https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html">builtin commands</a></em> <code>test</code> y <code>[</code></p>
+<p>De la documentación de <a href="https://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html">expresiones condicionales</a>:</p>
+<ul>
+<li><code>-v varname</code>. True if the shell variable <em>varname</em> is set (has been assigned a value). If <em>varname</em> is an indexed array variable name subscripted by <code>@</code> or <code>*</code>, this returns true if the array has any set elements. If <em>varname</em> is an associative array variable name subscripted by <code>@</code> or <code>*</code>, this returns true if an element with that key is set.</li>
+<li><code>-z string</code>. True if the length of string is zero.</li>
+<li><code>-n string</code>. True if the length of string is non-zero.</li>
+</ul>
+<p>Usaremos estas expresiones dentro de un if o con operadores cómo <code>&amp;&amp;</code> o <code>||</code>. El que en general debemos usar es <code>-v</code> dado que <code>-z</code> y <code>-n</code> dan error en modo <code>set -u</code> con variables indefinidas.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p><code>-v</code> espera un nombre de variable, no se debe poner el <code>$</code>. Si estamos trabajando con referencias hay que usar -R.</p>
+</div>
+<p>A modo de ejemplo</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">set</span><span class="w"> </span>-u
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">unset</span><span class="w"> </span>foo
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&#39;foo&#39; is not set&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span><span class="w"> </span><span class="c1"># bash: foo: unbound variable</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&#39;foo&#39; is not set&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># bash: foo: unbound variable</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[[</span><span class="w"> </span>-v<span class="w"> </span>foo<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&#39;foo&#39; is not set&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span><span class="w"> </span><span class="c1"># &#39;foo&#39; is not set</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span>foo<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&#39;foo&#39; is not set&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># &#39;foo&#39; is not set</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span>foo<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nv">foo</span><span class="o">=</span><span class="s1">&#39;DEFAULT_VALUE&#39;</span><span class="w"> </span><span class="c1"># DEFAULT_VALUE is assigned to foo</span>
+</span></code></pre></div>
+<h4 id="parameter-expansion"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/#parameter-expansion">Parameter Expansion</a></h4>
+<p>Para asignar valores por defecto o "fallar pronto" si una variable está vacía el <a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html">parameter expansion</a> de bash es más elegante que las expresiones condiciones</p>
+<ul>
+<li><strong>Valor por defecto</strong> (safe fallback) <code>:-</code>. Si la variable es <code>unset</code> o <code>empty</code> aplica un valor por defecto sin modificar la variable original.</li>
+<li><strong>Asignación por defecto</strong> <code>:=</code>. Si la variable es <code>unset</code> o <code>empty</code> <strong>asigna</strong> un valor por defecto a la variable original.</li>
+<li><strong>Fallo Temprano</strong> <code>:?</code>. Si la variable es <code>unset</code> o <code>empty</code>, e independientemente de haber usado <code>set -u</code> se aborta el script con un mensaje.</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Si &#39;nombre&#39; no existe o está vacío, usa &quot;Mundo&quot;.</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hola </span><span class="si">${</span><span class="nv">nombre</span><span class="k">:-</span><span class="nv">Mundo</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Asigna &quot;rm&quot; a FAVORITE_COMMAND si no estaba definido.</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># Usamos noop (:) para que Bash evalúe la expresión sin ejecutar el resultado. Sin `:`, ejecutaría el `rm` o lo que contenga la variable FAVORITE_COMMAND</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">FAVORITE_COMMAND</span><span class="p">:=rm</span><span class="si">}</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># Si build_dir no está seteado, aborta imprimiendo el mensaje.</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">build_dir</span><span class="p">:?Error: Directorio no definido</span><span class="si">}</span><span class="s2">/&quot;</span>
+</span></code></pre></div>
+<h3 id="algunas-referencias-extras"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/#algunas-referencias-extras">Algunas referencias extras</a></h3>
+<ul>
+<li>StackOverflow. <a href="https://stackoverflow.com/q/3601515/930271">How to check if a variable is set in Bash</a></li>
+<li>StackOverflow. <a href="https://stackoverflow.com/q/13361658/930271">How can I test whether a positional parameter is set in Bash?</a></li>
+<li>StackOverflow. <a href="https://stackoverflow.com/q/3685970/930271">Check if a Bash array contains a value</a></li>
+</ul>
+<h3 id="conclusiones-guia-de-estilo"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/#conclusiones-guia-de-estilo">Conclusiones: Guía de estilo</a></h3>
+<p>Los scripts en bash son potentes y flexibles pero es fácil que el código sea difícil de leer o con bugs ocasionales pero catastróficos.</p>
+<p>Dentro de mis normas para bash en lo referente a variables vacías y no definidas están:</p>
+<p><strong>Usar <code>set -u</code></strong>. Hay pocas situaciones en que este modo no sea el correcto. Y en partes concretas de un script se puede desactivar y volver a activar.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/usr/bin/env bash</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">set</span><span class="w"> </span>-u
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Start&quot;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nb">set</span><span class="w"> </span>+u
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Something weird related to unbound variables&quot;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">set</span><span class="w"> </span>-u
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Come back to safety&quot;</span>
+</span></code></pre></div>
+<p><strong>Usar <code>:-</code> para asignar valores por defecto</strong>. No uso el comando de asignación <code>:=</code>. Por nada en especial, simplemente me permite reducir la cantidad de formas distinta de hacer lo mismo. No se pueden usar con <code>$1</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="ch">#!/usr/bin/env bash</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">set</span><span class="w"> </span>-u
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="p">:=World</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># error, intentará ejecutar el comando `World`</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">:=World</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># error, no se puede asignar a $1</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="p">:=World</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># No da error, pero &quot;reducimos la API a conocer&quot;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># Me gustan más estas soluciones</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">World</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="k">:-</span><span class="nv">World</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>die<span class="o">(){</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">  </span><span class="c1"># Call like `die &quot;File not found&quot;` or `die`</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">  </span><span class="nb">local</span><span class="w"> </span><span class="nv">error</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">Undefined</span><span class="p"> error</span><span class="si">}</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">: </span><span class="nv">$LINE</span><span class="s2"> </span><span class="nv">$error</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="o">}</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="c1"># Si no queremos que salte unbound pero no nos preocupa que sea empty, podemos dejar el</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="c1"># valor por defecto vacío</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>info<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">    </span><span class="c1"># Will print the message `info &quot;this is a message&quot;` or an empty line `info`</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">msg</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">msg</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="o">}</span>
+</span></code></pre></div>
+<p><strong>Usar <code>:?</code> para comprobar cuando una variable es vacía o indefinida</strong>.</p>
+<p>Ejemplos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/usr/bin/env bash</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">set</span><span class="w"> </span>-u
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nv">user</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">:?Mandatory parameter for </span><span class="s1">&#39;user&#39;</span><span class="p"> is missing</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nv">build_dir_path</span><span class="o">=</span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;build_dir&#39;</span><span class="k">)</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">A</span><span class="p">:?</span><span class="s1">&#39;build_dir&#39;</span><span class="p"> folder is not found</span><span class="si">}</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="p">:?</span><span class="s2">&quot;virtualenv should be activated before continue&quot;</span><span class="si">}</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="c1"># Prefiero la versión anterior a estas</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="o">[[</span><span class="w"> </span>-v<span class="w"> </span>VIRTUAL_ENV<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;virtualenv should be activated before continue&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="c1"># No usar -z porqué genera un unbound</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[[</span><span class="w"> </span>-v<span class="w"> </span>VIRTUAL_ENV<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;virtualenv should be activated before continue&quot;</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="k">fi</span>
+</span></code></pre></div>
+<p>Para entender mejor otras opciones</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Estamos intentando usar una unbound variable, da el mensaje genérico al respecto.</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="si">}</span><span class="w"> </span><span class="c1"># bash: VIRTUAL_ENV: unbound variable</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Genera su propio mensaje de error, distinto al habitual</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="p">:?</span><span class="si">}</span><span class="w"> </span><span class="c1"># bash: VIRTUAL_ENV: parameter null or not set</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># definimos la variable pero en blanco</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nv">VIRTUAL_ENV</span><span class="o">=</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># Sigue detectando que está vacía</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="p">:?</span><span class="si">}</span><span class="w"> </span><span class="c1"># bash: VIRTUAL_ENV: parameter null or not set</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="si">}</span><span class="w"> </span><span class="c1"># No da error, simplemente es una cadena vacía que no se ejecuta</span>
+</span></code></pre></div>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1314,135 +1556,6 @@
 <li><a href="https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/">src layout vs flat layout</a> en Python Packaging User Guide</li>
 <li><a href="https://blog.ionelmc.ro/2014/05/25/python-packaging/">Packaging a python library</a></li>
 </ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2025-06-19 00:00:00+00:00">19 de junio de 2025</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="escoger-un-python-language-server"><a class="toclink" href="2025/06/19/language-server-python/">Escoger un Python Language Server</a></h2>
-<p>En un <a href="https://franciscopuga.es/blog/2025/05/17/language-server-protocol/">artículo anterior</a> definimos que era Language Server Protocol y cómo funcionaban los Language Server.</p>
-<p>En este nos centramos en escoger un Language Server para Python.</p>
-<h3 id="criterios"><a class="toclink" href="2025/06/19/language-server-python/#criterios">Criterios</a></h3>
-<p>Para escoger algo, hay que definir que criterios priorizamos. En el caso de un LS o herramientas relacionadas los criterios podrían ser:</p>
-<ul>
-<li>Rendimiento. Queremos que la respuesta a la mayoría de acciones sea casi inmediata.</li>
-<li>Software libre. Preferimos que la implementación sea software libre.</li>
-<li>Capacidades. Cuantas más capacidades (que refactorings, ...) nos ofrezca el LS o una determinada combinación de LS mejor.</li>
-<li>Fragmentación. Si un LS o herramienta integrada nos da todo lo que necesitamos, mejor que si tenemos que preocuparnos por ver los changelog de 5 herramientas distintas.</li>
-<li>Mantenido. Con tracción en la comunidad, ...</li>
-<li>Multiples entornos. Al menos el lint y el format debe ser consistente entre múltiples entornos: editor (uses NeoVim, PyCharm o vscode), pre-commit y ci. Cómo gestione un refactoring o la navegación no es necesario que sea consistente.</li>
-</ul>
-<h3 id="opciones"><a class="toclink" href="2025/06/19/language-server-python/#opciones">Opciones</a></h3>
-<h4 id="pylance-pyright"><a class="toclink" href="2025/06/19/language-server-python/#pylance-pyright">Pylance / Pyright</a></h4>
-<p class="annotate">Pylance es el LS privativo de Microsoft para Python, basado en la librería / LS (1) libre de tipado estático <a href="https://github.com/microsoft/pyright">Pyright</a>.</p>
-<ol>
-<li><img alt="🙋‍♂️" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f64b-200d-2642-fe0f.svg" title=":man_raising_hand:" /> La distinción entre librería, LS, ... no siempre es clara</li>
-</ol>
-<p>Microsoft mantenía un LS libre <a href="https://github.com/microsoft/python-language-server">python-language-server</a>, pero lo discontinuaron en favor de Pylance. Pylance sólo se puede usar con los productos de Microsoft (vscode) y no con editores derivados como Cursor o VSCodium, ni alternativos <a href="https://github.com/lithammer/nvim-pylance">como NeoVim</a>.</p>
-<p>Pyright es una buena librería para tipado estático y si bien se puede usar como LS en cualquier editor, no es una buena alternativa porqué carece de funcionalidades básicas como añadir <code>imports</code> de forma automática.</p>
-<p>Este dúo tiene más cosas "molestas":</p>
-<ul>
-<li>Están escritos en typescript. No es algo malo de por si, pero no deja de ser extraño</li>
-<li>Las capacidades de refactoring son malas. Rename, Extract Variable, Move Symbol, y a veces se consigue usar el Extract Method.</li>
-<li>Privativo y no usable en otros editores</li>
-</ul>
-<h4 id="basedpyright"><a class="toclink" href="2025/06/19/language-server-python/#basedpyright">basedpyright</a></h4>
-<p><a href="https://github.com/DetachHead/basedpyright">basedpyright</a> es un fork libre de Pyright que incorpora funcionalidades de Pylance.</p>
-<p>Más o menos los mismos comentarios que para Pylance/Pyright</p>
-<p>Personalmente he tenido malas experiencias al usarlo en Cursor. Probablemente se deba a una mala configuración, pero tengo la sensación de que se queda trabado a menudo.</p>
-<h4 id="jedi-rope"><a class="toclink" href="2025/06/19/language-server-python/#jedi-rope">Jedi / Rope</a></h4>
-<p>Ni <a href="https://github.com/davidhalter/jedi">Jedi</a>, ni <a href="https://github.com/python-rope/rope">Rope</a> son LS. Ambas son dos librerías históricas del ecosistema Python. Rope se centra en refactoring y Jedi en análisis estático, autocompletado y navegación.</p>
-<p>Ninguna de las dos proporciona formatting, linting o tipado lo que debería alcanzarse mediante otras librerías cómo mypy (tipado) y ruff (formatting y linting).</p>
-<p>Si bien no son un LS, si que son la base para varios Language Server.</p>
-<h4 id="python-lsp-server"><a class="toclink" href="2025/06/19/language-server-python/#python-lsp-server">python-lsp-server</a></h4>
-<p><a href="https://github.com/python-lsp/python-lsp-server">python-lsp-server</a> se puede decir que es el LS que proviene de la comunidad. Es mantenido por el equipo de <a href="https://www.spyder-ide.org/">Spyder IDE</a>.</p>
-<p>Tras instalarlo proporciona el LS bajo el comando <code>pylsp</code>.</p>
-<p>Está basado en jedi que proporciona: Completions, Definitions, Hover, References, Signature Help, and Symbols. Si están instaladas en el entorno se integra de forma nativa con otras librerías cómo rope (capacidades básicas) y flake8. Y el propio LS admite plugins para integrarse con más librerías: mypy, ruff, más refactorings de rope, ...</p>
-<p>Tiene dos problemas grandes:</p>
-<ul>
-<li>La <a href="https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md">configuración</a> es un caos, porqué interactúa todo con todo</li>
-<li><a href="https://github.com/python-lsp/python-lsp-server/issues/614">No tiene plugin para vscode</a> / cursor / vscodium. Y no tiene pinta de haberlo en el <a href="https://github.com/python-lsp/python-lsp-server/issues/39">futuro</a></li>
-</ul>
-<p>Al menos en proyectos pequeños, parece ser que con proyectos grandes puede ser lento, no es una mala opción (si hubiera plugin), y es la única alternativa ahora mismo que proporciona un refactoring decente. La mejor forma de probarlo es con <a href="https://zed.dev/docs/languages/python">Zed</a>.</p>
-<details class="note">
-<summary>Notas sobre la configuración no muy ordenadas</summary>
-<p>¿<a href="https://github.com/python-lsp/python-lsp-ruff/issues/89">Tiene sentido instalar pylsp-ruff o mejor directamente ruff</a>?. En principio ruff mejor individual</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>python-lsp-server<span class="w"> </span>pylsp-rope<span class="w"> </span>pylsp-mypy
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># ¿Mejor con wesockets?</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># pip install &#39;python-lsp-server[websockets]&#39;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># pylsp --ws --port [port]</span>
-</span></code></pre></div>
-<p>Configuración para usar el plugin externo de rope</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pylsp.plugins.pycodestyle.enabled = false
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pylsp.plugins.flake8.enabled = false
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>pylsp.plugins.autopep8.enabled  = false
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>pylsp.plugins.mccabe.enabled    = false
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>pylsp.plugins.pycodestyle.enabled   = false
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>pylsp.plugins.pyflakes.enabled  =false
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>pylsp.plugins.pylint.enabled    =false
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>pylsp.plugins.yapf.enabled  = false
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a># set pylsp.plugins.rope_autoimport.enabled to true
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a># This enables both completions and code actions. You can switch them off by setting pylsp.plugins.rope_autoimport.completions.enabled and/or pylsp.plugins.rope_autoimport.code_actions.enabled to false
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>pylsp.plugins.rope_autoimport.enabled   = ???
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>pylsp.plugins.rope_completion.enabled   = ???
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>pylsp.plugins.rope_rename.enabled = false
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>pylsp.plugins.jedi_rename.enabled = false
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>pylsp.plugins.pylsp_rope.rename = true
-</span></code></pre></div>
-<p>Configuración de rope en pyproject.toml</p>
-<div class="language-toml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># https://rope.readthedocs.io/en/latest/configuration.html</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">[tool.rope]</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">split_imports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">autoimport</span><span class="p">.</span><span class="n">aliases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">[</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;datetime&#39;</span><span class="p">],</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="p">[</span><span class="s1">&#39;mp&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;multiprocessing&#39;</span><span class="p">],</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">]</span>
-</span></code></pre></div>
-</details>
-<h4 id="pyrefly"><a class="toclink" href="2025/06/19/language-server-python/#pyrefly">Pyrefly</a></h4>
-<p><a href="https://pyrefly.org/">Pyrefly</a> es el último en llegar al mercado. CLI, type checker y LS mantenido por Meta.</p>
-<p>Es rápido, tiene plugins para Code y derivados y funciona bien.</p>
-<p>Lo malo es que no tiene ningún refactoring en este momento.</p>
-<h4 id="ruff"><a class="toclink" href="2025/06/19/language-server-python/#ruff">Ruff</a></h4>
-<p>Ruff tiene desde hace tiempo un LS integrado para el formatting y linting.</p>
-<p>En este momento están en proceso de integrar dentro de la propia herramienta el type checker y convertirlo en un posible substituto completo para los otros LS.</p>
-<h4 id="pycharm"><a class="toclink" href="2025/06/19/language-server-python/#pycharm">PyCharm</a></h4>
-<p>No cumple nuestros requisitos iniciales, pero a día de hoy es el IDE con mejor soporte para Python.</p>
-<p>Merece la pena probarlo.</p>
-<h4 id="otras-alternativas"><a class="toclink" href="2025/06/19/language-server-python/#otras-alternativas">Otras alternativas</a></h4>
-<ul>
-<li><a href="https://github.com/pappasam/jedi-language-server">jedi-language-server</a> es una propuesta minimalista que sólo implementa expone las capacidades que tenga jedi</li>
-<li><a href="https://github.com/muffinmad/anakin-language-server">anakin-language-server</a> es poco popular. Se basa en jedi y permite integración con mypy, yapf, pyflakes y pycodestyle</li>
-<li><a href="https://www.pydev.org/vscode/index.html">PyDev on Visual Studio Code</a>. PyDev es un plugin para trabajar con Python en Eclipse. Al parecer también funciona cómo una extensión para VSCode, pero necesita tener Java instalado.</li>
-<li><a href="https://github.com/palantir/python-language-server">palantir/python-language-server</a> Si mantenimiento pylsp es un fork de este.</li>
-<li><a href="https://github.com/mtshiba/pylyzer">pylyzer</a> un LS y type checker escrito en rust. Poco mantenimiento.</li>
-</ul>
-<h4 id="otros-ls-especificos"><a class="toclink" href="2025/06/19/language-server-python/#otros-ls-especificos">Otros LS específicos</a></h4>
-<p>Cómo se ve en el caso de ruff, un LS no tiene porqué proporcionar las funcionalidades completas de un lenguaje. Hay LS que cubren aspectos o librerías muy específicas:</p>
-<ul>
-<li>https://github.com/joshuadavidthomas/django-language-server</li>
-<li>https://www.fourdigits.nl/blog/django-template-lsp/</li>
-</ul>
-<h3 id="conclusiones"><a class="toclink" href="2025/06/19/language-server-python/#conclusiones">Conclusiones</a></h3>
-<p>PyCharm aparte, y con ánimo de polemizar se puede decir que no hay un soporte tan bueno cómo podría esperarse para Python en los IDEs.</p>
-<p>Personalmente en este momento estoy usando Pyrefly con el plugin para Cursor como LS principale, y ruff con su plugin cómo el LS secundario que se encarga del formatting y linting.</p>
     
   </div>
 </article>

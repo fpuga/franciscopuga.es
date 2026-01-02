@@ -28,7 +28,7 @@
 
 <!-- Next page -->
 
-<link rel="next" href="../../archive/2025/" />
+<link rel="next" href="../../archive/2026/" />
 
 
 <!-- RSS feed -->
@@ -403,6 +403,8 @@
       
         
       
+        
+      
     
     
       
@@ -439,6 +441,30 @@
             Archivo
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../archive/2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -866,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#escoger-un-python-language-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escoger un Python Language Server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#las-pensiones-como-inversion" class="md-nav__link">
     <span class="md-ellipsis">
       Las pensiones cómo inversión
@@ -901,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#vimium-un-plugin-para-navegar-la-web-con-el-teclado" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vimium: Un plugin para navegar la web con el teclado
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -924,6 +950,135 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-06-19 00:00:00+00:00">19 de junio de 2025</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="escoger-un-python-language-server"><a class="toclink" href="../../2025/06/19/language-server-python/">Escoger un Python Language Server</a></h2>
+<p>En un <a href="https://franciscopuga.es/blog/2025/05/17/language-server-protocol/">artículo anterior</a> definimos que era Language Server Protocol y cómo funcionaban los Language Server.</p>
+<p>En este nos centramos en escoger un Language Server para Python.</p>
+<h3 id="criterios"><a class="toclink" href="../../2025/06/19/language-server-python/#criterios">Criterios</a></h3>
+<p>Para escoger algo, hay que definir que criterios priorizamos. En el caso de un LS o herramientas relacionadas los criterios podrían ser:</p>
+<ul>
+<li>Rendimiento. Queremos que la respuesta a la mayoría de acciones sea casi inmediata.</li>
+<li>Software libre. Preferimos que la implementación sea software libre.</li>
+<li>Capacidades. Cuantas más capacidades (que refactorings, ...) nos ofrezca el LS o una determinada combinación de LS mejor.</li>
+<li>Fragmentación. Si un LS o herramienta integrada nos da todo lo que necesitamos, mejor que si tenemos que preocuparnos por ver los changelog de 5 herramientas distintas.</li>
+<li>Mantenido. Con tracción en la comunidad, ...</li>
+<li>Multiples entornos. Al menos el lint y el format debe ser consistente entre múltiples entornos: editor (uses NeoVim, PyCharm o vscode), pre-commit y ci. Cómo gestione un refactoring o la navegación no es necesario que sea consistente.</li>
+</ul>
+<h3 id="opciones"><a class="toclink" href="../../2025/06/19/language-server-python/#opciones">Opciones</a></h3>
+<h4 id="pylance-pyright"><a class="toclink" href="../../2025/06/19/language-server-python/#pylance-pyright">Pylance / Pyright</a></h4>
+<p class="annotate">Pylance es el LS privativo de Microsoft para Python, basado en la librería / LS (1) libre de tipado estático <a href="https://github.com/microsoft/pyright">Pyright</a>.</p>
+<ol>
+<li><img alt="🙋‍♂️" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f64b-200d-2642-fe0f.svg" title=":man_raising_hand:" /> La distinción entre librería, LS, ... no siempre es clara</li>
+</ol>
+<p>Microsoft mantenía un LS libre <a href="https://github.com/microsoft/python-language-server">python-language-server</a>, pero lo discontinuaron en favor de Pylance. Pylance sólo se puede usar con los productos de Microsoft (vscode) y no con editores derivados como Cursor o VSCodium, ni alternativos <a href="https://github.com/lithammer/nvim-pylance">como NeoVim</a>.</p>
+<p>Pyright es una buena librería para tipado estático y si bien se puede usar como LS en cualquier editor, no es una buena alternativa porqué carece de funcionalidades básicas como añadir <code>imports</code> de forma automática.</p>
+<p>Este dúo tiene más cosas "molestas":</p>
+<ul>
+<li>Están escritos en typescript. No es algo malo de por si, pero no deja de ser extraño</li>
+<li>Las capacidades de refactoring son malas. Rename, Extract Variable, Move Symbol, y a veces se consigue usar el Extract Method.</li>
+<li>Privativo y no usable en otros editores</li>
+</ul>
+<h4 id="basedpyright"><a class="toclink" href="../../2025/06/19/language-server-python/#basedpyright">basedpyright</a></h4>
+<p><a href="https://github.com/DetachHead/basedpyright">basedpyright</a> es un fork libre de Pyright que incorpora funcionalidades de Pylance.</p>
+<p>Más o menos los mismos comentarios que para Pylance/Pyright</p>
+<p>Personalmente he tenido malas experiencias al usarlo en Cursor. Probablemente se deba a una mala configuración, pero tengo la sensación de que se queda trabado a menudo.</p>
+<h4 id="jedi-rope"><a class="toclink" href="../../2025/06/19/language-server-python/#jedi-rope">Jedi / Rope</a></h4>
+<p>Ni <a href="https://github.com/davidhalter/jedi">Jedi</a>, ni <a href="https://github.com/python-rope/rope">Rope</a> son LS. Ambas son dos librerías históricas del ecosistema Python. Rope se centra en refactoring y Jedi en análisis estático, autocompletado y navegación.</p>
+<p>Ninguna de las dos proporciona formatting, linting o tipado lo que debería alcanzarse mediante otras librerías cómo mypy (tipado) y ruff (formatting y linting).</p>
+<p>Si bien no son un LS, si que son la base para varios Language Server.</p>
+<h4 id="python-lsp-server"><a class="toclink" href="../../2025/06/19/language-server-python/#python-lsp-server">python-lsp-server</a></h4>
+<p><a href="https://github.com/python-lsp/python-lsp-server">python-lsp-server</a> se puede decir que es el LS que proviene de la comunidad. Es mantenido por el equipo de <a href="https://www.spyder-ide.org/">Spyder IDE</a>.</p>
+<p>Tras instalarlo proporciona el LS bajo el comando <code>pylsp</code>.</p>
+<p>Está basado en jedi que proporciona: Completions, Definitions, Hover, References, Signature Help, and Symbols. Si están instaladas en el entorno se integra de forma nativa con otras librerías cómo rope (capacidades básicas) y flake8. Y el propio LS admite plugins para integrarse con más librerías: mypy, ruff, más refactorings de rope, ...</p>
+<p>Tiene dos problemas grandes:</p>
+<ul>
+<li>La <a href="https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md">configuración</a> es un caos, porqué interactúa todo con todo</li>
+<li><a href="https://github.com/python-lsp/python-lsp-server/issues/614">No tiene plugin para vscode</a> / cursor / vscodium. Y no tiene pinta de haberlo en el <a href="https://github.com/python-lsp/python-lsp-server/issues/39">futuro</a></li>
+</ul>
+<p>Al menos en proyectos pequeños, parece ser que con proyectos grandes puede ser lento, no es una mala opción (si hubiera plugin), y es la única alternativa ahora mismo que proporciona un refactoring decente. La mejor forma de probarlo es con <a href="https://zed.dev/docs/languages/python">Zed</a>.</p>
+<details class="note">
+<summary>Notas sobre la configuración no muy ordenadas</summary>
+<p>¿<a href="https://github.com/python-lsp/python-lsp-ruff/issues/89">Tiene sentido instalar pylsp-ruff o mejor directamente ruff</a>?. En principio ruff mejor individual</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span>python-lsp-server<span class="w"> </span>pylsp-rope<span class="w"> </span>pylsp-mypy
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># ¿Mejor con wesockets?</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># pip install &#39;python-lsp-server[websockets]&#39;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># pylsp --ws --port [port]</span>
+</span></code></pre></div>
+<p>Configuración para usar el plugin externo de rope</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pylsp.plugins.pycodestyle.enabled = false
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>pylsp.plugins.flake8.enabled = false
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>pylsp.plugins.autopep8.enabled  = false
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>pylsp.plugins.mccabe.enabled    = false
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>pylsp.plugins.pycodestyle.enabled   = false
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>pylsp.plugins.pyflakes.enabled  =false
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>pylsp.plugins.pylint.enabled    =false
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>pylsp.plugins.yapf.enabled  = false
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a># set pylsp.plugins.rope_autoimport.enabled to true
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a># This enables both completions and code actions. You can switch them off by setting pylsp.plugins.rope_autoimport.completions.enabled and/or pylsp.plugins.rope_autoimport.code_actions.enabled to false
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>pylsp.plugins.rope_autoimport.enabled   = ???
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>pylsp.plugins.rope_completion.enabled   = ???
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>pylsp.plugins.rope_rename.enabled = false
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>pylsp.plugins.jedi_rename.enabled = false
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>pylsp.plugins.pylsp_rope.rename = true
+</span></code></pre></div>
+<p>Configuración de rope en pyproject.toml</p>
+<div class="language-toml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># https://rope.readthedocs.io/en/latest/configuration.html</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">[tool.rope]</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">split_imports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">autoimport</span><span class="p">.</span><span class="n">aliases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="p">[</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;datetime&#39;</span><span class="p">],</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="p">[</span><span class="s1">&#39;mp&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;multiprocessing&#39;</span><span class="p">],</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">]</span>
+</span></code></pre></div>
+</details>
+<h4 id="pyrefly"><a class="toclink" href="../../2025/06/19/language-server-python/#pyrefly">Pyrefly</a></h4>
+<p><a href="https://pyrefly.org/">Pyrefly</a> es el último en llegar al mercado. CLI, type checker y LS mantenido por Meta.</p>
+<p>Es rápido, tiene plugins para Code y derivados y funciona bien.</p>
+<p>Lo malo es que no tiene ningún refactoring en este momento.</p>
+<h4 id="ruff"><a class="toclink" href="../../2025/06/19/language-server-python/#ruff">Ruff</a></h4>
+<p>Ruff tiene desde hace tiempo un LS integrado para el formatting y linting.</p>
+<p>En este momento están en proceso de integrar dentro de la propia herramienta el type checker y convertirlo en un posible substituto completo para los otros LS.</p>
+<h4 id="pycharm"><a class="toclink" href="../../2025/06/19/language-server-python/#pycharm">PyCharm</a></h4>
+<p>No cumple nuestros requisitos iniciales, pero a día de hoy es el IDE con mejor soporte para Python.</p>
+<p>Merece la pena probarlo.</p>
+<h4 id="otras-alternativas"><a class="toclink" href="../../2025/06/19/language-server-python/#otras-alternativas">Otras alternativas</a></h4>
+<ul>
+<li><a href="https://github.com/pappasam/jedi-language-server">jedi-language-server</a> es una propuesta minimalista que sólo implementa expone las capacidades que tenga jedi</li>
+<li><a href="https://github.com/muffinmad/anakin-language-server">anakin-language-server</a> es poco popular. Se basa en jedi y permite integración con mypy, yapf, pyflakes y pycodestyle</li>
+<li><a href="https://www.pydev.org/vscode/index.html">PyDev on Visual Studio Code</a>. PyDev es un plugin para trabajar con Python en Eclipse. Al parecer también funciona cómo una extensión para VSCode, pero necesita tener Java instalado.</li>
+<li><a href="https://github.com/palantir/python-language-server">palantir/python-language-server</a> Si mantenimiento pylsp es un fork de este.</li>
+<li><a href="https://github.com/mtshiba/pylyzer">pylyzer</a> un LS y type checker escrito en rust. Poco mantenimiento.</li>
+</ul>
+<h4 id="otros-ls-especificos"><a class="toclink" href="../../2025/06/19/language-server-python/#otros-ls-especificos">Otros LS específicos</a></h4>
+<p>Cómo se ve en el caso de ruff, un LS no tiene porqué proporcionar las funcionalidades completas de un lenguaje. Hay LS que cubren aspectos o librerías muy específicas:</p>
+<ul>
+<li>https://github.com/joshuadavidthomas/django-language-server</li>
+<li>https://www.fourdigits.nl/blog/django-template-lsp/</li>
+</ul>
+<h3 id="conclusiones"><a class="toclink" href="../../2025/06/19/language-server-python/#conclusiones">Conclusiones</a></h3>
+<p>PyCharm aparte, y con ánimo de polemizar se puede decir que no hay un soporte tan bueno cómo podría esperarse para Python en los IDEs.</p>
+<p>Personalmente en este momento estoy usando Pyrefly con el plugin para Cursor como LS principale, y ruff con su plugin cómo el LS secundario que se encarga del formatting y linting.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1071,29 +1226,6 @@
 <p>Básicamente dice que ChatGPT es una herramienta increíble, cuando sabes usarla, pero que usarla bien no es tan fácil <a href="https://simonwillison.net/2023/Apr/7/chatgpt-lies/">porqué "ChatGPT miente"</a>.</p>
 <p>Y para entender porqué "miente" o como funciona los LLM a alto nivel pero muy técnico, <a href="https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/">este otro artículo</a> de un verdadero pionero de estos temas es imprescindible.</p>
 <p>Wolfram es en resumen el creador de Mathematica, que en cierto momento estuvo a la altura de Matlab pero luego se fue por otros derroteros. Su buscador Wolfram Alfa que yo sepa fue el primero que intentaba no darte una colección de links si no responder a preguntas formuladas en lenguaje natural, y ya tiene bastantes añitos (2009 según la Wikipedia)</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2021-07-17 00:00:00+00:00">17 de julio de 2021</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="vimium-un-plugin-para-navegar-la-web-con-el-teclado"><a class="toclink" href="../../2021/07/17/vimium-un-plugin-para-navegar-la-web-con-el-teclado/">Vimium: Un plugin para navegar la web con el teclado</a></h2>
-<p>Por productividad y salud estoy intentando usar menos el ratón. Una de las situaciones donde más lo usaba era al navegar por páginas web y tras una <a href="https://pakstech.com/blog/browse-web-with-keyboard/">pequeña búsqueda</a> me he decidido por <a href="https://vimium.github.io/">Vimium</a>. Un plugin para Firefox, Chrome, y familia que permite usar las teclas de Vim para navegar.</p>
-<p>Lo más molón, es la tecla <code>f</code> o <code>F</code> (de follow). Activa lo que llaman hint mode. Detecta todos los enlaces de la página y los marca con unas letras amarillas al lado. Al pulsar la secuencia de letras sigue el enlace. En la misma pestaña si se ha usado f, en otra pestaña si se ha pulsado F, o se teclea la secuencia en mayúsculas. Se puede usar Escape para desactivar los hints. Nuestras teclas preferidas de largo. Según como esté construida la página esta opción funciona también para aceptar avisos de cookies, …</p>
-<p>Y en <a href="https://icarto.es/">iCarto</a> no soy yo sólo quien <a href="https://gitlab.com/icarto/ikdb/-/blob/master/configurar_equipo/browser/browser_navegar_teclado_vimium.md">se ha hecho adicto</a>.</p>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="349" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/t67Sn0RGK54?feature=oembed" title="Vimium - The Hacker's Browser" width="620"></iframe>
     
   </div>
 </article>
