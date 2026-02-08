@@ -950,14 +950,15 @@
 </span></code></pre></div>
 <h3 id="unbound-variables"><a class="toclink" href="2026/01/02/bash-unset-vs-empty-variables/#unbound-variables">Unbound variables</a></h3>
 <p>La cosa cambia cuando activamos el modo de bash de protección ante <em>unbound variables</em></p>
-<div class="admonition note unset vs unbound">
-<p class="admonition-title">Note</p>
+<div class="admonition note">
+<p class="admonition-title">unset vs unbound</p>
 <p>No hay diferencias a nivel práctico entre el término <code>unset</code> y el término <code>unbound</code> en bash y se pueden usar cómo sinónimos. Lo que sucede es que al usar una variable no definida bajo <code>set -u</code> el mensaje de error (<code>bash: foo: unbound variable</code>) hace referencia a <code>unbound</code>,mientras que los comandos en sí hacen referencia a <code>unset</code></p>
 </div>
 <p>Cuando usamos <code>set -u</code> (o <code>set -o nounset</code>) cambiamos "al modo protección". Una práctica que forma parte del llamado bash strict mode y que debería usarse en el 95% de los casos.</p>
-<p>!!! quote <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">del manual</a></p>
-<div class="language-text highlight"><pre><span></span><code>Treat unset variables and parameters other than the special parameters &#39;@&#39; or &#39;_&#39;, or array variables subscripted with &#39;@&#39; or &#39;_&#39;, as an error when performing parameter expansion. An error message will be written to the standard error, and a non-interactive shell will exit.
-</code></pre></div>
+<div class="admonition quote">
+<p class="admonition-title">de la documentación <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">bash</a></p>
+<p>Treat unset variables and parameters other than the special parameters '@' or '<em>', or array variables subscripted with '@' or '</em>', as an error when performing parameter expansion. An error message will be written to the standard error, and a non-interactive shell will exit.</p>
+</div>
 <p>Siguiendo el ejemplo anterior:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/usr/bin/env bash</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
@@ -1102,6 +1103,77 @@
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># Sigue detectando que está vacía</span>
 </span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="p">:?</span><span class="si">}</span><span class="w"> </span><span class="c1"># bash: VIRTUAL_ENV: parameter null or not set</span>
 </span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="si">}</span><span class="w"> </span><span class="c1"># No da error, simplemente es una cadena vacía que no se ejecuta</span>
+</span></code></pre></div>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-01-02 00:00:00+00:00">2 de enero de 2026</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="bash-debug-mode"><a class="toclink" href="2026/01/02/bash-debug-mode/">Bash debug mode</a></h2>
+<p>Depurar un script de bash suele consistir en insertar un montón de <code>echo</code> que luego hay que borrar.</p>
+<p>Un método mejor es usar <code>set -x</code>, que activa lo que podríamos llamar <em>bash debug mode</em>.</p>
+<div class="admonition quote">
+<p class="admonition-title">de la documentación <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">bash</a></p>
+<p>-x. Print a trace of simple commands, for commands, case commands, select commands, and arithmetic for commands and their arguments or associated word lists to the standard error after they are expanded and before they are executed. The shell prints the expanded value of the PS4 variable before the command and its expanded arguments.</p>
+</div>
+<p>Esta opción hace un print de cada comando del script a stderr antes de ejecutarlo.</p>
+<p>Los parámetros (<em>parameters</em>) se expanden antes del print por lo que veremos los valores reales (<em>arguments</em>).</p>
+<p>Podemos simplemente añadirlo al script cuando estemos depurando, y eliminarlo después. O, incluir la lógica en el propio script mediante parámetros y variables de entorno. Lo bueno de la variable de entorno es que podríamos tener varios scripts que la compartan de modo que activemos el modo debug para todos los scripts a la vez</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/usr/bin/env bash</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">DEBUG</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">GLOBAL_DEBUG_MODE</span><span class="k">:-</span><span class="nv">false</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span>--debug<span class="o">)</span><span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="p">;;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">esac</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nb">shift</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">done</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEBUG</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>-x
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nv">a</span><span class="o">=</span><span class="m">5</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">a</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span>
+</span></code></pre></div>
+<p>Salida:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ GLOBAL_DEBUG_MODE=true ./my-script.sh
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>+ a=5
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>+ echo 5
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>5
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>+ echo bar
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>bar
+</span></code></pre></div>
+<p>Dos trucos adicionales en los que fijarse que nos permiten un poco de magia extra</p>
+<ul>
+<li>El <code>+</code> es el <a href="https://www.gnu.org/software/bash/manual/html_node/Controlling-the-Prompt.html">valor de <code>PS4</code></a></li>
+<li>Los prints van a stderr</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># Use &#39;2$&gt;&#39; instead of &#39;2&gt;&#39; to combine stderr and stdout
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$ PS4=&#39;\D{%F:%T} &gt;&gt; &#39; ./script2.sh --debug 2&gt; debug.log
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>5
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>bar
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>$ cat debug.log
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>2026-02-08:19:30:51 &gt;&gt; a=5
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>2026-02-08:19:30:51 &gt;&gt; echo 5
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>2026-02-08:19:30:51 &gt;&gt; echo bar
 </span></code></pre></div>
     
   </div>
@@ -1442,120 +1514,6 @@
 </span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| A1       | B1       |
 </span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>| A2       | B2       |
 </span></code></pre></div>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2025-06-30 00:00:00+00:00">30 de junio de 2025</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="estructura-de-directorios-de-una-libreria-python"><a class="toclink" href="2025/06/30/python-project-layout/">Estructura de directorios de una librería Python</a></h2>
-<p>En Python hay fundamentalmente dos recomendaciones distintas de cómo estructurar los directorios (<em>project layout</em>) de una librería o herramienta, que queramos distribuir.</p>
-<p>No incluyo en este artículo estructuras para <em>proyectos</em>. Por ejemplo una aplicación web monorepo con el <em>backend</em> y el <em>front</em> en el mismo repositorio. Proyectos que quieren desarrollar distintas herramientas bajo el mismo namespace. U otros casos particulares.</p>
-<h3 id="sin-directorio-raiz"><a class="toclink" href="2025/06/30/python-project-layout/#sin-directorio-raiz">Sin directorio raíz</a></h3>
-<p>Es la estructura más sencilla, especialmente para proyectos pequeños o scripts individuales.</p>
-<p>En algunos artículos llaman a esta estructura <em>flat layout</em>. Esto induce a error, porqué <em>flat layout</em> es el nombre más usado para la siguiente estructura que veremos. El artículo es antiguo pero en realpython llaman a esto <a href="https://realpython.com/python-application-layouts/#one-off-script">one-off-script</a></p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>my_project/
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── __init__.py
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── my_project.py
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── requirements.txt
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── tests/
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   └── test_my_project.py
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── README.md
-</span></code></pre></div>
-<p>Tiene a favor que es simple, no requiere subdirectorios, ni siquiera el fichero <code>__init__.py</code>, y todo está a la vista.</p>
-<p>Pero nunca deberíamos usarlo. El <em>boilerplate</em> de generar una estructura mejor tiene un coste cero si usamos un cookiecutter, y con esta estructura enseguida aparecen problemas de cómo organizar el código, empaquetar el proyecto y a la mínima tendremos problemas con los <code>import</code>.</p>
-<h3 id="modulo-en-la-raiz-flat-layout"><a class="toclink" href="2025/06/30/python-project-layout/#modulo-en-la-raiz-flat-layout">Módulo en la raíz (flat layout)</a></h3>
-<p>También llamado <em>adhoc layout</em>.</p>
-<p>Es probablemente la más usada. El paquete (directorio) principal del proyecto <a href="https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#flat-layout">está directamente en la raíz</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>my-project/
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── my_project/
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── __init__.py
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   ├── main.py
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   └── utils.py
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── tests/
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── test_main.py
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   └── test_utils.py
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├───.github
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   └───workflows
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├───docs
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   └───mkdocs.yml
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>├── pyproject.toml
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>└── README.md
-</span></code></pre></div>
-<p><strong>Pros:</strong></p>
-<ul>
-<li>Más directa que <code>src layout</code> al eliminar un nivel de anidación.</li>
-<li>No es necesario instalar (<code>pip install</code>) para ejecutar el código.</li>
-<li>Muchos proyectos siguen este patrón.</li>
-</ul>
-<p><strong>Contras:</strong></p>
-<ul>
-<li><strong>Riesgo de <em>import</em> locales:</strong> Existe mayor riesgo de que Python importe el módulo en desarrollo (en el <em>source tree</em> digamos) en lugar del módulo instalado. Esto puede llevar a errores difíciles de detectar a la hora de ejecutar los tests, empaquetar e instalar el proyecto.</li>
-<li>No es tan explícito como <code>src layout</code> sobre lo que se empaqueta y lo que no.</li>
-</ul>
-<h3 id="subdirectorio-src-src-layout"><a class="toclink" href="2025/06/30/python-project-layout/#subdirectorio-src-src-layout">Subdirectorio <code>src/</code> (src layout)</a></h3>
-<p>Es una de <a href="https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#src-layout">las más recomendadas</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>my-project/
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── src/
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   └── my_project/
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│       ├── __init__.py
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│       ├── main.py
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│       └── utils.py
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>├── tests/
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   ├── test_main.py
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   └── test_utils.py
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>├───.github
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   └───workflows
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>├───docs
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   └───mkdocs.yml
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>├── pyproject.toml
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>└── README.md
-</span></code></pre></div>
-<p><strong>Pros:</strong></p>
-<ul>
-<li>Al colocar el código en <code>src/my_project/</code>, el intérprete de Python siempre importará la versión instalada del paquete, no la versión en desarrollo en el directorio raíz. Esto ayuda a asegurar que el comportamiento en desarrollo sea el mismo que en producción.</li>
-<li><strong>Claridad de empaquetado:</strong> Deja claro qué partes del proyecto son el código fuente que se va a empaquetar y distribuir. Otros archivos (tests, documentación, configuración de desarrollo) se mantienen fuera del paquete.</li>
-<li><strong>Fomenta buenas prácticas:</strong> Al requerir una "instalación" (aunque sea editable) para que el código funcione correctamente en desarrollo.</li>
-<li><strong>Mejor aislamiento de pruebas:</strong> Los tests se colocan fuera del directorio <code>src/</code>, lo que significa que no se incluyen en el paquete distribuido y evita dependencias de prueba en el código de producción.</li>
-<li><a href="https://docs.astral.sh/uv/concepts/projects/init/#libraries">Es el que prefiere uv</a></li>
-</ul>
-<p><strong>Contras:</strong></p>
-<ul>
-<li>Requiere más boilerplate. Para ejecutar el código se requiere una instalación editable o ajustar el <code>PYTHONPATH</code>.</li>
-<li>La carpeta <code>src/</code> adicional puede ser redundante.</li>
-</ul>
-<h3 id="variantes-y-comentarios"><a class="toclink" href="2025/06/30/python-project-layout/#variantes-y-comentarios">Variantes y Comentarios</a></h3>
-<ul>
-<li><a href="https://simpleisbetterthancomplex.com/tutorial/2021/06/27/how-to-start-a-production-ready-django-project.html">Alguna gente prefiere introducir un nivel extra</a> de indirección donde por ejemplo incluir <em>venv</em></li>
-<li>Cuando escojamos un nombre para el proyecto, si vamos a publicarlo deberíamos comprobar que el nombre no está cogido en PyPy.</li>
-<li><a href="https://cjolowicz.github.io/posts/hypermodern-python-01-setup/#creating-a-package-in-src-layout">Separadores de nombre</a>. Los módulos y paquetes de Python no admiten <em>hyphens</em>, <code>-</code>, sólo <em>underscore</em>, <code>_</code>. Es habitual usar <code>kebab-case</code> (<em>hyphenated</em>) para el nombre del repositorio (carpeta raíz) y <code>snake_case</code> (<em>underscored</em>) para los paquetes y módulos.</li>
-<li>Alguna gente considera que lo correcto es empaquetar los tests dentro del <em>distributable package</em>. Yo no.</li>
-</ul>
-<h3 id="mi-preferida"><a class="toclink" href="2025/06/30/python-project-layout/#mi-preferida">Mi preferida</a></h3>
-<p>Mi preferida es <em>src layout</em>.</p>
-<p>Las funcionalidades de los editores (<em>compact folders</em>, <em>quick open</em>) y herramientas cómo <code>uv</code> o <code>cookiecutter</code> reducen las incomodidades que introduce esta estructura.</p>
-<p>Visual y organizativamente me gusta cómo queda la raíz del proyecto.</p>
-<p>Me molesta mucho perder tiempo en los "esto no puede estar pasando", y esta estructura minimiza esos <em>subtle bugs</em></p>
-<p>Creo que el simple hecho de preocuparse de entenderla ayuda a que la gente no se líe a tocar <code>sys.path</code>, o probar con <code>python -m</code> a ver si sus <code>import</code> funcionan de esa forma. Aunque de "los scripts dentro de proyectos" hablaremos en otro artículo.</p>
-<h3 id="referencias"><a class="toclink" href="2025/06/30/python-project-layout/#referencias">Referencias</a></h3>
-<ul>
-<li><a href="https://hynek.me/articles/testing-packaging/">Testing &amp; Packaging</a>. <strong>Muy buena</strong> explicación del problema del import local frente al import del código instalado al testear y distribuir.</li>
-<li><a href="https://github.com/astral-sh/uv/issues/8178">Ticket de uv en el que se discute la estructura por defecto de los proyectos</a>.</li>
-<li><a href="https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/">src layout vs flat layout</a> en Python Packaging User Guide</li>
-<li><a href="https://blog.ionelmc.ro/2014/05/25/python-packaging/">Packaging a python library</a></li>
-</ul>
     
   </div>
 </article>

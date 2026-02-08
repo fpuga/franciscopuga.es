@@ -892,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#como-instalar-una-webcam-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como instalar una webcam en linux
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#viejos-limites-para-nuevos-modos" class="md-nav__link">
     <span class="md-ellipsis">
       Viejos límites para nuevos modos
@@ -927,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#almacenaje-y-clasificacion-local-recortes-de-prensa-03" class="md-nav__link">
-    <span class="md-ellipsis">
-      Almacenaje y clasificación local (recortes de prensa 03)
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -950,6 +950,35 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2008-02-22 00:00:00+00:00">22 de febrero de 2008</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="como-instalar-una-webcam-en-linux"><a class="toclink" href="../../2008/02/22/como-instalar-una-webcam-en-linux/">Como instalar una webcam en linux</a></h2>
+<p>Hace tiempo que comenté en este blog un modo de <a href="http://conocimientoabierto.blogspot.com/2007/04/instalar-los-drivers-para-una-webcam.html">instalar los drivers para una webcam en linux</a>. La cosa ha avanzado y es un poco más fácil que entonces, pero por desgracia sigue habiendo truquillos que si no los conoces te hacen invertir una horita de busqueda por internet, así que hay va una miniguia, centrada sobre todo en mandriva 2008 pero válida para la mayoría de distros actuales.</p>
+<ol>
+<li>Enchufar la webcam al ordenador</li>
+<li>Averiguar cual es el kernel que tienes instalado en tu distribución. Para ello puedes abrir una consola y teclear <span style="font-style: italic">uname -r</span></li>
+<li>Instalar las fuentes del kernel que tengas instalado. Para ello debes buscar desde el gestor de software de tu distribución el paquete <span style="font-style: italic">kernel-source-tu_numero_de_kernel.</span> En mandriva en ocasiones llegará con ejecutar el comando <span style="font-style: italic">urpmi kernel-source-&amp;(uname -r)</span></li>
+<li>Buscar en el gestor de software de tu distribución el paquete <span style="font-style: italic">dkms-gspcav1</span>. (Si no lo encuentras prueba buscando simplemente spca). Por cierto que ya le podían cambiar el nombre y llamarlo driver-webcam o algo un poquito reconocible. En mandriva: <span style="font-style: italic">urpmi dkms-gspacv1</span></li>
+<li>Reiniciar el ordenador, o si no quieres reiniciar teclear <span style="font-style: italic">modprobe gspca</span>.</li>
+</ol>
+<p>Recuerda todos estos comandos deben ejecutarse como root, aunque por lo general es más sencillo (pero no más rápido) hacerlo desde la interfaz gráfica.</p>
+<p>Con eso ya debería estar instalada, puedes comprobarlo a través de programas como amsn o kopete.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1083,64 +1112,6 @@ Jumpcut](http://www.jumpcut.com/) es un servicio web para la edición y comparti
 <p>Aún así no me resisto a la tentación de hacer una recopilación. He hecho un vídeo a partir de las que Reuters considera <a href="http://www.reuters.com/news/pictures/slideshow?collectionId=1067#a=1">mejores fotografías</a> del año. Con él os dejo.</p>
 <div style="text-align: center"> </div>
 <p><span style="font-size:85%">Presentación creada con Digikam, duración de las imágenes 5 sg, velocidad de transición 1 sg, tipo de vídeo xvcd. Para el audio del vídeo se usaron dos mp3 unidos mediante audacity. Las cortinillas de texto están hechas con The Gimp.</span></p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2007-12-14 00:00:00+00:00">14 de diciembre de 2007</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="almacenaje-y-clasificacion-local-recortes-de-prensa-03"><a class="toclink" href="../../2007/12/14/almacenaje-y-clasificacion-local-recortes-de-prensa-03/">Almacenaje y clasificación local (recortes de prensa 03)</a></h2>
-<p>En el <a href="http://conocimientoabierto.blogspot.com/2007/12/almacenaje-y-clasificacin-20-recortes.html">artículo anterior</a> contaba que la mejor forma de almacenar las apariciones de nuestra entidad en los medios de comunicación es hacer uso de los aplicaciones sociales de la web 2.0 porque ganamos en transparencia y visibilidad. Para aquellos que quieran (o tengan) que optar por el método más tradicional de guardarlas en el disco duro podemos pensar en una serie de recomendaciones. Desde mi punto de vista deberíamos hacer las dos cosas, colgarlas en internet y guardarlas en nuestro disco duro a modo de copia de seguridad.</p>
-<p><span style="font-weight: bold">Emplear nombres de archivo claros y que sigan siempre la misma estructura</span>. Preferiblemente cortos y sin espacios por ejemplo: medio_fecha (<span style="font-style: italic">elpais_13-11-2007</span>) o actividad_medio (<span style="font-style: italic">auga_con_fronteiras_elpais</span>), …</p>
-<p><span style="font-weight: bold">Pensar con cuidado la estructura de directorios</span> bajo la que guardaremos los archivos. Dependiendo del volumen de noticias que generemos puede ser suficiente con guardar todas las noticias que se produzcan en un año dentro de un directorio o bien subdividirlo en semestres, es decir:</p>
-<ul>
-<li>2007</li>
-<li>
-<p>enero-junio</p>
-</li>
-<li>
-<p>julio-diciembre</p>
-</li>
-<li>
-<p>2008</p>
-</li>
-<li>
-<p>enero-junio</p>
-</li>
-<li>
-<p>julio-diciembre</p>
-</li>
-</ul>
-<p>Si pensamos que cada una de nuestras actividades va a salir en varios medios, lo más conveniente podría ser dividirlo por años y dentro de cada año por actividades o campañas.</p>
-<p>Para poder encontrar las noticias más rápidamente, sacar listados y un mejor seguimiento hay que <span style="font-weight: bold">indexar los archivos que vayamos guardando</span>. Lo más sencillo para hacer el índice es seguramente crear una hoja de cálculo o un documento de texto con una estructura sencillita y cómoda. Os dejo un ejemplo de hoja de cálculo que podéis usar o adaptar a vuestras necesidades en formato <a href="http://www.mediafire.com/?22bpcxcgobm">openoffice</a> (también la he exportado a <a href="http://www.mediafire.com/?2zsdjnxdmut">excel</a> pero no se que tal quedara)</p>
-<p>Para hacerla he presupuesto una serie de cosas:</p>
-<ul>
-<li>Nuestra entidad no genera demasiadas noticias en prensa</li>
-<li>El formato que se emplea para los nombres de archivo es medio_fecha y la estructura de directorios en función de los años. Por ello se resalta el nombre y la fecha y no hace falta un campo adicional para el nombre y la ubicación del archivo.</li>
-<li>Se usa de modo complementario a la estrategia web 2.0 por eso hay espacios para enlazar los archivos en la red.</li>
-<li>Para favorecer el ser metódicos arriba de todo arriba de todo he puesto los campos medio, lugar y formato. A medida que tengamos una noticia de un nuevo medio (lugar, …) lo añadiremos a la lista y cuando guardemos una noticia de algún medio que ya esté en la lista lo nombraremos de esa manera. Con esto evitamos poner en algunos sitios <span style="font-style: italic">elpais</span> y en otros <span style="font-style: italic">el_pais</span> por ejemplo.</li>
-<li>Se puede imprimir en un folio en vertical así que no juguéis mucho con los anchos de las columnas y los márgenes.</li>
-</ul>
-<p>Como comenté antes si vamos a generar bastantes noticias de cada actividad, seguramente un orden más adecuado sería que en lugar de agregar las noticias por año (en las distintas hojas del excel) las agrupáramos por actividades. Por supuesto puede haber ocasiones en que <a href="http://www.mediafire.com/?7g2zzpmmuzu">estructuras más simples</a> se adapten mejor a nuestras necesidades.</p>
-<p>Esta serie consta hasta el momento de 4 artículos.</p>
-<ul>
-<li><a href="http://conocimientoabierto.es/recoger-apariciones-en-los-medios-recortes-de-prensa-01/31/" title="Como recoger apariciones en los medios (recortes de prensa 01)">Como recoger apariciones en los medios (recortes de prensa 01)</a></li>
-<li><a href="http://conocimientoabierto.es/almacenaje-y-clasificacion-20-recortes-de-prensa-02/32/">Almacenaje y clasificación 2.0 (recortes de prensa 02)</a></li>
-<li>Almacenaje y clasificación local (recortes de prensa 03)</li>
-<li><a href="http://conocimientoabierto.es/una-de-lecciones-aprendidas-recortes-prensa-04/40/">Una de lecciones aprendidas (recortes de prensa 04)</a></li>
-</ul>
     
   </div>
 </article>

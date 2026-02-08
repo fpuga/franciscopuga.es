@@ -892,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#eventos-en-backbonejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eventos en backbonejs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-developing-backbonejs-applications" class="md-nav__link">
     <span class="md-ellipsis">
       Libro: Developing Backbone.js Applications
@@ -927,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#un-sistema-como-otro-cualquiera-para-recuperar-tus-contactos-en-un-android-con-la-pantalla-rota" class="md-nav__link">
-    <span class="md-ellipsis">
-      Un sistema como otro cualquiera para recuperar tus contactos en un Android con la pantalla rota
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -950,6 +950,36 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2016-01-02 00:00:00+00:00">2 de enero de 2016</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="eventos-en-backbonejs"><a class="toclink" href="../../2016/01/02/eventos-backbonejs/">Eventos en backbonejs</a></h2>
+<p>Una de las formas más interesantes de desacoplar código, vistas fundamentalmente, usando un framework MV* tipo backbone es aprender a usar correctamente los eventos y patrones asociados. Observer (pub/sub), Event Aggregator, Mediator, …</p>
+<p>La mejor lectura al respecto que he encontrado es este <a href="https://lostechies.com/derickbailey/2011/07/19/references-routing-and-the-event-aggregator-coordinating-views-in-backbone-js/">post de Derick Bailey</a> (creador de MarionetteJS), donde de forma muy ilustrativa examina distintas opciones finalizando con como hacerlo con eventos. Es recomendable también leer los comentarios, donde Derick responde a varias dudas de los lectores.</p>
+<p>La sección sobre <a href="http://addyosmani.com/backbone-fundamentals/#events">Eventos de Developing Backbone Applications</a> explica bien como usar los eventos en general en backbone y esta otra sección revisita el post de Derick exponiendo la <a href="http://addyosmani.com/backbone-fundamentals/#event-aggregators-and-mediators">diferencia entre Event Aggregator y Mediator</a>.</p>
+<p>Pero para trabajar con Eventos de forma correcta además de los patrones y las especifidades de backbone es necesario conocer algunas técnicas y características de javascript relacionadas con el <a href="http://ryanmorr.com/understanding-scope-and-context-in-javascript/">contexto</a>. La siguiente selección de artículos puede ahorrarte un par de horas de quebraderos de cabeza:</p>
+<ul>
+<li>Primero es importante conocer <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">a que hace referencia this en cada caso</a></li>
+<li>Y en este algo algo viejo (anterior a que <em>bind</em> fuera un estándar) pero todavía ilustrativo artículo <a href="http://alistapart.com/article/getoutbindingsituations">explican los problemas del <em>binding loss</em></a></li>
+<li>La <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">documentación del método bind</a> y algún <a href="http://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/">ejemplo de uso</a>, también son de interés.</li>
+<li>Y trabajando con underscore / backbone es fundamental conocer y saber usar <a href="http://blog.bigbinary.com/2011/08/18/understanding-bind-and-bindall-in-backbone.html">_.bind y _.bindAll</a></li>
+<li>Y ya como extra, un artículo sobre <a href="partial application http://benalman.com/news/2012/09/partial-application-in-javascript/">partial application</a></li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1047,38 +1077,6 @@ https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
 <p>Otra de las cosas que más me gustan es la defensa que hace de PostgreSQL, que es el componente central de su infraestructura (especialmente hacia el minuto 50 pero en realidad lo hace en varios momentos). Hacia el minuto 44 explica como usan ellos backbone. La verdad es que aquí no me quedo muy claro desde donde servían el html, o si iba todo en los templates, porque el django del frontend en principio sólo actuaba como API Rest sirviendo JSON al navegador. Eso si, su django usa SQLAlchemy y no django-orm porque tenían cosas en el postgres que django-orm no soporta.</p>
 <p>Los últimos minutos de la charla presenta un par de herramientas que «análisis del negocio» que también son de interés.</p>
 <p><a href="http://blog.aitorciki.net/2013/12/30/de-chachara-arquitectura-de-ducksboard/">En este post además del vídeo están las transparencias</a>.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-09-23 00:00:00+00:00">23 de septiembre de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="un-sistema-como-otro-cualquiera-para-recuperar-tus-contactos-en-un-android-con-la-pantalla-rota"><a class="toclink" href="../../2015/09/23/recuperar-contactos-android-pantalla-rota/">Un sistema como otro cualquiera para recuperar tus contactos en un Android con la pantalla rota</a></h2>
-<p>Uno de esos días cualquiera en que te llega alguien (a quien no puedes mandar a <del>freír puñetas</del> buscar en google) que una semana después de comprarse su primer móvil con Android se le ha caído al suelo, se le ha roto la pantalla y quiere recuperar sus contactos.</p>
-<p>La primera respuesta es fácil. No hay problema, estarán en la memoria de la tarjeta, o sincronizados en la cuenta de google. Pero no, ni uno ni otro. Están en la memoria del teléfono.</p>
-<p>Las primeras búsquedas en google se refieren a sistemas que necesitan que el teléfono esté <em>rooteado</em> para por ejemplo <a href="https://chombium.wordpress.com/2012/09/30/android-how-to-backup-contacts-and-sms-messages/">copiar la base de datos (sqlite) con los contactos</a>. Teniendo el sqlite es fácil sacar un csv o al menos un listado que copiar a mano. Pero por supuesto el teléfono no está rooteado.</p>
-<p>Bueno, la pantalla no está del todo muerta, la parte de arriba responde. Así que igual da para hacer pulsar en los sitios clave. El teléfono en sí no puede desbloquearse, pero si se puede llegar al botón de «<em>Ajustes</em>«, porque no tiene activado la protección por figura. Jugando con la rotación automática para modificar los sitios a pulsar, podemos llegar de «<em>Ajustes</em>» a «<em>Aplicaciones</em>«, de ahí a la pestaña de «<em>Todas</em>» y desplazarnos hasta «<em>Contactos</em>«. Muchas de las apps, como la «<em>Contactos</em>» tienen un botón «<em>Lanzar</em>» equivalente a como si las abrieras desde el <em>Launcher</em>.</p>
-<p>Estando en la app de Contactos sólo hay que poder lanzar la opción de «<em>Exportar</em>«, pero en este teléfono ese menú se lanza desde la tecla de «<em>Menu</em>» que no responde. Teóricamente con el <a href="https://en.wikipedia.org/wiki/USB_On-The-Go">conector adecuado</a>, podríamos conectar un ratón al teléfono para controlarlo, pero a falta de conector resulta que es posible <a href="http://thecodeartist.blogspot.de/2011/03/simulating-keyevents-on-android-device.html">enviar eventos (como pulsaciones de teclas) al móvil a través de adb</a>.</p>
-<p>«Pulsamos» la tecla de menú:</p>
-<p><code>&lt;br&gt;&lt;/br&gt;$ ./adb shell input keyevent 82&lt;br&gt;&lt;/br&gt;</code></p>
-<p>Y un par de veces KEYCODE_DPAD_DOWN que actúa como el curso hacia abajo</p>
-<p><code>&lt;br&gt;&lt;/br&gt;$ ./adb shell input keyevent 20&lt;br&gt;&lt;/br&gt;</code></p>
-<p>Y enviamos el evento KEYCODE_DPAD_CENTER para hacer click / pulsar / tap sobre la opción seleccionada</p>
-<p><code>&lt;br&gt;&lt;/br&gt;$ ./adb shell input keyevent 23&lt;br&gt;&lt;/br&gt;</code></p>
-<p>Y ya tenemos lanzada la la aplicación de exportación. Siguiendo un proceso parecido de ver en que partes de la pantalla de puede pulsar y enviando eventos desde adb, seleccionamos como origen el smartphone, como destino la cuenta de gmail. Y listo. En un par de minutos tenemos los contactos en gmail, desde donde podemos exportarlos a csv, vcard o listos para ser usados desde otro teléfono android.</p>
-<p>Espero que a alguien le sea de ayuda. Se admiten otros modos de hacerlo en los comentarios.</p>
     
   </div>
 </article>

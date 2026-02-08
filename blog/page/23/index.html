@@ -892,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#incrementar-el-limite-de-tamano-de-subida-de-ficheros-en-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Incrementar el límite de tamaño de subida de ficheros en WordPress
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#yahoo-pipes-en-la-web-de-isf" class="md-nav__link">
     <span class="md-ellipsis">
       Yahoo Pipes en la web de ISF
@@ -927,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#mucha-chicha-en-pocos-caracteres" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mucha chicha en pocos caracteres
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -950,6 +950,33 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-03-12 00:00:00+00:00">12 de marzo de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="incrementar-el-limite-de-tamano-de-subida-de-ficheros-en-wordpress"><a class="toclink" href="../../2011/03/12/incrementar-limite-tamano-subida-ficheros-wordpress/">Incrementar el límite de tamaño de subida de ficheros en WordPress</a></h2>
+<p>Cuando monta una WordPress Network el límite de tamaño de los ficheros que los distintos blogs/usuarios pueden subir mediante wordpress está fijado a 1500 KB y el máximo total de ficheros subidos está limitado a 10MB.</p>
+<p>Para aumentar estos valores hay que ir a <em>Administrador del sitio -&gt; Ajustes</em> y modificar los valores de <em>Site upload space</em> y <em>Max upload file size</em>. De paso podemos activar la posibilidad de que los usuarios suban fotos, vídeos y música. Por defecto está activada la opción de subir ficheros en general, pero al activar estos checkboxes esos tipos de ficheros serán tratados de forma especial.</p>
+<p>Si al aumentar el <em>Max upload file size</em> seguimos teniendo limitaciones a la subida de ficheros seguramente es un límite impuesto por php.Para modificarlo habría que tocar el fichero php.ini, <a href="http://wordpress.org/support/topic/how-to-increase-the-max-upload-size#post-1523748">modificando estos valores</a>. Por desgracia ese fichero sólo estará accesible cuando tengamos acceso a todos los parámetros del servidor y raramente en un hosting compartido. Pero siempre hay opciones …</p>
+<ol>
+<li>Si tu proveedor de hosting es Dreamhost lo primero que debes hacer es <a href="http://wiki.dreamhost.com/Installing_PHP5#PHP_5.3">activar para tu dominio php 5.3</a>.</li>
+<li>Independientemente de tu proveedor si tienes php 5.3 puedes <a href="http://wiki.dreamhost.com/PHP.ini#PHP_5.3">modificar de formal local la configuración</a>.</li>
+<li>Añadir al fichero phprc creado en el paso anterior <a href="http://techtastico.com/post/parametros-php.ini/trackback/">las opciones que nos interesen</a>.</li>
+</ol>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1053,36 +1080,6 @@ Michael Corleone comprendió por vez primera por qué hombres como su padre hab�
 <li><a href="http://www.elpais.com/articulo/economia/AVE/pasa/varios/pueblos/elpepueco/20101218elpepueco_2/Tes">No es AVE todo lo que reluce</a>.</li>
 <li>Hace un mes más o menos se publico el <a href="//aidwatchers.com/2010/11/qddr-we-can-hardly-contain-our-excitement/&quot;&gt;">avance del Quadrennial Development and Diplomacy Review</a> un informe muy influyente en la estrategia a largo plazo de Estados Unidos sobre la ayuda al desarrollo, o en realidad, sobre el triángulo Desarrollo, Diplomacia, Defensa. Fijaos en el mapa, apenas hay zonas consideradas estables, de hecho la mayor parte de Europa (o incluso Corea del Sur) tiene una consideración superior a España. Enlazo está idea con los hilos que se movieron <a href="http://barrapunto.com/article.pl?sid=10/12/19/0737209">para modificar las leyes</a> de la propiedad intelectual (<a href="http://www.gnu.org/philosophy/words-to-avoid.es.html#IntellectualProperty">sic</a>) en el estado español y reflexiono que cada vez me parecen más realistas las <a href="http://lasindias.net/indianopedia/Fil%C3%A9">files</a>.</li>
 </ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2010-11-17 00:00:00+00:00">17 de noviembre de 2010</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="mucha-chicha-en-pocos-caracteres"><a class="toclink" href="../../2010/11/17/mucha-chicha-en-pocos-caractere/">Mucha chicha en pocos caracteres</a></h2>
-<p>Durante mi estancia de Erasmus en Praga cogí la costumbre de enviar un correo-e a alguna gente contando como me había ido la semana. A la vuelta, ese correo cambió de temática para, convirtiéndose en una forma de compartir enlaces curiosos que encontraba en la red. Desde que entré en <a href="http://cartolab.udc.es/">Cartolab</a> y abrí cuenta en <a href="http://identi.ca/fpuga/">identi.ca</a> perdí esa costumbre. La semana pasada varias personas me comentaron que ya no escribía esos mails así que probaré a reconvertir esa costumbre a escribir en el blog, una especie de <a href="http://www.versvs.net/categorias/bocados-actualidad">bocados de actualidad</a> o <a href="http://www.guerraeterna.com/archives/2010/11/cosas_que_hacer_152.html">cosas que hacer en sábado cuando no estás muerto</a>.</p>
-<p>Así que ahí va la primera edición de <strong>mucha chicha en pocos caracteres</strong>.</p>
-<ul>
-<li>Siguen saliendo artículos <a href="http://www.elpais.com/articulo/sociedad/primer/contacto/genetico/europeos/americanos/produjo/siglos/Colon/elpepusoc/20101116elpepusoc_7/Tes">desmintiendo el mito de que Colón y los suyos fueron los primeros europeos en llegar a América</a>. Ahora bien, al igual que con las ideas, lo importante no es quien la tiene (llega) primero si no aquel que la implementa (descubre) de una forma que merece la pena.</li>
-<li>Los mapas son una de esas cosas a las que no prestaba mucha atención hasta mi llegada a Cartolab, por eso sigue fascinándome la capacidad que tienen de alterar tus pensamientos sobre el mundo. Una demostración del <a href="http://www.informationisbeautiful.net/2010/the-true-size-of-africa/">verdadero tamaño de África</a>.</li>
-<li>Un <a href="http://arxiv.org/pdf/1011.1774v1">estudio serio</a> de si dentro de un par de años <a href="http://www.larazon.es/noticia/5951-matematicamente-un-dia-todos-los-espanoles-nos-apellidaremos-abad-abad">nos apellidaremos todos Abad Abad</a>. Para los vagos… la respuesta es no.</li>
-<li>Un <a href="http://juan.urrutiaelejalde.org/sesgo-confirmatorio-y-la-reputacion-de-los-expertos?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=sesgo-confirmatorio-y-la-reputacion-de-los-expertos">artículo de Juan Urrutia</a> tratando de <em>demostrar</em> algo intuible. Aunque seas un experto en un campo , la mayoría de la investigación que realices será para confirmar tus creencias previas y la posibilidad de que lo que aprendas modifique tu pensamiento es reducida. Lo más interesante del artículo son los tres últimos párrafos que tratan de explicar de quien deberíamos fiarnos.</li>
-</ul>
-<blockquote>
-<p>Pues bien, dadas las consecuencias del sesgo confirmatorio que he destacado, a nadie le debe parecer extraordinario que, para valores muy altos del sesgo confirmatorio y para señales no muy informativas, lo mejor que puede hacer el soberano es consultar con cuantos más expertos mejor y guiarse por la opinión de la mayoría sin fijarse en el peso relativo de las opiniones según la reputación de los expertos.</p>
-</blockquote>
     
   </div>
 </article>

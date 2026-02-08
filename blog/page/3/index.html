@@ -892,6 +892,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#como-funciona-un-llm-y-porque-mienten" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cómo funciona un LLM y porqué mienten
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vimium-un-plugin-para-navegar-la-web-con-el-teclado" class="md-nav__link">
     <span class="md-ellipsis">
       Vimium: Un plugin para navegar la web con el teclado
@@ -927,15 +936,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#comprar-un-portatil-para-desarrollo-en-2019" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comprar un portátil para desarrollo en 2019
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -950,6 +950,30 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-01-19 00:00:00+00:00">19 de enero de 2025</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="como-funciona-un-llm-y-porque-mienten"><a class="toclink" href="../../2025/01/19/como-funciona-un-llm-y-porque-mienten/">Cómo funciona un LLM y porqué mienten</a></h2>
+<p>Uno de los artículos más inteligentes que he leído sobre LLM.</p>
+<p>El autor, Simon Willinson es sensato (desde mi punto de vista), trabaja mucho con LLM y es el creador de Django (uno de los frameworks web más usados).</p>
+<p>Básicamente dice que ChatGPT es una herramienta increíble, cuando sabes usarla, pero que usarla bien no es tan fácil <a href="https://simonwillison.net/2023/Apr/7/chatgpt-lies/">porqué "ChatGPT miente"</a>.</p>
+<p>Y para entender porqué "miente" o como funciona los LLM a alto nivel pero muy técnico, <a href="https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/">este otro artículo</a> de un verdadero pionero de estos temas es imprescindible.</p>
+<p>Wolfram es en resumen el creador de Mathematica, que en cierto momento estuvo a la altura de Matlab pero luego se fue por otros derroteros. Su buscador Wolfram Alfa que yo sepa fue el primero que intentaba no darte una colección de links si no responder a preguntas formuladas en lenguaje natural, y ya tiene bastantes añitos (2009 según la Wikipedia)</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1148,74 +1172,6 @@ identify -format "%[fx:w/h] %w %h %M\n" *.jpg | sort -n -k2</p>
 <li>Usar imports desde la «raíz» <code>from myapp.models.user import User</code> y no estilo <code>from user import User</code>.</li>
 <li>No pasa nada por no poner los <code>import</code> al inicio del fichero cuando tenga sentido que sea de otra forma, por ejemplo para evitar dependencias circulares. Usar <code># noqa</code> para que no pite el linter en estos casos es aceptable.</li>
 </ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2019-05-13 00:00:00+00:00">13 de mayo de 2019</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="comprar-un-portatil-para-desarrollo-en-2019"><a class="toclink" href="../../2019/05/13/comprar-portatil-desarrollo-2019/">Comprar un portátil para desarrollo en 2019</a></h2>
-<p>Toca cambiar de portátil. 8GB de RAM ya se quedan cortos. La patilla de la pantalla está dañada y no parece que vaya a aguantar mucho más. Y la batería con una vm, el ide y el navegador no dura mucho más de 1h.</p>
-<p>Para situarnos el anterior comprado hace cuatro años era un <a href="https://es.msi.com/Laptop/GE60-2PC-Apache/Overview">MSI GE60 2PC Apache</a>:</p>
-<ul>
-<li>Micro <a href="https://ark.intel.com/content/www/es/es/ark/products/78934/intel-core-i7-4720hq-processor-6m-cache-up-to-3-60-ghz.html">i7-4720HQ</a>. 2.60GHz de frecuencia base, hasta 3.60GHz con el Turboboost. 4 cores, 8 threads, 6MB de cache y un TDP de 47W.</li>
-<li>8GB RAM SODIMM DDR3 a 1600 fabricada por Kingston. No se cual es la latencia.</li>
-<li>Nvidia GeForce GTX 850M con 2MB RAM</li>
-<li>Disco duro mecánico de 1TB a 7200rpm</li>
-<li>Pantalla de 15.5 y resolución de 1920×1080 normalita</li>
-<li>Wireless-AC 3160, b/g/n y bt 4.0</li>
-<li>hdmi, vga. 2 puertos USB 2.0 y 2 puertos USB 3.0, además de jacks para salida y entrada de audio.</li>
-<li>383 x 249 x 30 y 2.6kg de peso con batería</li>
-<li>Batería de 6 celdas, 49Wh</li>
-</ul>
-<p>Cuando lo compré escribí una <a href="http://conocimientoabierto.es/buscando-portatil-programar/752/">guía de compra de portátil</a> que aunque desactualizada me sirve de base para buscar uno nuevo. En base al rendimiento actual los requisitos no han variado demasiado:</p>
-<ul>
-<li>Todo lo importante debe funcionar al 100% con linux. Si no va la luz del teclado me da igual. Si deja de funcionar el wifi con cada actualización del kernel adios.</li>
-<li>Mínimo 16GB de RAM</li>
-<li>Un i7 o equivalente en AMD. Un vistazo rápido me dice que los i5-82xxu que se montan en este rango de precios no son mucho mejores que mi micro actual y no me interesa averiguar si con un i5 me llega.</li>
-<li>Resolución pantalla mínima 1920 x 1080. Como la mayoría del tiempo uso una externa como principal no necesito que sea extraordinariamente buena pero no quiero quemarme los ojos así que será un plus interesante</li>
-<li>Mínimo 1TB de disco</li>
-<li>No tengo necesidad de gráfica dedicada pero prefiero que no me coma RAM extra</li>
-<li>No lo quiero más grande ni pesado que el actual. A pesar de que el 85% del tiempo está apoyado en una mesa, el 15% restante de viajes en tren, reuniones y uno o dos viajes de trabajo al año hacen que prefiera uno más pequeño. Pero no voy a sacrificar más de 150€ o rendimiento por ello</li>
-<li>Quiero un teclado «bueno» a pesar de que la mayor parte del tiempo use uno externo</li>
-<li>No tengo demasiadas necesidades de conectividad y puertos, no necesito Bluetooth y me da igual que tenga salida VGA y lector de DVD. Estos detalles me ayudaran en la decisión final pero asumo que con el resto de características que busco las necesidades mínimas en este aspecto estarán cubiertas. <em>Update: Cuando revisé las opciones disponibles esto varió un poco, más en otro post</em></li>
-<li>La marca no me preocupa. Hay demasiadas opiniones y experiencias particulares a favor y en contra de todas las marcas. Por experiencias cercanas doy puntos positivos a MSI y Slimbook y negativos a los HP y los Dell pero sólo en la clasificación final cuando haya dudas. No a priori. Y lo mismo con <a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">otras consideraciones como el uso de minerales de zonas de conflicto</a></li>
-<li>Mi orquilla inicial es amplia y la reduciré a medida que investigue un poco. Empezaré por portátiles entre 900 y 1300€ con IVA. Una cantidad por la que se puede comprar algo aceptable para cuatro años si estás dispuesto a sacrificar alguna característica a cambio de precio como: batería, tamaño o potencia.</li>
-</ul>
-<p>Hay un par de puntos clave sobre los que tenía dudas al principio:</p>
-<ul>
-<li>Tamaño de la pantalla. Probablemnte la decisión más eliminadora a la hora de comprar el portátil. El de ahora es de 15.6 y para mi uso es cómodo. Pero siempre dudo con coger uno más pequeño. 14» sería perfecto. A los de 13» les tengo algo de manía. <em>Update: Al poco de empezar a buscar los de 14» quedaron prácticamente descartados porque no me interesaba tanto sacrificar rendimiento o precio a cambio de mejoras de tamaño y batería</em></li>
-<li>Con el disco duro también tengo dudas. De comprar unicamente un único disco magnético (HDD) tengo claro que sea de 7.200rpm. Una búsqueda rápida me dice que hay algún SSD de 1TB (lo ideal) a partir de 1.100€ pero en general suben bastante el precio. La opción de dos discos SSD + HDD puede ser buena pero me da que consume bastante batería y me puede fastidiar un poco mi organización actual de particiones, donde guardo las cosas cifrado y backups. <em>Update: Cerca de tomar la decisión final quedó claro que en ese rango de precios tengo que sacrificar mi organización actual.</em></li>
-</ul>
-<p>Con esto en la cabeza preparo mi hoja de cálculo y la inicializo con un par de configuraciones de <a href="https://slimbook.es/">Slimbook</a> que me servirán de referencia. Luego voy rellenando algunos datos principales y descartando algunos directamente a partir de la búsqueda en un par de páginas. Fundamentalmente:</p>
-<ul>
-<li>https://www.pccomponentes.com/</li>
-<li>https://slimbook.es/</li>
-<li>https://www.vantpc.es/</li>
-<li><a href="https://www.amazon.es/b?_encoding=UTF8&amp;tag=conocimientoa-21&amp;linkCode=ur2&amp;linkId=36da4e949e420deafa18c8184e2926cd&amp;camp=3638&amp;creative=24630&amp;node=683279031">Amazon</a></li>
-</ul>
-<p>y un vistazo rápido a:</p>
-<ul>
-<li>http://tiendas.mediamarkt.es/ordenadores-portatiles</li>
-<li>https://www.worten.es/inicio/informatica/ordenadores/portatil.html</li>
-<li>http://www.elcorteingles.es</li>
-<li>https://www.dell.com/es-es</li>
-<li>https://www.pcbox.com/</li>
-<li>https://www.lenovo.com/</li>
-</ul>
-<p>Si estás interesado en este tema puedes ver <a href="http://conocimientoabierto.es/tag/comprar-portatil/">otros artículos parecidos</a> o seguir esta serie <a href="http://conocimientoabierto.es/tag/comprar-portatil-2019/">en esta etiqueta</a>.</p>
     
   </div>
 </article>

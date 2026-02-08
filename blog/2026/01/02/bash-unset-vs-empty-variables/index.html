@@ -23,7 +23,7 @@
 
 <!-- Previous page -->
 
-<link rel="prev" href="../../../../2025/12/11/agents-md-and-at-character-to-reference-documents/" />
+<link rel="prev" href="../bash-debug-mode/" />
 
 
 <!-- Next page -->
@@ -1077,14 +1077,15 @@
 </span></code></pre></div>
 <h2 id="unbound-variables">Unbound variables</h2>
 <p>La cosa cambia cuando activamos el modo de bash de protección ante <em>unbound variables</em></p>
-<div class="admonition note unset vs unbound">
-<p class="admonition-title">Note</p>
+<div class="admonition note">
+<p class="admonition-title">unset vs unbound</p>
 <p>No hay diferencias a nivel práctico entre el término <code>unset</code> y el término <code>unbound</code> en bash y se pueden usar cómo sinónimos. Lo que sucede es que al usar una variable no definida bajo <code>set -u</code> el mensaje de error (<code>bash: foo: unbound variable</code>) hace referencia a <code>unbound</code>,mientras que los comandos en sí hacen referencia a <code>unset</code></p>
 </div>
 <p>Cuando usamos <code>set -u</code> (o <code>set -o nounset</code>) cambiamos "al modo protección". Una práctica que forma parte del llamado bash strict mode y que debería usarse en el 95% de los casos.</p>
-<p>!!! quote <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">del manual</a></p>
-<div class="language-text highlight"><pre><span></span><code>Treat unset variables and parameters other than the special parameters &#39;@&#39; or &#39;_&#39;, or array variables subscripted with &#39;@&#39; or &#39;_&#39;, as an error when performing parameter expansion. An error message will be written to the standard error, and a non-interactive shell will exit.
-</code></pre></div>
+<div class="admonition quote">
+<p class="admonition-title">de la documentación <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">bash</a></p>
+<p>Treat unset variables and parameters other than the special parameters '@' or '<em>', or array variables subscripted with '@' or '</em>', as an error when performing parameter expansion. An error message will be written to the standard error, and a non-interactive shell will exit.</p>
+</div>
 <p>Siguiendo el ejemplo anterior:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/usr/bin/env bash</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
