@@ -503,18 +503,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bash-variables-indefinidas-unset-vs-vacias-empty" class="md-nav__link">
+  <a href="#bash-debug-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Bash: Variables indefinidas (unset) vs vacías (empty)
+      Bash debug mode
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bash-debug-mode" class="md-nav__link">
+  <a href="#bash-variables-indefinidas-unset-vs-vacias-empty" class="md-nav__link">
     <span class="md-ellipsis">
-      Bash debug mode
+      Bash: Variables indefinidas (unset) vs vacías (empty)
     </span>
   </a>
   
@@ -955,18 +955,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bash-variables-indefinidas-unset-vs-vacias-empty" class="md-nav__link">
+  <a href="#bash-debug-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Bash: Variables indefinidas (unset) vs vacías (empty)
+      Bash debug mode
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bash-debug-mode" class="md-nav__link">
+  <a href="#bash-variables-indefinidas-unset-vs-vacias-empty" class="md-nav__link">
     <span class="md-ellipsis">
-      Bash debug mode
+      Bash: Variables indefinidas (unset) vs vacías (empty)
     </span>
   </a>
   
@@ -986,6 +986,77 @@
       <header class="md-typeset">
         <h1 id="2026">2026</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-02-08 00:00:00+00:00">8 de febrero de 2026</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="bash-debug-mode"><a class="toclink" href="../../2026/02/08/bash-debug-mode/">Bash debug mode</a></h2>
+<p>Depurar un script de bash suele consistir en insertar un montón de <code>echo</code> que luego hay que borrar.</p>
+<p>Un método mejor es usar <code>set -x</code>, que activa lo que podríamos llamar <em>bash debug mode</em>.</p>
+<div class="admonition quote">
+<p class="admonition-title">de la documentación <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">bash</a></p>
+<p>-x. Print a trace of simple commands, for commands, case commands, select commands, and arithmetic for commands and their arguments or associated word lists to the standard error after they are expanded and before they are executed. The shell prints the expanded value of the PS4 variable before the command and its expanded arguments.</p>
+</div>
+<p>Esta opción hace un print de cada comando del script a stderr antes de ejecutarlo.</p>
+<p>Los parámetros (<em>parameters</em>) se expanden antes del print por lo que veremos los valores reales (<em>arguments</em>).</p>
+<p>Podemos simplemente añadirlo al script cuando estemos depurando, y eliminarlo después. O, incluir la lógica en el propio script mediante parámetros y variables de entorno. Lo bueno de la variable de entorno es que podríamos tener varios scripts que la compartan de modo que activemos el modo debug para todos los scripts a la vez</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/usr/bin/env bash</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">DEBUG</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">GLOBAL_DEBUG_MODE</span><span class="k">:-</span><span class="nv">false</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span>--debug<span class="o">)</span><span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="p">;;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="k">esac</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nb">shift</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">done</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEBUG</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>-x
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nv">a</span><span class="o">=</span><span class="m">5</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">a</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span>
+</span></code></pre></div>
+<p>Salida:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ GLOBAL_DEBUG_MODE=true ./my-script.sh
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>+ a=5
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>+ echo 5
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>5
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>+ echo bar
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>bar
+</span></code></pre></div>
+<p>Dos trucos adicionales en los que fijarse que nos permiten un poco de magia extra</p>
+<ul>
+<li>El <code>+</code> es el <a href="https://www.gnu.org/software/bash/manual/html_node/Controlling-the-Prompt.html">valor de <code>PS4</code></a></li>
+<li>Los prints van a stderr</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a># Use &#39;2$&gt;&#39; instead of &#39;2&gt;&#39; to combine stderr and stdout
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>$ PS4=&#39;\D{%F:%T} &gt;&gt; &#39; ./script2.sh --debug 2&gt; debug.log
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>5
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>bar
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>$ cat debug.log
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>2026-02-08:19:30:51 &gt;&gt; a=5
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>2026-02-08:19:30:51 &gt;&gt; echo 5
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>2026-02-08:19:30:51 &gt;&gt; echo bar
+</span></code></pre></div>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1199,77 +1270,6 @@
 </span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="c1"># Sigue detectando que está vacía</span>
 </span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="p">:?</span><span class="si">}</span><span class="w"> </span><span class="c1"># bash: VIRTUAL_ENV: parameter null or not set</span>
 </span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="si">}</span><span class="w"> </span><span class="c1"># No da error, simplemente es una cadena vacía que no se ejecuta</span>
-</span></code></pre></div>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-01-02 00:00:00+00:00">2 de enero de 2026</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="bash-debug-mode"><a class="toclink" href="../../2026/01/02/bash-debug-mode/">Bash debug mode</a></h2>
-<p>Depurar un script de bash suele consistir en insertar un montón de <code>echo</code> que luego hay que borrar.</p>
-<p>Un método mejor es usar <code>set -x</code>, que activa lo que podríamos llamar <em>bash debug mode</em>.</p>
-<div class="admonition quote">
-<p class="admonition-title">de la documentación <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">bash</a></p>
-<p>-x. Print a trace of simple commands, for commands, case commands, select commands, and arithmetic for commands and their arguments or associated word lists to the standard error after they are expanded and before they are executed. The shell prints the expanded value of the PS4 variable before the command and its expanded arguments.</p>
-</div>
-<p>Esta opción hace un print de cada comando del script a stderr antes de ejecutarlo.</p>
-<p>Los parámetros (<em>parameters</em>) se expanden antes del print por lo que veremos los valores reales (<em>arguments</em>).</p>
-<p>Podemos simplemente añadirlo al script cuando estemos depurando, y eliminarlo después. O, incluir la lógica en el propio script mediante parámetros y variables de entorno. Lo bueno de la variable de entorno es que podríamos tener varios scripts que la compartan de modo que activemos el modo debug para todos los scripts a la vez</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/usr/bin/env bash</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">DEBUG</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">GLOBAL_DEBUG_MODE</span><span class="k">:-</span><span class="nv">false</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span>--debug<span class="o">)</span><span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="p">;;</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="k">esac</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nb">shift</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">done</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEBUG</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>-x
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nv">a</span><span class="o">=</span><span class="m">5</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">a</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span>
-</span></code></pre></div>
-<p>Salida:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ GLOBAL_DEBUG_MODE=true ./my-script.sh
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>+ a=5
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>+ echo 5
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>5
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>+ echo bar
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>bar
-</span></code></pre></div>
-<p>Dos trucos adicionales en los que fijarse que nos permiten un poco de magia extra</p>
-<ul>
-<li>El <code>+</code> es el <a href="https://www.gnu.org/software/bash/manual/html_node/Controlling-the-Prompt.html">valor de <code>PS4</code></a></li>
-<li>Los prints van a stderr</li>
-</ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a># Use &#39;2$&gt;&#39; instead of &#39;2&gt;&#39; to combine stderr and stdout
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>$ PS4=&#39;\D{%F:%T} &gt;&gt; &#39; ./script2.sh --debug 2&gt; debug.log
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>5
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>bar
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>$ cat debug.log
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>2026-02-08:19:30:51 &gt;&gt; a=5
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>2026-02-08:19:30:51 &gt;&gt; echo 5
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>2026-02-08:19:30:51 &gt;&gt; echo bar
 </span></code></pre></div>
     
   </div>
