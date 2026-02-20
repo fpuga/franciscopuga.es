@@ -86,6 +86,13 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -892,6 +899,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#estilo-de-markdown-generado-por-los-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estilo de Markdown generado por los LLM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#estructura-de-directorios-de-una-libreria-python" class="md-nav__link">
     <span class="md-ellipsis">
       Estructura de directorios de una librería Python
@@ -927,15 +943,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#video-deep-dive-into-llms-like-chatgpt-by-andrej-karpathy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vídeo: Deep Dive into LLMs like ChatGPT. By Andrej Karpathy
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -950,6 +957,94 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-09-28 00:00:00+00:00">28 de septiembre de 2025</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="estilo-de-markdown-generado-por-los-llm"><a class="toclink" href="../../2025/09/28/estilo-markdown-producido-llm/">Estilo de Markdown generado por los LLM</a></h2>
+<p>He hecho un estudio no científico del estilo de Markdown que emplean los modelos/aplicaciones más populares.</p>
+<h3 id="claudeai-sonnet-4"><a class="toclink" href="../../2025/09/28/estilo-markdown-producido-llm/#claudeai-sonnet-4">Claude.ai - Sonnet 4</a></h3>
+<ul>
+<li>CommonMark</li>
+<li>backticks para código inline y triple backticks (fenced blocks) para bloques de código</li>
+<li><code>*</code> y <code>**</code> para italic emphasis y bold emphasis y no <code>_</code></li>
+<li><code>-</code> para listas, con un sólo espacio de separación</li>
+<li><code>-</code> listas anidadas con dos espacios</li>
+<li><code>1. uno \n 2. dos</code> para listas ordenadas</li>
+<li><code>#</code> para cabeceras y <code>underline style</code></li>
+</ul>
+<h3 id="gemini-25"><a class="toclink" href="../../2025/09/28/estilo-markdown-producido-llm/#gemini-25">Gemini 2.5</a></h3>
+<p>Cuando le preguntas a 2.5 tanto flash cómo pro es poco claro dice por ejemplo <code>Unordered Lists (bullet points) with hyphens (-) or asterisks (*).</code>. Si insistes dice que usa <code>-</code>, pero si luego copias una de sus salidas en realidad usa <code>*</code>.</p>
+<p>Parece menos consistente que Claude</p>
+<p>En general lo que parece ser es:</p>
+<ul>
+<li>No declara un tipo concreto de sabor de markdown</li>
+<li>backticks para código inline y triple backticks (fenced blocks) para bloques de código</li>
+<li><code>*</code> y <code>**</code> para italic emphasis y bold emphasis y no <code>_</code></li>
+<li><code>*</code> para listas, con un sólo espacio de separación</li>
+<li><code>*</code> listas anidadas con cuatro espacios</li>
+<li>Curiosamente gemini parece usar <code>1.    mi texto</code>, pero <code>* mi texto</code>, mezcla indentación para ordenadas y desordenadas</li>
+<li><code>1. uno \n 2. dos</code> para listas ordenadas</li>
+<li><code>#</code> para cabeceras y <code>underline style</code></li>
+</ul>
+<h3 id="chatgpt-gpt5"><a class="toclink" href="../../2025/09/28/estilo-markdown-producido-llm/#chatgpt-gpt5">ChatGPT - GPT5</a></h3>
+<p>La respuesta de ChatGPT parece buena pero no lo es. Indica que no tiene reglas claras pero que OpenAI le da unas <code>system level rules</code> que seguir. Pero luego dice que usa <code>*</code> y <code>-</code> indistintamente. Si insistes dice que usa <code>-</code> para listas siempre cuando es mentira.</p>
+<p>En general lo que parece ser es:</p>
+<ul>
+<li>Prefiere GFM</li>
+<li>backticks para código inline y triple backticks (fenced blocks) para bloques de código</li>
+<li><code>*</code> y <code>**</code> para italic emphasis y bold emphasis y no <code>_</code></li>
+<li><code>*</code> para listas, con un sólo espacio de separación</li>
+<li><code>*</code> listas anidadas con dos espacios</li>
+<li><code>1. uno \n 2. dos</code> para listas ordenadas</li>
+<li><code>#</code> para cabeceras y <code>underline style</code></li>
+</ul>
+<h3 id="conclusiones"><a class="toclink" href="../../2025/09/28/estilo-markdown-producido-llm/#conclusiones">Conclusiones</a></h3>
+<p>No he conseguido extraer reglas claras en esta prueba rápida. El objetivo era saber que usaban para configurar el linter/formatter de un modo que los diff no lancen muchas diferencias.</p>
+<p>En general este sería el estilo más compatible que se podría usar:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gh"># Ejemplo de texto</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Un texto con <span class="ge">_italic emphasis_</span> y también <span class="gs">**bold emphasis**</span>, en el que tenemos:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">-</span><span class="w"> </span>Una lista desordenada
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">-</span><span class="w"> </span>Con sólo dos items
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>y anidación
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="gu">## Y una lista ordenada</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">1.</span> Primer item
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">-</span><span class="w"> </span>lista desordenada anidada
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="k">-</span><span class="w"> </span>con otro item
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="k">2.</span> Segundo item con <span class="sb">`codigo inline`</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="gu">## Blockquotes</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="k">&gt; </span><span class="ge">Siguen este</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="k">&gt; </span><span class="ge">estilo</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="gu">## Tablas</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>| Column A | Column B |
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>| -------- | -------- |
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>| A1       | B1       |
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>| A2       | B2       |
+</span></code></pre></div>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1288,34 +1383,6 @@
 <li><a href="https://en.wikipedia.org/wiki/Language_Server_Protocol">Language Server Protocol en Wikipedia</a></li>
 <li><a href="https://microsoft.github.io/language-server-protocol/">Página oficial de LSP</a></li>
 </ul>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2025-02-15 00:00:00+00:00">15 de febrero de 2025</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="video-deep-dive-into-llms-like-chatgpt-by-andrej-karpathy"><a class="toclink" href="../../2025/02/15/video-deep-dive-into-llm-andrej-karpathy/">Vídeo: Deep Dive into LLMs like ChatGPT. By Andrej Karpathy</a></h2>
-<p><a href="https://karpathy.ai/">Andrej Karpathy</a> fue uno de los fundadores de OpenAI y Director de IA en Tesla.</p>
-<p>En este vídeo de tres horas y media desgrana todo el funcionamiento de un LLM, desde que descargas los datos de internet hasta que puedes conversar con ella. Si hace unas semanas enlazaba la interesante, pero complicada explicación de <a href="https://franciscopuga.es/blog/2025/01/19/como-funciona-un-llm-y-porque-mienten/">Stephen Wolfram</a> este es un vídeo para todos los públicos.</p>
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/7xTGNNLPyMI?si=AO97C63oAmv0CpVQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-<p>Uno de los pocos momentos en que sale sale de la parte "técnica" es sobre la 1h:10min. Explica que tras el pre-training (entrenar al modelo con todo internet), se pasa al post-training. En el post-training "especialistas humanos" redactan conversaciones en base a unas ideas generales de "personalidad" que la empresa que construye el modelo quiere que tenga. Más o menos dice los siguiente:</p>
-<blockquote>
-<p>lo que pasa cuando abres chatgpt y haces una pregunta, no es que una especie de IA mágica te responda, es un proceso estadístico en la que las respuestas se parecen a lo que unos editores humanos siguiendo las instrucciones de una empresa han decidido que es correcto.</p>
-<p>Si preguntas "Cuales son los 5 lugares que no me puedo perder de París", la respuesta no se basa en una comparativa "científica" de que lugar es mejor y porqué, se parece más bien a la respuesta que estatisticamente habría respondido el editor.</p>
-</blockquote>
     
   </div>
 </article>

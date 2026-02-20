@@ -86,6 +86,13 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -892,6 +899,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#siglibre2011-taller-linked-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      SigLibre2011: Taller Linked Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#incrementar-el-limite-de-tamano-de-subida-de-ficheros-en-wordpress" class="md-nav__link">
     <span class="md-ellipsis">
       Incrementar el límite de tamaño de subida de ficheros en WordPress
@@ -927,15 +943,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#leido-por-ahi" class="md-nav__link">
-    <span class="md-ellipsis">
-      Leído por ahí
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -950,6 +957,40 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2011-04-04 00:00:00+00:00">4 de abril de 2011</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="siglibre2011-taller-linked-data"><a class="toclink" href="../../2011/04/04/siglibre2011-taller-linked-data/">SigLibre2011: Taller Linked Data</a></h2>
+<p>Hace poco CartoLab me dió la oportunidad de asistir a las <a href="http://www.sigte.udg.edu/jornadassiglibre2011/">V Jornadas de SIG Libre de Girona</a>. El primer día, y a pesar de los temores de <a href="http://cartohistorias.blogspot.com/">Gonzalo</a>, llegamos a la sede de los talleres sin perdernos, aunque es de recibo decir que caimos de nuevo en el error del año pasado de intentar aparcar en el campus de la Facultat de Letres, lo que roza lo imposible, por lo que al final aparcamos en la ciudad y subimos andando (en realidad son apenas 10 minutitos de caminata).</p>
+<p>El taller al que fuí por la mañana iba sobre <a href="http://en.wikipedia.org/wiki/Linked_Data">Linked Data</a>. Para mi gusto el taller acabo siendo más bien una clase teórica, por lo que por ahora para mi se queda en el cajón de “una esas tecnologías que habría que probar un día”.</p>
+<p>LinkedData viene siendo un avance de cara a la <a href="http://es.wikipedia.org/wiki/Web_sem%C3%A1ntica">web semántica</a>, que se podría explicar diciendo algo así como que el objetivo es las webs no tengan datos si no información. Y esta información pueda estar enlazada y ser enlazable, no sólo en un formato entendible por los humanos, si no en un formato apto para que las máquinas puedan relacionarse entre sí. Ese lenguaje común que las máquinas podrían interpretar y en que se asienta el linked data es el <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>. La <a href="http://linkeddata.org/faq">página de preguntas frecuentes de la web de Linked Data</a> lo deja más claro de como lo puedo hacer yo.</p>
+<p>Un ejemplo de las posibilidades sería por ejemplo que el IGN publicara un nomenclator en RDF. Cada uno de estos ficheritos RDF podría incluir el nombre del lugar y sus coordenadas geográficas. El INE en lugar de permitir bajarte csv podría publicar ficheros en RDF donde las estadísticas estuvieran enlazadas a los RDF que publica el nomeclator, lo que aportaría componente geográfica a los datos del INE sin que el INE se tuviera que preocupar de esta componente, sólo tendrían que enlazar una fuente fiable. Un tercero podría tomar ambos datos y proporcionar un servicio con ellos, por ejemplo rastrear las ofertas de trabajo de infojobs mezcladas con los datos del paro del INE y mostrar en un mapa que tipos de trabajo se ofrecen en los sitios donde hay más paro.</p>
+<p>Me quedo con una de las frases del ponente que decía más o menos así:</p>
+<blockquote>
+<p>Lo bueno o lo malo de LinkedData es que el producir la información es muy costoso pero el consumirla es relativamente sencillo.</p>
+</blockquote>
+<p>La verdad es que es una tecnología con muy buena pinta, por ejemplo <a href="http://www4.wiwiss.fu-berlin.de/bizer/d2r-server/">ya existen herramientas</a> que permiten servir la información de una base de datos relacional en formato RDF, e interrogar a la BD mediante <a href="http://www.w3.org/TR/rdf-sparql-query/">SPARQL</a>.</p>
+<p>Para saber más:</p>
+<ul>
+<li><a href="http://linkeddata.org/">Linked Data</a>.</li>
+<li><a href="http://ckan.net/">CKAN. The data hub</a>. Ejemplos de gente usando Linked Data, a los que podríamos enlazar nuestra propia información.</li>
+<li>http://geosparql.appspot.com/</li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1054,32 +1095,6 @@ Michael Corleone comprendió por vez primera por qué hombres como su padre hab�
 </blockquote>
 <p>A pesar de que el libro es bueno, creo que en otro momento me hubiera impacto más puesto por que ahora lo comparo con <a href="http://www.hbo.com/the-wire/index.html">The Wire</a>, y eso es muy difícil de superar.</p>
 <p>Si quieres leerlo puedes comprarlo en tu tienda habitual o cógerlo de <a href="http://compartiresgratis.net/ebooks/37993-el-padrino-mario-puzo-pdf.html">alguien que lo comparte</a>.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2010-12-19 00:00:00+00:00">19 de diciembre de 2010</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="leido-por-ahi"><a class="toclink" href="../../2010/12/19/leido-por-ahi/">Leído por ahí</a></h2>
-<ul>
-<li>Ya tiene algún tiempo pero aún así es <a href="http://www.elpais.com/articulo/sociedad/tertuliano/Telemadrid/realiza/comentarios/sexuales/explicitos/delante/menores/elpepusoc/20101117elpepusoc_1/Tes">inaceptable.</a></li>
-<li>Un paper del Igadi que en sólo 15 páginas nos cuenta toda la <a href="http://www.igadi.org/programas_investigacion/001/sahara_occidental.htm">historia del conflicto saharaui</a>. Y para darle un poco más de contexto <a href="http://www.mundoarabe.org/mapa_sahara.gif">un mapa</a> de como está dividido el territorio en la actualidad.</li>
-<li><a href="http://www.elpais.com/articulo/internacional/verdad/Cablegate/elpepuint/20101204elpepuint_17/Tes">La historia del Cablegate</a>. Muy recomendable, aunque tengo la sensación de que todo esto acabará en nada.</li>
-<li><a href="http://www.elpais.com/articulo/economia/AVE/pasa/varios/pueblos/elpepueco/20101218elpepueco_2/Tes">No es AVE todo lo que reluce</a>.</li>
-<li>Hace un mes más o menos se publico el <a href="//aidwatchers.com/2010/11/qddr-we-can-hardly-contain-our-excitement/&quot;&gt;">avance del Quadrennial Development and Diplomacy Review</a> un informe muy influyente en la estrategia a largo plazo de Estados Unidos sobre la ayuda al desarrollo, o en realidad, sobre el triángulo Desarrollo, Diplomacia, Defensa. Fijaos en el mapa, apenas hay zonas consideradas estables, de hecho la mayor parte de Europa (o incluso Corea del Sur) tiene una consideración superior a España. Enlazo está idea con los hilos que se movieron <a href="http://barrapunto.com/article.pl?sid=10/12/19/0737209">para modificar las leyes</a> de la propiedad intelectual (<a href="http://www.gnu.org/philosophy/words-to-avoid.es.html#IntellectualProperty">sic</a>) en el estado español y reflexiono que cada vez me parecen más realistas las <a href="http://lasindias.net/indianopedia/Fil%C3%A9">files</a>.</li>
-</ul>
     
   </div>
 </article>

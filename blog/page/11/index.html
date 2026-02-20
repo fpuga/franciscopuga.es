@@ -86,6 +86,13 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -892,6 +899,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#compilando-y-depurando-un-plugin-de-ejemplo-para-gvsig-21-desde-eclipse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilando y depurando un plugin de ejemplo para gvSIG 2.1 desde Eclipse
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-javascript-the-definitive-guide-david-flanagan" class="md-nav__link">
     <span class="md-ellipsis">
       Libro: Javascript. The definitive guide. David Flanagan.
@@ -927,15 +943,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#trabajar-con-word-docx-y-excel-xls-y-xlsx-desde-java" class="md-nav__link">
-    <span class="md-ellipsis">
-      Trabajar con Word (docx) y Excel (xls y xlsx) desde Java
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -950,6 +957,51 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2015-01-12 00:00:00+00:00">12 de enero de 2015</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="compilando-y-depurando-un-plugin-de-ejemplo-para-gvsig-21-desde-eclipse"><a class="toclink" href="../../2015/01/12/compilando-depurando-plugin-gvsig-2-1-eclipse/">Compilando y depurando un plugin de ejemplo para gvSIG 2.1 desde Eclipse</a></h2>
+<p>Joaquín del Cerro ha publicado un artículo explicando <a href="http://blog.gvsig.org/2014/12/29/compilando-y-depurando-un-plugin-de-ejemplo-para-gvsig-2-1-0-desde-un-ide-netbeans/">como compilar y depurar un plugin de ejemplo para gvSIG 2.1 con NeatBeans</a>. He adaptado sus instrucciones para Eclipse que es mi IDE habitual. Este artículo no es tan detallado como el suyo así que seguramente tendrás que consultar los dos, especialmente los pasos previos que comenta Joaquín para que todo funcione.</p>
+<p>Una vez que tenemos los «previos» realizados, creamos un nuevo workspace en eclipse, por ejemplo <em>workspace-gvsig-landregistry</em>.</p>
+<div class="ngg-gallery-singlepic-image ngg-center" style=""> [ ![compile_plugin_gvsig21_1](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/cache/compile_plugin_gvsig21_1.png-nggid0225-ngg0dyn-0x0x100-00f0w010c010r110f110r010t010.png "compile_plugin_gvsig21_1") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/compile_plugin_gvsig21_1.png) </div>
+<p>Nos aseguramos de que tenemos instalados en eclipse:</p>
+<ul>
+<li><a href="http://www.gvsig.org/plone/projects/gvsig-desktop/docs/devel/gvsig-devel-guide/2-1-0/trabajar-con-el-nucleo-de-gvsig/compile_gvsig/configurar-el-cliente-de-svn">Subversive como plugin de SVN</a></li>
+<li><a href="http://www.gvsig.org/plone/projects/gvsig-desktop/docs/devel/gvsig-devel-guide/2-1-0/trabajar-con-el-nucleo-de-gvsig/compile_gvsig/instalar-el-plugin-de-maven-para-eclipse-m2e">El plugin de maven para eclipse</a> y el conector de maven con subversive. Si no tenemos el conector instalado, más adelante cuando descarguemos el plugin del repositorio nos debería dar la opción de instalarlo</li>
+</ul>
+<p>Abrimos la perspectiva de eclipse de <em>SVN Repository Exploring</em>, desde <em>Window -&gt; Open perspective -&gt; Other</em>, o cualquier otro de los sitios desde los que se puede abrir.</p>
+<p>Y añadimos el repositorio del plugin desde <em>File -&gt; New -&gt; Repository Location</em> o el icono correspondiente. Como URL usaremos:<br />
+<code>&lt;br&gt;&lt;/br&gt;http://devel.gvsig.org/svn/gvsig-plugintemplates/org.gvsig.landregistryviewer/trunk/org.gvsig.landregistryviewer/&lt;br&gt;&lt;/br&gt;</code></p>
+<div class="ngg-gallery-singlepic-image ngg-center" style=""> [ ![compile_plugin_gvsig21_2](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/cache/compile_plugin_gvsig21_2.png-nggid0226-ngg0dyn-0x0x100-00f0w010c010r110f110r010t010.png "compile_plugin_gvsig21_2") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/compile_plugin_gvsig21_2.png) </div>
+<p>Seleccionamos el repositorio que acabamos de añadir y en el menú contextual escogemos <em>Check out as maven project</em></p>
+<div class="ngg-gallery-singlepic-image ngg-center" style=""> [ ![compile_plugin_gvsig21_3](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/cache/compile_plugin_gvsig21_3.png-nggid0227-ngg0dyn-0x0x100-00f0w010c010r110f110r010t010.png "compile_plugin_gvsig21_3") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/compile_plugin_gvsig21_3.png) </div>
+<p>Si no tenemos el conector de maven-svn instalado, nos pedirá instalarlo. En la ventana previa al checkout nos aseguraremos de que la opción «All projects» está activada</p>
+<div class="ngg-gallery-singlepic-image ngg-center" style=""> [ ![compile_plugin_gvsig21_4](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/cache/compile_plugin_gvsig21_4.png-nggid0228-ngg0dyn-0x0x100-00f0w010c010r110f110r010t010.png "compile_plugin_gvsig21_4") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/compile_plugin_gvsig21_4.png) </div>
+<p>Puede tardar un ratito en descargar, sobre todo si tiene que descargar muchas dependencias. Cuando acabe, pasamos a la perspectiva Java y ya tendremos los proyectos correspondientes al plugin configurados en el workspace.</p>
+<div class="ngg-gallery-singlepic-image ngg-center" style=""> [ ![compile_plugin_gvsig21_5](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/cache/compile_plugin_gvsig21_5.png-nggid0229-ngg0dyn-0x0x100-00f0w010c010r110f110r010t010.png "compile_plugin_gvsig21_5") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/compile_plugin_gvsig21_5.png) </div>
+<p>Si no tienes la opción de <em>Build automatically</em> activada, haz un <em>build all</em>. A continuación pon un punto de ruptura para comprobar que todo funciona correctamente en el punto que indica Joaquín (método createWindow de la clase LandRegistryViewerExtension).</p>
+<p>Tras lanzar gvSIG en modo debug,</p>
+<p><code>&lt;br&gt;&lt;/br&gt;./gvSIG --debug --pause&lt;br&gt;&lt;/br&gt;</code></p>
+<p>configuramos el debugger. En <em>Debug Configurations</em>, añadiremos una nueva configuración del tipo <em>Remote Java Application</em></p>
+<div class="ngg-gallery-singlepic-image ngg-center" style=""> [ ![compile_plugin_gvsig21_6](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/cache/compile_plugin_gvsig21_6.png-nggid0231-ngg0dyn-0x0x100-00f0w010c010r110f110r010t010.png "compile_plugin_gvsig21_6") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/compile_plugin_gvsig21_6.png) </div>
+<p>En name pondremos lo que queramos, por ejemplo <em>org.gvsig.landregistryviewer.app</em>, en project <em>org.gvsig.landregistryviewer.app.mainplugin</em> y en port <em>8765</em>. Si antes de crear la configuración de debug seleccionamos el proyecto <em>org.gvsig.landregistryviewer.app.mainplugin</em> en el package explorer nos rellenará automáticamente name y project.</p>
+<div class="ngg-gallery-singlepic-image ngg-center" style=""> [ ![compile_plugin_gvsig21_7](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/cache/compile_plugin_gvsig21_7.png-nggid0230-ngg0dyn-0x0x100-00f0w010c010r110f110r010t010.png "compile_plugin_gvsig21_7") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/compile_plugin_gvsig_21/compile_plugin_gvsig21_7.png) </div>
+<p>Al darle a debug debería abrirse gvSIG y pararse la ejecución en el punto que hemos marcado.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1087,35 +1139,6 @@
 * <a href="http://www.memrise.com/course/207066/curso-completo-de-ingles-full-audio-2/">Curso completo de inglés</a>. Este me ha gustado porque se limita al apredizaje de vocabulario o frases sencillas sin dobles traducciones. Además todas las palabras incluyen un audio de pronunciación, y aparece un ejemplo de uso en una frase.</p>
 <p>En resumen, la página tiene posibilidades como demuestran los dos cursos que he citado pero la calidad de los cursos por ahora es regular. Es una pena por ejemplo que no se pudiera «copiar» un curso, modificarlo y republicarlo mejorado. Si publicaran el código de la página o hicieran una especie de github de cursos con forks y pull-request creo que tendría muchas más posibilidades.</p>
 <p>Por ahora el único éxito que le veo, es quien quiera pasarse 10′ al día en la página en lugar de en el facebook, o <strong>profesores con un poquito de innovación en la sangre que se curren cursos en la plataforma como complemento para sus clases</strong>.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2014-04-30 00:00:00+00:00">30 de abril de 2014</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="trabajar-con-word-docx-y-excel-xls-y-xlsx-desde-java"><a class="toclink" href="../../2014/04/30/word-docx-excel-xls-xlsx-java/">Trabajar con Word (docx) y Excel (xls y xlsx) desde Java</a></h2>
-<p><img alt="Iconos Word y Excel de MS Office" src="http://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/Word-y-Excel-de-Office.jpg" />En <a href="http://cartolab.udc.es/">Cartolab</a> hemos trabajado ultimamente en procesar y generar documentos de Excel (xls y xlsx) y de Word (docx) desde Java. Tras probar algunas librerías open source las que estamos usando son:</p>
-<p><a href="http://poi.apache.org/spreadsheet/index.html">Apache POI Spreadsheet</a> para hojas de cálculo de Excel. Es fácil de usar y funciona bien tanto para los formatos binarios antiguos de xls (Excel 97-2007) como para xlsx (Excel 2007 OOXML). El <a href="http://poi.apache.org/spreadsheet/how-to.html">How-To</a> y la <a href="http://poi.apache.org/spreadsheet/quick-guide.html">Quick Guide</a> de la web son suficientes para empezar a escribir código.</p>
-<p><a href="http://www.docx4java.org/trac/docx4j">Docx4j</a> para documentos docx (OpenXML de Word 2007). La mejor forma de usarla es crear un documento vacio o con las cabeceras y pies de página desde Word o LibreOffice y definir en él los estilos. Desde nuestro código abrimos el documento y vamos añadiendo nuevos párrafos u otros elementos asignándole los estilos que hemos definido mediante el método <em>addStyledParagraphOfText(styleID, text);</em>. El styleID lo obtendremos consultado el fichero <em>styles.xml</em> que está comprimido dentro del docx. Si tenemos que hacer cosas más elaboradas el código se complica bastante pero al menos permite hacerlas. Para arrancar puedes leer como <a href="http://www.smartjava.org/content/create-complex-word-docx-documents-programatically-docx4j">substituir placeholders por tu propio contenido</a>, este <a href="http://blog.iprofs.nl/2012/09/06/creating-word-documents-with-docx4j/">otro artículo un poco más general</a> y los <a href="https://github.com/plutext/docx4j/tree/master/src/samples/docx4j/org/docx4j/samples">ejemplos de código que vienen con la librería</a>.</p>
-<p>Para trabajar con documentos .doc de Word también probamos con <a href="http://poi.apache.org/document/index.html">Apache POI</a> pero es complicado de usar y el resultado no es demasiado bueno. Así que por ahora no tenemos una alternativa válida para este formato.</p>
-<p>En algún otro momento también hicimos pruebas con:</p>
-<ul>
-<li><a href="http://community.jaspersoft.com/project/jasperreports-library">JasperReports</a> que está muy bien para generar pdf pero el odt y el word lo saca maquetado en forma de tablas por lo que no nos valía.</li>
-<li><a href="http://itextpdf.com/">iText</a>. Que en versiones antiguas de la librería permitía sacar los resultados en rtf y era sencilla de emplear. Pero las últimas versiones <a href="http://sourceforge.net/projects/itextrtf/">se ha creado una nueva librería</a> que no hemos probado todavía.</li>
-</ul>
-<p>En esta <a href="http://stackoverflow.com/questions/203174/whats-a-good-java-api-for-creating-word-documents">pregunta de StackOverflow</a> dan más alternativas. ¿Alguien usa otras librerías, preferiblemente open source y gratuitas, distintas a estas?</p>
     
   </div>
 </article>

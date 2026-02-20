@@ -86,6 +86,13 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -892,6 +899,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#si-el-liferea-tarda-mucho-en-arrancar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Si el liferea tarda mucho en arrancar&#8230;
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#usar-paypal-para-que-una-onl-reciba-donaciones" class="md-nav__link">
     <span class="md-ellipsis">
       Usar PayPal para que una ONL reciba donaciones
@@ -927,15 +943,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#taller-de-gvsig-eiel-en-valencia-metodo-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Taller de gvSIG-EIEL en Valencia. Método 2
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -950,6 +957,33 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2012-02-04 00:00:00+00:00">4 de febrero de 2012</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="si-el-liferea-tarda-mucho-en-arrancar"><a class="toclink" href="../../2012/02/04/si-el-liferea-tarda-mucho-en-arrancar/">Si el liferea tarda mucho en arrancar&#8230;</a></h2>
+<p><code>&lt;br&gt;&lt;/br&gt;$ eatmydata liferea&lt;br&gt;&lt;/br&gt;</code><br />
+<a href="http://liferea.sourceforge.net/">Liferea</a> es un lector de feeds (como google reader, pero en aplicación de escritorio) libre que cumple su cometido. La verdad es que no me parece la <em>aplicación definitiva</em> para leer rss pero funciona.</p>
+<p>Eso si, tiene <a href="https://bugs.launchpad.net/ubuntu/+source/liferea/+bug/290666">un error enormemente molesto</a> y es lo lento que es cuando arranca, sincroniza feeds o marcas toda una carpeta como leída.</p>
+<p>Simplificando un poco, lo que está pasando es que el objetivo principal de los sistemas de ficheros modernos es evitar la pérdida accidental de información, de modo que se sacrifica rendimiento (y la duración del disco duro) ante problemas hipotéticos como el de que se vaya la corriente y el ordenador se apague de manera brusca. Por defecto, sqlite, que es la base de datos que emplea Liferea, pide muy a menudo al sistema operativo que se asegure de que la información que gestiona el programa está guardada en el disco duro. Es decir, cuando un programa quiere guardar algo en el disco duro, pide al sistema operativo que lo guarde, pero esto no tiene porque suceder de manera inmediata (se dice que la escritura es asíncrona). El sistema operativo puede mantenerlo en la RAM hasta que considera que es el momento idóneo de escribirlo en disco. Pero las aplicaciones también tienen la opción de forzar al sistema operativo a que los datos sean escritos (sincronizar), y está opción de forzar es lo que usa liferea tan a menudo.</p>
+<p>Como este problema no es exclusivo de liferea si no que sucede en muchas aplicaciones, un desarrollador de debian, ha escrito un programa llamado <a href="http://www.makelinux.net/man/1/E/eatmydata">eatmydata</a> que permite desactivar las funciones de sincronización del sistema operativo para aquellos programas que nos interesen. De modo que si un programa ejecutado bajo el paraguas de eatmydata pide forzar el sincronizado, no sucederá nada, esa orden será ignorada. En general esto no es peligroso, pero hay que tener cuidado de cuando se usa y no hacerlo nunca con aplicaciones críticas. Con liferea haciendo copias de seguridad de vez en cuando no hay problema. Para instalar eatmydata llega con:<br />
+<code>&lt;br&gt;&lt;/br&gt;sudo apt-get install eatmydata&lt;br&gt;&lt;/br&gt;</code><br />
+y para ejecutar un programa bajo eatmydata<br />
+<code>&lt;br&gt;&lt;/br&gt;eatmydata nombre_del_programa&lt;br&gt;&lt;/br&gt;</code></p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1076,38 +1110,6 @@
 <p>La idea seguía estando ahí hasta que en 2010 finalmente se hizo realidad en la forma de <a href="http://odiseus.org/">Odiseus</a> (otro día tocará explicar el nombre). Blogs, listas de correo, y algunas ideas en el portafolio hacen que estemos bastante orgullosos de la red.</p>
 <p>Odiseus puede parecer una chorrada, pero si eres de los que les gusta <a href="http://maxbarry.com/2011/03/23/news.html">cultivar sus propios tomates</a> seguramente entenderás de que hablo. En los tiempos de <a href="http://www.facebook.com/">Facebook</a> y <a href="http://www.whatsapp.com/">WhatsApp</a>, blogs y listas de correo suena anacrónico, pero <a href="http://www.osnews.com/story/25469/Richard_Stallman_Was_Right_All_Along#">en realidad</a> hacen <a href="http://lasindias.coop/2012-tres-alarmas-urgentes-en-movimientos-sociales-p2p/">más falta</a> que nunca.</p>
 <p>Y todo esto es sólo para contar que hoy por fin, he migrado «Conocimiento Abierto» de mi propio WordPress al compartido por la red odiseus.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2011-11-29 00:00:00+00:00">29 de noviembre de 2011</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="taller-de-gvsig-eiel-en-valencia-metodo-2"><a class="toclink" href="../../2011/11/29/taller-de-gvsig-eiel-en-valencia-metodo-2/">Taller de gvSIG-EIEL en Valencia. Método 2</a></h2>
-<p>Como <a href="http://conocimientoabierto.es/taller-gvsig-eiel-valencia-metodo-1/420/">comentábamos en la anterior entrada</a> hemos creado un fichero .iso que podéis «quemar» en un pendrive de al menos 4GB para seguir el taller de gvSIG-EIEL. Podéis descargar el .iso desde <a href="http://www.adrive.com/public/ef55aaba0e67894a6156d6f1a454dba06ac96790fe8691a241c30515254205e3.html">este enlace</a>.</p>
-<p>Tras quemarla podréis arrancar vuestro ordenador desde el PC <a href="http://pcsupport.about.com/od/tipstricks/ht/bootusbflash.htm">configurando en la BIOS</a> que arranque en primer lugar desde ahí. Se trata de una versión de ubuntu con gvSIG-EIEL y una base de datos PostGIS con datos de prueba, todo preinstalado.</p>
-<p>Para quemar el pendrive <a href="http://live.osgeo.org/en/quickstart/usb_quickstart.html">podéis seguir estas instrucciones</a>. para linux o para windows.</p>
-<p>El usuario por defecto es «custom» sin clave. Para conectar a la base de datos usaremos:</p>
-<ul>
-<li><strong>servidor</strong>: localhost</li>
-<li><strong>usuario</strong>: user</li>
-<li><strong>clave</strong>: user</li>
-<li><strong>puerto</strong>: 5432</li>
-<li><strong>esquema</strong>: eiel_map_municipal</li>
-</ul>
-<div>El fichero .iso también debería poder ser ejecutado [desde una máquina virtual](http://live.osgeo.org/en/quickstart/virtualbox_quickstart.html).</div>
-<div>Si tenéis algún problema dejad un comentario o **comentádnoslo antes del taller**. Estaremos todos los días por las jornadas.</div>
     
   </div>
 </article>

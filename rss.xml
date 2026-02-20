@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Sun, 08 Feb 2026 18:47:56 -0000</pubDate>
-    <lastBuildDate>Sun, 08 Feb 2026 18:47:56 -0000</lastBuildDate>
+    <pubDate>Fri, 20 Feb 2026 16:25:10 -0000</pubDate>
+    <lastBuildDate>Fri, 20 Feb 2026 16:25:10 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -24,6 +24,165 @@
     
 
     
+    
+    <item>
+      <title>Herramientas de Lint y Format para Markdown</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;herramientas-de-lint-y-format-para-markdown&#34;&gt;Herramientas de Lint y Format para Markdown&lt;/h1&gt;
+&lt;p&gt;Llevo bastante tiempo usando &lt;code&gt;markdownlint-cli2&lt;/code&gt; y &lt;code&gt;prettier&lt;/code&gt; para linting y formatting de Markdown, pero no tenía un análisis de las herramientas disponibles, para ver si había mejores opciones.&lt;/p&gt;
+&lt;h2 id=&#34;requisitos-deseables&#34;&gt;Requisitos Deseables&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Integración con el IDE. Una buena extensión para VSCode y derivados&lt;/li&gt;
+&lt;li&gt;Integración con pre-commit (oficial en el repo, no sólo ejecución local)&lt;/li&gt;
+&lt;li&gt;Una sola herramienta mejor que varias herramientas. En todo caso el linter y el formatter deben ser compatibles.&lt;/li&gt;
+&lt;li&gt;Bien mantenida, popular, ...&lt;/li&gt;
+&lt;li&gt;Rápida&lt;/li&gt;
+&lt;li&gt;Rust &amp;gt; Python &amp;gt; Javascript&lt;/li&gt;
+&lt;li&gt;Prefiero herramientas en lenguajes que generan binarios como Rust porqué son más fáciles de instalar y mantener. Luego en Python porqué conozco mejor el ecosistema&lt;/li&gt;
+&lt;li&gt;Formato:&lt;/li&gt;
+&lt;li&gt;Mucho Markdown es para LLMs o producido por LLMs. Así que prefiero un &lt;a href=&#34;https://franciscopuga.es/blog/2025/09/28/estilo-markdown-producido-llm/&#34;&gt;estilo que concuerde&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Que se lleve bien con MkDocs, que tiene su propio sabor (&lt;a href=&#34;https://github.com/Python-Markdown/markdown&#34;&gt;python-markdown&lt;/a&gt;, y &lt;a href=&#34;https://github.com/facelessuser/pymdown-extensions&#34;&gt;python-markdown-extensions&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class=&#34;annotate&#34;&gt;Aunque preparando el artículo me entero de que &lt;a href=&#34;https://squidfunk.github.io/mkdocs-material/blog/2025/11/05/zensical/&#34;&gt;MkDocs está &lt;em&gt;deprecated&lt;/em&gt;&lt;/a&gt; y Zensical del mismo equipo usará en el futuro (1) CommonMark&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;img alt=&#34;🙏&#34; class=&#34;twemoji&#34; src=&#34;https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f64f.svg&#34; title=&#34;:pray:&#34; /&gt; !Gracias!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;herramientas&#34;&gt;Herramientas&lt;/h2&gt;
+&lt;h3 id=&#34;mdformat&#34;&gt;mdformat&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/hukkin/mdformat&#34;&gt;mdformat&lt;/a&gt; es un formatter escrito en Python.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Usa markdown-it-py cómo parser.&lt;/li&gt;
+&lt;li&gt;643 estrellas&lt;/li&gt;
+&lt;li&gt;Soporta CommonMark, GFM, MysT&lt;/li&gt;
+&lt;li&gt;Tiene plugins para soportar casos particulares como Admonitions, formatear código dentro de fenced blocks, ...&lt;/li&gt;
+&lt;li&gt;Opinionated. Pocas opciones de configuración&lt;/li&gt;
+&lt;li&gt;Soporta MkDocs &lt;a href=&#34;https://github.com/KyleKing/mdformat-mkdocs&#34;&gt;a través de plugin&lt;/a&gt;:&lt;/li&gt;
+&lt;li&gt;Aunque &lt;a href=&#34;https://github.com/mkdocs/mkdocs/issues/1835&#34;&gt;hay que probar bien&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Plugin &lt;a href=&#34;https://github.com/hukkin/mdformat/issues/528&#34;&gt;no oficial para vscode&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Tiene soporte para pre-comit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;No me acaba de convencer.&lt;/p&gt;
+&lt;h3 id=&#34;prettier&#34;&gt;prettier&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/prettier/prettier&#34;&gt;Prettier&lt;/a&gt; es el estándar para formatear en el ecosistema JavaScript.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Usa remark-parser como parser&lt;/li&gt;
+&lt;li&gt;50k estrellas&lt;/li&gt;
+&lt;li&gt;Soporte para CommonMark, GFM y MDXv1&lt;/li&gt;
+&lt;li&gt;Muy buena integración con el IDE&lt;/li&gt;
+&lt;li&gt;Es &lt;em&gt;opinionated&lt;/em&gt;. La única opción específica markdown es &lt;a href=&#34;https://prettier.io/docs/options#prose-wrap&#34;&gt;prose-wrap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;No hay &lt;a href=&#34;https://github.com/prettier/prettier/discussions/16227&#34;&gt;soporte oficial para pre-commit&lt;/a&gt;, ni para prek&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Una opción que nunca es mala, aunque puede no ser la mejor.&lt;/p&gt;
+&lt;h3 id=&#34;markdownlint&#34;&gt;markdownlint&lt;/h3&gt;
+&lt;p&gt;Bajo este nombre encontramos varias herramientas de lint:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/markdownlint/markdownlint&#34;&gt;Una herramienta escrita en Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/DavidAnson/markdownlint&#34;&gt;Una librería escrita en NodeJS&lt;/a&gt;. Es uno de los linters más populares para markdown&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/igorshubovych/markdownlint-cli&#34;&gt;Una ClI sobre markdown lint&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/DavidAnson/markdownlint-cli2&#34;&gt;Otra CLI sobre markdown lint&lt;/a&gt; escrita por la &lt;a href=&#34;https://dlaa.me/blog/post/markdownlintcli2&#34;&gt;misma persona&lt;/a&gt; que markdownlint.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;La que nos interesa es &lt;code&gt;markdownlint-cli2&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Markdown/CommonMark&lt;/li&gt;
+&lt;li&gt;pre-commit, github action, &lt;a href=&#34;https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint&#34;&gt;extensión para vscode&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Distintos formatos de salida (xml, json, consola, con colores, ...)&lt;/li&gt;
+&lt;li&gt;La configuración es algo confusa, pero los ficheros &lt;code&gt;.markdownlint-cli2.*&lt;/code&gt; permiten configurar tanto la CLI, cómo la extensión para code, cómo la librería&lt;/li&gt;
+&lt;li&gt;El linter usa por debajo el parse &lt;a href=&#34;https://www.npmjs.com/package/markdown-it&#34;&gt;markdown-it&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.scottlowe.org/2024/03/01/linting-your-markdown-files/&#34;&gt;Un artículo sobre la herramienta&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A pesar de las confusiones de nombres, y la documentación dispersa no es una mala opción.&lt;/p&gt;
+&lt;h3 id=&#34;remark&#34;&gt;remark&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/remarkjs/remark&#34;&gt;Remark&lt;/a&gt; no es una herramienta si no un ecosistema en torno a Markdown que a su vez forma forma parte de &lt;a href=&#34;https://unifiedjs.com/&#34;&gt;unifiedjs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Por defecto trabaja con ConmmonMark pero tiene plugins para otras versiones.&lt;/p&gt;
+&lt;p&gt;Es muy configurable, tanto, que entender bien cómo funciona, escoger los plugins y configurar las opciones adecuadas se vuelve complicado.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/remarkjs/remark-lint/issues/227&#34;&gt;Sin soporte oficial para pre-commit&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;La &lt;a href=&#34;https://github.com/drewbourne/vscode-remark-lint&#34;&gt;extensión de remark-lint para vscode&lt;/a&gt; que aparece en el README no se actualiza desde 2018. Hay otra &lt;a href=&#34;https://github.com/remarkjs/vscode-remark&#34;&gt;extensión que parece oficial&lt;/a&gt; que en el momento de escribir esto lleva más de año y medio (Abril/2024) sin actualizarse.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/remarkjs/remark/tree/main/packages/remark-parse&#34;&gt;remark-parse&lt;/a&gt; es la librería que convierte markdown a AST. Es usada también por prettier.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/remarkjs/remark/tree/main/packages/remark-stringify&#34;&gt;remark-stringify&lt;/a&gt;. Es la librería que se encarga de convertir el AST a Markdown. Cuando formateamos Markdown remark-parse lo convierte a AST, y remark-stringify lo convierte de nuevo a Markdown. Las reglas que queremos para el formatter son las que admita esta librería más plugins.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/remarkjs/remark-lint&#34;&gt;remark-lint&lt;/a&gt;. Es un monorepo que contiene la librería básica de linting y un montón de reglas que están por separadas o en conjuntos llamados &#34;&lt;a href=&#34;https://github.com/remarkjs/remark-lint?tab=readme-ov-file#rules&#34;&gt;presets&lt;/a&gt;&#34;. Pero no es una herramienta, el uso de la librería es a través de remark-cli. Cuando instalamos un preset el paquete base remark-lint va cómo dependencia. Los presets más habituales:&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/remarkjs/remark-lint/tree/main/packages/remark-preset-lint-consistent&#34;&gt;remark-preset-lint-consistent&lt;/a&gt; — rules that enforce consistency&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/remarkjs/remark-lint/tree/main/packages/remark-preset-lint-markdown-style-guide&#34;&gt;remark-preset-lint-markdown-style-guide&lt;/a&gt; — rules that enforce the markdown style guide&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/remarkjs/remark-lint/tree/main/packages/remark-preset-lint-recommended&#34;&gt;remark-preset-lint-recommended&lt;/a&gt; — rules that prevent mistakes or stuff that fails across vendors.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/remarkjs/remark/tree/main/packages/remark-cli&#34;&gt;remark-cli&lt;/a&gt;, es la herramienta de línea de comandos para llevar a cabo operaciones.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/remarkjs/remark?tab=readme-ov-file#plugins&#34;&gt;plugins&lt;/a&gt; para casi todo lo que podamos imaginar. Otras versiones de markdown cómo remark-gfm, manipulaciones cómo remark-toc, linting cómo remark-lint, ...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;un-ejemplo-de-instalacion-y-uso&#34;&gt;Un ejemplo de instalación y uso&lt;/h4&gt;
+&lt;div class=&#34;language-bash highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-0-1&#34;&gt;&lt;a id=&#34;__codelineno-0-1&#34; name=&#34;__codelineno-0-1&#34; href=&#34;#__codelineno-0-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Instalar la línea de comandos genérica&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-2&#34;&gt;&lt;a id=&#34;__codelineno-0-2&#34; name=&#34;__codelineno-0-2&#34; href=&#34;#__codelineno-0-2&#34;&gt;&lt;/a&gt;npm&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;install&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--save-dev&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;remark-cli
+&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-4&#34;&gt;&lt;a id=&#34;__codelineno-0-4&#34; name=&#34;__codelineno-0-4&#34; href=&#34;#__codelineno-0-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Instalar plugins cómo remark-toc o un conjunto de reglas&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-5&#34;&gt;&lt;a id=&#34;__codelineno-0-5&#34; name=&#34;__codelineno-0-5&#34; href=&#34;#__codelineno-0-5&#34;&gt;&lt;/a&gt;npm&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;install&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--save-dev&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;remark-preset-lint-markdown-style-guide&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;remark-toc
+&lt;/span&gt;&lt;span id=&#34;__span-0-6&#34;&gt;&lt;a id=&#34;__codelineno-0-6&#34; name=&#34;__codelineno-0-6&#34; href=&#34;#__codelineno-0-6&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-7&#34;&gt;&lt;a id=&#34;__codelineno-0-7&#34; name=&#34;__codelineno-0-7&#34; href=&#34;#__codelineno-0-7&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Format de un fichero&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-8&#34;&gt;&lt;a id=&#34;__codelineno-0-8&#34; name=&#34;__codelineno-0-8&#34; href=&#34;#__codelineno-0-8&#34;&gt;&lt;/a&gt;remark&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--output&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;readme.md
+&lt;/span&gt;&lt;span id=&#34;__span-0-9&#34;&gt;&lt;a id=&#34;__codelineno-0-9&#34; name=&#34;__codelineno-0-9&#34; href=&#34;#__codelineno-0-9&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-10&#34;&gt;&lt;a id=&#34;__codelineno-0-10&#34; name=&#34;__codelineno-0-10&#34; href=&#34;#__codelineno-0-10&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Format de un fichero añadiendo el TOC&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-11&#34;&gt;&lt;a id=&#34;__codelineno-0-11&#34; name=&#34;__codelineno-0-11&#34; href=&#34;#__codelineno-0-11&#34;&gt;&lt;/a&gt;remark&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--output&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--use&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;remark-toc&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;readme.md
+&lt;/span&gt;&lt;span id=&#34;__span-0-12&#34;&gt;&lt;a id=&#34;__codelineno-0-12&#34; name=&#34;__codelineno-0-12&#34; href=&#34;#__codelineno-0-12&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-13&#34;&gt;&lt;a id=&#34;__codelineno-0-13&#34; name=&#34;__codelineno-0-13&#34; href=&#34;#__codelineno-0-13&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Lint de todos los ficheros acorde a remark-preset-lint-markdown-style-guide&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-14&#34;&gt;&lt;a id=&#34;__codelineno-0-14&#34; name=&#34;__codelineno-0-14&#34; href=&#34;#__codelineno-0-14&#34;&gt;&lt;/a&gt;remark&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--use&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;remark-preset-lint-markdown-style-guide&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;.
+&lt;/span&gt;&lt;span id=&#34;__span-0-15&#34;&gt;&lt;a id=&#34;__codelineno-0-15&#34; name=&#34;__codelineno-0-15&#34; href=&#34;#__codelineno-0-15&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-16&#34;&gt;&lt;a id=&#34;__codelineno-0-16&#34; name=&#34;__codelineno-0-16&#34; href=&#34;#__codelineno-0-16&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Format de todos los ficheros markdown en el directorio actual&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-17&#34;&gt;&lt;a id=&#34;__codelineno-0-17&#34; name=&#34;__codelineno-0-17&#34; href=&#34;#__codelineno-0-17&#34;&gt;&lt;/a&gt;remark&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;.&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--output
+&lt;/span&gt;&lt;span id=&#34;__span-0-18&#34;&gt;&lt;a id=&#34;__codelineno-0-18&#34; name=&#34;__codelineno-0-18&#34; href=&#34;#__codelineno-0-18&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-19&#34;&gt;&lt;a id=&#34;__codelineno-0-19&#34; name=&#34;__codelineno-0-19&#34; href=&#34;#__codelineno-0-19&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Lint de todos los ficheros markdown en el directorio actual&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-20&#34;&gt;&lt;a id=&#34;__codelineno-0-20&#34; name=&#34;__codelineno-0-20&#34; href=&#34;#__codelineno-0-20&#34;&gt;&lt;/a&gt;remark&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4 id=&#34;un-ejemplo-de-configuracion&#34;&gt;Un ejemplo de configuración&lt;/h4&gt;
+&lt;div class=&#34;language-yaml highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-1-1&#34;&gt;&lt;a id=&#34;__codelineno-1-1&#34; name=&#34;__codelineno-1-1&#34; href=&#34;#__codelineno-1-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;l l-Scalar l-Scalar-Plain&#34;&gt;// .remarkrc.yaml&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-2&#34;&gt;&lt;a id=&#34;__codelineno-1-2&#34; name=&#34;__codelineno-1-2&#34; href=&#34;#__codelineno-1-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;l l-Scalar l-Scalar-Plain&#34;&gt;plugins&lt;/span&gt;&lt;span class=&#34;p p-Indicator&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-3&#34;&gt;&lt;a id=&#34;__codelineno-1-3&#34; name=&#34;__codelineno-1-3&#34; href=&#34;#__codelineno-1-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# Check that markdown is consistent.&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-4&#34;&gt;&lt;a id=&#34;__codelineno-1-4&#34; name=&#34;__codelineno-1-4&#34; href=&#34;#__codelineno-1-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p p-Indicator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l l-Scalar l-Scalar-Plain&#34;&gt;remark-preset-lint-consistent&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-5&#34;&gt;&lt;a id=&#34;__codelineno-1-5&#34; name=&#34;__codelineno-1-5&#34; href=&#34;#__codelineno-1-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# Few recommended rules.&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-6&#34;&gt;&lt;a id=&#34;__codelineno-1-6&#34; name=&#34;__codelineno-1-6&#34; href=&#34;#__codelineno-1-6&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p p-Indicator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l l-Scalar l-Scalar-Plain&#34;&gt;remark-preset-lint-recommended&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-7&#34;&gt;&lt;a id=&#34;__codelineno-1-7&#34; name=&#34;__codelineno-1-7&#34; href=&#34;#__codelineno-1-7&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# Generate a table of contents in `## Contents`&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-8&#34;&gt;&lt;a id=&#34;__codelineno-1-8&#34; name=&#34;__codelineno-1-8&#34; href=&#34;#__codelineno-1-8&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p p-Indicator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p p-Indicator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l l-Scalar l-Scalar-Plain&#34;&gt;remark-toc&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-9&#34;&gt;&lt;a id=&#34;__codelineno-1-9&#34; name=&#34;__codelineno-1-9&#34; href=&#34;#__codelineno-1-9&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p p-Indicator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;heading&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l l-Scalar l-Scalar-Plain&#34;&gt;contents&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-10&#34;&gt;&lt;a id=&#34;__codelineno-1-10&#34; name=&#34;__codelineno-1-10&#34; href=&#34;#__codelineno-1-10&#34;&gt;&lt;/a&gt;&lt;span class=&#34;nt&#34;&gt;settings&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-11&#34;&gt;&lt;a id=&#34;__codelineno-1-11&#34; name=&#34;__codelineno-1-11&#34; href=&#34;#__codelineno-1-11&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;bullet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;*&amp;quot;&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-12&#34;&gt;&lt;a id=&#34;__codelineno-1-12&#34; name=&#34;__codelineno-1-12&#34; href=&#34;#__codelineno-1-12&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;emphasis&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;_&amp;quot;&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-13&#34;&gt;&lt;a id=&#34;__codelineno-1-13&#34; name=&#34;__codelineno-1-13&#34; href=&#34;#__codelineno-1-13&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;strong&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;*&amp;quot;&lt;/span&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;herramientas-descartadas&#34;&gt;Herramientas Descartadas&lt;/h2&gt;
+&lt;h3 id=&#34;biome&#34;&gt;Biome&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/biomejs/biome&#34;&gt;Biome&lt;/a&gt; es la alternativa a prettier y eslint escrita en rust, pero todavía no implementa todas las reglas ni todos los lenguajes que soporta prettier. No soporta Markdown &lt;a href=&#34;https://github.com/biomejs/biome/issues/3718&#34;&gt;por ahora&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;pymarkdown&#34;&gt;PyMarkdown&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/jackdewinter/pymarkdown&#34;&gt;PyMarkdown&lt;/a&gt; es un linter escrito en Python que cumple pocos de los requisitos.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Usan su propio parser.&lt;/li&gt;
+&lt;li&gt;109 estrellas&lt;/li&gt;
+&lt;li&gt;Soporta CommonMark y GFM&lt;/li&gt;
+&lt;li&gt;Tiene soporte para pre-commit&lt;/li&gt;
+&lt;li&gt;No parece tener extensión para vscode, ni ningún otro IDE&lt;/li&gt;
+&lt;li&gt;Tienen muchas opciones y reglas y es muy configurable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;dprint&#34;&gt;dprint&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/dprint/dprint&#34;&gt;dprint&lt;/a&gt; no es un proyecto al que le hubiera prestado mucha atención si no fuera porqué lo usan Deno y Helix.&lt;/p&gt;
+&lt;p&gt;Es un &#34;framework&#34; para formatting escrito en Rust que soporta muchos lenguajes a través de plugins, entre ellos Markdown. Por ejemplo tienen un plugin para ruff para formatear Python.&lt;/p&gt;
+&lt;p&gt;Para markdown usa un &lt;a href=&#34;https://github.com/pulldown-cmark/pulldown-cmark&#34;&gt;parser&lt;/a&gt; centrado en CommonMark con soporte parcial para GFM. Las reglas de formato son poco configurables. Parece tener integración con pre-commit (no oficial) y vscode, pero no muy mantenida:&lt;/p&gt;
+&lt;p&gt;Bugs a los que prestar atención:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dprint/dprint/issues/859&#34;&gt;#859&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dprint/dprint/issues/442&#34;&gt;#442&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;otras-referencias&#34;&gt;Otras referencias&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://dlaa.me/blog/post/markdownlintanalyzeconfig&#34;&gt;A brief analysis of markdownlint rule popularity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;Prettier y Markdownlint son las mejores opciones en este momento. Habrá que estar atentos a la evolución de otras herramientas cómo dprint, biome u &lt;a href=&#34;https://oxc.rs/&#34;&gt;Oxc&lt;/a&gt;, y también a lo que salga de Zensical.&lt;/p&gt;
+&lt;p&gt;Si manipular el Markdown mediante línea de comandos también es de interés remark es una opción a estudiar.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/02/20/lint-format-markdown/</link>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/02/20/lint-format-markdown/</guid>
+      
+    </item>
     
     <item>
       <title>Bash debug mode</title>
@@ -73,7 +232,7 @@
 &lt;li&gt;Los prints van a stderr&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;language-text highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-2-1&#34;&gt;&lt;a id=&#34;__codelineno-2-1&#34; name=&#34;__codelineno-2-1&#34; href=&#34;#__codelineno-2-1&#34;&gt;&lt;/a&gt;# Use &amp;#39;2$&amp;gt;&amp;#39; instead of &amp;#39;2&amp;gt;&amp;#39; to combine stderr and stdout
-&lt;/span&gt;&lt;span id=&#34;__span-2-2&#34;&gt;&lt;a id=&#34;__codelineno-2-2&#34; name=&#34;__codelineno-2-2&#34; href=&#34;#__codelineno-2-2&#34;&gt;&lt;/a&gt;$ PS4=&amp;#39;\D{%F:%T} &amp;gt;&amp;gt; &amp;#39; ./script2.sh --debug 2&amp;gt; debug.log
+&lt;/span&gt;&lt;span id=&#34;__span-2-2&#34;&gt;&lt;a id=&#34;__codelineno-2-2&#34; name=&#34;__codelineno-2-2&#34; href=&#34;#__codelineno-2-2&#34;&gt;&lt;/a&gt;$ PS4=&amp;#39;\D{%F:%T} &amp;gt;&amp;gt; &amp;#39; ./my-script.sh --debug 2&amp;gt; debug.log
 &lt;/span&gt;&lt;span id=&#34;__span-2-3&#34;&gt;&lt;a id=&#34;__codelineno-2-3&#34; name=&#34;__codelineno-2-3&#34; href=&#34;#__codelineno-2-3&#34;&gt;&lt;/a&gt;
 &lt;/span&gt;&lt;span id=&#34;__span-2-4&#34;&gt;&lt;a id=&#34;__codelineno-2-4&#34; name=&#34;__codelineno-2-4&#34; href=&#34;#__codelineno-2-4&#34;&gt;&lt;/a&gt;5
 &lt;/span&gt;&lt;span id=&#34;__span-2-5&#34;&gt;&lt;a id=&#34;__codelineno-2-5&#34; name=&#34;__codelineno-2-5&#34; href=&#34;#__codelineno-2-5&#34;&gt;&lt;/a&gt;bar
@@ -1314,26 +1473,6 @@ sudo usermod -a -G audio pulse&lt;/p&gt;
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2018/06/09/migrar-a-gitlab-manteniendo-mirrors-en-github/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Libro: El corredor del laberinto</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;libro-el-corredor-del-laberinto&#34;&gt;Libro: El corredor del laberinto&lt;/h1&gt;
-&lt;p&gt;He aprovechado las vacaciones de navidad a uno de mis «&lt;a href=&#34;https://capacitaccionchile.wordpress.com/category/placer-culpable-o-el-arte-de-dejarse-llevar/&#34;&gt;placeres culpables&lt;/a&gt;» que es la lectura de sagas &lt;a href=&#34;https://www.caninomag.es/guia-para-principiantes-la-literatura-young-adult/&#34;&gt;Young Adult&lt;/a&gt; de ciencia ficción o fantasía. En este caso toco el turno de «&lt;a href=&#34;https://es.wikipedia.org/wiki/The_Maze_Runner&#34;&gt;El corredor del laberinto&lt;/a&gt;» de James Dashner.&lt;/p&gt;
-&lt;p&gt;Poco que decir de este libro a parte de ser una decepción absoluta. De los que me he tragado hasta ahora Harry Potter, Los Juegos del Hambre, Divergente, … esta serie es la peor y no la recomiendo.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Clasificación&lt;/strong&gt;: 2/5&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Te gustará si&lt;/strong&gt;: Eres un fan incodicional de este tipo de novelas y Divergente te pareció buena.&lt;/p&gt;
-&lt;p&gt;Puedes comprarlo en tu tienda habitual, aunque hay quien te lo presta gratis en &lt;a href=&#34;https://www.epubgratis.org/el-corredor-del-laberinto-james-dashner/&#34;&gt;epubgratis&lt;/a&gt;.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2017/12/31/libro-el-corredor-del-laberinto/</link>
-      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2017/12/31/libro-el-corredor-del-laberinto/</guid>
       
     </item>
     

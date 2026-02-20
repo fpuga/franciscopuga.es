@@ -86,6 +86,13 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -501,6 +508,15 @@
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#herramientas-de-lint-y-format-para-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Herramientas de Lint y Format para Markdown
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#bash-debug-mode" class="md-nav__link">
@@ -955,6 +971,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#herramientas-de-lint-y-format-para-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Herramientas de Lint y Format para Markdown
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#bash-debug-mode" class="md-nav__link">
     <span class="md-ellipsis">
       Bash debug mode
@@ -986,6 +1011,169 @@
       <header class="md-typeset">
         <h1 id="2026">2026</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-02-20 00:00:00+00:00">20 de febrero de 2026</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="herramientas-de-lint-y-format-para-markdown"><a class="toclink" href="../../2026/02/20/lint-format-markdown/">Herramientas de Lint y Format para Markdown</a></h2>
+<p>Llevo bastante tiempo usando <code>markdownlint-cli2</code> y <code>prettier</code> para linting y formatting de Markdown, pero no tenía un análisis de las herramientas disponibles, para ver si había mejores opciones.</p>
+<h3 id="requisitos-deseables"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#requisitos-deseables">Requisitos Deseables</a></h3>
+<ul>
+<li>Integración con el IDE. Una buena extensión para VSCode y derivados</li>
+<li>Integración con pre-commit (oficial en el repo, no sólo ejecución local)</li>
+<li>Una sola herramienta mejor que varias herramientas. En todo caso el linter y el formatter deben ser compatibles.</li>
+<li>Bien mantenida, popular, ...</li>
+<li>Rápida</li>
+<li>Rust &gt; Python &gt; Javascript</li>
+<li>Prefiero herramientas en lenguajes que generan binarios como Rust porqué son más fáciles de instalar y mantener. Luego en Python porqué conozco mejor el ecosistema</li>
+<li>Formato:</li>
+<li>Mucho Markdown es para LLMs o producido por LLMs. Así que prefiero un <a href="https://franciscopuga.es/blog/2025/09/28/estilo-markdown-producido-llm/">estilo que concuerde</a>.</li>
+<li>Que se lleve bien con MkDocs, que tiene su propio sabor (<a href="https://github.com/Python-Markdown/markdown">python-markdown</a>, y <a href="https://github.com/facelessuser/pymdown-extensions">python-markdown-extensions</a>)</li>
+</ul>
+<p class="annotate">Aunque preparando el artículo me entero de que <a href="https://squidfunk.github.io/mkdocs-material/blog/2025/11/05/zensical/">MkDocs está <em>deprecated</em></a> y Zensical del mismo equipo usará en el futuro (1) CommonMark</p>
+<ol>
+<li><img alt="🙏" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f64f.svg" title=":pray:" /> !Gracias!</li>
+</ol>
+<h3 id="herramientas"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#herramientas">Herramientas</a></h3>
+<h4 id="mdformat"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#mdformat">mdformat</a></h4>
+<p><a href="https://github.com/hukkin/mdformat">mdformat</a> es un formatter escrito en Python.</p>
+<ul>
+<li>Usa markdown-it-py cómo parser.</li>
+<li>643 estrellas</li>
+<li>Soporta CommonMark, GFM, MysT</li>
+<li>Tiene plugins para soportar casos particulares como Admonitions, formatear código dentro de fenced blocks, ...</li>
+<li>Opinionated. Pocas opciones de configuración</li>
+<li>Soporta MkDocs <a href="https://github.com/KyleKing/mdformat-mkdocs">a través de plugin</a>:</li>
+<li>Aunque <a href="https://github.com/mkdocs/mkdocs/issues/1835">hay que probar bien</a>.</li>
+<li>Plugin <a href="https://github.com/hukkin/mdformat/issues/528">no oficial para vscode</a>.</li>
+<li>Tiene soporte para pre-comit</li>
+</ul>
+<p>No me acaba de convencer.</p>
+<h4 id="prettier"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#prettier">prettier</a></h4>
+<p><a href="https://github.com/prettier/prettier">Prettier</a> es el estándar para formatear en el ecosistema JavaScript.</p>
+<ul>
+<li>Usa remark-parser como parser</li>
+<li>50k estrellas</li>
+<li>Soporte para CommonMark, GFM y MDXv1</li>
+<li>Muy buena integración con el IDE</li>
+<li>Es <em>opinionated</em>. La única opción específica markdown es <a href="https://prettier.io/docs/options#prose-wrap">prose-wrap</a></li>
+<li>No hay <a href="https://github.com/prettier/prettier/discussions/16227">soporte oficial para pre-commit</a>, ni para prek</li>
+</ul>
+<p>Una opción que nunca es mala, aunque puede no ser la mejor.</p>
+<h4 id="markdownlint"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#markdownlint">markdownlint</a></h4>
+<p>Bajo este nombre encontramos varias herramientas de lint:</p>
+<ul>
+<li><a href="https://github.com/markdownlint/markdownlint">Una herramienta escrita en Ruby</a></li>
+<li><a href="https://github.com/DavidAnson/markdownlint">Una librería escrita en NodeJS</a>. Es uno de los linters más populares para markdown</li>
+<li><a href="https://github.com/igorshubovych/markdownlint-cli">Una ClI sobre markdown lint</a>.</li>
+<li><a href="https://github.com/DavidAnson/markdownlint-cli2">Otra CLI sobre markdown lint</a> escrita por la <a href="https://dlaa.me/blog/post/markdownlintcli2">misma persona</a> que markdownlint.</li>
+</ul>
+<p>La que nos interesa es <code>markdownlint-cli2</code>.</p>
+<ul>
+<li>Markdown/CommonMark</li>
+<li>pre-commit, github action, <a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">extensión para vscode</a>.</li>
+<li>Distintos formatos de salida (xml, json, consola, con colores, ...)</li>
+<li>La configuración es algo confusa, pero los ficheros <code>.markdownlint-cli2.*</code> permiten configurar tanto la CLI, cómo la extensión para code, cómo la librería</li>
+<li>El linter usa por debajo el parse <a href="https://www.npmjs.com/package/markdown-it">markdown-it</a>.</li>
+</ul>
+<p><a href="https://blog.scottlowe.org/2024/03/01/linting-your-markdown-files/">Un artículo sobre la herramienta</a>.</p>
+<p>A pesar de las confusiones de nombres, y la documentación dispersa no es una mala opción.</p>
+<h4 id="remark"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#remark">remark</a></h4>
+<p><a href="https://github.com/remarkjs/remark">Remark</a> no es una herramienta si no un ecosistema en torno a Markdown que a su vez forma forma parte de <a href="https://unifiedjs.com/">unifiedjs</a>.</p>
+<p>Por defecto trabaja con ConmmonMark pero tiene plugins para otras versiones.</p>
+<p>Es muy configurable, tanto, que entender bien cómo funciona, escoger los plugins y configurar las opciones adecuadas se vuelve complicado.</p>
+<p><a href="https://github.com/remarkjs/remark-lint/issues/227">Sin soporte oficial para pre-commit</a>.</p>
+<p>La <a href="https://github.com/drewbourne/vscode-remark-lint">extensión de remark-lint para vscode</a> que aparece en el README no se actualiza desde 2018. Hay otra <a href="https://github.com/remarkjs/vscode-remark">extensión que parece oficial</a> que en el momento de escribir esto lleva más de año y medio (Abril/2024) sin actualizarse.</p>
+<ul>
+<li><a href="https://github.com/remarkjs/remark/tree/main/packages/remark-parse">remark-parse</a> es la librería que convierte markdown a AST. Es usada también por prettier.</li>
+<li><a href="https://github.com/remarkjs/remark/tree/main/packages/remark-stringify">remark-stringify</a>. Es la librería que se encarga de convertir el AST a Markdown. Cuando formateamos Markdown remark-parse lo convierte a AST, y remark-stringify lo convierte de nuevo a Markdown. Las reglas que queremos para el formatter son las que admita esta librería más plugins.</li>
+<li><a href="https://github.com/remarkjs/remark-lint">remark-lint</a>. Es un monorepo que contiene la librería básica de linting y un montón de reglas que están por separadas o en conjuntos llamados "<a href="https://github.com/remarkjs/remark-lint?tab=readme-ov-file#rules">presets</a>". Pero no es una herramienta, el uso de la librería es a través de remark-cli. Cuando instalamos un preset el paquete base remark-lint va cómo dependencia. Los presets más habituales:</li>
+<li><a href="https://github.com/remarkjs/remark-lint/tree/main/packages/remark-preset-lint-consistent">remark-preset-lint-consistent</a> — rules that enforce consistency</li>
+<li><a href="https://github.com/remarkjs/remark-lint/tree/main/packages/remark-preset-lint-markdown-style-guide">remark-preset-lint-markdown-style-guide</a> — rules that enforce the markdown style guide</li>
+<li><a href="https://github.com/remarkjs/remark-lint/tree/main/packages/remark-preset-lint-recommended">remark-preset-lint-recommended</a> — rules that prevent mistakes or stuff that fails across vendors.</li>
+<li><a href="https://github.com/remarkjs/remark/tree/main/packages/remark-cli">remark-cli</a>, es la herramienta de línea de comandos para llevar a cabo operaciones.</li>
+<li><a href="https://github.com/remarkjs/remark?tab=readme-ov-file#plugins">plugins</a> para casi todo lo que podamos imaginar. Otras versiones de markdown cómo remark-gfm, manipulaciones cómo remark-toc, linting cómo remark-lint, ...</li>
+</ul>
+<h5 id="un-ejemplo-de-instalacion-y-uso"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#un-ejemplo-de-instalacion-y-uso">Un ejemplo de instalación y uso</a></h5>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Instalar la línea de comandos genérica</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>remark-cli
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Instalar plugins cómo remark-toc o un conjunto de reglas</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>npm<span class="w"> </span>install<span class="w"> </span>--save-dev<span class="w"> </span>remark-preset-lint-markdown-style-guide<span class="w"> </span>remark-toc
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Format de un fichero</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>remark<span class="w"> </span>--output<span class="w"> </span>readme.md
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># Format de un fichero añadiendo el TOC</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>remark<span class="w"> </span>--output<span class="w"> </span>--use<span class="w"> </span>remark-toc<span class="w"> </span>readme.md
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># Lint de todos los ficheros acorde a remark-preset-lint-markdown-style-guide</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>remark<span class="w"> </span>--use<span class="w"> </span>remark-preset-lint-markdown-style-guide<span class="w"> </span>.
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1"># Format de todos los ficheros markdown en el directorio actual</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>remark<span class="w"> </span>.<span class="w"> </span>--output
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="c1"># Lint de todos los ficheros markdown en el directorio actual</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>remark<span class="w"> </span>.
+</span></code></pre></div>
+<h5 id="un-ejemplo-de-configuracion"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#un-ejemplo-de-configuracion">Un ejemplo de configuración</a></h5>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="l l-Scalar l-Scalar-Plain">// .remarkrc.yaml</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="l l-Scalar l-Scalar-Plain">plugins</span><span class="p p-Indicator">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="c1"># Check that markdown is consistent.</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remark-preset-lint-consistent</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="c1"># Few recommended rules.</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remark-preset-lint-recommended</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="c1"># Generate a table of contents in `## Contents`</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remark-toc</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">heading</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">contents</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nt">settings</span><span class="p">:</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nt">bullet</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nt">emphasis</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;_&quot;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="nt">strong</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+</span></code></pre></div>
+<h3 id="herramientas-descartadas"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#herramientas-descartadas">Herramientas Descartadas</a></h3>
+<h4 id="biome"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#biome">Biome</a></h4>
+<p><a href="https://github.com/biomejs/biome">Biome</a> es la alternativa a prettier y eslint escrita en rust, pero todavía no implementa todas las reglas ni todos los lenguajes que soporta prettier. No soporta Markdown <a href="https://github.com/biomejs/biome/issues/3718">por ahora</a>.</p>
+<h4 id="pymarkdown"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#pymarkdown">PyMarkdown</a></h4>
+<p><a href="https://github.com/jackdewinter/pymarkdown">PyMarkdown</a> es un linter escrito en Python que cumple pocos de los requisitos.</p>
+<ul>
+<li>Usan su propio parser.</li>
+<li>109 estrellas</li>
+<li>Soporta CommonMark y GFM</li>
+<li>Tiene soporte para pre-commit</li>
+<li>No parece tener extensión para vscode, ni ningún otro IDE</li>
+<li>Tienen muchas opciones y reglas y es muy configurable</li>
+</ul>
+<h5 id="dprint"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#dprint">dprint</a></h5>
+<p><a href="https://github.com/dprint/dprint">dprint</a> no es un proyecto al que le hubiera prestado mucha atención si no fuera porqué lo usan Deno y Helix.</p>
+<p>Es un "framework" para formatting escrito en Rust que soporta muchos lenguajes a través de plugins, entre ellos Markdown. Por ejemplo tienen un plugin para ruff para formatear Python.</p>
+<p>Para markdown usa un <a href="https://github.com/pulldown-cmark/pulldown-cmark">parser</a> centrado en CommonMark con soporte parcial para GFM. Las reglas de formato son poco configurables. Parece tener integración con pre-commit (no oficial) y vscode, pero no muy mantenida:</p>
+<p>Bugs a los que prestar atención:</p>
+<ul>
+<li><a href="https://github.com/dprint/dprint/issues/859">#859</a></li>
+<li><a href="https://github.com/dprint/dprint/issues/442">#442</a></li>
+</ul>
+<h3 id="otras-referencias"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#otras-referencias">Otras referencias</a></h3>
+<ul>
+<li><a href="https://dlaa.me/blog/post/markdownlintanalyzeconfig">A brief analysis of markdownlint rule popularity</a></li>
+</ul>
+<h3 id="conclusiones"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#conclusiones">Conclusiones</a></h3>
+<p>Prettier y Markdownlint son las mejores opciones en este momento. Habrá que estar atentos a la evolución de otras herramientas cómo dprint, biome u <a href="https://oxc.rs/">Oxc</a>, y también a lo que salga de Zensical.</p>
+<p>Si manipular el Markdown mediante línea de comandos también es de interés remark es una opción a estudiar.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1043,7 +1231,7 @@
 <li>Los prints van a stderr</li>
 </ul>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a># Use &#39;2$&gt;&#39; instead of &#39;2&gt;&#39; to combine stderr and stdout
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>$ PS4=&#39;\D{%F:%T} &gt;&gt; &#39; ./script2.sh --debug 2&gt; debug.log
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>$ PS4=&#39;\D{%F:%T} &gt;&gt; &#39; ./my-script.sh --debug 2&gt; debug.log
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>5
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>bar

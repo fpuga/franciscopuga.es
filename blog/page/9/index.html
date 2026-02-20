@@ -86,6 +86,13 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -892,6 +899,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#aitor-guevara-hablando-de-la-arquitectura-de-ducksboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aitor Guevara hablando de la arquitectura de Ducksboard
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#un-sistema-como-otro-cualquiera-para-recuperar-tus-contactos-en-un-android-con-la-pantalla-rota" class="md-nav__link">
     <span class="md-ellipsis">
       Un sistema como otro cualquiera para recuperar tus contactos en un Android con la pantalla rota
@@ -927,15 +943,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#portatiles-entre-600-y-700-para-cad-y-diseno" class="md-nav__link">
-    <span class="md-ellipsis">
-      Portátiles entre 600 y 700€ para CAD y Diseño
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -950,6 +957,35 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2015-09-26 00:00:00+00:00">26 de septiembre de 2015</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="aitor-guevara-hablando-de-la-arquitectura-de-ducksboard"><a class="toclink" href="../../2015/09/26/aitor-guevara-arquitectura-ducksboard/">Aitor Guevara hablando de la arquitectura de Ducksboard</a></h2>
+<p>Un vídeo algo antiguo (2013) en el que <a href="http://blog.aitorciki.net/">Aitor Guevara</a> (CTO de Ducksboard) nos habla de cual era la arquitectura de Ducksboard en aquel momento. A pesar de que el vídeo dura más de una hora y media Aitor consigue hacer amena una charla técnica. No entra al mínimo detalle técnico pero si da una buena idea general. Responde sin rubor a preguntas como cual era el costo de la infraestructura que tenían en Linode (400$) o cuantos clientes de pago tienen.</p>
+<p>https://www.youtube.com/watch?v=ArpNnabLqZE</p>
+<p>Por el medio de la charla caen perlas del estilo de:</p>
+<ul>
+<li>Usamos twisted para hacer aplicaciones asíncronas en python. ¿Conoceis nodejs? pues lo mismo pero tiene 10 años en lugar de 1.</li>
+<li>Usamos backbone, porque tenemos un montón de javascript. Tenemos un montón no porque nos guste si no porque es lo que hay.</li>
+</ul>
+<p>Otra de las cosas que más me gustan es la defensa que hace de PostgreSQL, que es el componente central de su infraestructura (especialmente hacia el minuto 50 pero en realidad lo hace en varios momentos). Hacia el minuto 44 explica como usan ellos backbone. La verdad es que aquí no me quedo muy claro desde donde servían el html, o si iba todo en los templates, porque el django del frontend en principio sólo actuaba como API Rest sirviendo JSON al navegador. Eso si, su django usa SQLAlchemy y no django-orm porque tenían cosas en el postgres que django-orm no soporta.</p>
+<p>Los últimos minutos de la charla presenta un par de herramientas que «análisis del negocio» que también son de interés.</p>
+<p><a href="http://blog.aitorciki.net/2013/12/30/de-chachara-arquitectura-de-ducksboard/">En este post además del vídeo están las transparencias</a>.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1099,35 +1135,6 @@ Cover and Modify is a different way of making changes. The idea behind it is tha
 <p>El libro es una mezcla ligera de ficción ciberpunk con corporaciones tratando de resolver la <a href="http://readyplayerone.wikia.com/wiki/Halliday%27s_Easter_Egg_Hunt">búsqueda</a> (no leas demasiado del enlace hay spoilers) y misiones al más puro estilo <a href="https://en.wikipedia.org/wiki/Dungeons_%26_Dragons">Dungeons &amp; Dragons</a> por el medio del mundo virtual.</p>
 <p>Si te gustan películas ochenteras como Lady Halcon o los Goonies, eres geek/freak, jugaste al rol o estás enganchado a los <a href="https://es.wikipedia.org/wiki/Videojuego_de_rol_multijugador_masivo_en_l%C3%ADnea">MMORPG</a> este libro te encantará.</p>
 <p>Puedes comprarlo en tu tienda habitual y también hay <a href="http://epubdescargas.blogspot.com.es/2013/08/ready-player-one-ernest-cline.html">gente que lo comparte</a>.</p>
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-08-08 00:00:00+00:00">8 de agosto de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="portatiles-entre-600-y-700-para-cad-y-diseno"><a class="toclink" href="../../2015/08/08/portatiles-entre-600-y-700e-para-cad-y-diseno/">Portátiles entre 600 y 700€ para CAD y Diseño</a></h2>
-<p>Estos días un amigo me pidió ayuda para comprar un ordenador. Los requisitos:</p>
-<ul>
-<li>Ofimática, CAD y Diseño sin grandes necesidades</li>
-<li>Entre 600€ y 700€</li>
-<li>Pantalla de 15.6»</li>
-</ul>
-<p>Échando un ojo a lo que había en el mercado empecé a hacer una hoja de cálculo. Descarté todas los que tuvieran una gráfica peor que una 820M y un micro peor que un i5-4210 porque son configuraciones habituales en ese rango de precios. Luego comparando precios, características y preferencias personales <a href="https://docs.google.com/spreadsheets/d/166qFmTRrpTunYY8ELiBT0xc_n51HSZ-hPGNAN15n4Sk/pub?output=ods">llegamos a esta lista</a>.</p>
-<iframe height="300" loading="lazy" src="https://docs.google.com/spreadsheets/d/166qFmTRrpTunYY8ELiBT0xc_n51HSZ-hPGNAN15n4Sk/pubhtml?gid=344015303&single=true&widget=true&headers=false" width="600"></iframe>
-
-<p>Están separados dos rangos de precios los que están más cerca de 600 y los que están más cerca de 700, con mis preferencias resaltadas en amarillo. Si alguién está buscando un portátil así espero que le sirva. El hecho de hacer la hoja de cálculo ya lleva un buen rato, igual hay espacio aquí para hacer un <em>scrapper</em>. ¿Algún programador en la sala :P?</p>
     
   </div>
 </article>
