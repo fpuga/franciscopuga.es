@@ -86,12 +86,20 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
+  True
   
+
 
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+
+  <!-- Consent necessary -->
   
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+    <script>
+      if (typeof __md_analytics !== "undefined")
+        __md_analytics()
+    </script>
   
 
     
@@ -899,6 +907,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#driver-para-modem-adsl-usb-en-linux-mandriva-2007" class="md-nav__link">
+    <span class="md-ellipsis">
+      Driver para modem adsl usb en linux mandriva 2007
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#instalar-driver-para-d-link-dsl200-en-ubuntu-704" class="md-nav__link">
     <span class="md-ellipsis">
       Instalar driver para D-Link DSL200 en Ubuntu 7.04
@@ -934,15 +951,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#cronica-un-mundo-desigual-ii" class="md-nav__link">
-    <span class="md-ellipsis">
-      Crónica: Un mundo desigual (II)
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -957,6 +965,66 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2007-08-16 00:00:00+00:00">16 de agosto de 2007</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="driver-para-modem-adsl-usb-en-linux-mandriva-2007"><a class="toclink" href="../../2007/08/16/driver-para-modem-adsl-usb-en-linux-mandriva-2007/">Driver para modem adsl usb en linux mandriva 2007</a></h2>
+<p>En mi anterior entrada comenté que había conseguido conectar a internet usando el <a href="http://eciadsl.flashtux.org/">driver eciadsl</a> para un modem adsl por usb d-link dsl-200 b1 desde Ubuntu Feisty (v 7.04). Pués bien, a pesar de que si que conseguí conectar no lograba una conexión estable y además en muchas ocasiones no lograba conectar al primer intento. Esto, sumado a que no me adaptaba a Gnome y Ubuntu, acostumbrado desde hace unos 6 años a Mandrake/Mandriva y KDE hicieron que volviera a mi distro de toda la vida.</p>
+<p>Así que para completar la guía anterior voy a describir alguna de las particularidades para poder instalar el driver en la Mandriva (y alguna otra cosilla que se quedó en el tintero). Que conste que es mucho más fácil que con Ubuntu, lo único de lo que debemos preocuparnos si usamos la Mandriva 2007.0 es de instalar el kernel adecuado (no se cual trae de serie la 2007.1 o 2007 Spring). Mandriva 2007.0 viene por defecto con el kernel 2.6.17-5 que no funciona correctamente con el driver eciadsl. Debemos pasar a uno superior. (Preferiblemente de 2.6.17.8 a 2.6.17.14, porque a partir de 2.6.18 hace falta parchear el driver). Yo he instalado los paquetes <a href="http://rpm.pbone.net/index.php3/stat/4/idpl/4340893/com/kernel-2.6.17.14mdv-1-1mdv2007.0.i586.rpm.html">kernel-2.6.17.14mdv-1-1mdv2007.0.i586.rpm</a> y <a href="http://rpm.pbone.net/index.php3/stat/4/idpl/4340915/com/kernel-source-2.6.17.14mdv-1-1mdv2007.0.i586.rpm.html">kernel-source-2.6.17.14mdv-1-1mdv2007.0.i586.rpm</a>. Con este kernel la versión eciadsl-usermode-0.11.tar.gz del driver sin ningún parche me funciona de fábula. Atención a bajarse los paquetes que pongan mdv2007.0 o mdv2007.1 según si tenemos la Mandriva 2007 normal o la Mandriva 2007 Spring. Para buscar paquetes en rpm yo suelo usar la página es http://rpm.pbone.net (en concreto para este caso podemos usar la opción 3 y buscar por kernel-2.6.17*mdv* o algo parecido)</p>
+<p>Una vez hayamos descargado el kernel y el kernel-source con hacer doble clik sobre ellos y darle siempre a aceptar deberían instalarse correctamente. Después añadimos la línea <span style="font-style: italic">dabusb</span> a <span style="font-style: italic">/etc/hotplug/blacklist</span> y reiniciamos. Descomprimimos el driver en una carpeta, lo compilamos y lo instalamos como root (<span style="font-style: italic">./configure &amp;&amp; make &amp;&amp; make install)</span>. A continuación descomprimimos el archivo con los ficheros .bin en <span style="font-style: italic">/etc/eciadsl</span>. Para configurar el driver (siempre como root) usamos el comando <span style="font-style: italic">eciadsl-config-tk</span>.</p>
+<p>Las opciones que yo uso usando como proveedor ONO son las siguientes:<br />
+<span style="font-weight: bold"></span></p>
+<blockquote>
+<p><span style="font-size:85%"><span style="font-weight: bold">Fichero de Sincronización:</span> gs7470_synch04.bin<br />
+<span style="font-weight: bold">PPP Mode:</span> VCM_RFC2364<br />
+<span style="font-weight: bold">VPI:</span>8 <span style="font-weight: bold">VCI:</span>35<br />
+<span style="font-weight: bold">Provider DNS:</span> ES.Auna</span></p>
+</blockquote>
+<p>A continuación voy a comentar algunas dudas sueltas que he visto que salen en los foros sobre estos temas.</p>
+<ul>
+<li>A pesar de que en la herramienta para configurar el hardware de Mandriva aparezca una entrada que identifique el dispositivo USB como un modem no significa que pueda configurarse desde allí.</li>
+<li>En la documentación de la página de eciadsl da la impresión de que al encender el ordenador no debe haber ninguna luz encendida en el modem. En mi modem siempre hay una luz encendida y conecto sin problemas.</li>
+<li>Otros ficheros de sincronización que creo que van bien para mi son: gs7470_synch06.bin, gs7470_synch01a.bin y gs7470_synch18.bin</li>
+<li>Si notas que las páginas web cargan muy despacio aunque luego las descargas van a velocidad normal es probable que sea un problema con los servidores DNS. Puedes copiar la dirección ip primaria y secundaria de la configuración que uses en windows o tomarlas por ejemplo de la página <a href="http://www.opendns.com/">OpenDNS.</a><br />
+   Una vez anotadas esas dos ips, puedes ejecutar de nuevo el comando <span style="font-style: italic">eciadsl-config-tk</span> e introducirlas a mano seleccionando <span style="font-style: italic">other</span> en <span style="font-style: italic">provider dns</span>. Aunque yo creo que es mejor editar el fichero <span style="font-style: italic">/etc/resolv.conf</span> comentar todas las lineas que aparezcan (poniendo el síbolo # al principio de cada línea) y añadir dos lineas al estilo<blockquote>
+<p>nameserver ip1<br />
+nameserver ip2</p>
+</blockquote>
+</li>
+<li>Si aparece un error como <span style="font-style: italic">nice: pppd: No existe el fichero o el directorio</span> en el 4 punto <span style="font-style: italic">[EciAdsl 4/5] Connecting to provider…</span> es que no tenemos instalado el paquete ppp. Para ello vamos <span style="font-style: italic">Sistema -&gt; Confiración -&gt; Configurar su computadora -&gt; Instalar sofware.</span>Buscamos «ppp» en la casilla de busca e instalamos los paquetes <span style="font-style: italic">ppp, ppp-pppoatm</span>. (Según que proveedor tengamos puede ser necesario instalar también los paquetes <span style="font-style: italic">ppp-pppoe</span> y <span style="font-style: italic">rp-pppoe</span>). En algún momento del proceso nos pedirán que introducizcamos el DVD de instalación de Mandriva.</li>
+<li>Si todo parece ir bien pero cuando ejecutamos eciadsl-start se queda colgado en el punto 4 [EciAdsl 4/5] Connecting to provider, podemos pulsar Ctrl+Z y después teclear el comando bg (o killall -9 eciadsl-start si bg no funciona) Con esto debería conectar. Tener en cuenta que esto generará ficheros basura de nombre core en el directorio /root que debemos borrar periodicamente.</li>
+</ul>
+<div style="text-align: justify">Hay un [hilo del foro](http://eciadsl.flashtux.org/forum/viewtopic.php?t=3152) en el que hablan de ello. A mi me ha funcionado el editar el archivo /usr/local/bin/eciadsl-start, buscar la línea que pone <span style="font-style: italic">nice –20 pppd call adsl updetach</span> (es la línea 546), borrarla y añadir estas dos: > pppd unit 1 call adsl  
+> pppd unit 0 call adsl updetach
+
+7. Algunos comando útiles para saber los módulos que tenemos cargados y los dispositivos usb conectados: lsmod, dmesg | grep usb, lsusb
+   A continuación algunos enlaces que pueden resultar útiles:
+
+</div>
+<ul>
+<li><a href="http://www.dlink.com.au/tech/#d">Soporte D-link DSL-200</a></li>
+<li>FTP con cosas del DSL-200: ftp://ftp.dlink.it/Adsl/Dsl-200-B1/</li>
+<li>Página de otro <a href="http://atm.eagle-usb.org/wakka.php">eagle-usb</a></li>
+<li><a href="http://wiki.bandaancha.st/C%C3%B3mo_elegir_las_DNS">Como Elegir las DNS</a></li>
+<li><a href="http://www.bandaancha.st/foros.php?temid=360314">Drivers y tutoriales para modems ADSL con conexión USB</a> Es bastante antiguo pero igual se saco algo en claro.</li>
+<li><a href="http://www.adslayuda.com/Generico-datosdeconexion.html">Datos de conexión de distintos proveedores</a><br />
+    Este <a href="http://www.patriziobassi.it/blight/index.php?showtopic=94&amp;hl=">enlace</a> y las preguntas <a href="http://eciadsl.flashtux.org/faq.php?faq_lang=es#q5.0">5.0</a> y <a href="http://eciadsl.flashtux.org/faq.php?faq_lang=es#q5.12">5.12</a> del FAQ hablan de como conectar al inicio o sin tener que introducir la clave de root.</li>
+</ul>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1172,40 +1240,6 @@ La clave que nos hayan dado. (si no sabemos alguno de estos tendremos que llamar
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2007-07-02 00:00:00+00:00">2 de julio de 2007</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="cronica-un-mundo-desigual-ii"><a class="toclink" href="../../2007/07/02/cronica-un-mundo-desigual-ii/">Crónica: Un mundo desigual (II)</a></h2>
-<p>.flickr-photo { border: solid 2px #000000; }</p>
-<p>La primera ponencia del tercer día del curso <a href="http://galicia.isf.es/unmundodesigual">Un mundo desigual</a> corrió a cargo de Lara Fernández, socia de <a href="http://galicia.isf.es">ESF</a> y participante en uno de los proyectos de conocimiento de la realidad, a través del cual estuvo dos meses colaborando en un proyecto en Perú. Se trataba de acercar al público asistente la realidad de sudamérica y en concreto de Perú. Aviso de nuevo que esta es mi propia interpretación de las palabras del ponente y no tiene porque coincidir con lo que dijo.</p>
-<div style="text-align: center">[![Mapa de conflictos](http://farm2.static.flickr.com/1132/695376447_e6fecdce2e.jpg)](http://www.flickr.com/photos/7332576@N03/695376447/ "IDH 2006") </div>
-<p>Como se puede ver en el mapa en Sudamérica existen relativamente pocos conflictos comparados con otras zonas como África.</p>
-<div style="text-align: center">[![Mapa IDH 2006](http://farm2.static.flickr.com/1052/693011453_a20385fbca.jpg)](http://www.flickr.com/photos/7332576@N03/693011453/ "IDH 2006") </div>
-<p>Los índices que se suelen emplear para entender en términos macroscópicos el estado de desarrollo de un país o región son el <a href="http://es.wikipedia.org/wiki/%C3%8Dndice_de_Desarrollo_Humano">Índice de Desarrollo Humano (IDH)</a> y el Índice de Gini. El IDH pondera diversos aspectos como educación, salud y educación para obtener una medida del desarrollo de un país (El IDH de España es 0.938). El <a>Índice de Gini</a> es una medida de la desigualdad existente, en el mapa se representa la desigualdad de ingresos entre los habitantes de un país.</p>
-<div style="text-align: center">[![Mapa Coeficiente de Gini](http://farm2.static.flickr.com/1335/694551931_cbad606764.jpg)](http://www.flickr.com/photos/7332576@N03/694551931/ "IDH 2006") </div>
-<p>De los mapas observamos que en Sudamérica no hay una situación tan negativa en cuanto al desarrollo como en África pero si existen grandes desigualdades en la distribución de la riqueza.</p>
-<p>Lara continúa la charla hablando de la historia y cultura de Perú. En Perú no se conservan demasiados rasgos de las culturas preincas, las mayores yacimientos arqueológicos como el Machu Pichu pertencen a la cultura Inca. En las ciudades quedan pocos vestigios incas, en la mayoría de ellas predomina la cultura colonial. Es significativo que en practicamente toda ciudad o pueblo inca exista una plaza de armas.</p>
-<p>Continuando con la idea de la desigualdad, nos presenta fotos de Lima. Un champú en un supermercado del centro puede costar 3€, mientras que una comida en las afueras 1€. Existe una situación de descompensación muy grande.</p>
-<p>Una de las cosas que llama la atención es la existencia de tabús muy fuertes, por ejemplo los niños y niñas no se mezclan apenas y a la salida del colegio se sientan separados.</p>
-<p>Perú arrastra una historia triste en cuanto a política. Sendero Luminoso nació como un partido comunista que defendía al proletariado y a los indígenas y acabó convertido en un grupo terrorista que mataba a las gentes que decía proteger. Bajo el mandato de Fujimori, para acabar con Sendero Luminoso se cometieron también muchos asesinatos acusando a la gente de colaboracionista. Todavía se puede observar en la gente el miedo a la vuelta de Sendero Luminoso y la radicalidad de algunos partidos a veces se observa con mucha desconfianza y miedo. Todo esto genera un clima de desconfianza en la política, Toledo por ejemplo, firmó el Tratado de Libre Comercio estando de presidente en funciones, se dice que esto fue la causa de que perdiera las elecciones.</p>
-<p>Pasamos a hablar luego de la cultura andina y Cajamarca. Una de las cosas que llaman la atención es que no existe ninguna conciencia medioambiental, la basura se tira directamente al suelo. En estas zonas deberiamos hacer distinciones por altitud, a menos de 1800 metros hay muchos recursos, mientras que por encima de los 4000 es un desierto.</p>
-<p>Lara proporciona algunos datos más en Perú el 17% de la población no tiene acceso a agua potable, pero en el rural este porcentaje asciende 37%. Además se calcula que de los que tienen acceso al agua sólo un 37% tiene agua en casa.</p>
-<p>Lara remarca las violaciones de derechos que se producen en Perú. La minera de oro más grande del mundo se encuentra a un par de km de Cajamarca. Hay muchos conflictos porque la mina extiende su territorio haciendo prospecciones para buscar nuevas vetas y esto contamina el agua. Los campesinos se revelan y la única medida de presión que pueden ejercer es tomar las carreteras para impedir el paso a los camiones de la mina. La minera emplea entonces guardias armados para desalojarlos por la fuerza y esto crea muchos y peligrosos enfrentamientos.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1213,7 +1247,7 @@ La clave que nos hayan dado. (si no sabemos alguno de estos tendremos que llamar
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../37/">37</a> <a class="md-pagination__link" href="../38/">38</a> <span class="md-pagination__current">39</span> <a class="md-pagination__link" href="../40/">40</a> <a class="md-pagination__link" href="../41/">41</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../37/">37</a> <a class="md-pagination__link" href="../38/">38</a> <span class="md-pagination__current">39</span> <a class="md-pagination__link" href="../40/">40</a> <a class="md-pagination__link" href="../41/">41</a> <a class="md-pagination__link" href="../42/">42</a>
 </nav>
         
       

@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Fri, 20 Feb 2026 16:25:10 -0000</pubDate>
-    <lastBuildDate>Fri, 20 Feb 2026 16:25:10 -0000</lastBuildDate>
+    <pubDate>Sat, 28 Feb 2026 15:43:27 -0000</pubDate>
+    <lastBuildDate>Sat, 28 Feb 2026 15:43:27 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -26,12 +26,56 @@
     
     
     <item>
+      <title>Lint y Format para Markdown (rumdl)</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;lint-y-format-para-markdown-rumdl&#34;&gt;Lint y Format para Markdown (rumdl)&lt;/h1&gt;
+&lt;p&gt;Después del &lt;a href=&#34;../../20/lint-format-markdown/&#34;&gt;post anterior&lt;/a&gt; gracias a &lt;a href=&#34;https://www.galiglobal.com/&#34;&gt;Antón&lt;/a&gt; descubro una nueva herramienta&lt;/p&gt;
+&lt;h2 id=&#34;rumdl&#34;&gt;rumdl&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/rvben/rumdl&#34;&gt;rumdl&lt;/a&gt; es un formatter y linter de Markdown escrito en Rust siguiendo las ideas de &lt;code&gt;ruff&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;El primer commit es de Febrero de 2025, así que es un proyecto muy reciente con unas 800 estrellas en este momento. Parecen pocas pero para una herramienta que sigue siendo e nicho no está mal. Markdownlint tiene 2k y mdformat 600. Además ha sido adoptado por proyectos como lucene, ULauncher o pyo3.&lt;/p&gt;
+&lt;p&gt;No usaría este proyecto si fuera una dependencia &lt;em&gt;core&lt;/em&gt; porqué para mi tiene varios &lt;em&gt;red flags&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;El proyecto tiene apenas un año y muchas features. Tiene pinta de haber mucho LLM y eso necesita mucha destreza para que el mantenimiento no se complique.&lt;/li&gt;
+&lt;li&gt;Tiene 25 &lt;em&gt;contributors&lt;/em&gt;, pero el 98% de los commits son de la misma persona.&lt;/li&gt;
+&lt;li&gt;El README (que es gigante) está desincronizado con la documentación. Y la web no está enlazada desde el repositorio.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;La herramienta promete mucho y, cumple más requisitos que los herramientas analizados en el anterior post:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Escrito en rust, es un binario instalable por todos los métodos habituales, uv, npm, curl, ...&lt;/li&gt;
+&lt;li&gt;Paridad de reglas con Markdownlint (con algunas extra) y opción para importar la configuración&lt;/li&gt;
+&lt;li&gt;Formatter y Linter en la misma herramienta, en un estilo muy &lt;code&gt;ruff&lt;/code&gt;, parámetros parecidos en la CLI, el formato de configuración, ... lo que se agradece.&lt;/li&gt;
+&lt;li&gt;Soporta por defecto varios formatos de Markdown&lt;/li&gt;
+&lt;li&gt;Plugins para los editores habituales (LSP en el propio binario) e integración con pre-commit y sistemas varios de CI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pero, a poco que la he probado hay muchos detalles que no encajan bien con mi forma de trabajo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rvben/rumdl/issues/472&#34;&gt;Es muy agresiva en los &lt;code&gt;auto-fix&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;La configuración de las reglas se vuelve complicada. Por ejemplo hay varios bugs en torno a la regla &lt;a href=&#34;https://rumdl.dev/md022/&#34;&gt;blanks-around-headings&lt;/a&gt; y después de varias pruebas no he conseguido que simplemente me elimina todas las líneas en blanco antes el &lt;code&gt;H1&lt;/code&gt; que prettier hace sin problemas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;rumld&lt;/code&gt; es una herramienta con potencial. Merece la pena probarla y ver si encaja, pero en mi caso, esperaré un par de meses antes de volver a probarla.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/02/28/lint-format-rumdl/</link>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/02/28/lint-format-rumdl/</guid>
+      
+    </item>
+    
+    <item>
       <title>Herramientas de Lint y Format para Markdown</title>
       
       
       
       
       <description>&lt;h1 id=&#34;herramientas-de-lint-y-format-para-markdown&#34;&gt;Herramientas de Lint y Format para Markdown&lt;/h1&gt;
+&lt;div class=&#34;admonition note&#34;&gt;
+&lt;p class=&#34;admonition-title&#34;&gt;Note&lt;/p&gt;
+&lt;p&gt;No te pierdas la continuación de este artículo &lt;a href=&#34;../../28/lint-format-rumdl/&#34;&gt;hablando de la herramienta rumdl&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Llevo bastante tiempo usando &lt;code&gt;markdownlint-cli2&lt;/code&gt; y &lt;code&gt;prettier&lt;/code&gt; para linting y formatting de Markdown, pero no tenía un análisis de las herramientas disponibles, para ver si había mejores opciones.&lt;/p&gt;
 &lt;h2 id=&#34;requisitos-deseables&#34;&gt;Requisitos Deseables&lt;/h2&gt;
 &lt;ul&gt;
@@ -756,7 +800,7 @@
 &lt;p&gt;En general este sería el estilo más compatible que se podría usar:&lt;/p&gt;
 &lt;div class=&#34;language-markdown highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-0-1&#34;&gt;&lt;a id=&#34;__codelineno-0-1&#34; name=&#34;__codelineno-0-1&#34; href=&#34;#__codelineno-0-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gh&#34;&gt;# Ejemplo de texto&lt;/span&gt;
 &lt;/span&gt;&lt;span id=&#34;__span-0-2&#34;&gt;&lt;a id=&#34;__codelineno-0-2&#34; name=&#34;__codelineno-0-2&#34; href=&#34;#__codelineno-0-2&#34;&gt;&lt;/a&gt;
-&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;Un texto con &lt;span class=&#34;ge&#34;&gt;_italic emphasis_&lt;/span&gt; y también &lt;span class=&#34;gs&#34;&gt;**bold emphasis**&lt;/span&gt;, en el que tenemos:
+&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;Un texto con &lt;span class=&#34;ge&#34;&gt;*italic emphasis*&lt;/span&gt; y también &lt;span class=&#34;gs&#34;&gt;**bold emphasis**&lt;/span&gt;, en el que tenemos:
 &lt;/span&gt;&lt;span id=&#34;__span-0-4&#34;&gt;&lt;a id=&#34;__codelineno-0-4&#34; name=&#34;__codelineno-0-4&#34; href=&#34;#__codelineno-0-4&#34;&gt;&lt;/a&gt;
 &lt;/span&gt;&lt;span id=&#34;__span-0-5&#34;&gt;&lt;a id=&#34;__codelineno-0-5&#34; name=&#34;__codelineno-0-5&#34; href=&#34;#__codelineno-0-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Una lista desordenada
 &lt;/span&gt;&lt;span id=&#34;__span-0-6&#34;&gt;&lt;a id=&#34;__codelineno-0-6&#34; name=&#34;__codelineno-0-6&#34; href=&#34;#__codelineno-0-6&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Con sólo dos items
@@ -1457,22 +1501,6 @@ sudo usermod -a -G audio pulse&lt;/p&gt;
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2018/06/10/cifrar-disco-duro-externo-en-ubuntu/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Migrar a GitLab manteniendo mirrors en GitHub</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;migrar-a-gitlab-manteniendo-mirrors-en-github&#34;&gt;Migrar a GitLab manteniendo mirrors en GitHub&lt;/h1&gt;
-&lt;p&gt;En &lt;a href=&#34;http://icarto.es&#34;&gt;iCarto&lt;/a&gt; habíamos planificado hace un tiempo migrar nuestra infraestructura de desarrollo (repositorios de código principalmente) a GitLab. Estos días hemos terminado la migración y he aprovechado para escribir un artículo de &lt;a href=&#34;http://icarto.es/2018/06/migrar-a-gitlab-manteniendo-mirrors-en-github/&#34;&gt;como se pueden mantener mirrors de los repos de gitlab en github&lt;/a&gt; a través de la propia plataforma o con un servidor intermedio.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2018/06/09/migrar-a-gitlab-manteniendo-mirrors-en-github/</link>
-      <pubDate>Sat, 09 Jun 2018 00:00:00 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2018/06/09/migrar-a-gitlab-manteniendo-mirrors-en-github/</guid>
       
     </item>
     

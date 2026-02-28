@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Fri, 20 Feb 2026 16:25:10 -0000</pubDate>
-    <lastBuildDate>Fri, 20 Feb 2026 16:25:10 -0000</lastBuildDate>
+    <pubDate>Sat, 28 Feb 2026 15:43:27 -0000</pubDate>
+    <lastBuildDate>Sat, 28 Feb 2026 15:43:27 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -26,12 +26,56 @@
     
     
     <item>
+      <title>Lint y Format para Markdown (rumdl)</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;lint-y-format-para-markdown-rumdl&#34;&gt;Lint y Format para Markdown (rumdl)&lt;/h1&gt;
+&lt;p&gt;Después del &lt;a href=&#34;../../20/lint-format-markdown/&#34;&gt;post anterior&lt;/a&gt; gracias a &lt;a href=&#34;https://www.galiglobal.com/&#34;&gt;Antón&lt;/a&gt; descubro una nueva herramienta&lt;/p&gt;
+&lt;h2 id=&#34;rumdl&#34;&gt;rumdl&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/rvben/rumdl&#34;&gt;rumdl&lt;/a&gt; es un formatter y linter de Markdown escrito en Rust siguiendo las ideas de &lt;code&gt;ruff&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;El primer commit es de Febrero de 2025, así que es un proyecto muy reciente con unas 800 estrellas en este momento. Parecen pocas pero para una herramienta que sigue siendo e nicho no está mal. Markdownlint tiene 2k y mdformat 600. Además ha sido adoptado por proyectos como lucene, ULauncher o pyo3.&lt;/p&gt;
+&lt;p&gt;No usaría este proyecto si fuera una dependencia &lt;em&gt;core&lt;/em&gt; porqué para mi tiene varios &lt;em&gt;red flags&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;El proyecto tiene apenas un año y muchas features. Tiene pinta de haber mucho LLM y eso necesita mucha destreza para que el mantenimiento no se complique.&lt;/li&gt;
+&lt;li&gt;Tiene 25 &lt;em&gt;contributors&lt;/em&gt;, pero el 98% de los commits son de la misma persona.&lt;/li&gt;
+&lt;li&gt;El README (que es gigante) está desincronizado con la documentación. Y la web no está enlazada desde el repositorio.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;La herramienta promete mucho y, cumple más requisitos que los herramientas analizados en el anterior post:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Escrito en rust, es un binario instalable por todos los métodos habituales, uv, npm, curl, ...&lt;/li&gt;
+&lt;li&gt;Paridad de reglas con Markdownlint (con algunas extra) y opción para importar la configuración&lt;/li&gt;
+&lt;li&gt;Formatter y Linter en la misma herramienta, en un estilo muy &lt;code&gt;ruff&lt;/code&gt;, parámetros parecidos en la CLI, el formato de configuración, ... lo que se agradece.&lt;/li&gt;
+&lt;li&gt;Soporta por defecto varios formatos de Markdown&lt;/li&gt;
+&lt;li&gt;Plugins para los editores habituales (LSP en el propio binario) e integración con pre-commit y sistemas varios de CI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pero, a poco que la he probado hay muchos detalles que no encajan bien con mi forma de trabajo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rvben/rumdl/issues/472&#34;&gt;Es muy agresiva en los &lt;code&gt;auto-fix&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;La configuración de las reglas se vuelve complicada. Por ejemplo hay varios bugs en torno a la regla &lt;a href=&#34;https://rumdl.dev/md022/&#34;&gt;blanks-around-headings&lt;/a&gt; y después de varias pruebas no he conseguido que simplemente me elimina todas las líneas en blanco antes el &lt;code&gt;H1&lt;/code&gt; que prettier hace sin problemas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;rumld&lt;/code&gt; es una herramienta con potencial. Merece la pena probarla y ver si encaja, pero en mi caso, esperaré un par de meses antes de volver a probarla.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/02/28/lint-format-rumdl/</link>
+      <pubDate>Sat, 28 Feb 2026 15:43:28 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/02/28/lint-format-rumdl/</guid>
+      
+    </item>
+    
+    <item>
       <title>Herramientas de Lint y Format para Markdown</title>
       
       
       
       
       <description>&lt;h1 id=&#34;herramientas-de-lint-y-format-para-markdown&#34;&gt;Herramientas de Lint y Format para Markdown&lt;/h1&gt;
+&lt;div class=&#34;admonition note&#34;&gt;
+&lt;p class=&#34;admonition-title&#34;&gt;Note&lt;/p&gt;
+&lt;p&gt;No te pierdas la continuación de este artículo &lt;a href=&#34;../../28/lint-format-rumdl/&#34;&gt;hablando de la herramienta rumdl&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Llevo bastante tiempo usando &lt;code&gt;markdownlint-cli2&lt;/code&gt; y &lt;code&gt;prettier&lt;/code&gt; para linting y formatting de Markdown, pero no tenía un análisis de las herramientas disponibles, para ver si había mejores opciones.&lt;/p&gt;
 &lt;h2 id=&#34;requisitos-deseables&#34;&gt;Requisitos Deseables&lt;/h2&gt;
 &lt;ul&gt;
@@ -177,10 +221,185 @@
 &lt;p&gt;Prettier y Markdownlint son las mejores opciones en este momento. Habrá que estar atentos a la evolución de otras herramientas cómo dprint, biome u &lt;a href=&#34;https://oxc.rs/&#34;&gt;Oxc&lt;/a&gt;, y también a lo que salga de Zensical.&lt;/p&gt;
 &lt;p&gt;Si manipular el Markdown mediante línea de comandos también es de interés remark es una opción a estudiar.&lt;/p&gt;</description>
       <link>https://franciscopuga.es/blog/2026/02/20/lint-format-markdown/</link>
-      <pubDate>Fri, 20 Feb 2026 16:25:13 +0000</pubDate>
+      <pubDate>Fri, 20 Feb 2026 17:30:10 +0000</pubDate>
       <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2026/02/20/lint-format-markdown/</guid>
+      
+    </item>
+    
+    <item>
+      <title>IDE para desarrollo web en cliente</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;ide-para-desarrollo-web-en-cliente&#34;&gt;IDE para desarrollo web en cliente&lt;/h1&gt;
+&lt;p&gt;Estoy buscando un &lt;strong&gt;IDE&lt;/strong&gt; (o editor de código) para desarrollo web centrado en el cliente (&lt;strong&gt;JavaScript, HTML y CSS&lt;/strong&gt;). Tras &lt;a href=&#34;https://duckduckgo.com/?q=IDE+javascript&#34;&gt;duckduckgodear&lt;/a&gt; un poco ya tengo una lista de los entornos que &lt;del&gt;voy a&lt;/del&gt; me gustaría probar, no necesariamente en este orden:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.jetbrains.com/webstorm/&#34;&gt;Webstorm&lt;/a&gt;. De jetbrains. No es libre ni gratuito pero sale muy bien parado en las comparativas.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt;. Tampoco libre ni gratuito, pero al igual que el anterior muy bien valorado.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.eclipse.org/&#34;&gt;Eclipse&lt;/a&gt;. Con &lt;a href=&#34;http://www.eclipse.org/webtools/jsdt/&#34;&gt;plugins para desarrollo web&lt;/a&gt; o la versión &lt;a href=&#34;http://www.eclipse.org/downloads/packages/eclipse-ide-javascript-web-developers/heliossr1&#34;&gt;pre-empaquetada&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.gnu.org/software/emacs/&#34;&gt;Emacs&lt;/a&gt;. Que nunca decepciona cuando inviertes suficiente tiempo en él.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.aptana.com/&#34;&gt;Aptana&lt;/a&gt;. Lo he estado usando para python y va aceptable.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://netbeans.org/&#34;&gt;NetBeans&lt;/a&gt;. A pesar de que nunca lo he usado tiene &lt;a href=&#34;http://stackoverflow.com/a/4148475/930271&#34;&gt;críticas entusiastas&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://brackets.io/&#34;&gt;Brackets&lt;/a&gt;. Un editor libre creado por Adobe con muy buena pinta. (actualizado 26/Junio/2014)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://atom.io/&#34;&gt;Atom&lt;/a&gt;. Un editor libre creado por GitHub, basado en nodejs. También con muy buena pinta, pero por ahora sin binarios para Linux. (actualizado 26/Junio/2014)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://hacks.mozilla.org/2014/06/webide-lands-in-nightly/&#34;&gt;Mozilla Web IDE&lt;/a&gt;. Todavía parece bastante verde, y no tengo claro que sea lo que busco, pero parece que Mozilla ha intentando montar un IDE directamente en Firefox. El target principal de aplicaciones es su sistema para moviles FirefoxOS pero debería valer para la web.(actualizado 26/Junio/2014)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Por ahora voy a empezar con Aptana e iré contando. ¿Vosotros que usais?&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2013/11/13/ide-desarrollo-web-cliente/</link>
+      <pubDate>Fri, 20 Feb 2026 17:29:35 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2013/11/13/ide-desarrollo-web-cliente/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Aptana. Un IDE para desarrollo web</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;aptana-un-ide-para-desarrollo-web&#34;&gt;Aptana. Un IDE para desarrollo web&lt;/h1&gt;
+&lt;p&gt;Hace unos meses escribía en el blog que estaba &lt;a href=&#34;http://conocimientoabierto.es/ide-desarrollo-web-cliente/604/&#34;&gt;buscando un IDE para desarrollo web el cliente&lt;/a&gt;. Al final no me he dedicado tanto a web-cliente como pensaba y he estado jugando más en la parte de backend sobre todo con nodejs.&lt;/p&gt;
+&lt;p&gt;Dado que es el primer IDE (para web) que pruebo y tampoco tengo gran experiencia en desarrollo web me resulta difícil hacer una buena revisión, pero aquí van algunos pros y contras de programar Javascript en &lt;a href=&#34;http://aptana.com/&#34;&gt;Aptana&lt;/a&gt; desde el punto de vista de alguien que viene de Java+Eclipse.&lt;/p&gt;
+&lt;h2 id=&#34;contras&#34;&gt;Contras&lt;/h2&gt;
+&lt;p&gt;* El debugger de Apata es &lt;a href=&#34;http://stackoverflow.com/questions/11532388/socket-connection-error-when-debugging-php-js-on-aptana-3&#34;&gt;incompatible con la última versión de firebug&lt;/a&gt; por lo que debes instalar una más antigua. Tuve unos cuantos problemas intentando instalarlo y no he sido capaz de hacer un cambio en el código y recargar la página sin tener que relanzar todo firefox a través del debugger. En resumen el debugger no he sido capaz de hacerlo funcionar de una forma cómoda y he vuelto a firebug.&lt;br /&gt;
+* El preview de la página cuando está puesto el código del google analytics hace que se cierre aptana.&lt;br /&gt;
+* Para que el &lt;a href=&#34;https://wiki.appcelerator.org/display/guides2/About+Content+Assist&#34;&gt;Code Assist&lt;/a&gt; funcione correctamente, hay que tener unos ficheros de documentación en un formato especial (ScriptDoc), y practicamente ninguna librería los tiene.&lt;br /&gt;
+* En el «Save Action» sólo se pueden quitar los trailing spaces, estaría bien que permitiera al menos reformatear el código&lt;br /&gt;
+* No es capaz de navegar por ocurrencias correctamente. Si marco una variable no soy capaz de moverme entre las apariciones de esa variable (Ctrl + .) como en java. Tampoco es capaz de encontrar desde donde se llama a una función (aunque este es un problema genérico de los lenguajes dinámicos). Aquí hay un &lt;a href=&#34;https://wiki.appcelerator.org/display/tis/Editor+Feature+Matrix&#34;&gt;listado de funcionalidades&lt;/a&gt; aunque no está del todo actualizado. No he probado a documentar las funciones con ScriptDoc, tal vez así el editor sea más inteligente.&lt;br /&gt;
+* La documentación es escasa&lt;br /&gt;
+* Así como cuando programo en Java todo el equipo usa Eclipse, con web no pasa lo mismo. Así que la idea de tener que crear workspaces y proyectos dentro del workspace llenos de directorios de configuración ocultos me resulta conceptualmente incómodo.&lt;/p&gt;
+&lt;h2 id=&#34;pros&#34;&gt;Pros&lt;/h2&gt;
+&lt;p&gt;* Me gusta la consola interactiva. Puedo probar código sin tener que abrir la consola javascript del navegador.&lt;br /&gt;
+* Me gusta el Content Assist de html, creo que funciona bastante bien.&lt;br /&gt;
+* Al margen del problema con el debugger, me gusta la funcionalidad de preview ( https://wiki.appcelerator.org/display/tis/Side-by-Side+Previewing ). Me permite poner en dos pestañas paralelas mi código (html, css, js) y el navegador empotrado de aptana, al salvar uno de los ficheros la previsualización se recarga automáticamente. Está bien para ir viendo como queda. Una pena que no haya encontrado forma de debuguear desde el preview.&lt;br /&gt;
+* Me gusta el «Go To Declaration (F3)», aunque se equivoca de vez en cuando, si por ejemplo has estado haciendo pruebas en otro fichero, poniéndolo a las funciones el mismo nombre puede saltar a la que no es.&lt;br /&gt;
+* Me gusta la buena integración (heredada de eclipse) con el escritorio. Poder copiar un fichero en el explorador de archivos y pegarlo en una vista de aptana, o copiar un snippet de código de una página web y pegarlo en Aptana creando automáticamente un nuevo fichero&lt;br /&gt;
+* El sistema de &lt;a href=&#34;https://wiki.appcelerator.org/display/guides2/Templates&#34;&gt;templates&lt;/a&gt; para no arrancar proyectos como una página en blanco funciona bien.&lt;br /&gt;
+* Es relativamente fácil, extender la funcionalidad a través de &lt;a href=&#34;https://wiki.appcelerator.org/display/guides2/Snippets&#34;&gt;Snippets y &lt;/a&gt;&lt;a href=&#34;https://wiki.appcelerator.org/display/tis/Rubles&#34;&gt;Rubles&lt;/a&gt;. Aunque los Rubles hay que escribirlos en Ruby&lt;/p&gt;
+&lt;h2 id=&#34;enlaces-de-interes-sobre-aptana&#34;&gt;Enlaces de interés sobre aptana&lt;/h2&gt;
+&lt;p&gt;* Una &lt;a href=&#34;http://www.htmlgoodies.com/beyond/webmaster/toolbox/review-of-aptana-studio-3.html#fbid=dy5qeBG2S9b&#34;&gt;revisión genérica de Aptana&lt;/a&gt;.&lt;br /&gt;
+* Documentación sobre &lt;a href=&#34;https://wiki.appcelerator.org/display/guides2/HTML+Development&#34;&gt;html&lt;/a&gt;, &lt;a href=&#34;https://wiki.appcelerator.org/display/guides2/CSS+Development&#34;&gt;css&lt;/a&gt;, y &lt;a href=&#34;https://wiki.appcelerator.org/display/tis/JavaScript+Development&#34;&gt;javascript&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;Me da la impresión de que la mayoría de opiniones favorables vienen de gente que lo uso en su día cuando no había opciones libres/gratuitas mejores. Además da la impresión de que el proyecto está muerto desde que lo compró Appcelerator.&lt;/p&gt;
+&lt;p&gt;Creo que el caso de uso más favorable para Aptana es que ya estés usando el IDE en el backend (ruby, php, python) y sólo toques ocasionalmente el cliente por lo que no te merece cambiar de entorno.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2014/06/26/aptana-ide-desarrollo-web/</link>
+      <pubDate>Fri, 20 Feb 2026 17:29:35 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2014/06/26/aptana-ide-desarrollo-web/</guid>
+      
+    </item>
+    
+    <item>
+      <title>DIY: Reparar el mando a distancia con papel albal</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;diy-reparar-el-mando-a-distancia-con-papel-albal&#34;&gt;DIY: Reparar el mando a distancia con papel albal&lt;/h1&gt;
+&lt;p&gt;Cuando el mando a distancia de la televisión tiene cierto uso no es raro que ciertos botones dejen de funcionar. Repararlo es más sencillo de lo que podría parecer.&lt;/p&gt;
+&lt;p&gt;La mayoría de teclados funcionan por el mismo principio. Un circuito impreso con una membrana por encima para cada tecla. En las membranas hay un conductor que al pulsar cierra el circuito produciendo una señal eléctrica que acaba enviando un código al receptor. A veces se introduce suciedad o se desgasta el conductor que cierra el circuito impidiendo que el botón funcione.&lt;/p&gt;
+&lt;p&gt;Para repararlo llega con abrir el mando a distancia e intentar limpiarlo o en caso de que no funcione usar papel albal (papel de aluminio). El papel albal es conductor, por tanto poniendo un pedacito con cuidado recubriendo la membrana estaremos «mejorando» la conductividad producida al pulsar la tecla.&lt;/p&gt;
+&lt;p&gt;Hay que tener cierto cuidado al abrir el mando, es fácil que el teclado se desalinee con el circuito impreso y al poner el albal. Sólo debe hacer contacto al pulsar la tecla, por lo que se puede usar una gotita de pegamento para pegarlo a la membrana.&lt;/p&gt;
+&lt;p&gt;Olvidé tomar fotos del proceso y con estos mandos de plástico abrir y cerrar a menudo no es buena idea pero &lt;a href=&#34;http://www.tuelectronica.es/tutoriales/reparacion/reparacion-mando-a-distancia.html&#34;&gt;en internet hay muchos ejemplos del paso a paso&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Antes de tirarte de cabeza a comprar un nuevo objeto porque tenga poco coste, recuerda &lt;a href=&#34;http://www.hablandodeciencia.com/articulos/2012/10/18/las-5-erres-reutilizar-reducir-reparar-reciclar-y-regular/&#34;&gt;la regla de las cinco erres&lt;/a&gt;.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2016/09/30/diy-reparar-mando-distancia-papel-albal/</link>
+      <pubDate>Fri, 20 Feb 2026 17:29:35 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2016/09/30/diy-reparar-mando-distancia-papel-albal/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Comprar un portátil para desarrollo en 2019</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;comprar-un-portatil-para-desarrollo-en-2019&#34;&gt;Comprar un portátil para desarrollo en 2019&lt;/h1&gt;
+&lt;p&gt;Toca cambiar de portátil. 8GB de RAM ya se quedan cortos. La patilla de la pantalla está dañada y no parece que vaya a aguantar mucho más. Y la batería con una vm, el ide y el navegador no dura mucho más de 1h.&lt;/p&gt;
+&lt;p&gt;Para situarnos el anterior comprado hace cuatro años era un &lt;a href=&#34;https://es.msi.com/Laptop/GE60-2PC-Apache/Overview&#34;&gt;MSI GE60 2PC Apache&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Micro &lt;a href=&#34;https://ark.intel.com/content/www/es/es/ark/products/78934/intel-core-i7-4720hq-processor-6m-cache-up-to-3-60-ghz.html&#34;&gt;i7-4720HQ&lt;/a&gt;. 2.60GHz de frecuencia base, hasta 3.60GHz con el Turboboost. 4 cores, 8 threads, 6MB de cache y un TDP de 47W.&lt;/li&gt;
+&lt;li&gt;8GB RAM SODIMM DDR3 a 1600 fabricada por Kingston. No se cual es la latencia.&lt;/li&gt;
+&lt;li&gt;Nvidia GeForce GTX 850M con 2MB RAM&lt;/li&gt;
+&lt;li&gt;Disco duro mecánico de 1TB a 7200rpm&lt;/li&gt;
+&lt;li&gt;Pantalla de 15.5 y resolución de 1920×1080 normalita&lt;/li&gt;
+&lt;li&gt;Wireless-AC 3160, b/g/n y bt 4.0&lt;/li&gt;
+&lt;li&gt;hdmi, vga. 2 puertos USB 2.0 y 2 puertos USB 3.0, además de jacks para salida y entrada de audio.&lt;/li&gt;
+&lt;li&gt;383 x 249 x 30 y 2.6kg de peso con batería&lt;/li&gt;
+&lt;li&gt;Batería de 6 celdas, 49Wh&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cuando lo compré escribí una &lt;a href=&#34;http://conocimientoabierto.es/buscando-portatil-programar/752/&#34;&gt;guía de compra de portátil&lt;/a&gt; que aunque desactualizada me sirve de base para buscar uno nuevo. En base al rendimiento actual los requisitos no han variado demasiado:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Todo lo importante debe funcionar al 100% con linux. Si no va la luz del teclado me da igual. Si deja de funcionar el wifi con cada actualización del kernel adios.&lt;/li&gt;
+&lt;li&gt;Mínimo 16GB de RAM&lt;/li&gt;
+&lt;li&gt;Un i7 o equivalente en AMD. Un vistazo rápido me dice que los i5-82xxu que se montan en este rango de precios no son mucho mejores que mi micro actual y no me interesa averiguar si con un i5 me llega.&lt;/li&gt;
+&lt;li&gt;Resolución pantalla mínima 1920 x 1080. Como la mayoría del tiempo uso una externa como principal no necesito que sea extraordinariamente buena pero no quiero quemarme los ojos así que será un plus interesante&lt;/li&gt;
+&lt;li&gt;Mínimo 1TB de disco&lt;/li&gt;
+&lt;li&gt;No tengo necesidad de gráfica dedicada pero prefiero que no me coma RAM extra&lt;/li&gt;
+&lt;li&gt;No lo quiero más grande ni pesado que el actual. A pesar de que el 85% del tiempo está apoyado en una mesa, el 15% restante de viajes en tren, reuniones y uno o dos viajes de trabajo al año hacen que prefiera uno más pequeño. Pero no voy a sacrificar más de 150€ o rendimiento por ello&lt;/li&gt;
+&lt;li&gt;Quiero un teclado «bueno» a pesar de que la mayor parte del tiempo use uno externo&lt;/li&gt;
+&lt;li&gt;No tengo demasiadas necesidades de conectividad y puertos, no necesito Bluetooth y me da igual que tenga salida VGA y lector de DVD. Estos detalles me ayudaran en la decisión final pero asumo que con el resto de características que busco las necesidades mínimas en este aspecto estarán cubiertas. &lt;em&gt;Update: Cuando revisé las opciones disponibles esto varió un poco, más en otro post&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;La marca no me preocupa. Hay demasiadas opiniones y experiencias particulares a favor y en contra de todas las marcas. Por experiencias cercanas doy puntos positivos a MSI y Slimbook y negativos a los HP y los Dell pero sólo en la clasificación final cuando haya dudas. No a priori. Y lo mismo con &lt;a href=&#34;http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/&#34;&gt;otras consideraciones como el uso de minerales de zonas de conflicto&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mi orquilla inicial es amplia y la reduciré a medida que investigue un poco. Empezaré por portátiles entre 900 y 1300€ con IVA. Una cantidad por la que se puede comprar algo aceptable para cuatro años si estás dispuesto a sacrificar alguna característica a cambio de precio como: batería, tamaño o potencia.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hay un par de puntos clave sobre los que tenía dudas al principio:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tamaño de la pantalla. Probablemnte la decisión más eliminadora a la hora de comprar el portátil. El de ahora es de 15.6 y para mi uso es cómodo. Pero siempre dudo con coger uno más pequeño. 14» sería perfecto. A los de 13» les tengo algo de manía. &lt;em&gt;Update: Al poco de empezar a buscar los de 14» quedaron prácticamente descartados porque no me interesaba tanto sacrificar rendimiento o precio a cambio de mejoras de tamaño y batería&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Con el disco duro también tengo dudas. De comprar unicamente un único disco magnético (HDD) tengo claro que sea de 7.200rpm. Una búsqueda rápida me dice que hay algún SSD de 1TB (lo ideal) a partir de 1.100€ pero en general suben bastante el precio. La opción de dos discos SSD + HDD puede ser buena pero me da que consume bastante batería y me puede fastidiar un poco mi organización actual de particiones, donde guardo las cosas cifrado y backups. &lt;em&gt;Update: Cerca de tomar la decisión final quedó claro que en ese rango de precios tengo que sacrificar mi organización actual.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Con esto en la cabeza preparo mi hoja de cálculo y la inicializo con un par de configuraciones de &lt;a href=&#34;https://slimbook.es/&#34;&gt;Slimbook&lt;/a&gt; que me servirán de referencia. Luego voy rellenando algunos datos principales y descartando algunos directamente a partir de la búsqueda en un par de páginas. Fundamentalmente:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;https://www.pccomponentes.com/&lt;/li&gt;
+&lt;li&gt;https://slimbook.es/&lt;/li&gt;
+&lt;li&gt;https://www.vantpc.es/&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.amazon.es/b?_encoding=UTF8&amp;amp;tag=conocimientoa-21&amp;amp;linkCode=ur2&amp;amp;linkId=36da4e949e420deafa18c8184e2926cd&amp;amp;camp=3638&amp;amp;creative=24630&amp;amp;node=683279031&#34;&gt;Amazon&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;y un vistazo rápido a:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;http://tiendas.mediamarkt.es/ordenadores-portatiles&lt;/li&gt;
+&lt;li&gt;https://www.worten.es/inicio/informatica/ordenadores/portatil.html&lt;/li&gt;
+&lt;li&gt;http://www.elcorteingles.es&lt;/li&gt;
+&lt;li&gt;https://www.dell.com/es-es&lt;/li&gt;
+&lt;li&gt;https://www.pcbox.com/&lt;/li&gt;
+&lt;li&gt;https://www.lenovo.com/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Si estás interesado en este tema puedes ver &lt;a href=&#34;http://conocimientoabierto.es/tag/comprar-portatil/&#34;&gt;otros artículos parecidos&lt;/a&gt; o seguir esta serie &lt;a href=&#34;http://conocimientoabierto.es/tag/comprar-portatil-2019/&#34;&gt;en esta etiqueta&lt;/a&gt;.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2019/05/13/comprar-portatil-desarrollo-2019/</link>
+      <pubDate>Fri, 20 Feb 2026 17:29:35 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2019/05/13/comprar-portatil-desarrollo-2019/</guid>
+      
+    </item>
+    
+    <item>
+      <title>De la imprenta a la red</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;de-la-imprenta-a-la-red&#34;&gt;De la imprenta a la red&lt;/h1&gt;
+&lt;div class=&#34;admonition quote&#34;&gt;
+&lt;p class=&#34;admonition-title&#34;&gt;&lt;a href=&#34;https://es.wikipedia.org/wiki/Luther_Blissett_(pseud%C3%B3nimo_colectivo)&#34;&gt;Luther Blissett&lt;/a&gt;. Q. Página 78.&lt;/p&gt;
+&lt;p&gt;Sobre todo lo alarma el hecho de que podáis disponer de una imprenta y de que vuestras palabras puedan llegar a los focos de la revuelta&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;En el siglo XVI una imprenta podía ser un instrumento de poder o de subversión en función de quien la poseyera. Con su aparición se rompía el monopolio de publicación ostentando por la iglesia hasta ese momento. Desde las imprentas no controladas por los poderes establecidos se editaban desde panfletos incendiarios a tratados teológicos que abogaban por el cambio y la Reforma.&lt;/p&gt;
+&lt;p&gt;La evolución que supuso la imprenta, importantísima en su momento, es sólo una pequeña modificación del modelo de comunicación. Se pasa de un monopolio informativo a un oligopolio a través del cual unos pocos líderes vierten sus ideas, pero la verticalidad del modelo se conserva. Las propuestas fluyen de arriba hacia abajo, de unos pocos-individuales a unos muchos-colectivos. De este modo, la única forma que tiene la mayoría de participar en la creación de la nueva sociedad es a través de las acciones de la colectividad y no a nivel particular, es decir, sus propias convicciones, sus diferencias individuales, sus matices de pensamiento no son integradas sino que se difuminan en el pensamiento colectivo guiado (creado) por los líderes sin posibilidad de ser incorporados a este.&lt;/p&gt;
+&lt;p&gt;A lo largo del tiempo, con la generalización de los medios de impresión (libros y periódicos) y la aparición de nuevos medios de comunicación (radio y televisión) se desemboca en un modelo descentralizado y competitivo pero que en el fondo sigue siendo vertical (aunque ya no oligopólico) . Aumentan las posibilidades de retroalimentación de ideas pero siguen siendo demasiados pocos los que disponen de los medios para generar contenido.&lt;/p&gt;
+&lt;p&gt;El cambio de paradigma no ha podido darse hasta hace poco. Me atrevería a decir que el inicio de este cambio todavía inconcluso es el nacimiento de la llamada web 2.0.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2007/05/17/de-la-imprenta-a-la-red/</link>
+      <pubDate>Fri, 20 Feb 2026 17:29:35 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2007/05/17/de-la-imprenta-a-la-red/</guid>
       
     </item>
     
@@ -514,7 +733,7 @@
 &lt;p&gt;En general este sería el estilo más compatible que se podría usar:&lt;/p&gt;
 &lt;div class=&#34;language-markdown highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-0-1&#34;&gt;&lt;a id=&#34;__codelineno-0-1&#34; name=&#34;__codelineno-0-1&#34; href=&#34;#__codelineno-0-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gh&#34;&gt;# Ejemplo de texto&lt;/span&gt;
 &lt;/span&gt;&lt;span id=&#34;__span-0-2&#34;&gt;&lt;a id=&#34;__codelineno-0-2&#34; name=&#34;__codelineno-0-2&#34; href=&#34;#__codelineno-0-2&#34;&gt;&lt;/a&gt;
-&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;Un texto con &lt;span class=&#34;ge&#34;&gt;_italic emphasis_&lt;/span&gt; y también &lt;span class=&#34;gs&#34;&gt;**bold emphasis**&lt;/span&gt;, en el que tenemos:
+&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;Un texto con &lt;span class=&#34;ge&#34;&gt;*italic emphasis*&lt;/span&gt; y también &lt;span class=&#34;gs&#34;&gt;**bold emphasis**&lt;/span&gt;, en el que tenemos:
 &lt;/span&gt;&lt;span id=&#34;__span-0-4&#34;&gt;&lt;a id=&#34;__codelineno-0-4&#34; name=&#34;__codelineno-0-4&#34; href=&#34;#__codelineno-0-4&#34;&gt;&lt;/a&gt;
 &lt;/span&gt;&lt;span id=&#34;__span-0-5&#34;&gt;&lt;a id=&#34;__codelineno-0-5&#34; name=&#34;__codelineno-0-5&#34; href=&#34;#__codelineno-0-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Una lista desordenada
 &lt;/span&gt;&lt;span id=&#34;__span-0-6&#34;&gt;&lt;a id=&#34;__codelineno-0-6&#34; name=&#34;__codelineno-0-6&#34; href=&#34;#__codelineno-0-6&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Con sólo dos items
@@ -1270,188 +1489,6 @@
       <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2007/04/04/instalar-los-drivers-para-una-webcam/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Propuesta para el viernes noche</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;propuesta-para-el-viernes-noche&#34;&gt;Propuesta para el viernes noche&lt;/h1&gt;
-&lt;p&gt;&lt;img alt=&#34;cartel_patentes&#34; src=&#34;../../../2007-04-23-propuesta-para-el-viernes-noche_cartel_patentes.jpg&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Hace un par de semanas &lt;a href=&#34;https://oandre.gal/&#34;&gt;Andrés&lt;/a&gt; comentaba sus &lt;a href=&#34;https://oandre.gal/conecemento-aberto-e-desenvolvemento-sensacions-das-xornadas/&#34;&gt;impresiones&lt;/a&gt; acerca de la charla sobre conocimiento abierto y desarrollo que preparamos entre los dos.&lt;/p&gt;
-&lt;p&gt;No es mi intención en este momento hacer valoraciones sobre la experiencia, que las haré, sino aprovechar esta tribuna para invitar a todo aquel que me lea a disfrutarla en vivo y en directo.&lt;/p&gt;
-&lt;!-- prettier-ignore-start --&gt;
-&lt;div class=&#34;grid cards&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Conocimiento Abierto y Desarrollo&lt;/strong&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;Viernes, 27 de Abril a las 21:00&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.google.com/maps?f=q&amp;amp;hl=es&amp;amp;q=vigo+caleidoskopio&amp;amp;sll=37.0625,-95.677068&amp;amp;sspn=61.669968,108.28125&amp;amp;layer=&amp;amp;ie=UTF8&amp;amp;ei=jAotRr-MOpqo3AKy4YiWBw&amp;amp;cid=42233168,-8729728,16062093567350814503&amp;amp;li=lmd&amp;amp;z=14&amp;amp;t=m&#34;&gt;&lt;span class=&#34;twemoji&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34;&gt;&lt;path d=&#34;M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0&#34;/&gt;&lt;/svg&gt;&lt;/span&gt; Caleidoskopio. Romil Nº3. Vigo&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;!-- prettier-ignore-end --&gt;
-
-&lt;p&gt;Para los que no podais asistir pero tengáis interés hemos colgado la presentación en internet, está en gallego, pero se entiende muy facilmente. Lo importante de este tipo de iniciativas es que se inicie un diálogo del que ambas partes, ponente y oyentes obtengan un aprendizaje, así que os animo a que dejéis vuestras impresiones o sugerencias en los comentarios.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2007/04/23/propuesta-para-el-viernes-noche/</link>
-      <pubDate>Sun, 08 Feb 2026 19:43:29 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2007/04/23/propuesta-para-el-viernes-noche/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Cooperación y Supervivencia</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;cooperacion-y-supervivencia&#34;&gt;Cooperación y Supervivencia&lt;/h1&gt;
-&lt;div class=&#34;admonition quote&#34;&gt;
-&lt;p class=&#34;admonition-title&#34;&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Frans_de_Waal&#34;&gt;Frans de Waal&lt;/a&gt;, director del Yerkes Primates Center de EEUU&lt;/p&gt;
-&lt;p&gt;entre los animales sociales sobrevive el que tenga más capacidad o habilidad para &lt;strong&gt;cooperar&lt;/strong&gt;, no el más fuerte&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Leído en una entrevista de La Voz de Galicia ya no disponible online.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2007/04/30/cooperacion-y-supervivencia/</link>
-      <pubDate>Sun, 08 Feb 2026 19:43:29 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2007/04/30/cooperacion-y-supervivencia/</guid>
-      
-    </item>
-    
-    <item>
-      <title>De la imprenta a la red</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;de-la-imprenta-a-la-red&#34;&gt;De la imprenta a la red&lt;/h1&gt;
-&lt;div class=&#34;admonition quote&#34;&gt;
-&lt;p class=&#34;admonition-title&#34;&gt;&lt;a href=&#34;https://es.wikipedia.org/wiki/Luther_Blissett_(pseud%C3%B3nimo_colectivo)&#34;&gt;Luther Blissett&lt;/a&gt;. Q. Página 78.&lt;/p&gt;
-&lt;p&gt;Sobre todo lo alarma el hecho de que podáis disponer de una imprenta y de que vuestras palabras puedan llegar a los focos de la revuelta&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;En el siglo XVI una imprenta podía ser un instrumento de poder o de subversión en función de quien la poseyera. Con su aparición se rompía el monopolio de publicación ostentando por la iglesia hasta ese momento. Desde las imprentas no controladas por los poderes establecidos se editaban desde panfletos incendiarios a tratados teológicos que abogaban por el cambio y la Reforma.&lt;/p&gt;
-&lt;p&gt;La evolución que supuso la imprenta, importantísima en su momento, es sólo una pequeña modificación del modelo de comunicación. Se pasa de un monopolio informativo a un oligopolio a través del cual unos pocos líderes vierten sus ideas, pero la verticalidad del modelo se conserva. Las propuestas fluyen de arriba hacia abajo, de unos pocos-individuales a unos muchos-colectivos. De este modo, la única forma que tiene la mayoría de participar en la creación de la nueva sociedad es a través de las acciones de la colectividad y no a nivel particular, es decir, sus propias convicciones, sus diferencias individuales, sus matices de pensamiento no son integradas sino que se difuminan en el pensamiento colectivo guiado (creado) por los líderes sin posibilidad de ser incorporados a este.&lt;/p&gt;
-&lt;p&gt;A lo largo del tiempo, con la generalización de los medios de impresión (libros y periódicos) y la aparición de nuevos medios de comunicación (radio y televisión) se desemboca en un modelo descentralizado y competitivo pero que en el fondo sigue siendo vertical (aunque ya no oligopólico) . Aumentan las posibilidades de retroalimentación de ideas pero siguen siendo demasiados pocos los que disponen de los medios para generar contenido.&lt;/p&gt;
-&lt;p&gt;El cambio de paradigma no ha podido darse hasta hace poco. Me atrevería a decir que el inicio de este cambio todavía inconcluso es el nacimiento de la llamada web 2.0.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2007/05/17/de-la-imprenta-a-la-red/</link>
-      <pubDate>Sun, 08 Feb 2026 19:43:29 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2007/05/17/de-la-imprenta-a-la-red/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Primates, violencia y genes</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;primates-violencia-y-genes&#34;&gt;Primates, violencia y genes&lt;/h1&gt;
-&lt;p&gt;Acabo de verlo en la &lt;a href=&#34;http://www.tve.es&#34;&gt;tele&lt;/a&gt; y no he podido resistirme.&lt;/p&gt;
-&lt;p&gt;Los &lt;a href=&#34;http://es.wikipedia.org/wiki/Papio&#34;&gt;babuínos&lt;/a&gt; son una especie de primates bastante violenta. A principio de los 80 los machos de una manada de babuínos de la reserva de &lt;a href=&#34;http://es.wikipedia.org/wiki/Masai_Mara&#34;&gt;Masai Mara&lt;/a&gt; fallecieron por culpa de unos alimentos tóxicos. A pesar de esto el grupo consiguió sobrevivir (supongo que quedaría algún macho o con machos provenientes de otras manadas) pero la hembra cobró protagonismo. Estudios posteriores constataron como en este grupo las peleas (habituales entre los babuínos) se habían reducido considerablemente dado que las hembras transmitían entre generaciones una especie de &lt;em&gt;cultura de la paz&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;La interpretación la voy a dejar para cada cual, sólo un par de preguntas...&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;¿Son los machos violentos por naturaleza y las hembras pacíficas?&lt;/li&gt;
-&lt;li&gt;¿Predomina la cultura sobre la genética?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;disclaimer&#34;&gt;Disclaimer&lt;/h2&gt;
-&lt;p&gt;No he podido encontrar enlaces donde explicaran el caso en detalle y por tanto el artículo está basado en 5 minutos de documental visto en televisión y como tal debe interpretarse.&lt;/p&gt;
-&lt;h2 id=&#34;actualizacion&#34;&gt;Actualización&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://biology.plosjournals.org/perlserv/?request=get-document&amp;amp;doi=10.1371%2Fjournal.pbio.0020106&#34;&gt;Sapolsky and Share. A Pacific Culture among Wild Baboons: Its Emergence and Transmission&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=387271&#34;&gt;Waal. Peace Lessons from an Unlikely Source&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;El primer enlace es el artículo original en el que se comenta el caso. Debo decir que a pesar de no haberlo leído entero el tema no es exactamente como yo lo había planteado pero la esencia sigue siendo la misma.&lt;/p&gt;
-&lt;p&gt;El segundo enlace es una discusión un poco más amplia sobre el tema de la violencia en humanos y animales bastante interesante escrito por alguien a quien ya hemos citado &lt;a href=&#34;../../../04/30/cooperacion-y-supervivencia/&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2007/06/11/primates-violencia-y-genes/</link>
-      <pubDate>Sun, 08 Feb 2026 19:43:29 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2007/06/11/primates-violencia-y-genes/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Crónica: Un mundo desigual</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;cronica-un-mundo-desigual&#34;&gt;Crónica: Un mundo desigual&lt;/h1&gt;
-&lt;p&gt;Empiezo hoy una serie de posts en los que haré una crónica del curso &lt;a href=&#34;http://galicia.isf.es/unmundodesigual&#34;&gt;«Un mundo desigual: Retos y perspectivas»&lt;/a&gt; organizado por &lt;a href=&#34;http://galicia.isf.es/&#34;&gt;Enxeñería sen Fronteiras Galicia.&lt;/a&gt; Lo que se describe aquí es mi resumen personal de la ponencia, no debe interpretarse como las palabras del ponente puesto que puedo haberlas tergiversado.&lt;/p&gt;
-&lt;p&gt;La conferencia del lunes 25 de Junio, fue impartida por Xabier Simón profesor de economía aplicada de la Universidad de Vigo.&lt;/p&gt;
-&lt;p&gt;Comienza Xabier explicando la importancia de la economía. El sistema económico abarca todos los ámbitos de la vida (transporte, alimentación,…) y dado que nuestro sistema económico es el capitalismo, se hace fundamental conocer este para entender la configuración del mismo.&lt;/p&gt;
-&lt;p&gt;Ante la pregunta de &lt;strong&gt;que es el capitalismo&lt;/strong&gt; se podrían dar múltiples respuestas, por ejemplo:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;El capitalismo es igual a la economía.&lt;/li&gt;
-&lt;li&gt;El capitalismo consiste en ganar dinero&lt;/li&gt;
-&lt;li&gt;El capitalismo consiste en satisfacer las necesidades de las personas&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Según Xabier, las respuestas anteriores son más interpretativas que objetivas. Aparte de la interpretación que cada cual pueda hacer de si el sistema es bueno o malo, este tiene unos fundamentos claros, que irá desgranando durante la charla:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;El objetivo del capitalismo es conseguir beneficios&lt;/li&gt;
-&lt;li&gt;Se centra (y es condición necesaria para el propio sistema) en la existencia de la propiedad privada (de los medios de producción, de los bienes producidos, …)&lt;/li&gt;
-&lt;li&gt;Incremento de la escala y traslado de costes hacia el futuro.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;El capitalismo busca conseguir beneficios porque sí, el &lt;strong&gt;beneficio por el beneficio&lt;/strong&gt;, no importa la naturaleza de la actividad si esta genera dinero, da igual que sea abrir un agujero y volver a taparlo si de ello se obtiene dinero. No es importante producir alimentos sanos para tener un organismo equilibrado o cuidar el medioambiente. Se hace mucho incapié en que es discutible que este sistema es positivo o negativo pero lo que no es discutible es que la naturaleza del sistema es obtener beneficios.&lt;/p&gt;
-&lt;p&gt;El capitalismo &lt;strong&gt;necesita de la propiedad privada&lt;/strong&gt; para su existencia. Se produce además una separación entre el dueño del medio de producción y el trabajador. A pesar de la idea imperante de que el capilismo es lo único existente a lo largo de la historia hay y ha habido sistemas distintos. En el Regimen Feudal donde existía una cierta industria no había separación entre el dueño de las herramientas (medio de producción) y el trabajador, eran la misma persona.&lt;/p&gt;
-&lt;p&gt;Para que surgiera el capitalismo fue necesario separar los medios de la fuerza de trabajo. Pero la propiedad privada no es la única forma de propiedad existente. Existe por ejemplo la propiedad pública. Dentro de esta propiedad pública podemos encontrar por ejemplo la sanidad y la educación, de la que son dueñas la correspondiente Administración. En esta propiedad pública rigen principios distintos a los del propio mercado y es necesario que existan estos espacios donde el objetivo no sea producir beneficios si no satisfacer necesidades (de educación, de salud, …)&lt;/p&gt;
-&lt;p&gt;Otro tipo de propiedad es la propiedad comunal. Mientras que la privada procede del derecho romano, la comunal procede del derecho germánico. Se calcula que un tercio de la superficie gallega pertece a las Comunidades de Montes que son un ejemplo de propiedad comunal. En el año 41 Franco expropia los derechos de la propiedad comunal, plantando especies forestales de crecimiento rápido e introduciendo una actividad, la &lt;a href=&#34;http://es.wikipedia.org/wiki/Silvicultura&#34;&gt;silvicultura&lt;/a&gt;, que nunca se había hecho en Galicia con consecuencias aún se están viendo ahora. Los vecinos lucharon con fuerza para recuperar sus derechos viendo culminada su lucha en el 78 donde se recogió que la propiedad comunal era:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;inalienable: No se puede vender&lt;/li&gt;
-&lt;li&gt;inembargable&lt;/li&gt;
-&lt;li&gt;imprescribtible: No caduca jamás. Dentro de 1 o 500 años seguirán teniendo los mismos derechos.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Ante la pregunta de un alumno sobre el parecido entre la expropiación franquista y la &lt;a href=&#34;http://www.arrakis.es/%7Ejmra/desamort.htm&#34;&gt;desamortización del S. XIX&lt;/a&gt;, Xabier comenta que mietras que en España se cogen las tierras de la Iglesia y la nobleza y se entregaban a los campesinos de forma asequible, en Galicia esto no pasa hasta 1926 y mucha gente emigra para poder conseguir el dinero necesario para pagar los altos costes de la tierra.&lt;/p&gt;
-&lt;p&gt;Para explicar por que el &lt;strong&gt;incremento de la escala y el traslado de costes al futuro&lt;/strong&gt; es una característica fundamental del capitalismo, debemos entender algo sobre economía. Lo primero que la economía es una ciencia social y como todas las ciencias sociales está sujeta a interpretación. Lo segundo es que el estudio económico tiene tres patas:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;asignación: Cuantos recursos (recursos naturales, trabajadores, medios de producción) debemos asignar a la producción. Por ejemplo cuantos recursos deben asignarse a la producción de comida y cuantos a la producción de coches o de armas.&lt;/li&gt;
-&lt;li&gt;distribución: Como se distribuyen los beneficios y los costes entre los distintos agentes. En la actualidad la diferencia entre ricos y pobres se acrecienta cada vez más. Dentro de este coste debemos incluír además el coste social (por ejemplo el coste en vidas por conseguir pescado fresco, o el de los muertos en minas)&lt;/li&gt;
-&lt;li&gt;escala: Abarcar cada vez más ámbitos y mayores producciones. Hoy la economía es 30 veces mayor que hace 30 años.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;El capitalismo se basa en abarcarlo todo. Además para aumentar los beneficios trata de disminuir los costes trasladándolos hacia el futuro, por ejemplo los residuos nucleares que se producen confiando en que en un futuro puedan tratarse.&lt;/p&gt;
-&lt;p&gt;La charla concluye haciendo incapié en algunos aspectos. Xabier es muy crítico con el capitalismo porque es el sistema que tenemos pero también afirma que el comunismo tiene los mismos (o más) defectos que el capitalismo. En este orden de cosas, comenta también como el autoconsumo es una forma de resistencia ante el capitalismo&lt;/p&gt;
-&lt;p&gt;Otro punto importante para Xabier es que el concibe la economía como un modo de entender la naturaleza de los problemas, no como un maletín del que se puedan sacar soluciones sin más. Así lo más importante es la existencia de ciudadanos más comprometidos y responsables, como dice Galeano &lt;em&gt;Tenemos que juntarnos para que la democracia deje de ser ajena a la gente&lt;/em&gt;&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2007/06/26/cronica-un-mundo-desigual/</link>
-      <pubDate>Sun, 08 Feb 2026 19:43:29 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2007/06/26/cronica-un-mundo-desigual/</guid>
-      
-    </item>
-    
-    <item>
-      <title>La juventud de hoy está corrompida</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;la-juventud-de-hoy-esta-corrompida&#34;&gt;La juventud de hoy está corrompida&lt;/h1&gt;
-&lt;p&gt;Despierto leyendo &lt;a href=&#34;http://www.despacho101.com/press/que-les-pasa-a-los-jovenes/trackback/&#34;&gt;¿Qué les pasa a los jóvenes?&lt;/a&gt;. Ese artículo y un comentario que realizó ayer uno de los asistentes al &lt;a href=&#34;http://galicia.isf.es/unmundodesigual&#34;&gt;curso «Un mundo Desigual»&lt;/a&gt;, me recuerda algo que escribí hace tiempo en &lt;a href=&#34;http://barrapunto.com/journal.pl?op=display&amp;amp;id=21775&amp;amp;uid=21403&#34;&gt;mi bitacora&lt;/a&gt; de barrapunto.&lt;/p&gt;
-&lt;p&gt;Copio y pego el texto con alguna modificación para los que no les guste seguir enlaces:&lt;/p&gt;
-&lt;div style=&#34;text-align: center&#34;&gt;| La juventud de hoy está corrompida hasta el corazón, es mala, atea y perezosa. Jamás será lo que la juventud ha de ser, ni será capaz de preservar nuestra cultura. |
-|---|
-
-&lt;/div&gt;
-&lt;p&gt;Inscripción grabada en una tablilla babilónica del siglo XI antes de Cristo&lt;/p&gt;
-&lt;p&gt;He encontrado está frase en varios blogs, pero ya se sabe que en internet hay que andar con pies de plomo, y hay que ser algo cuidadoso para identificar cuando se publica una falsedad. Así que me he puesto a buscar alguna referencia que pudiera asegurar que esa cita es cierta.&lt;/p&gt;
-&lt;p&gt;Buscando en google por «La juventud de hoy está corrompida» salen unos cuantos resultados pero ninguno útil para comprobar su veracidad. Buscando en cambio por «La juventud de hoy está corrupta sólo salen dos resultados pero ambos interesantes (ambos son pdf):&lt;/p&gt;
-&lt;p&gt;– &lt;a href=&#34;http://www.amai.org/pdfs/revista-amai/revista-amai-articulo-20050429_105823.pdf&#34;&gt; Tres citas antiguas sobre los jóvenes&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;– &lt;a href=&#34;http://www.autorescatolicos.org/esthersousa01.pdf&#34;&gt; Artículo que cita un libro en el que aparece lo de la tablilla babilónica&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Del segundo enlace se puede deducir que hay altas posibilidades de la que cita sea cierta, porque cita a su vez sus fuentes.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2007/06/30/la-juventud-de-hoy-esta-corrompida/</link>
-      <pubDate>Sun, 08 Feb 2026 19:43:29 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2007/06/30/la-juventud-de-hoy-esta-corrompida/</guid>
       
     </item>
     

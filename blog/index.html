@@ -86,12 +86,20 @@
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
+  True
   
+
 
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+
+  <!-- Consent necessary -->
   
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+    <script>
+      if (typeof __md_analytics !== "undefined")
+        __md_analytics()
+    </script>
   
 
     
@@ -904,6 +912,50 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2026-02-28 00:00:00+00:00">28 de febrero de 2026</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="lint-y-format-para-markdown-rumdl"><a class="toclink" href="2026/02/28/lint-format-rumdl/">Lint y Format para Markdown (rumdl)</a></h2>
+<p>Después del <a href="2026/02/20/lint-format-markdown/">post anterior</a> gracias a <a href="https://www.galiglobal.com/">Antón</a> descubro una nueva herramienta</p>
+<h3 id="rumdl"><a class="toclink" href="2026/02/28/lint-format-rumdl/#rumdl">rumdl</a></h3>
+<p><a href="https://github.com/rvben/rumdl">rumdl</a> es un formatter y linter de Markdown escrito en Rust siguiendo las ideas de <code>ruff</code>.</p>
+<p>El primer commit es de Febrero de 2025, así que es un proyecto muy reciente con unas 800 estrellas en este momento. Parecen pocas pero para una herramienta que sigue siendo e nicho no está mal. Markdownlint tiene 2k y mdformat 600. Además ha sido adoptado por proyectos como lucene, ULauncher o pyo3.</p>
+<p>No usaría este proyecto si fuera una dependencia <em>core</em> porqué para mi tiene varios <em>red flags</em>:</p>
+<ul>
+<li>El proyecto tiene apenas un año y muchas features. Tiene pinta de haber mucho LLM y eso necesita mucha destreza para que el mantenimiento no se complique.</li>
+<li>Tiene 25 <em>contributors</em>, pero el 98% de los commits son de la misma persona.</li>
+<li>El README (que es gigante) está desincronizado con la documentación. Y la web no está enlazada desde el repositorio.</li>
+</ul>
+<p>La herramienta promete mucho y, cumple más requisitos que los herramientas analizados en el anterior post:</p>
+<ul>
+<li>Escrito en rust, es un binario instalable por todos los métodos habituales, uv, npm, curl, ...</li>
+<li>Paridad de reglas con Markdownlint (con algunas extra) y opción para importar la configuración</li>
+<li>Formatter y Linter en la misma herramienta, en un estilo muy <code>ruff</code>, parámetros parecidos en la CLI, el formato de configuración, ... lo que se agradece.</li>
+<li>Soporta por defecto varios formatos de Markdown</li>
+<li>Plugins para los editores habituales (LSP en el propio binario) e integración con pre-commit y sistemas varios de CI</li>
+</ul>
+<p>Pero, a poco que la he probado hay muchos detalles que no encajan bien con mi forma de trabajo:</p>
+<ul>
+<li><a href="https://github.com/rvben/rumdl/issues/472">Es muy agresiva en los <code>auto-fix</code></a></li>
+<li>La configuración de las reglas se vuelve complicada. Por ejemplo hay varios bugs en torno a la regla <a href="https://rumdl.dev/md022/">blanks-around-headings</a> y después de varias pruebas no he conseguido que simplemente me elimina todas las líneas en blanco antes el <code>H1</code> que prettier hace sin problemas.</li>
+</ul>
+<h3 id="conclusiones"><a class="toclink" href="2026/02/28/lint-format-rumdl/#conclusiones">Conclusiones</a></h3>
+<p><code>rumld</code> es una herramienta con potencial. Merece la pena probarla y ver si encaja, pero en mi caso, esperaré un par de meses antes de volver a probarla.</p>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2026-02-20 00:00:00+00:00">20 de febrero de 2026</time></li>
         
         
@@ -913,6 +965,10 @@
   </header>
   <div class="md-post__content md-typeset">
     <h2 id="herramientas-de-lint-y-format-para-markdown"><a class="toclink" href="2026/02/20/lint-format-markdown/">Herramientas de Lint y Format para Markdown</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No te pierdas la continuación de este artículo <a href="2026/02/28/lint-format-rumdl/">hablando de la herramienta rumdl</a></p>
+</div>
 <p>Llevo bastante tiempo usando <code>markdownlint-cli2</code> y <code>prettier</code> para linting y formatting de Markdown, pero no tenía un análisis de las herramientas disponibles, para ver si había mejores opciones.</p>
 <h3 id="requisitos-deseables"><a class="toclink" href="2026/02/20/lint-format-markdown/#requisitos-deseables">Requisitos Deseables</a></h3>
 <ul>
@@ -1426,180 +1482,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2025-12-06 00:00:00+00:00">6 de diciembre de 2025</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="entry-point-para-una-cli-python"><a class="toclink" href="2025/12/06/entrypoint-python-cli/">Entry Point para una CLI Python</a></h2>
-<p>La flexibilidad del ecosistema Python le ha permitido convertirse en uno de los lenguajes más utilizados. El coste de esa flexibilidad es que en contra del <a href="https://en.wikipedia.org/wiki/Zen_of_Python">Zen of Python</a></p>
-<blockquote>
-<p>There should be one, and preferably only one, obvious way to do it.</p>
-</blockquote>
-<p>incluso la gente con experiencia encuentra confusión y falta de <em>ejemplos canónicos</em> en aspectos que deberían ser obvios cómo <a href="https://xkcd.com/1987/">el empaquetado</a>.</p>
-<p>En este artículo tocamos uno de esos aspectos, el <em>entry point</em> para herramientas de consola (ClI).</p>
-<h3 id="breve-descripcion-de-las-piezas-que-entran-en-juego"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#breve-descripcion-de-las-piezas-que-entran-en-juego">Breve descripción de las "piezas" que entran en juego</a></h3>
-<h4 id="__main__py"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#__main__py"><code>__main__.py</code></a></h4>
-<p>Cuando en un <em>python package</em> (directorio que tiene dentro ficheros python), hay un fichero con el nombre <code>__main__.py</code> y <em>ejecutamos</em> el módulo desde la línea de comandos (<code>python -m my_cli</code>), es ese fichero el que se ejecuta. De la documentación oficial:</p>
-<blockquote>
-<p>The <code>__main__.py</code> file is used to provide a command-line interface for a package.</p>
-</blockquote>
-<p>Si bien en este <em>module</em> no es necesario usar el idiom de <code>__name__ == "__main__":</code> es recomendable usarlo para evitar errores absurdos.</p>
-<h4 id="proyectscripts"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#proyectscripts"><code>[proyect.scripts]</code></a></h4>
-<p>La sección <code>[proyect.scripts]</code> de <code>pyproject.toml</code> indica a la herramienta de instalación (pip, uv, ...) que debe crear un ejecutable con el nombre que se le indique apuntando (<em>wrapper script</em>, <em>shim</em>, ...) a un determinado módulo y función.</p>
-<p>Es decir, es un mecanismo para la distribución de nuestra herramienta. Los <em>usuarios</em> no necesitarán ejecutar <code>python -m my-cli</code>, si no simplemente <code>my-cli</code>.</p>
-<div class="language-toml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># El ejecutable `my-cli` apunta a la función `main()` de `my_cli/cli.py`</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">[project.scripts]</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">my-cli</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_cli.cli:main&quot;</span>
-</span></code></pre></div>
-<p>Si instalamos en un entorno virtual el ejemplo anterior (<code>python -m pip install -e .[all]</code>, <code>uv sync</code>, ...) se creará un fichero <code>.venv/bin/my-cli</code> con este contenido:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/tmp/example/my-cli/.venv/bin/python3</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># -*- coding: utf-8 -*-</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>import<span class="w"> </span>sys
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>from<span class="w"> </span>my_cli.cli<span class="w"> </span>import<span class="w"> </span>main
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">if</span><span class="w"> </span><span class="nv">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;__main__&quot;</span>:
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span>sys.argv<span class="o">[</span><span class="m">0</span><span class="o">]</span>.endswith<span class="o">(</span><span class="s2">&quot;-script.pyw&quot;</span><span class="o">)</span>:
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span>sys.argv<span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>sys.argv<span class="o">[</span><span class="m">0</span><span class="o">][</span>:-11<span class="o">]</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="k">elif</span><span class="w"> </span>sys.argv<span class="o">[</span><span class="m">0</span><span class="o">]</span>.endswith<span class="o">(</span><span class="s2">&quot;.exe&quot;</span><span class="o">)</span>:
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span>sys.argv<span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>sys.argv<span class="o">[</span><span class="m">0</span><span class="o">][</span>:-4<span class="o">]</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span>sys.exit<span class="o">(</span>main<span class="o">())</span>
-</span></code></pre></div>
-<p>Si se instala a nivel global sería parecido.</p>
-<p>Fijémonos en que:</p>
-<ul>
-<li>Apunta a una ruta de python absoluta. De modo que si lo ejecutamos fuera de un virtualenv <code>/tmp/example/my-cli/.venv/bin/my-cli</code> estará apuntando al python correcto.</li>
-<li>Al activar un virtualenv se modifica <code>"${PATH}"</code> incluyendo cómo primera entrada <code>/tmp/example/my-cli/.venv/bin/</code>, así que el ejecutable estará directamente disponibel cómo <code>my-cli</code></li>
-<li>Importa el módulo y función que hemos indicado</li>
-<li>Es multiplataforma. En linux podremos usar <code>my-cli</code>, en windows <code>my-cli.exe</code></li>
-</ul>
-<h4 id="__init__py"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#__init__py"><code>__init__.py</code></a></h4>
-<p>Es un fichero que marca un directorio cómo un <em>python package</em>. Su contenido se ejecuta siempre que se hace un import del paquete. No debería ser usado para escribir lógica, ni cómo entry point para un ejecutable.</p>
-<h3 id="mi-forma-preferida"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#mi-forma-preferida">Mi forma preferida</a></h3>
-<p>Las piezas se pueden combinar de muchas formas. Algunas combinaciones serán más correctas que otras, según que criterios o necesidades se tengan en cuenta.</p>
-<p>Mis criterios son:</p>
-<ul>
-<li><a href="https://franciscopuga.es/blog/2025/06/30/python-project-layout/">src-layout</a></li>
-<li>Siempre instalar el paquete, sea para usarlo o desarrollarlo</li>
-<li>Asumir que el paquete puede ser distribuido</li>
-<li>Minimizar tiros-en-el-pie, errores absurdos y <em>subtle bugs</em></li>
-</ul>
-<p>Con lo que llegamos a la siguiente estructura:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># my-cli/src/my_cli/__init__.py</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># my-cli/src/my_cli/lib.py</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">do_things</span><span class="p">():</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;do things&quot;</span><span class="p">)</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># my-cli/src/my_cli/cli.py</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">my_cli.lib</span><span class="w"> </span><span class="kn">import</span> <span class="n">do_things</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Argument parsing logic goes here&quot;</span><span class="p">)</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">do_things</span><span class="p">()</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># my-cli/src/my_cli/__main__.py</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="kn">from</span><span class="w"> </span><span class="nn">my_cli.cli</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">main</span><span class="p">()</span>
-</span></code></pre></div>
-<div class="language-toml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># my-cli/pyproject.toml</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">[project.scripts]</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">my-cli</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_cli.cli:main&quot;</span>
-</span></code></pre></div>
-<h3 id="algunas-dudas"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#algunas-dudas">Algunas dudas</a></h3>
-<p>Tengo algunas dudas con esta aproximación que modifico según el caso:</p>
-<ul>
-<li><code>cli.main</code> o <code>cli.cli</code>. El mejor nombre para esta función también me causa dudas. Depende del <em>naming</em> del resto código, y de si la herramienta es fundamentalmente una cli, una librería o ambas.</li>
-<li>Cuando se usan librerías cómo Typer o Click y subcomandos la estructura de directorios debería ser algo distinta pero la idea base es la misma.</li>
-<li>Es realmente necesario proporcionar un <code>__main__.py</code>. Significa duplicar lógica para un uso muy concreto sólo necesario durante el desarrollo.</li>
-</ul>
-<h3 id="practicas-incorrectas"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#practicas-incorrectas">Prácticas "incorrectas"</a></h3>
-<h4 id="usar-__init__py"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#usar-__init__py">Usar <code>__init__.py</code></a></h4>
-<p>Al importar nuestro paquete (<code>import my_tool</code>) estaremos:</p>
-<ul>
-<li>Polucionando el espacio de nombres con el <code>cli.main</code>. Podríamos usar <code>__all__</code>, pero eso queda para otro día.</li>
-<li>Fomentando antipatrones</li>
-<li>Corriendo el riesgo de <em>side effects</em> indeseados.</li>
-</ul>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># WRONG</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># src/my_cli/__init__.py</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">my_cli.cli</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">main</span><span class="p">()</span>
-</span></code></pre></div>
-<h4 id="jugar-con-el-nombre-del-ejecutable"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#jugar-con-el-nombre-del-ejecutable">Jugar con el nombre del ejecutable</a></h4>
-<p>En <code>pyproject.toml</code> se puede asignar un nombre al ejecutable. Salvo que haya un motivo realmente bueno, cómo tener más de un ejecutable, debe tener el mismo nombre que el paquete <a href="https://docs.astral.sh/uv/guides/tools/#commands-with-different-package-names">para evitar confusiones</a>.</p>
-<div class="language-toml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># WRONG</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># pyproject.toml</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">[project.scripts]</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Asignamos el nombre my-tool al ejecutable</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">my-tool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_cli.cli:main&quot;</span>
-</span></code></pre></div>
-<h4 id="ejecutar-directamente-clipy"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#ejecutar-directamente-clipy">Ejecutar directamente <code>cli.py</code></a></h4>
-<p>Salvo scripts muy pequeños, ejecutar directamente un módulo Python debería ser considerado un antipatrón. Obligar a instalar el paquete y ejecutar los módulos ahorra problemas, sobre todo con los imports. Por ello no permitiremos la ejecución directa del módulo.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># WRONG</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># src/my_cli/cli.py</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">my_cli.lib</span><span class="w"> </span><span class="kn">import</span> <span class="n">do_things</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Argument parsing logic goes here&quot;</span><span class="p">)</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">do_things</span><span class="p">()</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># Permitimos ejecutar directamente este módulo con `python src/my_cli/cli.py`</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="n">main</span><span class="p">()</span>
-</span></code></pre></div>
-<h4 id="apuntar-a-__main__py-desde-projectscripts"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#apuntar-a-__main__py-desde-projectscripts">Apuntar a <code>__main__.py</code> desde <code>project.scripts</code></a></h4>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># src/my_cli/__main__.py</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">my_cli.cli</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">main</span><span class="p">()</span>
-</span></code></pre></div>
-<div class="language-toml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[project.scripts]</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">my-tool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_cli.__main__:main&quot;</span>
-</span></code></pre></div>
-<p>Parece una buena idea, porqué un cambio grande en la herramienta, que toque <code>cli.py</code>, puede obligar a cambiar tanto el fichero <code>__main__.py</code> cómo el <code>pyproject.toml</code>. Si <code>pyproject.toml</code> apunta directamente a <code>__main__.py</code> sólo hay que hacer el cambio en un sitio.</p>
-<p>Pero no lo es.</p>
-<ul>
-<li><code>__main__.py</code> debería estar reservado para ejecutar con <code>python -m my_tool</code> por <em>Separation of Concerns</em>.</li>
-<li>El stack trace al usar <code>my-tool</code> irá directamente a <code>cli.py</code> sin pasar con <code>__main__.py</code> que es sólo un wrapper.</li>
-<li>Los imports se vuelven confusos, y podemos acabar con dependencias circulares. En este ejemplo concreto, aunque podría ser escrito de otra forma, "main" es en realidad <code>cli.main</code>, no <code>__main__.main</code>.</li>
-<li><code>__main__</code> tiene dos significados distintos en python, lo que lleva a confusión.</li>
-<li>Evitamos indirecciones. Con leer <code>pyproject.toml</code> podemos saltar al código real, y el <em>shim</em> también queda más limpio.</li>
-<li>Es una práctica más habitual (black, pytest, pip).</li>
-<li>Si el proyecto crece y proporcionamos más ejecutables, el resultado es más limpio.</li>
-</ul>
-<div class="language-toml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">[project.scripts]</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">my-tool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_cli.cli:main&quot;</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">my-tool-db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_cli.commands.database:main&quot;</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">my-tool-serve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_cli.commands.server:main&quot;</span>
-</span></code></pre></div>
-<h3 id="referencias"><a class="toclink" href="2025/12/06/entrypoint-python-cli/#referencias">Referencias</a></h3>
-<ul>
-<li><a href="https://docs.python.org/3/library/__main__.html">Top-level code environment</a> en la documentación oficial de Python</li>
-<li><a href="https://setuptools.pypa.io/en/latest/userguide/entry_point.html">Entry Point</a> en la documentación de setuptools</li>
-<li><a href="https://discuss.python.org/t/why-do-script-entrypoints-require-a-function-be-specified/14090/18">Why do script entrypoints require a function be specified?</a></li>
-</ul>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1607,7 +1489,7 @@
 
 
 <nav class="md-pagination">
-  <span class="md-pagination__current">1</span> <a class="md-pagination__link" href="page/2/">2</a> <a class="md-pagination__link" href="page/3/">3</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="page/41/">41</a>
+  <span class="md-pagination__current">1</span> <a class="md-pagination__link" href="page/2/">2</a> <a class="md-pagination__link" href="page/3/">3</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="page/42/">42</a>
 </nav>
         
       

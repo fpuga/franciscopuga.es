@@ -86,12 +86,20 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
+  True
   
+
 
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+
+  <!-- Consent necessary -->
   
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+    <script>
+      if (typeof __md_analytics !== "undefined")
+        __md_analytics()
+    </script>
   
 
     
@@ -508,6 +516,15 @@
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lint-y-format-para-markdown-rumdl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lint y Format para Markdown (rumdl)
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#herramientas-de-lint-y-format-para-markdown" class="md-nav__link">
@@ -971,6 +988,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lint-y-format-para-markdown-rumdl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lint y Format para Markdown (rumdl)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#herramientas-de-lint-y-format-para-markdown" class="md-nav__link">
     <span class="md-ellipsis">
       Herramientas de Lint y Format para Markdown
@@ -1018,6 +1044,50 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2026-02-28 00:00:00+00:00">28 de febrero de 2026</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="lint-y-format-para-markdown-rumdl"><a class="toclink" href="../../2026/02/28/lint-format-rumdl/">Lint y Format para Markdown (rumdl)</a></h2>
+<p>Después del <a href="../../2026/02/20/lint-format-markdown/">post anterior</a> gracias a <a href="https://www.galiglobal.com/">Antón</a> descubro una nueva herramienta</p>
+<h3 id="rumdl"><a class="toclink" href="../../2026/02/28/lint-format-rumdl/#rumdl">rumdl</a></h3>
+<p><a href="https://github.com/rvben/rumdl">rumdl</a> es un formatter y linter de Markdown escrito en Rust siguiendo las ideas de <code>ruff</code>.</p>
+<p>El primer commit es de Febrero de 2025, así que es un proyecto muy reciente con unas 800 estrellas en este momento. Parecen pocas pero para una herramienta que sigue siendo e nicho no está mal. Markdownlint tiene 2k y mdformat 600. Además ha sido adoptado por proyectos como lucene, ULauncher o pyo3.</p>
+<p>No usaría este proyecto si fuera una dependencia <em>core</em> porqué para mi tiene varios <em>red flags</em>:</p>
+<ul>
+<li>El proyecto tiene apenas un año y muchas features. Tiene pinta de haber mucho LLM y eso necesita mucha destreza para que el mantenimiento no se complique.</li>
+<li>Tiene 25 <em>contributors</em>, pero el 98% de los commits son de la misma persona.</li>
+<li>El README (que es gigante) está desincronizado con la documentación. Y la web no está enlazada desde el repositorio.</li>
+</ul>
+<p>La herramienta promete mucho y, cumple más requisitos que los herramientas analizados en el anterior post:</p>
+<ul>
+<li>Escrito en rust, es un binario instalable por todos los métodos habituales, uv, npm, curl, ...</li>
+<li>Paridad de reglas con Markdownlint (con algunas extra) y opción para importar la configuración</li>
+<li>Formatter y Linter en la misma herramienta, en un estilo muy <code>ruff</code>, parámetros parecidos en la CLI, el formato de configuración, ... lo que se agradece.</li>
+<li>Soporta por defecto varios formatos de Markdown</li>
+<li>Plugins para los editores habituales (LSP en el propio binario) e integración con pre-commit y sistemas varios de CI</li>
+</ul>
+<p>Pero, a poco que la he probado hay muchos detalles que no encajan bien con mi forma de trabajo:</p>
+<ul>
+<li><a href="https://github.com/rvben/rumdl/issues/472">Es muy agresiva en los <code>auto-fix</code></a></li>
+<li>La configuración de las reglas se vuelve complicada. Por ejemplo hay varios bugs en torno a la regla <a href="https://rumdl.dev/md022/">blanks-around-headings</a> y después de varias pruebas no he conseguido que simplemente me elimina todas las líneas en blanco antes el <code>H1</code> que prettier hace sin problemas.</li>
+</ul>
+<h3 id="conclusiones"><a class="toclink" href="../../2026/02/28/lint-format-rumdl/#conclusiones">Conclusiones</a></h3>
+<p><code>rumld</code> es una herramienta con potencial. Merece la pena probarla y ver si encaja, pero en mi caso, esperaré un par de meses antes de volver a probarla.</p>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2026-02-20 00:00:00+00:00">20 de febrero de 2026</time></li>
         
         
@@ -1027,6 +1097,10 @@
   </header>
   <div class="md-post__content md-typeset">
     <h2 id="herramientas-de-lint-y-format-para-markdown"><a class="toclink" href="../../2026/02/20/lint-format-markdown/">Herramientas de Lint y Format para Markdown</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No te pierdas la continuación de este artículo <a href="../../2026/02/28/lint-format-rumdl/">hablando de la herramienta rumdl</a></p>
+</div>
 <p>Llevo bastante tiempo usando <code>markdownlint-cli2</code> y <code>prettier</code> para linting y formatting de Markdown, pero no tenía un análisis de las herramientas disponibles, para ver si había mejores opciones.</p>
 <h3 id="requisitos-deseables"><a class="toclink" href="../../2026/02/20/lint-format-markdown/#requisitos-deseables">Requisitos Deseables</a></h3>
 <ul>

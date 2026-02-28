@@ -86,12 +86,20 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
+  True
   
+
 
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+
+  <!-- Consent necessary -->
   
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+    <script>
+      if (typeof __md_analytics !== "undefined")
+        __md_analytics()
+    </script>
   
 
     
@@ -899,6 +907,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#libro-a-byte-of-python-de-swaroop-c-h" class="md-nav__link">
+    <span class="md-ellipsis">
+      Libro: A Byte of Python de Swaroop C H
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#porque-creo-que-es-util-discutir-de-tabuladores-y-espacios" class="md-nav__link">
     <span class="md-ellipsis">
       Porqué creo que es útil discutir de Tabuladores y Espacios
@@ -934,15 +951,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#modelado-de-datos-booleanos-en-la-base-de-datos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modelado de datos booleanos en la base de datos
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -957,6 +965,28 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2017-11-11 00:00:00+00:00">11 de noviembre de 2017</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="libro-a-byte-of-python-de-swaroop-c-h"><a class="toclink" href="../../2017/11/11/libro-a-byte-of-python-de-swaroop-c-h/">Libro: A Byte of Python de Swaroop C H</a></h2>
+<p>El libro «<a href="https://python.swaroopch.com/">A Byte of Python</a>» es uno de los que se suelen recomendar en las QA de como iniciarse en el desarrollo con Python. Es un libro corto, unas 120 hojas en la versión impresa que se puede ojear en apenas un par de horas. Está distribuído bajo licencia CC-by-sa 4.0 y el desarrollo se realiza en <a href="https://github.com/swaroopch/byte-of-python">github</a>. Al ser libre hay distintas versiones en la red, la canónica está en <a href="https://python.swaroopch.com/">la página del autor</a> y es la que se debería leer.</p>
+<p>El libro hace un repaso básico a la sintaxis del lenguaje, sin entrar en demasiada profundidad en ningún tema y con ejemplos tipo «¡Hola mundo!». Tampoco se para demasiado en conceptos de teoría de la programación, como explicar que es una variable o un lenguaje interpretado pero si lo menciona. Eso sí, la terminología que emplea para hacer referencia a los conceptos es correcta.</p>
+<p>Creo que es una buena guía si ya sabes algo de programación en otro lenguaje y quieres de una forma rápido poder empezar a hacer cosas con python, pero no es adecuado como primer contacto con el mundo del desarrollo.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1198,41 +1228,6 @@ function () {<br />
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2017-02-09 00:00:00+00:00">9 de febrero de 2017</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="modelado-de-datos-booleanos-en-la-base-de-datos"><a class="toclink" href="../../2017/02/09/modelado-de-datos-booleanos-en-la-base-de-datos/">Modelado de datos booleanos en la base de datos</a></h2>
-<p>Cuando definimos la información que un usuario puede visualizar o modificar a través de un formulario nos encontraremos datos aparentemente booleanos. Por ejemplo: ¿Hay un pozo en esta aldea?.</p>
-<p>La primera aproximación para implementar esta información es poner un checkbox en el formulario y definir el campo como booleano en la base de datos.</p>
-<p><code>CREATE TABLE aldea (id serial, pozo boolean);</code></p>
-<p>Haciéndolo de este modo existen varios posibles problemas:</p>
-<ul>
-<li>A nivel usabilidad. Que pasa si el usuario no sabe si hay un pozo. Lógicamente dejará el checkbox sin marcar, pero cuando se revise esa información no se podrá saber si a conciencia se dejo en blanco indicando que no había pozo, o si se desconocía el dato.</li>
-<li>A nivel implementación. Por defecto, a no ser que la lógica implementada en cliente lo gestione de otra forma, en la base de datos almacenaremos un valor NULL y no un valor FALSE. Al tener valores nulos las queries que hagamos se pueden complicar, por ejemplo un <em>SELECT * FROM aldea WHERE pozo IS FALSE;</em> no nos devolverá los valores nulos. Si empleamos la tabla para hacer un informe o exportarla a una hoja de cálculo tendremos que lidiar con los nulos, …</li>
-</ul>
-<p>Por tanto cuando modelemos una información que parezca binaria, preguntémonos (y preguntemos al cliente) si es necesario distinguir entre falso, y desconocer el dato. Si estamos en la segunda situación debemos huír de usar checkboxes y emplear otro tipo de widget, como un combobox donde el usuario pueda escoger «Existe», «No existe» o dejar en blanco si no conoce el dato. A nivel implementación la información del combobox la guardaremos en general como un texto o un tipo enumerado. Y si eres un producto owner que usa algún tipo de documento para definir el modelo de datos a los desarrolladores asegurate siempre de especificar esta información.</p>
-<p>Habrá situaciones en las que aún presentando al usuario la información mediante un combo, nos interese modelar el campo como un booleano. En este caso la lógica por encima de la base de datos sería la responsable de traducir el campo en blanco por un nulo, el ‘Existe’ por un true y el ‘No existe’ por un false.</p>
-<p>Cuando modelemos un campo en la base de datos que sea verdaderamente binario para evitar confusiones deberíamos implementarlo de esta forma.</p>
-<p><code>&lt;br&gt;&lt;/br&gt;CREATE TABLE aldea (&lt;br&gt;&lt;/br&gt;id serial,&lt;br&gt;&lt;/br&gt;pozo boolean NOT NULL DEFAULT false&lt;br&gt;&lt;/br&gt;)&lt;br&gt;&lt;/br&gt;</code></p>
-<h4 id="addendum"><a class="toclink" href="../../2017/02/09/modelado-de-datos-booleanos-en-la-base-de-datos/#addendum">Addendum</a></h4>
-<p>Cuando trabajamos con campos booleanos que admiten el valor nulo nos podemos encontrar un problema adicional al hacer migraciones de la base de datos. Imaginemos que tenemos un campo <em>contador</em> de tipo <em>boolean</em>, y que en la base de datos tenemos valores a <em>true</em>, <em>false</em> y <em>null</em>. Si a posteriori decidimos cambiar contador por un sistema de medida, con opciones como Contador, Manual, Volumétrico, … hacer la migración hacia adelante será sencillo.</p>
-<p><code>&lt;br&gt;&lt;/br&gt;UPDATE myschema.mytable SET sistema_medicion = 'Contador' WHERE contador IS true;&lt;br&gt;&lt;/br&gt;</code></p>
-<p>Pero el revert no sería tan sencillo, porque habremos perdido la información de nulos y false.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1240,7 +1235,7 @@ function () {<br />
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../4/">4</a> <a class="md-pagination__link" href="../5/">5</a> <span class="md-pagination__current">6</span> <a class="md-pagination__link" href="../7/">7</a> <a class="md-pagination__link" href="../8/">8</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../41/">41</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../4/">4</a> <a class="md-pagination__link" href="../5/">5</a> <span class="md-pagination__current">6</span> <a class="md-pagination__link" href="../7/">7</a> <a class="md-pagination__link" href="../8/">8</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../42/">42</a>
 </nav>
         
       

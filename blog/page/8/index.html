@@ -86,12 +86,20 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
+  True
   
+
 
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="bdad2eb0-6988-4bb1-937e-1709e0fadc02"></script>
+
+  <!-- Consent necessary -->
   
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+    <script>
+      if (typeof __md_analytics !== "undefined")
+        __md_analytics()
+    </script>
   
 
     
@@ -899,6 +907,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#atom-autocompletado-de-codigo-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atom: Autocompletado de código en python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-javascript-the-good-parts-de-douglas-crockford" class="md-nav__link">
     <span class="md-ellipsis">
       Libro: JavaScript: The Good Parts de Douglas Crockford
@@ -934,15 +951,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#el-sol-la-tierra-la-luna-y-animaciones-con-css3" class="md-nav__link">
-    <span class="md-ellipsis">
-      El sol, la tierra la luna y animaciones con css3
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -957,6 +965,51 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2016-05-08 00:00:00+00:00">8 de mayo de 2016</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="atom-autocompletado-de-codigo-en-python"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/">Atom: Autocompletado de código en python</a></h2>
+<p>Al margen del <a href="https://confluence.jetbrains.com/display/PYH/Code+completion">«Code Completion» de PyCharm</a>, y algún otro, el resto de editores/IDEs proveen autocompletado a través de librerías o «servicios externos». Para el caso de python hay fundamentalmente dos, <a href="https://github.com/python-rope/rope">rope</a> y <a href="https://jedi.readthedocs.io/en/latest/index.html">jedi</a>. Rope está más enfocada a Refactoring y Jedi a Autocompletado, por tanto las dos son complementarias. En la actualidad varios editores que usaban rope están migrando a jedi, su autor ha hecho una <a href="http://jedidjah.ch/code/2013/1/19/why_jedi_not_rope/">comparación defendiendo su librería</a>.</p>
+<p>Además de estas librerías cada editor suele proporcionar un plugin base para autocompletado (<a href="https://atom.io/packages/autocomplete-plus">autocomplete-plus</a> en atom, <a href="http://auto-complete.org/">auto-complete</a> en emacs) y plugins adicionales para cada lenguaje concreto que actúan como wrapper de las librerías base (rope, jedi,…). Por ejemplo en atom tenemos <a href="https://atom.io/packages/autocomplete-python">autocomplete-python</a> que es un wrapper para jedi.</p>
+<h3 id="instalacion"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/#instalacion">Instalación</a></h3>
+<p>Primero hay que instalar jedi sea a nivel global como en el ejemplo, o dentro de un virtualenv.</p>
+<p><code>&lt;br&gt;&lt;/br&gt;sudo pip install jedi&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Luego se instala el plugin de <a href="https://atom.io/packages/autocomplete-python">autocomplete-pyhon</a> (que es el más actualizado de los varios que hay). Si usas virtualenv también debería funcionar sin problemas pero si usas algo como virtualenvwrapper donde tu módulo está en un directorio distinto al «entorno virtual de python» puedes haber más problemas.</p>
+<p>Lanzado atom desde un virtualenv activado siempre funciona correctamente. Si lo lanzas de otra forma hay que configurar la opción de configuración <em>Python executable path</em> del plugin con algo como:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;PATH_TO_VIRTUALENV_WRAPPERS_FOLDER/$PROJECT_NAME/bin/python</code></p>
+<p>o</p>
+<p>PATH_TO_VIRTUALENV_WRAPPERS_FOLDER/$PROJECT/bin/python</p>
+<p>Donde PATH_TO_VIRTUALENV_WRAPPERS_FOLDER es la ruta absoluta al directorio donde se guardan todos los entornos virtuales de virtualenwrapper y $PROJECT_NAME y $PROJECT son cadenas que debes escribir tal cual. Son variables que entiende el plugin. De la documentación parece deducirse que lo que hay que usar es $PROJECT pero a mi me ha funcionado sólo con $PROJECT_NAME. Además el directorio padre que se añade a atom a través del «Add project folder» debería llamarse igual que el virtualenv para que $PROJECT_NAME tome el valor correcto y puedas usar la misma configuración para distintos proyectos.</p>
+<h3 id="uso"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/#uso">Uso</a></h3>
+<p>Por la naturaleza dinámica de python muchas veces jedi no es capaz de detectar el tipo de datos de un objeto. Pero podemos ayudarlo <a href="https://jedi.readthedocs.io/en/latest/docs/features.html#recipes">documentado el método</a>. Por ejemplo en un caso como el del ejemplo siguiente con una vista de pyramid, jedi no será capaz de determinar el tipo de datos del parámetro request.</p>
+<p><code>&lt;br&gt;&lt;/br&gt;@view_config(route_name='my_route')&lt;br&gt;&lt;/br&gt;def my_route(request):&lt;br&gt;&lt;/br&gt;  pass&lt;br&gt;&lt;/br&gt;</code></p>
+<p>Pero si hacemos lo siguiente si que autocompletará correctamente los métodos de request:</p>
+<p><code>&lt;br&gt;&lt;/br&gt;def cultivos_get(request):&lt;br&gt;&lt;/br&gt;    """&lt;br&gt;&lt;/br&gt;    :type request: pyramid.request.Request&lt;br&gt;&lt;/br&gt;    """&lt;br&gt;&lt;/br&gt;    pass&lt;br&gt;&lt;/br&gt;</code></p>
+<p>No lo he probado con python 3 para ver si soporta el <a href="http://blog.jetbrains.com/pycharm/2015/11/python-3-5-type-hinting-in-pycharm-5/">type hinting</a> pero este <a href="https://github.com/davidhalter/jedi/pull/661">issue</a> me hace suponer que si.<br />
+<strong>Teclas principales</strong></p>
+<ul>
+<li>Sugerencias de autocompletado. <code>Ctrl+space</code> Cursores y tab/intro para escoger y aceptar sugerencia</li>
+<li>Go to definition: <code>Ctrl+Alt+G</code></li>
+<li>Show usages: <code>Ctrl+Shift+P show usages</code></li>
+<li>Renombrado en varios ficheros a la vez: Con el cursor encima del símbolo. <code>Ctrl+Shift+P rename</code></li>
+</ul>
+<h3 id="conclusiones"><a class="toclink" href="../../2016/05/08/atom-autocompletado-codigo-python/#conclusiones">Conclusiones</a></h3>
+<p>Las funcionalidades que proporciona son de todas formas muy justas porqué a no ser que documentes los métodos, la mayoría de veces no es capaz de inferir el tipo de datos de una variable. Además las funciones de <a href="https://github.com/atom/autocomplete-plus">autocompletado normal</a> de atom incluyen habitualmente opciones que no tienen porque corresponder con métodos o propiedades reales del objeto. Y si se desactiva el autocompletado normal para los ficheros python, tendremos muy pocas sugerencias.</p>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1057,31 +1110,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-11-21 00:00:00+00:00">21 de noviembre de 2015</time></li>
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="el-sol-la-tierra-la-luna-y-animaciones-con-css3"><a class="toclink" href="../../2015/11/21/sol-tierra-luna-animaciones-css3/">El sol, la tierra la luna y animaciones con css3</a></h2>
-<p>Hace algún tiempo vi un ejemplo brutal de como usar únicamente <a href="http://neography.com/journal/our-solar-system-in-css3/">html5 y css3 para hacer una «representación» del sistema solar</a>.</p>
-<p>Viendo que estaba como uno de los proyectos de <a href="https://www.codecademy.com/es/courses/web-beginner-en-ymqg0/0/1">codeacademy</a> hice una pequeña prueba que comparto. La diferencia fundamental con el de code academy es que en lugar de usar imágenes para representar a los planetas uso div con background-color y que he añadido la luna para poder jugar un poco con las animaciones «anidadas». Que fundamentalmente es un problema de posicionamiento css.</p>
-<div class="ngg-gallery-singlepic-image ngg-center" style=""> [ ![El sol, la tierra la luna y css3](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/cache/sun-earth-moon-css3.png-nggid0233-ngg0dyn-0x0x100-00f0w010c010r110f110r010t010.png "El sol, la tierra la luna y css3") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/sun-earth-moon-css3.png "El sol, la tierra la luna y css3
-https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
-<p><a href="https://www.codecademy.com/fpuga/codebits/vkaK85/edit">Aquí el resultado</a>. Hay otros experimentos muy chulos en esta línea como este que trata de <a href="http://nicolasgallagher.com/css-pseudo-element-solar-system/">reproducir el primer experimento usando un html más semántico</a>. O este otro clon del primero donde también modifica la estructura del html <a href="http://cssdeck.com/labs/css-only-solar-system-model">usando div todos al mismo nivel de anidamiento</a>. Este otro también sigue la idea del primero pero añade cosas chulas como usar funciones css para <a href="http://codepen.io/kowlor/pen/ZYYQoy">posicionar las estrellas de fondo en localizaciones aleatorias</a>.</p>
-<p>Y por último, uno que a pesar de incluir algo de javascript (para los controles) es capaz de <a href="https://codepen.io/juliangarnier/pen/idhuG">reproducir el sistema solar en 3D</a>.</p>
-    
-  </div>
-</article>
-      
       
         
           
@@ -1089,7 +1117,7 @@ https://www.codecademy.com/fpuga/codebits/vkaK85/edit") </div>
 
 
 <nav class="md-pagination">
-  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../6/">6</a> <a class="md-pagination__link" href="../7/">7</a> <span class="md-pagination__current">8</span> <a class="md-pagination__link" href="../9/">9</a> <a class="md-pagination__link" href="../10/">10</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../41/">41</a>
+  <a class="md-pagination__link" href="../../">1</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../6/">6</a> <a class="md-pagination__link" href="../7/">7</a> <span class="md-pagination__current">8</span> <a class="md-pagination__link" href="../9/">9</a> <a class="md-pagination__link" href="../10/">10</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="../42/">42</a>
 </nav>
         
       
