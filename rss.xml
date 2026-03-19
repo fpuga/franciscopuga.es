@@ -13,17 +13,143 @@
     <language>es</language>
 
     
-    <pubDate>Thu, 19 Mar 2026 09:40:48 -0000</pubDate>
-    <lastBuildDate>Thu, 19 Mar 2026 09:40:48 -0000</lastBuildDate>
+    <pubDate>Thu, 19 Mar 2026 20:56:07 -0000</pubDate>
+    <lastBuildDate>Thu, 19 Mar 2026 20:56:07 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
-    <generator>MkDocs RSS plugin - v1.15.0</generator>
+    <generator>MkDocs RSS plugin - v1.17.7</generator>
 
     
     
+    <image>
+      <url>None</url>
+      <title>Francisco Puga</title>
+      <link>https://franciscopuga.es/</link>
+    </image>
+    
 
     
+    
+    <item>
+      <title>Coding Agentes: Commands en Cursor</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;coding-agentes-commands-en-cursor&#34;&gt;Coding Agentes: Commands en Cursor&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
+&lt;p&gt;En esté artículo nos centramos cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Cursor. Las pruebas han sido hechas sobre la versión 2.5.&lt;/p&gt;
+&lt;p&gt;Saber que hace Cursor &lt;em&gt;under the hood&lt;/em&gt; es muy difícil. He probado con HTTP Toolkit pero es difícil de saber que información se envía realmente. Así que no va a ser un proceso científico sino basado en un par de pruebas y en la documentación.&lt;/p&gt;
+&lt;p&gt;Los commands se introdujeron en &lt;a href=&#34;https://cursor.com/changelog/1-6&#34;&gt;septiembre de 2025&lt;/a&gt; y recomiendan &lt;a href=&#34;https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills&#34;&gt;substituirlos por skills&lt;/a&gt; desde &lt;a href=&#34;https://cursor.com/changelog/2-4&#34;&gt;enero de 2026&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Prácticamente han eliminado toda la documentación referida a los commands:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sólo queda una &lt;a href=&#34;https://cursor.com/docs/reference/plugins#commands-format&#34;&gt;nota sobre su formato&lt;/a&gt; cuando hablan de crear plugins.&lt;/li&gt;
+&lt;li&gt;El artículo &lt;a href=&#34;https://cursor.com/blog/agent-best-practices#git-workflows&#34;&gt;Best practices for coding agents&lt;/a&gt; (de 9 de enero) da una pista de cual es el caso de uso para los &lt;em&gt;commands&lt;/em&gt; según Cursor.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Los &lt;em&gt;commands&lt;/em&gt; son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ficheros markdown que pueden contener un frontmatter de &lt;code&gt;name&lt;/code&gt; y &lt;code&gt;description&lt;/code&gt;. Que no parece valer para nada.&lt;/li&gt;
+&lt;li&gt;Van en el &lt;code&gt;.cursor/commands&lt;/code&gt; del proyecto o de &lt;code&gt;~&lt;/code&gt;. No busca en subdirectorios.&lt;/li&gt;
+&lt;li&gt;Se invocan a demanda del usuario en el chat con &lt;code&gt;/nombre-del-comando&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Y una cosa chula es que son &lt;em&gt;composables&lt;/em&gt;: &lt;code&gt;/check-compiler-errors and /commit, then create a /pr&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cual-es-la-diferencia-con-las-reglas&#34;&gt;Cual es la diferencia con las reglas&lt;/h2&gt;
+&lt;p&gt;Las reglas se usan:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Siempre&lt;/li&gt;
+&lt;li&gt;Bajo criterio del agente&lt;/li&gt;
+&lt;li&gt;Cuando lo fuerza el usuario.&lt;/li&gt;
+&lt;li&gt;Combinación de patrones sobre los nombres de archivos, criterio del agente, ...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Los comandos funcionan estrictamente bajo demanda del usuario.&lt;/p&gt;
+&lt;p&gt;Además en Cursor &lt;a href=&#34;https://forum.cursor.com/t/commands-vs-rules-how-are-they-different/133796&#34;&gt;parece haber cierta lógica interna&lt;/a&gt; asociado al uso de un comando.&lt;/p&gt;
+&lt;p&gt;Las reglas deberían usarse para definir estándares, &lt;em&gt;guidelines&lt;/em&gt;, ... que el LLM debe seguir. En definitiva &#34;reglas&#34;. Sería un &lt;em&gt;follow this rules when making a refactor&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Los comandos deberían usarse para pedir al LLM que lleve a cabo una acción y definir los pasos para ejecutarla. Sería un &lt;em&gt;make a refactor&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Por supuesto hay &lt;em&gt;overlap&lt;/em&gt; pero al menos la intención debería ser clara.&lt;/p&gt;
+&lt;h2 id=&#34;cual-es-la-diferencia-con-las-skills&#34;&gt;Cual es la diferencia con las skills&lt;/h2&gt;
+&lt;p&gt;El metadata de las skill se carga siempre y el agente decide cuando usar una skill o puede ser forzado por el usuario.&lt;/p&gt;
+&lt;p&gt;Las skills pueden ser muy complejas y encapsular scripts, ...&lt;/p&gt;
+&lt;p&gt;Las skills en teoría son un estándar, mientras que los comandos no.&lt;/p&gt;
+&lt;p&gt;Si hay alguna diferencia a nivel resultado de la ejecución &lt;code&gt;/commit&lt;/code&gt; vs &lt;code&gt;skill/commit/SKILL.md&lt;/code&gt; queda para artículos futuros.&lt;/p&gt;
+&lt;h2 id=&#34;hay-alguna-diferencia-con-referenciar-un-documento&#34;&gt;Hay alguna diferencia con referenciar un documento&lt;/h2&gt;
+&lt;p&gt;Una de las cosas que más preocupan es cómo mantener &lt;em&gt;agent stuff&lt;/em&gt; compatible entre herramientas. Así que, ¿hay alguna diferencia entre referenciar un documento en el chat con &lt;code&gt;@&lt;/code&gt; y usar un comando?.&lt;/p&gt;
+&lt;p&gt;Para comprobarlo he creado un fichero &lt;code&gt;refine-english.md&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;language-markdown highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-0-1&#34;&gt;&lt;a id=&#34;__codelineno-0-1&#34; name=&#34;__codelineno-0-1&#34; href=&#34;#__codelineno-0-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gh&#34;&gt;# refine-english&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-2&#34;&gt;&lt;a id=&#34;__codelineno-0-2&#34; name=&#34;__codelineno-0-2&#34; href=&#34;#__codelineno-0-2&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gu&#34;&gt;## Task&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-4&#34;&gt;&lt;a id=&#34;__codelineno-0-4&#34; name=&#34;__codelineno-0-4&#34; href=&#34;#__codelineno-0-4&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-5&#34;&gt;&lt;a id=&#34;__codelineno-0-5&#34; name=&#34;__codelineno-0-5&#34; href=&#34;#__codelineno-0-5&#34;&gt;&lt;/a&gt;Refine the English prose in the provided file.
+&lt;/span&gt;&lt;span id=&#34;__span-0-6&#34;&gt;&lt;a id=&#34;__codelineno-0-6&#34; name=&#34;__codelineno-0-6&#34; href=&#34;#__codelineno-0-6&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-7&#34;&gt;&lt;a id=&#34;__codelineno-0-7&#34; name=&#34;__codelineno-0-7&#34; href=&#34;#__codelineno-0-7&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Clarity: Simplify wording to be accessible for non-native speakers. Avoid flowery language.
+&lt;/span&gt;&lt;span id=&#34;__span-0-8&#34;&gt;&lt;a id=&#34;__codelineno-0-8&#34; name=&#34;__codelineno-0-8&#34; href=&#34;#__codelineno-0-8&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Correction: Fix all grammar, spelling, and punctuation errors.
+&lt;/span&gt;&lt;span id=&#34;__span-0-9&#34;&gt;&lt;a id=&#34;__codelineno-0-9&#34; name=&#34;__codelineno-0-9&#34; href=&#34;#__codelineno-0-9&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Constraint: Maintain the original structure and core intent. Focus strictly on clarity and consistency.
+&lt;/span&gt;&lt;span id=&#34;__span-0-10&#34;&gt;&lt;a id=&#34;__codelineno-0-10&#34; name=&#34;__codelineno-0-10&#34; href=&#34;#__codelineno-0-10&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-11&#34;&gt;&lt;a id=&#34;__codelineno-0-11&#34; name=&#34;__codelineno-0-11&#34; href=&#34;#__codelineno-0-11&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gu&#34;&gt;## Output Instructions&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-12&#34;&gt;&lt;a id=&#34;__codelineno-0-12&#34; name=&#34;__codelineno-0-12&#34; href=&#34;#__codelineno-0-12&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-13&#34;&gt;&lt;a id=&#34;__codelineno-0-13&#34; name=&#34;__codelineno-0-13&#34; href=&#34;#__codelineno-0-13&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Agent must edit the file directly.
+&lt;/span&gt;&lt;span id=&#34;__span-0-14&#34;&gt;&lt;a id=&#34;__codelineno-0-14&#34; name=&#34;__codelineno-0-14&#34; href=&#34;#__codelineno-0-14&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;In the agent chat response:
+&lt;/span&gt;&lt;span id=&#34;__span-0-15&#34;&gt;&lt;a id=&#34;__codelineno-0-15&#34; name=&#34;__codelineno-0-15&#34; href=&#34;#__codelineno-0-15&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Do not summarize minor edits. Only mention changes if they significantly alter the meaning.
+&lt;/span&gt;&lt;span id=&#34;__span-0-16&#34;&gt;&lt;a id=&#34;__codelineno-0-16&#34; name=&#34;__codelineno-0-16&#34; href=&#34;#__codelineno-0-16&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;Refinements &amp;amp; Critiques: Point out logical inconsistencies, suggest deeper structural improvements, or critique the overall flow.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Cuando lo uso cómo comando &lt;code&gt;/refine-english @mydoc.md&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Es muy directo (se ve en la cadena de pensamiento). Sabe que tiene que ejecutar unas instrucciones sobre un fichero.&lt;/li&gt;
+&lt;li&gt;Sigue bien las instrucciones.&lt;ul&gt;
+&lt;li&gt;Algún documento tenía mezclaba inglés y español. Dejo el texto en castellano intacto y el chat lo indicó directamente &#34;The document is mostly Spanish, consider ...&#34; o veladas &#34;Updated the English parts of &#34;. Hay que estar fino para darse cuenta de &#34;English parts&#34;.&lt;/li&gt;
+&lt;li&gt;Había un cacho pequeño de código con un bug. Lo mencionó en la conversación pero no lo corrigió.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cuando lo uso cómo referencia &lt;code&gt;@refine-english.md for @mydoc.md&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Se pasa un tiempo al inicio intentando interpretar que es lo que se está pidiendo.&lt;/li&gt;
+&lt;li&gt;Varias veces que lo probé tuvo problemas aplicando parches. ¿Quizá sea porqué estaba en modo &#34;Auto&#34; y no escogió el modelo adecuado para la tarea?&lt;/li&gt;
+&lt;li&gt;Directamente tradujo los textos a inglés en todas las ocasiones, y en alguna corrigió por su cuenta los errores en el código.&lt;/li&gt;
+&lt;li&gt;Usa un 1% de contexto más (acorde al indicador del chat de cursor)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cuando lo uso cómo: &lt;code&gt;please do the tasks followed by @refine-english.md in document @mydoc.md&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;El resultado se parece más al uso del comando y el % de contexto usado es similar.&lt;/li&gt;
+&lt;li&gt;Cómo en la referencia decide por su cuenta traducir los textos en español&lt;/li&gt;
+&lt;li&gt;Sin problemas aplicando los parches.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Las pruebas anteriores era con el modelo en &lt;code&gt;Auto&lt;/code&gt;. Al pasarlo a &lt;code&gt;Sonnet 4.6&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Las tres formas de usarlo traducen el texto a inglés.&lt;/li&gt;
+&lt;li&gt;El contexto es similar pero un 4% superior a usarlo en modo &lt;code&gt;Auto&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Sin problemas aplicando los parches.&lt;/li&gt;
+&lt;li&gt;Es difícil de determinar pero el modo comando parece seguir mejor las instrucciones, sobre todo en el formato de salida.&lt;/li&gt;
+&lt;li&gt;En ninguno de los casos mencionó el bug en el código&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;En Cursor usar un comando (parece que) frente a referenciar un documento:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Activa cierta lógica interna que consume menos tokens y sigue mejor las instrucciones.&lt;/li&gt;
+&lt;li&gt;En modo &lt;code&gt;Auto&lt;/code&gt; selecciona modelos distintos que con la referencia.&lt;/li&gt;
+&lt;li&gt;No he notado mucha diferencia entre usar &lt;code&gt;@mydoc.md&lt;/code&gt; y &#39;mydoc.md&#39;.&lt;/li&gt;
+&lt;li&gt;Influye más el modelo que usarlo cómo comando o cómo &lt;code&gt;@&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Este es uno de los mejores comentaros que he encontrado sobre cómo funcionan estas herramientas:&lt;/p&gt;
+&lt;div class=&#34;admonition quote&#34;&gt;
+&lt;p class=&#34;admonition-title&#34;&gt;&lt;a href=&#34;https://forum.cursor.com/t/skills-vs-commands-vs-rules/148875/9&#34;&gt;Alexandros alexandrosandre&lt;/a&gt;, en el foro de Cursor&lt;/p&gt;
+&lt;p&gt;To my understanding you aren&#39;t missing anything. What helps myself get through this caos is the following simplified rationale &#34;It is all a lie. Everything is just another prompt.&#34; Therefore your usage might not be standard or documented but can work just as fine.&lt;/p&gt;
+&lt;p&gt;Not trying to be disrespectful at all with the &#34;lie&#34; here. Product is trying to name and build use cases and follow standards the best they can. And it’s tough.&lt;/p&gt;
+&lt;p&gt;It just helps me understand that all we are doing is telling LLMs what to do in a prompt or where to find the longer instructions (aka prompt) to avoid filling up the context. The rest on top is a essentially looping/harnessing/if-this-then-that nothing else.&lt;/p&gt;
+&lt;/div&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/03/19/coding-agents-commands-cursor/</link>
+      <pubDate>Thu, 19 Mar 2026 22:00:00 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/19/coding-agents-commands-cursor/</guid>
+      
+    </item>
     
     <item>
       <title>Coding Agentes: Funcionalidades de &#34;inyección de contexto&#34;</title>
@@ -32,6 +158,13 @@
       
       
       <description>&lt;h1 id=&#34;coding-agentes-funcionalidades-de-inyeccion-de-contexto&#34;&gt;Coding Agentes: Funcionalidades de &#34;inyección de contexto&#34;&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
 &lt;p&gt;Los &lt;em&gt;coding agents&lt;/em&gt; ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;prompt&lt;/strong&gt;: Ya sea &lt;em&gt;user prompt&lt;/em&gt;, &lt;em&gt;system prompt&lt;/em&gt;, ...&lt;/li&gt;
@@ -61,7 +194,7 @@
 &lt;/ul&gt;
 &lt;p&gt;En próximos artículos iremos viendo con más detalle algunas de estas funcionalidades, cómo se comportan en distintas herramientas y cómo se relacionan entre sí.&lt;/p&gt;</description>
       <link>https://franciscopuga.es/blog/2026/03/19/coding-agents-features-for-context-injection/</link>
-      <pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 19 Mar 2026 14:00:00 +0000</pubDate>
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/19/coding-agents-features-for-context-injection/</guid>
@@ -1491,36 +1624,6 @@ identify -format &#34;%[fx:w/h] %w %h %M\n&#34; *.jpg | sort -n -k2&lt;/p&gt;
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2019/05/13/comprar-portatil-desarrollo-2019/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Virtualbox + Windows + VideoConferencia Múltiple en Skype</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;virtualbox-windows-videoconferencia-multiple-en-skype&#34;&gt;Virtualbox + Windows + VideoConferencia Múltiple en Skype&lt;/h1&gt;
-&lt;p&gt;Si usas linux no sería extraño que alguna vez te hayas encontrado con una &lt;strong&gt;ineludible&lt;/strong&gt; videoconferencia de grupo por Skype y hayas tenido que hacer números para poder participar.&lt;/p&gt;
-&lt;p&gt;Quien dice Skype, dice alguno de esas extrañas aplicaciones privativas de videoconferencia que alguna gente (clientes) insisten en usar.&lt;/p&gt;
-&lt;p&gt;Si tienes una licencia de Windows que puedas reusar para una máquina virtual, a mi estas instrucciones me funcionan en Ubuntu 18.04 para poder usar webcam y micro.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;# Substituir por el usuario deseado&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;USER=$(whoami)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;sudo apt install virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-x11 virtualbox-dkms&lt;br /&gt;
-sudo usermod -a -G vboxusers $USER&lt;br /&gt;
-sudo usermod -a -G video,audio,pulse-access $USER&lt;br /&gt;
-sudo usermod -a -G audio pulse&lt;/p&gt;
-&lt;p&gt;Tras crear la máquina guest con Windows:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Encender la máquina virtual&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Dispositivos ópticos&lt;/code&gt; -&amp;gt; &lt;code&gt;montar una nueva iso&lt;/code&gt; -&amp;gt; En &lt;code&gt;/usr/share/virtualbox&lt;/code&gt; seleccionr VBoxGuestAdditions.iso.&lt;/li&gt;
-&lt;li&gt;En caso de que no se ejecute automáticamente el cd/iso, ejecutaremos el .exe desde el explorador de archivos.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Con estas instrucciones tendremos una máquina virtual que soporte webcam, audio, usbs, portapapeles bidireccional (a activar en la configuración de cada máquina), …&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2018/07/24/virtualbox-windows-videoconferencia-multiple-en-skype/</link>
-      <pubDate>Tue, 24 Jul 2018 00:00:00 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2018/07/24/virtualbox-windows-videoconferencia-multiple-en-skype/</guid>
       
     </item>
     
