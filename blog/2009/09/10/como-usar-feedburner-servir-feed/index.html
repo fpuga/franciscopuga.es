@@ -1045,12 +1045,16 @@
 <h4 id="pasos-para-el-tema-default-de-wordpress">Pasos para el tema default de wordpress</h4>
 <p>En concreto, particularizando para el tema por defecto que viene con wordpress lo que habría que hacer es:</p>
 <ul>
-<li>Abrir con un editor de textos el archivo wp-content/themes/default/header.php y buscar las líneas:<br />
-    &gt; &lt;link rel=»alternate» type=»application/rss+xml» title=»&lt;?php printf(__(‘%s RSS Feed’, ‘kubrick’), get_bloginfo(‘name’)); ?&gt;» href=»<span style="color:red">&lt;?php bloginfo(‘rss2_url’); ?&gt;</span>» /&gt;<br />
-    &gt; &lt;link rel=»alternate» type=»application/atom+xml» title=»&lt;?php printf(__(‘%s Atom Feed’, ‘kubrick’), get_bloginfo(‘name’)); ?&gt;» href=»&lt;?php bloginfo(‘atom_url’); ?&gt;» /&gt;</li>
+<li>Abrir con un editor de textos el archivo wp-content/themes/default/header.php y buscar las líneas:<blockquote>
+<p>&lt;link rel=»alternate» type=»application/rss+xml» title=»&lt;?php printf(__(‘%s RSS Feed’, ‘kubrick’), get_bloginfo(‘name’)); ?&gt;» href=»<span style="color:red">&lt;?php bloginfo(‘rss2_url’); ?&gt;</span>» /&gt;<br />
+&lt;link rel=»alternate» type=»application/atom+xml» title=»&lt;?php printf(__(‘%s Atom Feed’, ‘kubrick’), get_bloginfo(‘name’)); ?&gt;» href=»&lt;?php bloginfo(‘atom_url’); ?&gt;» /&gt;</p>
+</blockquote>
+</li>
 <li>Borrar la segunda, la que pone algo de atom y substituir el texto que está en rojo en la primera por http://feeds.tudominio.com/tudominio</li>
-<li>En el archivo wp-content/themes/default/footer.php buscar la línea<br />
-    &gt; &lt;a href=»<span style="color: #ff0000">&lt;?php bloginfo(‘rss2_url’); ?&gt;</span>«&gt;RSS das Entradas&lt;/a&gt; &amp;amp; &lt;a href=»<span style="color: #ff0000">&lt;?php bloginfo(‘comments_rss2_url’); ?&gt;</span>«&gt;RSS dos Comentarios&lt;/a&gt;.</li>
+<li>En el archivo wp-content/themes/default/footer.php buscar la línea<blockquote>
+<p>&lt;a href=»<span style="color: #ff0000">&lt;?php bloginfo(‘rss2_url’); ?&gt;</span>«&gt;RSS das Entradas&lt;/a&gt; &amp;amp; &lt;a href=»<span style="color: #ff0000">&lt;?php bloginfo(‘comments_rss2_url’); ?&gt;</span>«&gt;RSS dos Comentarios&lt;/a&gt;.</p>
+</blockquote>
+</li>
 <li>Substituir lo que está en rojo en la primera por http://feeds.tudominio.com/tudominio. Si también estas haciéndolo para los comentarios substituye también lo que está en rojo en la segunda línea por http://feeds.tudominio.com/tudominio_comentarios.</li>
 </ul>
 

@@ -1120,7 +1120,7 @@
 <p>En general accederemos a las funcionalidades de gvSIG a través de un Locator que nos dará un Manager que nos dará la funcionalidad. En el caso de los geoprocesos sería:</p>
 <p><code>&lt;br&gt;&lt;/br&gt;String ALG_NAME = "gvSIG-intersection";&lt;br&gt;&lt;/br&gt;SextanteGeoProcessManager manager = (SextanteGeoProcessManager) GeoProcessLocator.getGeoProcessManager();&lt;br&gt;&lt;/br&gt;HashMap&lt;string geoalgorithm=""&gt; algs = manager.getAlgorithms();&lt;br&gt;&lt;/br&gt;GeoAlgorithm alg = algs.get(ALG_NAME);&lt;br&gt;&lt;/br&gt;&lt;/string&gt;</code></p>
 <p>Debemos castear a la implementación por defecto del manager <em>SextanteGeoProcessManager</em> porque la interfaz en sí no proporciona el método <em>getAlgorithms</em>. Esto diría que es un bug.</p>
-<p>La forma de obtener ALG_NAME, no estoy seguro de cual es. En principio lo más fácil sería poner un breakpoint y mirar los valores de <em>algs</em>. Aunque en mi caso sólo salen los propios de gvSIG y no los de Sextante.</p>
+<p>La forma de obtener ALG<em>NAME, no estoy seguro de cual es. En principio lo más fácil sería poner un breakpoint y mirar los valores de _algs</em>. Aunque en mi caso sólo salen los propios de gvSIG y no los de Sextante.</p>
 <h3 id="seteando-valores-al-algoritmo"><a class="toclink" href="../../2016/09/04/usando-geoprocesos-en-gvsig-desde-java/#seteando-valores-al-algoritmo">Seteando valores al algoritmo</a></h3>
 <p>Todos los algoritmos definen un método <em>defineCharacteristics</em> que nos indican los valores que recibe, tanto de entrada como de salida. Esta definición de valores se obtiene a través del método <em>getParameters</em></p>
 <p>En nuestro código debemos obtener cada uno de los parámetros necesarios y setear su valor real para nuestro caso. Por ejemplo:</p>
@@ -1139,7 +1139,7 @@
  .setParameterValue(false);<br />
  params.getParameter(IntersectionAlgorithm.SELECTGEOM_OVERLAY)<br />
  .setParameterValue(false);<br />
-}  </p>
+}</p>
 <p>En este caso para no escribir a mano los idenfificadores de los parámetros uso las variables estáticas definidas en el propio algoritmo. Eso hace que haya que añadir al pom el algortimo:</p>
 <p><code>&lt;br&gt;&lt;/br&gt;&lt;dependency&gt;&lt;br&gt;&lt;/br&gt; &lt;groupid&gt;org.gvsig&lt;/groupid&gt;&lt;br&gt;&lt;/br&gt;   &lt;artifactid&gt;org.gvsig.geoprocess.algorithm.intersection&lt;/artifactid&gt;&lt;br&gt;&lt;/br&gt;   &lt;version&gt;2.2.66&lt;/version&gt;&lt;br&gt;&lt;/br&gt;&lt;/dependency&gt;&lt;br&gt;&lt;/br&gt;</code></p>
 <p>Para las capas de entrada al algoritmo hay que generar una <em>FlyrVectIVectorLayer</em>. Como se muestra en el código de ejemplo lo más sencillo es obtener un <em>FLyrVect</em> y construirla con el create.</p>

@@ -1168,7 +1168,7 @@ usaremos directamente<br />
 <p>Existen <a href="http://www.async.com.br/projects/python/pnp/node33.html#SECTION000362300000000000000">dos formas de pasar un número variable de argumentos a una función</a>:<br />
 <code>&lt;br&gt;&lt;/br&gt;def desculpa(alvo, *motivos):&lt;br&gt;&lt;/br&gt;        d = "Desculpas %s, mas estou doente" % alvo&lt;br&gt;&lt;/br&gt;        for motivo in motivos:&lt;br&gt;&lt;/br&gt;            d = d + " e %s" % motivo&lt;br&gt;&lt;/br&gt;        return d + "."</code></p>
 <p>&gt;&gt;&gt; desculpa("senhor", "meu gato fugiu",<br />
- ... "minha tia veio visitar")  </p>
+ ... "minha tia veio visitar")</p>
 <p>o bien<br />
 <code>&lt;br&gt;&lt;/br&gt; def equipe(diretor, produtor, **atores):&lt;br&gt;&lt;/br&gt;        for personagem in atores.keys():&lt;br&gt;&lt;/br&gt;            print "%s: %s" % (personagem, atores[personagem])&lt;br&gt;&lt;/br&gt;        print "-" * 20&lt;br&gt;&lt;/br&gt;        print "Diretor:  %s" % diretor&lt;br&gt;&lt;/br&gt;        print "Produtor: %s" % produtor</code></p>
 <p>&gt;&gt;&gt; equipe(diretor="Paul Anderson",<br />

@@ -967,13 +967,11 @@
 <div class="ngg-gallery-singlepic-image ngg-left" style="max-width: 240px"> [ ![Logo transmission](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/cache/transmission.png-nggid0217-ngg0dyn-320x240x100-00f0w010c010r110f110r010t010.png "Logo transmission") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/transmission.png) </div>
 <p>Una nota rápida para explicar como mover una descarga (completa o incompleta) de <a href="http://www.transmissionbt.com/">transmission</a> a otro ordenador. El escenario es sencillo, tengo los torrents divididos entre dos ordenadores, y se dió el caso de que quería mover uno de los torrents de uno de los ordenadores al otro. Mover toda la información de transmission de un ordenador a otro es sencillo, basta mover los ficheros descargados a la misma ruta en el otro ordenador, y copiar la carpeta <em>~/.config/transmission</em>. Mover sólo uno es parecido, simplemente hay que ser un pelín más cuidadoso.</p>
 <ol>
-<li>Copiar del ordenador 1 a un almacenamiento temporal o similar los ficheros relacionados con nuestro torrent: <ul>
+<li>Copiar del ordenador 1 a un almacenamiento temporal o similar los ficheros relacionados con nuestro torrent:</li>
 <li>El fichero .resume en ~/config/transmission/resume</li>
 <li>El .torrent en ~/config/transmission/torrent</li>
 <li>El propio fichero descargado, si está incompleto da igual, reanudará la descarga desde el punto correcto.</li>
 <li>Anotar la cantidad de datos descargados y enviados para ese fichero</li>
-</ul>
-</li>
 <li>Abrir transmission en el ordenador 2 y abrir el .torrent del ordenador 1. Preferiblemente agregarlo en modo pausa para que no comience la descarga automáticamente</li>
 <li>Copiar a la ubicación del ordenador 2 donde se descargará el fichero, el fichero del ordenador 1</li>
 <li>En transmission, botón derecho sobre el torrent pausado, y «<em>Verificar datos locales</em>«.</li>

@@ -1073,12 +1073,12 @@
 <code>dm-crypt</code></p>
 <p>Ahora debemos comprobar si podemos acceder al volumen cifrado<br />
 <code>cryptsetup luksOpen $PARTICION $NOMBRE</code></p>
-<p>Este comando es algo así como decirle al kernel que el volumen virtual descifrado, correspondiente al volumen físico cifrado $PARTICION va a ser <em>/dev/mapper/$NOMBRE</em>. Este comando no es equivalente a montar la partición, es más bien inventarnos una especie de interfaz hardware para acceder a nuestros datos descifrados.</p>
+<p>Este comando es algo así como decirle al kernel que el volumen virtual descifrado, correspondiente al volumen físico cifrado $PARTICION va a ser */dev/mapper/$NOMBRE*. Este comando no es equivalente a montar la partición, es más bien inventarnos una especie de interfaz hardware para acceder a nuestros datos descifrados.</p>
 <h2 id="creamos-un-nuevo-sistema-de-archivos-en-la-particion">Creamos un nuevo sistema de archivos en la partición</h2>
 <p>Si todo ha ido bien ahora debemos formatear la partición, yo uso el sistema de archivos ext4.<br />
 <code>mkfs.ext4 [-L $ETIQUETA] -m 1 /dev/mapper/$NOMBRE</code></p>
 <ul>
-<li>-L $ETIQUETA: Asigna a esa partición un determinado nombre. Yo uso esta opción sobre todo cuando se trata de dispositivos externos, ya que cuando conectemos el dispositivo este se montará automáticamente como <em>/media/$ETIQUETA</em>, si no tiene etiqueta será simplemente <em>/media/disk</em>. Hay que tratar de usar un identificador que sea difícil que se repita, para poder asegurarnos que no hay otro dispositivo montado con el mismo nombre yo por ejemplo uso el estilo <em>fpuga_backup</em></li>
+<li>-L $ETIQUETA: Asigna a esa partición un determinado nombre. Yo uso esta opción sobre todo cuando se trata de dispositivos externos, ya que cuando conectemos el dispositivo este se montará automáticamente como <em>/media/$ETIQUETA</em>, si no tiene etiqueta será simplemente <em>/media/disk</em>. Hay que tratar de usar un identificador que sea difícil que se repita, para poder asegurarnos que no hay otro dispositivo montado con el mismo nombre yo por ejemplo uso el estilo *fpuga_backup*</li>
 <li>-m 1: Es para reservar un 1% del disco duro para el superusuario en lugar del 5% por defecto. Es útil dejar siempre algo pero 5 es demasiado</li>
 </ul>
 <p>Para cerrar el volumen descifrado y que no se puede acceder a él con la clave haremos<br />

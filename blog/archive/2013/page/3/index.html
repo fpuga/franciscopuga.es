@@ -1096,13 +1096,11 @@
 <div class="ngg-gallery-singlepic-image ngg-left" style="max-width: 240px"> [ ![Logo transmission](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/cache/transmission.png-nggid0217-ngg0dyn-320x240x100-00f0w010c010r110f110r010t010.png "Logo transmission") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/transmission.png) </div>
 <p>Una nota rápida para explicar como mover una descarga (completa o incompleta) de <a href="http://www.transmissionbt.com/">transmission</a> a otro ordenador. El escenario es sencillo, tengo los torrents divididos entre dos ordenadores, y se dió el caso de que quería mover uno de los torrents de uno de los ordenadores al otro. Mover toda la información de transmission de un ordenador a otro es sencillo, basta mover los ficheros descargados a la misma ruta en el otro ordenador, y copiar la carpeta <em>~/.config/transmission</em>. Mover sólo uno es parecido, simplemente hay que ser un pelín más cuidadoso.</p>
 <ol>
-<li>Copiar del ordenador 1 a un almacenamiento temporal o similar los ficheros relacionados con nuestro torrent: <ul>
+<li>Copiar del ordenador 1 a un almacenamiento temporal o similar los ficheros relacionados con nuestro torrent:</li>
 <li>El fichero .resume en ~/config/transmission/resume</li>
 <li>El .torrent en ~/config/transmission/torrent</li>
 <li>El propio fichero descargado, si está incompleto da igual, reanudará la descarga desde el punto correcto.</li>
 <li>Anotar la cantidad de datos descargados y enviados para ese fichero</li>
-</ul>
-</li>
 <li>Abrir transmission en el ordenador 2 y abrir el .torrent del ordenador 1. Preferiblemente agregarlo en modo pausa para que no comience la descarga automáticamente</li>
 <li>Copiar a la ubicación del ordenador 2 donde se descargará el fichero, el fichero del ordenador 1</li>
 <li>En transmission, botón derecho sobre el torrent pausado, y «<em>Verificar datos locales</em>«.</li>
@@ -1221,7 +1219,7 @@
 <li>Sobre el fichero <em>checked_files.txt</em> marcamos con una <strong>x</strong> aquellos ficheros que sabemos que no es necesario que comprobemos, por ejemplo el directorio install de OpenCADTools que con el nuevo sistema de paquetes de gvSIG está obsoleta. Algunos de estos ficheros serán eliminados a posteriori</li>
 <li>Los ficheros distintos los revisaremos uno a uno con algo como esto:<br />
 <code>&lt;br&gt;&lt;/br&gt;fileToCheck=./src/com/iver/cit/gvsig/CADExtension.java&lt;br&gt;&lt;/br&gt;git diff master:$fileToCheck refs/heads/opencadtools:$fileToCheck&lt;br&gt;&lt;/br&gt;</code><br />
-    La variable fileToCheck la rellenamos con un copy&amp;paste desde <em>checked_files.txt</em>. Y vamos marcando en el fichero de <em>checked_files.txt</em> con una <strong>m</strong> aquellos en las que la «versión más correcta» sea la del trunk de gvSIG. A veces el cambio es simplemente una cabecera, indentado, …</li>
+   La variable fileToCheck la rellenamos con un copy&amp;paste desde <em>checked_files.txt</em>. Y vamos marcando en el fichero de <em>checked_files.txt</em> con una <strong>m</strong> aquellos en las que la «versión más correcta» sea la del trunk de gvSIG. A veces el cambio es simplemente una cabecera, indentado, …</li>
 </ul>
 <p>Este proceso aunque algo tedioso nos permite hacernos una imagen mental del estado de los repositorios lo que aumentará nuestra capacidad para tomar decisiones.</p>
 <h3 id="primera-fase-de-la-de-integracion"><a class="toclink" href="../../../../2013/01/10/integrando-correciones-extcad-opencadtool/#primera-fase-de-la-de-integracion">Primera fase de la de integración</a></h3>

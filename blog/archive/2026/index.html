@@ -518,6 +518,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#coding-agentes-funcionalidades-de-inyeccion-de-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding Agentes: Funcionalidades de "inyección de contexto"
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lint-y-format-para-markdown-rumdl" class="md-nav__link">
     <span class="md-ellipsis">
       Lint y Format para Markdown (rumdl)
@@ -988,6 +997,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#coding-agentes-funcionalidades-de-inyeccion-de-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding Agentes: Funcionalidades de "inyección de contexto"
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lint-y-format-para-markdown-rumdl" class="md-nav__link">
     <span class="md-ellipsis">
       Lint y Format para Markdown (rumdl)
@@ -1044,6 +1062,53 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2026-03-19 00:00:00+00:00">19 de marzo de 2026</time></li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="coding-agentes-funcionalidades-de-inyeccion-de-contexto"><a class="toclink" href="../../2026/03/19/coding-agents-features-for-context-injection/">Coding Agentes: Funcionalidades de "inyección de contexto"</a></h2>
+<p>Los <em>coding agents</em> ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:</p>
+<ul>
+<li><strong>prompt</strong>: Ya sea <em>user prompt</em>, <em>system prompt</em>, ...</li>
+<li><strong>referencias</strong>: En el prompt también podemos pedir a la herramienta que incluya el contenido de un fichero con <code>@</code> o con instrucciones.<ul>
+<li>Los modelos y las herramientas son complejos. No se comportan todas igual, ni el mismo modelo hace siempre lo mismo. Tampoco es lo mismo referencia una imagen binaria que se suele hacer en peticiones distintas que un md.</li>
+<li>La forma en que la herramienta marca o incluye este contexto adicional también puede variar.</li>
+<li>El concepto de <a href="https://tweag.github.io/agentic-coding-handbook/WORKFLOW_MEMORY_BANK/">memory banks</a> encaja aquí y en <code>AGENTS.md</code></li>
+</ul>
+</li>
+<li><strong>AGENTS.md</strong>: Siempre introduce en el contexto el fichero en la raíz del repo. Algunas herramientas admiten ficheros en subdirectorios y los adjuntan cuando se accede a un fichero en ese directorio. Puede actuar cómo un <a href="../../2025/12/11/agents-md-and-at-character-to-reference-documents/">índice que adjunte otros documentos</a>:<ul>
+<li>Con <code>@</code>. Debería leerlo e incluirlo siempre.</li>
+<li>Condicionalmente mediante instrucciones <code>read 'testing.md' when writing tests</code></li>
+</ul>
+</li>
+<li><strong>commands</strong>: Escribimos en el chat <code>/fix-bug in my_file.py</code>, y envía al modelo <code>fix-bug.md</code> que está en una ruta predeterminada junto al resto del contexto.</li>
+<li><strong>rules</strong>: No todas las herramientas las tienen. Suelen ser ficheros md con un frontmatter que indica cuando se debe usar la regla. Es la herramienta y el modelo quien decide que reglas leer, pero el usuario puede forzarlo.</li>
+<li><strong>hooks</strong>: Las incluyo porqué son un buen substituto a ciertas instrucciones (estén donde estén). En lugar de `execute format.sh and lint.sh after making changes", un hook puede correrlos. De hecho las instrucciones pueden ser ignoradas y el hook no.</li>
+<li><strong>MCP</strong></li>
+<li><strong>Skills</strong>. Un directorio, en una ruta predefinida de la herramienta, que tiene dentro un fichero <code>SKILL.md</code> y otros <em>assets</em>. Tienen metadatos cortos de nombre y descripción que se inyectan siempre en el contexto. El LLM decide cuando una skill aplica en base a los metadatos o el usuario puede forzar su uso.<ul>
+<li>Hay un par de cosas que no me gustan de los skill. O que si se retocara la spec podrían ser un total substituto a los comandos. Los comandos se cargan y ejecutan exclusivamente bajo demanda del usuario. Las skills no.</li>
+<li><a href="https://agentskills.io/specification#progressive-disclosure">La spec</a> dice que los metadatos se cargan siempre.</li>
+<li>El LLM decide cuando cuando leer y aplicar la skill en base a la vaga descripción</li>
+<li>No se pueden tener "infinitas" skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos 20 tokens por skill, 100 skill es un 1% del contexto habitual de 200k.</li>
+</ul>
+</li>
+<li><strong>Extensiones o Plugins</strong>. Depende de la herramienta, pero la mayoría incluye alguna forma de empaquetar combinaciones de lo anterior y otras extensiones de comportamiento.</li>
+</ul>
+<p>En próximos artículos iremos viendo con más detalle algunas de estas funcionalidades, cómo se comportan en distintas herramientas y cómo se relacionan entre sí.</p>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2026-02-28 00:00:00+00:00">28 de febrero de 2026</time></li>
         
         
@@ -1056,16 +1121,16 @@
 <p>Después del <a href="../../2026/02/20/lint-format-markdown/">post anterior</a> gracias a <a href="https://www.galiglobal.com/">Antón</a> descubro una nueva herramienta</p>
 <h3 id="rumdl"><a class="toclink" href="../../2026/02/28/lint-format-rumdl/#rumdl">rumdl</a></h3>
 <p><a href="https://github.com/rvben/rumdl">rumdl</a> es un formatter y linter de Markdown escrito en Rust siguiendo las ideas de <code>ruff</code>.</p>
-<p>El primer commit es de Febrero de 2025, así que es un proyecto muy reciente con unas 800 estrellas en este momento. Parecen pocas pero para una herramienta que sigue siendo e nicho no está mal. Markdownlint tiene 2k y mdformat 600. Además ha sido adoptado por proyectos como lucene, ULauncher o pyo3.</p>
+<p>El primer commit es de Febrero de 2025, así que es un proyecto muy reciente con unas 800 estrellas en este momento. Parecen pocas pero para una herramienta que sigue siendo de nicho no está mal. Markdownlint tiene 2k y mdformat 600. Además ha sido adoptado por proyectos como lucene, ULauncher o pyo3.</p>
 <p>No usaría este proyecto si fuera una dependencia <em>core</em> porqué para mi tiene varios <em>red flags</em>:</p>
 <ul>
 <li>El proyecto tiene apenas un año y muchas features. Tiene pinta de haber mucho LLM y eso necesita mucha destreza para que el mantenimiento no se complique.</li>
 <li>Tiene 25 <em>contributors</em>, pero el 98% de los commits son de la misma persona.</li>
 <li>El README (que es gigante) está desincronizado con la documentación. Y la web no está enlazada desde el repositorio.</li>
 </ul>
-<p>La herramienta promete mucho y, cumple más requisitos que los herramientas analizados en el anterior post:</p>
+<p>La herramienta promete mucho y, cumple más requisitos que las herramientas analizados en el anterior post:</p>
 <ul>
-<li>Escrito en rust, es un binario instalable por todos los métodos habituales, uv, npm, curl, ...</li>
+<li>Escrito en rust, es un binario instalable por todos los métodos habituales: uv, npm, curl, ...</li>
 <li>Paridad de reglas con Markdownlint (con algunas extra) y opción para importar la configuración</li>
 <li>Formatter y Linter en la misma herramienta, en un estilo muy <code>ruff</code>, parámetros parecidos en la CLI, el formato de configuración, ... lo que se agradece.</li>
 <li>Soporta por defecto varios formatos de Markdown</li>
@@ -1074,7 +1139,7 @@
 <p>Pero, a poco que la he probado hay muchos detalles que no encajan bien con mi forma de trabajo:</p>
 <ul>
 <li><a href="https://github.com/rvben/rumdl/issues/472">Es muy agresiva en los <code>auto-fix</code></a></li>
-<li>La configuración de las reglas se vuelve complicada. Por ejemplo hay varios bugs en torno a la regla <a href="https://rumdl.dev/md022/">blanks-around-headings</a> y después de varias pruebas no he conseguido que simplemente me elimina todas las líneas en blanco antes el <code>H1</code> que prettier hace sin problemas.</li>
+<li>La configuración de las reglas se vuelve complicada. Por ejemplo hay varios bugs en torno a la regla <a href="https://rumdl.dev/md022/">blanks-around-headings</a> y después de varias pruebas no he conseguido que simplemente me elimine todas las líneas en blanco antes el <code>H1</code> que prettier hace sin problemas.</li>
 </ul>
 <h3 id="conclusiones"><a class="toclink" href="../../2026/02/28/lint-format-rumdl/#conclusiones">Conclusiones</a></h3>
 <p><code>rumld</code> es una herramienta con potencial. Merece la pena probarla y ver si encaja, pero en mi caso, esperaré un par de meses antes de volver a probarla.</p>

@@ -28,6 +28,8 @@
 
 <!-- Next page -->
 
+<link rel="next" href="../../../03/19/coding-agents-features-for-context-injection/" />
+
 
 <!-- RSS feed -->
 
@@ -991,16 +993,16 @@
 <p>Después del <a href="../../20/lint-format-markdown/">post anterior</a> gracias a <a href="https://www.galiglobal.com/">Antón</a> descubro una nueva herramienta</p>
 <h2 id="rumdl">rumdl</h2>
 <p><a href="https://github.com/rvben/rumdl">rumdl</a> es un formatter y linter de Markdown escrito en Rust siguiendo las ideas de <code>ruff</code>.</p>
-<p>El primer commit es de Febrero de 2025, así que es un proyecto muy reciente con unas 800 estrellas en este momento. Parecen pocas pero para una herramienta que sigue siendo e nicho no está mal. Markdownlint tiene 2k y mdformat 600. Además ha sido adoptado por proyectos como lucene, ULauncher o pyo3.</p>
+<p>El primer commit es de Febrero de 2025, así que es un proyecto muy reciente con unas 800 estrellas en este momento. Parecen pocas pero para una herramienta que sigue siendo de nicho no está mal. Markdownlint tiene 2k y mdformat 600. Además ha sido adoptado por proyectos como lucene, ULauncher o pyo3.</p>
 <p>No usaría este proyecto si fuera una dependencia <em>core</em> porqué para mi tiene varios <em>red flags</em>:</p>
 <ul>
 <li>El proyecto tiene apenas un año y muchas features. Tiene pinta de haber mucho LLM y eso necesita mucha destreza para que el mantenimiento no se complique.</li>
 <li>Tiene 25 <em>contributors</em>, pero el 98% de los commits son de la misma persona.</li>
 <li>El README (que es gigante) está desincronizado con la documentación. Y la web no está enlazada desde el repositorio.</li>
 </ul>
-<p>La herramienta promete mucho y, cumple más requisitos que los herramientas analizados en el anterior post:</p>
+<p>La herramienta promete mucho y, cumple más requisitos que las herramientas analizados en el anterior post:</p>
 <ul>
-<li>Escrito en rust, es un binario instalable por todos los métodos habituales, uv, npm, curl, ...</li>
+<li>Escrito en rust, es un binario instalable por todos los métodos habituales: uv, npm, curl, ...</li>
 <li>Paridad de reglas con Markdownlint (con algunas extra) y opción para importar la configuración</li>
 <li>Formatter y Linter en la misma herramienta, en un estilo muy <code>ruff</code>, parámetros parecidos en la CLI, el formato de configuración, ... lo que se agradece.</li>
 <li>Soporta por defecto varios formatos de Markdown</li>
@@ -1009,7 +1011,7 @@
 <p>Pero, a poco que la he probado hay muchos detalles que no encajan bien con mi forma de trabajo:</p>
 <ul>
 <li><a href="https://github.com/rvben/rumdl/issues/472">Es muy agresiva en los <code>auto-fix</code></a></li>
-<li>La configuración de las reglas se vuelve complicada. Por ejemplo hay varios bugs en torno a la regla <a href="https://rumdl.dev/md022/">blanks-around-headings</a> y después de varias pruebas no he conseguido que simplemente me elimina todas las líneas en blanco antes el <code>H1</code> que prettier hace sin problemas.</li>
+<li>La configuración de las reglas se vuelve complicada. Por ejemplo hay varios bugs en torno a la regla <a href="https://rumdl.dev/md022/">blanks-around-headings</a> y después de varias pruebas no he conseguido que simplemente me elimine todas las líneas en blanco antes el <code>H1</code> que prettier hace sin problemas.</li>
 </ul>
 <h2 id="conclusiones">Conclusiones</h2>
 <p><code>rumld</code> es una herramienta con potencial. Merece la pena probarla y ver si encaja, pero en mi caso, esperaré un par de meses antes de volver a probarla.</p>

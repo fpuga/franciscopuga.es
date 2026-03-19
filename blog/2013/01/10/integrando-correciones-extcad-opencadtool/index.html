@@ -1065,7 +1065,7 @@
 <li>Sobre el fichero <em>checked_files.txt</em> marcamos con una <strong>x</strong> aquellos ficheros que sabemos que no es necesario que comprobemos, por ejemplo el directorio install de OpenCADTools que con el nuevo sistema de paquetes de gvSIG está obsoleta. Algunos de estos ficheros serán eliminados a posteriori</li>
 <li>Los ficheros distintos los revisaremos uno a uno con algo como esto:<br />
 <code>&lt;br&gt;&lt;/br&gt;fileToCheck=./src/com/iver/cit/gvsig/CADExtension.java&lt;br&gt;&lt;/br&gt;git diff master:$fileToCheck refs/heads/opencadtools:$fileToCheck&lt;br&gt;&lt;/br&gt;</code><br />
-    La variable fileToCheck la rellenamos con un copy&amp;paste desde <em>checked_files.txt</em>. Y vamos marcando en el fichero de <em>checked_files.txt</em> con una <strong>m</strong> aquellos en las que la «versión más correcta» sea la del trunk de gvSIG. A veces el cambio es simplemente una cabecera, indentado, …</li>
+   La variable fileToCheck la rellenamos con un copy&amp;paste desde <em>checked_files.txt</em>. Y vamos marcando en el fichero de <em>checked_files.txt</em> con una <strong>m</strong> aquellos en las que la «versión más correcta» sea la del trunk de gvSIG. A veces el cambio es simplemente una cabecera, indentado, …</li>
 </ul>
 <p>Este proceso aunque algo tedioso nos permite hacernos una imagen mental del estado de los repositorios lo que aumentará nuestra capacidad para tomar decisiones.</p>
 <h2 id="primera-fase-de-la-de-integracion">Primera fase de la de integración</h2>
