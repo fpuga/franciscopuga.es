@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Thu, 19 Mar 2026 20:56:07 -0000</pubDate>
-    <lastBuildDate>Thu, 19 Mar 2026 20:56:07 -0000</lastBuildDate>
+    <pubDate>Fri, 20 Mar 2026 21:26:04 -0000</pubDate>
+    <lastBuildDate>Fri, 20 Mar 2026 21:26:04 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -32,6 +32,70 @@
     
     
     <item>
+      <title>Coding Agentes: Commands en Gemini</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;coding-agentes-commands-en-gemini&#34;&gt;Coding Agentes: Commands en Gemini&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
+&lt;p&gt;En esta artículo nos centramos en cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.&lt;/p&gt;
+&lt;p&gt;Gemini no tiene un nombre genérico para estas funcionalidades y en su documentación están dispersas entre &#34;Features&#34;, &#34;Usage&#34; y &#34;Configuration&#34;. Contempla:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/tutorials/memory-management/&#34;&gt;AGENTS.md&lt;/a&gt;. &lt;a href=&#34;https://geminicli.com/docs/cli/gemini-md/&#34;&gt;GEMINI.md&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/skills/&#34;&gt;Skills&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/tutorials/mcp-setup/&#34;&gt;MCP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/hooks/&#34;&gt;Hooks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/extensions/&#34;&gt;Extensions&lt;/a&gt; (Plugins)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/custom-commands/&#34;&gt;Custom Commands&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Además de otras funcionalidades cómo modificar el System Prompt, Subagents, Remote Subagents y Plan Mode. Y no tiene un sistema de reglas.&lt;/p&gt;
+&lt;h2 id=&#34;commands&#34;&gt;Commands&lt;/h2&gt;
+&lt;p&gt;La &lt;a href=&#34;https://geminicli.com/docs/cli/custom-commands/&#34;&gt;documentación oficial&lt;/a&gt; es bastante clara.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Van en &lt;code&gt;.gemini/commands&lt;/code&gt; del proyecto o de &lt;code&gt;~&lt;/code&gt;.&lt;ul&gt;
+&lt;li&gt;Admite namespaces (subdirectorios). &lt;code&gt;.gemini/commands/git/commit.toml&lt;/code&gt; se convierte en &lt;code&gt;/git:commit&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Por algún &lt;a href=&#34;https://github.com/google-gemini/gemini-cli/issues/15535&#34;&gt;motivo inexplicable&lt;/a&gt;, usa ficheros TOML&lt;/li&gt;
+&lt;li&gt;Los campos del TOML son &lt;code&gt;description&lt;/code&gt; el texto de ayuda que pone para el comando y &lt;code&gt;prompt&lt;/code&gt; donde metes las instrucciones en sí.&lt;/li&gt;
+&lt;li&gt;Admite cierto grado de interpolación.&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{{args}}&lt;/code&gt; El placeholder es substituido por el texto que acompaña al comando en el chat.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!{{...}}&lt;/code&gt;. Ejecuta el comando y substituye el placeholder por la salida. Se puede combinar con &lt;em&gt;args&lt;/em&gt;: &lt;code&gt;!{grep -r {{args}} .}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@{path/to/file_or_dir}&lt;/code&gt;. El placeholder es substituido por el contenido del fichero o los ficheros del directorio. Esta substitución es la primera así que no se puede combinar con &lt;code&gt;{{args}}&lt;/code&gt; y pasar el path cómo parámetro.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;No son &lt;em&gt;composables&lt;/em&gt; sólo funciona el &lt;code&gt;/&lt;/code&gt; al principio del prompt.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Una de las cosas buenas de que &lt;a href=&#34;https://github.com/google-gemini/gemini-cli&#34;&gt;gemini-cli&lt;/a&gt; sea software libre es que podemos ver cómo funciona y no hacer observaciones indirectas cómo en Cursor.&lt;/p&gt;
+&lt;p&gt;El propio gemini tras estudiar su código responde más o menos esto a si es lo mismo usar &lt;code&gt;@&lt;/code&gt; que un &lt;em&gt;command&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Gemini CLI uses clear separators and headers to help the model distinguish between your prompt, injected files, and shell command outputs, rather than complex XML tags. For &lt;code&gt;@file&lt;/code&gt; references, it uses &lt;code&gt;REFERENCE_CONTENT_START&lt;/code&gt; and &lt;code&gt;REFERENCE_CONTENT_END markers&lt;/code&gt;, with individual file contents prefixed by &lt;code&gt;--- filename ---&lt;/code&gt;. Custom slash commands defined in .toml files expand &lt;code&gt;@{path}&lt;/code&gt; with similar &lt;code&gt;--- filename ---&lt;/code&gt; headers and use &lt;code&gt;--- Start of content for directory: path ---&lt;/code&gt; for directory injections&lt;/p&gt;
+&lt;p&gt;Shell command output &lt;code&gt;!{command}&lt;/code&gt; is appended with exit codes or signal markers if they fail, and if a command doesn&#39;t use &lt;code&gt;{{args}}&lt;/code&gt;, the raw invocation is appended to the end of the prompt to provide context. Overall, the system relies on these human-readable delimiters to maintain context without over-engineering the prompt structure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Vamos que no hay magia.Y en las pruebas que he hecho los resultados era similares.&lt;/p&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;gemini-cli al contrario que Cursor, no hace magia con los comandos, simplemente es un texto añadido al prompt&lt;/li&gt;
+&lt;li&gt;Las opciones de interpolación de los comandos pueden abrir usos creativos. Pero no tengo claro cual puede ser la diferencia entre interpolar un &lt;code&gt;!{git diff}&lt;/code&gt; y decirle que use &lt;code&gt;git diff&lt;/code&gt; y con la salida escriba el mensaje de commit. Allá de menos requests. Quizás menos consumo de tokens&lt;/li&gt;
+&lt;li&gt;Usar formato TOML para algo cómo esto es tocar las narices. Tiene pinta de over engineering.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/03/20/coding-agents-commands-gemini/</link>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/20/coding-agents-commands-gemini/</guid>
+      
+    </item>
+    
+    <item>
       <title>Coding Agentes: Commands en Cursor</title>
       
       
@@ -43,6 +107,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;../coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;En esté artículo nos centramos cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Cursor. Las pruebas han sido hechas sobre la versión 2.5.&lt;/p&gt;
@@ -163,6 +228,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;Los &lt;em&gt;coding agents&lt;/em&gt; ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:&lt;/p&gt;
@@ -1560,70 +1626,6 @@ identify -format &#34;%[fx:w/h] %w %h %M\n&#34; *.jpg | sort -n -k2&lt;/p&gt;
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2020/06/29/circular-dependencies-webcast-por-miguel-grinberg/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Comprar un portátil para desarrollo en 2019</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;comprar-un-portatil-para-desarrollo-en-2019&#34;&gt;Comprar un portátil para desarrollo en 2019&lt;/h1&gt;
-&lt;p&gt;Toca cambiar de portátil. 8GB de RAM ya se quedan cortos. La patilla de la pantalla está dañada y no parece que vaya a aguantar mucho más. Y la batería con una vm, el ide y el navegador no dura mucho más de 1h.&lt;/p&gt;
-&lt;p&gt;Para situarnos el anterior comprado hace cuatro años era un &lt;a href=&#34;https://es.msi.com/Laptop/GE60-2PC-Apache/Overview&#34;&gt;MSI GE60 2PC Apache&lt;/a&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Micro &lt;a href=&#34;https://ark.intel.com/content/www/es/es/ark/products/78934/intel-core-i7-4720hq-processor-6m-cache-up-to-3-60-ghz.html&#34;&gt;i7-4720HQ&lt;/a&gt;. 2.60GHz de frecuencia base, hasta 3.60GHz con el Turboboost. 4 cores, 8 threads, 6MB de cache y un TDP de 47W.&lt;/li&gt;
-&lt;li&gt;8GB RAM SODIMM DDR3 a 1600 fabricada por Kingston. No se cual es la latencia.&lt;/li&gt;
-&lt;li&gt;Nvidia GeForce GTX 850M con 2MB RAM&lt;/li&gt;
-&lt;li&gt;Disco duro mecánico de 1TB a 7200rpm&lt;/li&gt;
-&lt;li&gt;Pantalla de 15.5 y resolución de 1920×1080 normalita&lt;/li&gt;
-&lt;li&gt;Wireless-AC 3160, b/g/n y bt 4.0&lt;/li&gt;
-&lt;li&gt;hdmi, vga. 2 puertos USB 2.0 y 2 puertos USB 3.0, además de jacks para salida y entrada de audio.&lt;/li&gt;
-&lt;li&gt;383 x 249 x 30 y 2.6kg de peso con batería&lt;/li&gt;
-&lt;li&gt;Batería de 6 celdas, 49Wh&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Cuando lo compré escribí una &lt;a href=&#34;http://conocimientoabierto.es/buscando-portatil-programar/752/&#34;&gt;guía de compra de portátil&lt;/a&gt; que aunque desactualizada me sirve de base para buscar uno nuevo. En base al rendimiento actual los requisitos no han variado demasiado:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Todo lo importante debe funcionar al 100% con linux. Si no va la luz del teclado me da igual. Si deja de funcionar el wifi con cada actualización del kernel adios.&lt;/li&gt;
-&lt;li&gt;Mínimo 16GB de RAM&lt;/li&gt;
-&lt;li&gt;Un i7 o equivalente en AMD. Un vistazo rápido me dice que los i5-82xxu que se montan en este rango de precios no son mucho mejores que mi micro actual y no me interesa averiguar si con un i5 me llega.&lt;/li&gt;
-&lt;li&gt;Resolución pantalla mínima 1920 x 1080. Como la mayoría del tiempo uso una externa como principal no necesito que sea extraordinariamente buena pero no quiero quemarme los ojos así que será un plus interesante&lt;/li&gt;
-&lt;li&gt;Mínimo 1TB de disco&lt;/li&gt;
-&lt;li&gt;No tengo necesidad de gráfica dedicada pero prefiero que no me coma RAM extra&lt;/li&gt;
-&lt;li&gt;No lo quiero más grande ni pesado que el actual. A pesar de que el 85% del tiempo está apoyado en una mesa, el 15% restante de viajes en tren, reuniones y uno o dos viajes de trabajo al año hacen que prefiera uno más pequeño. Pero no voy a sacrificar más de 150€ o rendimiento por ello&lt;/li&gt;
-&lt;li&gt;Quiero un teclado «bueno» a pesar de que la mayor parte del tiempo use uno externo&lt;/li&gt;
-&lt;li&gt;No tengo demasiadas necesidades de conectividad y puertos, no necesito Bluetooth y me da igual que tenga salida VGA y lector de DVD. Estos detalles me ayudaran en la decisión final pero asumo que con el resto de características que busco las necesidades mínimas en este aspecto estarán cubiertas. &lt;em&gt;Update: Cuando revisé las opciones disponibles esto varió un poco, más en otro post&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;La marca no me preocupa. Hay demasiadas opiniones y experiencias particulares a favor y en contra de todas las marcas. Por experiencias cercanas doy puntos positivos a MSI y Slimbook y negativos a los HP y los Dell pero sólo en la clasificación final cuando haya dudas. No a priori. Y lo mismo con &lt;a href=&#34;http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/&#34;&gt;otras consideraciones como el uso de minerales de zonas de conflicto&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Mi orquilla inicial es amplia y la reduciré a medida que investigue un poco. Empezaré por portátiles entre 900 y 1300€ con IVA. Una cantidad por la que se puede comprar algo aceptable para cuatro años si estás dispuesto a sacrificar alguna característica a cambio de precio como: batería, tamaño o potencia.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Hay un par de puntos clave sobre los que tenía dudas al principio:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Tamaño de la pantalla. Probablemnte la decisión más eliminadora a la hora de comprar el portátil. El de ahora es de 15.6 y para mi uso es cómodo. Pero siempre dudo con coger uno más pequeño. 14» sería perfecto. A los de 13» les tengo algo de manía. &lt;em&gt;Update: Al poco de empezar a buscar los de 14» quedaron prácticamente descartados porque no me interesaba tanto sacrificar rendimiento o precio a cambio de mejoras de tamaño y batería&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;Con el disco duro también tengo dudas. De comprar unicamente un único disco magnético (HDD) tengo claro que sea de 7.200rpm. Una búsqueda rápida me dice que hay algún SSD de 1TB (lo ideal) a partir de 1.100€ pero en general suben bastante el precio. La opción de dos discos SSD + HDD puede ser buena pero me da que consume bastante batería y me puede fastidiar un poco mi organización actual de particiones, donde guardo las cosas cifrado y backups. &lt;em&gt;Update: Cerca de tomar la decisión final quedó claro que en ese rango de precios tengo que sacrificar mi organización actual.&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Con esto en la cabeza preparo mi hoja de cálculo y la inicializo con un par de configuraciones de &lt;a href=&#34;https://slimbook.es/&#34;&gt;Slimbook&lt;/a&gt; que me servirán de referencia. Luego voy rellenando algunos datos principales y descartando algunos directamente a partir de la búsqueda en un par de páginas. Fundamentalmente:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;https://www.pccomponentes.com/&lt;/li&gt;
-&lt;li&gt;https://slimbook.es/&lt;/li&gt;
-&lt;li&gt;https://www.vantpc.es/&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.amazon.es/b?_encoding=UTF8&amp;amp;tag=conocimientoa-21&amp;amp;linkCode=ur2&amp;amp;linkId=36da4e949e420deafa18c8184e2926cd&amp;amp;camp=3638&amp;amp;creative=24630&amp;amp;node=683279031&#34;&gt;Amazon&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;y un vistazo rápido a:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;http://tiendas.mediamarkt.es/ordenadores-portatiles&lt;/li&gt;
-&lt;li&gt;https://www.worten.es/inicio/informatica/ordenadores/portatil.html&lt;/li&gt;
-&lt;li&gt;http://www.elcorteingles.es&lt;/li&gt;
-&lt;li&gt;https://www.dell.com/es-es&lt;/li&gt;
-&lt;li&gt;https://www.pcbox.com/&lt;/li&gt;
-&lt;li&gt;https://www.lenovo.com/&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Si estás interesado en este tema puedes ver &lt;a href=&#34;http://conocimientoabierto.es/tag/comprar-portatil/&#34;&gt;otros artículos parecidos&lt;/a&gt; o seguir esta serie &lt;a href=&#34;http://conocimientoabierto.es/tag/comprar-portatil-2019/&#34;&gt;en esta etiqueta&lt;/a&gt;.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2019/05/13/comprar-portatil-desarrollo-2019/</link>
-      <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2019/05/13/comprar-portatil-desarrollo-2019/</guid>
       
     </item>
     

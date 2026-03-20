@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Thu, 19 Mar 2026 20:56:07 -0000</pubDate>
-    <lastBuildDate>Thu, 19 Mar 2026 20:56:07 -0000</lastBuildDate>
+    <pubDate>Fri, 20 Mar 2026 21:26:04 -0000</pubDate>
+    <lastBuildDate>Fri, 20 Mar 2026 21:26:04 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -32,6 +32,70 @@
     
     
     <item>
+      <title>Coding Agentes: Commands en Gemini</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;coding-agentes-commands-en-gemini&#34;&gt;Coding Agentes: Commands en Gemini&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
+&lt;p&gt;En esta artículo nos centramos en cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.&lt;/p&gt;
+&lt;p&gt;Gemini no tiene un nombre genérico para estas funcionalidades y en su documentación están dispersas entre &#34;Features&#34;, &#34;Usage&#34; y &#34;Configuration&#34;. Contempla:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/tutorials/memory-management/&#34;&gt;AGENTS.md&lt;/a&gt;. &lt;a href=&#34;https://geminicli.com/docs/cli/gemini-md/&#34;&gt;GEMINI.md&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/skills/&#34;&gt;Skills&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/tutorials/mcp-setup/&#34;&gt;MCP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/hooks/&#34;&gt;Hooks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/extensions/&#34;&gt;Extensions&lt;/a&gt; (Plugins)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/custom-commands/&#34;&gt;Custom Commands&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Además de otras funcionalidades cómo modificar el System Prompt, Subagents, Remote Subagents y Plan Mode. Y no tiene un sistema de reglas.&lt;/p&gt;
+&lt;h2 id=&#34;commands&#34;&gt;Commands&lt;/h2&gt;
+&lt;p&gt;La &lt;a href=&#34;https://geminicli.com/docs/cli/custom-commands/&#34;&gt;documentación oficial&lt;/a&gt; es bastante clara.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Van en &lt;code&gt;.gemini/commands&lt;/code&gt; del proyecto o de &lt;code&gt;~&lt;/code&gt;.&lt;ul&gt;
+&lt;li&gt;Admite namespaces (subdirectorios). &lt;code&gt;.gemini/commands/git/commit.toml&lt;/code&gt; se convierte en &lt;code&gt;/git:commit&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Por algún &lt;a href=&#34;https://github.com/google-gemini/gemini-cli/issues/15535&#34;&gt;motivo inexplicable&lt;/a&gt;, usa ficheros TOML&lt;/li&gt;
+&lt;li&gt;Los campos del TOML son &lt;code&gt;description&lt;/code&gt; el texto de ayuda que pone para el comando y &lt;code&gt;prompt&lt;/code&gt; donde metes las instrucciones en sí.&lt;/li&gt;
+&lt;li&gt;Admite cierto grado de interpolación.&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{{args}}&lt;/code&gt; El placeholder es substituido por el texto que acompaña al comando en el chat.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!{{...}}&lt;/code&gt;. Ejecuta el comando y substituye el placeholder por la salida. Se puede combinar con &lt;em&gt;args&lt;/em&gt;: &lt;code&gt;!{grep -r {{args}} .}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@{path/to/file_or_dir}&lt;/code&gt;. El placeholder es substituido por el contenido del fichero o los ficheros del directorio. Esta substitución es la primera así que no se puede combinar con &lt;code&gt;{{args}}&lt;/code&gt; y pasar el path cómo parámetro.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;No son &lt;em&gt;composables&lt;/em&gt; sólo funciona el &lt;code&gt;/&lt;/code&gt; al principio del prompt.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Una de las cosas buenas de que &lt;a href=&#34;https://github.com/google-gemini/gemini-cli&#34;&gt;gemini-cli&lt;/a&gt; sea software libre es que podemos ver cómo funciona y no hacer observaciones indirectas cómo en Cursor.&lt;/p&gt;
+&lt;p&gt;El propio gemini tras estudiar su código responde más o menos esto a si es lo mismo usar &lt;code&gt;@&lt;/code&gt; que un &lt;em&gt;command&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Gemini CLI uses clear separators and headers to help the model distinguish between your prompt, injected files, and shell command outputs, rather than complex XML tags. For &lt;code&gt;@file&lt;/code&gt; references, it uses &lt;code&gt;REFERENCE_CONTENT_START&lt;/code&gt; and &lt;code&gt;REFERENCE_CONTENT_END markers&lt;/code&gt;, with individual file contents prefixed by &lt;code&gt;--- filename ---&lt;/code&gt;. Custom slash commands defined in .toml files expand &lt;code&gt;@{path}&lt;/code&gt; with similar &lt;code&gt;--- filename ---&lt;/code&gt; headers and use &lt;code&gt;--- Start of content for directory: path ---&lt;/code&gt; for directory injections&lt;/p&gt;
+&lt;p&gt;Shell command output &lt;code&gt;!{command}&lt;/code&gt; is appended with exit codes or signal markers if they fail, and if a command doesn&#39;t use &lt;code&gt;{{args}}&lt;/code&gt;, the raw invocation is appended to the end of the prompt to provide context. Overall, the system relies on these human-readable delimiters to maintain context without over-engineering the prompt structure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Vamos que no hay magia.Y en las pruebas que he hecho los resultados era similares.&lt;/p&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;gemini-cli al contrario que Cursor, no hace magia con los comandos, simplemente es un texto añadido al prompt&lt;/li&gt;
+&lt;li&gt;Las opciones de interpolación de los comandos pueden abrir usos creativos. Pero no tengo claro cual puede ser la diferencia entre interpolar un &lt;code&gt;!{git diff}&lt;/code&gt; y decirle que use &lt;code&gt;git diff&lt;/code&gt; y con la salida escriba el mensaje de commit. Allá de menos requests. Quizás menos consumo de tokens&lt;/li&gt;
+&lt;li&gt;Usar formato TOML para algo cómo esto es tocar las narices. Tiene pinta de over engineering.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/03/20/coding-agents-commands-gemini/</link>
+      <pubDate>Fri, 20 Mar 2026 21:26:06 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/20/coding-agents-commands-gemini/</guid>
+      
+    </item>
+    
+    <item>
       <title>Coding Agentes: Commands en Cursor</title>
       
       
@@ -43,6 +107,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;../coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;En esté artículo nos centramos cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Cursor. Las pruebas han sido hechas sobre la versión 2.5.&lt;/p&gt;
@@ -144,10 +209,48 @@
 &lt;p&gt;It just helps me understand that all we are doing is telling LLMs what to do in a prompt or where to find the longer instructions (aka prompt) to avoid filling up the context. The rest on top is a essentially looping/harnessing/if-this-then-that nothing else.&lt;/p&gt;
 &lt;/div&gt;</description>
       <link>https://franciscopuga.es/blog/2026/03/19/coding-agents-commands-cursor/</link>
-      <pubDate>Thu, 19 Mar 2026 20:56:13 +0000</pubDate>
+      <pubDate>Fri, 20 Mar 2026 21:26:06 +0000</pubDate>
       <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/19/coding-agents-commands-cursor/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Instalar los drivers para una webcam</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;instalar-los-drivers-para-una-webcam&#34;&gt;Instalar los drivers para una webcam&lt;/h1&gt;
+&lt;p&gt;!!! warning Actualización 19/06/2009&lt;/p&gt;
+&lt;div class=&#34;language-text highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Este artículo está desfasado. En la actualidad la mayoría de las webcam funcionan en gnu/linux simplemente con enchufarlas. Lo explico algo mejor [en este artículo](../2009/2009-06-11-instalar-drivers-webcam-linux.md).
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Lo primero que debemos hacer es acudir a esta &lt;a href=&#34;http://mxhaard.free.fr/spca5xx.html&#34;&gt;página&lt;/a&gt; y comprobar si nuestra webcam está soportada. Para ello podemos buscar el nombre de nuestra cámara en la 5 columna, la que pone algo parecido a &lt;em&gt;based cameras&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;En caso de no encontrarla podemos buscar alguna que use el mismo chip, y usar sus valores. Para averiguar si usa el mismo chip debemos fijarnos en el ID del fabricante y el ID del dispositivo. En Mandriva podemos obtener estos valores del Panel de Control en la sección de Hardware. Una forma un poco más genérica consiste en abrir un terminal de root y teclear &lt;code&gt;lsusb&lt;/code&gt;. En mi caso saldrían los siguiente valores.&lt;/p&gt;
+&lt;div class=&#34;language-console highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-0-1&#34;&gt;&lt;a id=&#34;__codelineno-0-1&#34; name=&#34;__codelineno-0-1&#34; href=&#34;#__codelineno-0-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gp&#34;&gt;$ &lt;/span&gt;lsusb
+&lt;/span&gt;&lt;span id=&#34;__span-0-2&#34;&gt;&lt;a id=&#34;__codelineno-0-2&#34; name=&#34;__codelineno-0-2&#34; href=&#34;#__codelineno-0-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;go&#34;&gt;Bus 001 Device 003: ID 2001:5100 D-Link Corp&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;go&#34;&gt;Bus 001 Device 002: ID 093a:2468 Pixart Imaging, Inc. Easy Snap Snake Eye WebCam&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-4&#34;&gt;&lt;a id=&#34;__codelineno-0-4&#34; name=&#34;__codelineno-0-4&#34; href=&#34;#__codelineno-0-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;go&#34;&gt;Bus 001 Device 001: ID 0000:0000&lt;/span&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Debemos identificar el correspondiente a la cámara, que en mi caso es el segundo dispositivo. Los primeros número tras ID corresponden al fabricante y los otros al dispositivo.&lt;/p&gt;
+&lt;div class=&#34;language-text highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-1-1&#34;&gt;&lt;a id=&#34;__codelineno-1-1&#34; name=&#34;__codelineno-1-1&#34; href=&#34;#__codelineno-1-1&#34;&gt;&lt;/a&gt;ID Fabricante=093a
+&lt;/span&gt;&lt;span id=&#34;__span-1-2&#34;&gt;&lt;a id=&#34;__codelineno-1-2&#34; name=&#34;__codelineno-1-2&#34; href=&#34;#__codelineno-1-2&#34;&gt;&lt;/a&gt;ID Dispositov=2468
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Si la cámara está soportada y el driver es del tipo spca5xx, tenemos suerte ya que podemos encontrar el driver que nos hace falta en la sección Download de esa misma web. A pesar de existir versiones precompiladas, si nuestra versión del kernel es superior a la 2.6.11 (lo que es muy probable, &lt;code&gt;uname -a&lt;/code&gt; para comprobarlo) es mejor que nos descarguemos el archivo &lt;em&gt;gspcav1-xxxx.tar.gz&lt;/em&gt; y lo compilemos nosotros mismos.&lt;/p&gt;
+&lt;p&gt;Descomprimimos el fichero en nuestro disco duro y dentro de ese directorio&lt;/p&gt;
+&lt;div class=&#34;language-shell highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-2-1&#34;&gt;&lt;a id=&#34;__codelineno-2-1&#34; name=&#34;__codelineno-2-1&#34; href=&#34;#__codelineno-2-1&#34;&gt;&lt;/a&gt;make
+&lt;/span&gt;&lt;span id=&#34;__span-2-2&#34;&gt;&lt;a id=&#34;__codelineno-2-2&#34; name=&#34;__codelineno-2-2&#34; href=&#34;#__codelineno-2-2&#34;&gt;&lt;/a&gt;make&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;install
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Si no se produce ningún error nuestra webcam debería estar casi lista para funcionar. Ahora debemos reiniciar el ordenador (supongo que si ejecutamos &lt;code&gt;modprobe gspca&lt;/code&gt; no hace falta que reiniciemos pero no aseguro que esto de buen resultado). Para comprobar que ha sido correctamente instalado podemos usar nuestro cliente de mensajería instantánea favorito. En mi caso he tenido problemas con kopete, pero con amsn y el ekiga sin problemas. En amsn he seleccionado webcam de baja calidad porque si no el vídeo iba a demasiados pocos frames por segundo.&lt;/p&gt;
+&lt;p&gt;Al igual que en el &lt;a href=&#34;../../../03/26/sonido-y-multiples-usuarios/&#34;&gt;post anterior&lt;/a&gt; en el que hablaba del sonido si deseamos lanzar programas como otro usuario debemos añadir ese usuario al grupo video o dar permisos sobre los dispositivos de &lt;code&gt;/dev/video&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;language-shell highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-3-1&#34;&gt;&lt;a id=&#34;__codelineno-3-1&#34; name=&#34;__codelineno-3-1&#34; href=&#34;#__codelineno-3-1&#34;&gt;&lt;/a&gt;gpasswd&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-a&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;user2&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;video
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <link>https://franciscopuga.es/blog/2007/04/04/instalar-los-drivers-para-una-webcam/</link>
+      <pubDate>Thu, 19 Mar 2026 21:57:35 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2007/04/04/instalar-los-drivers-para-una-webcam/</guid>
       
     </item>
     
@@ -163,6 +266,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;Los &lt;em&gt;coding agents&lt;/em&gt; ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:&lt;/p&gt;
@@ -194,7 +298,7 @@
 &lt;/ul&gt;
 &lt;p&gt;En próximos artículos iremos viendo con más detalle algunas de estas funcionalidades, cómo se comportan en distintas herramientas y cómo se relacionan entre sí.&lt;/p&gt;</description>
       <link>https://franciscopuga.es/blog/2026/03/19/coding-agents-features-for-context-injection/</link>
-      <pubDate>Thu, 19 Mar 2026 10:21:04 +0000</pubDate>
+      <pubDate>Thu, 19 Mar 2026 21:57:35 +0000</pubDate>
       <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/19/coding-agents-features-for-context-injection/</guid>
@@ -675,54 +779,6 @@ Hay [muchas formas de colaborar](http://www.canalsolidario.org/web/noticias/noti
       <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2008/06/01/documento-sobre-listas-de-correo/</guid>
-      
-    </item>
-    
-    <item>
-      <title>¿Rascacielos = Crisis?</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;rascacielos-crisis&#34;&gt;¿Rascacielos = Crisis?&lt;/h1&gt;
-&lt;p&gt;Acabo de ver un par de noticias en barrapunto y no he podido resistirme…&lt;/p&gt;
-&lt;p&gt;Por un lado &lt;a href=&#34;http://www.maikelnai.es/2008/08/14/historia-de-un-euro/trackback/&#34;&gt;Maikelnai nos cuenta en su blog&lt;/a&gt; como hay quien dice que puede haber coincidencia entre a la aparición de un euro con la cara de Homer Simpson y el &lt;a href=&#34;http://ipezone.blogspot.com/2008/08/dropping-euro-doh-curse-of-homer.html&#34;&gt;acercamiento entre el dolar y el euro&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;La otra noticia es que el &lt;a href=&#34;http://barrapunto.com/article.pl?sid=08/08/20/1152219&#34;&gt;edificio más alto del mundo&lt;/a&gt; está a punto de ser finalizado. Puestas por separado no significarían nada pero verlas juntos han hecho que mi cerebro recuerde un post del 2005 en el que &lt;a href=&#34;http://javimoya.com/blog/2005/10/31/rascacielos-mas-grande-sera-la-caida/trackback/&#34;&gt;Javi Moya nos contaba&lt;/a&gt; la coincidencia en el tiempo de algunas crisis económicas y la finalización de los rascacielos más altos en dicha fecha.&lt;/p&gt;
-&lt;p&gt;Sea realidad o fantasía el caso es que la «hipótesis» se ha cumplido, 2008, finalización del Burj Dubai, crisis económica.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2008/08/21/c2bfrascacielos-crisis/</link>
-      <pubDate>Thu, 19 Mar 2026 10:16:41 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2008/08/21/c2bfrascacielos-crisis/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Sólo se coopera desde el Sur?</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;solo-se-coopera-desde-el-sur&#34;&gt;Sólo se coopera desde el Sur?&lt;/h1&gt;
-&lt;p&gt;Con motivo del Día del Cooperante llamaron del Correo Gallego a &lt;a href=&#34;http://esfgalicia.blogspot.com/&#34;&gt;Enxeñería Sen Fronteiras Galicia&lt;/a&gt; para hacer una &lt;a href=&#34;http://www.elcorreogallego.es/index.php?idMenu=130&amp;amp;idNoticia=340802&#34;&gt;entrevista&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Lo que me resulta curioso, es que si bien el medio de comunicación, el motivo por el que te llaman o el espacio que dedican al artículo va cambiando hay algo invariable la pregunta inicial siempre es:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;¿Podemos hablar con algún cooperante?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Donde para ellos, cooperante es alguien que ha estado en algún proyecto de desarrollo en el Sur. Y por mucho que &lt;a href=&#34;http://covadameiga.blogspot.com/&#34;&gt;Sergio&lt;/a&gt; o la persona que hable con ellos les diga que el trabajo en el Norte también es importante, parece que lo que se sigue buscando es la exótica foto del aventurero rodeado de negritos llenos de moscas.&lt;/p&gt;
-&lt;p&gt;Puede que esté exagerando un poco, de hecho creo que los medios van informando cada vez mejor sobre cooperación, lo que contribuye a acabar con las viejas ideas asistencialistas. Pero esta misma semana he visto una &lt;a href=&#34;http://www.elcorreodeandalucia.es/noticia.asp?idnoticia=4424170094094095091092424170&#34;&gt;noticia&lt;/a&gt; que decía&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Ingeniería Sin Fronteras, una ONG que enfoca su labor a la construcción y mejora de infraestructuras, educación y formación en Ecuador, República Dominicana,&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;y esto hay que tomarlo con mucho cuidado, porque damas y caballeros, la visión de ISF de la cooperación, como la de muchas otras ONG &lt;a href=&#34;http://www.educacionenvalores.org/IMG/pdf/jun041-2.pdf&#34;&gt;ya no es la de los años 50&lt;/a&gt; &lt;span style=&#34;font-size:85%&#34;&gt;[PDF, 22 páginas]&lt;/span&gt;. No construimos infraestructuras, se colabora con comunidades del Sur para la realización de proyectos de desarrollo integrales, pero esto es sólo una parte del trabajo.&lt;/p&gt;
-&lt;p&gt;La próxima vez que alguien llame, tal vez deberíamos negarnos a darle los datos de un expatriado y explicarles que aquí también hay cooperantes y lo que hacen (hacemos) también implica compromiso, solidaridad, esfuerzo y mucha ilusión en construir una sociedad mejor.&lt;/p&gt;
-&lt;p&gt;Nota: Creo que está claro cual es el fondo del asunto, otra discusión sería que palabras usar, cooperante, expatriado, activista, voluntario, …&lt;/p&gt;
-&lt;p&gt;Actualización 11/10/2008: Añadido enlace a PDF con las etapas de la cooperación.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2008/09/10/solo-se-coopera-desde-el-sur/</link>
-      <pubDate>Thu, 19 Mar 2026 10:16:41 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2008/09/10/solo-se-coopera-desde-el-sur/</guid>
       
     </item>
     

@@ -1047,6 +1047,76 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2026-03-20 00:00:00+00:00">20 de marzo de 2026</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="coding-agentes-commands-en-gemini"><a class="toclink" href="2026/03/20/coding-agents-commands-gemini/">Coding Agentes: Commands en Gemini</a></h2>
+<details class="info">
+<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
+<ol>
+<li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
+<li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
+<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
+</ol>
+</details>
+<p>En esta artículo nos centramos en cómo funcionan los <em>commands</em> en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.</p>
+<p>Gemini no tiene un nombre genérico para estas funcionalidades y en su documentación están dispersas entre "Features", "Usage" y "Configuration". Contempla:</p>
+<ul>
+<li><a href="https://geminicli.com/docs/cli/tutorials/memory-management/">AGENTS.md</a>. <a href="https://geminicli.com/docs/cli/gemini-md/">GEMINI.md</a></li>
+<li><a href="https://geminicli.com/docs/cli/skills/">Skills</a></li>
+<li><a href="https://geminicli.com/docs/cli/tutorials/mcp-setup/">MCP</a></li>
+<li><a href="https://geminicli.com/docs/hooks/">Hooks</a></li>
+<li><a href="https://geminicli.com/docs/extensions/">Extensions</a> (Plugins)</li>
+<li><a href="https://geminicli.com/docs/cli/custom-commands/">Custom Commands</a></li>
+</ul>
+<p>Además de otras funcionalidades cómo modificar el System Prompt, Subagents, Remote Subagents y Plan Mode. Y no tiene un sistema de reglas.</p>
+<h3 id="commands"><a class="toclink" href="2026/03/20/coding-agents-commands-gemini/#commands">Commands</a></h3>
+<p>La <a href="https://geminicli.com/docs/cli/custom-commands/">documentación oficial</a> es bastante clara.</p>
+<ul>
+<li>Van en <code>.gemini/commands</code> del proyecto o de <code>~</code>.<ul>
+<li>Admite namespaces (subdirectorios). <code>.gemini/commands/git/commit.toml</code> se convierte en <code>/git:commit</code>.</li>
+</ul>
+</li>
+<li>Por algún <a href="https://github.com/google-gemini/gemini-cli/issues/15535">motivo inexplicable</a>, usa ficheros TOML</li>
+<li>Los campos del TOML son <code>description</code> el texto de ayuda que pone para el comando y <code>prompt</code> donde metes las instrucciones en sí.</li>
+<li>Admite cierto grado de interpolación.<ul>
+<li><code>{{args}}</code> El placeholder es substituido por el texto que acompaña al comando en el chat.</li>
+<li><code>!{{...}}</code>. Ejecuta el comando y substituye el placeholder por la salida. Se puede combinar con <em>args</em>: <code>!{grep -r {{args}} .}</code></li>
+<li><code>@{path/to/file_or_dir}</code>. El placeholder es substituido por el contenido del fichero o los ficheros del directorio. Esta substitución es la primera así que no se puede combinar con <code>{{args}}</code> y pasar el path cómo parámetro.</li>
+</ul>
+</li>
+<li>No son <em>composables</em> sólo funciona el <code>/</code> al principio del prompt.</li>
+</ul>
+<p>Una de las cosas buenas de que <a href="https://github.com/google-gemini/gemini-cli">gemini-cli</a> sea software libre es que podemos ver cómo funciona y no hacer observaciones indirectas cómo en Cursor.</p>
+<p>El propio gemini tras estudiar su código responde más o menos esto a si es lo mismo usar <code>@</code> que un <em>command</em></p>
+<blockquote>
+<p>Gemini CLI uses clear separators and headers to help the model distinguish between your prompt, injected files, and shell command outputs, rather than complex XML tags. For <code>@file</code> references, it uses <code>REFERENCE_CONTENT_START</code> and <code>REFERENCE_CONTENT_END markers</code>, with individual file contents prefixed by <code>--- filename ---</code>. Custom slash commands defined in .toml files expand <code>@{path}</code> with similar <code>--- filename ---</code> headers and use <code>--- Start of content for directory: path ---</code> for directory injections</p>
+<p>Shell command output <code>!{command}</code> is appended with exit codes or signal markers if they fail, and if a command doesn't use <code>{{args}}</code>, the raw invocation is appended to the end of the prompt to provide context. Overall, the system relies on these human-readable delimiters to maintain context without over-engineering the prompt structure.</p>
+</blockquote>
+<p>Vamos que no hay magia.Y en las pruebas que he hecho los resultados era similares.</p>
+<h3 id="conclusiones"><a class="toclink" href="2026/03/20/coding-agents-commands-gemini/#conclusiones">Conclusiones</a></h3>
+<ul>
+<li>gemini-cli al contrario que Cursor, no hace magia con los comandos, simplemente es un texto añadido al prompt</li>
+<li>Las opciones de interpolación de los comandos pueden abrir usos creativos. Pero no tengo claro cual puede ser la diferencia entre interpolar un <code>!{git diff}</code> y decirle que use <code>git diff</code> y con la salida escriba el mensaje de commit. Allá de menos requests. Quizás menos consumo de tokens</li>
+<li>Usar formato TOML para algo cómo esto es tocar las narices. Tiene pinta de over engineering.</li>
+</ul>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2026-03-19 22:00:00+00:00">19 de marzo de 2026</time></li>
         
         
@@ -1062,6 +1132,7 @@
 <ol>
 <li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
 <li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
+<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
 </ol>
 </details>
 <p>En esté artículo nos centramos cómo funcionan los <em>commands</em> en Cursor. Las pruebas han sido hechas sobre la versión 2.5.</p>
@@ -1188,6 +1259,7 @@
 <ol>
 <li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
 <li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
+<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
 </ol>
 </details>
 <p>Los <em>coding agents</em> ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:</p>
@@ -1433,79 +1505,6 @@
 <h3 id="conclusiones"><a class="toclink" href="2026/02/20/lint-format-markdown/#conclusiones">Conclusiones</a></h3>
 <p>Prettier y Markdownlint son las mejores opciones en este momento. Habrá que estar atentos a la evolución de otras herramientas cómo dprint, biome u <a href="https://oxc.rs/">Oxc</a>, y también a lo que salga de Zensical.</p>
 <p>Si manipular el Markdown mediante línea de comandos también es de interés remark es una opción a estudiar.</p>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-02-08 00:00:00+00:00">8 de febrero de 2026</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="bash-debug-mode"><a class="toclink" href="2026/02/08/bash-debug-mode/">Bash debug mode</a></h2>
-<p>Depurar un script de bash suele consistir en insertar un montón de <code>echo</code> que luego hay que borrar.</p>
-<p>Un método mejor es usar <code>set -x</code>, que activa lo que podríamos llamar <em>bash debug mode</em>.</p>
-<div class="admonition quote">
-<p class="admonition-title">de la documentación <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">bash</a></p>
-<p>-x. Print a trace of simple commands, for commands, case commands, select commands, and arithmetic for commands and their arguments or associated word lists to the standard error after they are expanded and before they are executed. The shell prints the expanded value of the PS4 variable before the command and its expanded arguments.</p>
-</div>
-<p>Esta opción hace un print de cada comando del script a stderr antes de ejecutarlo.</p>
-<p>Los parámetros (<em>parameters</em>) se expanden antes del print por lo que veremos los valores reales (<em>arguments</em>).</p>
-<p>Podemos simplemente añadirlo al script cuando estemos depurando, y eliminarlo después. O, incluir la lógica en el propio script mediante parámetros y variables de entorno. Lo bueno de la variable de entorno es que podríamos tener varios scripts que la compartan de modo que activemos el modo debug para todos los scripts a la vez</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/usr/bin/env bash</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">DEBUG</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">GLOBAL_DEBUG_MODE</span><span class="k">:-</span><span class="nv">false</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span>--debug<span class="o">)</span><span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="p">;;</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">esac</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nb">shift</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">done</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEBUG</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>-x
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nv">a</span><span class="o">=</span><span class="m">5</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">a</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span>
-</span></code></pre></div>
-<p>Salida:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ GLOBAL_DEBUG_MODE=true ./my-script.sh
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>+ a=5
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>+ echo 5
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>5
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>+ echo bar
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>bar
-</span></code></pre></div>
-<p>Dos trucos adicionales en los que fijarse que nos permiten un poco de magia extra</p>
-<ul>
-<li>El <code>+</code> es el <a href="https://www.gnu.org/software/bash/manual/html_node/Controlling-the-Prompt.html">valor de <code>PS4</code></a></li>
-<li>Los prints van a stderr</li>
-</ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># Use &#39;2$&gt;&#39; instead of &#39;2&gt;&#39; to combine stderr and stdout
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$ PS4=&#39;\D{%F:%T} &gt;&gt; &#39; ./my-script.sh --debug 2&gt; debug.log
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>5
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>bar
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>$ cat debug.log
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>2026-02-08:19:30:51 &gt;&gt; a=5
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>2026-02-08:19:30:51 &gt;&gt; echo 5
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>2026-02-08:19:30:51 &gt;&gt; echo bar
-</span></code></pre></div>
     
     
   </div>
