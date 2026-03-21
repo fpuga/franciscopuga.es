@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Fri, 20 Mar 2026 21:26:04 -0000</pubDate>
-    <lastBuildDate>Fri, 20 Mar 2026 21:26:04 -0000</lastBuildDate>
+    <pubDate>Sat, 21 Mar 2026 21:45:22 -0000</pubDate>
+    <lastBuildDate>Sat, 21 Mar 2026 21:45:22 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -32,6 +32,76 @@
     
     
     <item>
+      <title>Coding Agentes: Commands en Claude (Codex y OpenCode)</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;coding-agentes-commands-en-claude-codex-y-opencode&#34;&gt;Coding Agentes: Commands en Claude (Codex y OpenCode)&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
+&lt;p&gt;Claude describe la mayoría de estas funcionalidades cómo &#34;&lt;a href=&#34;https://code.claude.com/docs/en/features-overview&#34;&gt;extension layer&lt;/a&gt;: features you add to customize what Claude knows, connect it to external services, and automate workflows.&#34;.&lt;/p&gt;
+&lt;p&gt;Y los divide en:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/memory&#34;&gt;CLAUDE.md&lt;/a&gt; adds persistent context Claude sees every session&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/skills&#34;&gt;Skills&lt;/a&gt; add reusable knowledge and invocable workflows. load on demand. Claude sees skill descriptions at session start, but the full content only loads when a skill is used. For skills you invoke manually, set disable-model-invocation: true to keep descriptions out of context until you need them.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/mcp&#34;&gt;MCP&lt;/a&gt; connects Claude to external services and tools&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/hooks&#34;&gt;Hooks&lt;/a&gt; run outside the loop entirely as deterministic scripts&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/plugins&#34;&gt;Plugins&lt;/a&gt; and marketplaces package and distribute these features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En este grupo también &lt;em&gt;subagents&lt;/em&gt; y &lt;em&gt;agent teams&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;La documentación es más extensa que en Cursor y Gemini y en varios puntos comparan las funcionalidades entre sí para explicar que usar en cada caso, lo cual se agradece.&lt;/p&gt;
+&lt;h2 id=&#34;commands&#34;&gt;Commands&lt;/h2&gt;
+&lt;p&gt;Lo primero que vemos es que Claude no tiene documentación concreta sobre &lt;em&gt;commands&lt;/em&gt; pero hay varias referencias veladas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/mcp#use-mcp-prompts-as-commands&#34;&gt;Los MCP puede proporcionar comandos&lt;/a&gt;. &lt;code&gt;/mcp__github__pr_review 456&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/discover-plugins&#34;&gt;Los plugins también&lt;/a&gt;. &lt;code&gt;/commit-commands:commit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pero lo más relevante está en &lt;a href=&#34;https://code.claude.com/docs/en/skills&#34;&gt;la página de skills&lt;/a&gt;. Ahí indican claramente que los custom commands han sido integrados en las skills.&lt;/p&gt;
+&lt;h2 id=&#34;agent-skills&#34;&gt;Agent Skills&lt;/h2&gt;
+&lt;p&gt;El &lt;a href=&#34;https://agentskills.io/home&#34;&gt;Agent Skills&lt;/a&gt; es un formato desarrollado originalmente por Anthropic y publicado cómo estándar abierto.&lt;/p&gt;
+&lt;p&gt;La spec oficial dice que el &lt;code&gt;name&lt;/code&gt; y &lt;code&gt;description&lt;/code&gt; de un skill &lt;a href=&#34;https://agentskills.io/client-implementation/adding-skills-support#the-core-principle-progressive-disclosure&#34;&gt;se cargan automáticamente al iniciar una sesión&lt;/a&gt; y se recomienda que se puedan &#34;activar&#34; bajo criterio del modelo o &lt;a href=&#34;https://agentskills.io/client-implementation/adding-skills-support#user-explicit-activation&#34;&gt;bajo invocación del usuario&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Cómo contábamos en un post anterior&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A &lt;a href=&#34;https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog&#34;&gt;50-100 tokens por skill&lt;/a&gt;, 20-40 skills es un 1% del contexto habitual de 200k.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Pero Claude Code tiene varias extensiones al estándar, entre ellos una propiedad &lt;code&gt;disable-model-invocation: true&lt;/code&gt; en el frontmatter de &lt;code&gt;SKILL.md&lt;/code&gt; que hace que &lt;a href=&#34;https://code.claude.com/docs/en/skills#control-who-invokes-a-skill&#34;&gt;sólo el usuario y no el modelo&lt;/a&gt; pueda invocar la skill y que no se cargue al inicio.&lt;/p&gt;
+&lt;p&gt;De este modo funciona cómo un substituto perfecto y más potente que los &lt;em&gt;custom commands&lt;/em&gt;. Dejando a parte la sobre carga de tener que ir creando directorios todos con el mismo fichero &lt;code&gt;SKILL.md&lt;/code&gt; dentro.&lt;/p&gt;
+&lt;p&gt;Otra de las extensiones &lt;a href=&#34;https://code.claude.com/docs/en/skills#inject-dynamic-context&#34;&gt;dynamic context&lt;/a&gt;, da una función parecida a la de interpolación de los comandos de gemini.&lt;/p&gt;
+&lt;p&gt;Gemini no tiene soporte para esta funcionalidad aunque &lt;a href=&#34;https://github.com/google-gemini/gemini-cli/issues/21760&#34;&gt;hay una issue abierta&lt;/a&gt;. &lt;a href=&#34;https://cursor.com/docs/skills#disabling-automatic-invocation&#34;&gt;Cursor soporta exactamente&lt;/a&gt; la misma propiedad.&lt;/p&gt;
+&lt;h2 id=&#34;openai-codex-cli&#34;&gt;OpenAI Codex CLI&lt;/h2&gt;
+&lt;p&gt;En un vistazo rápido a la documentación de Codex no he encontrado referencias a &lt;em&gt;custom commands&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;La &lt;a href=&#34;https://developers.openai.com/codex/skills&#34;&gt;página de skills&lt;/a&gt; hace referencia a un parámetro &lt;code&gt;allow_implicit_invocation&lt;/code&gt; con comportamiento similar a &lt;code&gt;disable-model-invocation&lt;/code&gt; pero no indican si se carga al inicio o no.&lt;/p&gt;
+&lt;p&gt;No le he dado muchas más vueltas porqué no uso Codex, &lt;a href=&#34;https://github.com/openai/codex/issues/10585&#34;&gt;pero en este ticket&lt;/a&gt; hay algo de discusión sobre el tema y tickets abiertos relacionados.&lt;/p&gt;
+&lt;h2 id=&#34;opencode&#34;&gt;OpenCode&lt;/h2&gt;
+&lt;p&gt;OpenCode tiene documentación sobre &lt;a href=&#34;https://opencode.ai/docs/commands/&#34;&gt;custom commands&lt;/a&gt;. Pueden definirse en JSON o Markdown y tienen opciones de interpolación.&lt;/p&gt;
+&lt;p&gt;La &lt;a href=&#34;https://opencode.ai/docs/skills/#configure-permissions&#34;&gt;documentación de skills&lt;/a&gt; hace referencia a alguna forma de evitar que carguen al inicio, pero sin experiencia en OpenCode me resulta confusa.&lt;/p&gt;
+&lt;p&gt;Cómo en Codex hay &lt;a href=&#34;https://github.com/anomalyco/opencode/issues/11972&#34;&gt;alguna issue&lt;/a&gt; abierta al respecto.&lt;/p&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;La forma en que Cursor y Claude implementan las Skills, permite dejar de lado los &lt;em&gt;custom commands&lt;/em&gt; y usar únicamente Skills.&lt;/p&gt;
+&lt;p&gt;OpenCode y Gemini le dan un poco más de magia a los &lt;em&gt;commands&lt;/em&gt; con las opciones de interpolación pero:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No tengo claro que sea útil&lt;/li&gt;
+&lt;li&gt;No tengo claro que no se puede replicar con un workflow algo más complicado en la skill&lt;/li&gt;
+&lt;li&gt;Seguramente acaben implementando &lt;code&gt;disable-model-invocation&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Si el resto de Coding Agents siguen copiando a Claude, también acabarán &lt;a href=&#34;https://code.claude.com/docs/en/skills#inject-dynamic-context&#34;&gt;metiendo interpolación en las skills&lt;/a&gt;.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/03/21/coding-agents-commands-claude/</link>
+      <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/21/coding-agents-commands-claude/</guid>
+      
+    </item>
+    
+    <item>
       <title>Coding Agentes: Commands en Gemini</title>
       
       
@@ -44,6 +114,7 @@
 &lt;li&gt;&lt;a href=&#34;../../19/coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;En esta artículo nos centramos en cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.&lt;/p&gt;
@@ -80,7 +151,7 @@
 &lt;p&gt;Gemini CLI uses clear separators and headers to help the model distinguish between your prompt, injected files, and shell command outputs, rather than complex XML tags. For &lt;code&gt;@file&lt;/code&gt; references, it uses &lt;code&gt;REFERENCE_CONTENT_START&lt;/code&gt; and &lt;code&gt;REFERENCE_CONTENT_END markers&lt;/code&gt;, with individual file contents prefixed by &lt;code&gt;--- filename ---&lt;/code&gt;. Custom slash commands defined in .toml files expand &lt;code&gt;@{path}&lt;/code&gt; with similar &lt;code&gt;--- filename ---&lt;/code&gt; headers and use &lt;code&gt;--- Start of content for directory: path ---&lt;/code&gt; for directory injections&lt;/p&gt;
 &lt;p&gt;Shell command output &lt;code&gt;!{command}&lt;/code&gt; is appended with exit codes or signal markers if they fail, and if a command doesn&#39;t use &lt;code&gt;{{args}}&lt;/code&gt;, the raw invocation is appended to the end of the prompt to provide context. Overall, the system relies on these human-readable delimiters to maintain context without over-engineering the prompt structure.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Vamos que no hay magia.Y en las pruebas que he hecho los resultados era similares.&lt;/p&gt;
+&lt;p&gt;Vamos que no hay magia. Y en las pruebas que he hecho los resultados era similares.&lt;/p&gt;
 &lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;gemini-cli al contrario que Cursor, no hace magia con los comandos, simplemente es un texto añadido al prompt&lt;/li&gt;
@@ -108,6 +179,7 @@
 &lt;li&gt;&lt;a href=&#34;../coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;En esté artículo nos centramos cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Cursor. Las pruebas han sido hechas sobre la versión 2.5.&lt;/p&gt;
@@ -207,7 +279,8 @@
 &lt;p&gt;To my understanding you aren&#39;t missing anything. What helps myself get through this caos is the following simplified rationale &#34;It is all a lie. Everything is just another prompt.&#34; Therefore your usage might not be standard or documented but can work just as fine.&lt;/p&gt;
 &lt;p&gt;Not trying to be disrespectful at all with the &#34;lie&#34; here. Product is trying to name and build use cases and follow standards the best they can. And it’s tough.&lt;/p&gt;
 &lt;p&gt;It just helps me understand that all we are doing is telling LLMs what to do in a prompt or where to find the longer instructions (aka prompt) to avoid filling up the context. The rest on top is a essentially looping/harnessing/if-this-then-that nothing else.&lt;/p&gt;
-&lt;/div&gt;</description>
+&lt;/div&gt;
+&lt;p&gt;Teniendo en cuenta cómo funcionan las skills, &lt;a href=&#34;../../21/coding-agents-commands-claude/#agent-skills&#34;&gt;los comandos son más bien innecesarios&lt;/a&gt;.&lt;/p&gt;</description>
       <link>https://franciscopuga.es/blog/2026/03/19/coding-agents-commands-cursor/</link>
       <pubDate>Thu, 19 Mar 2026 22:00:00 +0000</pubDate>
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
@@ -229,6 +302,7 @@
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;Los &lt;em&gt;coding agents&lt;/em&gt; ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:&lt;/p&gt;
@@ -253,7 +327,7 @@
 &lt;li&gt;Hay un par de cosas que no me gustan de los skill. O que si se retocara la spec podrían ser un total substituto a los comandos. Los comandos se cargan y ejecutan exclusivamente bajo demanda del usuario. Las skills no.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://agentskills.io/specification#progressive-disclosure&#34;&gt;La spec&lt;/a&gt; dice que los metadatos se cargan siempre.&lt;/li&gt;
 &lt;li&gt;El LLM decide cuando cuando leer y aplicar la skill en base a la vaga descripción&lt;/li&gt;
-&lt;li&gt;No se pueden tener &#34;infinitas&#34; skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos 20 tokens por skill, 100 skill es un 1% del contexto habitual de 200k.&lt;/li&gt;
+&lt;li&gt;No se pueden tener &#34;infinitas&#34; skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos &lt;a href=&#34;https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog&#34;&gt;50-100 tokens por skill&lt;/a&gt;, 20-40 skills es un 1% del contexto habitual de 200k.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Extensiones o Plugins&lt;/strong&gt;. Depende de la herramienta, pero la mayoría incluye alguna forma de empaquetar combinaciones de lo anterior y otras extensiones de comportamiento.&lt;/li&gt;
@@ -1590,42 +1664,6 @@ identify -format &#34;%[fx:w/h] %w %h %M\n&#34; *.jpg | sort -n -k2&lt;/p&gt;
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2020/07/18/presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Circular Dependencies Webcast por Miguel Grinberg</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;circular-dependencies-webcast-por-miguel-grinberg&#34;&gt;Circular Dependencies Webcast por Miguel Grinberg&lt;/h1&gt;
-&lt;p&gt;Un &lt;a href=&#34;https://blog.miguelgrinberg.com/post/flask-webcast-3-circular-dependencies&#34;&gt;Webcast de Miguel Grinberg sobre como evitar Dependencias Circulares&lt;/a&gt; en una aplicación Python / Flask.&lt;/p&gt;
-&lt;iframe allowfullscreen=&#34;allowfullscreen&#34; frameborder=&#34;0&#34; height=&#34;315&#34; loading=&#34;lazy&#34; src=&#34;https://www.youtube.com/embed/NH-8oLHUyDc&#34; width=&#34;560&#34;&gt;&lt;/iframe&gt;
-
-&lt;h2 id=&#34;my-metadata&#34;&gt;My Metadata&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Descripción: Un webcast de 1h en el que se refactoriza una aplicación Flask que empieza con un único fichero a varios paquetes y módulos.&lt;/li&gt;
-&lt;li&gt;Calificación: 3 sobre 5&lt;/li&gt;
-&lt;li&gt;Día de Visualización: 2020-06-28&lt;/li&gt;
-&lt;li&gt;Año de publicación: 2018&lt;/li&gt;
-&lt;li&gt;Duración: 68 minutos&lt;/li&gt;
-&lt;li&gt;Velocidad de reproducción recomendada: 1.75&lt;/li&gt;
-&lt;li&gt;Etiquetas: python; flask; dependencies; refactoring&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;lecciones-aprendidas&#34;&gt;Lecciones aprendidas&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Mantener el &lt;em&gt;entry point&lt;/em&gt; tan limpio como sea posible. Incluso con un único import.&lt;/li&gt;
-&lt;li&gt;El módulo que es ejecutado inicialmente por Python adquiere el nombre de &lt;code&gt;__main__&lt;/code&gt; a nivel interno, por ello los «nombres» que se definan en este módulo, no se identificarán inicialmente a efectos de dependencias como &lt;code&gt;myfile.myvar&lt;/code&gt; si no como &lt;code&gt;__main__.myvar&lt;/code&gt;, lo que es más fácil que genere un error de dependencias circulares&lt;/li&gt;
-&lt;li&gt;No usar los __init__.py como mecanismo para acortar los imports. Hay tantas opiniones a favor como en contra sobre el tema. A mi me ha generado más problemas que soluciones.&lt;/li&gt;
-&lt;li&gt;Usar imports desde la «raíz» &lt;code&gt;from myapp.models.user import User&lt;/code&gt; y no estilo &lt;code&gt;from user import User&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;No pasa nada por no poner los &lt;code&gt;import&lt;/code&gt; al inicio del fichero cuando tenga sentido que sea de otra forma, por ejemplo para evitar dependencias circulares. Usar &lt;code&gt;# noqa&lt;/code&gt; para que no pite el linter en estos casos es aceptable.&lt;/li&gt;
-&lt;/ul&gt;</description>
-      <link>https://franciscopuga.es/blog/2020/06/29/circular-dependencies-webcast-por-miguel-grinberg/</link>
-      <pubDate>Mon, 29 Jun 2020 00:00:00 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2020/06/29/circular-dependencies-webcast-por-miguel-grinberg/</guid>
       
     </item>
     

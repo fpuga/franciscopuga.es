@@ -1105,6 +1105,7 @@
 <li><a href="./">Funcionalidades de "inyección de contexto"</a></li>
 <li><a href="../coding-agents-commands-cursor/">Commands en Cursor</a></li>
 <li><a href="../../20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
+<li><a href="../../21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
 </ol>
 </details>
 <p>Los <em>coding agents</em> ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:</p>
@@ -1129,7 +1130,7 @@
 <li>Hay un par de cosas que no me gustan de los skill. O que si se retocara la spec podrían ser un total substituto a los comandos. Los comandos se cargan y ejecutan exclusivamente bajo demanda del usuario. Las skills no.</li>
 <li><a href="https://agentskills.io/specification#progressive-disclosure">La spec</a> dice que los metadatos se cargan siempre.</li>
 <li>El LLM decide cuando cuando leer y aplicar la skill en base a la vaga descripción</li>
-<li>No se pueden tener "infinitas" skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos 20 tokens por skill, 100 skill es un 1% del contexto habitual de 200k.</li>
+<li>No se pueden tener "infinitas" skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos <a href="https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog">50-100 tokens por skill</a>, 20-40 skills es un 1% del contexto habitual de 200k.</li>
 </ul>
 </li>
 <li><strong>Extensiones o Plugins</strong>. Depende de la herramienta, pero la mayoría incluye alguna forma de empaquetar combinaciones de lo anterior y otras extensiones de comportamiento.</li>

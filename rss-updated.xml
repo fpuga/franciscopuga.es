@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Fri, 20 Mar 2026 21:26:04 -0000</pubDate>
-    <lastBuildDate>Fri, 20 Mar 2026 21:26:04 -0000</lastBuildDate>
+    <pubDate>Sat, 21 Mar 2026 21:45:22 -0000</pubDate>
+    <lastBuildDate>Sat, 21 Mar 2026 21:45:22 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -32,70 +32,6 @@
     
     
     <item>
-      <title>Coding Agentes: Commands en Gemini</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;coding-agentes-commands-en-gemini&#34;&gt;Coding Agentes: Commands en Gemini&lt;/h1&gt;
-&lt;details class=&#34;info&#34;&gt;
-&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/details&gt;
-&lt;p&gt;En esta artículo nos centramos en cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.&lt;/p&gt;
-&lt;p&gt;Gemini no tiene un nombre genérico para estas funcionalidades y en su documentación están dispersas entre &#34;Features&#34;, &#34;Usage&#34; y &#34;Configuration&#34;. Contempla:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/tutorials/memory-management/&#34;&gt;AGENTS.md&lt;/a&gt;. &lt;a href=&#34;https://geminicli.com/docs/cli/gemini-md/&#34;&gt;GEMINI.md&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/skills/&#34;&gt;Skills&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/tutorials/mcp-setup/&#34;&gt;MCP&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/hooks/&#34;&gt;Hooks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/extensions/&#34;&gt;Extensions&lt;/a&gt; (Plugins)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/custom-commands/&#34;&gt;Custom Commands&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Además de otras funcionalidades cómo modificar el System Prompt, Subagents, Remote Subagents y Plan Mode. Y no tiene un sistema de reglas.&lt;/p&gt;
-&lt;h2 id=&#34;commands&#34;&gt;Commands&lt;/h2&gt;
-&lt;p&gt;La &lt;a href=&#34;https://geminicli.com/docs/cli/custom-commands/&#34;&gt;documentación oficial&lt;/a&gt; es bastante clara.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Van en &lt;code&gt;.gemini/commands&lt;/code&gt; del proyecto o de &lt;code&gt;~&lt;/code&gt;.&lt;ul&gt;
-&lt;li&gt;Admite namespaces (subdirectorios). &lt;code&gt;.gemini/commands/git/commit.toml&lt;/code&gt; se convierte en &lt;code&gt;/git:commit&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Por algún &lt;a href=&#34;https://github.com/google-gemini/gemini-cli/issues/15535&#34;&gt;motivo inexplicable&lt;/a&gt;, usa ficheros TOML&lt;/li&gt;
-&lt;li&gt;Los campos del TOML son &lt;code&gt;description&lt;/code&gt; el texto de ayuda que pone para el comando y &lt;code&gt;prompt&lt;/code&gt; donde metes las instrucciones en sí.&lt;/li&gt;
-&lt;li&gt;Admite cierto grado de interpolación.&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;{{args}}&lt;/code&gt; El placeholder es substituido por el texto que acompaña al comando en el chat.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;!{{...}}&lt;/code&gt;. Ejecuta el comando y substituye el placeholder por la salida. Se puede combinar con &lt;em&gt;args&lt;/em&gt;: &lt;code&gt;!{grep -r {{args}} .}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;@{path/to/file_or_dir}&lt;/code&gt;. El placeholder es substituido por el contenido del fichero o los ficheros del directorio. Esta substitución es la primera así que no se puede combinar con &lt;code&gt;{{args}}&lt;/code&gt; y pasar el path cómo parámetro.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;No son &lt;em&gt;composables&lt;/em&gt; sólo funciona el &lt;code&gt;/&lt;/code&gt; al principio del prompt.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Una de las cosas buenas de que &lt;a href=&#34;https://github.com/google-gemini/gemini-cli&#34;&gt;gemini-cli&lt;/a&gt; sea software libre es que podemos ver cómo funciona y no hacer observaciones indirectas cómo en Cursor.&lt;/p&gt;
-&lt;p&gt;El propio gemini tras estudiar su código responde más o menos esto a si es lo mismo usar &lt;code&gt;@&lt;/code&gt; que un &lt;em&gt;command&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Gemini CLI uses clear separators and headers to help the model distinguish between your prompt, injected files, and shell command outputs, rather than complex XML tags. For &lt;code&gt;@file&lt;/code&gt; references, it uses &lt;code&gt;REFERENCE_CONTENT_START&lt;/code&gt; and &lt;code&gt;REFERENCE_CONTENT_END markers&lt;/code&gt;, with individual file contents prefixed by &lt;code&gt;--- filename ---&lt;/code&gt;. Custom slash commands defined in .toml files expand &lt;code&gt;@{path}&lt;/code&gt; with similar &lt;code&gt;--- filename ---&lt;/code&gt; headers and use &lt;code&gt;--- Start of content for directory: path ---&lt;/code&gt; for directory injections&lt;/p&gt;
-&lt;p&gt;Shell command output &lt;code&gt;!{command}&lt;/code&gt; is appended with exit codes or signal markers if they fail, and if a command doesn&#39;t use &lt;code&gt;{{args}}&lt;/code&gt;, the raw invocation is appended to the end of the prompt to provide context. Overall, the system relies on these human-readable delimiters to maintain context without over-engineering the prompt structure.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Vamos que no hay magia.Y en las pruebas que he hecho los resultados era similares.&lt;/p&gt;
-&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;gemini-cli al contrario que Cursor, no hace magia con los comandos, simplemente es un texto añadido al prompt&lt;/li&gt;
-&lt;li&gt;Las opciones de interpolación de los comandos pueden abrir usos creativos. Pero no tengo claro cual puede ser la diferencia entre interpolar un &lt;code&gt;!{git diff}&lt;/code&gt; y decirle que use &lt;code&gt;git diff&lt;/code&gt; y con la salida escriba el mensaje de commit. Allá de menos requests. Quizás menos consumo de tokens&lt;/li&gt;
-&lt;li&gt;Usar formato TOML para algo cómo esto es tocar las narices. Tiene pinta de over engineering.&lt;/li&gt;
-&lt;/ul&gt;</description>
-      <link>https://franciscopuga.es/blog/2026/03/20/coding-agents-commands-gemini/</link>
-      <pubDate>Fri, 20 Mar 2026 21:26:06 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/20/coding-agents-commands-gemini/</guid>
-      
-    </item>
-    
-    <item>
       <title>Coding Agentes: Commands en Cursor</title>
       
       
@@ -108,6 +44,7 @@
 &lt;li&gt;&lt;a href=&#34;../coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;En esté artículo nos centramos cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Cursor. Las pruebas han sido hechas sobre la versión 2.5.&lt;/p&gt;
@@ -207,12 +144,200 @@
 &lt;p&gt;To my understanding you aren&#39;t missing anything. What helps myself get through this caos is the following simplified rationale &#34;It is all a lie. Everything is just another prompt.&#34; Therefore your usage might not be standard or documented but can work just as fine.&lt;/p&gt;
 &lt;p&gt;Not trying to be disrespectful at all with the &#34;lie&#34; here. Product is trying to name and build use cases and follow standards the best they can. And it’s tough.&lt;/p&gt;
 &lt;p&gt;It just helps me understand that all we are doing is telling LLMs what to do in a prompt or where to find the longer instructions (aka prompt) to avoid filling up the context. The rest on top is a essentially looping/harnessing/if-this-then-that nothing else.&lt;/p&gt;
-&lt;/div&gt;</description>
+&lt;/div&gt;
+&lt;p&gt;Teniendo en cuenta cómo funcionan las skills, &lt;a href=&#34;../../21/coding-agents-commands-claude/#agent-skills&#34;&gt;los comandos son más bien innecesarios&lt;/a&gt;.&lt;/p&gt;</description>
       <link>https://franciscopuga.es/blog/2026/03/19/coding-agents-commands-cursor/</link>
-      <pubDate>Fri, 20 Mar 2026 21:26:06 +0000</pubDate>
+      <pubDate>Sat, 21 Mar 2026 22:45:12 +0000</pubDate>
       <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/19/coding-agents-commands-cursor/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Coding Agentes: Funcionalidades de &#34;inyección de contexto&#34;</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;coding-agentes-funcionalidades-de-inyeccion-de-contexto&#34;&gt;Coding Agentes: Funcionalidades de &#34;inyección de contexto&#34;&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
+&lt;p&gt;Los &lt;em&gt;coding agents&lt;/em&gt; ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;prompt&lt;/strong&gt;: Ya sea &lt;em&gt;user prompt&lt;/em&gt;, &lt;em&gt;system prompt&lt;/em&gt;, ...&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;referencias&lt;/strong&gt;: En el prompt también podemos pedir a la herramienta que incluya el contenido de un fichero con &lt;code&gt;@&lt;/code&gt; o con instrucciones.&lt;ul&gt;
+&lt;li&gt;Los modelos y las herramientas son complejos. No se comportan todas igual, ni el mismo modelo hace siempre lo mismo. Tampoco es lo mismo referencia una imagen binaria que se suele hacer en peticiones distintas que un md.&lt;/li&gt;
+&lt;li&gt;La forma en que la herramienta marca o incluye este contexto adicional también puede variar.&lt;/li&gt;
+&lt;li&gt;El concepto de &lt;a href=&#34;https://tweag.github.io/agentic-coding-handbook/WORKFLOW_MEMORY_BANK/&#34;&gt;memory banks&lt;/a&gt; encaja aquí y en &lt;code&gt;AGENTS.md&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AGENTS.md&lt;/strong&gt;: Siempre introduce en el contexto el fichero en la raíz del repo. Algunas herramientas admiten ficheros en subdirectorios y los adjuntan cuando se accede a un fichero en ese directorio. Puede actuar cómo un &lt;a href=&#34;../../../../2025/12/11/agents-md-and-at-character-to-reference-documents/&#34;&gt;índice que adjunte otros documentos&lt;/a&gt;:&lt;ul&gt;
+&lt;li&gt;Con &lt;code&gt;@&lt;/code&gt;. Debería leerlo e incluirlo siempre.&lt;/li&gt;
+&lt;li&gt;Condicionalmente mediante instrucciones &lt;code&gt;read &#39;testing.md&#39; when writing tests&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;commands&lt;/strong&gt;: Escribimos en el chat &lt;code&gt;/fix-bug in my_file.py&lt;/code&gt;, y envía al modelo &lt;code&gt;fix-bug.md&lt;/code&gt; que está en una ruta predeterminada junto al resto del contexto.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rules&lt;/strong&gt;: No todas las herramientas las tienen. Suelen ser ficheros md con un frontmatter que indica cuando se debe usar la regla. Es la herramienta y el modelo quien decide que reglas leer, pero el usuario puede forzarlo.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hooks&lt;/strong&gt;: Las incluyo porqué son un buen substituto a ciertas instrucciones (estén donde estén). En lugar de `execute format.sh and lint.sh after making changes&#34;, un hook puede correrlos. De hecho las instrucciones pueden ser ignoradas y el hook no.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MCP&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills&lt;/strong&gt;. Un directorio, en una ruta predefinida de la herramienta, que tiene dentro un fichero &lt;code&gt;SKILL.md&lt;/code&gt; y otros &lt;em&gt;assets&lt;/em&gt;. Tienen metadatos cortos de nombre y descripción que se inyectan siempre en el contexto. El LLM decide cuando una skill aplica en base a los metadatos o el usuario puede forzar su uso.&lt;ul&gt;
+&lt;li&gt;Hay un par de cosas que no me gustan de los skill. O que si se retocara la spec podrían ser un total substituto a los comandos. Los comandos se cargan y ejecutan exclusivamente bajo demanda del usuario. Las skills no.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://agentskills.io/specification#progressive-disclosure&#34;&gt;La spec&lt;/a&gt; dice que los metadatos se cargan siempre.&lt;/li&gt;
+&lt;li&gt;El LLM decide cuando cuando leer y aplicar la skill en base a la vaga descripción&lt;/li&gt;
+&lt;li&gt;No se pueden tener &#34;infinitas&#34; skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos &lt;a href=&#34;https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog&#34;&gt;50-100 tokens por skill&lt;/a&gt;, 20-40 skills es un 1% del contexto habitual de 200k.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extensiones o Plugins&lt;/strong&gt;. Depende de la herramienta, pero la mayoría incluye alguna forma de empaquetar combinaciones de lo anterior y otras extensiones de comportamiento.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En próximos artículos iremos viendo con más detalle algunas de estas funcionalidades, cómo se comportan en distintas herramientas y cómo se relacionan entre sí.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/03/19/coding-agents-features-for-context-injection/</link>
+      <pubDate>Sat, 21 Mar 2026 22:45:12 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/19/coding-agents-features-for-context-injection/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Coding Agentes: Commands en Gemini</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;coding-agentes-commands-en-gemini&#34;&gt;Coding Agentes: Commands en Gemini&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
+&lt;p&gt;En esta artículo nos centramos en cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.&lt;/p&gt;
+&lt;p&gt;Gemini no tiene un nombre genérico para estas funcionalidades y en su documentación están dispersas entre &#34;Features&#34;, &#34;Usage&#34; y &#34;Configuration&#34;. Contempla:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/tutorials/memory-management/&#34;&gt;AGENTS.md&lt;/a&gt;. &lt;a href=&#34;https://geminicli.com/docs/cli/gemini-md/&#34;&gt;GEMINI.md&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/skills/&#34;&gt;Skills&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/tutorials/mcp-setup/&#34;&gt;MCP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/hooks/&#34;&gt;Hooks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/extensions/&#34;&gt;Extensions&lt;/a&gt; (Plugins)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://geminicli.com/docs/cli/custom-commands/&#34;&gt;Custom Commands&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Además de otras funcionalidades cómo modificar el System Prompt, Subagents, Remote Subagents y Plan Mode. Y no tiene un sistema de reglas.&lt;/p&gt;
+&lt;h2 id=&#34;commands&#34;&gt;Commands&lt;/h2&gt;
+&lt;p&gt;La &lt;a href=&#34;https://geminicli.com/docs/cli/custom-commands/&#34;&gt;documentación oficial&lt;/a&gt; es bastante clara.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Van en &lt;code&gt;.gemini/commands&lt;/code&gt; del proyecto o de &lt;code&gt;~&lt;/code&gt;.&lt;ul&gt;
+&lt;li&gt;Admite namespaces (subdirectorios). &lt;code&gt;.gemini/commands/git/commit.toml&lt;/code&gt; se convierte en &lt;code&gt;/git:commit&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Por algún &lt;a href=&#34;https://github.com/google-gemini/gemini-cli/issues/15535&#34;&gt;motivo inexplicable&lt;/a&gt;, usa ficheros TOML&lt;/li&gt;
+&lt;li&gt;Los campos del TOML son &lt;code&gt;description&lt;/code&gt; el texto de ayuda que pone para el comando y &lt;code&gt;prompt&lt;/code&gt; donde metes las instrucciones en sí.&lt;/li&gt;
+&lt;li&gt;Admite cierto grado de interpolación.&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{{args}}&lt;/code&gt; El placeholder es substituido por el texto que acompaña al comando en el chat.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!{{...}}&lt;/code&gt;. Ejecuta el comando y substituye el placeholder por la salida. Se puede combinar con &lt;em&gt;args&lt;/em&gt;: &lt;code&gt;!{grep -r {{args}} .}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;@{path/to/file_or_dir}&lt;/code&gt;. El placeholder es substituido por el contenido del fichero o los ficheros del directorio. Esta substitución es la primera así que no se puede combinar con &lt;code&gt;{{args}}&lt;/code&gt; y pasar el path cómo parámetro.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;No son &lt;em&gt;composables&lt;/em&gt; sólo funciona el &lt;code&gt;/&lt;/code&gt; al principio del prompt.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Una de las cosas buenas de que &lt;a href=&#34;https://github.com/google-gemini/gemini-cli&#34;&gt;gemini-cli&lt;/a&gt; sea software libre es que podemos ver cómo funciona y no hacer observaciones indirectas cómo en Cursor.&lt;/p&gt;
+&lt;p&gt;El propio gemini tras estudiar su código responde más o menos esto a si es lo mismo usar &lt;code&gt;@&lt;/code&gt; que un &lt;em&gt;command&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Gemini CLI uses clear separators and headers to help the model distinguish between your prompt, injected files, and shell command outputs, rather than complex XML tags. For &lt;code&gt;@file&lt;/code&gt; references, it uses &lt;code&gt;REFERENCE_CONTENT_START&lt;/code&gt; and &lt;code&gt;REFERENCE_CONTENT_END markers&lt;/code&gt;, with individual file contents prefixed by &lt;code&gt;--- filename ---&lt;/code&gt;. Custom slash commands defined in .toml files expand &lt;code&gt;@{path}&lt;/code&gt; with similar &lt;code&gt;--- filename ---&lt;/code&gt; headers and use &lt;code&gt;--- Start of content for directory: path ---&lt;/code&gt; for directory injections&lt;/p&gt;
+&lt;p&gt;Shell command output &lt;code&gt;!{command}&lt;/code&gt; is appended with exit codes or signal markers if they fail, and if a command doesn&#39;t use &lt;code&gt;{{args}}&lt;/code&gt;, the raw invocation is appended to the end of the prompt to provide context. Overall, the system relies on these human-readable delimiters to maintain context without over-engineering the prompt structure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Vamos que no hay magia. Y en las pruebas que he hecho los resultados era similares.&lt;/p&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;gemini-cli al contrario que Cursor, no hace magia con los comandos, simplemente es un texto añadido al prompt&lt;/li&gt;
+&lt;li&gt;Las opciones de interpolación de los comandos pueden abrir usos creativos. Pero no tengo claro cual puede ser la diferencia entre interpolar un &lt;code&gt;!{git diff}&lt;/code&gt; y decirle que use &lt;code&gt;git diff&lt;/code&gt; y con la salida escriba el mensaje de commit. Allá de menos requests. Quizás menos consumo de tokens&lt;/li&gt;
+&lt;li&gt;Usar formato TOML para algo cómo esto es tocar las narices. Tiene pinta de over engineering.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/03/20/coding-agents-commands-gemini/</link>
+      <pubDate>Sat, 21 Mar 2026 22:45:12 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/20/coding-agents-commands-gemini/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Coding Agentes: Commands en Claude (Codex y OpenCode)</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;coding-agentes-commands-en-claude-codex-y-opencode&#34;&gt;Coding Agentes: Commands en Claude (Codex y OpenCode)&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
+&lt;p&gt;Claude describe la mayoría de estas funcionalidades cómo &#34;&lt;a href=&#34;https://code.claude.com/docs/en/features-overview&#34;&gt;extension layer&lt;/a&gt;: features you add to customize what Claude knows, connect it to external services, and automate workflows.&#34;.&lt;/p&gt;
+&lt;p&gt;Y los divide en:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/memory&#34;&gt;CLAUDE.md&lt;/a&gt; adds persistent context Claude sees every session&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/skills&#34;&gt;Skills&lt;/a&gt; add reusable knowledge and invocable workflows. load on demand. Claude sees skill descriptions at session start, but the full content only loads when a skill is used. For skills you invoke manually, set disable-model-invocation: true to keep descriptions out of context until you need them.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/mcp&#34;&gt;MCP&lt;/a&gt; connects Claude to external services and tools&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/hooks&#34;&gt;Hooks&lt;/a&gt; run outside the loop entirely as deterministic scripts&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/plugins&#34;&gt;Plugins&lt;/a&gt; and marketplaces package and distribute these features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En este grupo también &lt;em&gt;subagents&lt;/em&gt; y &lt;em&gt;agent teams&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;La documentación es más extensa que en Cursor y Gemini y en varios puntos comparan las funcionalidades entre sí para explicar que usar en cada caso, lo cual se agradece.&lt;/p&gt;
+&lt;h2 id=&#34;commands&#34;&gt;Commands&lt;/h2&gt;
+&lt;p&gt;Lo primero que vemos es que Claude no tiene documentación concreta sobre &lt;em&gt;commands&lt;/em&gt; pero hay varias referencias veladas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/mcp#use-mcp-prompts-as-commands&#34;&gt;Los MCP puede proporcionar comandos&lt;/a&gt;. &lt;code&gt;/mcp__github__pr_review 456&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.claude.com/docs/en/discover-plugins&#34;&gt;Los plugins también&lt;/a&gt;. &lt;code&gt;/commit-commands:commit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Pero lo más relevante está en &lt;a href=&#34;https://code.claude.com/docs/en/skills&#34;&gt;la página de skills&lt;/a&gt;. Ahí indican claramente que los custom commands han sido integrados en las skills.&lt;/p&gt;
+&lt;h2 id=&#34;agent-skills&#34;&gt;Agent Skills&lt;/h2&gt;
+&lt;p&gt;El &lt;a href=&#34;https://agentskills.io/home&#34;&gt;Agent Skills&lt;/a&gt; es un formato desarrollado originalmente por Anthropic y publicado cómo estándar abierto.&lt;/p&gt;
+&lt;p&gt;La spec oficial dice que el &lt;code&gt;name&lt;/code&gt; y &lt;code&gt;description&lt;/code&gt; de un skill &lt;a href=&#34;https://agentskills.io/client-implementation/adding-skills-support#the-core-principle-progressive-disclosure&#34;&gt;se cargan automáticamente al iniciar una sesión&lt;/a&gt; y se recomienda que se puedan &#34;activar&#34; bajo criterio del modelo o &lt;a href=&#34;https://agentskills.io/client-implementation/adding-skills-support#user-explicit-activation&#34;&gt;bajo invocación del usuario&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Cómo contábamos en un post anterior&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A &lt;a href=&#34;https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog&#34;&gt;50-100 tokens por skill&lt;/a&gt;, 20-40 skills es un 1% del contexto habitual de 200k.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Pero Claude Code tiene varias extensiones al estándar, entre ellos una propiedad &lt;code&gt;disable-model-invocation: true&lt;/code&gt; en el frontmatter de &lt;code&gt;SKILL.md&lt;/code&gt; que hace que &lt;a href=&#34;https://code.claude.com/docs/en/skills#control-who-invokes-a-skill&#34;&gt;sólo el usuario y no el modelo&lt;/a&gt; pueda invocar la skill y que no se cargue al inicio.&lt;/p&gt;
+&lt;p&gt;De este modo funciona cómo un substituto perfecto y más potente que los &lt;em&gt;custom commands&lt;/em&gt;. Dejando a parte la sobre carga de tener que ir creando directorios todos con el mismo fichero &lt;code&gt;SKILL.md&lt;/code&gt; dentro.&lt;/p&gt;
+&lt;p&gt;Otra de las extensiones &lt;a href=&#34;https://code.claude.com/docs/en/skills#inject-dynamic-context&#34;&gt;dynamic context&lt;/a&gt;, da una función parecida a la de interpolación de los comandos de gemini.&lt;/p&gt;
+&lt;p&gt;Gemini no tiene soporte para esta funcionalidad aunque &lt;a href=&#34;https://github.com/google-gemini/gemini-cli/issues/21760&#34;&gt;hay una issue abierta&lt;/a&gt;. &lt;a href=&#34;https://cursor.com/docs/skills#disabling-automatic-invocation&#34;&gt;Cursor soporta exactamente&lt;/a&gt; la misma propiedad.&lt;/p&gt;
+&lt;h2 id=&#34;openai-codex-cli&#34;&gt;OpenAI Codex CLI&lt;/h2&gt;
+&lt;p&gt;En un vistazo rápido a la documentación de Codex no he encontrado referencias a &lt;em&gt;custom commands&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;La &lt;a href=&#34;https://developers.openai.com/codex/skills&#34;&gt;página de skills&lt;/a&gt; hace referencia a un parámetro &lt;code&gt;allow_implicit_invocation&lt;/code&gt; con comportamiento similar a &lt;code&gt;disable-model-invocation&lt;/code&gt; pero no indican si se carga al inicio o no.&lt;/p&gt;
+&lt;p&gt;No le he dado muchas más vueltas porqué no uso Codex, &lt;a href=&#34;https://github.com/openai/codex/issues/10585&#34;&gt;pero en este ticket&lt;/a&gt; hay algo de discusión sobre el tema y tickets abiertos relacionados.&lt;/p&gt;
+&lt;h2 id=&#34;opencode&#34;&gt;OpenCode&lt;/h2&gt;
+&lt;p&gt;OpenCode tiene documentación sobre &lt;a href=&#34;https://opencode.ai/docs/commands/&#34;&gt;custom commands&lt;/a&gt;. Pueden definirse en JSON o Markdown y tienen opciones de interpolación.&lt;/p&gt;
+&lt;p&gt;La &lt;a href=&#34;https://opencode.ai/docs/skills/#configure-permissions&#34;&gt;documentación de skills&lt;/a&gt; hace referencia a alguna forma de evitar que carguen al inicio, pero sin experiencia en OpenCode me resulta confusa.&lt;/p&gt;
+&lt;p&gt;Cómo en Codex hay &lt;a href=&#34;https://github.com/anomalyco/opencode/issues/11972&#34;&gt;alguna issue&lt;/a&gt; abierta al respecto.&lt;/p&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;La forma en que Cursor y Claude implementan las Skills, permite dejar de lado los &lt;em&gt;custom commands&lt;/em&gt; y usar únicamente Skills.&lt;/p&gt;
+&lt;p&gt;OpenCode y Gemini le dan un poco más de magia a los &lt;em&gt;commands&lt;/em&gt; con las opciones de interpolación pero:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No tengo claro que sea útil&lt;/li&gt;
+&lt;li&gt;No tengo claro que no se puede replicar con un workflow algo más complicado en la skill&lt;/li&gt;
+&lt;li&gt;Seguramente acaben implementando &lt;code&gt;disable-model-invocation&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Si el resto de Coding Agents siguen copiando a Claude, también acabarán &lt;a href=&#34;https://code.claude.com/docs/en/skills#inject-dynamic-context&#34;&gt;metiendo interpolación en las skills&lt;/a&gt;.&lt;/p&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/03/21/coding-agents-commands-claude/</link>
+      <pubDate>Sat, 21 Mar 2026 22:45:12 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/21/coding-agents-commands-claude/</guid>
       
     </item>
     
@@ -251,57 +376,6 @@
       <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2007/04/04/instalar-los-drivers-para-una-webcam/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Coding Agentes: Funcionalidades de &#34;inyección de contexto&#34;</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;coding-agentes-funcionalidades-de-inyeccion-de-contexto&#34;&gt;Coding Agentes: Funcionalidades de &#34;inyección de contexto&#34;&lt;/h1&gt;
-&lt;details class=&#34;info&#34;&gt;
-&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;../coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/details&gt;
-&lt;p&gt;Los &lt;em&gt;coding agents&lt;/em&gt; ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;prompt&lt;/strong&gt;: Ya sea &lt;em&gt;user prompt&lt;/em&gt;, &lt;em&gt;system prompt&lt;/em&gt;, ...&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;referencias&lt;/strong&gt;: En el prompt también podemos pedir a la herramienta que incluya el contenido de un fichero con &lt;code&gt;@&lt;/code&gt; o con instrucciones.&lt;ul&gt;
-&lt;li&gt;Los modelos y las herramientas son complejos. No se comportan todas igual, ni el mismo modelo hace siempre lo mismo. Tampoco es lo mismo referencia una imagen binaria que se suele hacer en peticiones distintas que un md.&lt;/li&gt;
-&lt;li&gt;La forma en que la herramienta marca o incluye este contexto adicional también puede variar.&lt;/li&gt;
-&lt;li&gt;El concepto de &lt;a href=&#34;https://tweag.github.io/agentic-coding-handbook/WORKFLOW_MEMORY_BANK/&#34;&gt;memory banks&lt;/a&gt; encaja aquí y en &lt;code&gt;AGENTS.md&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;AGENTS.md&lt;/strong&gt;: Siempre introduce en el contexto el fichero en la raíz del repo. Algunas herramientas admiten ficheros en subdirectorios y los adjuntan cuando se accede a un fichero en ese directorio. Puede actuar cómo un &lt;a href=&#34;../../../../2025/12/11/agents-md-and-at-character-to-reference-documents/&#34;&gt;índice que adjunte otros documentos&lt;/a&gt;:&lt;ul&gt;
-&lt;li&gt;Con &lt;code&gt;@&lt;/code&gt;. Debería leerlo e incluirlo siempre.&lt;/li&gt;
-&lt;li&gt;Condicionalmente mediante instrucciones &lt;code&gt;read &#39;testing.md&#39; when writing tests&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;commands&lt;/strong&gt;: Escribimos en el chat &lt;code&gt;/fix-bug in my_file.py&lt;/code&gt;, y envía al modelo &lt;code&gt;fix-bug.md&lt;/code&gt; que está en una ruta predeterminada junto al resto del contexto.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;rules&lt;/strong&gt;: No todas las herramientas las tienen. Suelen ser ficheros md con un frontmatter que indica cuando se debe usar la regla. Es la herramienta y el modelo quien decide que reglas leer, pero el usuario puede forzarlo.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;hooks&lt;/strong&gt;: Las incluyo porqué son un buen substituto a ciertas instrucciones (estén donde estén). En lugar de `execute format.sh and lint.sh after making changes&#34;, un hook puede correrlos. De hecho las instrucciones pueden ser ignoradas y el hook no.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;MCP&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Skills&lt;/strong&gt;. Un directorio, en una ruta predefinida de la herramienta, que tiene dentro un fichero &lt;code&gt;SKILL.md&lt;/code&gt; y otros &lt;em&gt;assets&lt;/em&gt;. Tienen metadatos cortos de nombre y descripción que se inyectan siempre en el contexto. El LLM decide cuando una skill aplica en base a los metadatos o el usuario puede forzar su uso.&lt;ul&gt;
-&lt;li&gt;Hay un par de cosas que no me gustan de los skill. O que si se retocara la spec podrían ser un total substituto a los comandos. Los comandos se cargan y ejecutan exclusivamente bajo demanda del usuario. Las skills no.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://agentskills.io/specification#progressive-disclosure&#34;&gt;La spec&lt;/a&gt; dice que los metadatos se cargan siempre.&lt;/li&gt;
-&lt;li&gt;El LLM decide cuando cuando leer y aplicar la skill en base a la vaga descripción&lt;/li&gt;
-&lt;li&gt;No se pueden tener &#34;infinitas&#34; skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos 20 tokens por skill, 100 skill es un 1% del contexto habitual de 200k.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Extensiones o Plugins&lt;/strong&gt;. Depende de la herramienta, pero la mayoría incluye alguna forma de empaquetar combinaciones de lo anterior y otras extensiones de comportamiento.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;En próximos artículos iremos viendo con más detalle algunas de estas funcionalidades, cómo se comportan en distintas herramientas y cómo se relacionan entre sí.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2026/03/19/coding-agents-features-for-context-injection/</link>
-      <pubDate>Thu, 19 Mar 2026 21:57:35 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/19/coding-agents-features-for-context-injection/</guid>
       
     </item>
     
@@ -761,24 +835,6 @@ Hay [muchas formas de colaborar](http://www.canalsolidario.org/web/noticias/noti
       <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2008/05/29/la-prohibicion-de-las-bombas-de-racimo-esta-muy-cerca/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Documento sobre listas de correo</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;documento-sobre-listas-de-correo&#34;&gt;Documento sobre listas de correo&lt;/h1&gt;
-&lt;p&gt;Desde el blog de &lt;a href=&#34;http://esfgalicia.blogspot.com/2008/05/grupos-de-correo.html&#34;&gt;Ingeniería Sin Fronteras Galicia Vida Asociativa&lt;/a&gt;, podeis acceder a un documento que he escrito sobre la experiencia de ESF trabajando con listas de correo.&lt;/p&gt;
-&lt;p&gt;Mi intención es ir mejorándolo poco a poco así que se admiten sugerencias.&lt;/p&gt;
-&lt;p&gt;Por cierto, la sugerencia sobre como reestructurar las listas no es mia si no de &lt;a href=&#34;http://tsao.enelparaiso.org/wiki/Principal&#34;&gt;Tsao&lt;/a&gt;.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2008/06/01/documento-sobre-listas-de-correo/</link>
-      <pubDate>Thu, 19 Mar 2026 10:16:41 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss-updated.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2008/06/01/documento-sobre-listas-de-correo/</guid>
       
     </item>
     

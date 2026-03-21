@@ -18,17 +18,15 @@
 
 <!-- Canonical -->
 
-<link rel="canonical" href="https://franciscopuga.es/blog/2026/03/20/coding-agents-commands-gemini/" />
+<link rel="canonical" href="https://franciscopuga.es/blog/2026/03/21/coding-agents-commands-claude/" />
 
 
 <!-- Previous page -->
 
-<link rel="prev" href="../../19/coding-agents-commands-cursor/" />
+<link rel="prev" href="../../20/coding-agents-commands-gemini/" />
 
 
 <!-- Next page -->
-
-<link rel="next" href="../../21/coding-agents-commands-claude/" />
 
 
 <!-- RSS feed -->
@@ -55,7 +53,7 @@
 
     
       
-        <title>Coding Agentes: Commands en Gemini - Francisco Puga</title>
+        <title>Coding Agentes: Commands en Claude (Codex y OpenCode) - Francisco Puga</title>
       
     
     
@@ -121,7 +119,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#coding-agentes-commands-en-gemini" class="md-skip">
+        <a href="#coding-agentes-commands-en-claude-codex-y-opencode" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -155,7 +153,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Coding Agentes: Commands en Gemini
+              Coding Agentes: Commands en Claude (Codex y OpenCode)
             
           </span>
         </div>
@@ -1057,6 +1055,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#agent-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent Skills
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openai-codex-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI Codex CLI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opencode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenCode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#conclusiones" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1104,7 +1135,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2026-03-20 00:00:00+00:00" class="md-ellipsis">20 de marzo de 2026</time>
+                        <time datetime="2026-03-21 00:00:00+00:00" class="md-ellipsis">21 de marzo de 2026</time>
                       </div>
                     </li>
                     
@@ -1128,57 +1159,62 @@
 
 
 
-<h1 id="coding-agentes-commands-en-gemini">Coding Agentes: Commands en Gemini</h1>
+<h1 id="coding-agentes-commands-en-claude-codex-y-opencode">Coding Agentes: Commands en Claude (Codex y OpenCode)</h1>
 <details class="info">
 <summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
 <ol>
 <li><a href="../../19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
 <li><a href="../../19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
-<li><a href="./">Commands en Gemini</a></li>
-<li><a href="../../21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
+<li><a href="../../20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
+<li><a href="./">Commands en Claude (Codex y OpenCode)</a></li>
 </ol>
 </details>
-<p>En esta artículo nos centramos en cómo funcionan los <em>commands</em> en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.</p>
-<p>Gemini no tiene un nombre genérico para estas funcionalidades y en su documentación están dispersas entre "Features", "Usage" y "Configuration". Contempla:</p>
+<p>Claude describe la mayoría de estas funcionalidades cómo "<a href="https://code.claude.com/docs/en/features-overview">extension layer</a>: features you add to customize what Claude knows, connect it to external services, and automate workflows.".</p>
+<p>Y los divide en:</p>
 <ul>
-<li><a href="https://geminicli.com/docs/cli/tutorials/memory-management/">AGENTS.md</a>. <a href="https://geminicli.com/docs/cli/gemini-md/">GEMINI.md</a></li>
-<li><a href="https://geminicli.com/docs/cli/skills/">Skills</a></li>
-<li><a href="https://geminicli.com/docs/cli/tutorials/mcp-setup/">MCP</a></li>
-<li><a href="https://geminicli.com/docs/hooks/">Hooks</a></li>
-<li><a href="https://geminicli.com/docs/extensions/">Extensions</a> (Plugins)</li>
-<li><a href="https://geminicli.com/docs/cli/custom-commands/">Custom Commands</a></li>
+<li><a href="https://code.claude.com/docs/en/memory">CLAUDE.md</a> adds persistent context Claude sees every session</li>
+<li><a href="https://code.claude.com/docs/en/skills">Skills</a> add reusable knowledge and invocable workflows. load on demand. Claude sees skill descriptions at session start, but the full content only loads when a skill is used. For skills you invoke manually, set disable-model-invocation: true to keep descriptions out of context until you need them.</li>
+<li><a href="https://code.claude.com/docs/en/mcp">MCP</a> connects Claude to external services and tools</li>
+<li><a href="https://code.claude.com/docs/en/hooks">Hooks</a> run outside the loop entirely as deterministic scripts</li>
+<li><a href="https://code.claude.com/docs/en/plugins">Plugins</a> and marketplaces package and distribute these features</li>
 </ul>
-<p>Además de otras funcionalidades cómo modificar el System Prompt, Subagents, Remote Subagents y Plan Mode. Y no tiene un sistema de reglas.</p>
+<p>En este grupo también <em>subagents</em> y <em>agent teams</em>.</p>
+<p>La documentación es más extensa que en Cursor y Gemini y en varios puntos comparan las funcionalidades entre sí para explicar que usar en cada caso, lo cual se agradece.</p>
 <h2 id="commands">Commands</h2>
-<p>La <a href="https://geminicli.com/docs/cli/custom-commands/">documentación oficial</a> es bastante clara.</p>
+<p>Lo primero que vemos es que Claude no tiene documentación concreta sobre <em>commands</em> pero hay varias referencias veladas.</p>
 <ul>
-<li>Van en <code>.gemini/commands</code> del proyecto o de <code>~</code>.<ul>
-<li>Admite namespaces (subdirectorios). <code>.gemini/commands/git/commit.toml</code> se convierte en <code>/git:commit</code>.</li>
+<li><a href="https://code.claude.com/docs/en/mcp#use-mcp-prompts-as-commands">Los MCP puede proporcionar comandos</a>. <code>/mcp__github__pr_review 456</code></li>
+<li><a href="https://code.claude.com/docs/en/discover-plugins">Los plugins también</a>. <code>/commit-commands:commit</code></li>
 </ul>
-</li>
-<li>Por algún <a href="https://github.com/google-gemini/gemini-cli/issues/15535">motivo inexplicable</a>, usa ficheros TOML</li>
-<li>Los campos del TOML son <code>description</code> el texto de ayuda que pone para el comando y <code>prompt</code> donde metes las instrucciones en sí.</li>
-<li>Admite cierto grado de interpolación.<ul>
-<li><code>{{args}}</code> El placeholder es substituido por el texto que acompaña al comando en el chat.</li>
-<li><code>!{{...}}</code>. Ejecuta el comando y substituye el placeholder por la salida. Se puede combinar con <em>args</em>: <code>!{grep -r {{args}} .}</code></li>
-<li><code>@{path/to/file_or_dir}</code>. El placeholder es substituido por el contenido del fichero o los ficheros del directorio. Esta substitución es la primera así que no se puede combinar con <code>{{args}}</code> y pasar el path cómo parámetro.</li>
-</ul>
-</li>
-<li>No son <em>composables</em> sólo funciona el <code>/</code> al principio del prompt.</li>
-</ul>
-<p>Una de las cosas buenas de que <a href="https://github.com/google-gemini/gemini-cli">gemini-cli</a> sea software libre es que podemos ver cómo funciona y no hacer observaciones indirectas cómo en Cursor.</p>
-<p>El propio gemini tras estudiar su código responde más o menos esto a si es lo mismo usar <code>@</code> que un <em>command</em></p>
+<p>Pero lo más relevante está en <a href="https://code.claude.com/docs/en/skills">la página de skills</a>. Ahí indican claramente que los custom commands han sido integrados en las skills.</p>
+<h2 id="agent-skills">Agent Skills</h2>
+<p>El <a href="https://agentskills.io/home">Agent Skills</a> es un formato desarrollado originalmente por Anthropic y publicado cómo estándar abierto.</p>
+<p>La spec oficial dice que el <code>name</code> y <code>description</code> de un skill <a href="https://agentskills.io/client-implementation/adding-skills-support#the-core-principle-progressive-disclosure">se cargan automáticamente al iniciar una sesión</a> y se recomienda que se puedan "activar" bajo criterio del modelo o <a href="https://agentskills.io/client-implementation/adding-skills-support#user-explicit-activation">bajo invocación del usuario</a>.</p>
+<p>Cómo contábamos en un post anterior</p>
 <blockquote>
-<p>Gemini CLI uses clear separators and headers to help the model distinguish between your prompt, injected files, and shell command outputs, rather than complex XML tags. For <code>@file</code> references, it uses <code>REFERENCE_CONTENT_START</code> and <code>REFERENCE_CONTENT_END markers</code>, with individual file contents prefixed by <code>--- filename ---</code>. Custom slash commands defined in .toml files expand <code>@{path}</code> with similar <code>--- filename ---</code> headers and use <code>--- Start of content for directory: path ---</code> for directory injections</p>
-<p>Shell command output <code>!{command}</code> is appended with exit codes or signal markers if they fail, and if a command doesn't use <code>{{args}}</code>, the raw invocation is appended to the end of the prompt to provide context. Overall, the system relies on these human-readable delimiters to maintain context without over-engineering the prompt structure.</p>
+<p>A <a href="https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog">50-100 tokens por skill</a>, 20-40 skills es un 1% del contexto habitual de 200k.</p>
 </blockquote>
-<p>Vamos que no hay magia. Y en las pruebas que he hecho los resultados era similares.</p>
+<p>Pero Claude Code tiene varias extensiones al estándar, entre ellos una propiedad <code>disable-model-invocation: true</code> en el frontmatter de <code>SKILL.md</code> que hace que <a href="https://code.claude.com/docs/en/skills#control-who-invokes-a-skill">sólo el usuario y no el modelo</a> pueda invocar la skill y que no se cargue al inicio.</p>
+<p>De este modo funciona cómo un substituto perfecto y más potente que los <em>custom commands</em>. Dejando a parte la sobre carga de tener que ir creando directorios todos con el mismo fichero <code>SKILL.md</code> dentro.</p>
+<p>Otra de las extensiones <a href="https://code.claude.com/docs/en/skills#inject-dynamic-context">dynamic context</a>, da una función parecida a la de interpolación de los comandos de gemini.</p>
+<p>Gemini no tiene soporte para esta funcionalidad aunque <a href="https://github.com/google-gemini/gemini-cli/issues/21760">hay una issue abierta</a>. <a href="https://cursor.com/docs/skills#disabling-automatic-invocation">Cursor soporta exactamente</a> la misma propiedad.</p>
+<h2 id="openai-codex-cli">OpenAI Codex CLI</h2>
+<p>En un vistazo rápido a la documentación de Codex no he encontrado referencias a <em>custom commands</em>.</p>
+<p>La <a href="https://developers.openai.com/codex/skills">página de skills</a> hace referencia a un parámetro <code>allow_implicit_invocation</code> con comportamiento similar a <code>disable-model-invocation</code> pero no indican si se carga al inicio o no.</p>
+<p>No le he dado muchas más vueltas porqué no uso Codex, <a href="https://github.com/openai/codex/issues/10585">pero en este ticket</a> hay algo de discusión sobre el tema y tickets abiertos relacionados.</p>
+<h2 id="opencode">OpenCode</h2>
+<p>OpenCode tiene documentación sobre <a href="https://opencode.ai/docs/commands/">custom commands</a>. Pueden definirse en JSON o Markdown y tienen opciones de interpolación.</p>
+<p>La <a href="https://opencode.ai/docs/skills/#configure-permissions">documentación de skills</a> hace referencia a alguna forma de evitar que carguen al inicio, pero sin experiencia en OpenCode me resulta confusa.</p>
+<p>Cómo en Codex hay <a href="https://github.com/anomalyco/opencode/issues/11972">alguna issue</a> abierta al respecto.</p>
 <h2 id="conclusiones">Conclusiones</h2>
+<p>La forma en que Cursor y Claude implementan las Skills, permite dejar de lado los <em>custom commands</em> y usar únicamente Skills.</p>
+<p>OpenCode y Gemini le dan un poco más de magia a los <em>commands</em> con las opciones de interpolación pero:</p>
 <ul>
-<li>gemini-cli al contrario que Cursor, no hace magia con los comandos, simplemente es un texto añadido al prompt</li>
-<li>Las opciones de interpolación de los comandos pueden abrir usos creativos. Pero no tengo claro cual puede ser la diferencia entre interpolar un <code>!{git diff}</code> y decirle que use <code>git diff</code> y con la salida escriba el mensaje de commit. Allá de menos requests. Quizás menos consumo de tokens</li>
-<li>Usar formato TOML para algo cómo esto es tocar las narices. Tiene pinta de over engineering.</li>
+<li>No tengo claro que sea útil</li>
+<li>No tengo claro que no se puede replicar con un workflow algo más complicado en la skill</li>
+<li>Seguramente acaben implementando <code>disable-model-invocation</code></li>
 </ul>
+<p>Si el resto de Coding Agents siguen copiando a Claude, también acabarán <a href="https://code.claude.com/docs/en/skills#inject-dynamic-context">metiendo interpolación en las skills</a>.</p>
 
 
 
