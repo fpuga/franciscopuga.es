@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Sat, 21 Mar 2026 21:45:22 -0000</pubDate>
-    <lastBuildDate>Sat, 21 Mar 2026 21:45:22 -0000</lastBuildDate>
+    <pubDate>Thu, 02 Apr 2026 20:45:56 -0000</pubDate>
+    <lastBuildDate>Thu, 02 Apr 2026 20:45:56 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -32,6 +32,250 @@
     
     
     <item>
+      <title>Cómo funcionan las rules y el AGENTS.md en distintos Coding Agents</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;como-funcionan-las-rules-y-el-agentsmd-en-distintos-coding-agents&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; y el &lt;code&gt;AGENTS.md&lt;/code&gt; en distintos Coding Agents&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
+&lt;p&gt;En esta artículo nos centramos en cómo funcionan las &lt;em&gt;rules&lt;/em&gt; en distintos &lt;em&gt;coding agents&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;El &lt;code&gt;AGENTS.md&lt;/code&gt; es equivalente a una regla de &lt;code&gt;Siempre&lt;/code&gt; y en la documentación de algunas herramientas lo tratan en conjunto, así que también lo haremos así en este artículo.&lt;/p&gt;
+&lt;p&gt;Las herramientas en general llaman &lt;em&gt;rules&lt;/em&gt; a archivos markdown con un frontmatter que controla bajo que condiciones se inyecta en el contexto:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Siempre. &lt;code&gt;Always on&lt;/code&gt;, &lt;code&gt;loaded unconditionally&lt;/code&gt;. Equivalente (en algunas herramientas) a referenciar documentos con &lt;code&gt;@&lt;/code&gt; desde el &lt;code&gt;AGENTS.md&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Bajo criterio del modelo. &lt;code&gt;Apply Intelligently&lt;/code&gt;, &lt;code&gt;model_decision&lt;/code&gt;, &lt;code&gt;lazy loading&lt;/code&gt;. Equivalente a una regla en el &lt;code&gt;AGENTS.md&lt;/code&gt; estilo: &lt;code&gt;Read docs/python-guidelines.py when working with python code&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Manual. Equivalente chat referenciar un documento con &lt;code&gt;@&lt;/code&gt; en la conversación.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;glob&lt;/em&gt;. Cuando se trabaje en un fichero que cumpla el &lt;em&gt;glob&lt;/em&gt; el markdown es inyectado. Lo más parecido serían las herramientas que leen &lt;code&gt;AGENTS.md&lt;/code&gt; en subcarpetas y &lt;em&gt;lazy loading&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;que-significa-equivalente&#34;&gt;¿Qué significa equivalente?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Los modelos son &lt;em&gt;cajas negras estocásticas&lt;/em&gt;. Dada la misma entrada no tienen porqué producir la misma salida. Sólo se puede decidir cual la mejor entrada para obtener la salida deseada a &lt;a href=&#34;https://www.youtube.com/watch?v=8RHYyRUxVrA&#34;&gt;base de prueba y error&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;El &lt;a href=&#34;https://parallel.ai/articles/what-is-an-agent-harness&#34;&gt;harness&lt;/a&gt; es tan relevante cómo el modelo en sí. En las herramientas que tienen el código fuente disponible es más fácil tomar decisiones informadas. Las técnicas tipo Man in the Middle también ayuda.&lt;/li&gt;
+&lt;li&gt;Harness y Modelos cambian a menudo, se debería estar haciendo una evaluación continua y eso no está al alcance de todos los equipos. De hecho, ni siquiera es viable para muchos equipos leer los &#34;resúmenes&#34;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Así que hay que tomarse &lt;em&gt;equivalente&lt;/em&gt;, o cualquier artículo &lt;em&gt;de internet&lt;/em&gt; con mucho cuidado.&lt;/p&gt;
+&lt;p&gt;Por ejemplo, la documentación de Claude indica específicamente que una regla tiene la misma prioridad en el contexto que él &lt;code&gt;CLAUDE.md&lt;/code&gt;. Pero no tiene porqué ser así en otras herramientas. Cuando poner un documento &lt;a href=&#34;https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#long-context-prompting&#34;&gt;en la parte de arriba o bajo del prompt&lt;/a&gt;, puede modificar en un 30% la calidad del resultado, la forma en que el harness &lt;em&gt;wrapee&lt;/em&gt; e inyecte el contexto al modelo puede tener mucho impacto.&lt;/p&gt;
+&lt;p&gt;Es decir. Qué &lt;code&gt;@path&lt;/code&gt; desde el &lt;code&gt;AGENTS.md&lt;/code&gt; se envíe siempre al llm, al igual que una regla de &lt;code&gt;Always on&lt;/code&gt;, no tiene porqué significar que se fuerce la misma atención del modelo sobre los dos métodos.&lt;/p&gt;
+&lt;h2 id=&#34;antigravity&#34;&gt;Antigravity&lt;/h2&gt;
+&lt;p&gt;Antigravity &lt;a href=&#34;https://antigravity.google/docs/rules-workflows&#34;&gt;maneja dos conceptos&lt;/a&gt; similares, en la misma sección de la documentación: &lt;em&gt;rules&lt;/em&gt; y &lt;em&gt;workflows&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Los &lt;em&gt;workflows&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Son ficheros markdown con un frontmatter (propiedad &lt;code&gt;description&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Se almacenan en &lt;code&gt;~/.gemini/antigravity/global_workflows&lt;/code&gt; o &lt;code&gt;.agents/workflows&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Parece que sólo se puede invocar de forma manual, usando: &lt;code&gt;/my-workflow&lt;/code&gt;. Y unos workflows pueden llamar a otros&lt;/li&gt;
+&lt;li&gt;Los definen así:&lt;ul&gt;
+&lt;li&gt;While Rules provide models with guidance by providing persistent, reusable context at the prompt level, Workflows provide a structured sequence of steps or prompts at the trajectory level, guiding the model through a series of interconnected tasks or actions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Las &lt;em&gt;rules&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Son ficheros markdown con un frontmatter&lt;/li&gt;
+&lt;li&gt;Se almacenan en &lt;code&gt;.agents/rules&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;No hay reglas globales. A nivel global, coge el documento que se haya definido para gemini-cli &lt;code&gt;~/.gemini/GEMINI.md&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Se pueden invocar manualmente con &lt;code&gt;@my-rule.md&lt;/code&gt;. Y siguen los criterios de: siempre, manual, el modelo decide, glob.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;El frontmatter sería:&lt;/p&gt;
+&lt;div class=&#34;language-yaml highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-0-1&#34;&gt;&lt;a id=&#34;__codelineno-0-1&#34; name=&#34;__codelineno-0-1&#34; href=&#34;#__codelineno-0-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;nt&#34;&gt;trigger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l l-Scalar l-Scalar-Plain&#34;&gt;manual | always_on | glob | model_decision&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-2&#34;&gt;&lt;a id=&#34;__codelineno-0-2&#34; name=&#34;__codelineno-0-2&#34; href=&#34;#__codelineno-0-2&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Sólo cuando trigger = &amp;#39;glob&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-4&#34;&gt;&lt;a id=&#34;__codelineno-0-4&#34; name=&#34;__codelineno-0-4&#34; href=&#34;#__codelineno-0-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;nt&#34;&gt;globs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l l-Scalar l-Scalar-Plain&#34;&gt;\*.py&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-5&#34;&gt;&lt;a id=&#34;__codelineno-0-5&#34; name=&#34;__codelineno-0-5&#34; href=&#34;#__codelineno-0-5&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-6&#34;&gt;&lt;a id=&#34;__codelineno-0-6&#34; name=&#34;__codelineno-0-6&#34; href=&#34;#__codelineno-0-6&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Sólo cuando trigger = &amp;#39;model_decision&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-7&#34;&gt;&lt;a id=&#34;__codelineno-0-7&#34; name=&#34;__codelineno-0-7&#34; href=&#34;#__codelineno-0-7&#34;&gt;&lt;/a&gt;&lt;span class=&#34;nt&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;foo&amp;quot;&lt;/span&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;wtf&#34;&gt;WTF&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;rules&lt;/em&gt; y &lt;em&gt;workflows&lt;/em&gt; se pueden crear mano, o desde la GUI. Cuando en Antigravity se abre un fichero en esas carpetas, el editor no es el de texto normal, si no, uno con widgets pensado para la edición de estos documentos.&lt;/li&gt;
+&lt;li&gt;Reglas y Workflows están limitados a 12.000 caracteres.&lt;ul&gt;
+&lt;li&gt;Por estimación gruesísima, &lt;a href=&#34;https://www.blindtextgenerator.com/lorem-ipsum&#34;&gt;12.000 caracteres de lorem-ipsum&lt;/a&gt; son 1.753 palabras, &lt;a href=&#34;https://tokencounter.org/&#34;&gt;3.716 tokens&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Aunque según &lt;em&gt;un LLM&lt;/em&gt; la documentación técnica en &lt;em&gt;inglés&lt;/em&gt; tiene de media 5 caracteres por palabra más un espacio. Eso serían unas 2.000 palabras, 2.666 tokens. En castellano los números salen un poco peor.&lt;/li&gt;
+&lt;li&gt;O de otra forma asumiendo 1 token = 4 caracteres (inglés) serían 2.500 tokens.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;La documentación no tiene buscador y no he encontrado ninguna mención a &lt;code&gt;AGENTS.md&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;opencode&#34;&gt;OpenCode&lt;/h2&gt;
+&lt;p&gt;En el caso de OpenCode &lt;a href=&#34;https://opencode.ai/docs/rules&#34;&gt;bajo la sección &lt;em&gt;rules&lt;/em&gt;&lt;/a&gt; hacen referencia directa al uso de &lt;code&gt;AGENTS.md&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Un único fichero en el root del proyecto o uno global en &lt;code&gt;~/.config/opencode/AGENTS.md&lt;/code&gt;. También permite definir la lista de ficheros que se añadirán automáticamente al contexto. Es una funcionalidad interesante porque permite usar globs (para los ficheros a leer no para cuando se leen) y urls.&lt;/p&gt;
+&lt;div class=&#34;language-json highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-1-1&#34;&gt;&lt;a id=&#34;__codelineno-1-1&#34; name=&#34;__codelineno-1-1&#34; href=&#34;#__codelineno-1-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-2&#34;&gt;&lt;a id=&#34;__codelineno-1-2&#34; name=&#34;__codelineno-1-2&#34; href=&#34;#__codelineno-1-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;quot;$schema&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;https://opencode.ai/config.json&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-3&#34;&gt;&lt;a id=&#34;__codelineno-1-3&#34; name=&#34;__codelineno-1-3&#34; href=&#34;#__codelineno-1-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;quot;instructions&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-4&#34;&gt;&lt;a id=&#34;__codelineno-1-4&#34; name=&#34;__codelineno-1-4&#34; href=&#34;#__codelineno-1-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;CONTRIBUTING.md&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-5&#34;&gt;&lt;a id=&#34;__codelineno-1-5&#34; name=&#34;__codelineno-1-5&#34; href=&#34;#__codelineno-1-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;docs/guidelines.md&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-6&#34;&gt;&lt;a id=&#34;__codelineno-1-6&#34; name=&#34;__codelineno-1-6&#34; href=&#34;#__codelineno-1-6&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;.cursor/rules/*.md&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-7&#34;&gt;&lt;a id=&#34;__codelineno-1-7&#34; name=&#34;__codelineno-1-7&#34; href=&#34;#__codelineno-1-7&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;https://myurl.com/style.md&amp;quot;&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-8&#34;&gt;&lt;a id=&#34;__codelineno-1-8&#34; name=&#34;__codelineno-1-8&#34; href=&#34;#__codelineno-1-8&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-9&#34;&gt;&lt;a id=&#34;__codelineno-1-9&#34; name=&#34;__codelineno-1-9&#34; href=&#34;#__codelineno-1-9&#34;&gt;&lt;/a&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Al contrario que otras herramientas no siguen automáticamente referencias &lt;code&gt;@path&lt;/code&gt;. Recomiendan el uso de &lt;em&gt;lazy loading&lt;/em&gt; a través del &lt;code&gt;AGENTS.md&lt;/code&gt;: &lt;code&gt;For testing strategies and coverage requirements: @test/testing-guidelines.md&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;gemini-cli&#34;&gt;gemini-cli&lt;/h2&gt;
+&lt;p&gt;Tampoco tiene &lt;em&gt;rules&lt;/em&gt;. Lo más parecido es el &lt;code&gt;AGENTS.md&lt;/code&gt; que engloban bajo &lt;a href=&#34;https://geminicli.com/docs/cli/tutorials/memory-management/&#34;&gt;Manage Context and Memory&lt;/a&gt;. Por defecto usan el fichero &lt;code&gt;GEMINI.md&lt;/code&gt; pero se puede usar otro mediante configuración.&lt;/p&gt;
+&lt;p&gt;Se pueden poner en la raíz del proyecto, o en &lt;code&gt;~&lt;/code&gt;. También en subdirectorios de modo que sólo cargue cuando se trabaje con ficheros en bajo ese árbol.&lt;/p&gt;
+&lt;p&gt;gemini tiene además una tool de &lt;code&gt;save_memory&lt;/code&gt;. Un prompt cómo &lt;code&gt;remember that by database is at port 5433&lt;/code&gt; añadirá una línea a &lt;code&gt;~/.gemini/GEMINI.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Si se usa &lt;code&gt;@path&lt;/code&gt; en un documento lo carga automáticamente.&lt;/p&gt;
+&lt;p&gt;Tiene también un comando &lt;code&gt;/memory show&lt;/code&gt; que permite ver las instrucciones que se están usando. Muy útil para depurar.&lt;/p&gt;
+&lt;h3 id=&#34;wtf_1&#34;&gt;WTF&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Tienen dos páginas donde cuentan prácticamente lo mismo &#34;Manage Context and Memory&#34; y &lt;a href=&#34;https://geminicli.com/docs/cli/gemini-md/&#34;&gt;Project Context&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Permite modificar el &lt;a href=&#34;https://geminicli.com/docs/cli/system-prompt/&#34;&gt;System Prompt&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;openai-codex-cli&#34;&gt;OpenAI Codex CLI&lt;/h2&gt;
+&lt;p&gt;Codex no tiene &lt;em&gt;rules&lt;/em&gt; y hay que ir directamente &lt;a href=&#34;https://developers.openai.com/codex/guides/agents-md&#34;&gt;a la documentación sobre el &lt;code&gt;AGENTS.md&lt;/code&gt;&lt;/a&gt;. Cómo el resto admiten ficheros a nivel de proyecto y de &lt;code&gt;~&lt;/code&gt;. Tiene además una funcionalidad curiosa, si existe un fichero &lt;code&gt;AGENTS.override.md&lt;/code&gt; lee ese en lugar de &lt;code&gt;AGENTS.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Incluye el &lt;code&gt;AGENTS.md&lt;/code&gt; de subdirectorios.&lt;/p&gt;
+&lt;p&gt;La documentación explica varios puntos interesantes&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Merge order: Codex concatenates files from the root down, joining them with blank lines. Files closer to your current directory override earlier guidance because they appear later in the combined prompt.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;La forma de premiar la atención de un &lt;code&gt;AGENTS.md&lt;/code&gt; sobre otro anidado, es simplemente ponerlo más abajo en el prompt.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Codex skips empty files and stops adding files once the combined size reaches the limit defined by project_doc_max_bytes (32 KiB by default). For details on these knobs, see Project instructions discovery. Raise the limit or split instructions across nested directories when you hit the cap.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Asumiendo UTF8 (de 1 byte para la mayoría de letras hasta 4 bytes para los emojis), pongamos un cálculo grueso de 32k caracteres en inglés, 1 token = 4 caracteres, unos 8.000 tokens.&lt;/p&gt;
+&lt;p&gt;En la documentación dan varios trucos para depurar las instrucciones.&lt;/p&gt;
+&lt;h3 id=&#34;wtf_2&#34;&gt;WTF&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Codex CLI &lt;a href=&#34;https://developers.openai.com/codex/rules&#34;&gt;maneja el concepto de &lt;em&gt;rules&lt;/em&gt;&lt;/a&gt; pero con un significado totalmente distinto al resto de herramientas. Se usa para definir los permisos de los comandos que Codex puede ejecutar. &lt;em&gt;Muy feo que no se alineen con el resto en cómo llamar a las cosas&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;No he encontrado en la documentación si sigue automáticamente &lt;code&gt;@path&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;claude&#34;&gt;Claude&lt;/h2&gt;
+&lt;p&gt;La &lt;a href=&#34;https://code.claude.com/docs/en/features-overview&#34;&gt;documentación de Claude&lt;/a&gt; llama a este tipo de funcionalidades &lt;em&gt;extension layer&lt;/em&gt;. En la página resumen hablan muy poco de &lt;em&gt;rules&lt;/em&gt;, lo que seguramente significa que no quieren darle mucha relevancia.&lt;/p&gt;
+&lt;p&gt;En la &lt;a href=&#34;https://code.claude.com/docs/en/memory&#34;&gt;sección de Memory&lt;/a&gt; se extienden tanto en lo referido al &lt;code&gt;AGENTS.md&lt;/code&gt; cómo a las &lt;em&gt;rules&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;El &lt;code&gt;AGENTS.md&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Va en el proyecto, &lt;code&gt;~&lt;/code&gt; o subdirectorios.&lt;/li&gt;
+&lt;li&gt;Recomiendan que no sea de más de 500 líneas. &lt;em&gt;Y ya tenemos una tercera forma distinta de limitar o recomendar el tamaño de este fichero: caracteres, KiB y líneas&lt;/em&gt;&lt;ul&gt;
+&lt;li&gt;Por decir algo 50 caracteres por lína, 4 caracteres por token, serían 6250 tokens.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Carga automáticamente las referencias &lt;code&gt;@path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Una funcionalidad interesante es que comentarios estilo &lt;code&gt;&amp;lt;!-- maintainer notes --&amp;gt;&lt;/code&gt; son eliminados antes de inyectar el fichero en el contexto.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Las &lt;em&gt;rules&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Son ficheros markdown con un frontmatter&lt;/li&gt;
+&lt;li&gt;Se almacenan en home (&lt;code&gt;~/.claude/rules/&lt;/code&gt;) y el proyecto (&lt;code&gt;.claude/rules/&lt;/code&gt;). Admitiendo organizarlas en subdirectorios.&lt;/li&gt;
+&lt;li&gt;Se pueden:&lt;ul&gt;
+&lt;li&gt;invocar manualmente con &lt;code&gt;@.claude/rules/my-rule.md&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Siempre. Si no tiene frontmatter se cargará automáticamente con la misma prioridad que el &lt;code&gt;CLAUDE.md&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Con &lt;em&gt;globs&lt;/em&gt;. Cuando en el frontmatter hacia una propiedad &lt;em&gt;paths&lt;/em&gt; (ie: &lt;code&gt;paths: *.py&lt;/code&gt;), sólo cargan cuando se cumple el &lt;em&gt;glob&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;wtf_3&#34;&gt;WTF&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;La documentación de Claude es de largo la mejor. Esta &lt;a href=&#34;https://code.claude.com/docs/en/context-window&#34;&gt;visualización interactiva del Context Window&lt;/a&gt; es un lujo.&lt;/li&gt;
+&lt;li&gt;Tiene un comando &lt;code&gt;/memory&lt;/code&gt; para ayudar a depurar. También recomiendan &lt;a href=&#34;https://code.claude.com/docs/en/hooks#instructionsloaded&#34;&gt;usar un hook&lt;/a&gt; para depurar: &#34;Use the InstructionsLoaded hook to log exactly which instruction files are loaded, when they load, and why&#34;&lt;/li&gt;
+&lt;li&gt;Claude usa &lt;code&gt;CLAUDE.md&lt;/code&gt; en lugar de &lt;code&gt;AGENTS.md&lt;/code&gt; y no hay posibilidad de configuración.&lt;/li&gt;
+&lt;li&gt;Claude tiene además &lt;a href=&#34;https://code.claude.com/docs/en/memory#auto-memory&#34;&gt;una funcionalidad de &#34;Auto Memory&#34;&lt;/a&gt;, que se puede deshabilitar en la configuración.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En una parte de la documentación hablan de las 500 líneas, mientras que en otra escriben:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Size: target under 200 lines per CLAUDE.md file. Longer files consume more context and reduce adherence. If your instructions are growing large, split them using imports or .claude/rules/ files.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A esta frase no le acabo de ver el sentido. Si los imports (&lt;code&gt;@path&lt;/code&gt;) se incluyen automáticamente, y las &lt;em&gt;rules&lt;/em&gt; tienen la misma prioridad que el &lt;code&gt;AGENTS.md&lt;/code&gt;. No sé porqué cinco ficheros de cien líneas es mejor que un &lt;code&gt;AGENTS.md&lt;/code&gt; de 500 líneas. Otra cosa sería usar &lt;em&gt;globs&lt;/em&gt; y &lt;em&gt;lazy loading&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;200 líneas a 50 caracteres por línea son 2.500 tokens.&lt;/p&gt;
+&lt;h2 id=&#34;cursor&#34;&gt;Cursor&lt;/h2&gt;
+&lt;p&gt;La documentación de Cursor incluye en la &lt;a href=&#34;https://cursor.com/docs/rules&#34;&gt;sección de reglas&lt;/a&gt; tanto lo que estamos llamando &lt;em&gt;rules&lt;/em&gt; cómo el &lt;code&gt;AGENTS.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;El &lt;code&gt;AGENTS.md&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Va en el proyecto, o en subdirectorios. No se puede usar a nivel global.&lt;/li&gt;
+&lt;li&gt;En las &lt;a href=&#34;../../../../2025/12/11/agents-md-and-at-character-to-reference-documents/&#34;&gt;pruebas que he hecho&lt;/a&gt; no parecen seguir automáticamente los &lt;code&gt;@path&lt;/code&gt; en el &lt;code&gt;AGENTS.md&lt;/code&gt; pero si en las &lt;em&gt;rules&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Admiten &lt;em&gt;Team Rules&lt;/em&gt; para las cuentas de equipo y Enterprise que se configuran a través del dashboard.&lt;/p&gt;
+&lt;p&gt;Admiten &lt;em&gt;User Rules&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No se usan en Tab ni Inline Edits. No definen si funcionan en modo Plan o Debug, pero asumo que sí.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://forum.cursor.com/t/where-are-the-global-rules-saved-in-my-filesystem/76645&#34;&gt;Sólo se pueden gestionar a través de la UI&lt;/a&gt;. Lo lógico sería almacenarlas &lt;code&gt;~/.cursor/rules&lt;/code&gt;, pero no. Muy mal Cursor.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Admiten &lt;em&gt;project rules&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Son ficheros markdown con un frontmatter&lt;/li&gt;
+&lt;li&gt;Se almacenan en &lt;code&gt;.cursor/rules&lt;/code&gt;. Admitiendo organizarlas en subdirectorios.&lt;/li&gt;
+&lt;li&gt;Se pueden invocar manualmente con &lt;code&gt;@my-rule.md&lt;/code&gt;. Y siguen los criterios habituales (siempre, manual, el modelo decide, glob)&lt;/li&gt;
+&lt;li&gt;Recomiendan mantenerlas por debajo de las 500 líneas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;El frontmatter no está bien definido.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;description&lt;/code&gt;. No se aclara si se usa para algo&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;globs&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Hay otras propiedades: &lt;code&gt;Always Apply&lt;/code&gt;, &lt;code&gt;Apply Manually&lt;/code&gt;, &lt;code&gt;Apply Intelligently&lt;/code&gt;. Pero la documentación de cómo se usan es mala. ¿Se supone que son propiedades con ese nombre y valor &lt;code&gt;true&lt;/code&gt; &lt;code&gt;false&lt;/code&gt;?. ¿Cómo gestionan la prioridad si hay dos a true por error?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;El caso más claro parece ser con &lt;em&gt;glob scope&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;language-markdown highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-2-1&#34;&gt;&lt;a id=&#34;__codelineno-2-1&#34; name=&#34;__codelineno-2-1&#34; href=&#34;#__codelineno-2-1&#34;&gt;&lt;/a&gt;---
+&lt;/span&gt;&lt;span id=&#34;__span-2-2&#34;&gt;&lt;a id=&#34;__codelineno-2-2&#34; name=&#34;__codelineno-2-2&#34; href=&#34;#__codelineno-2-2&#34;&gt;&lt;/a&gt;glob: *.py
+&lt;/span&gt;&lt;span id=&#34;__span-2-3&#34;&gt;&lt;a id=&#34;__codelineno-2-3&#34; name=&#34;__codelineno-2-3&#34; href=&#34;#__codelineno-2-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gu&#34;&gt;alwaysApply: false&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-4&#34;&gt;&lt;a id=&#34;__codelineno-2-4&#34; name=&#34;__codelineno-2-4&#34; href=&#34;#__codelineno-2-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gu&#34;&gt;---&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-5&#34;&gt;&lt;a id=&#34;__codelineno-2-5&#34; name=&#34;__codelineno-2-5&#34; href=&#34;#__codelineno-2-5&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-6&#34;&gt;&lt;a id=&#34;__codelineno-2-6&#34; name=&#34;__codelineno-2-6&#34; href=&#34;#__codelineno-2-6&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gs&#34;&gt;**MUST**&lt;/span&gt; use modern (3.13+) type hints for all function signatures in Python code (parameters and return values)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;wtf_4&#34;&gt;WTF&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Una visita al &lt;a href=&#34;https://forum.cursor.com/tags/c/support/help/8/rules/295&#34;&gt;foro de ayuda&lt;/a&gt; de Cursor sobre reglas o los &lt;a href=&#34;https://forum.cursor.com/tags/c/support/bug-report/6/rules/295&#34;&gt;bug reports&lt;/a&gt;, está llena de gente diciendo que las reglas rompen de una versión a otra, no hacen lo esperado, o pidiendo explicaciones de cómo funcionan.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;La &lt;a href=&#34;https://cursor.com/docs/rules&#34;&gt;documentación de Cursor sobre reglas&lt;/a&gt; empieza mal y luego no mejora.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Rules provide system-level instructions to Agent. They bundle prompts, scripts, and more together, making it easy to manage and share workflows across your team.&lt;/p&gt;
+&lt;p&gt;When applied, rule contents are included at the start of the model context. This gives the AI consistent guidance for generating code, interpreting edits, or helping with workflows.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;¿scripts?. Este concepto es de las skill no de las rules. En el resto de la documentación no se vuelve a hacer referencia a &lt;em&gt;scripts&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;En &lt;em&gt;Cursor Settings&lt;/em&gt;, hay una (mala) UI de creación de reglas. No permite introducir la &lt;code&gt;description&lt;/code&gt;, ni el subdirectorio, y el combo de cuando aplicar tiene opciones distintas a la documentación. Escribir un fichero markdown en un &lt;code&gt;TextField&lt;/code&gt; teniendo un IDE no tiene sentido.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;La idea de definir &lt;em&gt;workflows&lt;/em&gt; en algo llamado &lt;em&gt;rules&lt;/em&gt;, cómo sugiere la documentación no parece tener mucho sentido. No tendría más sentido los &lt;em&gt;commands&lt;/em&gt; (ahora las &lt;em&gt;skills&lt;/em&gt;) para esto.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h3&gt;
+&lt;h4 id=&#34;sobre-las-reglas&#34;&gt;Sobre las reglas&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Las reglas no son un estándar. Si se quiere usar varias herramientas a la vez &lt;a href=&#34;https://forum.cursor.com/t/several-related-questions-regarding-the-rules/150517&#34;&gt;es un problema&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las rules parecen una buena idea que apareció en su día, pero que &lt;a href=&#34;https://forum.cursor.com/t/cursor-not-following-commands-or-rules/149739/7&#34;&gt;no acaba de funcionar&lt;/a&gt; o ser correctamente implementada cómo para ser usada correctamente. A menos que se limiten al &lt;em&gt;glob scope&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Y, aún así, no tengo claro cuando se ejecuta la regla. En modo plan, si no accede a un fichero &lt;code&gt;*.py&lt;/code&gt; para planificar tiene en cuenta las reglas, o sólo cuando pasa a escribir el código.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hay alternativas a las reglas, que al final son un mecanismo un poco oscuro y no estándar:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;lazy loading&lt;/em&gt; aunque consuma más tokens va a funcionar en todos las herramientas.&lt;/li&gt;
+&lt;li&gt;Para las de &#34;Siempre&#34;, varias admiten &lt;code&gt;@path&lt;/code&gt; y se puede usar &lt;em&gt;lazy loading&lt;/em&gt; cómo fallback&lt;/li&gt;
+&lt;li&gt;Skills para workflows y especialización, o incluso comandos para tareas más acotadas cómo &lt;code&gt;/git-commit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;sobre-las-herramientas&#34;&gt;Sobre las herramientas&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Cursor, Antigravity y Claude, manejan el concepto de &lt;em&gt;reglas&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Codex no especifica si sigue &lt;code&gt;@path&lt;/code&gt;. OpenCode no sigue automáticamente &lt;code&gt;@path&lt;/code&gt;. Cursor no parece seguirlo en el &lt;code&gt;AGENTS.md&lt;/code&gt; pero si en las &lt;em&gt;rules&lt;/em&gt;. Los demás los siguen tanto en reglas como en &lt;code&gt;AGENTS.md&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Excepto Antigravity (que no lo he probado y no pone nada en la documentación), y OpenCode (que necesita personalizarlo en las &lt;code&gt;instructions&lt;/code&gt;), todos los demás permiten &lt;code&gt;AGENTS.md&lt;/code&gt; en subdirectorios. No hacen override si no merge. Generalmente poniendo más abajo en el prompt el &lt;code&gt;AGENTS.md&lt;/code&gt; más cercano al trabajo que se esté haciendo para darle prioridad.&lt;/li&gt;
+&lt;li&gt;No hay consenso en las recomendaciones sobre el tamaño de las reglas de &lt;em&gt;Always apply&lt;/em&gt; y el AGENTS, más allá de que las mantengas pequeñas y se usen skills o reglas con scope para instrucciones que no necesiten estar permanentemente en el contexto.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/03/24/coding-agents-how-rules-work/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/03/24/coding-agents-how-rules-work/</guid>
+      
+    </item>
+    
+    <item>
       <title>Coding Agentes: Commands en Claude (Codex y OpenCode)</title>
       
       
@@ -45,6 +289,7 @@
 &lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../24/coding-agents-how-rules-work/&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;Claude describe la mayoría de estas funcionalidades cómo &#34;&lt;a href=&#34;https://code.claude.com/docs/en/features-overview&#34;&gt;extension layer&lt;/a&gt;: features you add to customize what Claude knows, connect it to external services, and automate workflows.&#34;.&lt;/p&gt;
@@ -115,6 +360,7 @@
 &lt;li&gt;&lt;a href=&#34;../../19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../24/coding-agents-how-rules-work/&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;En esta artículo nos centramos en cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.&lt;/p&gt;
@@ -180,6 +426,7 @@
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../24/coding-agents-how-rules-work/&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;En esté artículo nos centramos cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Cursor. Las pruebas han sido hechas sobre la versión 2.5.&lt;/p&gt;
@@ -303,6 +550,7 @@
 &lt;li&gt;&lt;a href=&#34;../coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../24/coding-agents-how-rules-work/&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;Los &lt;em&gt;coding agents&lt;/em&gt; ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:&lt;/p&gt;
@@ -1569,101 +1817,6 @@
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2021/01/01/experimentos-de-monetization-en-este-blog/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Presentaciones de fotos en formato vídeo (slideshows) desde la línea de comandos</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos&#34;&gt;Presentaciones de fotos en formato vídeo (slideshows) desde la línea de comandos&lt;/h1&gt;
-&lt;p&gt;Hace ya algunos años apareció en este blog como &lt;a href=&#34;http://conocimientoabierto.es/hacer-presentaciones-de-fotos-en-formato-video/35/&#34;&gt;hacer presentaciones de fotos en formato vídeo&lt;/a&gt;. A pesar de que hay muchos programas buenos para editar vídeo en GNU/Linux, esta vez quería tener un proceso sencillo y fácilmente replicable aún a costa de perder un poco de calidad o efectos (como degradado entre imágenes, …).&lt;/p&gt;
-&lt;p&gt;En este tutorial veremos, sin entrar en muchos detalles (mis conocimientos no dan para ello), una forma muy rápida de crear un slideshow con música usando únicamente el terminal. Como limitante partimos de la base de que todas las imágenes están en el mismo formato (en este caso JPEG)&lt;/p&gt;
-&lt;h2 id=&#34;las-herramientas&#34;&gt;Las herramientas&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;sudo apt-get install --install-recommends rename imagemagick ffmpeg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.howtogeek.com/423214/how-to-use-the-rename-command-on-linux/&#34;&gt;rename&lt;/a&gt; permite renombrar archivos usando expresiones regulares&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://imagemagick.org&#34;&gt;imagemagick&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://ffmpeg.org/&#34;&gt;ffmpeg&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;normalizar-los-nombres-y-ordenar-las-imagenes&#34;&gt;Normalizar los nombres y ordenar las imágenes&lt;/h2&gt;
-&lt;p&gt;El primer paso es ordenar las imágenes poniéndolos un «nombre normalizado» que represente ese orden. En este caso partimos de unas imágenes que ya tienen cierto orden, pero arreglamos las mayúsculas, usamos dos caracteres para los números y ajustamos las del medio.&lt;/p&gt;
-&lt;p&gt;Cada caso será muy particular pero veamos un ejemplo:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ cp -r original copia&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ cd copia&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ ls&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;0.JPG   1_1.JPG  12_1.JPG  13.jpg  15.jpg  17.JPG  19.jpg  20.jpg  22.jpg  24.jpg  26.jpg  28.jpg  2.JPG   31.jpg  4.JPG  6.JPG  8.JPG&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;10.JPG  11.JPG   12.JPG    14.jpg  16.jpg  18.jpg  1.JPG   21.JPG  23.jpg  25.JPG  27.jpg  29.jpg  30.jpg  3.JPG   5.jpg  7.JPG  9.JPG&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ rename &#39;s/.JPG/.jpg/&#39; *.JPG&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ rename &#39;s/3(\d).jpg/5$1.jpg/&#39; 3*.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ rename &#39;s/2(\d).jpg/4$1.jpg/&#39; 2*.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ rename &#39;s/1([2-9]).jpg/3$1.jpg/&#39; 1*.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ ls&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;0.jpg   1_1.jpg  12_1.jpg  2.jpg   33.jpg  35.jpg  37.jpg  39.jpg  40.jpg  42.jpg  44.jpg  46.jpg  48.jpg  4.jpg   51.jpg  6.jpg  8.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;10.jpg  11.jpg   1.jpg     32.jpg  34.jpg  36.jpg  38.jpg  3.jpg   41.jpg  43.jpg  45.jpg  47.jpg  49.jpg  50.jpg  5.jpg   7.jpg  9.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ mv 12_1.jpg 31.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ rename &#39;s/1([0-1]).jpg/2$1.jpg/&#39; 1*.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ rename &#39;s/([1-9]).jpg/1$1.jpg/&#39; ?.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ mv 0.jpg 00.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ mv 1_1.jpg 01.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;$ ls&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;00.jpg  11.jpg  13.jpg  15.jpg  17.jpg  19.jpg  21.jpg  32.jpg  34.jpg  36.jpg  38.jpg  40.jpg  42.jpg  44.jpg  46.jpg  48.jpg  50.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;01.jpg  12.jpg  14.jpg  16.jpg  18.jpg  20.jpg  31.jpg  33.jpg  35.jpg  37.jpg  39.jpg  41.jpg  43.jpg  45.jpg  47.jpg  49.jpg  51.jpg&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;rotar-las-imagenes&#34;&gt;Rotar las imágenes&lt;/h2&gt;
-&lt;p&gt;A pesar de que en la previsualización del explorador de archivos podamos ver todas las imágenes rectas, alguna de ellas puede estar girada. Esto es por qué muchas herramientas usan por defecto &lt;a href=&#34;https://jdhao.github.io/2019/07/31/image_rotation_exif_info/&#34;&gt;los metadatos EXIF de la imagen para rotarlas&lt;/a&gt; de la forma lógica.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;# las que no tengan un&lt;/code&gt;1&lt;code&gt;están rotadas&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;identify -verbose * | grep -E &#39;(Image:|Orientation)&#39;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;# Rotarlas. https://stackoverflow.com/a/19475281/930271&lt;br /&gt;
-# Esto modifica todas las fotos, por lo que mejor usarlo sólo con la que deben&lt;br /&gt;
-# ser rotadas&lt;br /&gt;
-mogrify -auto-orient *.jpg&lt;/p&gt;
-&lt;p&gt;identify -verbose * | grep -E &#39;(Image:(.*)|exif:Orientation: [2-9])&#39;&lt;br /&gt;
-mogrify -auto-orient 16.jpg&lt;br /&gt;
-mogrify -auto-orient 45.jpg&lt;/p&gt;
-&lt;h2 id=&#34;identificar-tamanos-y-aspect-ratio&#34;&gt;Identificar tamaños y «aspect ratio»&lt;/h2&gt;
-&lt;p&gt;Para montar las imágenes en el vídeo debemos investigar sus tamaños y sobre todo la relación de aspecto. El comando &lt;a href=&#34;https://imagemagick.org/script/identify.php&#34;&gt;identify&lt;/a&gt; de ImageMagick nos puede dar la información más relevante y podemos ordenarla por &lt;em&gt;aspect ratio&lt;/em&gt;, anchura, …&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;# https://unix.stackexchange.com/questions/50252&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;# ordenadas por aspect ratio&lt;br /&gt;
-$ identify -format &#34;%[fx:w/h] %w %h %M\n&#34; *.jpg | sort -n -k1&lt;/p&gt;
-&lt;p&gt;1.5 4608 3072 20.jpg&lt;br /&gt;
-0.75 1944 2592 15.jpg&lt;br /&gt;
-0.75 2304 3072 16.jpg&lt;br /&gt;
-0.75 3864 5152 45.jpg&lt;br /&gt;
-1.33333 1280 960 44.jpg&lt;br /&gt;
-1.33333 1280 960 46.jpg&lt;br /&gt;
-1.33333 1280 960 47.jpg&lt;br /&gt;
-1.33333 2592 1944 13.jpg&lt;br /&gt;
-1.33333 3072 2304 17.jpg&lt;br /&gt;
-1.33333 3264 2448 01.jpg&lt;br /&gt;
-1.33333 3264 2448 14.jpg&lt;br /&gt;
-1.33333 3264 2448 19.jpg&lt;br /&gt;
-1.33333 3264 2448 33.jpg&lt;br /&gt;
-1.33333 4000 3000 43.jpg&lt;br /&gt;
-1.33333 4000 3000 50.jpg&lt;br /&gt;
-1.33333 4000 3000 51.jpg&lt;br /&gt;
-1.33333 4320 3240 18.jpg&lt;br /&gt;
-1.33333 4608 3456 31.jpg&lt;br /&gt;
-1.33333 4672 3504 34.jpg&lt;br /&gt;
-1.33333 4672 3504 35.jpg&lt;br /&gt;
-1.33333 5120 3840 49.jpg&lt;br /&gt;
-1.33333 5152 3864 32.jpg&lt;br /&gt;
-1.33333 5152 3864 37.jpg&lt;br /&gt;
-1.33472 1280 959 38.jpg&lt;br /&gt;
-1.33884 2592 1936 00.jpg&lt;br /&gt;
-1.33884 2592 1936 11.jpg&lt;br /&gt;
-1.49841 3776 2520 21.jpg&lt;br /&gt;
-1.77778 3072 1728 12.jpg&lt;br /&gt;
-1.77778 3264 1836 39.jpg&lt;br /&gt;
-1.77778 3968 2232 41.jpg&lt;br /&gt;
-1.77778 5312 2988 36.jpg&lt;br /&gt;
-1.77778 5312 2988 40.jpg&lt;br /&gt;
-1.77778 5312 2988 42.jpg&lt;br /&gt;
-1.77778 5312 2988 48.jpg&lt;/p&gt;
-&lt;p&gt;# ordenadas por width&lt;br /&gt;
-identify -format &#34;%[fx:w/h] %w %h %M\n&#34; *.jpg | sort -n -k2&lt;/p&gt;
-&lt;p&gt;Aquí la clave es:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Ajustar las imágenes para que tengan todas la misma relación de aspecto y que no salgan deformadas. Cosa que haremos directamente con ffmpeg al crear el vídeo.&lt;/li&gt;
-&lt;li&gt;Escoger el tamaño de referencia a usar para las imágenes. La «redimensión» la haremos directamente al crear el vídeo.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Sin entender mucho de vídeos mi criterio es coger el aspect ratio más común a las imágenes, en este caso &lt;strong&gt;1.333&lt;/strong&gt;, y un tamaño intermedio, de modo que haya pocas imágenes por debajo de ese tamaño, y que al ampliar no pixelen demasiado, en este caso me quedo con &lt;strong&gt;2592×1936&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;montar-el-video&#34;&gt;Montar el vídeo&lt;/h2&gt;
-&lt;p&gt;La wiki de ffmpeg da el comando básico para &lt;a href=&#34;https://trac.ffmpeg.org/wiki/Slideshow&#34;&gt;hacer el slideshow&lt;/a&gt;, y en stackoverflow &lt;a href=&#34;https://stackoverflow.com/questions/24961127/how-to-create-a-video-from-images-with-ffmpeg&#34;&gt;también&lt;/a&gt; hay buenas &lt;a href=&#34;https://stackoverflow.com/questions/44634765/ffmpeg-aspect-ratio-of-image-in-a-slideshow&#34;&gt;respuestas&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;El comando que usaremos en este caso es:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;ffmpeg -framerate 1/5 -pattern_type glob -i &#39;*.jpg&#39; -i audio.mp3 -vf &#39;scale=2592:1936:force_original_aspect_ratio=decrease,pad=2592:1936:(ow-iw)/2:(oh-ih)/2,setsar=1&#39; -c:v libx264 -c:a copy -crf 14 -r 25 -pix_fmt yuv420p -shortest output.mp4&amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Los parámetros más relevantes para el &lt;em&gt;slideshow&lt;/em&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;-framerate 1/5&lt;/code&gt;: El denominador define cuanto se mostrará cada imagen&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-pattern_type glob -i &#39;*.jpg&#39;&lt;/code&gt;: Cuando las imágenes no están ordenadas exactamente de forma secuencial con este parámetro las meterá en el video ordenadas por nombre&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&#39;scale=2592:1936:force_original_aspect_ratio=decrease,pad=2592:1936:(ow-iw)/2:(oh-ih)/2,setsar=1&#39;&lt;/code&gt;: Escala las imágenes a 2592×1936 y mete bandas negras de relleno cuando no se pueda conservar la relación de aspecto&lt;/li&gt;
-&lt;/ul&gt;</description>
-      <link>https://franciscopuga.es/blog/2020/07/18/presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos/</link>
-      <pubDate>Sat, 18 Jul 2020 00:00:00 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2020/07/18/presentaciones-de-fotos-en-formato-video-slideshows-desde-la-linea-de-comandos/</guid>
       
     </item>
     

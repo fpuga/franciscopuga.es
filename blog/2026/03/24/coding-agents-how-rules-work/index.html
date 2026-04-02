@@ -18,17 +18,15 @@
 
 <!-- Canonical -->
 
-<link rel="canonical" href="https://franciscopuga.es/blog/" />
+<link rel="canonical" href="https://franciscopuga.es/blog/2026/03/24/coding-agents-how-rules-work/" />
 
 
 <!-- Previous page -->
 
-<link rel="prev" href=".." />
+<link rel="prev" href="../../21/coding-agents-commands-claude/" />
 
 
 <!-- Next page -->
-
-<link rel="next" href="archive/2026/" />
 
 
 <!-- RSS feed -->
@@ -37,32 +35,32 @@
   rel="alternate"
   type="application/rss+xml"
   title="Fuente RSS"
-  href="../rss.xml"
+  href="../../../../../rss.xml"
 />
 <link
   rel="alternate"
   type="application/rss+xml"
   title="Fuente RSS de contenido actualizado"
-  href="../rss_updated.xml"
+  href="../../../../../rss_updated.xml"
 />
 
 
 <!-- Favicon -->
-<link rel="icon" href="../assets/images/favicon.png" />
+<link rel="icon" href="../../../../../assets/images/favicon.png" />
 
 <!-- Generator banner -->
 <meta name="generator" content="mkdocs-1.6.1, $md-name$-$md-version$" />
 
     
       
-        <title>Index - Francisco Puga</title>
+        <title>Cómo funcionan las rules y el AGENTS.md en distintos Coding Agents - Francisco Puga</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -81,9 +79,9 @@
       
     
     
-      <link rel="stylesheet" href="../extra/extra.css">
+      <link rel="stylesheet" href="../../../../../extra/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -120,6 +118,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#como-funcionan-las-rules-y-el-agentsmd-en-distintos-coding-agents" class="md-skip">
+          Saltar a contenido
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -130,7 +133,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
-    <a href=".." title="Francisco Puga" class="md-header__button md-logo" aria-label="Francisco Puga" data-md-component="logo">
+    <a href="../../../../.." title="Francisco Puga" class="md-header__button md-logo" aria-label="Francisco Puga" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -150,7 +153,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Index
+              Cómo funcionan las rules y el AGENTS.md en distintos Coding Agents
             
           </span>
         </div>
@@ -223,7 +226,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link">
         
   
   
@@ -246,7 +249,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../../../../" class="md-tabs__link">
           
   
   
@@ -271,7 +274,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -282,7 +287,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Francisco Puga" class="md-nav__button md-logo" aria-label="Francisco Puga" data-md-component="logo">
+    <a href="../../../../.." title="Francisco Puga" class="md-nav__button md-logo" aria-label="Francisco Puga" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -300,7 +305,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   
@@ -357,7 +362,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../../../../" class="md-nav__link ">
               
   
   
@@ -375,7 +380,7 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_2" id="__nav_2_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -494,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2026/" class="md-nav__link">
+      <a href="../../../../archive/2026/" class="md-nav__link">
         
   
   
@@ -524,7 +529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2025/" class="md-nav__link">
+      <a href="../../../../archive/2025/" class="md-nav__link">
         
   
   
@@ -554,7 +559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2021/" class="md-nav__link">
+      <a href="../../../../archive/2021/" class="md-nav__link">
         
   
   
@@ -584,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2020/" class="md-nav__link">
+      <a href="../../../../archive/2020/" class="md-nav__link">
         
   
   
@@ -614,7 +619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2019/" class="md-nav__link">
+      <a href="../../../../archive/2019/" class="md-nav__link">
         
   
   
@@ -644,7 +649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2018/" class="md-nav__link">
+      <a href="../../../../archive/2018/" class="md-nav__link">
         
   
   
@@ -674,7 +679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2017/" class="md-nav__link">
+      <a href="../../../../archive/2017/" class="md-nav__link">
         
   
   
@@ -704,7 +709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2016/" class="md-nav__link">
+      <a href="../../../../archive/2016/" class="md-nav__link">
         
   
   
@@ -734,7 +739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2015/" class="md-nav__link">
+      <a href="../../../../archive/2015/" class="md-nav__link">
         
   
   
@@ -764,7 +769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2014/" class="md-nav__link">
+      <a href="../../../../archive/2014/" class="md-nav__link">
         
   
   
@@ -794,7 +799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2013/" class="md-nav__link">
+      <a href="../../../../archive/2013/" class="md-nav__link">
         
   
   
@@ -824,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2012/" class="md-nav__link">
+      <a href="../../../../archive/2012/" class="md-nav__link">
         
   
   
@@ -854,7 +859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2011/" class="md-nav__link">
+      <a href="../../../../archive/2011/" class="md-nav__link">
         
   
   
@@ -884,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2010/" class="md-nav__link">
+      <a href="../../../../archive/2010/" class="md-nav__link">
         
   
   
@@ -914,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2009/" class="md-nav__link">
+      <a href="../../../../archive/2009/" class="md-nav__link">
         
   
   
@@ -944,7 +949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2008/" class="md-nav__link">
+      <a href="../../../../archive/2008/" class="md-nav__link">
         
   
   
@@ -974,7 +979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2007/" class="md-nav__link">
+      <a href="../../../../archive/2007/" class="md-nav__link">
         
   
   
@@ -1018,6 +1023,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -1027,6 +1034,217 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-significa-equivalente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué significa equivalente?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#antigravity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antigravity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Antigravity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wtf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WTF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opencode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenCode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gemini-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gemini-cli
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="gemini-cli">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wtf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WTF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openai-codex-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI Codex CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenAI Codex CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wtf_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WTF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Claude">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wtf_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WTF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cursor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cursor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wtf_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WTF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sobre-las-reglas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sobre las reglas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sobre-las-herramientas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sobre las herramientas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1035,36 +1253,67 @@
             
           
           
-  <div class="md-content" data-md-component="content">
-    <div class="md-content__inner">
-      <header class="md-typeset">
-        
-      </header>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-03-24 00:00:00+00:00">24 de marzo de 2026</time></li>
-        
-        
-        
-      </ul>
-      
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Regresar al índice
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-03-24 00:00:00+00:00" class="md-ellipsis">24 de marzo de 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="como-funcionan-las-rules-y-el-agentsmd-en-distintos-coding-agents"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> y el <code>AGENTS.md</code> en distintos Coding Agents</a></h2>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+<h1 id="como-funcionan-las-rules-y-el-agentsmd-en-distintos-coding-agents">Cómo funcionan las <code>rules</code> y el <code>AGENTS.md</code> en distintos Coding Agents</h1>
 <details class="info">
 <summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
 <ol>
-<li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
-<li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
-<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
-<li><a href="2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
-<li><a href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
+<li><a href="../../19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
+<li><a href="../../19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
+<li><a href="../../20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
+<li><a href="../../21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
+<li><a href="./">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
 </ol>
 </details>
 <p>En esta artículo nos centramos en cómo funcionan las <em>rules</em> en distintos <em>coding agents</em>.</p>
@@ -1076,7 +1325,7 @@
 <li>Manual. Equivalente chat referenciar un documento con <code>@</code> en la conversación.</li>
 <li><em>glob</em>. Cuando se trabaje en un fichero que cumpla el <em>glob</em> el markdown es inyectado. Lo más parecido serían las herramientas que leen <code>AGENTS.md</code> en subcarpetas y <em>lazy loading</em>.</li>
 </ul>
-<h3 id="que-significa-equivalente"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#que-significa-equivalente">¿Qué significa equivalente?</a></h3>
+<h2 id="que-significa-equivalente">¿Qué significa equivalente?</h2>
 <ul>
 <li>Los modelos son <em>cajas negras estocásticas</em>. Dada la misma entrada no tienen porqué producir la misma salida. Sólo se puede decidir cual la mejor entrada para obtener la salida deseada a <a href="https://www.youtube.com/watch?v=8RHYyRUxVrA">base de prueba y error</a>.</li>
 <li>El <a href="https://parallel.ai/articles/what-is-an-agent-harness">harness</a> es tan relevante cómo el modelo en sí. En las herramientas que tienen el código fuente disponible es más fácil tomar decisiones informadas. Las técnicas tipo Man in the Middle también ayuda.</li>
@@ -1085,7 +1334,7 @@
 <p>Así que hay que tomarse <em>equivalente</em>, o cualquier artículo <em>de internet</em> con mucho cuidado.</p>
 <p>Por ejemplo, la documentación de Claude indica específicamente que una regla tiene la misma prioridad en el contexto que él <code>CLAUDE.md</code>. Pero no tiene porqué ser así en otras herramientas. Cuando poner un documento <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#long-context-prompting">en la parte de arriba o bajo del prompt</a>, puede modificar en un 30% la calidad del resultado, la forma en que el harness <em>wrapee</em> e inyecte el contexto al modelo puede tener mucho impacto.</p>
 <p>Es decir. Qué <code>@path</code> desde el <code>AGENTS.md</code> se envíe siempre al llm, al igual que una regla de <code>Always on</code>, no tiene porqué significar que se fuerce la misma atención del modelo sobre los dos métodos.</p>
-<h3 id="antigravity"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#antigravity">Antigravity</a></h3>
+<h2 id="antigravity">Antigravity</h2>
 <p>Antigravity <a href="https://antigravity.google/docs/rules-workflows">maneja dos conceptos</a> similares, en la misma sección de la documentación: <em>rules</em> y <em>workflows</em>.</p>
 <p>Los <em>workflows</em>:</p>
 <ul>
@@ -1113,7 +1362,7 @@
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Sólo cuando trigger = &#39;model_decision&#39;</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foo&quot;</span>
 </span></code></pre></div>
-<h4 id="wtf"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#wtf">WTF</a></h4>
+<h3 id="wtf">WTF</h3>
 <ul>
 <li><em>rules</em> y <em>workflows</em> se pueden crear mano, o desde la GUI. Cuando en Antigravity se abre un fichero en esas carpetas, el editor no es el de texto normal, si no, uno con widgets pensado para la edición de estos documentos.</li>
 <li>Reglas y Workflows están limitados a 12.000 caracteres.<ul>
@@ -1124,7 +1373,7 @@
 </li>
 <li>La documentación no tiene buscador y no he encontrado ninguna mención a <code>AGENTS.md</code></li>
 </ul>
-<h3 id="opencode"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#opencode">OpenCode</a></h3>
+<h2 id="opencode">OpenCode</h2>
 <p>En el caso de OpenCode <a href="https://opencode.ai/docs/rules">bajo la sección <em>rules</em></a> hacen referencia directa al uso de <code>AGENTS.md</code>.</p>
 <p>Un único fichero en el root del proyecto o uno global en <code>~/.config/opencode/AGENTS.md</code>. También permite definir la lista de ficheros que se añadirán automáticamente al contexto. Es una funcionalidad interesante porque permite usar globs (para los ficheros a leer no para cuando se leen) y urls.</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
@@ -1138,18 +1387,18 @@
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>Al contrario que otras herramientas no siguen automáticamente referencias <code>@path</code>. Recomiendan el uso de <em>lazy loading</em> a través del <code>AGENTS.md</code>: <code>For testing strategies and coverage requirements: @test/testing-guidelines.md</code></p>
-<h3 id="gemini-cli"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#gemini-cli">gemini-cli</a></h3>
+<h2 id="gemini-cli">gemini-cli</h2>
 <p>Tampoco tiene <em>rules</em>. Lo más parecido es el <code>AGENTS.md</code> que engloban bajo <a href="https://geminicli.com/docs/cli/tutorials/memory-management/">Manage Context and Memory</a>. Por defecto usan el fichero <code>GEMINI.md</code> pero se puede usar otro mediante configuración.</p>
 <p>Se pueden poner en la raíz del proyecto, o en <code>~</code>. También en subdirectorios de modo que sólo cargue cuando se trabaje con ficheros en bajo ese árbol.</p>
 <p>gemini tiene además una tool de <code>save_memory</code>. Un prompt cómo <code>remember that by database is at port 5433</code> añadirá una línea a <code>~/.gemini/GEMINI.md</code></p>
 <p>Si se usa <code>@path</code> en un documento lo carga automáticamente.</p>
 <p>Tiene también un comando <code>/memory show</code> que permite ver las instrucciones que se están usando. Muy útil para depurar.</p>
-<h4 id="wtf_1"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#wtf_1">WTF</a></h4>
+<h3 id="wtf_1">WTF</h3>
 <ul>
 <li>Tienen dos páginas donde cuentan prácticamente lo mismo "Manage Context and Memory" y <a href="https://geminicli.com/docs/cli/gemini-md/">Project Context</a>.</li>
 <li>Permite modificar el <a href="https://geminicli.com/docs/cli/system-prompt/">System Prompt</a>.</li>
 </ul>
-<h3 id="openai-codex-cli"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#openai-codex-cli">OpenAI Codex CLI</a></h3>
+<h2 id="openai-codex-cli">OpenAI Codex CLI</h2>
 <p>Codex no tiene <em>rules</em> y hay que ir directamente <a href="https://developers.openai.com/codex/guides/agents-md">a la documentación sobre el <code>AGENTS.md</code></a>. Cómo el resto admiten ficheros a nivel de proyecto y de <code>~</code>. Tiene además una funcionalidad curiosa, si existe un fichero <code>AGENTS.override.md</code> lee ese en lugar de <code>AGENTS.md</code></p>
 <p>Incluye el <code>AGENTS.md</code> de subdirectorios.</p>
 <p>La documentación explica varios puntos interesantes</p>
@@ -1162,12 +1411,12 @@
 </blockquote>
 <p>Asumiendo UTF8 (de 1 byte para la mayoría de letras hasta 4 bytes para los emojis), pongamos un cálculo grueso de 32k caracteres en inglés, 1 token = 4 caracteres, unos 8.000 tokens.</p>
 <p>En la documentación dan varios trucos para depurar las instrucciones.</p>
-<h4 id="wtf_2"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#wtf_2">WTF</a></h4>
+<h3 id="wtf_2">WTF</h3>
 <ul>
 <li>Codex CLI <a href="https://developers.openai.com/codex/rules">maneja el concepto de <em>rules</em></a> pero con un significado totalmente distinto al resto de herramientas. Se usa para definir los permisos de los comandos que Codex puede ejecutar. <em>Muy feo que no se alineen con el resto en cómo llamar a las cosas</em>.</li>
 <li>No he encontrado en la documentación si sigue automáticamente <code>@path</code></li>
 </ul>
-<h3 id="claude"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#claude">Claude</a></h3>
+<h2 id="claude">Claude</h2>
 <p>La <a href="https://code.claude.com/docs/en/features-overview">documentación de Claude</a> llama a este tipo de funcionalidades <em>extension layer</em>. En la página resumen hablan muy poco de <em>rules</em>, lo que seguramente significa que no quieren darle mucha relevancia.</p>
 <p>En la <a href="https://code.claude.com/docs/en/memory">sección de Memory</a> se extienden tanto en lo referido al <code>AGENTS.md</code> cómo a las <em>rules</em>.</p>
 <p>El <code>AGENTS.md</code>:</p>
@@ -1191,7 +1440,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="wtf_3"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#wtf_3">WTF</a></h4>
+<h3 id="wtf_3">WTF</h3>
 <ul>
 <li>La documentación de Claude es de largo la mejor. Esta <a href="https://code.claude.com/docs/en/context-window">visualización interactiva del Context Window</a> es un lujo.</li>
 <li>Tiene un comando <code>/memory</code> para ayudar a depurar. También recomiendan <a href="https://code.claude.com/docs/en/hooks#instructionsloaded">usar un hook</a> para depurar: "Use the InstructionsLoaded hook to log exactly which instruction files are loaded, when they load, and why"</li>
@@ -1204,12 +1453,12 @@
 </blockquote>
 <p>A esta frase no le acabo de ver el sentido. Si los imports (<code>@path</code>) se incluyen automáticamente, y las <em>rules</em> tienen la misma prioridad que el <code>AGENTS.md</code>. No sé porqué cinco ficheros de cien líneas es mejor que un <code>AGENTS.md</code> de 500 líneas. Otra cosa sería usar <em>globs</em> y <em>lazy loading</em>.</p>
 <p>200 líneas a 50 caracteres por línea son 2.500 tokens.</p>
-<h3 id="cursor"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#cursor">Cursor</a></h3>
+<h2 id="cursor">Cursor</h2>
 <p>La documentación de Cursor incluye en la <a href="https://cursor.com/docs/rules">sección de reglas</a> tanto lo que estamos llamando <em>rules</em> cómo el <code>AGENTS.md</code></p>
 <p>El <code>AGENTS.md</code>:</p>
 <ul>
 <li>Va en el proyecto, o en subdirectorios. No se puede usar a nivel global.</li>
-<li>En las <a href="2025/12/11/agents-md-and-at-character-to-reference-documents/">pruebas que he hecho</a> no parecen seguir automáticamente los <code>@path</code> en el <code>AGENTS.md</code> pero si en las <em>rules</em></li>
+<li>En las <a href="../../../../2025/12/11/agents-md-and-at-character-to-reference-documents/">pruebas que he hecho</a> no parecen seguir automáticamente los <code>@path</code> en el <code>AGENTS.md</code> pero si en las <em>rules</em></li>
 </ul>
 <p>Admiten <em>Team Rules</em> para las cuentas de equipo y Enterprise que se configuran a través del dashboard.</p>
 <p>Admiten <em>User Rules</em>:</p>
@@ -1238,7 +1487,7 @@
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="gs">**MUST**</span> use modern (3.13+) type hints for all function signatures in Python code (parameters and return values)
 </span></code></pre></div>
-<h4 id="wtf_4"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#wtf_4">WTF</a></h4>
+<h3 id="wtf_4">WTF</h3>
 <ul>
 <li>
 <p>Una visita al <a href="https://forum.cursor.com/tags/c/support/help/8/rules/295">foro de ayuda</a> de Cursor sobre reglas o los <a href="https://forum.cursor.com/tags/c/support/bug-report/6/rules/295">bug reports</a>, está llena de gente diciendo que las reglas rompen de una versión a otra, no hacen lo esperado, o pidiendo explicaciones de cómo funcionan.</p>
@@ -1258,8 +1507,8 @@
 <p>La idea de definir <em>workflows</em> en algo llamado <em>rules</em>, cómo sugiere la documentación no parece tener mucho sentido. No tendría más sentido los <em>commands</em> (ahora las <em>skills</em>) para esto.</p>
 </li>
 </ul>
-<h4 id="conclusiones"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#conclusiones">Conclusiones</a></h4>
-<h5 id="sobre-las-reglas"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#sobre-las-reglas">Sobre las reglas</a></h5>
+<h3 id="conclusiones">Conclusiones</h3>
+<h4 id="sobre-las-reglas">Sobre las reglas</h4>
 <ul>
 <li>
 <p>Las reglas no son un estándar. Si se quiere usar varias herramientas a la vez <a href="https://forum.cursor.com/t/several-related-questions-regarding-the-rules/150517">es un problema</a>.</p>
@@ -1279,368 +1528,34 @@
 </ul>
 </li>
 </ul>
-<h5 id="sobre-las-herramientas"><a class="toclink" href="2026/03/24/coding-agents-how-rules-work/#sobre-las-herramientas">Sobre las herramientas</a></h5>
+<h4 id="sobre-las-herramientas">Sobre las herramientas</h4>
 <ul>
 <li>Cursor, Antigravity y Claude, manejan el concepto de <em>reglas</em>.</li>
 <li>Codex no especifica si sigue <code>@path</code>. OpenCode no sigue automáticamente <code>@path</code>. Cursor no parece seguirlo en el <code>AGENTS.md</code> pero si en las <em>rules</em>. Los demás los siguen tanto en reglas como en <code>AGENTS.md</code>.</li>
 <li>Excepto Antigravity (que no lo he probado y no pone nada en la documentación), y OpenCode (que necesita personalizarlo en las <code>instructions</code>), todos los demás permiten <code>AGENTS.md</code> en subdirectorios. No hacen override si no merge. Generalmente poniendo más abajo en el prompt el <code>AGENTS.md</code> más cercano al trabajo que se esté haciendo para darle prioridad.</li>
 <li>No hay consenso en las recomendaciones sobre el tamaño de las reglas de <em>Always apply</em> y el AGENTS, más allá de que las mantengas pequeñas y se usen skills o reglas con scope para instrucciones que no necesiten estar permanentemente en el contexto.</li>
 </ul>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-03-21 00:00:00+00:00">21 de marzo de 2026</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="coding-agentes-commands-en-claude-codex-y-opencode"><a class="toclink" href="2026/03/21/coding-agents-commands-claude/">Coding Agentes: Commands en Claude (Codex y OpenCode)</a></h2>
-<details class="info">
-<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
-<ol>
-<li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
-<li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
-<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
-<li><a href="2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
-<li><a href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
-</ol>
-</details>
-<p>Claude describe la mayoría de estas funcionalidades cómo "<a href="https://code.claude.com/docs/en/features-overview">extension layer</a>: features you add to customize what Claude knows, connect it to external services, and automate workflows.".</p>
-<p>Y los divide en:</p>
-<ul>
-<li><a href="https://code.claude.com/docs/en/memory">CLAUDE.md</a> adds persistent context Claude sees every session</li>
-<li><a href="https://code.claude.com/docs/en/skills">Skills</a> add reusable knowledge and invocable workflows. load on demand. Claude sees skill descriptions at session start, but the full content only loads when a skill is used. For skills you invoke manually, set disable-model-invocation: true to keep descriptions out of context until you need them.</li>
-<li><a href="https://code.claude.com/docs/en/mcp">MCP</a> connects Claude to external services and tools</li>
-<li><a href="https://code.claude.com/docs/en/hooks">Hooks</a> run outside the loop entirely as deterministic scripts</li>
-<li><a href="https://code.claude.com/docs/en/plugins">Plugins</a> and marketplaces package and distribute these features</li>
-</ul>
-<p>En este grupo también <em>subagents</em> y <em>agent teams</em>.</p>
-<p>La documentación es más extensa que en Cursor y Gemini y en varios puntos comparan las funcionalidades entre sí para explicar que usar en cada caso, lo cual se agradece.</p>
-<h3 id="commands"><a class="toclink" href="2026/03/21/coding-agents-commands-claude/#commands">Commands</a></h3>
-<p>Lo primero que vemos es que Claude no tiene documentación concreta sobre <em>commands</em> pero hay varias referencias veladas.</p>
-<ul>
-<li><a href="https://code.claude.com/docs/en/mcp#use-mcp-prompts-as-commands">Los MCP puede proporcionar comandos</a>. <code>/mcp__github__pr_review 456</code></li>
-<li><a href="https://code.claude.com/docs/en/discover-plugins">Los plugins también</a>. <code>/commit-commands:commit</code></li>
-</ul>
-<p>Pero lo más relevante está en <a href="https://code.claude.com/docs/en/skills">la página de skills</a>. Ahí indican claramente que los custom commands han sido integrados en las skills.</p>
-<h3 id="agent-skills"><a class="toclink" href="2026/03/21/coding-agents-commands-claude/#agent-skills">Agent Skills</a></h3>
-<p>El <a href="https://agentskills.io/home">Agent Skills</a> es un formato desarrollado originalmente por Anthropic y publicado cómo estándar abierto.</p>
-<p>La spec oficial dice que el <code>name</code> y <code>description</code> de un skill <a href="https://agentskills.io/client-implementation/adding-skills-support#the-core-principle-progressive-disclosure">se cargan automáticamente al iniciar una sesión</a> y se recomienda que se puedan "activar" bajo criterio del modelo o <a href="https://agentskills.io/client-implementation/adding-skills-support#user-explicit-activation">bajo invocación del usuario</a>.</p>
-<p>Cómo contábamos en un post anterior</p>
-<blockquote>
-<p>A <a href="https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog">50-100 tokens por skill</a>, 20-40 skills es un 1% del contexto habitual de 200k.</p>
-</blockquote>
-<p>Pero Claude Code tiene varias extensiones al estándar, entre ellos una propiedad <code>disable-model-invocation: true</code> en el frontmatter de <code>SKILL.md</code> que hace que <a href="https://code.claude.com/docs/en/skills#control-who-invokes-a-skill">sólo el usuario y no el modelo</a> pueda invocar la skill y que no se cargue al inicio.</p>
-<p>De este modo funciona cómo un substituto perfecto y más potente que los <em>custom commands</em>. Dejando a parte la sobre carga de tener que ir creando directorios todos con el mismo fichero <code>SKILL.md</code> dentro.</p>
-<p>Otra de las extensiones <a href="https://code.claude.com/docs/en/skills#inject-dynamic-context">dynamic context</a>, da una función parecida a la de interpolación de los comandos de gemini.</p>
-<p>Gemini no tiene soporte para esta funcionalidad aunque <a href="https://github.com/google-gemini/gemini-cli/issues/21760">hay una issue abierta</a>. <a href="https://cursor.com/docs/skills#disabling-automatic-invocation">Cursor soporta exactamente</a> la misma propiedad.</p>
-<h3 id="openai-codex-cli"><a class="toclink" href="2026/03/21/coding-agents-commands-claude/#openai-codex-cli">OpenAI Codex CLI</a></h3>
-<p>En un vistazo rápido a la documentación de Codex no he encontrado referencias a <em>custom commands</em>.</p>
-<p>La <a href="https://developers.openai.com/codex/skills">página de skills</a> hace referencia a un parámetro <code>allow_implicit_invocation</code> con comportamiento similar a <code>disable-model-invocation</code> pero no indican si se carga al inicio o no.</p>
-<p>No le he dado muchas más vueltas porqué no uso Codex, <a href="https://github.com/openai/codex/issues/10585">pero en este ticket</a> hay algo de discusión sobre el tema y tickets abiertos relacionados.</p>
-<h3 id="opencode"><a class="toclink" href="2026/03/21/coding-agents-commands-claude/#opencode">OpenCode</a></h3>
-<p>OpenCode tiene documentación sobre <a href="https://opencode.ai/docs/commands/">custom commands</a>. Pueden definirse en JSON o Markdown y tienen opciones de interpolación.</p>
-<p>La <a href="https://opencode.ai/docs/skills/#configure-permissions">documentación de skills</a> hace referencia a alguna forma de evitar que carguen al inicio, pero sin experiencia en OpenCode me resulta confusa.</p>
-<p>Cómo en Codex hay <a href="https://github.com/anomalyco/opencode/issues/11972">alguna issue</a> abierta al respecto.</p>
-<h3 id="conclusiones"><a class="toclink" href="2026/03/21/coding-agents-commands-claude/#conclusiones">Conclusiones</a></h3>
-<p>La forma en que Cursor y Claude implementan las Skills, permite dejar de lado los <em>custom commands</em> y usar únicamente Skills.</p>
-<p>OpenCode y Gemini le dan un poco más de magia a los <em>commands</em> con las opciones de interpolación pero:</p>
-<ul>
-<li>No tengo claro que sea útil</li>
-<li>No tengo claro que no se puede replicar con un workflow algo más complicado en la skill</li>
-<li>Seguramente acaben implementando <code>disable-model-invocation</code></li>
-</ul>
-<p>Si el resto de Coding Agents siguen copiando a Claude, también acabarán <a href="https://code.claude.com/docs/en/skills#inject-dynamic-context">metiendo interpolación en las skills</a>.</p>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-03-20 00:00:00+00:00">20 de marzo de 2026</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="coding-agentes-commands-en-gemini"><a class="toclink" href="2026/03/20/coding-agents-commands-gemini/">Coding Agentes: Commands en Gemini</a></h2>
-<details class="info">
-<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
-<ol>
-<li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
-<li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
-<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
-<li><a href="2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
-<li><a href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
-</ol>
-</details>
-<p>En esta artículo nos centramos en cómo funcionan los <em>commands</em> en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.</p>
-<p>Gemini no tiene un nombre genérico para estas funcionalidades y en su documentación están dispersas entre "Features", "Usage" y "Configuration". Contempla:</p>
-<ul>
-<li><a href="https://geminicli.com/docs/cli/tutorials/memory-management/">AGENTS.md</a>. <a href="https://geminicli.com/docs/cli/gemini-md/">GEMINI.md</a></li>
-<li><a href="https://geminicli.com/docs/cli/skills/">Skills</a></li>
-<li><a href="https://geminicli.com/docs/cli/tutorials/mcp-setup/">MCP</a></li>
-<li><a href="https://geminicli.com/docs/hooks/">Hooks</a></li>
-<li><a href="https://geminicli.com/docs/extensions/">Extensions</a> (Plugins)</li>
-<li><a href="https://geminicli.com/docs/cli/custom-commands/">Custom Commands</a></li>
-</ul>
-<p>Además de otras funcionalidades cómo modificar el System Prompt, Subagents, Remote Subagents y Plan Mode. Y no tiene un sistema de reglas.</p>
-<h3 id="commands"><a class="toclink" href="2026/03/20/coding-agents-commands-gemini/#commands">Commands</a></h3>
-<p>La <a href="https://geminicli.com/docs/cli/custom-commands/">documentación oficial</a> es bastante clara.</p>
-<ul>
-<li>Van en <code>.gemini/commands</code> del proyecto o de <code>~</code>.<ul>
-<li>Admite namespaces (subdirectorios). <code>.gemini/commands/git/commit.toml</code> se convierte en <code>/git:commit</code>.</li>
-</ul>
-</li>
-<li>Por algún <a href="https://github.com/google-gemini/gemini-cli/issues/15535">motivo inexplicable</a>, usa ficheros TOML</li>
-<li>Los campos del TOML son <code>description</code> el texto de ayuda que pone para el comando y <code>prompt</code> donde metes las instrucciones en sí.</li>
-<li>Admite cierto grado de interpolación.<ul>
-<li><code>{{args}}</code> El placeholder es substituido por el texto que acompaña al comando en el chat.</li>
-<li><code>!{{...}}</code>. Ejecuta el comando y substituye el placeholder por la salida. Se puede combinar con <em>args</em>: <code>!{grep -r {{args}} .}</code></li>
-<li><code>@{path/to/file_or_dir}</code>. El placeholder es substituido por el contenido del fichero o los ficheros del directorio. Esta substitución es la primera así que no se puede combinar con <code>{{args}}</code> y pasar el path cómo parámetro.</li>
-</ul>
-</li>
-<li>No son <em>composables</em> sólo funciona el <code>/</code> al principio del prompt.</li>
-</ul>
-<p>Una de las cosas buenas de que <a href="https://github.com/google-gemini/gemini-cli">gemini-cli</a> sea software libre es que podemos ver cómo funciona y no hacer observaciones indirectas cómo en Cursor.</p>
-<p>El propio gemini tras estudiar su código responde más o menos esto a si es lo mismo usar <code>@</code> que un <em>command</em></p>
-<blockquote>
-<p>Gemini CLI uses clear separators and headers to help the model distinguish between your prompt, injected files, and shell command outputs, rather than complex XML tags. For <code>@file</code> references, it uses <code>REFERENCE_CONTENT_START</code> and <code>REFERENCE_CONTENT_END markers</code>, with individual file contents prefixed by <code>--- filename ---</code>. Custom slash commands defined in .toml files expand <code>@{path}</code> with similar <code>--- filename ---</code> headers and use <code>--- Start of content for directory: path ---</code> for directory injections</p>
-<p>Shell command output <code>!{command}</code> is appended with exit codes or signal markers if they fail, and if a command doesn't use <code>{{args}}</code>, the raw invocation is appended to the end of the prompt to provide context. Overall, the system relies on these human-readable delimiters to maintain context without over-engineering the prompt structure.</p>
-</blockquote>
-<p>Vamos que no hay magia. Y en las pruebas que he hecho los resultados era similares.</p>
-<h3 id="conclusiones"><a class="toclink" href="2026/03/20/coding-agents-commands-gemini/#conclusiones">Conclusiones</a></h3>
-<ul>
-<li>gemini-cli al contrario que Cursor, no hace magia con los comandos, simplemente es un texto añadido al prompt</li>
-<li>Las opciones de interpolación de los comandos pueden abrir usos creativos. Pero no tengo claro cual puede ser la diferencia entre interpolar un <code>!{git diff}</code> y decirle que use <code>git diff</code> y con la salida escriba el mensaje de commit. Allá de menos requests. Quizás menos consumo de tokens</li>
-<li>Usar formato TOML para algo cómo esto es tocar las narices. Tiene pinta de over engineering.</li>
-</ul>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-03-19 22:00:00+00:00">19 de marzo de 2026</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="coding-agentes-commands-en-cursor"><a class="toclink" href="2026/03/19/coding-agents-commands-cursor/">Coding Agentes: Commands en Cursor</a></h2>
-<details class="info">
-<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
-<ol>
-<li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
-<li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
-<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
-<li><a href="2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
-<li><a href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
-</ol>
-</details>
-<p>En esté artículo nos centramos cómo funcionan los <em>commands</em> en Cursor. Las pruebas han sido hechas sobre la versión 2.5.</p>
-<p>Saber que hace Cursor <em>under the hood</em> es muy difícil. He probado con HTTP Toolkit pero es difícil de saber que información se envía realmente. Así que no va a ser un proceso científico sino basado en un par de pruebas y en la documentación.</p>
-<p>Los commands se introdujeron en <a href="https://cursor.com/changelog/1-6">septiembre de 2025</a> y recomiendan <a href="https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills">substituirlos por skills</a> desde <a href="https://cursor.com/changelog/2-4">enero de 2026</a>.</p>
-<p>Prácticamente han eliminado toda la documentación referida a los commands:</p>
-<ul>
-<li>Sólo queda una <a href="https://cursor.com/docs/reference/plugins#commands-format">nota sobre su formato</a> cuando hablan de crear plugins.</li>
-<li>El artículo <a href="https://cursor.com/blog/agent-best-practices#git-workflows">Best practices for coding agents</a> (de 9 de enero) da una pista de cual es el caso de uso para los <em>commands</em> según Cursor.</li>
-</ul>
-<p>Los <em>commands</em> son:</p>
-<ul>
-<li>Ficheros markdown que pueden contener un frontmatter de <code>name</code> y <code>description</code>. Que no parece valer para nada.</li>
-<li>Van en el <code>.cursor/commands</code> del proyecto o de <code>~</code>. No busca en subdirectorios.</li>
-<li>Se invocan a demanda del usuario en el chat con <code>/nombre-del-comando</code></li>
-<li>Y una cosa chula es que son <em>composables</em>: <code>/check-compiler-errors and /commit, then create a /pr</code>.</li>
-</ul>
-<h3 id="cual-es-la-diferencia-con-las-reglas"><a class="toclink" href="2026/03/19/coding-agents-commands-cursor/#cual-es-la-diferencia-con-las-reglas">Cual es la diferencia con las reglas</a></h3>
-<p>Las reglas se usan:</p>
-<ul>
-<li>Siempre</li>
-<li>Bajo criterio del agente</li>
-<li>Cuando lo fuerza el usuario.</li>
-<li>Combinación de patrones sobre los nombres de archivos, criterio del agente, ...</li>
-</ul>
-<p>Los comandos funcionan estrictamente bajo demanda del usuario.</p>
-<p>Además en Cursor <a href="https://forum.cursor.com/t/commands-vs-rules-how-are-they-different/133796">parece haber cierta lógica interna</a> asociado al uso de un comando.</p>
-<p>Las reglas deberían usarse para definir estándares, <em>guidelines</em>, ... que el LLM debe seguir. En definitiva "reglas". Sería un <em>follow this rules when making a refactor</em></p>
-<p>Los comandos deberían usarse para pedir al LLM que lleve a cabo una acción y definir los pasos para ejecutarla. Sería un <em>make a refactor</em></p>
-<p>Por supuesto hay <em>overlap</em> pero al menos la intención debería ser clara.</p>
-<h3 id="cual-es-la-diferencia-con-las-skills"><a class="toclink" href="2026/03/19/coding-agents-commands-cursor/#cual-es-la-diferencia-con-las-skills">Cual es la diferencia con las skills</a></h3>
-<p>El metadata de las skill se carga siempre y el agente decide cuando usar una skill o puede ser forzado por el usuario.</p>
-<p>Las skills pueden ser muy complejas y encapsular scripts, ...</p>
-<p>Las skills en teoría son un estándar, mientras que los comandos no.</p>
-<p>Si hay alguna diferencia a nivel resultado de la ejecución <code>/commit</code> vs <code>skill/commit/SKILL.md</code> queda para artículos futuros.</p>
-<h3 id="hay-alguna-diferencia-con-referenciar-un-documento"><a class="toclink" href="2026/03/19/coding-agents-commands-cursor/#hay-alguna-diferencia-con-referenciar-un-documento">Hay alguna diferencia con referenciar un documento</a></h3>
-<p>Una de las cosas que más preocupan es cómo mantener <em>agent stuff</em> compatible entre herramientas. Así que, ¿hay alguna diferencia entre referenciar un documento en el chat con <code>@</code> y usar un comando?.</p>
-<p>Para comprobarlo he creado un fichero <code>refine-english.md</code></p>
-<div class="language-markdown highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gh"># refine-english</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gu">## Task</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Refine the English prose in the provided file.
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">-</span><span class="w"> </span>Clarity: Simplify wording to be accessible for non-native speakers. Avoid flowery language.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">-</span><span class="w"> </span>Correction: Fix all grammar, spelling, and punctuation errors.
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">-</span><span class="w"> </span>Constraint: Maintain the original structure and core intent. Focus strictly on clarity and consistency.
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="gu">## Output Instructions</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">-</span><span class="w"> </span>Agent must edit the file directly.
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">-</span><span class="w"> </span>In the agent chat response:
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="k">-</span><span class="w"> </span>Do not summarize minor edits. Only mention changes if they significantly alter the meaning.
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="k">-</span><span class="w"> </span>Refinements &amp; Critiques: Point out logical inconsistencies, suggest deeper structural improvements, or critique the overall flow.
-</span></code></pre></div>
-<p>Cuando lo uso cómo comando <code>/refine-english @mydoc.md</code>:</p>
-<ul>
-<li>Es muy directo (se ve en la cadena de pensamiento). Sabe que tiene que ejecutar unas instrucciones sobre un fichero.</li>
-<li>Sigue bien las instrucciones.<ul>
-<li>Algún documento tenía mezclaba inglés y español. Dejo el texto en castellano intacto y el chat lo indicó directamente "The document is mostly Spanish, consider ..." o veladas "Updated the English parts of ". Hay que estar fino para darse cuenta de "English parts".</li>
-<li>Había un cacho pequeño de código con un bug. Lo mencionó en la conversación pero no lo corrigió.</li>
-</ul>
-</li>
-</ul>
-<p>Cuando lo uso cómo referencia <code>@refine-english.md for @mydoc.md</code></p>
-<ul>
-<li>Se pasa un tiempo al inicio intentando interpretar que es lo que se está pidiendo.</li>
-<li>Varias veces que lo probé tuvo problemas aplicando parches. ¿Quizá sea porqué estaba en modo "Auto" y no escogió el modelo adecuado para la tarea?</li>
-<li>Directamente tradujo los textos a inglés en todas las ocasiones, y en alguna corrigió por su cuenta los errores en el código.</li>
-<li>Usa un 1% de contexto más (acorde al indicador del chat de cursor)</li>
-</ul>
-<p>Cuando lo uso cómo: <code>please do the tasks followed by @refine-english.md in document @mydoc.md</code></p>
-<ul>
-<li>El resultado se parece más al uso del comando y el % de contexto usado es similar.</li>
-<li>Cómo en la referencia decide por su cuenta traducir los textos en español</li>
-<li>Sin problemas aplicando los parches.</li>
-</ul>
-<p>Las pruebas anteriores era con el modelo en <code>Auto</code>. Al pasarlo a <code>Sonnet 4.6</code></p>
-<ul>
-<li>Las tres formas de usarlo traducen el texto a inglés.</li>
-<li>El contexto es similar pero un 4% superior a usarlo en modo <code>Auto</code>.</li>
-<li>Sin problemas aplicando los parches.</li>
-<li>Es difícil de determinar pero el modo comando parece seguir mejor las instrucciones, sobre todo en el formato de salida.</li>
-<li>En ninguno de los casos mencionó el bug en el código</li>
-</ul>
-<h3 id="conclusiones"><a class="toclink" href="2026/03/19/coding-agents-commands-cursor/#conclusiones">Conclusiones</a></h3>
-<p>En Cursor usar un comando (parece que) frente a referenciar un documento:</p>
-<ul>
-<li>Activa cierta lógica interna que consume menos tokens y sigue mejor las instrucciones.</li>
-<li>En modo <code>Auto</code> selecciona modelos distintos que con la referencia.</li>
-<li>No he notado mucha diferencia entre usar <code>@mydoc.md</code> y 'mydoc.md'.</li>
-<li>Influye más el modelo que usarlo cómo comando o cómo <code>@</code></li>
-</ul>
-<p>Este es uno de los mejores comentaros que he encontrado sobre cómo funcionan estas herramientas:</p>
-<div class="admonition quote">
-<p class="admonition-title"><a href="https://forum.cursor.com/t/skills-vs-commands-vs-rules/148875/9">Alexandros alexandrosandre</a>, en el foro de Cursor</p>
-<p>To my understanding you aren't missing anything. What helps myself get through this caos is the following simplified rationale "It is all a lie. Everything is just another prompt." Therefore your usage might not be standard or documented but can work just as fine.</p>
-<p>Not trying to be disrespectful at all with the "lie" here. Product is trying to name and build use cases and follow standards the best they can. And it’s tough.</p>
-<p>It just helps me understand that all we are doing is telling LLMs what to do in a prompt or where to find the longer instructions (aka prompt) to avoid filling up the context. The rest on top is a essentially looping/harnessing/if-this-then-that nothing else.</p>
-</div>
-<p>Teniendo en cuenta cómo funcionan las skills, <a href="2026/03/21/coding-agents-commands-claude/#agent-skills">los comandos son más bien innecesarios</a>.</p>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-03-19 14:00:00+00:00">19 de marzo de 2026</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="coding-agentes-funcionalidades-de-inyeccion-de-contexto"><a class="toclink" href="2026/03/19/coding-agents-features-for-context-injection/">Coding Agentes: Funcionalidades de "inyección de contexto"</a></h2>
-<details class="info">
-<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
-<ol>
-<li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
-<li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
-<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
-<li><a href="2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
-<li><a href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
-</ol>
-</details>
-<p>Los <em>coding agents</em> ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:</p>
-<ul>
-<li><strong>prompt</strong>: Ya sea <em>user prompt</em>, <em>system prompt</em>, ...</li>
-<li><strong>referencias</strong>: En el prompt también podemos pedir a la herramienta que incluya el contenido de un fichero con <code>@</code> o con instrucciones.<ul>
-<li>Los modelos y las herramientas son complejos. No se comportan todas igual, ni el mismo modelo hace siempre lo mismo. Tampoco es lo mismo referencia una imagen binaria que se suele hacer en peticiones distintas que un md.</li>
-<li>La forma en que la herramienta marca o incluye este contexto adicional también puede variar.</li>
-<li>El concepto de <a href="https://tweag.github.io/agentic-coding-handbook/WORKFLOW_MEMORY_BANK/">memory banks</a> encaja aquí y en <code>AGENTS.md</code></li>
-</ul>
-</li>
-<li><strong>AGENTS.md</strong>: Siempre introduce en el contexto el fichero en la raíz del repo. Algunas herramientas admiten ficheros en subdirectorios y los adjuntan cuando se accede a un fichero en ese directorio. Puede actuar cómo un <a href="2025/12/11/agents-md-and-at-character-to-reference-documents/">índice que adjunte otros documentos</a>:<ul>
-<li>Con <code>@</code>. Debería leerlo e incluirlo siempre.</li>
-<li>Condicionalmente mediante instrucciones <code>read 'testing.md' when writing tests</code></li>
-</ul>
-</li>
-<li><strong>commands</strong>: Escribimos en el chat <code>/fix-bug in my_file.py</code>, y envía al modelo <code>fix-bug.md</code> que está en una ruta predeterminada junto al resto del contexto.</li>
-<li><strong>rules</strong>: No todas las herramientas las tienen. Suelen ser ficheros md con un frontmatter que indica cuando se debe usar la regla. Es la herramienta y el modelo quien decide que reglas leer, pero el usuario puede forzarlo.</li>
-<li><strong>hooks</strong>: Las incluyo porqué son un buen substituto a ciertas instrucciones (estén donde estén). En lugar de `execute format.sh and lint.sh after making changes", un hook puede correrlos. De hecho las instrucciones pueden ser ignoradas y el hook no.</li>
-<li><strong>MCP</strong></li>
-<li><strong>Skills</strong>. Un directorio, en una ruta predefinida de la herramienta, que tiene dentro un fichero <code>SKILL.md</code> y otros <em>assets</em>. Tienen metadatos cortos de nombre y descripción que se inyectan siempre en el contexto. El LLM decide cuando una skill aplica en base a los metadatos o el usuario puede forzar su uso.<ul>
-<li>Hay un par de cosas que no me gustan de los skill. O que si se retocara la spec podrían ser un total substituto a los comandos. Los comandos se cargan y ejecutan exclusivamente bajo demanda del usuario. Las skills no.</li>
-<li><a href="https://agentskills.io/specification#progressive-disclosure">La spec</a> dice que los metadatos se cargan siempre.</li>
-<li>El LLM decide cuando cuando leer y aplicar la skill en base a la vaga descripción</li>
-<li>No se pueden tener "infinitas" skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos <a href="https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog">50-100 tokens por skill</a>, 20-40 skills es un 1% del contexto habitual de 200k.</li>
-</ul>
-</li>
-<li><strong>Extensiones o Plugins</strong>. Depende de la herramienta, pero la mayoría incluye alguna forma de empaquetar combinaciones de lo anterior y otras extensiones de comportamiento.</li>
-</ul>
-<p>En próximos artículos iremos viendo con más detalle algunas de estas funcionalidades, cómo se comportan en distintas herramientas y cómo se relacionan entre sí.</p>
-    
-    
-  </div>
-</article>
-      
-      
-        
-          
 
 
 
-<nav class="md-pagination">
-  <span class="md-pagination__current">1</span> <a class="md-pagination__link" href="page/2/">2</a> <a class="md-pagination__link" href="page/3/">3</a> <span class="md-pagination__dots">..</span> <a class="md-pagination__link" href="page/43/">43</a>
-</nav>
-        
+
+
+
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+
       
-    </div>
+    </article>
   </div>
 
           
@@ -1715,10 +1630,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.indexes", "navigation.tabs", "navigation.sections", "toc.follow", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
