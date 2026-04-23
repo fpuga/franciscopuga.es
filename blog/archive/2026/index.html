@@ -563,6 +563,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ai-slop-friccion-y-redes-sociales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Slop, fricción y redes sociales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-file-responsibilities-and-size-in-coding-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing file responsibilities and size in Coding Agents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#como-funcionan-las-rules-y-el-agentsmd-en-distintos-coding-agents" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -589,28 +611,6 @@
     <span class="md-ellipsis">
       
         Coding Agentes: Commands en Gemini
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coding-agentes-commands-en-cursor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coding Agentes: Commands en Cursor
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coding-agentes-funcionalidades-de-inyeccion-de-contexto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coding Agentes: Funcionalidades de "inyección de contexto"
       
     </span>
   </a>
@@ -1148,6 +1148,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ai-slop-friccion-y-redes-sociales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Slop, fricción y redes sociales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-file-responsibilities-and-size-in-coding-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing file responsibilities and size in Coding Agents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#como-funcionan-las-rules-y-el-agentsmd-en-distintos-coding-agents" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1180,28 +1202,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#coding-agentes-commands-en-cursor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coding Agentes: Commands en Cursor
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coding-agentes-funcionalidades-de-inyeccion-de-contexto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coding Agentes: Funcionalidades de "inyección de contexto"
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1216,6 +1216,164 @@
       <header class="md-typeset">
         <h1 id="2026">2026</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-04-23 00:00:00+00:00">23 de abril de 2026</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="ai-slop-friccion-y-redes-sociales"><a class="toclink" href="../../2026/04/23/ai-slop-friction-and-social-media/">AI Slop, fricción y redes sociales</a></h2>
+<p>Estos días he estado trabajando en una herramienta que automatiza algunos procesos, sin impacto directo en los clientes. Una buena oportunidad para experimentar: <a href="https://www.youtube.com/watch?v=rmvDxxNubIg">RPI</a>, Don't read the code, dynamic memory con un montón de instrucciones, subagents, y hasta agentes en paralelo en algún momento.</p>
+<p class="annotate">La idea era seguir los consejos de twitter y subir un peldaño más en la escalera del <a href="https://newsletter.pragmaticengineer.com/i/187563524/3-eight-levels-of-ai-adoption">AI Adoption level</a> (1).</p>
+<ol>
+<li>Creo que el primero en describir algo así fue Steve Yegge y luego han sido re-escritos y modificados por cualquiera con un blog y tiempo libre.</li>
+</ol>
+<p>El resultados:</p>
+<ul>
+<li>Ficheros con más de 1.000 líneas de código. De aquí viene el artículo de <a href="../../2026/04/23/managing-file-size-in-coding-agents/">instruir al agente para limitar el número de líneas por fichero</a>.</li>
+<li>Abstracciones e indirecciones que se solucionaban con un mock para los tests o un if con dos ramas</li>
+<li>Bucles anidados abriendo y cerrando conexiones a bases de datos</li>
+<li>43.4M de tokens gastados el día grande (a <a href="https://simonpcouch.com/blog/2026-01-20-cc-impact/">~240 Wh/MTok</a>, unos 8 lavavajillas)</li>
+<li>95% de cobertura de tests pero bugs en "producción"</li>
+<li>...</li>
+</ul>
+<p>Y sí, este post es un <a href="https://www.merriam-webster.com/dictionary/rant">rant</a>.</p>
+<ul>
+<li>Ya sé que algo estoy haciendo mal. No dejaba de ser un experimento. Pero es que es muy fácil hacer mal las cosas con <em>coding agents</em>. Lo único bueno es que cagarla con la AI es aceptable. Puedes decir que tu agente <a href="https://pashpashpash.substack.com/p/my-lobster-lost-450000-this-weekend">ha perdido 450k$ invirtiendo</a>, pero ni se te ocurra decir que has perdido una base de datos secundaria porqué no hacías pruebas de restauración.</li>
+<li>Cursor en modo Auto usa modelos ~malos~ suboptimos. Pero los LLM cuestan un buen dinero, cada vez más. Y no todas las empresas tenemos VC quemando $ detrás.</li>
+<li>Hay una presión brutal en el ámbito del desarrollo. Si te fias de twitter, no trabajar en modo ralph y tener 5 agentes en paralelo es "perder el tiempo". En lugar de aprovechar el incremento de productividad para disfrutar del paisaje, tienes que lanzar un agente desde el móvil mientras esperas que la crianza salga del cole.</li>
+<li>Los problemas asociados al consumo de recursos, gobernanza y sesgo de los modelos, son reales, y no deberíamos despreciarlos sin más.</li>
+</ul>
+<p>Para ir acabando, que esto empezó simplemente para explicar el contexto del primer artículo generado por LLM que ha aparecido en este blog:</p>
+<ul>
+<li>Vayamos más despacio y con menos presión.</li>
+<li>Si gente mucho más lista que yo dice que <a href="https://www.youtube.com/watch?v=_Zcw_sVF6hU">un poco de fricción al trabajar con agentes es útil</a>, hagámosle caso.</li>
+</ul>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-04-23 00:00:00+00:00">23 de abril de 2026</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="managing-file-responsibilities-and-size-in-coding-agents"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/">Managing file responsibilities and size in Coding Agents</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Contenido generado por LLM</p>
+</div>
+<p>Este artículo tiene bastante edición humana y no es un one-shot, si no varias sesiones con distintos agentes, pero el grueso ha sido escrito por un LLM.</p>
+<div class="language-text highlight"><pre><span></span><code>El contexto en el que fue escrito está explicado en [mi otro artículo de hoy](./2026-04-23-ai-slop-friction-and-social-media.md)
+
+Está escrito tratando de responder a &quot;pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files&quot;
+</code></pre></div>
+<p>Coding agents tend to accumulate responsibilities into existing files rather than reasoning about structure. The result is files that grow across sessions, doing too many things — and the problem compounds over time.</p>
+<p>The slop can be reduced with instructions, good workflows and strictness but accuracy can also be reduced if not being done correctly.</p>
+<h3 id="the-problem"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#the-problem">The Problem</a></h3>
+<p>Coding agents tend to follow the <strong>path of least resistance</strong>. It is computationally "easier" for an LLM to append logic to an existing file than to create a new file, manage imports, and update directory structures. This leads to 1,000+ line "God Files" that combine UI, state, API calls, and business logic.</p>
+<p><strong>Key Insight:</strong> When an agent builds a monolith, it isn't being smart; it's being lazy. As the human architect, your role is to provide the "structural friction" necessary to keep the codebase clean.</p>
+<h3 id="options-explored"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#options-explored">Options Explored</a></h3>
+<p>Five approaches came up, each with a different tradeoff profile:</p>
+<p><strong>Rules in <code>agents.md</code></strong> — proactive, shapes decisions before code is written. The risk is token cost: instructions sitting in context are paid on every turn, even when irrelevant. Also relies on the agent actually following them, with no enforcement mechanism.</p>
+<p><strong>Linter rule + lint after changes</strong> — objective and enforceable, near-zero token cost. The limitation is it only catches the problem after it exists, and agents can game it mechanically (splitting a 400-line file into two 200-line files without real refactoring, deleting comments or writing one-liners). Best used as a safety net, not a primary strategy.</p>
+<p><strong>Refactoring subagent</strong> — the most powerful option if you have solid test coverage. A dedicated subagent can reason about <em>why</em> to split, not just <em>that</em> something is too big. The downsides are latency, cost (extra token overhead for a new session), and regression risk if the subagent rewrites instead of just extracting.</p>
+<p><strong>Hooks</strong> — best option for automatic enforcement. A post-edit hook that runs checks and feeds results back to the agent closes the feedback loop without manual intervention. Setup cost is higher and hook failures can be noisy.</p>
+<p><strong>Slash-command, on-demand skills or reusable prompts</strong> — on-demand invocation of a well-crafted refactoring prompt. Zero cost when not in use, no automation risk, and you control the timing. More powerful than it first appears. The downsides is that is not automatically enforced, requires constant supervision.</p>
+<h3 id="two-key-questions"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#two-key-questions">Two Key Questions</a></h3>
+<p>There are two important aspects about how and when constraining the LLM's file output:</p>
+<ul>
+<li><strong>Reasoning Degradation</strong>. Enforce strict line counts (e.g., "Max 200 lines") too early, may interrupt the LLM's flow. It may focus more on "fitting the code" than "solving the logic," leading to obfuscated code or broken abstractions.</li>
+<li><strong>Token Waste:</strong>. Large files are "Token Killers." Every time a small change is requested in a 1,000-line file, the agent must re-read (and often re-write) the entire context. This wastes money and increases latency.</li>
+</ul>
+<h4 id="does-constraining-the-agent-early-hurt-reasoning-quality"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#does-constraining-the-agent-early-hurt-reasoning-quality">Does constraining the agent early hurt reasoning quality?</a></h4>
+<p>Yes, but the concern is nuanced. The risk is real when constraining <em>how</em> the model thinks — forcing a specific algorithm or architecture mid-problem. A file size limit is an <em>output</em> constraint, closer to formatting guidance, and modern LLMs handle that reasonably well.</p>
+<p>That said, <strong>write first, refactor later</strong> is still directionally correct: the model solves one problem at a time instead of two. Upfront constraints should be soft and structural, not hard limits enforced mid-task.</p>
+<h4 id="what-matters-more-constraint-cost-or-context-bloat"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#what-matters-more-constraint-cost-or-context-bloat">What matters more: constraint cost or context bloat?</a></h4>
+<p><strong>Context bloat is more damaging</strong>, and it's not a close call.</p>
+<p>Context bloat compounds: large files make context grow, which reduces accuracy, which can produce more bloated code, which grows context further. Each session the problem gets worse.</p>
+<p>Constraint cost is fixed and mild by comparison. A slightly worse initial design is recoverable. Degraded model accuracy due to bloated context causes mistakes that are hard to trace.</p>
+<p>Critically, the "write big then refactor" approach pays the context cost <em>twice</em> — once for the big file and once for the refactoring pass. A soft upfront constraint that keeps files small is worth it precisely because it controls context size across the session.</p>
+<h3 id="final-recommendation"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#final-recommendation">Final Recommendation</a></h3>
+<p>Three layers, in order of priority:</p>
+<ul>
+<li>Soft rules in <code>AGENTS.md</code>. Can be combined or replaced by Skills or Rules.</li>
+<li>Linter rules.</li>
+<li>Reusable prompt for post refactoring</li>
+</ul>
+<h4 id="soft-rules-in-agentsmd-prevention"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#soft-rules-in-agentsmd-prevention">Soft rules in <code>AGENTS.md</code> — prevention</a></h4>
+<p>Keep them concrete and structural, not vague. The goal is to shape decisions before files are written, not to micromanage output. Example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Before adding logic to an existing file, check if it belongs there.
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>If a file already has more than one clear responsibility, create a new module instead.
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Prefer creating a new file over extending an existing one beyond its scope.
+</span></code></pre></div>
+<ul>
+<li>Avoid hard line limits here. They constrain reasoning without being reliably enforceable.</li>
+<li>Prioritize responsibility over lines. Instead of <code>max-lines: 250</code>, enforce <code>one-responsibility-per-file</code>.</li>
+</ul>
+<h4 id="linter-rule-passive-safety-net"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#linter-rule-passive-safety-net">Linter rule — passive safety net</a></h4>
+<p>Configure a max-lines rule (e.g. ESLint <code>max-lines</code>, Pylint <code>max-module-lines</code>) and run it via a hook or CI. Don't rely on it as the primary mechanism — it catches symptoms, not causes. Pair it with a complexity check (number of exports, cyclomatic complexity) for better signal.</p>
+<h4 id="reusable-prompt-for-periodic-refactoring-recovery"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#reusable-prompt-for-periodic-refactoring-recovery">Reusable prompt for periodic refactoring — recovery</a></h4>
+<p>A reusable prompt (slash-command, on-demand skill, custom agent, ...) that instructs the agent to review and extract responsibilities from files that have grown. Invoke it when <em>you</em> decide the codebase needs it, not automatically after every turn. The prompt contract should be explicit:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>The attached file is to big and have too many responsabilities. Refactor it.
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Rules:
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>- One responsibility per file (name it after what it does)
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>- If a file needs more than 3 imports from the same module, extract shared logic
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>- Prefer creating a new file over extending an existing one beyond its scope.
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>- Only extract, never rewrite logic.
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>- All tests must pass before and after.
+</span></code></pre></div>
+<p>This approach keeps token cost under control (only paid on demand), avoids constraining original reasoning, and gives you a deliberate moment to review structure before it accumulates further debt.</p>
+<p>A bash script to catch big files could be also useful</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">min_lines</span><span class="o">=</span><span class="m">200</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># ripgrep respects .gitignore and has --type</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Ignore ./docs as we use it for examples, temporary clone other repos, ...</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>rg<span class="w"> </span>--files<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span>-g<span class="w"> </span><span class="s1">&#39;!docs/**&#39;</span><span class="w"> </span>--type<span class="w"> </span>typescript<span class="w"> </span>--type<span class="w"> </span>js<span class="w"> </span>--type<span class="w"> </span>python<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nv">IFS</span><span class="o">=</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>file<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="nv">line_count</span><span class="o">=</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="k">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">((</span>line_count<span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span>min_lines<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">            </span><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;%10d %s\n&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">line_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="k">fi</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="k">done</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-nr
+</span></code></pre></div>
+<h4 id="skills-and-rules"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#skills-and-rules">Skills and Rules</a></h4>
+<p>Skills and Rules can provide accurate design guidance to the model for the concrete task at hand. A <code>react-guidelines</code> skill can promote architecture constraints. As example:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gh"># Architectural Constraints</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">1.</span> <span class="gs">**Separation of Concerns:**</span> UI components must not contain business logic or raw API calls.
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">2.</span> <span class="gs">**The &quot;Hook&quot; Rule:**</span> If a component exceeds 3 state variables, move state logic to a custom Hook.
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">3.</span> <span class="gs">**The &quot;Service&quot; Rule:**</span> All data fetching must reside in <span class="sb">`/services`</span>. Do not use <span class="sb">`fetch`</span> or <span class="sb">`axios`</span> directly in components.
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">4.</span> <span class="gs">**Complexity Trigger:**</span> If you are about to add a second distinct responsibility to a file, you MUST propose a file split before writing the code.
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">5.</span> <span class="gs">**Pre-emptive Architecture:**</span> Prefer creating 3 focused files (Type, Logic, View) over 1 multi-purpose file.
+</span></code></pre></div>
+    
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1616,195 +1774,6 @@
   </div>
 </article>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-03-19 22:00:00+00:00">19 de marzo de 2026</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="coding-agentes-commands-en-cursor"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/">Coding Agentes: Commands en Cursor</a></h2>
-<details class="info">
-<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
-<ol>
-<li><a href="../../2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
-<li><a href="../../2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
-<li><a href="../../2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
-<li><a href="../../2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
-<li><a href="../../2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
-</ol>
-</details>
-<p>En esté artículo nos centramos cómo funcionan los <em>commands</em> en Cursor. Las pruebas han sido hechas sobre la versión 2.5.</p>
-<p>Saber que hace Cursor <em>under the hood</em> es muy difícil. He probado con HTTP Toolkit pero es difícil de saber que información se envía realmente. Así que no va a ser un proceso científico sino basado en un par de pruebas y en la documentación.</p>
-<p>Los commands se introdujeron en <a href="https://cursor.com/changelog/1-6">septiembre de 2025</a> y recomiendan <a href="https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills">substituirlos por skills</a> desde <a href="https://cursor.com/changelog/2-4">enero de 2026</a>.</p>
-<p>Prácticamente han eliminado toda la documentación referida a los commands:</p>
-<ul>
-<li>Sólo queda una <a href="https://cursor.com/docs/reference/plugins#commands-format">nota sobre su formato</a> cuando hablan de crear plugins.</li>
-<li>El artículo <a href="https://cursor.com/blog/agent-best-practices#git-workflows">Best practices for coding agents</a> (de 9 de enero) da una pista de cual es el caso de uso para los <em>commands</em> según Cursor.</li>
-</ul>
-<p>Los <em>commands</em> son:</p>
-<ul>
-<li>Ficheros markdown que pueden contener un frontmatter de <code>name</code> y <code>description</code>. Que no parece valer para nada.</li>
-<li>Van en el <code>.cursor/commands</code> del proyecto o de <code>~</code>. No busca en subdirectorios.</li>
-<li>Se invocan a demanda del usuario en el chat con <code>/nombre-del-comando</code></li>
-<li>Y una cosa chula es que son <em>composables</em>: <code>/check-compiler-errors and /commit, then create a /pr</code>.</li>
-</ul>
-<h3 id="cual-es-la-diferencia-con-las-reglas"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/#cual-es-la-diferencia-con-las-reglas">Cual es la diferencia con las reglas</a></h3>
-<p>Las reglas se usan:</p>
-<ul>
-<li>Siempre</li>
-<li>Bajo criterio del agente</li>
-<li>Cuando lo fuerza el usuario.</li>
-<li>Combinación de patrones sobre los nombres de archivos, criterio del agente, ...</li>
-</ul>
-<p>Los comandos funcionan estrictamente bajo demanda del usuario.</p>
-<p>Además en Cursor <a href="https://forum.cursor.com/t/commands-vs-rules-how-are-they-different/133796">parece haber cierta lógica interna</a> asociado al uso de un comando.</p>
-<p>Las reglas deberían usarse para definir estándares, <em>guidelines</em>, ... que el LLM debe seguir. En definitiva "reglas". Sería un <em>follow this rules when making a refactor</em></p>
-<p>Los comandos deberían usarse para pedir al LLM que lleve a cabo una acción y definir los pasos para ejecutarla. Sería un <em>make a refactor</em></p>
-<p>Por supuesto hay <em>overlap</em> pero al menos la intención debería ser clara.</p>
-<h3 id="cual-es-la-diferencia-con-las-skills"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/#cual-es-la-diferencia-con-las-skills">Cual es la diferencia con las skills</a></h3>
-<p>El metadata de las skill se carga siempre y el agente decide cuando usar una skill o puede ser forzado por el usuario.</p>
-<p>Las skills pueden ser muy complejas y encapsular scripts, ...</p>
-<p>Las skills en teoría son un estándar, mientras que los comandos no.</p>
-<p>Si hay alguna diferencia a nivel resultado de la ejecución <code>/commit</code> vs <code>skill/commit/SKILL.md</code> queda para artículos futuros.</p>
-<h3 id="hay-alguna-diferencia-con-referenciar-un-documento"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/#hay-alguna-diferencia-con-referenciar-un-documento">Hay alguna diferencia con referenciar un documento</a></h3>
-<p>Una de las cosas que más preocupan es cómo mantener <em>agent stuff</em> compatible entre herramientas. Así que, ¿hay alguna diferencia entre referenciar un documento en el chat con <code>@</code> y usar un comando?.</p>
-<p>Para comprobarlo he creado un fichero <code>refine-english.md</code></p>
-<div class="language-markdown highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gh"># refine-english</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="gu">## Task</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Refine the English prose in the provided file.
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">-</span><span class="w"> </span>Clarity: Simplify wording to be accessible for non-native speakers. Avoid flowery language.
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">-</span><span class="w"> </span>Correction: Fix all grammar, spelling, and punctuation errors.
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">-</span><span class="w"> </span>Constraint: Maintain the original structure and core intent. Focus strictly on clarity and consistency.
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="gu">## Output Instructions</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">-</span><span class="w"> </span>Agent must edit the file directly.
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="k">-</span><span class="w"> </span>In the agent chat response:
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="k">-</span><span class="w"> </span>Do not summarize minor edits. Only mention changes if they significantly alter the meaning.
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="k">-</span><span class="w"> </span>Refinements &amp; Critiques: Point out logical inconsistencies, suggest deeper structural improvements, or critique the overall flow.
-</span></code></pre></div>
-<p>Cuando lo uso cómo comando <code>/refine-english @mydoc.md</code>:</p>
-<ul>
-<li>Es muy directo (se ve en la cadena de pensamiento). Sabe que tiene que ejecutar unas instrucciones sobre un fichero.</li>
-<li>Sigue bien las instrucciones.<ul>
-<li>Algún documento tenía mezclaba inglés y español. Dejo el texto en castellano intacto y el chat lo indicó directamente "The document is mostly Spanish, consider ..." o veladas "Updated the English parts of ". Hay que estar fino para darse cuenta de "English parts".</li>
-<li>Había un cacho pequeño de código con un bug. Lo mencionó en la conversación pero no lo corrigió.</li>
-</ul>
-</li>
-</ul>
-<p>Cuando lo uso cómo referencia <code>@refine-english.md for @mydoc.md</code></p>
-<ul>
-<li>Se pasa un tiempo al inicio intentando interpretar que es lo que se está pidiendo.</li>
-<li>Varias veces que lo probé tuvo problemas aplicando parches. ¿Quizá sea porqué estaba en modo "Auto" y no escogió el modelo adecuado para la tarea?</li>
-<li>Directamente tradujo los textos a inglés en todas las ocasiones, y en alguna corrigió por su cuenta los errores en el código.</li>
-<li>Usa un 1% de contexto más (acorde al indicador del chat de cursor)</li>
-</ul>
-<p>Cuando lo uso cómo: <code>please do the tasks followed by @refine-english.md in document @mydoc.md</code></p>
-<ul>
-<li>El resultado se parece más al uso del comando y el % de contexto usado es similar.</li>
-<li>Cómo en la referencia decide por su cuenta traducir los textos en español</li>
-<li>Sin problemas aplicando los parches.</li>
-</ul>
-<p>Las pruebas anteriores era con el modelo en <code>Auto</code>. Al pasarlo a <code>Sonnet 4.6</code></p>
-<ul>
-<li>Las tres formas de usarlo traducen el texto a inglés.</li>
-<li>El contexto es similar pero un 4% superior a usarlo en modo <code>Auto</code>.</li>
-<li>Sin problemas aplicando los parches.</li>
-<li>Es difícil de determinar pero el modo comando parece seguir mejor las instrucciones, sobre todo en el formato de salida.</li>
-<li>En ninguno de los casos mencionó el bug en el código</li>
-</ul>
-<h3 id="conclusiones"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/#conclusiones">Conclusiones</a></h3>
-<p>En Cursor usar un comando (parece que) frente a referenciar un documento:</p>
-<ul>
-<li>Activa cierta lógica interna que consume menos tokens y sigue mejor las instrucciones.</li>
-<li>En modo <code>Auto</code> selecciona modelos distintos que con la referencia.</li>
-<li>No he notado mucha diferencia entre usar <code>@mydoc.md</code> y 'mydoc.md'.</li>
-<li>Influye más el modelo que usarlo cómo comando o cómo <code>@</code></li>
-</ul>
-<p>Este es uno de los mejores comentaros que he encontrado sobre cómo funcionan estas herramientas:</p>
-<div class="admonition quote">
-<p class="admonition-title"><a href="https://forum.cursor.com/t/skills-vs-commands-vs-rules/148875/9">Alexandros alexandrosandre</a>, en el foro de Cursor</p>
-<p>To my understanding you aren't missing anything. What helps myself get through this caos is the following simplified rationale "It is all a lie. Everything is just another prompt." Therefore your usage might not be standard or documented but can work just as fine.</p>
-<p>Not trying to be disrespectful at all with the "lie" here. Product is trying to name and build use cases and follow standards the best they can. And it’s tough.</p>
-<p>It just helps me understand that all we are doing is telling LLMs what to do in a prompt or where to find the longer instructions (aka prompt) to avoid filling up the context. The rest on top is a essentially looping/harnessing/if-this-then-that nothing else.</p>
-</div>
-<p>Teniendo en cuenta cómo funcionan las skills, <a href="../../2026/03/21/coding-agents-commands-claude/#agent-skills">los comandos son más bien innecesarios</a>.</p>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-03-19 14:00:00+00:00">19 de marzo de 2026</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="coding-agentes-funcionalidades-de-inyeccion-de-contexto"><a class="toclink" href="../../2026/03/19/coding-agents-features-for-context-injection/">Coding Agentes: Funcionalidades de "inyección de contexto"</a></h2>
-<details class="info">
-<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
-<ol>
-<li><a href="../../2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
-<li><a href="../../2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
-<li><a href="../../2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
-<li><a href="../../2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
-<li><a href="../../2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
-</ol>
-</details>
-<p>Los <em>coding agents</em> ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:</p>
-<ul>
-<li><strong>prompt</strong>: Ya sea <em>user prompt</em>, <em>system prompt</em>, ...</li>
-<li><strong>referencias</strong>: En el prompt también podemos pedir a la herramienta que incluya el contenido de un fichero con <code>@</code> o con instrucciones.<ul>
-<li>Los modelos y las herramientas son complejos. No se comportan todas igual, ni el mismo modelo hace siempre lo mismo. Tampoco es lo mismo referencia una imagen binaria que se suele hacer en peticiones distintas que un md.</li>
-<li>La forma en que la herramienta marca o incluye este contexto adicional también puede variar.</li>
-<li>El concepto de <a href="https://tweag.github.io/agentic-coding-handbook/WORKFLOW_MEMORY_BANK/">memory banks</a> encaja aquí y en <code>AGENTS.md</code></li>
-</ul>
-</li>
-<li><strong>AGENTS.md</strong>: Siempre introduce en el contexto el fichero en la raíz del repo. Algunas herramientas admiten ficheros en subdirectorios y los adjuntan cuando se accede a un fichero en ese directorio. Puede actuar cómo un <a href="../../2025/12/11/agents-md-and-at-character-to-reference-documents/">índice que adjunte otros documentos</a>:<ul>
-<li>Con <code>@</code>. Debería leerlo e incluirlo siempre.</li>
-<li>Condicionalmente mediante instrucciones <code>read 'testing.md' when writing tests</code></li>
-</ul>
-</li>
-<li><strong>commands</strong>: Escribimos en el chat <code>/fix-bug in my_file.py</code>, y envía al modelo <code>fix-bug.md</code> que está en una ruta predeterminada junto al resto del contexto.</li>
-<li><strong>rules</strong>: No todas las herramientas las tienen. Suelen ser ficheros md con un frontmatter que indica cuando se debe usar la regla. Es la herramienta y el modelo quien decide que reglas leer, pero el usuario puede forzarlo.</li>
-<li><strong>hooks</strong>: Las incluyo porqué son un buen substituto a ciertas instrucciones (estén donde estén). En lugar de `execute format.sh and lint.sh after making changes", un hook puede correrlos. De hecho las instrucciones pueden ser ignoradas y el hook no.</li>
-<li><strong>MCP</strong></li>
-<li><strong>Skills</strong>. Un directorio, en una ruta predefinida de la herramienta, que tiene dentro un fichero <code>SKILL.md</code> y otros <em>assets</em>. Tienen metadatos cortos de nombre y descripción que se inyectan siempre en el contexto. El LLM decide cuando una skill aplica en base a los metadatos o el usuario puede forzar su uso.<ul>
-<li>Hay un par de cosas que no me gustan de los skill. O que si se retocara la spec podrían ser un total substituto a los comandos. Los comandos se cargan y ejecutan exclusivamente bajo demanda del usuario. Las skills no.</li>
-<li><a href="https://agentskills.io/specification#progressive-disclosure">La spec</a> dice que los metadatos se cargan siempre.</li>
-<li>El LLM decide cuando cuando leer y aplicar la skill en base a la vaga descripción</li>
-<li>No se pueden tener "infinitas" skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos <a href="https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog">50-100 tokens por skill</a>, 20-40 skills es un 1% del contexto habitual de 200k.</li>
-</ul>
-</li>
-<li><strong>Extensiones o Plugins</strong>. Depende de la herramienta, pero la mayoría incluye alguna forma de empaquetar combinaciones de lo anterior y otras extensiones de comportamiento.</li>
-</ul>
-<p>En próximos artículos iremos viendo con más detalle algunas de estas funcionalidades, cómo se comportan en distintas herramientas y cómo se relacionan entre sí.</p>
-    
-    
-  </div>
-</article>
-      
       
         
           
@@ -1812,7 +1781,7 @@
 
 
 <nav class="md-pagination">
-  <span class="md-pagination__current">1</span> <a class="md-pagination__link" href="page/2/">2</a>
+  <span class="md-pagination__current">1</span> <a class="md-pagination__link" href="page/2/">2</a> <a class="md-pagination__link" href="page/3/">3</a>
 </nav>
         
       

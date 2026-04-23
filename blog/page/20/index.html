@@ -1042,6 +1042,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#actualizar-la-version-de-antroid-de-un-htc-tattoo-ii-parte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actualizar la versión de Antroid de un HTC Tattoo (II parte)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paypal-cada-vez-me-mosquea-mas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PayPal cada vez me mosquea más
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#actualizar-la-version-de-antroid-de-un-htc-tattoo-i-parte" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1074,28 +1096,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#parad-la-sopa" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parad la SOPA
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deduccion-por-vivienda" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deducción por vivienda
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1110,6 +1110,101 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2012-03-18 00:00:00+00:00">18 de marzo de 2012</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="actualizar-la-version-de-antroid-de-un-htc-tattoo-ii-parte"><a class="toclink" href="../../2012/03/18/actualizar-la-version-de-antroid-de-un-htc-tattoo-ii-parte/">Actualizar la versión de Antroid de un HTC Tattoo (II parte)</a></h2>
+<p>Las consideraciones generales sobre como actualizar las puedes leer en la <a href="http://conocimientoabierto.es/actualizar-la-version-de-antroid-de-un-htc-tattoo-i-parte/454/">primera parte de este artículo</a>.</p>
+<p>Las <a href="http://wiki.cyanogenmod.com/wiki/HTC_Tattoo:_Full_Update_Guide">principales instrucciones que yo he seguido</a> han sido la de los propios desarrolladores de la ROM que he instalado. Lo cuento un poco más detallado. Deberías seguir las instrucciones de esa guía, lo que aquí escribo son más bien posibles problemas y es complementario a lo que allí pone.</p>
+<h3 id="los-pasos-a-seguir"><a class="toclink" href="../../2012/03/18/actualizar-la-version-de-antroid-de-un-htc-tattoo-ii-parte/#los-pasos-a-seguir">Los pasos a seguir</a></h3>
+<ol>
+<li>Instalar jdk y <a href="http://developer.android.com/sdk/installing.html">android sdk</a>. El único componente que hace falta es «SDK Platform tools» que es lo que contiene el comando <a href="http://wiki.cyanogenmod.com/wiki/ADB">adb</a>.</li>
+<li>Enciende el GPS. A veces no lo detecta si lo tienes apagado y deja de funcionar. Y recuerda que las operaciones que hagamos a partir de ahora con el teléfono deben hacerse con la opción «<em>depuración</em>» activada (En tu teléfono, <em>ajustes -&gt; aplicaciones -&gt; desarrollo</em>)</li>
+<li>
+<p>Rootear el dispositivo. Con el sistema proporcionado con Cyanogenmod yo conseguí acceso de Root (es cuando el prompt se convierte en #) pero no conseguí instalar el comando «<em>su</em>» para poder convertirse en root de forma sencilla. Así que cada vez que necesitaba acceso de root (cuando en los tutoriales se menciona usar «<em>su</em>«, tenía que ejecutar los comandos que se indican en el punto 5 y 6 <a href="http://wiki.cyanogenmod.com/wiki/HTC_Tattoo:_Full_Update_Guide#Rooting_the_HTC_Tattoo">de la parte de rooting</a>). Un par de avisos:</p>
+</li>
+<li>
+<p>Si parece que se queda colgado pulsa intro para ver si aparece el prompt</p>
+</li>
+<li>
+<p>Si no consegues hacerlo, habilita la opción de<a href="http://www.gandroides.com/noticia-como-instalar-aplicaciones-fuera-del-android-market__2.aspx"> instalar software desde fuentes no fiables</a> y prueba a instalar alguna aplicación como <a href="http://forum.xda-developers.com/showthread.php?t=747598">UniversalAndroot</a>. Recuerda que puedes instalar aplicaciones con adb usando <em>adb install aplicación.apk</em></p>
+</li>
+<li>
+<p>Haz copia de seguridad con una aplicación como Titanium Backup o Mybackup … instalables desde el Market.</p>
+</li>
+<li>Instala el recovery. A mi la versión de ClockModRecovery que <a href="http://wiki.cyanogenmod.com/wiki/HTC_Tattoo:_Full_Update_Guide#Installing_the_ClockworkMod_Recovery">está enlazada en las instrucciones</a> me dió problemas. Descargué otra versión distinta de algún sitio que no recuerdo, y al que llegué buscando el error que me daba al intentar instalarlo.</li>
+<li>Apaga el teléfono y vuelve a encenderlo en modo recovery: botón de encendido + botón teléfono (verde/descolgar) + botón casa (home)</li>
+<li>Ve a la opción de «backup and restore» y haz un backup. Dejará en un directorio de la SD clockwordmod/backup/fecha una copia de seguridad de tu ROM actual y tus datos. Enciende el teléfono en modo normal y copia esa carpeta al pc.</li>
+<li>
+<p>Llegamos al punto de no retorno. Si todavía quieres segir, enciende en modo Recovery y ejecuta las siguientes acciones:</p>
+</li>
+<li>
+<p>Wipe de datos</p>
+</li>
+<li>Wipe de caché</li>
+<li>Wipe de Dalvik Caché (en «Advanced»)</li>
+<li>Format / System (en «mounts and storage)</li>
+<li>
+<p>Factory Reset</p>
+</li>
+<li>
+<p>Sube al teléfono la ROM y las <a href="http://forum.cyanogenmod.com/topic/32485-cyanogenmod-7-for-the-htc-tattoo-v7101-10-oct-2011/">google apps</a>. Como ROM yo <a href="http://forum.xda-developers.com/showpost.php?p=22149109&amp;postcount=155">emplee un nightly build con buenas críticas en los foros</a>. Recuerda que puedes subirlas a la SD del teléfono con <em>adb push &lt;nombre_de_fichero&gt; /sdcard</em>.</p>
+</li>
+<li>Enciende en modo recovery y en instalar zip escoge primero la rom y luego las google apps. Escoge reboot y cruza los dedos.
+    La primera vez a mi me tardó en arrancar unos 3 o 4 minutos así que paciencia. Comprueba que todo funciona, GPS, Wifi, llamar etc … y listo. Acuerdate de configurar la red preferida, el punto de acceso, …</li>
+</ol>
+<h3 id="en-caso-de-problemas-con-la-bateria"><a class="toclink" href="../../2012/03/18/actualizar-la-version-de-antroid-de-un-htc-tattoo-ii-parte/#en-caso-de-problemas-con-la-bateria">En caso de problemas con la batería</a></h3>
+<p>Espera a haber hecho un par de recargas completas. Si tras eso sigue habiendo problemas:</p>
+<ol>
+<li>Cargala al 100% y déjala todavía un rato más</li>
+<li>Sin desconectar el teléfono se enciende en modo recovery</li>
+<li>Se hace un wipe de la batería</li>
+<li>Apágalo y desconectalo</li>
+<li>Enciende el teléfono, y no lo apagues ni lo reinicies hasta que la batería se descargue totalmente por si sóla</li>
+</ol>
+<p>Por otro lado, la ROM de Cyanogen viene con un launcher llamado ADW Launcher. Alguna gente opina que el que menos batería gasta es «Launcher Pro». Pero esto parece ser más bien para gustos.</p>
+<p>Y una cosa que no me ha quedado clara es si la ROM de Cyanogen por defecto hace overclock del procesador, es decir como si hiciera girar más rápido al reloj que marca al ritmo que debe funcionar el procesado (que no tiene nada que ver con la hora). Esto gasta batería y puede controlarse con una aplicación llamada SetUP. Si bajas la frecuencia el teléfono será menos responsivo pero disminuirá el consumo de batería.</p>
+<h3 id="el-resultado"><a class="toclink" href="../../2012/03/18/actualizar-la-version-de-antroid-de-un-htc-tattoo-ii-parte/#el-resultado">El resultado</a></h3>
+<div class="ngg-gallery-singlepic-image " style="max-width: 144px"> [ ![17032012027](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/cache/17032012027.jpg-nggid0216-ngg0dyn-320x240x100-00f0w010c010r110f110r010t010.jpg "17032012027") ](https://conocimientoabierto.es/wp-content/blogs.dir/16/files/galerias/enelblog/17032012027.jpg) </div>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2012-03-09 00:00:00+00:00">9 de marzo de 2012</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="paypal-cada-vez-me-mosquea-mas"><a class="toclink" href="../../2012/03/09/paypal-cada-vez-me-mosquea-mas/">PayPal cada vez me mosquea más</a></h2>
+<p>Hace poco hablaba por aquí de <a href="http://conocimientoabierto.es/paypal-onl-donaciones/447/">si estaba bien que PayPal fuera usado por una ONG</a> para donaciones y en principio me mostraba a favor, pero cada vez están haciendo más pequeñas cosas que no me gusta. Por ahora <a href="https://action.eff.org/o/9042/p/dia/action/public/?action_KEY=8515&amp;a">he firmado esta petición</a> para que dejen de hacer presión para que ciertos libros no puedan ser vendidos. <a href="http://elarte.lasindias.com/trueque-un-mundo-sin-dinero-y-sin-abundancia/">Está claro que nos hacen falta alternativas</a>.</p>
+    
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1233,60 +1328,6 @@ y para ejecutar un programa bajo eatmydata<br />
 <p>Integrar la <strong>pasarela de pago de la entidad bancaria</strong> con la que se trabaje habitualmente. La mayoría de entidades proporcionan pasarelas seguras para hacer los pagos. Por ejemplo aquí hay <a href="http://www.caixagalicia.es/wvio004_contenido/esp/asp/wvio004n_muestrafaqs.asp?i=1&amp;c=23">alguna información sobre el de nova caixa galicia</a>. Para <a href="http://www.triodos.es/">Triodos</a> que es la otra entidad con la que trabaja ESF no he encontrado información al respecto en la web.</p>
 <p>Usar una <strong>plataforma externa de crowdsorcing</strong>. Lo pongo aquí simplemente para dar la idea de que esto existe, porque está más ligado a obtener donaciones para proyectos concretos que para cosas generales.</p>
 <p>Y no puedo resistirme a mencionar <strong><a href="http://alt1040.com/2011/04/bitcoin-el-futuro-del-dinero-es-descentralizado">bitcoin</a></strong>. Está claro que no es lo que ESF necesita en este momento (me imagino la escena de explicarle a los auditores que es bitcoin), pero el apoyo a este tipo de iniciativas me parece una de las vías a seguir, si lo que queremos es que el mundo sea un lugar mejor para todos.</p>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2012-01-18 00:00:00+00:00">18 de enero de 2012</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="parad-la-sopa"><a class="toclink" href="../../2012/01/18/parad-la-sopa/">Parad la SOPA</a></h2>
-<p><a href="http://www.michaelgeist.ca/content/view/6244/125/">SOPA</a> es una ley que pretende aprobar el gobierno de EEUU manifiestamente en contra de la libertad en internet. Libertad con mayúsculas a fin de cuentas, puesto que lo digital es sólo otra parte más de nuestras vidas.</p>
-<p>Desde aquí <a href="http://sopastrike.com/">mi apoyo a los manifestantes</a> y me rechazo total a SOPA.</p>
-<p>Recuerdo que hace no demasiado tiempo <del>iniciativas</del> software como <a href="http://freenetproject.org/whatis.html">Freenet</a> o <a href="https://www.torproject.org/about/overview.html.en">TOR</a> me parecían propios de paranóicos… Ahora no lo tengo tan claro.</p>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2012-01-07 00:00:00+00:00">7 de enero de 2012</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="deduccion-por-vivienda"><a class="toclink" href="../../2012/01/07/deduccion-por-vivienda/">Deducción por vivienda</a></h2>
-<p>Me ha parecido bastante interesante este artículo que he leído sobre la <a href="http://www.fedeablogs.net/economia/?p=17288">deducción por compra de vivienda</a> así que copio&amp;pego aquí lo más interesante añadiendo algún comentario de cosecha propia.</p>
-<p>La deducción por vivienda se introdujo en 1979. Se amplió en 1999 y se redujo mucho en 2011. En 2012 volvió a aumentarse a los niveles del 99, pero esta es una <strong>mala idea</strong> por que:</p>
-<ul>
-<li>En 2008 supuso una cantidad similar a toda la inversión pública en I+D (6140 millones, 0.6%PIB). ¿Queremos construcción o investigación?</li>
-<li>Tal y como está redactada es regresiva, son únicamente las rentas más altas las que tienen suficiente capacidad adquisitiva para conseguir la máxima deducción permitida por la Ley (es decir, son estos lo que tienen suficientes recursos para conseguir optimizar fiscalmente al máximo)</li>
-<li>En 2011 en España el 81% de las familias tiene una vivenda en propiedad frente al 64% de la media Europea. El empleo de la vivienda en propiedad como un activo alimenta la creación de burbujas especulativas. La experiencia internacional dice además que la vivienda en propiedad reduce los incentivos de los trabajadores a mudarse de un lugar a otro por motivos laborales y esta reducción en la movilidad tiene efectos negativos sobre la tasa de paro</li>
-<li>Además existe un amplio consenso entre los economistas y los organismos internacionales (IMF y OCDE) en el hecho de que aumentar las deducciones por vivienda tiene un efecto directo en la subida del precio de esta. Si puedo pagar 100u por una vivienda y me subvencionan el 10% de esta, me da igual que la vivienda suba a 110, porque yo seguiré queriéndola y podré seguir pagándola por lo que la comprare.</li>
-<li>Las deducciones sólo benefician a los promotores que podrán venderlas a precios más elevados, y a las entidades financieras que estén muy expuestas al sector inmobiliario</li>
-</ul>
     
     
   </div>

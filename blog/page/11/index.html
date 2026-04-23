@@ -1042,6 +1042,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#video-aplicaciones-en-tiempo-real-con-python-y-postgres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video: Aplicaciones en tiempo real con python y postgres
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comentarios-al-articulo-de-complejidad-y-reversibilidad-de-kent-beck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comentarios al artículo de Complejidad y Reversibilidad de Kent Beck
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#libro-ready-player-one" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1074,28 +1096,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#buscando-ordenador-portatil-micros" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Buscando ordenador portátil &#8211; Micros
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#buscando-un-portatil-impresiones-sacadas-de-foros-y-reviews" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Buscando un portátil &#8211; Impresiones sacadas de foros y reviews
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1110,6 +1110,101 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2015-08-25 00:00:00+00:00">25 de agosto de 2015</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="video-aplicaciones-en-tiempo-real-con-python-y-postgres"><a class="toclink" href="../../2015/08/25/video-aplicaciones-tiempo-real-python-postgres/">Video: Aplicaciones en tiempo real con python y postgres</a></h2>
+<iframe allowfullscreen="" frameborder="0" height="315" loading="lazy" src="https://www.youtube.com/embed/PsorlkAF83s?rel=0" width="420"></iframe>
+
+<p>Una charla de como montar aplicaciones en tiempo real con python y postgres. Tiempo real entendido como notificaciones de un chat, hacer algo cada vez que se actulice una tabla de la bd etc,…</p>
+<p>El vídeo se hace un poco largo, seguramente con las transparencias llegaba para hacerse una idea general. Pero aún así se hace interesante por alguna de las técnicas que emplea:</p>
+<ul>
+<li>Aboga por no usar frameworks en python. Con las librerías de hoy en día es sencillo montar una API Rest gestionando las llamadas de bajo nivel directamente</li>
+<li>Usa las funciones de postgres de LISTEN y NOTIFY que combinadas con un trigger permiten que código cliente (psycopg2) sean notificados cuando algo pasa en la base de datos (se modifica una fila o lo que sea) y actuén en consecuencia (provocar un cambio en el navegador mediante websockets)</li>
+<li>Para simplificar la API y el diseño de la bd, los datos se guardan como tipos nativos postgres (varchar, boolean,…), y se usa la función de postgres row_to_json para recuperarlos una cadena de texto con formato json.</li>
+<li>Usa <a href="https://github.com/jkbrzt/httpie">httpie</a> para probar la API Rest. Si alguna vez usaste <a hre="http://www.codingpedia.org/ama/how-to-test-a-rest-api-from-command-line-with-curl/">curl</a> para esto enseguida verás que está bien conocer httpie.</li>
+<li>A pesar de que la idea principal de la charla es montar una aplicación en tiempo real con el mínimo número de dependencias (complejidad) el proceso de build que monta no parece trivial. pip para dependencias en python, nodeenv (una especie de entorno virtual para node que se integra con el virtualenv de python), bower para las dependencias javascript de cliente,… Todo ello orquestrado por un Makefile.</li>
+<li>No muestra como hacer la parte del frontend, pero en todo caso <a href="https://bitbucket.org/btubbs/todopy-pg">el código está en su repo</a></li>
+</ul>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2015-08-09 00:00:00+00:00">9 de agosto de 2015</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="comentarios-al-articulo-de-complejidad-y-reversibilidad-de-kent-beck"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/">Comentarios al artículo de Complejidad y Reversibilidad de Kent Beck</a></h2>
+<p><a href="http://nosolosoftware.com/">Andrés</a> me pincha para que lea y comente <a href="http://nosolosoftware.com/complejidad-y-reversibilidad/">el último post de Kent Beck</a> en su <em>muro de facebook</em>. Como todo lo que escribe Beck hay que leerlo con atención y se pueden sacar lecciones interesantes. Pero este artículo en particular se me hace complicado de leer porque creo que mezcla demasiadas cosas a la vez. Comienza con una teoría general sobre sistemas complejos y luego salta a prácticas concretas de facebook para atajarla en distintos estadios del desarrollo sin pararse a explicar que técnicas tienen sentido en según que contextos. Analicémoslo por tanto atendiendo al artículo como dos partes separadas.</p>
+<h3 id="complejidad-y-software"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/#complejidad-y-software">Complejidad y Software</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Programming_complexity">Software complexity</a> es un término con definición propia en el mundo académico. En la práctica todo desarrollador tiene una noción intuitiva de que es complejidad y <a href="http://nosolosoftware.com/compilaciones/del-software/#principles">debería tener como principio el atajarla</a>. Beck explica alguno de los elementos de la complejidad y cuales de ellos se puede intentar mantener bajo control en un producto como facebook. La cuestión es, si en otro tipo de productos software se puede o tiene más sentido atacar otro frente distintos al de la irreversibilidad. Personalmente se escapa de mis conocimientos esta reflexión pero apunto algunos elementos para el debate:</p>
+<ul>
+<li>Estados. Atendiendo al producto como un todo (hardware, acciones del usuario, red,..) seguramente será difícil de atajar. Si nos quedamos con las acciones (interacción) del usuario me recuerda a la diferenciación entre <a href="http://nosolosoftware.com/glosario/mapa-vs-camino/">mapa y camino</a> de la que se reapropió Andrés <a href="http://nosolosoftware.com/bill-verplank/">atendidendo a Verplank</a>.</li>
+<li>Interdependencias. <a href="https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a>, KIS, Patrones, Modularidad o cualquier <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=331531">práctica de buen diseño</a> entiendo que ayuda a disminuirla a no ser que se me escape algo.</li>
+<li>Incertidumbre. Supongo que es el más complicado. Usuarios usando la aplicación en formas no previstas. Requisitos cambiantes,…</li>
+<li>Irreversibilidad. Nada que decir, es en el que se centra Beck.</li>
+</ul>
+<h3 id="atajar-la-irreversibilidad"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/#atajar-la-irreversibilidad">Atajar la Irreversibilidad</a></h3>
+<p>La segunda parte del artículo habla de algunas de las técnicas que usan en Facebook para combatirla. Algunas pueden ser consideradas de <em>modernas</em> como el Frequent Pushes (¿<a href="http://www.thoughtworks.com/continuous-delivery">Continuous Delivery</a>?) y otras como el Code Review llevan con nosotros mucho tiempo. Beck las enumera todas juntas pero creo que intentar ponerlas bajo una clasificación más o menos habitual en factorías de software tradicionales puede ayudar a decidir cuales pueden ser aplicables en cada caso. Dejo fuera (IRC y Data-informed decisions)</p>
+<ul>
+<li>Desarrollo</li>
+<li>Development servers</li>
+<li>Code review</li>
+<li>Correlation</li>
+<li>Pre-Producción / Testing</li>
+<li>Internal usage</li>
+<li>Staged rollout</li>
+<li>Advance countries</li>
+<li>Shadow production</li>
+<li>Producción</li>
+<li>Frequent pushes</li>
+<li>Soft launches</li>
+<li>Dynamic configuration</li>
+<li>Right hand side units</li>
+<li>Double write/bulk migrate/double read</li>
+</ul>
+<p>Sin duda algunas de las técnicas como Staged Rollout es discutible en que fase van y son clasificables bajo esta óptica. La idea de intentar clasificarlas es sólo para poder compararlas con una forma de trabajo que nos resulte más cercana para a partir de ahí ver cuales podemos empezar a aplicar y en que punto de nuestro proceso.</p>
+<h3 id="que-puedo-aplicar-y-como-si-no-soy-facebook"><a class="toclink" href="../../2015/08/09/comentarios-articulo-complejidad-reversibilidad-kent-beck/#que-puedo-aplicar-y-como-si-no-soy-facebook">Qué puedo aplicar y cómo si no soy Facebook</a></h3>
+<p>Más que técnicas concretas en realidad lo que Beck plantea es una cultura (o dos). El Desarrollo Ágil y el DevOp. Intentar aplicar alguna de sus estrategias de forma separada sin abrazar la filosofía subyacente creo que sólo produce desgaste. Con esto no quiero decir que tengas que hacer <em>pair programming</em> y tener un <em>devop</em> en tu equipo, pero sí al menos comprender que hay valor en los principio que proponen.</p>
+<p>Para mi los pasos en ese camino son tres: Tests, Automatización y Monitorización.</p>
+<p><strong>Monitorización</strong>. Si no estás midiendo lo que sucede rendimiento, comportamiento de usuarios, … saber lo que está pasando o cuando un cambio no tiene el efecto previsto.</p>
+<p><strong>Automatización</strong>. Si hacer un despliegue es costoso e implica varios pasos, se harán pocos , se tardará más tiempo en tener feedback, se introducen más posibilidades de error y no hablemos de lo que supone revertir un mal cambio. Si no se automatizan los procesos se vuelve más complicado que todos los desarrolladores tengan el mismo entorno y este sea parecido a producción.</p>
+<p><strong>Tests</strong>. Probablemente la piedra angular. Estoy leyendo <em>Working Effectively with Legacy Code</em>, y en los primeros capítulos expone algunas cuestiones sobre tests que tienen relevancia para la «reversibilidad». En el libro comparan trabajar sin tests a hacer acrobacias sin red, y expone dos formas de introducir cambios en un sistema.</p>
+<blockquote>
+<p>Changes in a system can be made in two primary ways. I like to call them Edit and Pray and Cover and Modify. Unfortunately, Edit and Pray is pretty much the industry standard. When you use Edit and Pray, you carefully plan the changes you are going to make, you make sure that you understand the code you are going to modify, and then you start to make the changes. When you’re done, you run the system to see if the change was enabled, and then you poke around further to make sure that you didn’t break anything. The poking around is essential. When you make your changes, you are hoping and praying that you’ll get them right, and you take extra time when you are done to make sure that you did.<br />
+Superficially, Edit and Pray seems like “working with care,” a very professional thing to do. The “care” that you take is right there at the forefront, and you expend extra care when the changes are very invasive because much more can go wrong. But safety isn’t solely a function of care. I don’t think any of us would choose a surgeon who operated with a butter knife just because he worked with care. Effective software change, like effective surgery, really involves deeper skills. Working with care doesn’t do much for you if you don’t use the right tools and techniques.<br />
+Cover and Modify is a different way of making changes. The idea behind it is that it is possible to work with a safety net when we change software. The safety net we use isn’t something that we put underneath our tables to catch us if we fall out of our chairs. Instead, it’s kind of like a cloak that we put over code we are working on to make sure that bad changes don’t leak out and infect the rest of our software. Covering software means covering it with tests. When we have a good set of tests around a piece of code, we can make changes and find out very quickly whether the effects were good or bad. We still apply the same care, but with the feedback we get, we are able to make changes more carefully.</p>
+</blockquote>
+<p>En esencia, durante el desarrollo tener tests te permite probar y si no funciona revertir a coste casi cero. En producción el coste de revertir no es cero (al menos sin aplicar otras de las técnicas mencionadas) pero al menos te permite detectar errores de forma temprana.</p>
+    
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1232,146 +1327,6 @@
 <li>Si alguna review de alguno de los modelos que quedan aporta algo muy negativo que lo descarte o algo muy positivo que le de puntos sobre los más económicos</li>
 </ul>
 <h3 id="resto-de-articulos-de-esta-serie"><a class="toclink" href="../../2015/03/21/buscando-portatil-listado-de-candidatos-entre-900-y-1150e/#resto-de-articulos-de-esta-serie">Resto de artículos de esta serie</a></h3>
-<ul>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-programar/752/">Buscando un portátil para programar</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">Buscando un portátil – Impresiones sacadas de foros y reviews</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-ordenador-portatil-micros/764/">Buscando ordenador portátil – Micros</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-listado-de-candidatos-entre-900-y-1150e">Buscando un portátil – Listado de candidatos entre 900 y 1150€</a></li>
-</ul>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-03-10 00:00:00+00:00">10 de marzo de 2015</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="buscando-ordenador-portatil-micros"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/">Buscando ordenador portátil &#8211; Micros</a></h2>
-<p>En el <a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">último artículo</a> veiamos que para encontrar un ordenador portátil adecuado (en rendimiento y presupuesto) uno los factores más importantes era el micro. Centrándonos en los Intel, la <a href="http://en.wikipedia.org/wiki/Intel_Core">wikipedia nos da un buen punto de entrada</a>. Lo primero a saber es que existen varias generaciones.</p>
-<ul>
-<li>La 5 generación de nombre Broadwell (o Intel Core 5th Gen) salió (aproximadamente) en Enero de 2015 y utiliza tecnología de 14nm</li>
-<li>La 4 generación de nombre Haswell (o Intel Core 4th Gen) salieron en Junio de 2013 y utiliza tecnología de 22nm</li>
-<li>La 3 generación lleva por nombre Ivy Bridge y es de 2012 así que la descartamos en el análisis.</li>
-<li>Por el medio tenemos el Haswell-E (Agosto de 2014) y el Ivi Bridge-E (Septiembre de 2013) de los que sólo hay versiones i7 también en 22nm.</li>
-</ul>
-<p>Hasta donde he podido entender a pesar de ser un logro tecnológico importante <a href="http://www.trustedreviews.com/opinions/intel-s-14nm-revolution-everything-you-need-to-know">hasta finales de año probablemente no tenga mucho sentido comprar un ordenador con micro de 5 generación</a>. Tras la generación la forma de clasificarlos es por «familia» o «gama» (o «product line»). Donde las fundamentales para portátiles como el que buscamos serían:</p>
-<ul>
-<li>i3. Los de gama baja.</li>
-<li>i5. Gama media. En versón mobile, tienen 3M de cache, 2 cores y TDP de entre 11.5 y 47 con muy pocos siendo de 47.</li>
-<li>i7. Gama alta. En versión mobile, tienen entre 4 y 8M de cache, los hay de 2 y de 4 cores y TDP de entre 11.5 y 47 siendo la mayoría de 47.</li>
-</ul>
-<p>Tanto los i5 como los i7 tienen Hyperthreading, Virtualización por hardware (VT-x) y Turbo Boost. Hay otras tecnologías (menos importantes para nuestro caso) como <a href="https://software.intel.com/en-us/blogs/2009/06/25/understanding-vt-d-intel-virtualization-technology-for-directed-io">VT-d</a> que dependen del modelo concreto y no de ser i5 o i7. Además hay que tener en cuenta que en algunos portátiles se montan micros de desktop y no de mobile. Por ello al final es necesario consultar las <a href="http://ark.intel.com/">características concretas de cada micro</a>. Para orientarnos con los modelos es bueno saber que suelen tener cuatro números y a continuación 1 o más letras. El primero de los números hace referencia a la generación, y las letras del final depende. Si son:</p>
-<ul>
-<li><a href="http://www.pugetsystems.com/labs/articles/Introduction-to-Intel-S-series-Processors-617/">K, X, S o T se refieren a modificaciones concretas sobre el micro</a></li>
-<li>Una M significa que es versión mobile con dos cores (aunque puede tener otro sufijo en lugar de la M y ser mobile igual)</li>
-<li>MQ o HQ significa que es mobile pero tiene cuatro cores. La <a href="http://forum.notebookreview.com/threads/hq-vs-mq-processors.765365/">diferencia entre HQ y MQ</a> es que los HQ van soldados a la placa (más difíciles de cambiar por tanto, pero mi impresión es que ligeramente superiores para el mismo modelo) y los MQ no.</li>
-<li>U e Y significa que son pensados para ultrabooks porque tienen un menor consumo. Y menor consumo que U</li>
-</ul>
-<p>Por ejemplo un <a href="http://ark.intel.com/products/76349/Intel-Core-i7-4600M-Processor-4M-Cache-up-to-3_60-GHz">i7-4600M</a>, es un i7 de cuarta generación mobile con dos cores mientras que un <a href="http://ark.intel.com/products/83505/Intel-Core-i7-4770HQ-Processor-6M-Cache-up-to-3_40-GHz">i7-4770HQ</a> es un i7 de cuarta generación mobile con 4 cores. <a href="http://ark.intel.com/compare/76611,81016,81012,78929">Otro ejemplo</a>, un i5-4210Y consumirá menos que un i5-4210U que consumirá menos que un i5-4210M. Pero generalmente a menor consumo también menor velocidad de reloj y peor rendimiento.</p>
-<h3 id="gpu"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/#gpu">GPU</a></h3>
-<p>Los micros actuales llevan «incluida» una tarjeta gráfica en el propio micro, y por tanto sería algo a considerar a la hora de escoger micro pero por ahora vamos a obviarlo.</p>
-<h3 id="conclusiones"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/#conclusiones">Conclusiones</a></h3>
-<p>Lo que hemos visto en este artículo nos permite identificar a grandes rasgos las diferencias entre un micro y otro. Pero la pregunta más importante a resolver es al final si escoger un i7 con cuatro cores o un i5 con dos. Entender si para un caso concreto como el de escoger un ordenador para desarrollo es <a href="http://create.pro/blog/need-lots-cores-faster-cpu-clock-speed-cores-ghz-multi-threading-hyper-threading-explained/">mejor más cores o más velocidad de reloj</a> es algo que resulta difícil de responder. ¿Alguna opinión? Pero teniendo varias aplicaciones, incluidos servidores y máquinar virtuales funcionando a la vez, sin ser ninguno de los procesos muy intensivos, parece lógico pensar que más cores aunque sea reduciendo la velocidad es la decisión acertada. Para tratar de reducir el precio en la <a href="http://ark.intel.com/">página de intel</a> vemos que los modelos i7 del <a href="http://ark.intel.com/compare/75116,75117,75118,75119,78930,78931,78932,78933,78934,78935">470x al 472x</a> serían buenas opciones, aunque como siempre al final dependerá de como cada fabricante monte el portátil.</p>
-<h3 id="referencias"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/#referencias">Referencias</a></h3>
-<ul>
-<li><a href="http://www.pugetsystems.com/labs/articles/Haswell-Core-i3-vs-i5-vs-i7-Which-is-right-for-you-475/">Haswell Core i3 vs. i5 vs. i7 – Which is right for you?</a>. Los comentarios son interesantes también.</li>
-<li><a href="http://www.pugetsystems.com/labs/articles/Specs-Explained-CPU-137/#SmartCache">Se queda algo viejo pero explica algunos términos como TDP</a></li>
-<li><a href="http://www.pcmag.com/article2/0,2817,2404674,00.asp">Which CPU Should You Buy? Comparing Intel Core i5 vs. i7</a></li>
-</ul>
-<h3 id="resto-de-articulos-de-esta-serie"><a class="toclink" href="../../2015/03/10/buscando-ordenador-portatil-micros/#resto-de-articulos-de-esta-serie">Resto de artículos de esta serie</a></h3>
-<ul>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-programar/752/">Buscando un portátil para programar</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">Buscando un portátil – Impresiones sacadas de foros y reviews</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-ordenador-portatil-micros/764/">Buscando ordenador portátil – Micros</a></li>
-<li><a href="http://conocimientoabierto.es/buscando-portatil-listado-de-candidatos-entre-900-y-1150e">Buscando un portátil – Listado de candidatos entre 900 y 1150€</a></li>
-</ul>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2015-03-09 00:00:00+00:00">9 de marzo de 2015</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="buscando-un-portatil-impresiones-sacadas-de-foros-y-reviews"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/">Buscando un portátil &#8211; Impresiones sacadas de foros y reviews</a></h2>
-<p>Tras pensar un poco en los requisitos que debería cumplir mi futuro portátil una búsqueda en <a href="https://duckduckgo.com/">DuckDuckgo</a> y google usando combinaciones de palabras entre <em>best</em>, <em>laptop</em>, <em>linux</em>, <em>2014</em>, <em>2015</em>, <em>programmer</em>, <em>developer</em>,… Dan un montón de enlaces para hacerse una idea general del mercado y ajustar requisitos.</p>
-<p>Sacando de la lista los de 17 pulgadas, compañías que no venden en España, y los que tienen hilos en los que se quejan claramente del funcionamiento en linux. Los más populares parecen ser:</p>
-<ul>
-<li>En ultrabooks, la Serie T (<a href="http://www.laptopmag.com/reviews/laptops/lenovo-thinkpad-t440s">T440</a> por ejemplo) o S (<a href="http://www.quora.com/What-is-the-best-laptop-for-a-programmer/answer/Karoly-Negyesi">S220</a> por ejemplo) de Thinkpad, y en menor medida también los Yoga y la serie X (especialmente el X1 Carbon y el <a href="http://www.laptopmag.com/reviews/laptops/lenovo-thinkpad-x240">x240</a>). Pero hay que tener cuidado con <a href="https://news.ycombinator.com/item?id=8673783">con</a> algunos modelos cuya distribución de teclado es bastante mala. Yéndose a un <a href="http://www.thinkwiki.org/wiki/ThinkWiki">thinkpad con linux esta página</a> puede ser de ayuda.</li>
-<li>Tras los ultrabook de Thinkpad el entusiasmo parece recaer en <a href="http://www.dell.com/es/empresas/p/xps-13-linux/pd">Dell XPS 13 Developer Edition con Ubuntu preinstalado</a>. Lo <a href="http://www.zdnet.com/article/dell-xps-13-laptop-the-ubuntu-developer-edition-arrives/">más leído</a> es que es muy parecido en rendimiento y prestaciones a los MacBook. Pero en la web de Dell ya no parece disponible.</li>
-<li>En cuanto a worksation de los mejor valorados está el <a href="http://shop.lenovo.com/es/es/laptops/thinkpad/w-series/w540/">Thinkpad W540</a>, que con una docking station y la nueva tecnología de puerto Thunderbolt permitiría conectar varios monitores. El punto negativo es que lleva una nvdia con tecnología optimus a la que por ahora <a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus">no se puede sacar mucho partido en linux</a> por lo que hay que quedarse con la <a href="http://www.ubuntu.com/certification/hardware/201308-14114/">intel integrada</a>. Y no es precisamente barato.</li>
-<li>Otras workstation bien valoradas con ventajas y contras parecidos al W540 son el <a href="http://www8.hp.com/us/en/campaigns/workstations/zbook-15.html">HP Zbook 15</a> y el Dell precision m3800 developer edition con <a href="http://www.zdnet.com/article/dell-offers-new-ubuntu-linux-workstation-laptop/">ubuntu preinstalado</a>.</li>
-<li>En portátiles con Linux preinstalado la compañía system76 tiene productos interesantes como el <a href="https://system76.com/cart/configure/gazp9">Gazelle Professional</a>, pero con los gastos de envio y aduanas puede complicarse un poco</li>
-<li>En el sector medio, están el <a href="http://shop.lenovo.com/es/es/laptops/lenovo/y-series/y50/">lenovo Y50</a>. La línea de Asus N550JK (como el DS71T). Los Asus S551LN (como el <a href="http://www.pccomponentes.com/asus_s551ln_i7_4500u_8gb_1tb_24_gb_ssd_gt840m_15_6__tactil.html">4500U</a>) que si se puede comprar con 16 GB de RAM tiene muy buena pinta.</li>
-</ul>
-<h3 id="otras-consideraciones"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#otras-consideraciones">Otras consideraciones</a></h3>
-<p>Si se quiere meter más criterios en la búsqueda:</p>
-<ul>
-<li>Se puede tener en cuenta la <a href="http://www.greenpeace.org/international/en/Guide-to-Greener-Electronics/18th-Edition/Introduction/">lista verde de fabricantes de hardware de greenpeace</a> u <a href="http://sustainability.stackexchange.com/a/2927">otras guías</a>. En la de Greenpeace HP y Acer ocupan las primeras posiciones, Toshiba en las últimas y Lenovo y Dell en el medio. Y en la de minerales en conflicto HP de nuevo en las primeras, Acer y Dell en el medio, y Lenovo y Toshiba abajo.</li>
-<li>Tras meter <a href="http://arstechnica.com/security/2015/02/lenovo-pcs-ship-with-man-in-the-middle-adware-that-breaks-https-connections/">software espia</a> en sus ordenadores (no en la línea thinkpad) gente como <a>Martin Fowler piensa que le debería pasar factura</a>.</li>
-</ul>
-<h3 id="impresiones-generales"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#impresiones-generales">Impresiones generales</a></h3>
-<p>Revisando foros y reviews me quedo con algunas ideas, basadas en impresiones personales y seguramente poco objetivas y sesgadas por las páginas en las que entré.</p>
-<ul>
-<li>Para tener menos problemas en linux se prefiere Intel y Nvidia sobre Amd y Ati. Aunque las nvidia con tecnología optimus tampoco funcionan bien ahora.</li>
-<li>También hay que tratar de evitar Broadcom en chipset para wireless.</li>
-<li>Los discos duros SSD parecen gustar, o al menos combinar un SSD pequeño con otro magnético y se recomienda irse a 16GB de RAM</li>
-<li>No escoger ninguna resolución de pantalla por debajo de 1366×768</li>
-<li>En cuanto a fabricantes en los reviews de revistas Lenovo y Dell parecen los más recomendados y luego HP y Asus. En los foros Lenovo, Asus y MSI aparecen bastante, y con Dell y HP hay opiniones contrapuestas, hay a quien le gustan mucho y quien ha tenido muy malas experiencias</li>
-</ul>
-<h3 id="conclusiones"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#conclusiones">Conclusiones</a></h3>
-<p>Es bastante complicado escoger un ordenador simplemente en base a las reviews y las opiniones. Para acertar con lo que se necesita manteniendo un precio lo más bajo posible, como mínimo hay que conocer los diferentes micros.</p>
-<p>En general las reviews y los foros parecen bastantes inclinados hacia las gama alta y los ultraportátiles cuando en general, sobre todo si esperas una vida útil para un ordenador de trabajo de 4 o 5 años. Pudiendo luego reciclarse el ordenador hacia usuarios con menos requisitos y comprar otro de gama media para otro ciclo de trabajo.</p>
-<p>Al principio valoraba mucho tener 1 Tb de disco duro, ahora me inclino más hacia un SSD de 500GB o un SSD pequeño y otro magnético mayor o incluso uno externo.</p>
-<h3 id="referencias"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#referencias">Referencias</a></h3>
-<ul>
-<li><a href="http://www.toplaptopreview.com/5-best-laptop-for-programming-and-coding/">http://www.toplaptopreview.com/5-best-laptop-for-programming-and-coding/</a></li>
-<li><a href="http://www.makeuseof.com/tag/three-awesome-linux-laptops-can-buy-right-now/">http://www.makeuseof.com/tag/three-awesome-linux-laptops-can-buy-right-now/</a></li>
-<li><a href="https://news.ycombinator.com/item?id=8673709">https://news.ycombinator.com/item?id=8673709</a></li>
-<li><a href="https://news.ycombinator.com/item?id=7684775">https://news.ycombinator.com/item?id=7684775</a></li>
-<li><a href="http://www.laptopmag.com/best-laptops">http://www.laptopmag.com/best-laptops</a></li>
-<li><a href="http://www.techradar.com/news/mobile-computing/laptops/top-laptops-25-best-laptops-in-the-world-706673">http://www.techradar.com/news/mobile-computing/laptops/top-laptops-25-best-laptops-in-the-world-706673</a></li>
-<li><a href="http://www.extremetech.com/computing/175393-best-laptops-for-engineers-when-work-requires-a-real-workstation">http://www.extremetech.com/computing/175393-best-laptops-for-engineers-when-work-requires-a-real-workstation</a></li>
-<li><a href="http://www.reddit.com/r/archlinux/comments/20knkf/good_laptops_for_linux/">http://www.reddit.com/r/archlinux/comments/20knkf/good_laptops_for_linux/</a></li>
-<li><a href="http://www.tomsguide.com/answers/id-2457755/good-programming-laptop.html">http://www.tomsguide.com/answers/id-2457755/good-programming-laptop.html</a></li>
-<li><a href="http://www.quora.com/What-is-the-best-laptop-for-a-programmer">http://www.quora.com/What-is-the-best-laptop-for-a-programmer</a></li>
-<li><a href="http://www.pcworld.com/article/2462654/the-10-best-laptops-of-2014-so-far.html">http://www.pcworld.com/article/2462654/the-10-best-laptops-of-2014-so-far.html</a></li>
-<li><a href="http://www.pcmag.com/article2/0,2817,2369981,00.asp">http://www.pcmag.com/article2/0,2817,2369981,00.asp</a></li>
-<li><a href="http://www.pcpro.co.uk/laptops/6923/best-laptops-of-2015-the-18-best-laptops-in-the-uk">http://www.pcpro.co.uk/laptops/6923/best-laptops-of-2015-the-18-best-laptops-in-the-uk</a></li>
-<li><a href="http://www.makeuseof.com/tag/three-awesome-linux-laptops-can-buy-right-now/">http://www.makeuseof.com/tag/three-awesome-linux-laptops-can-buy-right-now/</a></li>
-</ul>
-<h3 id="recomendadores-y-certificaciones-linux-para-portatiles"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#recomendadores-y-certificaciones-linux-para-portatiles">Recomendadores y «certificaciones» linux para portátiles</a></h3>
-<ul>
-<li><a href="http://blog.laptopmag.com/laptop-finder">Laptop Finder</a></li>
-<li><a href="http://www.ubuntu.com/certification/desktop/models/?query=&amp;category=Laptop&amp;release=14.04+LTS&amp;level=Any">Certificaciones de Ubuntu</a></li>
-<li><a href="http://www.linlap.com/laptops">The linux laptop wiki</a></li>
-<li><a href="http://www.linux-on-laptops.com/">Linux on laptops</a></li>
-</ul>
-<h3 id="resto-de-articulos-de-esta-serie"><a class="toclink" href="../../2015/03/09/buscando-portatil-impresiones-foros-reviews/#resto-de-articulos-de-esta-serie">Resto de artículos de esta serie</a></h3>
 <ul>
 <li><a href="http://conocimientoabierto.es/buscando-portatil-programar/752/">Buscando un portátil para programar</a></li>
 <li><a href="http://conocimientoabierto.es/buscando-portatil-impresiones-foros-reviews/760/">Buscando un portátil – Impresiones sacadas de foros y reviews</a></li>

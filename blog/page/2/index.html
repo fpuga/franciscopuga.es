@@ -1042,6 +1042,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#coding-agentes-commands-en-cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coding Agentes: Commands en Cursor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-agentes-funcionalidades-de-inyeccion-de-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coding Agentes: Funcionalidades de "inyección de contexto"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lint-y-format-para-markdown-rumdl" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1074,28 +1096,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#bash-variables-indefinidas-unset-vs-vacias-empty" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bash: Variables indefinidas (unset) vs vacías (empty)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#agentsmd-and-the-to-reference-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AGENTS.md and the @ to reference documents
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1110,6 +1110,195 @@
       <header class="md-typeset">
         <h1 id="index">Index</h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-03-19 22:00:00+00:00">19 de marzo de 2026</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="coding-agentes-commands-en-cursor"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/">Coding Agentes: Commands en Cursor</a></h2>
+<details class="info">
+<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
+<ol>
+<li><a href="../../2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
+<li><a href="../../2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
+<li><a href="../../2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
+<li><a href="../../2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
+<li><a href="../../2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
+</ol>
+</details>
+<p>En esté artículo nos centramos cómo funcionan los <em>commands</em> en Cursor. Las pruebas han sido hechas sobre la versión 2.5.</p>
+<p>Saber que hace Cursor <em>under the hood</em> es muy difícil. He probado con HTTP Toolkit pero es difícil de saber que información se envía realmente. Así que no va a ser un proceso científico sino basado en un par de pruebas y en la documentación.</p>
+<p>Los commands se introdujeron en <a href="https://cursor.com/changelog/1-6">septiembre de 2025</a> y recomiendan <a href="https://cursor.com/help/customization/skills#how-do-i-migrate-commands-to-skills">substituirlos por skills</a> desde <a href="https://cursor.com/changelog/2-4">enero de 2026</a>.</p>
+<p>Prácticamente han eliminado toda la documentación referida a los commands:</p>
+<ul>
+<li>Sólo queda una <a href="https://cursor.com/docs/reference/plugins#commands-format">nota sobre su formato</a> cuando hablan de crear plugins.</li>
+<li>El artículo <a href="https://cursor.com/blog/agent-best-practices#git-workflows">Best practices for coding agents</a> (de 9 de enero) da una pista de cual es el caso de uso para los <em>commands</em> según Cursor.</li>
+</ul>
+<p>Los <em>commands</em> son:</p>
+<ul>
+<li>Ficheros markdown que pueden contener un frontmatter de <code>name</code> y <code>description</code>. Que no parece valer para nada.</li>
+<li>Van en el <code>.cursor/commands</code> del proyecto o de <code>~</code>. No busca en subdirectorios.</li>
+<li>Se invocan a demanda del usuario en el chat con <code>/nombre-del-comando</code></li>
+<li>Y una cosa chula es que son <em>composables</em>: <code>/check-compiler-errors and /commit, then create a /pr</code>.</li>
+</ul>
+<h3 id="cual-es-la-diferencia-con-las-reglas"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/#cual-es-la-diferencia-con-las-reglas">Cual es la diferencia con las reglas</a></h3>
+<p>Las reglas se usan:</p>
+<ul>
+<li>Siempre</li>
+<li>Bajo criterio del agente</li>
+<li>Cuando lo fuerza el usuario.</li>
+<li>Combinación de patrones sobre los nombres de archivos, criterio del agente, ...</li>
+</ul>
+<p>Los comandos funcionan estrictamente bajo demanda del usuario.</p>
+<p>Además en Cursor <a href="https://forum.cursor.com/t/commands-vs-rules-how-are-they-different/133796">parece haber cierta lógica interna</a> asociado al uso de un comando.</p>
+<p>Las reglas deberían usarse para definir estándares, <em>guidelines</em>, ... que el LLM debe seguir. En definitiva "reglas". Sería un <em>follow this rules when making a refactor</em></p>
+<p>Los comandos deberían usarse para pedir al LLM que lleve a cabo una acción y definir los pasos para ejecutarla. Sería un <em>make a refactor</em></p>
+<p>Por supuesto hay <em>overlap</em> pero al menos la intención debería ser clara.</p>
+<h3 id="cual-es-la-diferencia-con-las-skills"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/#cual-es-la-diferencia-con-las-skills">Cual es la diferencia con las skills</a></h3>
+<p>El metadata de las skill se carga siempre y el agente decide cuando usar una skill o puede ser forzado por el usuario.</p>
+<p>Las skills pueden ser muy complejas y encapsular scripts, ...</p>
+<p>Las skills en teoría son un estándar, mientras que los comandos no.</p>
+<p>Si hay alguna diferencia a nivel resultado de la ejecución <code>/commit</code> vs <code>skill/commit/SKILL.md</code> queda para artículos futuros.</p>
+<h3 id="hay-alguna-diferencia-con-referenciar-un-documento"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/#hay-alguna-diferencia-con-referenciar-un-documento">Hay alguna diferencia con referenciar un documento</a></h3>
+<p>Una de las cosas que más preocupan es cómo mantener <em>agent stuff</em> compatible entre herramientas. Así que, ¿hay alguna diferencia entre referenciar un documento en el chat con <code>@</code> y usar un comando?.</p>
+<p>Para comprobarlo he creado un fichero <code>refine-english.md</code></p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gh"># refine-english</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gu">## Task</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Refine the English prose in the provided file.
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">-</span><span class="w"> </span>Clarity: Simplify wording to be accessible for non-native speakers. Avoid flowery language.
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">-</span><span class="w"> </span>Correction: Fix all grammar, spelling, and punctuation errors.
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">-</span><span class="w"> </span>Constraint: Maintain the original structure and core intent. Focus strictly on clarity and consistency.
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="gu">## Output Instructions</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">-</span><span class="w"> </span>Agent must edit the file directly.
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">-</span><span class="w"> </span>In the agent chat response:
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="k">-</span><span class="w"> </span>Do not summarize minor edits. Only mention changes if they significantly alter the meaning.
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="k">-</span><span class="w"> </span>Refinements &amp; Critiques: Point out logical inconsistencies, suggest deeper structural improvements, or critique the overall flow.
+</span></code></pre></div>
+<p>Cuando lo uso cómo comando <code>/refine-english @mydoc.md</code>:</p>
+<ul>
+<li>Es muy directo (se ve en la cadena de pensamiento). Sabe que tiene que ejecutar unas instrucciones sobre un fichero.</li>
+<li>Sigue bien las instrucciones.<ul>
+<li>Algún documento tenía mezclaba inglés y español. Dejo el texto en castellano intacto y el chat lo indicó directamente "The document is mostly Spanish, consider ..." o veladas "Updated the English parts of ". Hay que estar fino para darse cuenta de "English parts".</li>
+<li>Había un cacho pequeño de código con un bug. Lo mencionó en la conversación pero no lo corrigió.</li>
+</ul>
+</li>
+</ul>
+<p>Cuando lo uso cómo referencia <code>@refine-english.md for @mydoc.md</code></p>
+<ul>
+<li>Se pasa un tiempo al inicio intentando interpretar que es lo que se está pidiendo.</li>
+<li>Varias veces que lo probé tuvo problemas aplicando parches. ¿Quizá sea porqué estaba en modo "Auto" y no escogió el modelo adecuado para la tarea?</li>
+<li>Directamente tradujo los textos a inglés en todas las ocasiones, y en alguna corrigió por su cuenta los errores en el código.</li>
+<li>Usa un 1% de contexto más (acorde al indicador del chat de cursor)</li>
+</ul>
+<p>Cuando lo uso cómo: <code>please do the tasks followed by @refine-english.md in document @mydoc.md</code></p>
+<ul>
+<li>El resultado se parece más al uso del comando y el % de contexto usado es similar.</li>
+<li>Cómo en la referencia decide por su cuenta traducir los textos en español</li>
+<li>Sin problemas aplicando los parches.</li>
+</ul>
+<p>Las pruebas anteriores era con el modelo en <code>Auto</code>. Al pasarlo a <code>Sonnet 4.6</code></p>
+<ul>
+<li>Las tres formas de usarlo traducen el texto a inglés.</li>
+<li>El contexto es similar pero un 4% superior a usarlo en modo <code>Auto</code>.</li>
+<li>Sin problemas aplicando los parches.</li>
+<li>Es difícil de determinar pero el modo comando parece seguir mejor las instrucciones, sobre todo en el formato de salida.</li>
+<li>En ninguno de los casos mencionó el bug en el código</li>
+</ul>
+<h3 id="conclusiones"><a class="toclink" href="../../2026/03/19/coding-agents-commands-cursor/#conclusiones">Conclusiones</a></h3>
+<p>En Cursor usar un comando (parece que) frente a referenciar un documento:</p>
+<ul>
+<li>Activa cierta lógica interna que consume menos tokens y sigue mejor las instrucciones.</li>
+<li>En modo <code>Auto</code> selecciona modelos distintos que con la referencia.</li>
+<li>No he notado mucha diferencia entre usar <code>@mydoc.md</code> y 'mydoc.md'.</li>
+<li>Influye más el modelo que usarlo cómo comando o cómo <code>@</code></li>
+</ul>
+<p>Este es uno de los mejores comentaros que he encontrado sobre cómo funcionan estas herramientas:</p>
+<div class="admonition quote">
+<p class="admonition-title"><a href="https://forum.cursor.com/t/skills-vs-commands-vs-rules/148875/9">Alexandros alexandrosandre</a>, en el foro de Cursor</p>
+<p>To my understanding you aren't missing anything. What helps myself get through this caos is the following simplified rationale "It is all a lie. Everything is just another prompt." Therefore your usage might not be standard or documented but can work just as fine.</p>
+<p>Not trying to be disrespectful at all with the "lie" here. Product is trying to name and build use cases and follow standards the best they can. And it’s tough.</p>
+<p>It just helps me understand that all we are doing is telling LLMs what to do in a prompt or where to find the longer instructions (aka prompt) to avoid filling up the context. The rest on top is a essentially looping/harnessing/if-this-then-that nothing else.</p>
+</div>
+<p>Teniendo en cuenta cómo funcionan las skills, <a href="../../2026/03/21/coding-agents-commands-claude/#agent-skills">los comandos son más bien innecesarios</a>.</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-03-19 14:00:00+00:00">19 de marzo de 2026</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="coding-agentes-funcionalidades-de-inyeccion-de-contexto"><a class="toclink" href="../../2026/03/19/coding-agents-features-for-context-injection/">Coding Agentes: Funcionalidades de "inyección de contexto"</a></h2>
+<details class="info">
+<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
+<ol>
+<li><a href="../../2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
+<li><a href="../../2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
+<li><a href="../../2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
+<li><a href="../../2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
+<li><a href="../../2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
+</ol>
+</details>
+<p>Los <em>coding agents</em> ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:</p>
+<ul>
+<li><strong>prompt</strong>: Ya sea <em>user prompt</em>, <em>system prompt</em>, ...</li>
+<li><strong>referencias</strong>: En el prompt también podemos pedir a la herramienta que incluya el contenido de un fichero con <code>@</code> o con instrucciones.<ul>
+<li>Los modelos y las herramientas son complejos. No se comportan todas igual, ni el mismo modelo hace siempre lo mismo. Tampoco es lo mismo referencia una imagen binaria que se suele hacer en peticiones distintas que un md.</li>
+<li>La forma en que la herramienta marca o incluye este contexto adicional también puede variar.</li>
+<li>El concepto de <a href="https://tweag.github.io/agentic-coding-handbook/WORKFLOW_MEMORY_BANK/">memory banks</a> encaja aquí y en <code>AGENTS.md</code></li>
+</ul>
+</li>
+<li><strong>AGENTS.md</strong>: Siempre introduce en el contexto el fichero en la raíz del repo. Algunas herramientas admiten ficheros en subdirectorios y los adjuntan cuando se accede a un fichero en ese directorio. Puede actuar cómo un <a href="../../2025/12/11/agents-md-and-at-character-to-reference-documents/">índice que adjunte otros documentos</a>:<ul>
+<li>Con <code>@</code>. Debería leerlo e incluirlo siempre.</li>
+<li>Condicionalmente mediante instrucciones <code>read 'testing.md' when writing tests</code></li>
+</ul>
+</li>
+<li><strong>commands</strong>: Escribimos en el chat <code>/fix-bug in my_file.py</code>, y envía al modelo <code>fix-bug.md</code> que está en una ruta predeterminada junto al resto del contexto.</li>
+<li><strong>rules</strong>: No todas las herramientas las tienen. Suelen ser ficheros md con un frontmatter que indica cuando se debe usar la regla. Es la herramienta y el modelo quien decide que reglas leer, pero el usuario puede forzarlo.</li>
+<li><strong>hooks</strong>: Las incluyo porqué son un buen substituto a ciertas instrucciones (estén donde estén). En lugar de `execute format.sh and lint.sh after making changes", un hook puede correrlos. De hecho las instrucciones pueden ser ignoradas y el hook no.</li>
+<li><strong>MCP</strong></li>
+<li><strong>Skills</strong>. Un directorio, en una ruta predefinida de la herramienta, que tiene dentro un fichero <code>SKILL.md</code> y otros <em>assets</em>. Tienen metadatos cortos de nombre y descripción que se inyectan siempre en el contexto. El LLM decide cuando una skill aplica en base a los metadatos o el usuario puede forzar su uso.<ul>
+<li>Hay un par de cosas que no me gustan de los skill. O que si se retocara la spec podrían ser un total substituto a los comandos. Los comandos se cargan y ejecutan exclusivamente bajo demanda del usuario. Las skills no.</li>
+<li><a href="https://agentskills.io/specification#progressive-disclosure">La spec</a> dice que los metadatos se cargan siempre.</li>
+<li>El LLM decide cuando cuando leer y aplicar la skill en base a la vaga descripción</li>
+<li>No se pueden tener "infinitas" skills. Para que el LLM no se lie decidiendo, y para no consumir contexto. A pongamos <a href="https://agentskills.io/client-implementation/adding-skills-support#building-the-skill-catalog">50-100 tokens por skill</a>, 20-40 skills es un 1% del contexto habitual de 200k.</li>
+</ul>
+</li>
+<li><strong>Extensiones o Plugins</strong>. Depende de la herramienta, pero la mayoría incluye alguna forma de empaquetar combinaciones de lo anterior y otras extensiones de comportamiento.</li>
+</ul>
+<p>En próximos artículos iremos viendo con más detalle algunas de estas funcionalidades, cómo se comportan en distintas herramientas y cómo se relacionan entre sí.</p>
+    
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -1394,304 +1583,6 @@
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>2026-02-08:19:30:51 &gt;&gt; echo 5
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>2026-02-08:19:30:51 &gt;&gt; echo bar
 </span></code></pre></div>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-01-02 00:00:00+00:00">2 de enero de 2026</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="bash-variables-indefinidas-unset-vs-vacias-empty"><a class="toclink" href="../../2026/01/02/bash-unset-vs-empty-variables/">Bash: Variables indefinidas (<em>unset</em>) vs vacías (<em>empty</em>)</a></h2>
-<p>Bash es un lenguaje particular respecto a las variables que no han sido definidas previamente.</p>
-<p>En Python, por ejemplo, las reglas son claras: una variable debe estar declarada antes de usarse. Si esa variable no existe, el intérprete lanzará un error.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  <span class="n">File</span> <span class="s2">&quot;&lt;python-input-0&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nb">print</span> <span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>           <span class="o">^^^^^^</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;my_var&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">my_var</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">foo</span>
-</span></code></pre></div>
-<p>En bash, <strong>por defecto</strong>, no se distingue entre una variable vacía y una indefinida. Al acceder a una variable no definida, bash no lanza errores y no detiene el script. Simplemente asume la asume cómo un <em>empty string</em>.</p>
-<p>Esto, que parece cómodo para pequeños scripts, es también causa de muchos desastres: <code>rm -rf "${build_dir}/"</code>.</p>
-<h3 id="empty-vs-null"><a class="toclink" href="../../2026/01/02/bash-unset-vs-empty-variables/#empty-vs-null">Empty vs Null</a></h3>
-<p>En este artículo usaremos exclusivamente el termino <em>empty variable</em> o <em>variable vacía</em>.</p>
-<p>Pero para bash no hay diferencia práctica entre <em>null</em> y <em>empty</em>. A veces también se habla de ese valor cómo <em>empty string</em> o <em>null string</em></p>
-<p>En la práctica el valor de estas dos variables es el mismo:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">explicit_empty_or_null_string</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">implicit_empty_or_null_string</span><span class="o">=</span>
-</span></code></pre></div>
-<h3 id="empty-vs-unset"><a class="toclink" href="../../2026/01/02/bash-unset-vs-empty-variables/#empty-vs-unset">Empty vs Unset</a></h3>
-<p>Pero, aunque bash intente disimularlo, si hay diferencias entre <em>empty o null</em> y <em>unset</em>:</p>
-<ul>
-<li><strong>empty</strong>: La variable existe, tiene un espacio asignado en memoria, pero su contenido es una cadena de longitud cero.</li>
-<li><strong>unset</strong>: La variable no existe en el entorno actual. No tiene un espacio de memoria asignado.</li>
-</ul>
-<p>Sin "protecciones", ambos tipos se comportan igual al expandirse:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ch">#!/usr/bin/env bash</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># Sin &#39;set -u&#39;</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">unset</span><span class="w"> </span>explicit_not_existent_var<span class="w"> </span><span class="c1"># variable indefinida</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nv">explicit_empty_string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">  </span><span class="c1"># variable vacía</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nv">implicit_empty_string</span><span class="o">=</span><span class="w">    </span><span class="c1"># variable vacía</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># En los cuatro casos se imprimirán líneas vacías</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;A: </span><span class="si">${</span><span class="nv">implicit_no_existent_var</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;B: </span><span class="si">${</span><span class="nv">explicit_not_existent_var</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;C: </span><span class="si">${</span><span class="nv">explicit_empty_string</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;D: </span><span class="si">${</span><span class="nv">implicit_empty_string</span><span class="si">}</span><span class="s2">&quot;</span>
-</span></code></pre></div>
-<h3 id="unbound-variables"><a class="toclink" href="../../2026/01/02/bash-unset-vs-empty-variables/#unbound-variables">Unbound variables</a></h3>
-<p>La cosa cambia cuando activamos el modo de bash de protección ante <em>unbound variables</em></p>
-<div class="admonition note">
-<p class="admonition-title">unset vs unbound</p>
-<p>No hay diferencias a nivel práctico entre el término <code>unset</code> y el término <code>unbound</code> en bash y se pueden usar cómo sinónimos. Lo que sucede es que al usar una variable no definida bajo <code>set -u</code> el mensaje de error (<code>bash: foo: unbound variable</code>) hace referencia a <code>unbound</code>,mientras que los comandos en sí hacen referencia a <code>unset</code></p>
-</div>
-<p>Cuando usamos <code>set -u</code> (o <code>set -o nounset</code>) cambiamos "al modo protección". Una práctica que forma parte del llamado bash strict mode y que debería usarse en el 95% de los casos.</p>
-<div class="admonition quote">
-<p class="admonition-title">de la documentación <a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">bash</a></p>
-<p>Treat unset variables and parameters other than the special parameters '@' or '<em>', or array variables subscripted with '@' or '</em>', as an error when performing parameter expansion. An error message will be written to the standard error, and a non-interactive shell will exit.</p>
-</div>
-<p>Siguiendo el ejemplo anterior:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/usr/bin/env bash</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">set</span><span class="w"> </span>-u
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">unset</span><span class="w"> </span>explicit_not_existent_var<span class="w"> </span><span class="c1"># variable indefinida</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nv">explicit_empty_string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">  </span><span class="c1"># variable vacía</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nv">implicit_empty_string</span><span class="o">=</span><span class="w">    </span><span class="c1"># variable vacía</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;A: </span><span class="si">${</span><span class="nv">implicit_not_existent_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># bash: implicit_no_existent_var: unbound variable</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;B: </span><span class="si">${</span><span class="nv">explicit_not_existent_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># bash: explicit_no_existent_var: unbound variable</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;C: </span><span class="si">${</span><span class="nv">explicit_empty_string</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># imprime una cadena vacía</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;D: </span><span class="si">${</span><span class="nv">implicit_empty_string</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># imprime una cadena vacía</span>
-</span></code></pre></div>
-<h3 id="operaciones-utiles"><a class="toclink" href="../../2026/01/02/bash-unset-vs-empty-variables/#operaciones-utiles">Operaciones útiles</a></h3>
-<p>Hay varias "operaciones" que es útil conocer para validar estas variables.</p>
-<p>La primera es:</p>
-<ul>
-<li><strong>noop</strong> <code>:</code>. Llamada a veces <a href="https://bashcommands.com/bash-noop">operación null</a>, permite evaluar las variables si que se ejecute su resultado. Veremos su utilidad en ejemplos posteriores.</li>
-</ul>
-<h4 id="conditional-expressions"><a class="toclink" href="../../2026/01/02/bash-unset-vs-empty-variables/#conditional-expressions">Conditional Expressions</a></h4>
-<p>Lo más básico es usar la expresiones condicionales del <code>[[</code> <em><a href="https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html">compound command</a></em> y los <em><a href="https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html">builtin commands</a></em> <code>test</code> y <code>[</code></p>
-<p>De la documentación de <a href="https://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html">expresiones condicionales</a>:</p>
-<ul>
-<li><code>-v varname</code>. True if the shell variable <em>varname</em> is set (has been assigned a value). If <em>varname</em> is an indexed array variable name subscripted by <code>@</code> or <code>*</code>, this returns true if the array has any set elements. If <em>varname</em> is an associative array variable name subscripted by <code>@</code> or <code>*</code>, this returns true if an element with that key is set.</li>
-<li><code>-z string</code>. True if the length of string is zero.</li>
-<li><code>-n string</code>. True if the length of string is non-zero.</li>
-</ul>
-<p>Usaremos estas expresiones dentro de un if o con operadores cómo <code>&amp;&amp;</code> o <code>||</code>. El que en general debemos usar es <code>-v</code> dado que <code>-z</code> y <code>-n</code> dan error en modo <code>set -u</code> con variables indefinidas.</p>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p><code>-v</code> espera un nombre de variable, no se debe poner el <code>$</code>. Si estamos trabajando con referencias hay que usar -R.</p>
-</div>
-<p>A modo de ejemplo</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">set</span><span class="w"> </span>-u
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">unset</span><span class="w"> </span>foo
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&#39;foo&#39; is not set&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span><span class="w"> </span><span class="c1"># bash: foo: unbound variable</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&#39;foo&#39; is not set&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># bash: foo: unbound variable</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[[</span><span class="w"> </span>-v<span class="w"> </span>foo<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&#39;foo&#39; is not set&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span><span class="w"> </span><span class="c1"># &#39;foo&#39; is not set</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span>foo<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&#39;foo&#39; is not set&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># &#39;foo&#39; is not set</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span>foo<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nv">foo</span><span class="o">=</span><span class="s1">&#39;DEFAULT_VALUE&#39;</span><span class="w"> </span><span class="c1"># DEFAULT_VALUE is assigned to foo</span>
-</span></code></pre></div>
-<h4 id="parameter-expansion"><a class="toclink" href="../../2026/01/02/bash-unset-vs-empty-variables/#parameter-expansion">Parameter Expansion</a></h4>
-<p>Para asignar valores por defecto o "fallar pronto" si una variable está vacía el <a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html">parameter expansion</a> de bash es más elegante que las expresiones condiciones</p>
-<ul>
-<li><strong>Valor por defecto</strong> (safe fallback) <code>:-</code>. Si la variable es <code>unset</code> o <code>empty</code> aplica un valor por defecto sin modificar la variable original.</li>
-<li><strong>Asignación por defecto</strong> <code>:=</code>. Si la variable es <code>unset</code> o <code>empty</code> <strong>asigna</strong> un valor por defecto a la variable original.</li>
-<li><strong>Fallo Temprano</strong> <code>:?</code>. Si la variable es <code>unset</code> o <code>empty</code>, e independientemente de haber usado <code>set -u</code> se aborta el script con un mensaje.</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Si &#39;nombre&#39; no existe o está vacío, usa &quot;Mundo&quot;.</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hola </span><span class="si">${</span><span class="nv">nombre</span><span class="k">:-</span><span class="nv">Mundo</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Asigna &quot;rm&quot; a FAVORITE_COMMAND si no estaba definido.</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># Usamos noop (:) para que Bash evalúe la expresión sin ejecutar el resultado. Sin `:`, ejecutaría el `rm` o lo que contenga la variable FAVORITE_COMMAND</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">FAVORITE_COMMAND</span><span class="p">:=rm</span><span class="si">}</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># Si build_dir no está seteado, aborta imprimiendo el mensaje.</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">build_dir</span><span class="p">:?Error: Directorio no definido</span><span class="si">}</span><span class="s2">/&quot;</span>
-</span></code></pre></div>
-<h3 id="algunas-referencias-extras"><a class="toclink" href="../../2026/01/02/bash-unset-vs-empty-variables/#algunas-referencias-extras">Algunas referencias extras</a></h3>
-<ul>
-<li>StackOverflow. <a href="https://stackoverflow.com/q/3601515/930271">How to check if a variable is set in Bash</a></li>
-<li>StackOverflow. <a href="https://stackoverflow.com/q/13361658/930271">How can I test whether a positional parameter is set in Bash?</a></li>
-<li>StackOverflow. <a href="https://stackoverflow.com/q/3685970/930271">Check if a Bash array contains a value</a></li>
-</ul>
-<h3 id="conclusiones-guia-de-estilo"><a class="toclink" href="../../2026/01/02/bash-unset-vs-empty-variables/#conclusiones-guia-de-estilo">Conclusiones: Guía de estilo</a></h3>
-<p>Los scripts en bash son potentes y flexibles pero es fácil que el código sea difícil de leer o con bugs ocasionales pero catastróficos.</p>
-<p>Dentro de mis normas para bash en lo referente a variables vacías y no definidas están:</p>
-<p><strong>Usar <code>set -u</code></strong>. Hay pocas situaciones en que este modo no sea el correcto. Y en partes concretas de un script se puede desactivar y volver a activar.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/usr/bin/env bash</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">set</span><span class="w"> </span>-u
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Start&quot;</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nb">set</span><span class="w"> </span>+u
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Something weird related to unbound variables&quot;</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">set</span><span class="w"> </span>-u
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Come back to safety&quot;</span>
-</span></code></pre></div>
-<p><strong>Usar <code>:-</code> para asignar valores por defecto</strong>. No uso el comando de asignación <code>:=</code>. Por nada en especial, simplemente me permite reducir la cantidad de formas distinta de hacer lo mismo. No se pueden usar con <code>$1</code>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="ch">#!/usr/bin/env bash</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">set</span><span class="w"> </span>-u
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="p">:=World</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># error, intentará ejecutar el comando `World`</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">:=World</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># error, no se puede asignar a $1</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>:<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="p">:=World</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="c1"># No da error, pero &quot;reducimos la API a conocer&quot;</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># Me gustan más estas soluciones</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">World</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nv">foo</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">foo</span><span class="k">:-</span><span class="nv">World</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>die<span class="o">(){</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">  </span><span class="c1"># Call like `die &quot;File not found&quot;` or `die`</span>
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">  </span><span class="nb">local</span><span class="w"> </span><span class="nv">error</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">Undefined</span><span class="p"> error</span><span class="si">}</span>
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">: </span><span class="nv">$LINE</span><span class="s2"> </span><span class="nv">$error</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
-</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="o">}</span>
-</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
-</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="c1"># Si no queremos que salte unbound pero no nos preocupa que sea empty, podemos dejar el</span>
-</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="c1"># valor por defecto vacío</span>
-</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>info<span class="o">()</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">    </span><span class="c1"># Will print the message `info &quot;this is a message&quot;` or an empty line `info`</span>
-</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">msg</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">msg</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="o">}</span>
-</span></code></pre></div>
-<p><strong>Usar <code>:?</code> para comprobar cuando una variable es vacía o indefinida</strong>.</p>
-<p>Ejemplos:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/usr/bin/env bash</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">set</span><span class="w"> </span>-u
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nv">user</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="p">:?Mandatory parameter for </span><span class="s1">&#39;user&#39;</span><span class="p"> is missing</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nv">build_dir_path</span><span class="o">=</span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;build_dir&#39;</span><span class="k">)</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">A</span><span class="p">:?</span><span class="s1">&#39;build_dir&#39;</span><span class="p"> folder is not found</span><span class="si">}</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="p">:?</span><span class="s2">&quot;virtualenv should be activated before continue&quot;</span><span class="si">}</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="c1"># Prefiero la versión anterior a estas</span>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="o">[[</span><span class="w"> </span>-v<span class="w"> </span>VIRTUAL_ENV<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;virtualenv should be activated before continue&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="c1"># No usar -z porqué genera un unbound</span>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[[</span><span class="w"> </span>-v<span class="w"> </span>VIRTUAL_ENV<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;virtualenv should be activated before continue&quot;</span>
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="k">fi</span>
-</span></code></pre></div>
-<p>Para entender mejor otras opciones</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Estamos intentando usar una unbound variable, da el mensaje genérico al respecto.</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="si">}</span><span class="w"> </span><span class="c1"># bash: VIRTUAL_ENV: unbound variable</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Genera su propio mensaje de error, distinto al habitual</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="p">:?</span><span class="si">}</span><span class="w"> </span><span class="c1"># bash: VIRTUAL_ENV: parameter null or not set</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># definimos la variable pero en blanco</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nv">VIRTUAL_ENV</span><span class="o">=</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># Sigue detectando que está vacía</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="p">:?</span><span class="si">}</span><span class="w"> </span><span class="c1"># bash: VIRTUAL_ENV: parameter null or not set</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>:<span class="w"> </span><span class="si">${</span><span class="nv">VIRTUAL_ENV</span><span class="si">}</span><span class="w"> </span><span class="c1"># No da error, simplemente es una cadena vacía que no se ejecuta</span>
-</span></code></pre></div>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2025-12-11 00:00:00+00:00">11 de diciembre de 2025</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="agentsmd-and-the-to-reference-documents"><a class="toclink" href="../../2025/12/11/agents-md-and-at-character-to-reference-documents/">AGENTS.md and the @ to reference documents</a></h2>
-<p>This article is just a quick experiment on:</p>
-<ul>
-<li>The difference between referencing a document that the agent reads with the <code>@</code> symbol in front or simply by including the path. <code>@./docs/rule1.md</code> vs simple <code>./docs/rule1.md</code>.</li>
-<li>How to split the rules of the LLM into different documents to avoid "burning" context".</li>
-</ul>
-<p>The ideas are based on these two articles:</p>
-<ul>
-<li><a href="https://merowing.info/posts/stop-getting-average-code-from-your-llm/">Stop Getting Average Code from Your LLM</a></li>
-<li><a href="https://blog.sshh.io/p/how-i-use-every-claude-code-feature">How I Use Every Claude Code Feature</a></li>
-</ul>
-<p>The first test is with gemini-cli, which by default does not use <code>AGENTS.md</code>. <a href="https://github.com/google-gemini/gemini-cli/discussions/1471">In this ticket</a>, there are also people asking if the use of <code>@</code> is inherent to the model or the tool.</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="go">mkdir -p /tmp/experiment/docs</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">cd /tmp/experiment</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">echo &quot;Start all your answers with &#39;Hello fpuga&#39;.</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">If the user ask any question about Spain read ./docs/foo.md</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">&quot; &gt; GEMINI.md</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">echo &quot;Always add a joke at the end of your answers&quot; &gt; docs/foo.md</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="go">gemini &quot;What is the capital of France&quot;</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="go">&gt;&gt;&gt; Hello fpuga</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="go">&gt;&gt;&gt; Paris.</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="go">gemini &quot;What is the capital of Spain&quot;</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="go">&gt;&gt;&gt; Hello fpuga</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="go">&gt;&gt;&gt; Hello fpuga</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="go">&gt;&gt;&gt; I need to find the capital of Spain. I will use a web search tool for this.</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="go">&gt;&gt;&gt; Hello fpuga</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="go">&gt;&gt;&gt; The capital of Spain is Madrid.</span>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="go">&gt;&gt;&gt;</span>
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="go">&gt;&gt;&gt; Why did the invisible man turn down the job offer?</span>
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="go">&gt;&gt;&gt;</span>
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="go">&gt;&gt;&gt; He couldn&#39;t see himself doing it!</span>
-</span></code></pre></div>
-<p>We see that when we don't use <code>@</code>, the tool/model only loads <code>GEMINI.md</code>, but it's able to load the additional rules when needed.</p>
-<p>Let's try it with <code>@</code>.</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">echo &quot;Start all your answers with &#39;Hello fpuga&#39;.</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">If the user ask any question about Spain read @./docs/foo.md</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">&quot; &gt; GEMINI.md</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">gemini &quot;What is the capital of France&quot;</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="go">&gt;&gt;&gt; Hello fpuga,</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="go">&gt;&gt;&gt; The capital of France is Paris.</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="go">&gt;&gt;&gt;</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="go">&gt;&gt;&gt; Why don&#39;t scientists trust atoms? Because they make up everything!</span>
-</span></code></pre></div>
-<p>And indeed, when we use <code>@</code> it follows the references and loads them automatically into the context.</p>
-<p>I replicated the experiment with Cursor and Cursor CLI, and in this case, the use of the <code>@</code> symbol has no effect. It only reads <code>foo.md</code> when asked for Spain. I open <a href="https://forum.cursor.com/t/automatically-follow-file-paths-preceded-by-in-agents-md/145915">a feature request about this</a>.</p>
-<h3 id="conclusions"><a class="toclink" href="../../2025/12/11/agents-md-and-at-character-to-reference-documents/#conclusions">Conclusions</a></h3>
-<ul>
-<li>It's a shame there isn't more standardization in how the tools work.</li>
-<li>If the <code>@</code> trick were standardized, it would prevent duplication. From <code>AGENTS.md</code>, we could link a simple <code>CONTRIBUTING.md</code> with rules like "Before committing, run <code>./scripts/format.sh</code> and <code>./scripts/lint.sh</code>; it must not return any errors." Or "All contributions must maintain test coverage above 75%."</li>
-<li>The idea of ​​a rules index telling the model when to load additional documents is really good for avoiding context clutter.</li>
-</ul>
     
     
   </div>

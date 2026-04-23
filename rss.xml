@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Thu, 02 Apr 2026 20:45:56 -0000</pubDate>
-    <lastBuildDate>Thu, 02 Apr 2026 20:45:56 -0000</lastBuildDate>
+    <pubDate>Thu, 23 Apr 2026 17:06:46 -0000</pubDate>
+    <lastBuildDate>Thu, 23 Apr 2026 17:06:46 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -30,6 +30,152 @@
     
 
     
+    
+    <item>
+      <title>AI Slop, fricción y redes sociales</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;ai-slop-friccion-y-redes-sociales&#34;&gt;AI Slop, fricción y redes sociales&lt;/h1&gt;
+&lt;p&gt;Estos días he estado trabajando en una herramienta que automatiza algunos procesos, sin impacto directo en los clientes. Una buena oportunidad para experimentar: &lt;a href=&#34;https://www.youtube.com/watch?v=rmvDxxNubIg&#34;&gt;RPI&lt;/a&gt;, Don&#39;t read the code, dynamic memory con un montón de instrucciones, subagents, y hasta agentes en paralelo en algún momento.&lt;/p&gt;
+&lt;p class=&#34;annotate&#34;&gt;La idea era seguir los consejos de twitter y subir un peldaño más en la escalera del &lt;a href=&#34;https://newsletter.pragmaticengineer.com/i/187563524/3-eight-levels-of-ai-adoption&#34;&gt;AI Adoption level&lt;/a&gt; (1).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Creo que el primero en describir algo así fue Steve Yegge y luego han sido re-escritos y modificados por cualquiera con un blog y tiempo libre.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;El resultados:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ficheros con más de 1.000 líneas de código. De aquí viene el artículo de &lt;a href=&#34;../managing-file-size-in-coding-agents/&#34;&gt;instruir al agente para limitar el número de líneas por fichero&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Abstracciones e indirecciones que se solucionaban con un mock para los tests o un if con dos ramas&lt;/li&gt;
+&lt;li&gt;Bucles anidados abriendo y cerrando conexiones a bases de datos&lt;/li&gt;
+&lt;li&gt;43.4M de tokens gastados el día grande (a &lt;a href=&#34;https://simonpcouch.com/blog/2026-01-20-cc-impact/&#34;&gt;~240 Wh/MTok&lt;/a&gt;, unos 8 lavavajillas)&lt;/li&gt;
+&lt;li&gt;95% de cobertura de tests pero bugs en &#34;producción&#34;&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Y sí, este post es un &lt;a href=&#34;https://www.merriam-webster.com/dictionary/rant&#34;&gt;rant&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ya sé que algo estoy haciendo mal. No dejaba de ser un experimento. Pero es que es muy fácil hacer mal las cosas con &lt;em&gt;coding agents&lt;/em&gt;. Lo único bueno es que cagarla con la AI es aceptable. Puedes decir que tu agente &lt;a href=&#34;https://pashpashpash.substack.com/p/my-lobster-lost-450000-this-weekend&#34;&gt;ha perdido 450k$ invirtiendo&lt;/a&gt;, pero ni se te ocurra decir que has perdido una base de datos secundaria porqué no hacías pruebas de restauración.&lt;/li&gt;
+&lt;li&gt;Cursor en modo Auto usa modelos ~malos~ suboptimos. Pero los LLM cuestan un buen dinero, cada vez más. Y no todas las empresas tenemos VC quemando $ detrás.&lt;/li&gt;
+&lt;li&gt;Hay una presión brutal en el ámbito del desarrollo. Si te fias de twitter, no trabajar en modo ralph y tener 5 agentes en paralelo es &#34;perder el tiempo&#34;. En lugar de aprovechar el incremento de productividad para disfrutar del paisaje, tienes que lanzar un agente desde el móvil mientras esperas que la crianza salga del cole.&lt;/li&gt;
+&lt;li&gt;Los problemas asociados al consumo de recursos, gobernanza y sesgo de los modelos, son reales, y no deberíamos despreciarlos sin más.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para ir acabando, que esto empezó simplemente para explicar el contexto del primer artículo generado por LLM que ha aparecido en este blog:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vayamos más despacio y con menos presión.&lt;/li&gt;
+&lt;li&gt;Si gente mucho más lista que yo dice que &lt;a href=&#34;https://www.youtube.com/watch?v=_Zcw_sVF6hU&#34;&gt;un poco de fricción al trabajar con agentes es útil&lt;/a&gt;, hagámosle caso.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/04/23/ai-slop-friction-and-social-media/</link>
+      <pubDate>Thu, 23 Apr 2026 00:00:00 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/04/23/ai-slop-friction-and-social-media/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Managing file responsibilities and size in Coding Agents</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;managing-file-responsibilities-and-size-in-coding-agents&#34;&gt;Managing file responsibilities and size in Coding Agents&lt;/h1&gt;
+&lt;div class=&#34;admonition danger&#34;&gt;
+&lt;p class=&#34;admonition-title&#34;&gt;Contenido generado por LLM&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Este artículo tiene bastante edición humana y no es un one-shot, si no varias sesiones con distintos agentes, pero el grueso ha sido escrito por un LLM.&lt;/p&gt;
+&lt;div class=&#34;language-text highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;El contexto en el que fue escrito está explicado en [mi otro artículo de hoy](./2026-04-23-ai-slop-friction-and-social-media.md)
+
+Está escrito tratando de responder a &amp;quot;pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Coding agents tend to accumulate responsibilities into existing files rather than reasoning about structure. The result is files that grow across sessions, doing too many things — and the problem compounds over time.&lt;/p&gt;
+&lt;p&gt;The slop can be reduced with instructions, good workflows and strictness but accuracy can also be reduced if not being done correctly.&lt;/p&gt;
+&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;Coding agents tend to follow the &lt;strong&gt;path of least resistance&lt;/strong&gt;. It is computationally &#34;easier&#34; for an LLM to append logic to an existing file than to create a new file, manage imports, and update directory structures. This leads to 1,000+ line &#34;God Files&#34; that combine UI, state, API calls, and business logic.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Key Insight:&lt;/strong&gt; When an agent builds a monolith, it isn&#39;t being smart; it&#39;s being lazy. As the human architect, your role is to provide the &#34;structural friction&#34; necessary to keep the codebase clean.&lt;/p&gt;
+&lt;h2 id=&#34;options-explored&#34;&gt;Options Explored&lt;/h2&gt;
+&lt;p&gt;Five approaches came up, each with a different tradeoff profile:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Rules in &lt;code&gt;agents.md&lt;/code&gt;&lt;/strong&gt; — proactive, shapes decisions before code is written. The risk is token cost: instructions sitting in context are paid on every turn, even when irrelevant. Also relies on the agent actually following them, with no enforcement mechanism.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Linter rule + lint after changes&lt;/strong&gt; — objective and enforceable, near-zero token cost. The limitation is it only catches the problem after it exists, and agents can game it mechanically (splitting a 400-line file into two 200-line files without real refactoring, deleting comments or writing one-liners). Best used as a safety net, not a primary strategy.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Refactoring subagent&lt;/strong&gt; — the most powerful option if you have solid test coverage. A dedicated subagent can reason about &lt;em&gt;why&lt;/em&gt; to split, not just &lt;em&gt;that&lt;/em&gt; something is too big. The downsides are latency, cost (extra token overhead for a new session), and regression risk if the subagent rewrites instead of just extracting.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hooks&lt;/strong&gt; — best option for automatic enforcement. A post-edit hook that runs checks and feeds results back to the agent closes the feedback loop without manual intervention. Setup cost is higher and hook failures can be noisy.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Slash-command, on-demand skills or reusable prompts&lt;/strong&gt; — on-demand invocation of a well-crafted refactoring prompt. Zero cost when not in use, no automation risk, and you control the timing. More powerful than it first appears. The downsides is that is not automatically enforced, requires constant supervision.&lt;/p&gt;
+&lt;h2 id=&#34;two-key-questions&#34;&gt;Two Key Questions&lt;/h2&gt;
+&lt;p&gt;There are two important aspects about how and when constraining the LLM&#39;s file output:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reasoning Degradation&lt;/strong&gt;. Enforce strict line counts (e.g., &#34;Max 200 lines&#34;) too early, may interrupt the LLM&#39;s flow. It may focus more on &#34;fitting the code&#34; than &#34;solving the logic,&#34; leading to obfuscated code or broken abstractions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Token Waste:&lt;/strong&gt;. Large files are &#34;Token Killers.&#34; Every time a small change is requested in a 1,000-line file, the agent must re-read (and often re-write) the entire context. This wastes money and increases latency.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;does-constraining-the-agent-early-hurt-reasoning-quality&#34;&gt;Does constraining the agent early hurt reasoning quality?&lt;/h3&gt;
+&lt;p&gt;Yes, but the concern is nuanced. The risk is real when constraining &lt;em&gt;how&lt;/em&gt; the model thinks — forcing a specific algorithm or architecture mid-problem. A file size limit is an &lt;em&gt;output&lt;/em&gt; constraint, closer to formatting guidance, and modern LLMs handle that reasonably well.&lt;/p&gt;
+&lt;p&gt;That said, &lt;strong&gt;write first, refactor later&lt;/strong&gt; is still directionally correct: the model solves one problem at a time instead of two. Upfront constraints should be soft and structural, not hard limits enforced mid-task.&lt;/p&gt;
+&lt;h3 id=&#34;what-matters-more-constraint-cost-or-context-bloat&#34;&gt;What matters more: constraint cost or context bloat?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Context bloat is more damaging&lt;/strong&gt;, and it&#39;s not a close call.&lt;/p&gt;
+&lt;p&gt;Context bloat compounds: large files make context grow, which reduces accuracy, which can produce more bloated code, which grows context further. Each session the problem gets worse.&lt;/p&gt;
+&lt;p&gt;Constraint cost is fixed and mild by comparison. A slightly worse initial design is recoverable. Degraded model accuracy due to bloated context causes mistakes that are hard to trace.&lt;/p&gt;
+&lt;p&gt;Critically, the &#34;write big then refactor&#34; approach pays the context cost &lt;em&gt;twice&lt;/em&gt; — once for the big file and once for the refactoring pass. A soft upfront constraint that keeps files small is worth it precisely because it controls context size across the session.&lt;/p&gt;
+&lt;h2 id=&#34;final-recommendation&#34;&gt;Final Recommendation&lt;/h2&gt;
+&lt;p&gt;Three layers, in order of priority:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Soft rules in &lt;code&gt;AGENTS.md&lt;/code&gt;. Can be combined or replaced by Skills or Rules.&lt;/li&gt;
+&lt;li&gt;Linter rules.&lt;/li&gt;
+&lt;li&gt;Reusable prompt for post refactoring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;soft-rules-in-agentsmd-prevention&#34;&gt;Soft rules in &lt;code&gt;AGENTS.md&lt;/code&gt; — prevention&lt;/h3&gt;
+&lt;p&gt;Keep them concrete and structural, not vague. The goal is to shape decisions before files are written, not to micromanage output. Example:&lt;/p&gt;
+&lt;div class=&#34;language-text highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-0-1&#34;&gt;&lt;a id=&#34;__codelineno-0-1&#34; name=&#34;__codelineno-0-1&#34; href=&#34;#__codelineno-0-1&#34;&gt;&lt;/a&gt;Before adding logic to an existing file, check if it belongs there.
+&lt;/span&gt;&lt;span id=&#34;__span-0-2&#34;&gt;&lt;a id=&#34;__codelineno-0-2&#34; name=&#34;__codelineno-0-2&#34; href=&#34;#__codelineno-0-2&#34;&gt;&lt;/a&gt;If a file already has more than one clear responsibility, create a new module instead.
+&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;Prefer creating a new file over extending an existing one beyond its scope.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Avoid hard line limits here. They constrain reasoning without being reliably enforceable.&lt;/li&gt;
+&lt;li&gt;Prioritize responsibility over lines. Instead of &lt;code&gt;max-lines: 250&lt;/code&gt;, enforce &lt;code&gt;one-responsibility-per-file&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;linter-rule-passive-safety-net&#34;&gt;Linter rule — passive safety net&lt;/h3&gt;
+&lt;p&gt;Configure a max-lines rule (e.g. ESLint &lt;code&gt;max-lines&lt;/code&gt;, Pylint &lt;code&gt;max-module-lines&lt;/code&gt;) and run it via a hook or CI. Don&#39;t rely on it as the primary mechanism — it catches symptoms, not causes. Pair it with a complexity check (number of exports, cyclomatic complexity) for better signal.&lt;/p&gt;
+&lt;h3 id=&#34;reusable-prompt-for-periodic-refactoring-recovery&#34;&gt;Reusable prompt for periodic refactoring — recovery&lt;/h3&gt;
+&lt;p&gt;A reusable prompt (slash-command, on-demand skill, custom agent, ...) that instructs the agent to review and extract responsibilities from files that have grown. Invoke it when &lt;em&gt;you&lt;/em&gt; decide the codebase needs it, not automatically after every turn. The prompt contract should be explicit:&lt;/p&gt;
+&lt;div class=&#34;language-text highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-1-1&#34;&gt;&lt;a id=&#34;__codelineno-1-1&#34; name=&#34;__codelineno-1-1&#34; href=&#34;#__codelineno-1-1&#34;&gt;&lt;/a&gt;The attached file is to big and have too many responsabilities. Refactor it.
+&lt;/span&gt;&lt;span id=&#34;__span-1-2&#34;&gt;&lt;a id=&#34;__codelineno-1-2&#34; name=&#34;__codelineno-1-2&#34; href=&#34;#__codelineno-1-2&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-3&#34;&gt;&lt;a id=&#34;__codelineno-1-3&#34; name=&#34;__codelineno-1-3&#34; href=&#34;#__codelineno-1-3&#34;&gt;&lt;/a&gt;Rules:
+&lt;/span&gt;&lt;span id=&#34;__span-1-4&#34;&gt;&lt;a id=&#34;__codelineno-1-4&#34; name=&#34;__codelineno-1-4&#34; href=&#34;#__codelineno-1-4&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-1-5&#34;&gt;&lt;a id=&#34;__codelineno-1-5&#34; name=&#34;__codelineno-1-5&#34; href=&#34;#__codelineno-1-5&#34;&gt;&lt;/a&gt;- One responsibility per file (name it after what it does)
+&lt;/span&gt;&lt;span id=&#34;__span-1-6&#34;&gt;&lt;a id=&#34;__codelineno-1-6&#34; name=&#34;__codelineno-1-6&#34; href=&#34;#__codelineno-1-6&#34;&gt;&lt;/a&gt;- If a file needs more than 3 imports from the same module, extract shared logic
+&lt;/span&gt;&lt;span id=&#34;__span-1-7&#34;&gt;&lt;a id=&#34;__codelineno-1-7&#34; name=&#34;__codelineno-1-7&#34; href=&#34;#__codelineno-1-7&#34;&gt;&lt;/a&gt;- Prefer creating a new file over extending an existing one beyond its scope.
+&lt;/span&gt;&lt;span id=&#34;__span-1-8&#34;&gt;&lt;a id=&#34;__codelineno-1-8&#34; name=&#34;__codelineno-1-8&#34; href=&#34;#__codelineno-1-8&#34;&gt;&lt;/a&gt;- Only extract, never rewrite logic.
+&lt;/span&gt;&lt;span id=&#34;__span-1-9&#34;&gt;&lt;a id=&#34;__codelineno-1-9&#34; name=&#34;__codelineno-1-9&#34; href=&#34;#__codelineno-1-9&#34;&gt;&lt;/a&gt;- All tests must pass before and after.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This approach keeps token cost under control (only paid on demand), avoids constraining original reasoning, and gives you a deliberate moment to review structure before it accumulates further debt.&lt;/p&gt;
+&lt;p&gt;A bash script to catch big files could be also useful&lt;/p&gt;
+&lt;div class=&#34;language-bash highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-2-1&#34;&gt;&lt;a id=&#34;__codelineno-2-1&#34; name=&#34;__codelineno-2-1&#34; href=&#34;#__codelineno-2-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;nv&#34;&gt;min_lines&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;200&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-2&#34;&gt;&lt;a id=&#34;__codelineno-2-2&#34; name=&#34;__codelineno-2-2&#34; href=&#34;#__codelineno-2-2&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# ripgrep respects .gitignore and has --type&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-3&#34;&gt;&lt;a id=&#34;__codelineno-2-3&#34; name=&#34;__codelineno-2-3&#34; href=&#34;#__codelineno-2-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;c1&#34;&gt;# Ignore ./docs as we use it for examples, temporary clone other repos, ...&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-4&#34;&gt;&lt;a id=&#34;__codelineno-2-4&#34; name=&#34;__codelineno-2-4&#34; href=&#34;#__codelineno-2-4&#34;&gt;&lt;/a&gt;rg&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--files&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-5&#34;&gt;&lt;a id=&#34;__codelineno-2-5&#34; name=&#34;__codelineno-2-5&#34; href=&#34;#__codelineno-2-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;-g&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;!docs/**&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--type&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;typescript&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--type&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;js&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;--type&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;python&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-6&#34;&gt;&lt;a id=&#34;__codelineno-2-6&#34; name=&#34;__codelineno-2-6&#34; href=&#34;#__codelineno-2-6&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;IFS&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-r&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;file&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-7&#34;&gt;&lt;a id=&#34;__codelineno-2-7&#34; name=&#34;__codelineno-2-7&#34; href=&#34;#__codelineno-2-7&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;line_count&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;wc&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-l&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&amp;lt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-8&#34;&gt;&lt;a id=&#34;__codelineno-2-8&#34; name=&#34;__codelineno-2-8&#34; href=&#34;#__codelineno-2-8&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;((&lt;/span&gt;line_count&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&amp;gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;min_lines&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-9&#34;&gt;&lt;a id=&#34;__codelineno-2-9&#34; name=&#34;__codelineno-2-9&#34; href=&#34;#__codelineno-2-9&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%10d %s\n&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;line_count&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-10&#34;&gt;&lt;a id=&#34;__codelineno-2-10&#34; name=&#34;__codelineno-2-10&#34; href=&#34;#__codelineno-2-10&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-11&#34;&gt;&lt;a id=&#34;__codelineno-2-11&#34; name=&#34;__codelineno-2-11&#34; href=&#34;#__codelineno-2-11&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-2-12&#34;&gt;&lt;a id=&#34;__codelineno-2-12&#34; name=&#34;__codelineno-2-12&#34; href=&#34;#__codelineno-2-12&#34;&gt;&lt;/a&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;sort&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-nr
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;skills-and-rules&#34;&gt;Skills and Rules&lt;/h3&gt;
+&lt;p&gt;Skills and Rules can provide accurate design guidance to the model for the concrete task at hand. A &lt;code&gt;react-guidelines&lt;/code&gt; skill can promote architecture constraints. As example:&lt;/p&gt;
+&lt;div class=&#34;language-markdown highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-3-1&#34;&gt;&lt;a id=&#34;__codelineno-3-1&#34; name=&#34;__codelineno-3-1&#34; href=&#34;#__codelineno-3-1&#34;&gt;&lt;/a&gt;&lt;span class=&#34;gh&#34;&gt;# Architectural Constraints&lt;/span&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-3-2&#34;&gt;&lt;a id=&#34;__codelineno-3-2&#34; name=&#34;__codelineno-3-2&#34; href=&#34;#__codelineno-3-2&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-3-3&#34;&gt;&lt;a id=&#34;__codelineno-3-3&#34; name=&#34;__codelineno-3-3&#34; href=&#34;#__codelineno-3-3&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;1.&lt;/span&gt; &lt;span class=&#34;gs&#34;&gt;**Separation of Concerns:**&lt;/span&gt; UI components must not contain business logic or raw API calls.
+&lt;/span&gt;&lt;span id=&#34;__span-3-4&#34;&gt;&lt;a id=&#34;__codelineno-3-4&#34; name=&#34;__codelineno-3-4&#34; href=&#34;#__codelineno-3-4&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;2.&lt;/span&gt; &lt;span class=&#34;gs&#34;&gt;**The &amp;quot;Hook&amp;quot; Rule:**&lt;/span&gt; If a component exceeds 3 state variables, move state logic to a custom Hook.
+&lt;/span&gt;&lt;span id=&#34;__span-3-5&#34;&gt;&lt;a id=&#34;__codelineno-3-5&#34; name=&#34;__codelineno-3-5&#34; href=&#34;#__codelineno-3-5&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;3.&lt;/span&gt; &lt;span class=&#34;gs&#34;&gt;**The &amp;quot;Service&amp;quot; Rule:**&lt;/span&gt; All data fetching must reside in &lt;span class=&#34;sb&#34;&gt;`/services`&lt;/span&gt;. Do not use &lt;span class=&#34;sb&#34;&gt;`fetch`&lt;/span&gt; or &lt;span class=&#34;sb&#34;&gt;`axios`&lt;/span&gt; directly in components.
+&lt;/span&gt;&lt;span id=&#34;__span-3-6&#34;&gt;&lt;a id=&#34;__codelineno-3-6&#34; name=&#34;__codelineno-3-6&#34; href=&#34;#__codelineno-3-6&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;4.&lt;/span&gt; &lt;span class=&#34;gs&#34;&gt;**Complexity Trigger:**&lt;/span&gt; If you are about to add a second distinct responsibility to a file, you MUST propose a file split before writing the code.
+&lt;/span&gt;&lt;span id=&#34;__span-3-7&#34;&gt;&lt;a id=&#34;__codelineno-3-7&#34; name=&#34;__codelineno-3-7&#34; href=&#34;#__codelineno-3-7&#34;&gt;&lt;/a&gt;&lt;span class=&#34;k&#34;&gt;5.&lt;/span&gt; &lt;span class=&#34;gs&#34;&gt;**Pre-emptive Architecture:**&lt;/span&gt; Prefer creating 3 focused files (Type, Logic, View) over 1 multi-purpose file.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/04/23/managing-file-size-in-coding-agents/</link>
+      <pubDate>Thu, 23 Apr 2026 00:00:00 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/04/23/managing-file-size-in-coding-agents/</guid>
+      
+    </item>
     
     <item>
       <title>Cómo funcionan las rules y el AGENTS.md en distintos Coding Agents</title>
@@ -1763,60 +1909,6 @@
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2025/01/19/como-funciona-un-llm-y-porque-mienten/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Vimium: Un plugin para navegar la web con el teclado</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;vimium-un-plugin-para-navegar-la-web-con-el-teclado&#34;&gt;Vimium: Un plugin para navegar la web con el teclado&lt;/h1&gt;
-&lt;p&gt;Por productividad y salud estoy intentando usar menos el ratón. Una de las situaciones donde más lo usaba era al navegar por páginas web y tras una &lt;a href=&#34;https://pakstech.com/blog/browse-web-with-keyboard/&#34;&gt;pequeña búsqueda&lt;/a&gt; me he decidido por &lt;a href=&#34;https://vimium.github.io/&#34;&gt;Vimium&lt;/a&gt;. Un plugin para Firefox, Chrome, y familia que permite usar las teclas de Vim para navegar.&lt;/p&gt;
-&lt;p&gt;Lo más molón, es la tecla &lt;code&gt;f&lt;/code&gt; o &lt;code&gt;F&lt;/code&gt; (de follow). Activa lo que llaman hint mode. Detecta todos los enlaces de la página y los marca con unas letras amarillas al lado. Al pulsar la secuencia de letras sigue el enlace. En la misma pestaña si se ha usado f, en otra pestaña si se ha pulsado F, o se teclea la secuencia en mayúsculas. Se puede usar Escape para desactivar los hints. Nuestras teclas preferidas de largo. Según como esté construida la página esta opción funciona también para aceptar avisos de cookies, …&lt;/p&gt;
-&lt;p&gt;Y en &lt;a href=&#34;https://icarto.es/&#34;&gt;iCarto&lt;/a&gt; no soy yo sólo quien &lt;a href=&#34;https://gitlab.com/icarto/ikdb/-/blob/master/configurar_equipo/browser/browser_navegar_teclado_vimium.md&#34;&gt;se ha hecho adicto&lt;/a&gt;.&lt;/p&gt;
-&lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; allowfullscreen=&#34;&#34; frameborder=&#34;0&#34; height=&#34;349&#34; loading=&#34;lazy&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/t67Sn0RGK54?feature=oembed&#34; title=&#34;Vimium - The Hacker&#39;s Browser&#34; width=&#34;620&#34;&gt;&lt;/iframe&gt;</description>
-      <link>https://franciscopuga.es/blog/2021/07/17/vimium-un-plugin-para-navegar-la-web-con-el-teclado/</link>
-      <pubDate>Sat, 17 Jul 2021 00:00:00 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2021/07/17/vimium-un-plugin-para-navegar-la-web-con-el-teclado/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Experimentos de «Monetization» en este blog</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;experimentos-de-monetization-en-este-blog&#34;&gt;Experimentos de «Monetization» en este blog&lt;/h1&gt;
-&lt;p&gt;Hace unos días Tom MacWright publicaba en su blog un artículo titulado &lt;a href=&#34;https://macwright.com/2020/11/15/mini-monetization-experiments.html&#34;&gt;Monetization experiments on this website&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Como él, un poco por tratar de pagar el hosting, y sobre todo por &lt;em&gt;jugar&lt;/em&gt; un poco hice varios experimentos en este blog. Nunca fue algo que me tomara demasiado en serio. De hecho para escribir este artículo he intentado revisar algunos datos para descubrir que las estadísticas de Google Analytics dejaron de funcionar en mi blog, seguramente en alguna actualización y no tengo acceso a datos antiguos. Y me pasa lo mismo con las estadísticas de WordPress.com / Jetpack.&lt;/p&gt;
-&lt;p&gt;Cuando escribía en el blog algo más a menudo, sobre todo artículos más utilitaristas del tipo &lt;a href=&#34;http://conocimientoabierto.es/cifrar-particion-disco-duro-externo-linux/197/&#34;&gt;Como cifrar una partición de un disco duro externo&lt;/a&gt; tenía bastantes visitas para ser un blog personal, aunque ahora no me atrevo a dar una cifra. Con este desastre, no puedo dar datos muy concretos, pero para hacernos una idea, en base a mi memoria y los números que me encuentro en Google AdSense, en los últimos tres años constan 15.304 páginas vistas y 1.86€. En él último mes 376 páginas vistas y 0.01€&lt;/p&gt;
-&lt;p&gt;Los experimentos:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Desde que me dí de alta en AdSense (creo recordar que en 2011) he generado un saldo de 33.37€. Google sólo hace efectivos los pagos cuando se llega a 70€. Así que a este ritmo me quedan otros 9 años hasta poder cobrar algo. Al cancelar la cuenta hacen efectivo el pago si pasa de 10€&lt;/li&gt;
-&lt;li&gt;Algunos de los &lt;a href=&#34;http://conocimientoabierto.es/libro-javascript-the-good-parts-de-douglas-crockford/858/&#34;&gt;libros que comento en el blog&lt;/a&gt; tenían enlaces a Amazon a través del programa de Affiliates. De modo que si alguien lo comproba siguiendo el enlace me quedaba un porcentaje de la venta. Amazon nunca me notifico una compra a través de estos enlaces.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://conocimientoabierto.es/libro-matar-a-un-ruisenor/723/&#34;&gt;Otros libros o enlaces&lt;/a&gt; a descargas compartidas los ponía a través de adf.ly. Un anonimizador de enlaces que te obliga a pasar por una página previa de publicidad. He comprobado que mi cuenta está actualmente cancelada y en su momento tampoco recuerdo que llegará a obtener más de unos céntimos.&lt;/li&gt;
-&lt;li&gt;A través del botón de donaciones de paypal recibí un pago de 1.5€&lt;/li&gt;
-&lt;li&gt;En dos ocasiones me llegaron correos ofreciéndome escribir posts patrocionados. Uno de un casino online, el otro no recuerdo de que. Ofrecían unos 50€ pero no comprobé si era verdad porqué rechazé ambas&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Así que arranco el nuevo año con un poco de limpieza:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Cerrando cuentas en servicios que aparecen en mi keepass en los que no he entrado desde hace tiempo.&lt;/li&gt;
-&lt;li&gt;Elimino la primera versión de este blog que todavía existía en blogspot.&lt;/li&gt;
-&lt;li&gt;Elimino del blog Google Analytics y Google AdSense&lt;/li&gt;
-&lt;li&gt;Borrados los enlaces a Amazon. En algún momento seguramente incluya enlaces a &lt;a href=&#34;https://macwright.com/2020/12/24/the-new-reading-stack.html&#34;&gt;alguno de los sitios recomendados en este post&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Los enlaces a adf.ly los he eliminado o substituido por los enlaces finales directamente&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Amazon Afiliados y Google AdSense seguramente son una de las formas más sencillas en las que un blog personal al que dediques algo de mimo puede generar ingresos, pero por los cantidades que aportan, a mi al menos, no me compensan para ayudar a perpetuar los problemas que estas empresas causan.&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2021/01/01/experimentos-de-monetization-en-este-blog/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2021/01/01/experimentos-de-monetization-en-este-blog/</guid>
       
     </item>
     
