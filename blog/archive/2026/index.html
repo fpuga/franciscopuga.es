@@ -1282,12 +1282,10 @@
     <h2 id="managing-file-responsibilities-and-size-in-coding-agents"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/">Managing file responsibilities and size in Coding Agents</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Contenido generado por LLM</p>
-</div>
 <p>Este artículo tiene bastante edición humana y no es un one-shot, si no varias sesiones con distintos agentes, pero el grueso ha sido escrito por un LLM.</p>
-<div class="language-text highlight"><pre><span></span><code>El contexto en el que fue escrito está explicado en [mi otro artículo de hoy](./2026-04-23-ai-slop-friction-and-social-media.md)
-
-Está escrito tratando de responder a &quot;pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files&quot;
-</code></pre></div>
+<p>El contexto en el que fue escrito está explicado en <a href="../../2026/04/23/ai-slop-friction-and-social-media/">mi otro artículo de hoy</a></p>
+<p>Está escrito tratando de responder a "pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files"</p>
+</div>
 <p>Coding agents tend to accumulate responsibilities into existing files rather than reasoning about structure. The result is files that grow across sessions, doing too many things — and the problem compounds over time.</p>
 <p>The slop can be reduced with instructions, good workflows and strictness but accuracy can also be reduced if not being done correctly.</p>
 <h3 id="the-problem"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#the-problem">The Problem</a></h3>
@@ -1323,9 +1321,9 @@ Está escrito tratando de responder a &quot;pongo en el AGENTS una instrucción 
 </ul>
 <h4 id="soft-rules-in-agentsmd-prevention"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#soft-rules-in-agentsmd-prevention">Soft rules in <code>AGENTS.md</code> — prevention</a></h4>
 <p>Keep them concrete and structural, not vague. The goal is to shape decisions before files are written, not to micromanage output. Example:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Before adding logic to an existing file, check if it belongs there.
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>If a file already has more than one clear responsibility, create a new module instead.
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Prefer creating a new file over extending an existing one beyond its scope.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Before adding logic to an existing file, check if it belongs there.
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>If a file already has more than one clear responsibility, create a new module instead.
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Prefer creating a new file over extending an existing one beyond its scope.
 </span></code></pre></div>
 <ul>
 <li>Avoid hard line limits here. They constrain reasoning without being reliably enforceable.</li>
@@ -1335,40 +1333,40 @@ Está escrito tratando de responder a &quot;pongo en el AGENTS una instrucción 
 <p>Configure a max-lines rule (e.g. ESLint <code>max-lines</code>, Pylint <code>max-module-lines</code>) and run it via a hook or CI. Don't rely on it as the primary mechanism — it catches symptoms, not causes. Pair it with a complexity check (number of exports, cyclomatic complexity) for better signal.</p>
 <h4 id="reusable-prompt-for-periodic-refactoring-recovery"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#reusable-prompt-for-periodic-refactoring-recovery">Reusable prompt for periodic refactoring — recovery</a></h4>
 <p>A reusable prompt (slash-command, on-demand skill, custom agent, ...) that instructs the agent to review and extract responsibilities from files that have grown. Invoke it when <em>you</em> decide the codebase needs it, not automatically after every turn. The prompt contract should be explicit:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>The attached file is to big and have too many responsabilities. Refactor it.
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Rules:
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>- One responsibility per file (name it after what it does)
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>- If a file needs more than 3 imports from the same module, extract shared logic
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>- Prefer creating a new file over extending an existing one beyond its scope.
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>- Only extract, never rewrite logic.
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>- All tests must pass before and after.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>The attached file is to big and have too many responsabilities. Refactor it.
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Rules:
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>- One responsibility per file (name it after what it does)
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>- If a file needs more than 3 imports from the same module, extract shared logic
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>- Prefer creating a new file over extending an existing one beyond its scope.
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>- Only extract, never rewrite logic.
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>- All tests must pass before and after.
 </span></code></pre></div>
 <p>This approach keeps token cost under control (only paid on demand), avoids constraining original reasoning, and gives you a deliberate moment to review structure before it accumulates further debt.</p>
 <p>A bash script to catch big files could be also useful</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">min_lines</span><span class="o">=</span><span class="m">200</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># ripgrep respects .gitignore and has --type</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Ignore ./docs as we use it for examples, temporary clone other repos, ...</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>rg<span class="w"> </span>--files<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span>-g<span class="w"> </span><span class="s1">&#39;!docs/**&#39;</span><span class="w"> </span>--type<span class="w"> </span>typescript<span class="w"> </span>--type<span class="w"> </span>js<span class="w"> </span>--type<span class="w"> </span>python<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nv">IFS</span><span class="o">=</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>file<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="nv">line_count</span><span class="o">=</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="k">)</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">((</span>line_count<span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span>min_lines<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">            </span><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;%10d %s\n&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">line_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="k">fi</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="k">done</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-nr
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">min_lines</span><span class="o">=</span><span class="m">200</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># ripgrep respects .gitignore and has --type</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Ignore ./docs as we use it for examples, temporary clone other repos, ...</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>rg<span class="w"> </span>--files<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span>-g<span class="w"> </span><span class="s1">&#39;!docs/**&#39;</span><span class="w"> </span>--type<span class="w"> </span>typescript<span class="w"> </span>--type<span class="w"> </span>js<span class="w"> </span>--type<span class="w"> </span>python<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nv">IFS</span><span class="o">=</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>file<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="nv">line_count</span><span class="o">=</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="k">)</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">((</span>line_count<span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span>min_lines<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">            </span><span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;%10d %s\n&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">line_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="k">fi</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="k">done</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-nr
 </span></code></pre></div>
 <h4 id="skills-and-rules"><a class="toclink" href="../../2026/04/23/managing-file-size-in-coding-agents/#skills-and-rules">Skills and Rules</a></h4>
 <p>Skills and Rules can provide accurate design guidance to the model for the concrete task at hand. A <code>react-guidelines</code> skill can promote architecture constraints. As example:</p>
-<div class="language-markdown highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gh"># Architectural Constraints</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">1.</span> <span class="gs">**Separation of Concerns:**</span> UI components must not contain business logic or raw API calls.
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">2.</span> <span class="gs">**The &quot;Hook&quot; Rule:**</span> If a component exceeds 3 state variables, move state logic to a custom Hook.
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">3.</span> <span class="gs">**The &quot;Service&quot; Rule:**</span> All data fetching must reside in <span class="sb">`/services`</span>. Do not use <span class="sb">`fetch`</span> or <span class="sb">`axios`</span> directly in components.
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">4.</span> <span class="gs">**Complexity Trigger:**</span> If you are about to add a second distinct responsibility to a file, you MUST propose a file split before writing the code.
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">5.</span> <span class="gs">**Pre-emptive Architecture:**</span> Prefer creating 3 focused files (Type, Logic, View) over 1 multi-purpose file.
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gh"># Architectural Constraints</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">1.</span> <span class="gs">**Separation of Concerns:**</span> UI components must not contain business logic or raw API calls.
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">2.</span> <span class="gs">**The &quot;Hook&quot; Rule:**</span> If a component exceeds 3 state variables, move state logic to a custom Hook.
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">3.</span> <span class="gs">**The &quot;Service&quot; Rule:**</span> All data fetching must reside in <span class="sb">`/services`</span>. Do not use <span class="sb">`fetch`</span> or <span class="sb">`axios`</span> directly in components.
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">4.</span> <span class="gs">**Complexity Trigger:**</span> If you are about to add a second distinct responsibility to a file, you MUST propose a file split before writing the code.
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">5.</span> <span class="gs">**Pre-emptive Architecture:**</span> Prefer creating 3 focused files (Type, Logic, View) over 1 multi-purpose file.
 </span></code></pre></div>
     
     

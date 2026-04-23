@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Thu, 23 Apr 2026 17:06:46 -0000</pubDate>
-    <lastBuildDate>Thu, 23 Apr 2026 17:06:46 -0000</lastBuildDate>
+    <pubDate>Thu, 23 Apr 2026 17:11:32 -0000</pubDate>
+    <lastBuildDate>Thu, 23 Apr 2026 17:11:32 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -81,12 +81,10 @@
       <description>&lt;h1 id=&#34;managing-file-responsibilities-and-size-in-coding-agents&#34;&gt;Managing file responsibilities and size in Coding Agents&lt;/h1&gt;
 &lt;div class=&#34;admonition danger&#34;&gt;
 &lt;p class=&#34;admonition-title&#34;&gt;Contenido generado por LLM&lt;/p&gt;
-&lt;/div&gt;
 &lt;p&gt;Este artículo tiene bastante edición humana y no es un one-shot, si no varias sesiones con distintos agentes, pero el grueso ha sido escrito por un LLM.&lt;/p&gt;
-&lt;div class=&#34;language-text highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;El contexto en el que fue escrito está explicado en [mi otro artículo de hoy](./2026-04-23-ai-slop-friction-and-social-media.md)
-
-Está escrito tratando de responder a &amp;quot;pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;El contexto en el que fue escrito está explicado en &lt;a href=&#34;../ai-slop-friction-and-social-media/&#34;&gt;mi otro artículo de hoy&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Está escrito tratando de responder a &#34;pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files&#34;&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;Coding agents tend to accumulate responsibilities into existing files rather than reasoning about structure. The result is files that grow across sessions, doing too many things — and the problem compounds over time.&lt;/p&gt;
 &lt;p&gt;The slop can be reduced with instructions, good workflows and strictness but accuracy can also be reduced if not being done correctly.&lt;/p&gt;
 &lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;
