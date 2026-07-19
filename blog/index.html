@@ -1045,6 +1045,124 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2026-07-18 00:00:00+00:00">18 de julio de 2026</time></li>
+        
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="coding-agentes-agent-skills"><a class="toclink" href="2026/07/18/harness-skills/">Coding Agentes: Agent Skills</a></h2>
+<details class="info">
+<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
+<ol>
+<li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
+<li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
+<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
+<li><a href="2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
+<li><a href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
+<li><a href="2026/07/18/harness-skills/">Cómo funcionan las <code>Agent Skills</code></a></li>
+</ol>
+</details>
+<p>A día de hoy poco hay que decir de las <em>Agent Skills</em>. Tras el boom habitual de todo lo tiene que ver con los LLM pasaron a ser una funcionalidad más.</p>
+<p>Aún así, en este artículo, vamos a repasar algunos aspectos que creo que ayudan a decidir que técnica usar para inyectar la <em>dynamic memory</em> en el contexto en base a <a href="https://www.langchain.com/blog/your-harness-your-memory">cómo funciona el harness</a> (antes llamado <em>coding agents</em>).</p>
+<h3 id="estandar"><a class="toclink" href="2026/07/18/harness-skills/#estandar">¿Estándar?</a></h3>
+<p>Las <a href="https://agentskills.io">Skills</a> son un estándar que no es estándar.</p>
+<p>Básicamente son un directorio que dentro tiene un fichero llamado <code>SKILL.md</code> con dos propiedades de frontmatter obligatorias: <code>name</code> y <code>description</code>. El harness mantiene esas propiedades en el contexto durante toda la sesión y el LLM decide cuando invocar la skill. En ese momento se inyecta en el contexto el fichero completo de <code>SKILL.md</code>, el LLM sigue las instrucciones en él o pide cargar scripts u otros ficheros que vengan empaquetados con la skill.</p>
+<p>La idea es brillante porqué es sencilla y encaja bien en las capacidades crecientes de los LLM. Pero si profundizamos vienen los problemas:</p>
+<ul>
+<li>El directorio de skills no es estándar. La mayoría de harness es compatible con <code>.agents/skills</code> y <code>~/.agents/skills/</code>, pero no todos</li>
+<li>Los harness usan sus propias propiedades no estándar de frontmatter para definir comportamientos importantes. Por ejemplo, Claude y Cursor soportan <code>disable-model-invocation</code>, que no envían la descripción al contexto, y <code>SKILL.md</code> sólo se inyecta bajo invocación manual. Pero ni Antigravity ni <a href="https://github.com/anomalyco/opencode/issues/34498">OpenCode</a> la reconocen. Y Codex la llama <code>allow_implicit_invocation</code> aunque haga lo mismo. Esta es una propiedad muy importante para poder organizar la documentación y prompts reutilizables cómo skills pero sin cargar el contexto</li>
+<li>La relación de skills (sub) agentes, tools y permisos es implementada por cada harness de forma distinta</li>
+<li>La inyección extra de contexto desde <code>SKILL.md</code> tampoco es estándar. Cómo se interpreta la <code>@</code>, el soporte para <a href="https://code.claude.com/docs/en/skills#available-string-substitutions">argumentos y substituciones</a>, <a href="https://code.claude.com/docs/en/skills#advanced-patterns">shell substitution</a>, ... dependen del harness.</li>
+<li><a href="https://github.com/anthropics/skills/blob/main/skills/xlsx/SKILL.md#dependencies">Las dependencias de los scripts son confusas</a>. Cuando la skill incluye dependencias escritas en Python (o en cualquier ecosistema que no incluya el binario directamente) que pasa con las dependencias. ¿Usa el virtualenv si hay uno?, ¿entiende que yo quiero que use uv?, ¿instala a nivel sistema o de proyecto?, ...</li>
+</ul>
+<p>Al final, para usar estas características que dan un montón de capacidades extra tienes que ligarte muy fuerte a un harness.</p>
+<h3 id="skills-vs-documentacion"><a class="toclink" href="2026/07/18/harness-skills/#skills-vs-documentacion">Skills vs Documentación</a></h3>
+<p>Las Skills nacieron como un sistema de empaquetado. Sin más. Los modelos no estaban entrenados en ellas, ni había RL, ni el harness le daba un tratamiento demasiado especial (llega con ver el historial de git de cualquier herramienta abierta).</p>
+<p>Así que, <em>en mi opinión</em>, no había mucha diferencia entre tener una skill y tener un <code>.md</code> que referenciara otros documentos o scripts, si en la conversación o en el <code>AGENTS.md</code> se orientaba al LLM a consultar ese <code>.md</code>.</p>
+<p>Pero en la actualidad, a pesar de que no he encontrado datos, seguro que los <em>labs</em> usan RL para las Skills.</p>
+<p>Y el harness, además de las funcionalidades adicionales comentadas antes, también incluye mucha lógica para gestionarlas.</p>
+<p>Un prompt cómo este en la versión actual de harness abiertos cómo opencode y codex da pistas interesantes.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Estoy investigando como funcionan las skills en distintos coding agents
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Mi objetivo principal es determinar si hay diferencias reales entre usar skills e inyectar contexto en el modelo de forma manual, por ejemplo referenciando documentos con `@`
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Por ejemplo quiero saber:
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>- Al usar skills en algún momento &quot;se descargan&quot; para reducir el contexto
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>- Se priorizan las instrucciones de las skills de alguna forma desde el harness / coding agents
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>- Que efecto tienen propiedades cómo `disable-model-invocation` o `allow_implicit_invocation` a la hora de cargar contexto
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>Investígalo y haz un informe. Luego trabajaremos en resolver más dudas.
+</span></code></pre></div>
+<p>En Codex:</p>
+<ul>
+<li>Las instrucciones de las skills se introducen entre tags <code>&lt;skill&gt;</code>, son priorizadas por el <em>system prompt</em>, y se insertan al final del mensaje (aumentando la atención del LLM)</li>
+<li>El catálogo de skills (metadata) consume un máximo del 2% del contexto. Si ocupa más lo resume</li>
+<li>Las Skills<ul>
+<li>son interpretadas cómo "reglas de comportamiento de agente"</li>
+<li>reciben un tratamiento especial en la compactación</li>
+<li>Se cargan al inicio del <a href="https://openai.com/index/unrolling-the-codex-agent-loop/">turn</a>, y se mantienen en la sesión, pero se le pasa un prompt especial al LLM que las minusvalora "Do not carry skills across turns unless re-mentioned."</li>
+<li>Prioridad: Muy Alta. Casi reglas de sistema</li>
+</ul>
+</li>
+<li>Los documentos citados (<code>@</code>)<ul>
+<li>Son interpretados de forma muy similar a mensajes del usuario</li>
+<li>Se compactan cómo cualquier otro elemento de la conversación</li>
+<li>Se cargan al inicio del <em>turn</em> y se mantienen en la conversación</li>
+<li>Prioridad: Alta. Cuando se mencionan están en la zona de atención pero su prioridad va bajando</li>
+</ul>
+</li>
+<li>Los documentos descubiertos (<code>busca la documentación de testing</code>)<ul>
+<li>son el resultado de una <em>tool call</em> (ie <code>read_file</code>) es decir son código/datos a procesar</li>
+<li>Los resultados de <em>tools</em> son el contexto más susceptible a ser descartado en la compactación</li>
+<li>Se cargan en un momento no determinado y el texto se conserva cómo resultado de una herramienta.</li>
+<li>Prioridad: Media - Alta. Su prioridad baja muy rápido</li>
+</ul>
+</li>
+</ul>
+<p>En opencode el comportamiento es muy similar.</p>
+<h3 id="conclusiones"><a class="toclink" href="2026/07/18/harness-skills/#conclusiones">Conclusiones</a></h3>
+<p>Texto copiado (casi) directamente del LLM:</p>
+<ul>
+<li><strong>Usa inyección manual (<code>@</code>)</strong> para adjuntar datos específicos de la tarea actual que solo se necesitan en los próximos 2 o 3 turnos (ej. un archivo de log, un fragmento de código que quieres refactorizar, o una especificación puntual).</li>
+<li><strong>Usa Skills</strong> para inyectar guías de estilo, flujos de trabajo de desarrollo complejos (ej. depuración de accesibilidad, convenciones para los tests), o cualquier conjunto de instrucciones reutilizables a lo largo de toda una sesión de desarrollo larga. Su diseño bajo demanda (lazy-loaded) evita el desperdicio de tokens y las protege frente a la compactación del contexto.</li>
+<li><strong>Permite el descubrimiento autónomo por el LLM</strong> (el LLM descubre solo el documento) para tareas exploratorias donde no estás seguro de si existe documentación aplicable o dónde está guardada en el workspace, permitiendo que el agente busque libremente pagando el coste de algunos turnos de búsqueda iniciales</li>
+<li><strong>Incita al LLM a buscar un documento específico</strong> (por ejemplo, diciendo <em>"busca la documentación de testing y después escribe los tests"</em>) cuando sabes que existe una especificación o guía útil en el workspace pero no quieres adjuntarla de golpe con <code>@</code> (para evitar el eager loading de tokens) ni quieres que el agente pierda turnos divagando o buscando a ciegas.</li>
+</ul>
+<h4 id="porque-no-tengo-muchas-skills"><a class="toclink" href="2026/07/18/harness-skills/#porque-no-tengo-muchas-skills">Porqué no tengo muchas skills</a></h4>
+<p>En mi caso, tengo muchas "instrucciones" cómo ficheros de documentación que no he convertido a skills. Hay varios motivos, los principales:</p>
+<ul>
+<li>La mayoría de esa documentación no debe ocupar contexto, ni siquiera el mínimo, porqué es para casos concretos y no todos los agentes soportan <code>disable-model-invocation</code>, y en todo caso, si se usa esa propiedad se pierde en parte el sentido de auto-uso del skill</li>
+<li>En el momento en que empiezas a escribir skills es fácil engancharte a las características de un harness concreto.</li>
+<li>La organización de información en base a skills es penosa.<ul>
+<li>Mi <code>docs/testing.md</code> no es sólo para el LLM es también para los humanos</li>
+<li>La forma de escribirlo es distinta cuando es exclusiva para humanos, de cuando es exclusiva para agentes y mantener dos ficheros (<code>.agents/skills/testings/SKILL.md</code> y <code>docs/testing.md</code>) no es buena idea.</li>
+<li>Cuando tienes mucha documentación no es lo mismo tener <code>docs/front/tests.md</code> y <code>docs/back/tests.md</code>, más todos los demás documentos que una carpeta plana con <code>.agents/skills/front-tests/SKILL.md</code>, <code>.agents/skills/back-tests/SKILL.md</code>, ...</li>
+</ul>
+</li>
+<li>En mi forma de usar el LLM, tener documentación y no skills me ha funcionado relativamente bien.</li>
+</ul>
+<h4 id="las-conclusiones-de-las-conclusiones"><a class="toclink" href="2026/07/18/harness-skills/#las-conclusiones-de-las-conclusiones">Las conclusiones de las conclusiones</a></h4>
+<ul>
+<li>Estamos ante una tecnología muy nueva, en constante cambio</li>
+<li>Hay mucha diferencia de comportamiento y necesidades si el agente se usa en sesiones muy dirigidas o <a href="https://ghuntley.com/loop/">en estilo ralph</a></li>
+<li>Cada vez va a ser más importante desarrollar capacidades en torno a realizar <em>evals</em> para tu base de código y forma de trabajo. Más importante, que conocer el framework web o todas las características de tu lenguaje de programación.</li>
+</ul>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2026-04-23 00:00:00+00:00">23 de abril de 2026</time></li>
         
         
@@ -1104,10 +1222,12 @@
     <h2 id="managing-file-responsibilities-and-size-in-coding-agents"><a class="toclink" href="2026/04/23/managing-file-size-in-coding-agents/">Managing file responsibilities and size in Coding Agents</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Contenido generado por LLM</p>
-<p>Este artículo tiene bastante edición humana y no es un one-shot, si no varias sesiones con distintos agentes, pero el grueso ha sido escrito por un LLM.</p>
-<p>El contexto en el que fue escrito está explicado en <a href="2026/04/23/ai-slop-friction-and-social-media/">mi otro artículo de hoy</a></p>
-<p>Está escrito tratando de responder a "pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files"</p>
 </div>
+<p>Este artículo tiene bastante edición humana y no es un one-shot, si no varias sesiones con distintos agentes, pero el grueso ha sido escrito por un LLM.</p>
+<div class="language-text highlight"><pre><span></span><code>El contexto en el que fue escrito está explicado en [mi otro artículo de hoy](./2026-04-23-ai-slop-friction-and-social-media.md)
+
+Está escrito tratando de responder a &quot;pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files&quot;
+</code></pre></div>
 <p>Coding agents tend to accumulate responsibilities into existing files rather than reasoning about structure. The result is files that grow across sessions, doing too many things — and the problem compounds over time.</p>
 <p>The slop can be reduced with instructions, good workflows and strictness but accuracy can also be reduced if not being done correctly.</p>
 <h3 id="the-problem"><a class="toclink" href="2026/04/23/managing-file-size-in-coding-agents/#the-problem">The Problem</a></h3>
@@ -1219,9 +1339,10 @@
 <li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
 <li><a href="2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
 <li><a href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
+<li><a href="2026/07/18/harness-skills/">Cómo funcionan las <code>Agent Skills</code></a></li>
 </ol>
 </details>
-<p>En esta artículo nos centramos en cómo funcionan las <em>rules</em> en distintos <em>coding agents</em>.</p>
+<p>En este artículo nos centramos en cómo funcionan las <em>rules</em> en distintos <em>coding agents</em>.</p>
 <p>El <code>AGENTS.md</code> es equivalente a una regla de <code>Siempre</code> y en la documentación de algunas herramientas lo tratan en conjunto, así que también lo haremos así en este artículo.</p>
 <p>Las herramientas en general llaman <em>rules</em> a archivos markdown con un frontmatter que controla bajo que condiciones se inyecta en el contexto:</p>
 <ul>
@@ -1469,6 +1590,7 @@
 <li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
 <li><a href="2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
 <li><a href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
+<li><a href="2026/07/18/harness-skills/">Cómo funcionan las <code>Agent Skills</code></a></li>
 </ol>
 </details>
 <p>Claude describe la mayoría de estas funcionalidades cómo "<a href="https://code.claude.com/docs/en/features-overview">extension layer</a>: features you add to customize what Claude knows, connect it to external services, and automate workflows.".</p>
@@ -1517,78 +1639,6 @@
 <li>Seguramente acaben implementando <code>disable-model-invocation</code></li>
 </ul>
 <p>Si el resto de Coding Agents siguen copiando a Claude, también acabarán <a href="https://code.claude.com/docs/en/skills#inject-dynamic-context">metiendo interpolación en las skills</a>.</p>
-    
-    
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2026-03-20 00:00:00+00:00">20 de marzo de 2026</time></li>
-        
-        
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="coding-agentes-commands-en-gemini"><a class="toclink" href="2026/03/20/coding-agents-commands-gemini/">Coding Agentes: Commands en Gemini</a></h2>
-<details class="info">
-<summary>Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:</summary>
-<ol>
-<li><a href="2026/03/19/coding-agents-features-for-context-injection/">Funcionalidades de "inyección de contexto"</a></li>
-<li><a href="2026/03/19/coding-agents-commands-cursor/">Commands en Cursor</a></li>
-<li><a href="2026/03/20/coding-agents-commands-gemini/">Commands en Gemini</a></li>
-<li><a href="2026/03/21/coding-agents-commands-claude/">Commands en Claude (Codex y OpenCode)</a></li>
-<li><a href="2026/03/24/coding-agents-how-rules-work/">Cómo funcionan las <code>rules</code> en distintos Coding Agentes</a></li>
-</ol>
-</details>
-<p>En esta artículo nos centramos en cómo funcionan los <em>commands</em> en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.</p>
-<p>Gemini no tiene un nombre genérico para estas funcionalidades y en su documentación están dispersas entre "Features", "Usage" y "Configuration". Contempla:</p>
-<ul>
-<li><a href="https://geminicli.com/docs/cli/tutorials/memory-management/">AGENTS.md</a>. <a href="https://geminicli.com/docs/cli/gemini-md/">GEMINI.md</a></li>
-<li><a href="https://geminicli.com/docs/cli/skills/">Skills</a></li>
-<li><a href="https://geminicli.com/docs/cli/tutorials/mcp-setup/">MCP</a></li>
-<li><a href="https://geminicli.com/docs/hooks/">Hooks</a></li>
-<li><a href="https://geminicli.com/docs/extensions/">Extensions</a> (Plugins)</li>
-<li><a href="https://geminicli.com/docs/cli/custom-commands/">Custom Commands</a></li>
-</ul>
-<p>Además de otras funcionalidades cómo modificar el System Prompt, Subagents, Remote Subagents y Plan Mode. Y no tiene un sistema de reglas.</p>
-<h3 id="commands"><a class="toclink" href="2026/03/20/coding-agents-commands-gemini/#commands">Commands</a></h3>
-<p>La <a href="https://geminicli.com/docs/cli/custom-commands/">documentación oficial</a> es bastante clara.</p>
-<ul>
-<li>Van en <code>.gemini/commands</code> del proyecto o de <code>~</code>.<ul>
-<li>Admite namespaces (subdirectorios). <code>.gemini/commands/git/commit.toml</code> se convierte en <code>/git:commit</code>.</li>
-</ul>
-</li>
-<li>Por algún <a href="https://github.com/google-gemini/gemini-cli/issues/15535">motivo inexplicable</a>, usa ficheros TOML</li>
-<li>Los campos del TOML son <code>description</code> el texto de ayuda que pone para el comando y <code>prompt</code> donde metes las instrucciones en sí.</li>
-<li>Admite cierto grado de interpolación.<ul>
-<li><code>{{args}}</code> El placeholder es substituido por el texto que acompaña al comando en el chat.</li>
-<li><code>!{{...}}</code>. Ejecuta el comando y substituye el placeholder por la salida. Se puede combinar con <em>args</em>: <code>!{grep -r {{args}} .}</code></li>
-<li><code>@{path/to/file_or_dir}</code>. El placeholder es substituido por el contenido del fichero o los ficheros del directorio. Esta substitución es la primera así que no se puede combinar con <code>{{args}}</code> y pasar el path cómo parámetro.</li>
-</ul>
-</li>
-<li>No son <em>composables</em> sólo funciona el <code>/</code> al principio del prompt.</li>
-</ul>
-<p>Una de las cosas buenas de que <a href="https://github.com/google-gemini/gemini-cli">gemini-cli</a> sea software libre es que podemos ver cómo funciona y no hacer observaciones indirectas cómo en Cursor.</p>
-<p>El propio gemini tras estudiar su código responde más o menos esto a si es lo mismo usar <code>@</code> que un <em>command</em></p>
-<blockquote>
-<p>Gemini CLI uses clear separators and headers to help the model distinguish between your prompt, injected files, and shell command outputs, rather than complex XML tags. For <code>@file</code> references, it uses <code>REFERENCE_CONTENT_START</code> and <code>REFERENCE_CONTENT_END markers</code>, with individual file contents prefixed by <code>--- filename ---</code>. Custom slash commands defined in .toml files expand <code>@{path}</code> with similar <code>--- filename ---</code> headers and use <code>--- Start of content for directory: path ---</code> for directory injections</p>
-<p>Shell command output <code>!{command}</code> is appended with exit codes or signal markers if they fail, and if a command doesn't use <code>{{args}}</code>, the raw invocation is appended to the end of the prompt to provide context. Overall, the system relies on these human-readable delimiters to maintain context without over-engineering the prompt structure.</p>
-</blockquote>
-<p>Vamos que no hay magia. Y en las pruebas que he hecho los resultados era similares.</p>
-<h3 id="conclusiones"><a class="toclink" href="2026/03/20/coding-agents-commands-gemini/#conclusiones">Conclusiones</a></h3>
-<ul>
-<li>gemini-cli al contrario que Cursor, no hace magia con los comandos, simplemente es un texto añadido al prompt</li>
-<li>Las opciones de interpolación de los comandos pueden abrir usos creativos. Pero no tengo claro cual puede ser la diferencia entre interpolar un <code>!{git diff}</code> y decirle que use <code>git diff</code> y con la salida escriba el mensaje de commit. Allá de menos requests. Quizás menos consumo de tokens</li>
-<li>Usar formato TOML para algo cómo esto es tocar las narices. Tiene pinta de over engineering.</li>
-</ul>
     
     
   </div>

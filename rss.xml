@@ -13,8 +13,8 @@
     <language>es</language>
 
     
-    <pubDate>Fri, 24 Apr 2026 08:40:22 -0000</pubDate>
-    <lastBuildDate>Fri, 24 Apr 2026 08:40:22 -0000</lastBuildDate>
+    <pubDate>Sun, 19 Jul 2026 09:02:05 -0000</pubDate>
+    <lastBuildDate>Sun, 19 Jul 2026 09:02:05 -0000</lastBuildDate>
     <ttl>2880</ttl>
 
     
@@ -30,6 +30,118 @@
     
 
     
+    
+    <item>
+      <title>Coding Agentes: Agent Skills</title>
+      
+      
+      
+      
+      <description>&lt;h1 id=&#34;coding-agentes-agent-skills&#34;&gt;Coding Agentes: Agent Skills&lt;/h1&gt;
+&lt;details class=&#34;info&#34;&gt;
+&lt;summary&gt;Serie de artículos sobre funcionalidades para inyectar contexto en los coding agents:&lt;/summary&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;../../../03/19/coding-agents-features-for-context-injection/&#34;&gt;Funcionalidades de &#34;inyección de contexto&#34;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../03/19/coding-agents-commands-cursor/&#34;&gt;Commands en Cursor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../03/20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../03/21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../03/24/coding-agents-how-rules-work/&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./&#34;&gt;Cómo funcionan las &lt;code&gt;Agent Skills&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/details&gt;
+&lt;p&gt;A día de hoy poco hay que decir de las &lt;em&gt;Agent Skills&lt;/em&gt;. Tras el boom habitual de todo lo tiene que ver con los LLM pasaron a ser una funcionalidad más.&lt;/p&gt;
+&lt;p&gt;Aún así, en este artículo, vamos a repasar algunos aspectos que creo que ayudan a decidir que técnica usar para inyectar la &lt;em&gt;dynamic memory&lt;/em&gt; en el contexto en base a &lt;a href=&#34;https://www.langchain.com/blog/your-harness-your-memory&#34;&gt;cómo funciona el harness&lt;/a&gt; (antes llamado &lt;em&gt;coding agents&lt;/em&gt;).&lt;/p&gt;
+&lt;h2 id=&#34;estandar&#34;&gt;¿Estándar?&lt;/h2&gt;
+&lt;p&gt;Las &lt;a href=&#34;https://agentskills.io&#34;&gt;Skills&lt;/a&gt; son un estándar que no es estándar.&lt;/p&gt;
+&lt;p&gt;Básicamente son un directorio que dentro tiene un fichero llamado &lt;code&gt;SKILL.md&lt;/code&gt; con dos propiedades de frontmatter obligatorias: &lt;code&gt;name&lt;/code&gt; y &lt;code&gt;description&lt;/code&gt;. El harness mantiene esas propiedades en el contexto durante toda la sesión y el LLM decide cuando invocar la skill. En ese momento se inyecta en el contexto el fichero completo de &lt;code&gt;SKILL.md&lt;/code&gt;, el LLM sigue las instrucciones en él o pide cargar scripts u otros ficheros que vengan empaquetados con la skill.&lt;/p&gt;
+&lt;p&gt;La idea es brillante porqué es sencilla y encaja bien en las capacidades crecientes de los LLM. Pero si profundizamos vienen los problemas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;El directorio de skills no es estándar. La mayoría de harness es compatible con &lt;code&gt;.agents/skills&lt;/code&gt; y &lt;code&gt;~/.agents/skills/&lt;/code&gt;, pero no todos&lt;/li&gt;
+&lt;li&gt;Los harness usan sus propias propiedades no estándar de frontmatter para definir comportamientos importantes. Por ejemplo, Claude y Cursor soportan &lt;code&gt;disable-model-invocation&lt;/code&gt;, que no envían la descripción al contexto, y &lt;code&gt;SKILL.md&lt;/code&gt; sólo se inyecta bajo invocación manual. Pero ni Antigravity ni &lt;a href=&#34;https://github.com/anomalyco/opencode/issues/34498&#34;&gt;OpenCode&lt;/a&gt; la reconocen. Y Codex la llama &lt;code&gt;allow_implicit_invocation&lt;/code&gt; aunque haga lo mismo. Esta es una propiedad muy importante para poder organizar la documentación y prompts reutilizables cómo skills pero sin cargar el contexto&lt;/li&gt;
+&lt;li&gt;La relación de skills (sub) agentes, tools y permisos es implementada por cada harness de forma distinta&lt;/li&gt;
+&lt;li&gt;La inyección extra de contexto desde &lt;code&gt;SKILL.md&lt;/code&gt; tampoco es estándar. Cómo se interpreta la &lt;code&gt;@&lt;/code&gt;, el soporte para &lt;a href=&#34;https://code.claude.com/docs/en/skills#available-string-substitutions&#34;&gt;argumentos y substituciones&lt;/a&gt;, &lt;a href=&#34;https://code.claude.com/docs/en/skills#advanced-patterns&#34;&gt;shell substitution&lt;/a&gt;, ... dependen del harness.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/anthropics/skills/blob/main/skills/xlsx/SKILL.md#dependencies&#34;&gt;Las dependencias de los scripts son confusas&lt;/a&gt;. Cuando la skill incluye dependencias escritas en Python (o en cualquier ecosistema que no incluya el binario directamente) que pasa con las dependencias. ¿Usa el virtualenv si hay uno?, ¿entiende que yo quiero que use uv?, ¿instala a nivel sistema o de proyecto?, ...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Al final, para usar estas características que dan un montón de capacidades extra tienes que ligarte muy fuerte a un harness.&lt;/p&gt;
+&lt;h2 id=&#34;skills-vs-documentacion&#34;&gt;Skills vs Documentación&lt;/h2&gt;
+&lt;p&gt;Las Skills nacieron como un sistema de empaquetado. Sin más. Los modelos no estaban entrenados en ellas, ni había RL, ni el harness le daba un tratamiento demasiado especial (llega con ver el historial de git de cualquier herramienta abierta).&lt;/p&gt;
+&lt;p&gt;Así que, &lt;em&gt;en mi opinión&lt;/em&gt;, no había mucha diferencia entre tener una skill y tener un &lt;code&gt;.md&lt;/code&gt; que referenciara otros documentos o scripts, si en la conversación o en el &lt;code&gt;AGENTS.md&lt;/code&gt; se orientaba al LLM a consultar ese &lt;code&gt;.md&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Pero en la actualidad, a pesar de que no he encontrado datos, seguro que los &lt;em&gt;labs&lt;/em&gt; usan RL para las Skills.&lt;/p&gt;
+&lt;p&gt;Y el harness, además de las funcionalidades adicionales comentadas antes, también incluye mucha lógica para gestionarlas.&lt;/p&gt;
+&lt;p&gt;Un prompt cómo este en la versión actual de harness abiertos cómo opencode y codex da pistas interesantes.&lt;/p&gt;
+&lt;div class=&#34;language-text highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span id=&#34;__span-0-1&#34;&gt;&lt;a id=&#34;__codelineno-0-1&#34; name=&#34;__codelineno-0-1&#34; href=&#34;#__codelineno-0-1&#34;&gt;&lt;/a&gt;Estoy investigando como funcionan las skills en distintos coding agents
+&lt;/span&gt;&lt;span id=&#34;__span-0-2&#34;&gt;&lt;a id=&#34;__codelineno-0-2&#34; name=&#34;__codelineno-0-2&#34; href=&#34;#__codelineno-0-2&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-3&#34;&gt;&lt;a id=&#34;__codelineno-0-3&#34; name=&#34;__codelineno-0-3&#34; href=&#34;#__codelineno-0-3&#34;&gt;&lt;/a&gt;Mi objetivo principal es determinar si hay diferencias reales entre usar skills e inyectar contexto en el modelo de forma manual, por ejemplo referenciando documentos con `@`
+&lt;/span&gt;&lt;span id=&#34;__span-0-4&#34;&gt;&lt;a id=&#34;__codelineno-0-4&#34; name=&#34;__codelineno-0-4&#34; href=&#34;#__codelineno-0-4&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-5&#34;&gt;&lt;a id=&#34;__codelineno-0-5&#34; name=&#34;__codelineno-0-5&#34; href=&#34;#__codelineno-0-5&#34;&gt;&lt;/a&gt;Por ejemplo quiero saber:
+&lt;/span&gt;&lt;span id=&#34;__span-0-6&#34;&gt;&lt;a id=&#34;__codelineno-0-6&#34; name=&#34;__codelineno-0-6&#34; href=&#34;#__codelineno-0-6&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-7&#34;&gt;&lt;a id=&#34;__codelineno-0-7&#34; name=&#34;__codelineno-0-7&#34; href=&#34;#__codelineno-0-7&#34;&gt;&lt;/a&gt;- Al usar skills en algún momento &amp;quot;se descargan&amp;quot; para reducir el contexto
+&lt;/span&gt;&lt;span id=&#34;__span-0-8&#34;&gt;&lt;a id=&#34;__codelineno-0-8&#34; name=&#34;__codelineno-0-8&#34; href=&#34;#__codelineno-0-8&#34;&gt;&lt;/a&gt;- Se priorizan las instrucciones de las skills de alguna forma desde el harness / coding agents
+&lt;/span&gt;&lt;span id=&#34;__span-0-9&#34;&gt;&lt;a id=&#34;__codelineno-0-9&#34; name=&#34;__codelineno-0-9&#34; href=&#34;#__codelineno-0-9&#34;&gt;&lt;/a&gt;- Que efecto tienen propiedades cómo `disable-model-invocation` o `allow_implicit_invocation` a la hora de cargar contexto
+&lt;/span&gt;&lt;span id=&#34;__span-0-10&#34;&gt;&lt;a id=&#34;__codelineno-0-10&#34; name=&#34;__codelineno-0-10&#34; href=&#34;#__codelineno-0-10&#34;&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;span id=&#34;__span-0-11&#34;&gt;&lt;a id=&#34;__codelineno-0-11&#34; name=&#34;__codelineno-0-11&#34; href=&#34;#__codelineno-0-11&#34;&gt;&lt;/a&gt;Investígalo y haz un informe. Luego trabajaremos en resolver más dudas.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;En Codex:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Las instrucciones de las skills se introducen entre tags &lt;code&gt;&amp;lt;skill&amp;gt;&lt;/code&gt;, son priorizadas por el &lt;em&gt;system prompt&lt;/em&gt;, y se insertan al final del mensaje (aumentando la atención del LLM)&lt;/li&gt;
+&lt;li&gt;El catálogo de skills (metadata) consume un máximo del 2% del contexto. Si ocupa más lo resume&lt;/li&gt;
+&lt;li&gt;Las Skills&lt;ul&gt;
+&lt;li&gt;son interpretadas cómo &#34;reglas de comportamiento de agente&#34;&lt;/li&gt;
+&lt;li&gt;reciben un tratamiento especial en la compactación&lt;/li&gt;
+&lt;li&gt;Se cargan al inicio del &lt;a href=&#34;https://openai.com/index/unrolling-the-codex-agent-loop/&#34;&gt;turn&lt;/a&gt;, y se mantienen en la sesión, pero se le pasa un prompt especial al LLM que las minusvalora &#34;Do not carry skills across turns unless re-mentioned.&#34;&lt;/li&gt;
+&lt;li&gt;Prioridad: Muy Alta. Casi reglas de sistema&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Los documentos citados (&lt;code&gt;@&lt;/code&gt;)&lt;ul&gt;
+&lt;li&gt;Son interpretados de forma muy similar a mensajes del usuario&lt;/li&gt;
+&lt;li&gt;Se compactan cómo cualquier otro elemento de la conversación&lt;/li&gt;
+&lt;li&gt;Se cargan al inicio del &lt;em&gt;turn&lt;/em&gt; y se mantienen en la conversación&lt;/li&gt;
+&lt;li&gt;Prioridad: Alta. Cuando se mencionan están en la zona de atención pero su prioridad va bajando&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Los documentos descubiertos (&lt;code&gt;busca la documentación de testing&lt;/code&gt;)&lt;ul&gt;
+&lt;li&gt;son el resultado de una &lt;em&gt;tool call&lt;/em&gt; (ie &lt;code&gt;read_file&lt;/code&gt;) es decir son código/datos a procesar&lt;/li&gt;
+&lt;li&gt;Los resultados de &lt;em&gt;tools&lt;/em&gt; son el contexto más susceptible a ser descartado en la compactación&lt;/li&gt;
+&lt;li&gt;Se cargan en un momento no determinado y el texto se conserva cómo resultado de una herramienta.&lt;/li&gt;
+&lt;li&gt;Prioridad: Media - Alta. Su prioridad baja muy rápido&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En opencode el comportamiento es muy similar.&lt;/p&gt;
+&lt;h2 id=&#34;conclusiones&#34;&gt;Conclusiones&lt;/h2&gt;
+&lt;p&gt;Texto copiado (casi) directamente del LLM:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Usa inyección manual (&lt;code&gt;@&lt;/code&gt;)&lt;/strong&gt; para adjuntar datos específicos de la tarea actual que solo se necesitan en los próximos 2 o 3 turnos (ej. un archivo de log, un fragmento de código que quieres refactorizar, o una especificación puntual).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Usa Skills&lt;/strong&gt; para inyectar guías de estilo, flujos de trabajo de desarrollo complejos (ej. depuración de accesibilidad, convenciones para los tests), o cualquier conjunto de instrucciones reutilizables a lo largo de toda una sesión de desarrollo larga. Su diseño bajo demanda (lazy-loaded) evita el desperdicio de tokens y las protege frente a la compactación del contexto.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Permite el descubrimiento autónomo por el LLM&lt;/strong&gt; (el LLM descubre solo el documento) para tareas exploratorias donde no estás seguro de si existe documentación aplicable o dónde está guardada en el workspace, permitiendo que el agente busque libremente pagando el coste de algunos turnos de búsqueda iniciales&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Incita al LLM a buscar un documento específico&lt;/strong&gt; (por ejemplo, diciendo &lt;em&gt;&#34;busca la documentación de testing y después escribe los tests&#34;&lt;/em&gt;) cuando sabes que existe una especificación o guía útil en el workspace pero no quieres adjuntarla de golpe con &lt;code&gt;@&lt;/code&gt; (para evitar el eager loading de tokens) ni quieres que el agente pierda turnos divagando o buscando a ciegas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;porque-no-tengo-muchas-skills&#34;&gt;Porqué no tengo muchas skills&lt;/h3&gt;
+&lt;p&gt;En mi caso, tengo muchas &#34;instrucciones&#34; cómo ficheros de documentación que no he convertido a skills. Hay varios motivos, los principales:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;La mayoría de esa documentación no debe ocupar contexto, ni siquiera el mínimo, porqué es para casos concretos y no todos los agentes soportan &lt;code&gt;disable-model-invocation&lt;/code&gt;, y en todo caso, si se usa esa propiedad se pierde en parte el sentido de auto-uso del skill&lt;/li&gt;
+&lt;li&gt;En el momento en que empiezas a escribir skills es fácil engancharte a las características de un harness concreto.&lt;/li&gt;
+&lt;li&gt;La organización de información en base a skills es penosa.&lt;ul&gt;
+&lt;li&gt;Mi &lt;code&gt;docs/testing.md&lt;/code&gt; no es sólo para el LLM es también para los humanos&lt;/li&gt;
+&lt;li&gt;La forma de escribirlo es distinta cuando es exclusiva para humanos, de cuando es exclusiva para agentes y mantener dos ficheros (&lt;code&gt;.agents/skills/testings/SKILL.md&lt;/code&gt; y &lt;code&gt;docs/testing.md&lt;/code&gt;) no es buena idea.&lt;/li&gt;
+&lt;li&gt;Cuando tienes mucha documentación no es lo mismo tener &lt;code&gt;docs/front/tests.md&lt;/code&gt; y &lt;code&gt;docs/back/tests.md&lt;/code&gt;, más todos los demás documentos que una carpeta plana con &lt;code&gt;.agents/skills/front-tests/SKILL.md&lt;/code&gt;, &lt;code&gt;.agents/skills/back-tests/SKILL.md&lt;/code&gt;, ...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;En mi forma de usar el LLM, tener documentación y no skills me ha funcionado relativamente bien.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;las-conclusiones-de-las-conclusiones&#34;&gt;Las conclusiones de las conclusiones&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Estamos ante una tecnología muy nueva, en constante cambio&lt;/li&gt;
+&lt;li&gt;Hay mucha diferencia de comportamiento y necesidades si el agente se usa en sesiones muy dirigidas o &lt;a href=&#34;https://ghuntley.com/loop/&#34;&gt;en estilo ralph&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Cada vez va a ser más importante desarrollar capacidades en torno a realizar &lt;em&gt;evals&lt;/em&gt; para tu base de código y forma de trabajo. Más importante, que conocer el framework web o todas las características de tu lenguaje de programación.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <link>https://franciscopuga.es/blog/2026/07/18/harness-skills/</link>
+      <pubDate>Sat, 18 Jul 2026 00:00:00 +0000</pubDate>
+      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
+      
+      <guid isPermaLink="true">https://franciscopuga.es/blog/2026/07/18/harness-skills/</guid>
+      
+    </item>
     
     <item>
       <title>AI Slop, fricción y redes sociales</title>
@@ -81,10 +193,12 @@
       <description>&lt;h1 id=&#34;managing-file-responsibilities-and-size-in-coding-agents&#34;&gt;Managing file responsibilities and size in Coding Agents&lt;/h1&gt;
 &lt;div class=&#34;admonition danger&#34;&gt;
 &lt;p class=&#34;admonition-title&#34;&gt;Contenido generado por LLM&lt;/p&gt;
-&lt;p&gt;Este artículo tiene bastante edición humana y no es un one-shot, si no varias sesiones con distintos agentes, pero el grueso ha sido escrito por un LLM.&lt;/p&gt;
-&lt;p&gt;El contexto en el que fue escrito está explicado en &lt;a href=&#34;../ai-slop-friction-and-social-media/&#34;&gt;mi otro artículo de hoy&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Está escrito tratando de responder a &#34;pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files&#34;&lt;/p&gt;
 &lt;/div&gt;
+&lt;p&gt;Este artículo tiene bastante edición humana y no es un one-shot, si no varias sesiones con distintos agentes, pero el grueso ha sido escrito por un LLM.&lt;/p&gt;
+&lt;div class=&#34;language-text highlight&#34;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;El contexto en el que fue escrito está explicado en [mi otro artículo de hoy](./2026-04-23-ai-slop-friction-and-social-media.md)
+
+Está escrito tratando de responder a &amp;quot;pongo en el AGENTS una instrucción de - No escribas ficheros de más 250 líneas - o hay formas mejores de evitar god files&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Coding agents tend to accumulate responsibilities into existing files rather than reasoning about structure. The result is files that grow across sessions, doing too many things — and the problem compounds over time.&lt;/p&gt;
 &lt;p&gt;The slop can be reduced with instructions, good workflows and strictness but accuracy can also be reduced if not being done correctly.&lt;/p&gt;
 &lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;
@@ -190,9 +304,10 @@
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../07/18/harness-skills/&#34;&gt;Cómo funcionan las &lt;code&gt;Agent Skills&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
-&lt;p&gt;En esta artículo nos centramos en cómo funcionan las &lt;em&gt;rules&lt;/em&gt; en distintos &lt;em&gt;coding agents&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;En este artículo nos centramos en cómo funcionan las &lt;em&gt;rules&lt;/em&gt; en distintos &lt;em&gt;coding agents&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;El &lt;code&gt;AGENTS.md&lt;/code&gt; es equivalente a una regla de &lt;code&gt;Siempre&lt;/code&gt; y en la documentación de algunas herramientas lo tratan en conjunto, así que también lo haremos así en este artículo.&lt;/p&gt;
 &lt;p&gt;Las herramientas en general llaman &lt;em&gt;rules&lt;/em&gt; a archivos markdown con un frontmatter que controla bajo que condiciones se inyecta en el contexto:&lt;/p&gt;
 &lt;ul&gt;
@@ -434,6 +549,7 @@
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../24/coding-agents-how-rules-work/&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../07/18/harness-skills/&#34;&gt;Cómo funcionan las &lt;code&gt;Agent Skills&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;Claude describe la mayoría de estas funcionalidades cómo &#34;&lt;a href=&#34;https://code.claude.com/docs/en/features-overview&#34;&gt;extension layer&lt;/a&gt;: features you add to customize what Claude knows, connect it to external services, and automate workflows.&#34;.&lt;/p&gt;
@@ -505,6 +621,7 @@
 &lt;li&gt;&lt;a href=&#34;./&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../24/coding-agents-how-rules-work/&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../07/18/harness-skills/&#34;&gt;Cómo funcionan las &lt;code&gt;Agent Skills&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;En esta artículo nos centramos en cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Gemini. Las pruebas han sido hechas sobre la versión 0.33.1.&lt;/p&gt;
@@ -571,6 +688,7 @@
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../24/coding-agents-how-rules-work/&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../07/18/harness-skills/&#34;&gt;Cómo funcionan las &lt;code&gt;Agent Skills&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;En esté artículo nos centramos cómo funcionan los &lt;em&gt;commands&lt;/em&gt; en Cursor. Las pruebas han sido hechas sobre la versión 2.5.&lt;/p&gt;
@@ -695,6 +813,7 @@
 &lt;li&gt;&lt;a href=&#34;../../20/coding-agents-commands-gemini/&#34;&gt;Commands en Gemini&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../21/coding-agents-commands-claude/&#34;&gt;Commands en Claude (Codex y OpenCode)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;../../24/coding-agents-how-rules-work/&#34;&gt;Cómo funcionan las &lt;code&gt;rules&lt;/code&gt; en distintos Coding Agentes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../07/18/harness-skills/&#34;&gt;Cómo funcionan las &lt;code&gt;Agent Skills&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/details&gt;
 &lt;p&gt;Los &lt;em&gt;coding agents&lt;/em&gt; ofrecen varias funcionalidades para lo que podemos llamar inyectar contexto explicita o implicitamente:&lt;/p&gt;
@@ -1887,26 +2006,6 @@
       <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
       
       <guid isPermaLink="true">https://franciscopuga.es/blog/2025/02/15/video-deep-dive-into-llm-andrej-karpathy/</guid>
-      
-    </item>
-    
-    <item>
-      <title>Cómo funciona un LLM y porqué mienten</title>
-      
-      
-      
-      
-      <description>&lt;h1 id=&#34;como-funciona-un-llm-y-porque-mienten&#34;&gt;Cómo funciona un LLM y porqué mienten&lt;/h1&gt;
-&lt;p&gt;Uno de los artículos más inteligentes que he leído sobre LLM.&lt;/p&gt;
-&lt;p&gt;El autor, Simon Willinson es sensato (desde mi punto de vista), trabaja mucho con LLM y es el creador de Django (uno de los frameworks web más usados).&lt;/p&gt;
-&lt;p&gt;Básicamente dice que ChatGPT es una herramienta increíble, cuando sabes usarla, pero que usarla bien no es tan fácil &lt;a href=&#34;https://simonwillison.net/2023/Apr/7/chatgpt-lies/&#34;&gt;porqué &#34;ChatGPT miente&#34;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Y para entender porqué &#34;miente&#34; o como funciona los LLM a alto nivel pero muy técnico, &lt;a href=&#34;https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/&#34;&gt;este otro artículo&lt;/a&gt; de un verdadero pionero de estos temas es imprescindible.&lt;/p&gt;
-&lt;p&gt;Wolfram es en resumen el creador de Mathematica, que en cierto momento estuvo a la altura de Matlab pero luego se fue por otros derroteros. Su buscador Wolfram Alfa que yo sepa fue el primero que intentaba no darte una colección de links si no responder a preguntas formuladas en lenguaje natural, y ya tiene bastantes añitos (2009 según la Wikipedia)&lt;/p&gt;</description>
-      <link>https://franciscopuga.es/blog/2025/01/19/como-funciona-un-llm-y-porque-mienten/</link>
-      <pubDate>Sun, 19 Jan 2025 00:00:00 +0000</pubDate>
-      <source url="https://franciscopuga.es/rss.xml">Francisco Puga</source>
-      
-      <guid isPermaLink="true">https://franciscopuga.es/blog/2025/01/19/como-funciona-un-llm-y-porque-mienten/</guid>
       
     </item>
     

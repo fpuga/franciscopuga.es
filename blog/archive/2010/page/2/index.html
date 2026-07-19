@@ -1358,9 +1358,9 @@
 <p><a href="http://geneura.ugr.es/~jmerelo/tutoriales/git/">Git</a> es el sistema de control de versiones (SCV) que se está imponiendo en el mundo del software libre. Todo programador que se precie debe aprender a usar un <a href="http://es.wikipedia.org/wiki/Control_de_versiones">SCV</a> y dado que git puede operar también sobre repositorios svn te recomiendo encarecidamente que lo pruebes. Una de las ventajas de <a href="http://git-scm.com/">git</a> es que es increíblemente configurable. En este artículo encontraras como realizar esa primera configuración para que sea más cómodo trabajar con git.</p>
 <p>La configuración global de git se guarda en el home del usuario en archivo llamado .gitconfig. Además dentro de cada repositorio existe un archivo config dentro del directorio .git donde podemos usar unas configuraciones distintas a las globales o añadir parámetros nuevos. La configuración que deseemos la podemos escribir directamente en esos archivos o usar el comando git config.</p>
 <h3 id="indicamos-a-git-quien-somos"><a class="toclink" href="../../../../2010/05/01/primeros-pasos-configurar-git/#indicamos-a-git-quien-somos">Indicamos a git quien somos</a></h3>
-<p><code>git config --global user.name "Francisco Puga"&lt;br&gt;&lt;/br&gt;git config --global user.email "fran.puga@gmail.com"</code></p>
+<p><code>git config --global user.name "Francisco Puga"&lt;br&gt;&lt;/br&gt;git config --global user.email "correo@franciscopuga.es"</code></p>
 <p>Esto generará en el fichero .gitconfig dos nuevas líneas como las que siguen:</p>
-<p><code>[user]&lt;br&gt;&lt;/br&gt;email = fran.puga@gmail.com&lt;br&gt;&lt;/br&gt;name = Francisco Puga</code></p>
+<p><code>[user]&lt;br&gt;&lt;/br&gt;email = correo@franciscopuga.es&lt;br&gt;&lt;/br&gt;name = Francisco Puga</code></p>
 <p>Si quisiéramos configurar nuestro correo electrónico para un repositorio concreto ejecutaríamos git config sin la opción de –global dentro del directorio que contiene el repositorio.</p>
 <h3 id="colorear-la-salida"><a class="toclink" href="../../../../2010/05/01/primeros-pasos-configurar-git/#colorear-la-salida">Colorear la salida</a></h3>
 <p>A continuación añadiremos unas líneas al fichero de configuración global (o mediante ordenes como git config –global color.ui auto) para que nos coloree la salida por pantalla</p>
